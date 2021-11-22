@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\Server.csproj": {}
+    "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj": {}
   },
   "projects": {
-    "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\Server.csproj": {
+    "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\Server.csproj",
+        "projectUniqueName": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\Server.csproj",
+        "projectPath": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj",
         "packagesPath": "C:\\Users\\50606\\.nuget\\packages\\",
-        "outputPath": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\obj\\",
+        "outputPath": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

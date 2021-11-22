@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "OKbau+uaNQxDQstWtGeQSfh2YKIO1KdfbrSUQMG9WNQ=",
+  "Hash": "Kishc+Ix4aFgvwNyUDX8kcCvL2Mu9ENK8l4vSYFIN/Q=",
   "Source": "Server",
   "BasePath": "_content/Server",
   "Mode": "Default",
@@ -10,17 +10,17 @@
     {
       "Name": "Server\\wwwroot",
       "Source": "Server",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
       "Pattern": "**"
     }
   ],
   "Assets": [
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Server.styles.css",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Server.styles.css",
       "SourceId": "Server",
       "SourceType": "Computed",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\obj\\Debug\\net6.0\\scopedcss\\bundle\\",
       "BasePath": "_content/Server",
       "RelativePath": "Server.styles.css",
       "AssetKind": "All",
@@ -31,13 +31,13 @@
       "AssetTraitValue": "ApplicationBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Server.styles.css"
+      "OriginalItemSpec": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\obj\\Debug\\net6.0\\scopedcss\\bundle\\Server.styles.css"
     },
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Server.bundle.scp.css",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Server.bundle.scp.css",
       "SourceId": "Server",
       "SourceType": "Computed",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\",
       "BasePath": "_content/Server",
       "RelativePath": "Server.bundle.scp.css",
       "AssetKind": "All",
@@ -48,13 +48,13 @@
       "AssetTraitValue": "ProjectBundle",
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
-      "OriginalItemSpec": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Server.bundle.scp.css"
+      "OriginalItemSpec": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\obj\\Debug\\net6.0\\scopedcss\\projectbundle\\Server.bundle.scp.css"
     },
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\css\\bootstrap\\bootstrap.min.css",
       "SourceId": "Server",
       "SourceType": "Discovered",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
       "RelativePath": "css/bootstrap/bootstrap.min.css",
       "AssetKind": "All",
@@ -68,10 +68,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css"
     },
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\css\\bootstrap\\bootstrap.min.css.map",
       "SourceId": "Server",
       "SourceType": "Discovered",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
       "RelativePath": "css/bootstrap/bootstrap.min.css.map",
       "AssetKind": "All",
@@ -85,10 +85,10 @@
       "OriginalItemSpec": "wwwroot\\css\\bootstrap\\bootstrap.min.css.map"
     },
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css",
       "SourceId": "Server",
       "SourceType": "Discovered",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
       "RelativePath": "css/open-iconic/font/css/open-iconic-bootstrap.min.css",
       "AssetKind": "All",
@@ -102,10 +102,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\css\\open-iconic-bootstrap.min.css"
     },
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot",
       "SourceId": "Server",
       "SourceType": "Discovered",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.eot",
       "AssetKind": "All",
@@ -119,10 +119,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.eot"
     },
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf",
       "SourceId": "Server",
       "SourceType": "Discovered",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.otf",
       "AssetKind": "All",
@@ -136,10 +136,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.otf"
     },
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg",
       "SourceId": "Server",
       "SourceType": "Discovered",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.svg",
       "AssetKind": "All",
@@ -153,10 +153,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.svg"
     },
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf",
       "SourceId": "Server",
       "SourceType": "Discovered",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.ttf",
       "AssetKind": "All",
@@ -170,10 +170,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.ttf"
     },
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff",
       "SourceId": "Server",
       "SourceType": "Discovered",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
       "RelativePath": "css/open-iconic/font/fonts/open-iconic.woff",
       "AssetKind": "All",
@@ -187,10 +187,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\font\\fonts\\open-iconic.woff"
     },
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\FONT-LICENSE",
       "SourceId": "Server",
       "SourceType": "Discovered",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
       "RelativePath": "css/open-iconic/FONT-LICENSE",
       "AssetKind": "All",
@@ -204,10 +204,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\FONT-LICENSE"
     },
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\ICON-LICENSE",
       "SourceId": "Server",
       "SourceType": "Discovered",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
       "RelativePath": "css/open-iconic/ICON-LICENSE",
       "AssetKind": "All",
@@ -221,10 +221,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\ICON-LICENSE"
     },
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\README.md",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\css\\open-iconic\\README.md",
       "SourceId": "Server",
       "SourceType": "Discovered",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
       "RelativePath": "css/open-iconic/README.md",
       "AssetKind": "All",
@@ -238,10 +238,10 @@
       "OriginalItemSpec": "wwwroot\\css\\open-iconic\\README.md"
     },
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\css\\site.css",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\css\\site.css",
       "SourceId": "Server",
       "SourceType": "Discovered",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
       "RelativePath": "css/site.css",
       "AssetKind": "All",
@@ -255,10 +255,10 @@
       "OriginalItemSpec": "wwwroot\\css\\site.css"
     },
     {
-      "Identity": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\favicon.ico",
+      "Identity": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\favicon.ico",
       "SourceId": "Server",
       "SourceType": "Discovered",
-      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2021\\OtherSolution\\Server\\wwwroot\\",
+      "ContentRoot": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\wwwroot\\",
       "BasePath": "_content/Server",
       "RelativePath": "favicon.ico",
       "AssetKind": "All",

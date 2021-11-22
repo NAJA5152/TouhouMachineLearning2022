@@ -6,8 +6,8 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: 
-  serializedVersion: 7
+  m_Name: mtn_02
+  serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
   m_UseHighQualityCurve: 1
@@ -2534,7 +2534,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 4190011855
       attribute: 3702945584
@@ -2542,7 +2541,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 2171796666
       attribute: 3702945584
@@ -2550,7 +2548,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 4134915116
       attribute: 3702945584
@@ -2558,7 +2555,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 1141202947
       attribute: 3702945584
@@ -2566,7 +2562,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 855789717
       attribute: 3702945584
@@ -2574,7 +2569,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 2852847919
       attribute: 3702945584
@@ -2582,7 +2576,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 4077424343
       attribute: 3702945584
@@ -2590,7 +2583,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 151499700
       attribute: 3702945584
@@ -2598,7 +2590,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 4899443
       attribute: 3702945584
@@ -2606,7 +2597,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 2571342793
       attribute: 3702945584
@@ -2614,7 +2604,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 580140890
       attribute: 3702945584
@@ -2622,7 +2611,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 3997475679
       attribute: 3702945584
@@ -2630,7 +2618,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 384977929
       attribute: 3702945584
@@ -2638,7 +2625,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 2415599027
       attribute: 3702945584
@@ -2646,7 +2632,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 4177276197
       attribute: 3702945584
@@ -2654,7 +2639,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 4211878182
       attribute: 3702945584
@@ -2662,7 +2646,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 227248520
       attribute: 3702945584
@@ -2670,7 +2653,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 1423750864
       attribute: 3702945584
@@ -2678,7 +2660,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 601589318
       attribute: 3702945584
@@ -2686,7 +2667,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 2443564567
       attribute: 3702945584
@@ -2694,7 +2674,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 888149594
       attribute: 3702945584
@@ -2702,7 +2681,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 1140270796
       attribute: 3702945584
@@ -2710,7 +2688,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 1978396178
       attribute: 3702945584
@@ -2718,7 +2695,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 2856044529
       attribute: 3702945584
@@ -2726,7 +2702,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 2256984227
       attribute: 3702945584
@@ -2734,7 +2709,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 1775867801
       attribute: 3702945584
@@ -2742,7 +2716,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 2408743347
       attribute: 3702945584
@@ -2750,7 +2723,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 2035098930
       attribute: 3702945584
@@ -2758,7 +2730,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 163146905
       attribute: 3702945584
@@ -2766,7 +2737,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 2566571602
       attribute: 3702945584
@@ -2774,7 +2744,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 421571337
       attribute: 3702945584
@@ -2782,7 +2751,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 4197938490
       attribute: 3702945584
@@ -2790,7 +2758,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 2970302489
       attribute: 3702945584
@@ -2798,7 +2765,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 3034461984
       attribute: 3702945584
@@ -2806,7 +2772,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 1479649510
       attribute: 3702945584
@@ -2814,7 +2779,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 1719193463
       attribute: 3702945584
@@ -2822,7 +2786,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 3358338747
       attribute: 3702945584
@@ -2830,7 +2793,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 384857464
       attribute: 3702945584
@@ -2838,7 +2800,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 1733315298
       attribute: 3702945584
@@ -2846,7 +2807,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 670389253
       attribute: 3702945584
@@ -2854,7 +2814,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 2106061195
       attribute: 3702945584
@@ -2862,7 +2821,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 176210205
       attribute: 3702945584
@@ -2870,7 +2828,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 1517754047
       attribute: 3702945584
@@ -2878,7 +2835,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 567850407
       attribute: 3702945584
@@ -2886,7 +2842,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 347523873
       attribute: 3702945584
@@ -2894,7 +2849,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 1591572007
       attribute: 3702945584
@@ -2902,7 +2856,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 780591497
       attribute: 3702945584
@@ -2910,7 +2863,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 992910227
       attribute: 3702945584
@@ -2918,7 +2870,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 1167262115
       attribute: 3702945584
@@ -2926,7 +2877,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 1149006553
       attribute: 3702945584
@@ -2934,7 +2884,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 1282676255
       attribute: 3702945584
@@ -2942,7 +2891,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 1454023240
       attribute: 3702945584
@@ -2950,7 +2898,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     - serializedVersion: 2
       path: 565023454
       attribute: 3702945584
@@ -2958,7 +2905,6 @@ AnimationClip:
       typeID: 114
       customType: 0
       isPPtrCurve: 0
-      isIntCurve: 0
     pptrCurveMapping: []
   m_AnimationClipSettings:
     serializedVersion: 2
@@ -5492,5 +5438,5 @@ AnimationClip:
     data: 
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
-    intParameter: 39134
+    intParameter: 38298
     messageOptions: 1

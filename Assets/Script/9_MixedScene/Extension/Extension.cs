@@ -33,7 +33,7 @@ namespace TouhouMachineLearningSummary.Extension
         //}
         public static List<TResult> SelectList<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
-            List<TResult> result = new(source.Count());
+            List<TResult> result = new List<TResult>(source.Count());
             result.AddRange(source.Select(selector));
             return result;
         }
