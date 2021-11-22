@@ -1,0 +1,352 @@
+[
+  {
+    "cardID": 1,
+    "level": "0-0",
+    "series": "",
+    "tag": "妖精",
+    "point": 9,
+    "name": {
+      "Name-Ch": "板烧琪露诺",
+      "Name-En": "BBQ-qilunuo"
+    },
+    "ability": {
+      "Ability-Ch": "我方场上每存在一个妖精单位且自身点数大于1时便对对方场上造成一次1点伤害，衰退1"
+    },
+    "describe": {
+      "Describe-Ch": "夏天的冰之妖精才是最强的姿态"
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 0,
+    "cardDeployRegion": 0,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "板烧琪露诺",
+    "isFinish": true
+  },
+  {
+    "cardID": 2,
+    "level": "0-0",
+    "series": "",
+    "tag": "妖精",
+    "point": 2,
+    "name": {
+      "Name-Ch": "大妖精",
+      "Name-En": "bigfairy"
+    },
+    "ability": {
+      "Ability-Ch": "治愈一个非金妖精单位并重新触发其部署效果"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 1,
+    "cardDeployRegion": 2,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "大妖精",
+    "isFinish": true
+  },
+  {
+    "cardID": 3,
+    "level": "0-0",
+    "series": "",
+    "tag": "妖精",
+    "point": 4,
+    "name": {
+      "Name-Ch": "桑尼*缪克",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "摧毁场上所有点数最大的非金单位"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 1,
+    "cardDeployRegion": 1,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "桑尼",
+    "isFinish": true
+  },
+  {
+    "cardID": 4,
+    "level": "0-0",
+    "series": "",
+    "tag": "妖精",
+    "point": 1,
+    "name": {
+      "Name-Ch": "露娜",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "对场上所有最高的单位造成一点伤害，重复x+1次，x为两侧单位的活力值总和"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 1,
+    "cardDeployRegion": 2,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "露娜",
+    "isFinish": true
+  },
+  {
+    "cardID": 5,
+    "level": "0-0",
+    "series": "",
+    "tag": "妖精",
+    "point": 3,
+    "name": {
+      "Name-Ch": "斯塔",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "对一行最左侧个单位造成x+1点伤害，并向右侧依此递减，x为两侧单位的活力值总和"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 1,
+    "cardDeployRegion": 0,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "斯塔",
+    "isFinish": true
+  },
+  {
+    "cardID": 7,
+    "level": "0-0",
+    "series": "",
+    "tag": "妖精",
+    "point": 2,
+    "name": {
+      "Name-Ch": "三月精*月",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "召唤日，星，活力（{x}）"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 2,
+    "cardDeployRegion": 2,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "三月精-月",
+    "isFinish": true
+  },
+  {
+    "cardID": 8,
+    "level": "0-0",
+    "series": "",
+    "tag": "妖精",
+    "point": 2,
+    "name": {
+      "Name-Ch": "三月精*星",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "召唤日，月，活力（{x}）"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 2,
+    "cardDeployRegion": 0,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "三月精-星",
+    "isFinish": true
+  },
+  {
+    "cardID": 9,
+    "level": "0-0",
+    "series": "",
+    "tag": "妖精",
+    "point": 2,
+    "name": {
+      "Name-Ch": "琪露诺",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "锁定1+x个单位并给与2点伤害，x为两侧单位的活力值总和"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 2,
+    "cardDeployRegion": 0,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "琪露诺",
+    "isFinish": true
+  },
+  {
+    "cardID": 11,
+    "level": "0-0",
+    "series": "",
+    "tag": "妖精",
+    "point": 6,
+    "name": {
+      "Name-Ch": "美国小妖精",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "翻倍两个妖精单位的活力值"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 2,
+    "cardDeployRegion": 1,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "克劳恩皮丝",
+    "isFinish": true
+  },
+  {
+    "cardID": 12,
+    "level": "0-0",
+    "series": "",
+    "tag": "妖精",
+    "point": 2,
+    "name": {
+      "Name-Ch": "鼓舞小妖精",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "治愈一个妖精单位，活力2"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 3,
+    "cardDeployRegion": 4,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "鼓舞小妖精",
+    "isFinish": true
+  },
+  {
+    "cardID": 13,
+    "level": "0-0",
+    "series": "",
+    "tag": "策略",
+    "point": 0,
+    "name": {
+      "Name-Ch": "战略转移",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "重新打出一张非金妖精单位"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 1,
+    "cardCamp": 0,
+    "cardRank": 3,
+    "cardDeployRegion": 4,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "战略转移",
+    "isFinish": true
+  },
+  {
+    "cardID": 14,
+    "level": "0-0",
+    "series": "",
+    "tag": "妖精",
+    "point": 2,
+    "name": {
+      "Name-Ch": "弱小妖精",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "从卡组中随机打出一张点数最低的妖精单位，活力（1）"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 3,
+    "cardDeployRegion": 4,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "弱小妖精",
+    "isFinish": true
+  },
+  {
+    "cardID": 15,
+    "level": "0-0",
+    "series": "",
+    "tag": "妖精",
+    "point": 2,
+    "name": {
+      "Name-Ch": "狂妄小妖精",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "对对方随机一个点数最大的单位造成1点伤害，重复1+x次，x为两侧单位的活力值总和"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 3,
+    "cardDeployRegion": 4,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "狂妄小妖精",
+    "isFinish": true
+  },
+  {
+    "cardID": 16,
+    "level": "0-0",
+    "series": "",
+    "tag": "物体",
+    "point": 0,
+    "name": {
+      "Name-Ch": "樱石",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "复活一个铜色妖精单位"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 1,
+    "cardCamp": 0,
+    "cardRank": 3,
+    "cardDeployRegion": 4,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "妖精的复生",
+    "isFinish": true
+  }
+]

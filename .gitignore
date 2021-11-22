@@ -1,0 +1,16 @@
+Library/*
+PC/*
+.vs/*
+Library/ArtifactDB
+Library/ArtifactDB-lock
+Assets/Plugins/Sirenix
+Assets/Plugins/Sirenix/*
+Assets/SineVFX/*
+.vs/TouhouMachineLearning2021/v16/Server/sqlite3/db.lock
+Temp/*
+*.cache
+.vs/TouhouMachineLearning2021/v16/.suo
+*.log
+*.cache
+Packages/*
+OtherSolution/THMLS-Server/.vs/*

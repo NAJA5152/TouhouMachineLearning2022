@@ -1,0 +1,66 @@
+{
+  "format": 1,
+  "restore": {
+    "D:\\vs2022-Project\\TouhouMachineLearning-2021\\OtherSolution\\xls检测更新\\xls检测更新.csproj": {}
+  },
+  "projects": {
+    "D:\\vs2022-Project\\TouhouMachineLearning-2021\\OtherSolution\\xls检测更新\\xls检测更新.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "D:\\vs2022-Project\\TouhouMachineLearning-2021\\OtherSolution\\xls检测更新\\xls检测更新.csproj",
+        "projectName": "xls检测更新",
+        "projectPath": "D:\\vs2022-Project\\TouhouMachineLearning-2021\\OtherSolution\\xls检测更新\\xls检测更新.csproj",
+        "packagesPath": "C:\\Users\\wuyunge\\.nuget\\packages\\",
+        "outputPath": "D:\\vs2022-Project\\TouhouMachineLearning-2021\\OtherSolution\\xls检测更新\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "D:\\vs2022-Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\wuyunge\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net461"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net461": {
+            "targetAlias": "net461",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net461": {
+          "targetAlias": "net461",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.1, )"
+            },
+            "Spire.XLS": {
+              "target": "Package",
+              "version": "[11.9.3, )"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.6.21355.2\\RuntimeIdentifierGraph.json"
+        }
+      },
+      "runtimes": {
+        "win7-x86": {
+          "#import": []
+        }
+      }
+    }
+  }
+}
