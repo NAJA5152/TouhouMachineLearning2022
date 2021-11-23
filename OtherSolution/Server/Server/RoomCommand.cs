@@ -7,8 +7,7 @@ namespace Server
 {
     partial class RoomCommand
     {
-        public static List<Room> Rooms = new List<Room>();
-        static Random rand = new Random();
+        public static List<Room> Rooms { get; set; } = new List<Room>();
         public static Room GetRoom(int RoomId) => Rooms.First(room => room.RoomId == RoomId);
 
         public static void CreatRoom(IClientProxy playerID, PlayerInfo playerInfo)

@@ -1,3 +1,5 @@
+using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 namespace TouhouMachineLearningSummary.Manager
@@ -10,7 +12,8 @@ namespace TouhouMachineLearningSummary.Manager
         public GameObject inputFiled;
         public GameObject textArea;
         public GameObject background;
-
+        Queue PublicMessageQueue { get; set; } = new Queue();
+        List<Queue> PrivateMessageQueue { get; set; } = new List<Queue>();
         public static ChatManager MainChat { get; set; }
 
         void Awake() => Init();
@@ -25,8 +28,7 @@ namespace TouhouMachineLearningSummary.Manager
         public async void SendMessage()
         {
             string text = inputFiled.GetComponent<InputField>().text;
-            await Command.Network.NetCommand.ChatAsync("用户"+Info.AgainstInfo.onlineUserInfo.Name,text);
-            ReceiveMessage("用户" + Info.AgainstInfo.onlineUserInfo.Name, text);
+            await Command.Network.NetCommand.ChatAsync("用户" + Info.AgainstInfo.onlineUserInfo.Name, text);
         }
         public void OpenChat()
         {
@@ -46,9 +48,15 @@ namespace TouhouMachineLearningSummary.Manager
             textArea.SetActive(false);
             background.SetActive(false);
         }
-        public void ReceiveMessage(string user, string text)
+        public void ReceiveMessage(string user, string text, string targetUser)
         {
-            textArea.GetComponent<Text>().text += $"<color=yellow><b>{user}</b></color>:<color=white>{text}</color>\n";
+            PublicMessageQueue.Enqueue((user, text));
+            while (PublicMessageQueue.Count > 5){ PublicMessageQueue.Dequeue();}
+            textArea.GetComponent<Text>().text = "";
+            foreach ((string user, string text) message in PublicMessageQueue)
+            {
+                textArea.GetComponent<Text>().text += $"<color=yellow><b>{message.user}</b></color>:<color=white>{message.text}</color>\n";
+            }
         }
     }
 }

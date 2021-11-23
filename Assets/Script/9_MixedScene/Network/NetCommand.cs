@@ -30,10 +30,13 @@ namespace TouhouMachineLearningSummary.Command
             static HubConnection cardConfigsHub = new HubConnectionBuilder().WithUrl($"http://{ip}/CardConfigsHub").Build();
 
 
-            public static async Task InitAsync()
+            public static void Init()
             {
-                userHub.On<(string name, string text)> ("ChatReceive",(message) => ChatManager.MainChat.ReceiveMessage(message.name, message.text));
-                // accountHub = new HubConnectionBuilder().WithUrl($"http://localhost:514/AccountHub").Build();
+                userHub.On<string>("ChatReceive", message =>
+                {
+                    var receive = message.ToObject<(string name, string text, string targetUser)>();
+                    ChatManager.MainChat.ReceiveMessage(receive.name, receive.text, receive.targetUser);
+                });
             }
             public static void Dispose()
             {
@@ -158,10 +161,10 @@ namespace TouhouMachineLearningSummary.Command
                 Debug.Log("连接完成");
                 client.Send(playerInfo.ToJson());
             }
-            public static async Task ChatAsync(string name,string text)
+            public static async Task ChatAsync(string name, string text,string target="")
             {
                 if (userHub.State == HubConnectionState.Disconnected) { await userHub.StartAsync(); }
-                await userHub.SendAsync("Chat", name, text);
+                await userHub.SendAsync("Chat", name, text, target);
             }
             ///////////////////////////////////////////////////房间操作////////////////////////////////////////////////////////////////
             public static async Task JoinRoomAsync(MultiplayerModeType rank)
