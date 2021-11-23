@@ -24,15 +24,11 @@ namespace TouhouMachineLearningSummary.Command
             //static string ip = "106.15.38.165:514";
             static WebSocket AsyncConnect = new WebSocket($"ws://{ip}/AsyncInfo");
 
-            static HubConnection accountHub = new HubConnectionBuilder().WithUrl($"http://{ip}/AccountHub").Build();
-            //static HubConnection roomHub = new HubConnectionBuilder().WithUrl($"http://{ip}:514/RoomHub").Build();
-            static HubConnection userHub = new HubConnectionBuilder().WithUrl($"http://{ip}/UserHub").Build();
-            static HubConnection cardConfigsHub = new HubConnectionBuilder().WithUrl($"http://{ip}/CardConfigsHub").Build();
-
+            static HubConnection connentHub = new HubConnectionBuilder().WithUrl($"http://{ip}/TouHouHub").Build();
 
             public static void Init()
             {
-                userHub.On<string>("ChatReceive", message =>
+                connentHub.On<string>("ChatReceive", message =>
                 {
                     var receive = message.ToObject<(string name, string text, string targetUser)>();
                     ChatManager.MainChat.ReceiveMessage(receive.name, receive.text, receive.targetUser);
@@ -47,10 +43,10 @@ namespace TouhouMachineLearningSummary.Command
             {
                 try
                 {
-                    if (accountHub.State == HubConnectionState.Disconnected) { await accountHub.StartAsync(); }
+                    if (connentHub.State == HubConnectionState.Disconnected) { await connentHub.StartAsync(); }
                     Debug.Log("注册请求");
-                    await accountHub.StartAsync();
-                    int result = await accountHub.InvokeAsync<int>("Register", name, password);
+                    await connentHub.StartAsync();
+                    int result = await connentHub.InvokeAsync<int>("Register", name, password);
                     //await accountHub.StopAsync();
                     switch (result)
                     {
@@ -71,8 +67,8 @@ namespace TouhouMachineLearningSummary.Command
                 try
                 {
                     Debug.Log("登陆请求");
-                    if (accountHub.State == HubConnectionState.Disconnected) { await accountHub.StartAsync(); }
-                    PlayerInfo playerInfo = await accountHub.InvokeAsync<PlayerInfo>("Login", name, password);
+                    if (connentHub.State == HubConnectionState.Disconnected) { await connentHub.StartAsync(); }
+                    PlayerInfo playerInfo = await connentHub.InvokeAsync<PlayerInfo>("Login", name, password);
                     Info.AgainstInfo.onlineUserInfo = playerInfo;
                     Debug.Log(Info.AgainstInfo.onlineUserInfo.ToJson());
                     //await accountHub.StopAsync();
@@ -117,8 +113,8 @@ namespace TouhouMachineLearningSummary.Command
 
             internal static async Task<string> GetCardConfigsVersionAsync()
             {
-                if (cardConfigsHub.State == HubConnectionState.Disconnected) { await cardConfigsHub.StartAsync(); }
-                return await cardConfigsHub.InvokeAsync<string>("GetCardConfigsVersion");
+                if (connentHub.State == HubConnectionState.Disconnected) { await connentHub.StartAsync(); }
+                return await connentHub.InvokeAsync<string>("GetCardConfigsVersion");
             }
 
             public static async Task UploadCardConfigsAsync(CardConfig cardConfig)
@@ -126,8 +122,8 @@ namespace TouhouMachineLearningSummary.Command
                 try
                 {
                     Debug.Log("上传卡牌配置");
-                    if (cardConfigsHub.State == HubConnectionState.Disconnected) { await cardConfigsHub.StartAsync(); }
-                    string result = await cardConfigsHub.InvokeAsync<string>("UploadCardConfigs", cardConfig);
+                    if (connentHub.State == HubConnectionState.Disconnected) { await connentHub.StartAsync(); }
+                    string result = await connentHub.InvokeAsync<string>("UploadCardConfigs", cardConfig);
                     Debug.Log("新卡牌配置上传结果: " + result);
                 }
                 catch (Exception e) { Debug.LogException(e); }
@@ -141,8 +137,8 @@ namespace TouhouMachineLearningSummary.Command
                 try
                 {
                     Debug.Log("下载卡牌配置");
-                    if (cardConfigsHub.State == HubConnectionState.Disconnected) { await cardConfigsHub.StartAsync(); }
-                    return await cardConfigsHub.InvokeAsync<CardConfig>("DownloadCardConfigs", date);
+                    if (connentHub.State == HubConnectionState.Disconnected) { await connentHub.StartAsync(); }
+                    return await connentHub.InvokeAsync<CardConfig>("DownloadCardConfigs", date);
                 }
                 catch (Exception e) { Debug.LogException(e); }
                 return null;
@@ -163,8 +159,8 @@ namespace TouhouMachineLearningSummary.Command
             }
             public static async Task ChatAsync(string name, string text,string target="")
             {
-                if (userHub.State == HubConnectionState.Disconnected) { await userHub.StartAsync(); }
-                await userHub.SendAsync("Chat", name, text, target);
+                if (connentHub.State == HubConnectionState.Disconnected) { await connentHub.StartAsync(); }
+                await connentHub.SendAsync("Chat", name, text, target);
             }
             ///////////////////////////////////////////////////房间操作////////////////////////////////////////////////////////////////
             public static async Task JoinRoomAsync(MultiplayerModeType rank)
