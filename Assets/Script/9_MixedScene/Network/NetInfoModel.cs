@@ -66,14 +66,19 @@ namespace TouhouMachineLearningSummary.Model
     public class PlayerInfo
     {
         public string _id { get; set; }
+        public string UUID { get; set; }
+        public string Account { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
         public string Password { get; set; }
         public int Level { get; set; }
         public int Rank { get; set; }
-        public Dictionary<string, int> Resource { get; set; }
+
+        public Dictionary<string, int> Resource { get; set; }=new Dictionary<string, int>();
+        //决定游戏进程
+        public Dictionary<string, bool> PlayerState { get; set; }=new Dictionary<string, bool>();
         [ShowInInspector]
-        public Dictionary<string, int> CardLibrary { get; set; }
+        public Dictionary<string, int> CardLibrary { get; set; } = new Dictionary<string, int>();
         public int UseDeckNum { get; set; } = 0;
         public List<CardDeck> Decks { get; set; }
         public CardDeck UseDeck

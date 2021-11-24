@@ -97,7 +97,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             Debug.Log("保存卡组");
             Info.AgainstInfo.onlineUserInfo.UseDeck = Info.CardCompnentInfo.tempDeck;
-            Command.Network.NetCommand.UpdateDecks(Info.AgainstInfo.onlineUserInfo);
+            Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
             Command.CardListCommand.Init();
             Command.MenuStateCommand.RebackStare();
         }

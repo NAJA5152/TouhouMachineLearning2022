@@ -30,21 +30,20 @@ namespace TouhouMachineLearningSummary.Manager
     }
     public class AgainstSummaryManager
     {
-        public string assemblyVerision = "";
-        public string player1Name = "";
-        public string player2Name = "";
-        public static PlayerInfo player1Info;
-        public static PlayerInfo player2Info;
-        public string winner = "";
-        public DateTime updateTime;
+        public string AssemblyVerision { get; set; } = "";
+        public string player1Name { get; set; } = "";
+        public string player2Name { get; set; } = "";
+        public static PlayerInfo Player1Info { get; set; }
+        public static PlayerInfo Player2Info { get; set; }
+        public string Winner { get; set; } = "";
+        public DateTime UpdateTime { get; set; }
         //是否按照流程完成对局
-        bool isFinishAgainst;
+        bool IsFinishAgainst { get; set; }
 
-        public List<TurnOperation> turnOperations = new List<TurnOperation>();
+        public List<TurnOperation> TurnOperations { get; set; } = new List<TurnOperation>();
         [JsonIgnore]
-        public TurnOperation targetJumpTurn;
+        public TurnOperation TargetJumpTurn { get; set; } =null;
 
-        public TurnOperation currentTurnOperation;
         //简易的数字卡牌量化模型
 
         public class TurnOperation//更新数据模型时须同步更新服务端数据模型
@@ -168,7 +167,7 @@ namespace TouhouMachineLearningSummary.Manager
             AgainstInfo.turnRank = 0;
             AgainstInfo.isOnTheOffensive = true;
             //添加换牌阶段回合操作，回合0代表换牌操作
-            turnOperations.Add(new TurnOperation().Init());
+            TurnOperations.Add(new TurnOperation().Init());
         }
         public void AddTurn()
         {
@@ -184,7 +183,7 @@ namespace TouhouMachineLearningSummary.Manager
                     AgainstInfo.turnRank++;
                     AgainstInfo.totalTurnRank++;
                 }
-                turnOperations.Add(new TurnOperation().Init());
+                TurnOperations.Add(new TurnOperation().Init());
                 AgainstInfo.isOnTheOffensive = !AgainstInfo.isOnTheOffensive;
             }
 
@@ -193,7 +192,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             if (!AgainstInfo.isReplayMode)
             {
-                turnOperations.Last().absoluteStartPoint = AgainstInfo.turnChangePoint;
+                TurnOperations.Last().absoluteStartPoint = AgainstInfo.turnChangePoint;
                 UnityEngine.Debug.LogWarning("双方起始点数差" + AgainstInfo.turnChangePoint);
             }
         }
@@ -201,7 +200,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             if (!AgainstInfo.isReplayMode)
             {
-                turnOperations.Last().absoluteEndPoint = AgainstInfo.turnChangePoint;
+                TurnOperations.Last().absoluteEndPoint = AgainstInfo.turnChangePoint;
                 UnityEngine.Debug.LogWarning("双方结束点数差" + AgainstInfo.turnChangePoint + "" + AgainstInfo.TotalMyPoint + "" + AgainstInfo.TotalOpPoint);
             }
         }
@@ -209,7 +208,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             if (!AgainstInfo.isReplayMode)
             {
-                turnOperations.Last().playerOperation = new PlayerOperation(operation, targetcardList, selectCard);
+                TurnOperations.Last().playerOperation = new PlayerOperation(operation, targetcardList, selectCard);
             }
         }
 
@@ -230,19 +229,19 @@ namespace TouhouMachineLearningSummary.Manager
                     case SelectOperationType.SelectProperty:
                         break;
                     case SelectOperationType.SelectUnite:
-                        turnOperations.Last().AddSelectUnite(triggerCard, targetcardList, selectMaxNum);
+                        TurnOperations.Last().AddSelectUnite(triggerCard, targetcardList, selectMaxNum);
                         break;
                     case SelectOperationType.SelectBoardCard:
-                        turnOperations.Last().AddSelectBoardCard(triggerCard);
+                        TurnOperations.Last().AddSelectBoardCard(triggerCard);
                         break;
                     case SelectOperationType.SelectRegion:
-                        turnOperations.Last().AddSelectRegion(triggerCard);
+                        TurnOperations.Last().AddSelectRegion(triggerCard);
                         break;
                     case SelectOperationType.SelectLocation:
-                        turnOperations.Last().AddSelectLocation(triggerCard);
+                        TurnOperations.Last().AddSelectLocation(triggerCard);
                         break;
                     case SelectOperationType.SelectExchangeOver:
-                        turnOperations.Last().AddExchangeOver(isPlayer1ExchangeOver);
+                        TurnOperations.Last().AddExchangeOver(isPlayer1ExchangeOver);
                         break;
                     default:
                         break;
@@ -254,14 +253,14 @@ namespace TouhouMachineLearningSummary.Manager
             }
         }
 
-        public void AddSurrender(bool isPlayer1Surrenddr) => turnOperations.Last().isSurrender = isPlayer1Surrenddr ? 1 : 2;
+        public void AddSurrender(bool isPlayer1Surrenddr) => TurnOperations.Last().isSurrender = isPlayer1Surrenddr ? 1 : 2;
         //////////////////////////////////对战指令解析///////////////////////////////// ///////////
 
         //当前指向的命令编号
         int currentTurnOperationsRank = 0;
         int currentSelectOperationsRank = 0;
-        public PlayerOperation GetCurrentPlayerOperation() => turnOperations[currentTurnOperationsRank].playerOperation;
-        public SelectOperation GetCurrentSelectOperation() => turnOperations[currentTurnOperationsRank].selectOperations[currentSelectOperationsRank];
+        public PlayerOperation GetCurrentPlayerOperation() => TurnOperations[currentTurnOperationsRank].playerOperation;
+        public SelectOperation GetCurrentSelectOperation() => TurnOperations[currentTurnOperationsRank].selectOperations[currentSelectOperationsRank];
         //////////////////////////////////对战记录读取////////////////////////////////////////////
         public void Replay(int TotalRank)
         {
@@ -272,11 +271,11 @@ namespace TouhouMachineLearningSummary.Manager
         {
             TakeLoopManager.cancel.Cancel();
             //设置回合初始状态
-            targetJumpTurn = turnOperations.FirstOrDefault(turn => turn.isOnTheOffensive == isOnTheOffensive && turn.totalTurnRank == totalTurnRank);
-            if (targetJumpTurn == null)
+            TargetJumpTurn = TurnOperations.FirstOrDefault(turn => turn.isOnTheOffensive == isOnTheOffensive && turn.totalTurnRank == totalTurnRank);
+            if (TargetJumpTurn == null)
             {
                 Debug.LogError("回合跳转溢出，重置跳转到最后");
-                targetJumpTurn = turnOperations.Last();
+                TargetJumpTurn = TurnOperations.Last();
             }
             //清空所有卡牌
             CardSet.globalCardList.ForEach(cardlist => cardlist.ForEach(card => UnityEngine.Object.Destroy(card.gameObject)));
@@ -296,7 +295,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             player1Name = AgainstInfo.isPlayer1 ? AgainstInfo.userName : AgainstInfo.opponentName;
             player1Name = AgainstInfo.isPlayer1 ? AgainstInfo.opponentName : AgainstInfo.userName;
-            updateTime = DateTime.Now;
+            UpdateTime = DateTime.Now;
             Command.Network.NetCommand.UploadAgentSummary(this);
         }
     }

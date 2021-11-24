@@ -1,0 +1,9 @@
+{
+  "runtimeOptions": {
+    "additionalProbingPaths": [
+      "C:\\Users\\wuyunge\\.dotnet\\store\\|arch|\\|tfm|",
+      "C:\\Users\\wuyunge\\.nuget\\packages",
+      "D:\\vs2022-Shared\\NuGetPackages"
+    ]
+  }
+}

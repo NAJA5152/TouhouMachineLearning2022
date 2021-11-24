@@ -10,15 +10,25 @@ namespace TouhouMachineLearningSummary.Control
 {
     public class UserLoginControl : MonoBehaviour
     {
-        public Text UserName;
+        public Text Account;
         public Text Password;
+
+        bool isAleardyLogin = false;
         async void Start()
         {
             Manager.TakeLoopManager.Init();
-            Command.Network.NetCommand.Init();
-            await CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
-            //UserLogin();//自动登录
-            //TestBattleAsync();
+            if (!isAleardyLogin)
+            {
+                Command.Network.NetCommand.Init();
+                await CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
+                //UserLogin();//自动登录
+                //TestBattleAsync();
+            }
+            else
+            {
+                await Command.BookCommand.InitAsync();
+            }
+
         }
 
         private void Update()
@@ -45,7 +55,7 @@ namespace TouhouMachineLearningSummary.Control
                             _ = Command.GameUI.NoticeCommand.ShowAsync("退出登录",
                             okAction: async () =>
                             {
-                                CameraViewControl.MoveToInitView();
+                                CameraViewManager.MoveToSceneViewPositionAsync();
                                 Command.MenuStateCommand.RebackStare();
                                 Command.MenuStateCommand.ChangeToMainPage(MenuState.Login);
                                 await Command.BookCommand.SetCoverStateAsync(false);
@@ -78,7 +88,7 @@ namespace TouhouMachineLearningSummary.Control
         {
             try
             {
-                Command.Network.NetCommand.RegisterAsync(UserName.text, Password.text);
+                _ = Command.Network.NetCommand.RegisterAsync(Account.text, Password.text);
             }
             catch (System.Exception e)
             {
@@ -91,7 +101,7 @@ namespace TouhouMachineLearningSummary.Control
         {
             try
             {
-                _ = Command.Network.NetCommand.LoginAsync(UserName.text, Password.text);
+                _ = Command.Network.NetCommand.LoginAsync(Account.text, Password.text);
 
             }
             catch (System.Exception e)

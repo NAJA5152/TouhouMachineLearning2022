@@ -20,7 +20,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             Info.CardInfo.CreatCardRank = 0;
             //加载目标回合，同步下状态
-            AgainstSummaryManager.TurnOperation targetJumpTurn = AgainstInfo.summary.targetJumpTurn;
+            AgainstSummaryManager.TurnOperation targetJumpTurn = AgainstInfo.summary.TargetJumpTurn;
             AgainstInfo.roundRank = targetJumpTurn.roundRank;
             AgainstInfo.turnRank = targetJumpTurn.turnRank;
             AgainstInfo.totalTurnRank = targetJumpTurn.totalTurnRank;
@@ -146,7 +146,8 @@ namespace TouhouMachineLearningSummary.Command
             TakeLoopManager.cancel.Cancel();
             //AgainstInfo.summary.Explort();
             //AgainstInfo.summary.Upload();
-            SceneManager.LoadSceneAsync(0);
+            SceneManager.LoadScene(0);
+            await Manager.CameraViewManager.MoveToPageViewAsync();
         }
         public static async Task RoundStart()
         {

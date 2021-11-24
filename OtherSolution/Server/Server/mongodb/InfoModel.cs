@@ -13,12 +13,16 @@ namespace Server
         [BsonId]
         //[BsonRepresentation(BsonType.ObjectId)]
         public string _id { get; set; }
+        public string UUID { get; set; }
+        public string Account { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
         public string Password { get; set; }
         public int Level { get; set; }
         public int Rank { get; set; }
         public Dictionary<string, int> Resource { get; set; }
+        //决定游戏进程
+        public Dictionary<string, bool> PlayerState { get; set; }
         public Dictionary<string, int> CardLibrary { get; set; }
         public int UseDeckNum { get; set; }
         public List<CardDeck> Decks { get; set; }

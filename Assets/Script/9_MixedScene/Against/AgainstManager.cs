@@ -38,7 +38,7 @@ namespace TouhouMachineLearningSummary.Manager
         }
         public static async Task Start()
         {
-            await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.summary.assemblyVerision);
+            await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.summary.AssemblyVerision);
             if (Info.AgainstInfo.userDeck == null)
             {
                 SetPlayerInfo(defaultPlayerInfo);
@@ -79,7 +79,7 @@ namespace TouhouMachineLearningSummary.Manager
         //等待加载指定版本卡牌配置与代码
         public static async Task SetCardVersion(string date)
         {
-            Info.AgainstInfo.summary.assemblyVerision = date;
+            Info.AgainstInfo.summary.AssemblyVerision = date;
         }
     }
 }

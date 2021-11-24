@@ -40,3 +40,7 @@ Console.WriteLine("已载入回应中心");
 Console.WriteLine("服务端已启动");
 app.Run();
 
+while (true)
+{
+    Console.WriteLine("当前在线人数:"+OnlineUserManager.OnlineUserList.Count);
+}

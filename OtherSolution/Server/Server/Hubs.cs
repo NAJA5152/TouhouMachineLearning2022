@@ -4,35 +4,24 @@ using MongoDB.Bson;
 using Server;
 public class TouHouHub : Hub
 {
-    Dictionary<string, IClientProxy> OnlineUserList { get; set; } = new Dictionary<string, IClientProxy>();
     public override Task OnConnectedAsync()
     {
         Console.WriteLine("一个用户登录了" + Context.ConnectionId);
-        OnlineUserList[Context.ConnectionId] = Clients.Caller;
         return base.OnConnectedAsync();
     }
     public override Task OnDisconnectedAsync(Exception? exception)
     {
-        OnlineUserList.Remove(Context.ConnectionId);
+        Console.WriteLine("一个用户登出了" + Context.ConnectionId);
         return base.OnDisconnectedAsync(exception);
     }
     //////////////////////////////////////////////账户////////////////////////////////////////////////////////////////////
-    public int Register(string name, string password)
-    {
-        int v = MongoDbCommand.RegisterInfo(name, password); Console.WriteLine(v);
-        return v;
-    }
-
-    public PlayerInfo? Login(string name, string password)
-    {
-        Console.WriteLine("我被调用了");
-        return MongoDbCommand.LoginInfo(name, password);
-    }
+    public int Register(string account, string password) => MongoDbCommand.Register(account, password);
+    public PlayerInfo? Login(string account, string password) => MongoDbCommand.Login(account, password);
     //////////////////////////////////////////////房间////////////////////////////////////////////////////////////////////
-    public void Join(PlayerInfo playerInfo) => RoomCommand.JoinRoom(Clients.Caller, playerInfo);
+    public void Join(PlayerInfo playerInfo) => RoomManager.JoinRoom(Clients.Caller, playerInfo);
     public void Leave(int roomID)
     {
-        RoomCommand.LeaveRoom(Clients.Caller, roomID);
+        RoomManager.LeaveRoom(Clients.Caller, roomID);
     }
     public void AsyncInfo(NetAcyncType netAcyncType, int roomId, bool isPlayer1, object[] data)
     {
@@ -42,20 +31,22 @@ public class TouHouHub : Hub
             Console.WriteLine("初始化连接");
             if (isPlayer1)
             {
-                RoomCommand.GetRoom(roomId).P1 = Clients.Caller;
+                RoomManager.GetRoom(roomId).P1 = Clients.Caller;
             }
             else
             {
-                RoomCommand.GetRoom(roomId).P2 = Clients.Caller;
+                RoomManager.GetRoom(roomId).P2 = Clients.Caller;
             }
         }
         else
         {
-            RoomCommand.GetRoom(roomId).AsyncInfo(Clients.Caller, data);
+            RoomManager.GetRoom(roomId).AsyncInfo(Clients.Caller, data);
         }
     }
     //////////////////////////////////////////////用户操作////////////////////////////////////////////////////////////////////
     public bool UpdateDecks(PlayerInfo playerInfo) => MongoDbCommand.UpdateDecks(playerInfo);
+    public PlayerInfo? TriggerUserState(string account, string password,string stateName) => MongoDbCommand.Login(account, password);
+
     public void Chat(string name, string message, string target)
     {
         Console.WriteLine("转发聊天记录" + message);
@@ -66,7 +57,6 @@ public class TouHouHub : Hub
         else
         {
             Clients.Client("").SendAsync("ChatReceive", (name, message).ToJson());
-
         }
     }
     //////////////////////////////////////////////日志////////////////////////////////////////////////////////////////////

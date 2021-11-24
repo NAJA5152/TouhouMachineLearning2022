@@ -5,7 +5,7 @@ using System.Linq;
 
 namespace Server
 {
-    partial class RoomCommand
+    partial class RoomManager
     {
         public static List<Room> Rooms { get; set; } = new List<Room>();
         public static Room GetRoom(int RoomId) => Rooms.First(room => room.RoomId == RoomId);
@@ -53,6 +53,17 @@ namespace Server
                 {
                     Rooms.Remove(TargetRoom);
                 }
+            }
+            return true;
+        }
+        public static bool DisponseRoom( int roomID)
+        {
+            Room TargetRoom = GetRoom(roomID);
+            if (TargetRoom != null)
+            {
+                //房间上传数据
+
+                Rooms.Remove(TargetRoom);
             }
             return true;
         }

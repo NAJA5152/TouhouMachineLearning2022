@@ -15,23 +15,23 @@ namespace TouhouMachineLearningSummary.Command
             ActiveCompment();
             await Task.Delay(1000);
             Command.MenuStateCommand.ChangeToMainPage(MenuState.Single);
-            Control.CameraViewControl.MoveToBookView();
+            await Manager.CameraViewManager.MoveToBookViewAsync();
+        }
+        public static async Task InitToOpenStateAsync()
+        {
+            Info.GameUI.UiInfo.loginCanvas.SetActive(false);
+            await SetCoverStateAsync(true);
+            ActiveCompment();
+            //Command.MenuStateCommand.ChangeToMainPage(MenuState.);
+            await Manager.CameraViewManager.MoveToPageViewAsync(true);
         }
         [Button]
-        public static async Task SetCoverStateAsync(bool isBookOpen) =>
-          await CustomThread.TimerAsync(2, runAction: (time) =>
+        public static async Task SetCoverStateAsync(bool isBookOpen,bool isImmediately=false) =>
+          await CustomThread.TimerAsync(isImmediately?0:2, runAction: (time) =>
             {
                 Info.BookInfo.coverModel.transform.eulerAngles = Vector3.zero;
                 float length = (Info.BookInfo.coverModel.transform.position - Info.BookInfo.axisModel.transform.position).magnitude;
-                float angle;
-                if (isBookOpen)
-                {
-                    angle = Mathf.Lerp(0, 180, time);
-                }
-                else
-                {
-                    angle = Mathf.Lerp(180, 0, time);
-                }
+                float angle = isBookOpen ? Mathf.Lerp(0, 180, time) : Mathf.Lerp(180, 0, time);
                 Info.BookInfo.coverModel.transform.localPosition = new Vector3(0, 0.08f, 0) + new Vector3(length * Mathf.Cos(Mathf.PI / 180 * angle), length * Mathf.Sin(Mathf.PI / 180 * angle));
                 Info.BookInfo.coverModel.transform.eulerAngles = new Vector3(0, 0, angle);
             });
@@ -68,7 +68,7 @@ namespace TouhouMachineLearningSummary.Command
                     Vector3 point = targetUiComoinent.transform.position;
                     targetUiComoinent.SetActive(true);
                     float second = 0.4f;
-                    _=CustomThread.TimerAsync(second, runAction: (time) => //在0.4秒内不断移动并降低透明度
+                    _ = CustomThread.TimerAsync(second, runAction: (time) => //在0.4秒内不断移动并降低透明度
                     {
                         targetUiComoinent.GetComponent<CanvasGroup>().alpha = time / second;
                         targetUiComoinent.transform.position = point + new Vector3(-1, 0, 1) * (1 - time / second) * 0.05f;

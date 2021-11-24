@@ -24,29 +24,30 @@ namespace TouhouMachineLearningSummary.Command
             //static string ip = "106.15.38.165:514";
             static WebSocket AsyncConnect = new WebSocket($"ws://{ip}/AsyncInfo");
 
-            static HubConnection connentHub = new HubConnectionBuilder().WithUrl($"http://{ip}/TouHouHub").Build();
+            static HubConnection TohHouHub { get; set; } = new HubConnectionBuilder().WithUrl($"http://{ip}/TouHouHub").Build();
 
             public static void Init()
             {
-                connentHub.On<string>("ChatReceive", message =>
+                TohHouHub.On<string>("ChatReceive", message =>
                 {
                     var receive = message.ToObject<(string name, string text, string targetUser)>();
                     ChatManager.MainChat.ReceiveMessage(receive.name, receive.text, receive.targetUser);
                 });
             }
-            public static void Dispose()
+            public static async void Dispose()
             {
                 Debug.Log("释放网络资源");
-                AsyncConnect.Close();
+                await TohHouHub.StopAsync();
+                //AsyncConnect.Close();
             }
-            public static async Task RegisterAsync(string name, string password)
+            public static async Task RegisterAsync(string account, string password)
             {
                 try
                 {
-                    if (connentHub.State == HubConnectionState.Disconnected) { await connentHub.StartAsync(); }
+                    if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
                     Debug.Log("注册请求");
-                    await connentHub.StartAsync();
-                    int result = await connentHub.InvokeAsync<int>("Register", name, password);
+                    await TohHouHub.StartAsync();
+                    int result = await TohHouHub.InvokeAsync<int>("Register", account, password);
                     //await accountHub.StopAsync();
                     switch (result)
                     {
@@ -62,16 +63,15 @@ namespace TouhouMachineLearningSummary.Command
                 }
 
             }
-            public static async Task LoginAsync(string name, string password)
+            public static async Task LoginAsync(string account, string password)
             {
                 try
                 {
                     Debug.Log("登陆请求");
-                    if (connentHub.State == HubConnectionState.Disconnected) { await connentHub.StartAsync(); }
-                    PlayerInfo playerInfo = await connentHub.InvokeAsync<PlayerInfo>("Login", name, password);
+                    if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                    PlayerInfo playerInfo = await TohHouHub.InvokeAsync<PlayerInfo>("Login", account, password);
                     Info.AgainstInfo.onlineUserInfo = playerInfo;
                     Debug.Log(Info.AgainstInfo.onlineUserInfo.ToJson());
-                    //await accountHub.StopAsync();
                     if (playerInfo != null)
                     {
                         await Command.BookCommand.InitAsync();
@@ -113,8 +113,8 @@ namespace TouhouMachineLearningSummary.Command
 
             internal static async Task<string> GetCardConfigsVersionAsync()
             {
-                if (connentHub.State == HubConnectionState.Disconnected) { await connentHub.StartAsync(); }
-                return await connentHub.InvokeAsync<string>("GetCardConfigsVersion");
+                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                return await TohHouHub.InvokeAsync<string>("GetCardConfigsVersion");
             }
 
             public static async Task UploadCardConfigsAsync(CardConfig cardConfig)
@@ -122,8 +122,8 @@ namespace TouhouMachineLearningSummary.Command
                 try
                 {
                     Debug.Log("上传卡牌配置");
-                    if (connentHub.State == HubConnectionState.Disconnected) { await connentHub.StartAsync(); }
-                    string result = await connentHub.InvokeAsync<string>("UploadCardConfigs", cardConfig);
+                    if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                    string result = await TohHouHub.InvokeAsync<string>("UploadCardConfigs", cardConfig);
                     Debug.Log("新卡牌配置上传结果: " + result);
                 }
                 catch (Exception e) { Debug.LogException(e); }
@@ -137,30 +137,28 @@ namespace TouhouMachineLearningSummary.Command
                 try
                 {
                     Debug.Log("下载卡牌配置");
-                    if (connentHub.State == HubConnectionState.Disconnected) { await connentHub.StartAsync(); }
-                    return await connentHub.InvokeAsync<CardConfig>("DownloadCardConfigs", date);
+                    if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                    return await TohHouHub.InvokeAsync<CardConfig>("DownloadCardConfigs", date);
                 }
                 catch (Exception e) { Debug.LogException(e); }
                 return null;
             }
             ///////////////////////////////////////////////////用户操作////////////////////////////////////////////////////////////////
-            public static void UpdateDecks(PlayerInfo playerInfo)
+            public static async Task<bool> UpdateDecksAsync(PlayerInfo playerInfo)
             {
-                //Debug.Log("更新请求");
-                var client = new WebSocket($"ws://{ip}/UpdateDecks");
-                client.OnMessage += (sender, e) =>
+                try
                 {
-                    Debug.Log("收到回应: " + e.Data);
-                    client.Close();
-                };
-                client.Connect();
-                Debug.Log("连接完成");
-                client.Send(playerInfo.ToJson());
+                    Debug.Log("下载卡牌配置");
+                    if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                    return await TohHouHub.InvokeAsync<bool>("UpdateDecks", playerInfo);
+                }
+                catch (Exception e) { Debug.LogException(e); }
+                return false;
             }
-            public static async Task ChatAsync(string name, string text,string target="")
+            public static async Task ChatAsync(string name, string text, string target = "")
             {
-                if (connentHub.State == HubConnectionState.Disconnected) { await connentHub.StartAsync(); }
-                await connentHub.SendAsync("Chat", name, text, target);
+                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                await TohHouHub.SendAsync("Chat", name, text, target);
             }
             ///////////////////////////////////////////////////房间操作////////////////////////////////////////////////////////////////
             public static async Task JoinRoomAsync(MultiplayerModeType rank)
