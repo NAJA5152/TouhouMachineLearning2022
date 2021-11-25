@@ -21,11 +21,11 @@ namespace TouhouMachineLearningSummary.Command
             Info.CardInfo.CreatCardRank = 0;
             //加载目标回合，同步下状态
             AgainstSummaryManager.TurnOperation targetJumpTurn = AgainstInfo.summary.TargetJumpTurn;
-            AgainstInfo.roundRank = targetJumpTurn.roundRank;
-            AgainstInfo.turnRank = targetJumpTurn.turnRank;
-            AgainstInfo.totalTurnRank = targetJumpTurn.totalTurnRank;
+            AgainstInfo.roundRank = targetJumpTurn.RoundRank;
+            AgainstInfo.turnRank = targetJumpTurn.TurnRank;
+            AgainstInfo.totalTurnRank = targetJumpTurn.TotalTurnRank;
             //判断该回合是否为预处理换牌阶段
-            bool isExchangeTurn = targetJumpTurn.turnRank == 0;
+            bool isExchangeTurn = targetJumpTurn.TurnRank == 0;
             //AgainstInfo.totalTurnRank AgainstInfo.summary.targetJumpTurn.allCardList
             //根据对战中的回合数据初始化场上卡牌
             AgainstInfo.cardSet = new CardSet();
@@ -36,7 +36,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             //CardSet.globalCardList = AgainstInfo.summary.targetJumpTurn.allCardList
             //    .Select(sampleCardList => sampleCardList.Select(CardCommand.CreateCard).ToList()).ToList();
-            CardSet.globalCardList = targetJumpTurn.allCardList.SelectList(sampleCardList => sampleCardList.SelectList(CardCommand.CreateCard));
+            CardSet.globalCardList = targetJumpTurn.AllCardList.SelectList(sampleCardList => sampleCardList.SelectList(CardCommand.CreateCard));
             AgainstInfo.cardSet[GameRegion.Leader, GameRegion.Battle].CardList.ForEach(card => card.isCanSee = true);
             AgainstInfo.cardSet[GameRegion.Hand][AgainstInfo.isReplayMode ? Orientation.All : Orientation.My].CardList.ForEach(card => card.isCanSee = true);
             AgainstInfo.isJumpMode = false;

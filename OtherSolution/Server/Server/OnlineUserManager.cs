@@ -7,5 +7,9 @@ namespace Server
         public static Dictionary<IClientProxy, PlayerInfo> OnlineUserList { get; set; } = new();
         public static void Add(IClientProxy caller, PlayerInfo playerInfo) => OnlineUserList[caller] = playerInfo;
         public static void Remove(IClientProxy caller) => OnlineUserList.Remove(caller);
+        public static void hasAgainstRoom()
+        {
+            RoomManager.Rooms.Where(room=>room.P1)
+        }
     }
 }

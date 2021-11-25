@@ -16,7 +16,16 @@ public class TouHouHub : Hub
     }
     //////////////////////////////////////////////账户////////////////////////////////////////////////////////////////////
     public int Register(string account, string password) => MongoDbCommand.Register(account, password);
-    public PlayerInfo? Login(string account, string password) => MongoDbCommand.Login(account, password);
+    public PlayerInfo? Login(string account, string password)
+    {
+        var playInfo = MongoDbCommand.Login(account, password);
+        if (playInfo != null)
+        {
+          var targetRoom=  RoomManager.Rooms.FirstOrDefault(room => room.IsContain(playInfo.Account));
+        }
+        return playInfo;
+    }
+
     //////////////////////////////////////////////房间////////////////////////////////////////////////////////////////////
     public void Join(PlayerInfo playerInfo) => RoomManager.JoinRoom(Clients.Caller, playerInfo);
     public void Leave(int roomID)
@@ -45,7 +54,7 @@ public class TouHouHub : Hub
     }
     //////////////////////////////////////////////用户操作////////////////////////////////////////////////////////////////////
     public bool UpdateDecks(PlayerInfo playerInfo) => MongoDbCommand.UpdateDecks(playerInfo);
-    public PlayerInfo? TriggerUserState(string account, string password,string stateName) => MongoDbCommand.Login(account, password);
+    public PlayerInfo? UpdateDecks(string account, string password, string stateName) => MongoDbCommand.Login(account, password);
 
     public void Chat(string name, string message, string target)
     {

@@ -30,7 +30,7 @@ namespace Server
                 throw new ArgumentNullException(nameof(password));
             }
 
-            var CheckUserExistQuery = Builders<PlayerInfo>.Filter.Where(info => info.Name == account);
+            var CheckUserExistQuery = Builders<PlayerInfo>.Filter.Where(info => info.Account == account);
             if (playerInfoCollection.Find(CheckUserExistQuery).CountDocuments() > 0)
             {
                 return -1;//已存在
@@ -38,7 +38,7 @@ namespace Server
             else
             {
                 playerInfoCollection.InsertOne(
-                    new PlayerInfo(account, password,"萌新",
+                    new PlayerInfo().Creat(account, password,"萌新",
                     new List<CardDeck>()
                     {
                         new CardDeck("初始卡组", 20001, new List<int>
@@ -56,8 +56,8 @@ namespace Server
         }
         public static PlayerInfo? Login(string account, string password)
         {
-            var LoadUserInfoQuery = Builders<PlayerInfo>.Filter.Where(info => info.Name == account && info.Password == password);
-            var CheckUserExistQuery = Builders<PlayerInfo>.Filter.Where(info => info.Name == account);
+            var LoadUserInfoQuery = Builders<PlayerInfo>.Filter.Where(info => info.Account == account && info.Password == password);
+            var CheckUserExistQuery = Builders<PlayerInfo>.Filter.Where(info => info.Account == account);
             PlayerInfo? UserInfo = null;
             if (playerInfoCollection.Find(LoadUserInfoQuery).ToList().Count > 0)
             {
@@ -67,12 +67,12 @@ namespace Server
             //return (UserInfo != null ? 1 : playerInfoCollection.Find(CheckUserExistQuery).CountDocuments() > 0 ? -1 : -2, UserInfo);
             return UserInfo;
         }
-        internal static bool UpdateDecks(PlayerInfo playinfo)
+        internal static bool UpdateState(PlayerInfo playinfo)
         {
             //先验证账号有效性
             //然后验证卡组有效性
             //最后修改数据库
-            var CheckUserExistQuery = Builders<PlayerInfo>.Filter.Where(info => info.Name == playinfo.Name);
+            var CheckUserExistQuery = Builders<PlayerInfo>.Filter.Where(info => info.Account == playinfo.Account);
             var updateDecks = Builders<PlayerInfo>.Update.Set(x => x.Decks, playinfo.Decks);
             var updateDecksNum = Builders<PlayerInfo>.Update.Set(x => x.UseDeckNum, playinfo.UseDeckNum);
             IFindFluent<PlayerInfo, PlayerInfo> findFluent = playerInfoCollection.Find(CheckUserExistQuery);

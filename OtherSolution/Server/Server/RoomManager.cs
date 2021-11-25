@@ -9,7 +9,6 @@ namespace Server
     {
         public static List<Room> Rooms { get; set; } = new List<Room>();
         public static Room GetRoom(int RoomId) => Rooms.First(room => room.RoomId == RoomId);
-
         public static void CreatRoom(IClientProxy playerID, PlayerInfo playerInfo)
         {
             List<int> RoomdIds = Rooms.Select(room => room.RoomId).ToList();
@@ -43,6 +42,11 @@ namespace Server
             }
             Console.WriteLine("房间为是否空：" + Rooms[0].IsCanEnter);
         }
+
+        public static AgainstSummary GetAgainstSummary()
+        {
+            return Summary;
+        }
         public static bool LeaveRoom(IClientProxy player, int roomID)
         {
             Room TargetRoom = GetRoom(roomID);
@@ -56,7 +60,7 @@ namespace Server
             }
             return true;
         }
-        public static bool DisponseRoom( int roomID)
+        public static bool DisponseRoom(int roomID)
         {
             Room TargetRoom = GetRoom(roomID);
             if (TargetRoom != null)

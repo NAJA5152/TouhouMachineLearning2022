@@ -9,11 +9,14 @@ namespace Server
         public int RoomId { get; set; }
         public bool IsCanEnter => P2 == null;
         public bool IsEmpty => P1 == null && P2 == null;
-        //public bool IsContain(WebSocketSessionManager Player) => Player == P1 || Player == P2;
+        public bool IsContain(string Account) => Account == Player1Info.Account || Account == Player2Info.Account;
         public IClientProxy P1 { get; set; }
         public IClientProxy P2 { get; set; }
-        PlayerInfo Player1Info { get; set; }
-        PlayerInfo Player2Info { get; set; }
+        public List<IClientProxy>
+        public PlayerInfo Player1Info { get; set; }
+        public PlayerInfo Player2Info { get; set; }
+        public AgainstSummary Summary { get; set; } = new AgainstSummary();
+
         public Room(int roomId)
         {
             RoomId = roomId;
@@ -32,6 +35,21 @@ namespace Server
             P2 = player;
             Player2Info = playerInfo;
         }
+        public void ReConnect(IClientProxy player,bool isPlayer1)
+        {
+
+            Console.WriteLine($"重新连接房间房间：房客信息{(isPlayer1? Player1Info.Name:Player2Info.Name)}\n\n");
+            if (isPlayer1)
+            {
+                P1 = player;
+            }
+            else
+            {
+                P2 = player;
+            }
+            return AgainstSummary
+        }
+        
         public void Open()
         {
             Console.WriteLine("我开房啦！！！！！！！！！！！！！！///////");

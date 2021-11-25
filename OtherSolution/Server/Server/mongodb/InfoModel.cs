@@ -33,10 +33,11 @@ namespace Server
             return this;
         }
         public PlayerInfo() { }
-        public PlayerInfo(string name, string password, string title,List<CardDeck> deck, Dictionary<string, int> cardLibrary)
+        public PlayerInfo Creat(string account, string password, string title,List<CardDeck> deck, Dictionary<string, int> cardLibrary)
         {
             _id = System.Guid.NewGuid().ToString();
-            Name = name;
+            Account=account;
+            Name = "外乡人";
             Title = title;
             Decks = deck;
             Password = password;
@@ -47,6 +48,7 @@ namespace Server
             Resource = new Dictionary<string, int>();
             Resource.Add("faith", 0);
             Resource.Add("recharge", 0);
+            return this;
         }
     }
     //卡牌不同版本的配置文件类型
@@ -60,14 +62,6 @@ namespace Server
         public byte[] SingleCardFileData { get; set; }
         public byte[] MultiCardFileData { get; set; }
         public CardConfig() { }
-        //public CardConfig(string date, FileInfo assemblyFile, FileInfo singleCardFile, FileInfo multiCardFile)
-        //{
-        //    _id = System.Guid.NewGuid().ToString();
-        //    this.Date = date;
-        //    this.AssemblyFileData = File.ReadAllBytes(assemblyFile.FullName);
-        //    this.SingleCardFileData = File.ReadAllBytes(singleCardFile.FullName);
-        //    this.MultiCardFileData = File.ReadAllBytes(multiCardFile.FullName);
-        //}
     }
     public class CardDeck
     {
@@ -102,12 +96,12 @@ namespace Server
         }
         public class TurnOperation
         {
-            public int roundRank { get; set; }//当前小局数
-            public int turnRank { get; set; }//当前回合数
-            public int totalTurnRank { get; set; }//当前总回合数
-            public bool isOnTheOffensive { get; set; }//是否先手
-            public int absoluteStartPoint { get; set; }//玩家操作前双方的点数差
-            public int absoluteEndPoint { get; set; }//玩家操作后双方的点数差  
+            public int RoundRank { get; set; }//当前小局数
+            public int TurnRank { get; set; }//当前回合数
+            public int TotalTurnRank { get; set; }//当前总回合数
+            public bool IsOnTheOffensive { get; set; }//是否先手
+            public int AbsoluteStartPoint { get; set; }//玩家操作前双方的点数差
+            public int AbsoluteEndPoint { get; set; }//玩家操作后双方的点数差  
             //0表示不投降，1表示玩家1投降，2表示玩家2投降
             public int isSurrender { get; set; } = 0;
             public List<List<SampleCardModel>> AllCardList { get; set; } = new List<List<SampleCardModel>>();
@@ -138,24 +132,6 @@ namespace Server
                 public bool IsPlay1ExchangeOver { get; set; }
                 public SelectOperation() { }
             }
-        }
-    }
-    [Serializable]
-    public class GeneralCommand
-    {
-        public object[] datas { get; set; }
-        public GeneralCommand(params object[] datas)
-        {
-            this.datas = datas;
-        }
-    }
-    [Serializable]
-    public class GeneralCommand<T>
-    {
-        public T[] datas;
-        public GeneralCommand(params T[] datas)
-        {
-            this.datas = datas;
         }
     }
 }
