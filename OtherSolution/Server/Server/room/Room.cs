@@ -12,7 +12,7 @@ namespace Server
         public bool IsContain(string Account) => Account == Player1Info.Account || Account == Player2Info.Account;
         public IClientProxy P1 { get; set; }
         public IClientProxy P2 { get; set; }
-        public List<IClientProxy>
+        public List<IClientProxy> clientProxies { get; set; }
         public PlayerInfo Player1Info { get; set; }
         public PlayerInfo Player2Info { get; set; }
         public AgainstSummary Summary { get; set; } = new AgainstSummary();
@@ -35,7 +35,7 @@ namespace Server
             P2 = player;
             Player2Info = playerInfo;
         }
-        public void ReConnect(IClientProxy player,bool isPlayer1)
+        public AgainstSummary ReConnect(IClientProxy player,bool isPlayer1)
         {
 
             Console.WriteLine($"重新连接房间房间：房客信息{(isPlayer1? Player1Info.Name:Player2Info.Name)}\n\n");
@@ -47,7 +47,7 @@ namespace Server
             {
                 P2 = player;
             }
-            return AgainstSummary
+            return Summary;
         }
         
         public void Open()

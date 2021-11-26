@@ -277,15 +277,15 @@ namespace TouhouMachineLearningSummary.Command
                 if (AgainstInfo.isReplayMode)
                 {
                     var operation = AgainstInfo.summary.GetCurrentPlayerOperation();
-                    if (operation.operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.PlayCard)
+                    if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.PlayCard)
                     {
-                        Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList[operation.selectCardIndex];
+                        Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList[operation.SelectCardIndex];
                     }
-                    else if (operation.operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.DisCard)
+                    else if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.DisCard)
                     {
-                        Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList[operation.selectCardIndex];
+                        Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList[operation.SelectCardIndex];
                     }
-                    else if (operation.operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.Pass)
+                    else if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.Pass)
                     {
                         AgainstInfo.isPlayerPass = true;
                     }

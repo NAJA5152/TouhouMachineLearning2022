@@ -56,11 +56,7 @@ namespace TouhouMachineLearningSummary.Command
                         default: await Command.GameUI.NoticeCommand.ShowAsync("注册发生异常", NotifyBoardMode.Ok); break;
                     }
                 }
-                catch (System.Exception e)
-                {
-
-                    Debug.LogException(e);
-                }
+                catch (Exception e) { Debug.LogException(e); }
 
             }
             public static async Task LoginAsync(string account, string password)
@@ -82,6 +78,25 @@ namespace TouhouMachineLearningSummary.Command
                     }
                 }
                 catch (Exception e) { Debug.LogException(e); }
+
+            }
+            ///////////////////////////////////////对战记录///////////////////////////////////////////////////////////////////////
+            public static async Task UpdateTurnOperationAsync(AgainstSummaryManager.TurnOperation turnOperation)
+            {
+                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                bool isSuccess = await TohHouHub.InvokeAsync<bool>("UpdateTurnOperation", turnOperation);
+
+            }
+            public static async Task UpdateTurnPlayerOperationAsync(AgainstSummaryManager.TurnOperation.PlayerOperation playerOperation)
+            {
+                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                bool isSuccess = await TohHouHub.InvokeAsync<bool>("UpdateTurnPlayerOperation", playerOperation);
+
+            }
+            public static async Task UpdateTurnSelectOperationAsync(AgainstSummaryManager.TurnOperation.SelectOperation selectOperation)
+            {
+                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                bool isSuccess = await TohHouHub.InvokeAsync<bool>("UpdateTurnSelectOperation", selectOperation);
 
             }
             public static void UploadAgentSummary(AgainstSummaryManager summary)
@@ -110,6 +125,7 @@ namespace TouhouMachineLearningSummary.Command
                 }
                 return summarys;
             }
+            ///////////////////////////////////////卡牌配置///////////////////////////////////////////////////////////////////////
 
             internal static async Task<string> GetCardConfigsVersionAsync()
             {
@@ -155,6 +171,8 @@ namespace TouhouMachineLearningSummary.Command
                 catch (Exception e) { Debug.LogException(e); }
                 return false;
             }
+
+            
             public static async Task ChatAsync(string name, string text, string target = "")
             {
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }

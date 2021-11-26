@@ -76,6 +76,14 @@ namespace Server
             this.CardIds = CardIds;
         }
     }
+    public class SampleCardModel
+    {
+        public int CardID { get; set; } = 0;
+        public int BasePoint { get; set; } = 0;
+        public int ChangePoint { get; set; } = 0;
+        public List<int> State { get; set; } = new List<int>();
+        public SampleCardModel() { }
+    }
     public class AgainstSummary
     {
         [BsonId]
@@ -86,14 +94,7 @@ namespace Server
         public string Winner { get; set; } = "";
         public List<TurnOperation> TurnOperations { get; set; } = new List<TurnOperation>();
         //简易的数字卡牌量化模型
-        public class SampleCardModel
-        {
-            public int CardID { get; set; } = 0;
-            public int BasePoint { get; set; } = 0;
-            public int ChangePoint { get; set; } = 0;
-            public List<int> State { get; set; } = new List<int>();
-            public SampleCardModel() { }
-        }
+        
         public class TurnOperation
         {
             public int RoundRank { get; set; }//当前小局数
@@ -132,6 +133,10 @@ namespace Server
                 public bool IsPlay1ExchangeOver { get; set; }
                 public SelectOperation() { }
             }
+        }
+        public void UpdateTurnOperation()
+        {
+
         }
     }
 }
