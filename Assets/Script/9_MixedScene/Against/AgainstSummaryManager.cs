@@ -138,7 +138,7 @@ namespace TouhouMachineLearningSummary.Manager
                         AddSelectLocation(triggerCard);
                         break;
                     case SelectOperationType.SelectExchangeOver:
-                        AddExchangeOver(isPlayer1ExchangeOver);
+                        AddExchangeOverAsync(isPlayer1ExchangeOver);
                         break;
                     default:
                         break;
@@ -195,7 +195,7 @@ namespace TouhouMachineLearningSummary.Manager
             }
         }
 
-        public void AddExchangeOver(bool isPlayer1Exchange)
+        public async Task AddExchangeOverAsync(bool isPlayer1Exchange)
         {
             UnityEngine.Debug.Log($"记录玩家{(isPlayer1Exchange ? "1" : "2")}换牌结束事件");
             SelectOperation selectOperation = new SelectOperation();
@@ -203,8 +203,7 @@ namespace TouhouMachineLearningSummary.Manager
             selectOperation.isPlay1ExchangeOver = isPlayer1Exchange;
             selectOperation.operation = SelectOperationType.SelectExchangeOver.EnumToOneHot();
             await Command.Network.NetCommand.UpdateTurnSelectOperationAsync(selectOperation);
-
-            TurnOperations.Last().selectOperations.Add(selectOperation);
+            //TurnOperations.Last().selectOperations.Add(selectOperation);
         }
         public void AddSelectRegion(Card triggerCard)
         {

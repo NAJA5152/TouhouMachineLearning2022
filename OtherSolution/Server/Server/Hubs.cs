@@ -54,7 +54,7 @@ public class TouHouHub : Hub
     }
     //////////////////////////////////////////////用户操作////////////////////////////////////////////////////////////////////
     public bool UpdateDecks(PlayerInfo playerInfo) => MongoDbCommand.UpdateDecks(playerInfo);
-    public PlayerInfo? UpdateDecks(string account, string password, string stateName) => MongoDbCommand.Login(account, password);
+    //public PlayerInfo? UpdateDecks(string account, string password, string stateName) => MongoDbCommand.Login(account, password);
 
     public void Chat(string name, string message, string target)
     {

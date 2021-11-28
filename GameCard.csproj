@@ -58,37 +58,37 @@
   <ItemGroup>
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20003.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10012.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10011.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20011.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10015.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10002.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20016.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10008.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20009.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10007.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10014.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20014.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10006.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card0.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10003.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10005.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10013.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20010.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10009.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10011.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10002.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20016.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10008.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10006.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20013.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10016.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10001.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20008.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20004.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20005.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10003.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10005.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20006.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10013.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20015.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10004.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20007.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20010.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20002.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10010.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20012.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20001.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10009.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Script\9_MixedScene\CardSpace\GameCard.asmdef" />
@@ -332,17 +332,26 @@
     <Reference Include="I18N">
       <HintPath>Assets\Assemblies\I18N.dll</HintPath>
     </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>Assets\Assemblies\SignalR\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Annotations">
       <HintPath>Assets\Assemblies\SignalR\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Features">
       <HintPath>Assets\Assemblies\SignalR\Microsoft.Extensions.Features.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
+      <HintPath>Assets\Assemblies\SignalR\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="ConsoleTables">
       <HintPath>Assets\UnityPackages\ConsoleTables.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.OdinInspector.Attributes">
       <HintPath>Assets\Assemblies\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives">
+      <HintPath>Assets\Assemblies\SignalR\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Serialization.Config">
       <HintPath>Assets\Assemblies\Sirenix\Assemblies\Sirenix.Serialization.Config.dll</HintPath>
@@ -367,6 +376,9 @@
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces">
       <HintPath>Assets\Assemblies\SignalR\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>Assets\Assemblies\SignalR\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNetCore.Http.Connections.Common">
       <HintPath>Assets\Assemblies\SignalR\Microsoft.AspNetCore.Http.Connections.Common.dll</HintPath>
@@ -448,18 +460,6 @@
     </Reference>
     <Reference Include="System.Threading.Channels">
       <HintPath>Assets\Assemblies\SignalR\System.Threading.Channels.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>Assets\Assemblies\SignalR\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Buffers">
-      <HintPath>Assets\Assemblies\SignalR\System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
-      <HintPath>Assets\Assemblies\SignalR\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Primitives">
-      <HintPath>Assets\Assemblies\SignalR\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="ICSharpCode.NRefactory">
       <HintPath>Library\PackageCache\com.unity.render-pipelines.core@10.3.2\Editor\ShaderGenerator\ICSharpCode.NRefactory.dll</HintPath>

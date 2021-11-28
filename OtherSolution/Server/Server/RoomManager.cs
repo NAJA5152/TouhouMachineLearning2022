@@ -43,10 +43,10 @@ namespace Server
             Console.WriteLine("房间为是否空：" + Rooms[0].IsCanEnter);
         }
 
-        public static AgainstSummary GetAgainstSummary()
-        {
-            return Summary;
-        }
+        //public static AgainstSummary GetAgainstSummary()
+        //{
+        //    return Summary;
+        //}
         public static bool LeaveRoom(IClientProxy player, int roomID)
         {
             Room TargetRoom = GetRoom(roomID);

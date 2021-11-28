@@ -57,55 +57,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamRemoteplay\RemotePlaySessionID_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\HSteamNetConnection.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworking\SNetListenSocket_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamutils.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamRemoteStorage\UGCHandle_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameserverhttp.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\SteamNetworkingConfigValue_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamClient\SteamAPI_CheckCallbackRegistered_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamInput\InputAnalogActionHandle_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameserverapps.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamRemoteStorage\PublishedFileUpdateHandle_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\MatchmakingTypes\servernetadr_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\HSteamListenSocket.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamHTMLSurface\HHTMLBrowser.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamhtmlsurface.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamMatchmaking\HServerListRequest.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamInventory\SteamItemDef_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamHTTP\HTTPRequestHandle.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteammatchmaking.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamClientPublic\CGameID.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\SteamNetworkingMessage_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamClient\SteamAPI_PostAPIResultInProcess_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamuserstats.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamremoteplay.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamapps.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamRemoteStorage\PublishedFileId_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamnetworkingmessages.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamugc.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamUGC\UGCUpdateHandle_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamclient.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameserverinventory.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameservernetworkingutils.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamhttp.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworking\SNetSocket_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamUGC\UGCQueryHandle_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamScreenshots\ScreenshotHandle.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameserverugc.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\SteamEnums.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingSockets\ISteamNetworkingSignalingRecvContext.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamparentalsettings.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\FSteamNetworkingSocketsDebugOutput.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteammusicremote.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamunifiedmessages.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamapplist.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteammusic.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\SteamConstants.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\ManifestId_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamInput\InputActionSetHandle_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamnetworkingsockets.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\HSteamNetPollGroup.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamHTTP\HTTPCookieContainerHandle.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\Steam.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamUserStats\SteamLeaderboard_t.cs" />
@@ -114,57 +90,81 @@
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\SteamNetworkingIdentity.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamRemoteStorage\UGCFileWriteStreamHandle_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\CallbackDispatcher.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\AppId_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamInput\InputDigitalActionHandle_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamremotestorage.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteaminventory.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamInput\InputHandle_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamvideo.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameservernetworkingsockets.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\SteamNetworkingPOPID.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingSockets\ISteamNetworkingConnectionSignaling.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamInventory\SteamItemInstanceID_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameserverclient.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\SiteId_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\PartyBeaconID_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamClient\SteamAPIWarningMessageHook_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamDatagramTickets\SteamDatagramHostedAddress.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\SteamAPICall_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamMatchmaking\HServerQuery.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamuser.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamDatagramTickets\SteamDatagramRelayAuthTicket.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\Steam_api_common\HSteamUser.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamFriends\FriendsGroupID_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamnetworking.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\SteamNetworkingIPAddr.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamClientPublic\HAuthTicket.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\NativeMethods.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamClientPublic\CSteamID.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamnetworkingutils.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\SteamStructs.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamInventory\SteamInventoryUpdateHandle_t.cs" />
-    <Compile Include="Assets\Art\bullet\BuletTest.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\AccountID_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamscreenshots.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\SteamIPAddress_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameserver.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\DepotId_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\ISteamMatchmakingResponses.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamInventory\SteamInventoryResult_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\SteamNetworkingErrMsg.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\CallbackIdentity.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamUserStats\SteamLeaderboardEntries_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamfriends.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\SteamNetworkingMicroseconds.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamUnifiedMessages\ClientUnifiedMessageHandle.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\SteamCallbacks.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteaminput.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\Steam_api_common\HSteamPipe.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameservernetworking.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\RTime32.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameserverstats.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\HSteamNetConnection.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamRemoteStorage\UGCHandle_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameserverapps.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\MatchmakingTypes\servernetadr_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\HSteamListenSocket.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamHTMLSurface\HHTMLBrowser.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamHTTP\HTTPRequestHandle.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteammatchmaking.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamClientPublic\CGameID.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamClient\SteamAPI_PostAPIResultInProcess_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamapps.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamRemoteStorage\PublishedFileId_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamUGC\UGCUpdateHandle_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameservernetworkingutils.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamUGC\UGCQueryHandle_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamScreenshots\ScreenshotHandle.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameserverugc.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\SteamEnums.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingSockets\ISteamNetworkingSignalingRecvContext.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\FSteamNetworkingSocketsDebugOutput.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteammusic.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\SteamConstants.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\ManifestId_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\HSteamNetPollGroup.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\AppId_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamInput\InputDigitalActionHandle_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamvideo.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameservernetworkingsockets.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\SteamNetworkingPOPID.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamInventory\SteamItemInstanceID_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameserverclient.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\SiteId_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamClient\SteamAPIWarningMessageHook_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamDatagramTickets\SteamDatagramHostedAddress.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\SteamAPICall_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamDatagramTickets\SteamDatagramRelayAuthTicket.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamFriends\FriendsGroupID_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamnetworking.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\SteamNetworkingIPAddr.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\NativeMethods.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamClientPublic\CSteamID.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamnetworkingutils.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\SteamStructs.cs" />
+    <Compile Include="Assets\Art\bullet\BuletTest.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\AccountID_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamscreenshots.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamTypes\SteamIPAddress_t.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\ISteamMatchmakingResponses.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\SteamNetworkingErrMsg.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamUnifiedMessages\ClientUnifiedMessageHandle.cs" />
+    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameservernetworking.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\Packsize.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\MatchmakingTypes\gameserveritem_t.cs" />
-    <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamgameserverstats.cs" />
     <Compile Include="Assets\Art\Shader\hutao.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\InteropHelp.cs" />
   </ItemGroup>
@@ -481,17 +481,26 @@
     <Reference Include="I18N">
       <HintPath>Assets\Assemblies\I18N.dll</HintPath>
     </Reference>
+    <Reference Include="System.Buffers">
+      <HintPath>Assets\Assemblies\SignalR\System.Buffers.dll</HintPath>
+    </Reference>
     <Reference Include="System.ComponentModel.Annotations">
       <HintPath>Assets\Assemblies\SignalR\System.ComponentModel.Annotations.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.Features">
       <HintPath>Assets\Assemblies\SignalR\Microsoft.Extensions.Features.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
+      <HintPath>Assets\Assemblies\SignalR\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
     <Reference Include="ConsoleTables">
       <HintPath>Assets\UnityPackages\ConsoleTables.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.OdinInspector.Attributes">
       <HintPath>Assets\Assemblies\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives">
+      <HintPath>Assets\Assemblies\SignalR\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="Sirenix.Serialization.Config">
       <HintPath>Assets\Assemblies\Sirenix\Assemblies\Sirenix.Serialization.Config.dll</HintPath>
@@ -513,6 +522,9 @@
     </Reference>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces">
       <HintPath>Assets\Assemblies\SignalR\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe">
+      <HintPath>Assets\Assemblies\SignalR\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNetCore.Http.Connections.Common">
       <HintPath>Assets\Assemblies\SignalR\Microsoft.AspNetCore.Http.Connections.Common.dll</HintPath>
@@ -594,18 +606,6 @@
     </Reference>
     <Reference Include="System.Threading.Channels">
       <HintPath>Assets\Assemblies\SignalR\System.Threading.Channels.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Runtime.CompilerServices.Unsafe">
-      <HintPath>Assets\Assemblies\SignalR\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Buffers">
-      <HintPath>Assets\Assemblies\SignalR\System.Buffers.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Configuration.Abstractions">
-      <HintPath>Assets\Assemblies\SignalR\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.Primitives">
-      <HintPath>Assets\Assemblies\SignalR\Microsoft.Extensions.Primitives.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>D:\Unity Hub\unity\2020.3.0f1c1\Editor\Data\NetStandard\ref\2.0.0\netstandard.dll</HintPath>
@@ -955,14 +955,17 @@
     <Reference Include="Unity.VSCode.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VSCode.Editor.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.VisualStudio.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.VisualStudio.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Timeline.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Timeline">
       <HintPath>Library\ScriptAssemblies\Unity.Timeline.dll</HintPath>
@@ -970,76 +973,73 @@
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Library\ScriptAssemblies\Unity.TextMeshPro.dll</HintPath>
     </Reference>
+    <Reference Include="Unity.Searcher.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Runtime">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor.UI">
       <HintPath>Library\ScriptAssemblies\UnityEditor.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Rider.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.Rider.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Shaders">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Shaders.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Runtime.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Searcher.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Searcher.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.Mathematics.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
-    </Reference>
-    <Reference Include="Unity.RenderPipelines.Core.Editor">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.RenderPipelines.Core.ShaderLibrary">
       <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Mathematics">
       <HintPath>Library\ScriptAssemblies\Unity.Mathematics.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
-    </Reference>
     <Reference Include="Unity.ShaderGraph.Editor">
       <HintPath>Library\ScriptAssemblies\Unity.ShaderGraph.Editor.dll</HintPath>
     </Reference>
-    <Reference Include="Unity.RenderPipelines.Universal.Runtime">
-      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Runtime.dll</HintPath>
+    <Reference Include="Unity.RenderPipelines.Universal.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Universal.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipeline.Universal.ShaderLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipeline.Universal.ShaderLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.ShaderGraph.ShaderGraphLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Timeline.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Timeline.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.Mathematics.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.Mathematics.Editor.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.RenderPipelines.Core.Editor">
+      <HintPath>Library\ScriptAssemblies\Unity.RenderPipelines.Core.Editor.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="TouHouMachineLearning.csproj">
-      <Project>{C59B79D0-2714-1C68-356F-AE308C1C32C2}</Project>
-      <Name>TouHouMachineLearning</Name>
-    </ProjectReference>
     <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.csproj">
       <Project>{07F6CE13-DF15-4F6E-6ACD-7545E955F739}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer</Name>
     </ProjectReference>
-    <ProjectReference Include="Live2D.csproj">
-      <Project>{34AA1B34-88B5-120E-60AC-A4A78A443313}</Project>
-      <Name>Live2D</Name>
+    <ProjectReference Include="Sirenix.OdinInspector.Modules.UnityMathematics.csproj">
+      <Project>{F43A768E-1679-C852-EF7F-C47F457BAD4E}</Project>
+      <Name>Sirenix.OdinInspector.Modules.UnityMathematics</Name>
     </ProjectReference>
     <ProjectReference Include="Sirenix.OdinInspector.CompatibilityLayer.Editor.csproj">
       <Project>{E2119A8F-5013-4D19-7879-5BC1E8B656F5}</Project>
       <Name>Sirenix.OdinInspector.CompatibilityLayer.Editor</Name>
     </ProjectReference>
+    <ProjectReference Include="TouHouMachineLearning.csproj">
+      <Project>{C59B79D0-2714-1C68-356F-AE308C1C32C2}</Project>
+      <Name>TouHouMachineLearning</Name>
+    </ProjectReference>
+    <ProjectReference Include="Live2D.csproj">
+      <Project>{34AA1B34-88B5-120E-60AC-A4A78A443313}</Project>
+      <Name>Live2D</Name>
+    </ProjectReference>
     <ProjectReference Include="GameCard.csproj">
       <Project>{CA517AF5-44AD-1DCF-3502-4ACC49C766AC}</Project>
       <Name>GameCard</Name>
-    </ProjectReference>
-    <ProjectReference Include="Sirenix.OdinInspector.Modules.UnityMathematics.csproj">
-      <Project>{F43A768E-1679-C852-EF7F-C47F457BAD4E}</Project>
-      <Name>Sirenix.OdinInspector.Modules.UnityMathematics</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
