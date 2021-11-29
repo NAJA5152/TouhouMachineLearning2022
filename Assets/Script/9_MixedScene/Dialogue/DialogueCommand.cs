@@ -10,13 +10,13 @@ namespace TouhouMachineLearningSummary.Command.Dialogue
     /// </summary>
     public class DialogueCommand
     {
-        public static void Play(int v1, int v2)
+        public static void Play(int step, int rank)
         {
             foreach (var methond in typeof(DialogueTest).GetMethods())
             {
                 foreach (Dial info in methond.GetCustomAttributes(typeof(Dial), false))
                 {
-                    if (info.step == v1 && info.rank == v2)
+                    if (info.step == step && info.rank == rank)
                     {
                         methond.Invoke(DialogueTest.Instance, new object[] { });
                     }

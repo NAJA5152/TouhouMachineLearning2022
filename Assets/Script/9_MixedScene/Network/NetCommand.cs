@@ -58,7 +58,7 @@ namespace TouhouMachineLearningSummary.Command
                 catch (Exception e) { Debug.LogException(e); }
 
             }
-            public static async Task LoginAsync(string account, string password)
+            public static async Task<bool> LoginAsync(string account, string password)
             {
                 try
                 {
@@ -70,6 +70,7 @@ namespace TouhouMachineLearningSummary.Command
                     if (playerInfo != null)
                     {
                         await Command.BookCommand.InitAsync();
+                        return true;
                     }
                     else
                     {
@@ -77,8 +78,10 @@ namespace TouhouMachineLearningSummary.Command
                     }
                 }
                 catch (Exception e) { Debug.LogException(e); }
-
+                return false;
             }
+
+
             ///////////////////////////////////////对战记录///////////////////////////////////////////////////////////////////////
             public static async Task UpdateTurnOperationAsync(AgainstSummaryManager.TurnOperation turnOperation)
             {
@@ -86,6 +89,7 @@ namespace TouhouMachineLearningSummary.Command
                 bool isSuccess = await TohHouHub.InvokeAsync<bool>("UpdateTurnOperation", turnOperation);
 
             }
+
             public static async Task UpdateTurnPlayerOperationAsync(AgainstSummaryManager.TurnOperation.PlayerOperation playerOperation)
             {
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
@@ -170,8 +174,18 @@ namespace TouhouMachineLearningSummary.Command
                 catch (Exception e) { Debug.LogException(e); }
                 return false;
             }
+            public static async Task<bool> UpdateUserState(PlayerInfo playerInfo)
+            {
+                try
+                {
+                    Debug.Log("更新用户状态");
+                    if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                    return await TohHouHub.InvokeAsync<bool>("UpdateUserState", playerInfo.Account, playerInfo.Password, playerInfo.OnlineUserState);
+                }
+                catch (Exception e) { Debug.LogException(e); }
+                return false;
+            }
 
-            
             public static async Task ChatAsync(string name, string text, string target = "")
             {
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
@@ -230,6 +244,16 @@ namespace TouhouMachineLearningSummary.Command
                 client.Send(new GeneralCommand(Info.AgainstInfo.RoomID, Info.AgainstInfo.currentUserInfo._id).ToJson());
                 Debug.Log(Info.AgainstInfo.RoomID.ToJson());
                 Debug.Log("发送完毕");
+            }
+            //判断是否存在正在对战中的房间
+            internal static async Task CheckRoomAsync(string text1, string text2)
+            {
+                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                int roomId = await TohHouHub.InvokeAsync<int>("CheckRoom");
+                if (true)
+                {
+
+                }
             }
             //初始化接收响应
             private static void InitAsyncConnection()
@@ -339,12 +363,7 @@ namespace TouhouMachineLearningSummary.Command
                                 break;
                         }
                     }
-                    catch (System.Exception ex)
-                    {
-                        Debug.Log(ex);
-                        throw;
-                    }
-
+                    catch (Exception ex) { Debug.LogException(ex); }
                 };
                 AsyncConnect.OnError += (sender, e) =>
                 {

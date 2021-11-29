@@ -19,6 +19,7 @@ public class TouHouHub : Hub
     public PlayerInfo? Login(string account, string password)
     {
         var playInfo = MongoDbCommand.Login(account, password);
+        //判断是否已有
         if (playInfo != null)
         {
           var targetRoom=  RoomManager.Rooms.FirstOrDefault(room => room.IsContain(playInfo.Account));
@@ -55,7 +56,7 @@ public class TouHouHub : Hub
     //////////////////////////////////////////////用户操作////////////////////////////////////////////////////////////////////
     public bool UpdateDecks(PlayerInfo playerInfo) => MongoDbCommand.UpdateDecks(playerInfo);
     //public PlayerInfo? UpdateDecks(string account, string password, string stateName) => MongoDbCommand.Login(account, password);
-
+    public static bool UpdateUserState(string account, string password, UserState userState) => MongoDbCommand.UpdateState(account, password, userState);
     public void Chat(string name, string message, string target)
     {
         Console.WriteLine("转发聊天记录" + message);

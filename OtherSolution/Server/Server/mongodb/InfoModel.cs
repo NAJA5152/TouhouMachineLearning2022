@@ -8,6 +8,12 @@ using System.Runtime.InteropServices;
 
 namespace Server
 {
+    public class UserState
+    {
+        int step;
+        int rank;
+        public async Task<bool> UpdateAsync() => await Command.Network.NetCommand.UpdateUserState(Info.AgainstInfo.onlineUserInfo);
+    }
     public class PlayerInfo
     {
         [BsonId]
@@ -22,7 +28,7 @@ namespace Server
         public int Rank { get; set; }
         public Dictionary<string, int> Resource { get; set; }
         //决定游戏进程
-        public Dictionary<string, bool> PlayerState { get; set; }
+        public UserState OnlineUserState { get; set; } = new UserState();
         public Dictionary<string, int> CardLibrary { get; set; }
         public int UseDeckNum { get; set; }
         public List<CardDeck> Decks { get; set; }

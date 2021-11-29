@@ -27,6 +27,10 @@ namespace TouhouMachineLearningSummary.Control
             else
             {
                 await Command.BookCommand.InitAsync();
+                if (Command.Network.NetCommand.GetPlayerState(""))
+                {
+
+                }
             }
 
         }
@@ -90,25 +94,20 @@ namespace TouhouMachineLearningSummary.Control
             {
                 _ = Command.Network.NetCommand.RegisterAsync(Account.text, Password.text);
             }
-            catch (System.Exception e)
-            {
-
-                Debug.LogException(e);
-            }
+            catch (System.Exception e){Debug.LogException(e);}
         }
 
-        public void UserLogin()
+        public async void UserLogin()
         {
             try
             {
-                _ = Command.Network.NetCommand.LoginAsync(Account.text, Password.text);
-
+                bool isSuccessLogin = await Command.Network.NetCommand.LoginAsync(Account.text, Password.text);
+                if (isSuccessLogin)
+                {
+                    _ = Command.Network.NetCommand.CheckRoomAsync(Account.text, Password.text);
+                }
             }
-            catch (System.Exception e)
-            {
-
-                Debug.LogException(e);
-            }
+            catch (System.Exception e) { Debug.LogException(e); }
         }
 
         public async Task TestBattleAsync()

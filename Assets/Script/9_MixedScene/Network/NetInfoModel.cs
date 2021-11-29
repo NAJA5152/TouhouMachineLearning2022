@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
 
 
@@ -73,10 +74,10 @@ namespace TouhouMachineLearningSummary.Model
         public string Password { get; set; }
         public int Level { get; set; }
         public int Rank { get; set; }
+        public UserState OnlineUserState { get; set; } = new UserState();
 
-        public Dictionary<string, int> Resource { get; set; }=new Dictionary<string, int>();
+        public Dictionary<string, int> Resource { get; set; } = new Dictionary<string, int>();
         //决定游戏进程
-        public Dictionary<string, bool> PlayerState { get; set; }=new Dictionary<string, bool>();
         [ShowInInspector]
         public Dictionary<string, int> CardLibrary { get; set; } = new Dictionary<string, int>();
         public int UseDeckNum { get; set; } = 0;
@@ -108,6 +109,12 @@ namespace TouhouMachineLearningSummary.Model
             sampleInfo.UseDeckNum = UseDeckNum;
             return sampleInfo;
         }
+    }
+    public class UserState
+    {
+        int step;
+        int rank;
+        public async Task<bool> UpdateAsync() => await Command.Network.NetCommand.UpdateUserState(Info.AgainstInfo.onlineUserInfo);
     }
     /// <summary>
     /// 客户端服务器通讯通用指令模板

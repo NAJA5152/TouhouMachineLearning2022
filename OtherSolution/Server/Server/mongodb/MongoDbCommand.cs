@@ -67,30 +67,8 @@ namespace Server
             //return (UserInfo != null ? 1 : playerInfoCollection.Find(CheckUserExistQuery).CountDocuments() > 0 ? -1 : -2, UserInfo);
             return UserInfo;
         }
-        internal static bool UpdateState(PlayerInfo playinfo)
-        {
-            //先验证账号有效性
-            //然后验证卡组有效性
-            //最后修改数据库
-            var CheckUserExistQuery = Builders<PlayerInfo>.Filter.Where(info => info.Account == playinfo.Account);
-            var updateDecks = Builders<PlayerInfo>.Update.Set(x => x.Decks, playinfo.Decks);
-            var updateDecksNum = Builders<PlayerInfo>.Update.Set(x => x.UseDeckNum, playinfo.UseDeckNum);
-            IFindFluent<PlayerInfo, PlayerInfo> findFluent = playerInfoCollection.Find(CheckUserExistQuery);
 
-            if (findFluent.CountDocuments() > 0)
-            {
-                findFluent.FirstOrDefault().Decks = playinfo.Decks;
-                findFluent.FirstOrDefault().UseDeckNum = playinfo.UseDeckNum;
-                playerInfoCollection.UpdateOne(CheckUserExistQuery, updateDecks);
-                playerInfoCollection.UpdateOne(CheckUserExistQuery, updateDecksNum);
-                return true;//修改成功
-            }
-            else
-            {
-                return false;//修改失败
-            }
-        }
-        internal static bool UpdateDecks(PlayerInfo playinfo)
+        public static bool UpdateDecks(PlayerInfo playinfo)
         {
             //先验证账号有效性
             //然后验证卡组有效性
@@ -113,12 +91,27 @@ namespace Server
                 return false;//修改失败
             }
         }
+        public static bool UpdateState(string account, string password, UserState userState)
+        {
+
+            var CheckUserExistQuery = Builders<PlayerInfo>.Filter.Where(info => info.Account == account && info.Password == password);
+            var updateUserState = Builders<PlayerInfo>.Update.Set(x => x.OnlineUserState, userState);
+            IFindFluent<PlayerInfo, PlayerInfo> findFluent = playerInfoCollection.Find(CheckUserExistQuery);
+            if (findFluent.CountDocuments() > 0)
+            {
+                playerInfoCollection.UpdateOne(CheckUserExistQuery, updateUserState);
+                return true;//修改成功
+            }
+            else
+            {
+                return false;//修改失败
+            }
+        }
         public static void InsertAgainstSummary(AgainstSummary againstSummary) => summaryCollection.InsertOne(againstSummary);
         public static List<AgainstSummary> QueryAgainstSummary(string playerName, int skipCount, int takeCount)
         {
             return summaryCollection.AsQueryable().Where(summary => playerName == "" ? true : summary.Player1Name == playerName || summary.Player2Name == playerName).Skip(skipCount).Take(takeCount).ToList();
         }
-
         public static string InsertOrUpdateCardConfig(CardConfig cardConfig)
         {
             var CheckConfigExistQuery = Builders<CardConfig>.Filter.Where(config => config.Date == cardConfig.Date);
