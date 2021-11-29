@@ -104,7 +104,9 @@ namespace TouhouMachineLearningSummary.Control
                 bool isSuccessLogin = await Command.Network.NetCommand.LoginAsync(Account.text, Password.text);
                 if (isSuccessLogin)
                 {
-                    _ = Command.Network.NetCommand.CheckRoomAsync(Account.text, Password.text);
+                    _ = Command.Network.NetCommand.UpdateNameAsync("格子");
+
+                    //_ = Command.Network.NetCommand.CheckRoomAsync(Account.text, Password.text);
                 }
             }
             catch (System.Exception e) { Debug.LogException(e); }

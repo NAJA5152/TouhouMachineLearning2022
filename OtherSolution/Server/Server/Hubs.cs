@@ -54,6 +54,7 @@ public class TouHouHub : Hub
         }
     }
     //////////////////////////////////////////////用户操作////////////////////////////////////////////////////////////////////
+    public bool UpdateName(string account, string password,string name) => MongoDbCommand.UpdateName(account, password, name);
     public bool UpdateDecks(PlayerInfo playerInfo) => MongoDbCommand.UpdateDecks(playerInfo);
     //public PlayerInfo? UpdateDecks(string account, string password, string stateName) => MongoDbCommand.Login(account, password);
     public static bool UpdateUserState(string account, string password, UserState userState) => MongoDbCommand.UpdateState(account, password, userState);

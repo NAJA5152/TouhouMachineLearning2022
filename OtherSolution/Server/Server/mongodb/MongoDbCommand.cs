@@ -54,6 +54,9 @@ namespace Server
                 return 1;//成功
             }
         }
+
+        
+
         public static PlayerInfo? Login(string account, string password)
         {
             var LoadUserInfoQuery = Builders<PlayerInfo>.Filter.Where(info => info.Account == account && info.Password == password);
@@ -67,7 +70,22 @@ namespace Server
             //return (UserInfo != null ? 1 : playerInfoCollection.Find(CheckUserExistQuery).CountDocuments() > 0 ? -1 : -2, UserInfo);
             return UserInfo;
         }
-
+        //////////////////////////////////////////////////用户信息更新///////////////////////////////////////////////////////////////////
+        internal static bool UpdateName(string account, string password,string name)
+        {
+            var CheckUserExistQuery = Builders<PlayerInfo>.Filter.Where(info => info.Account == account && info.Password == password);
+            var updateUserState = Builders<PlayerInfo>.Update.Set(x => x.Name, name);
+            IFindFluent<PlayerInfo, PlayerInfo> findFluent = playerInfoCollection.Find(CheckUserExistQuery);
+            if (findFluent.CountDocuments() > 0)
+            {
+                playerInfoCollection.UpdateOne(CheckUserExistQuery, updateUserState);
+                return true;//修改成功
+            }
+            else
+            {
+                return false;//修改失败
+            }
+        }
         public static bool UpdateDecks(PlayerInfo playinfo)
         {
             //先验证账号有效性

@@ -10,9 +10,8 @@ namespace Server
 {
     public class UserState
     {
-        int step;
-        int rank;
-        public async Task<bool> UpdateAsync() => await Command.Network.NetCommand.UpdateUserState(Info.AgainstInfo.onlineUserInfo);
+        public int Step { get; set; }
+        public int Rank { get; set; }
     }
     public class PlayerInfo
     {
@@ -39,10 +38,10 @@ namespace Server
             return this;
         }
         public PlayerInfo() { }
-        public PlayerInfo Creat(string account, string password, string title,List<CardDeck> deck, Dictionary<string, int> cardLibrary)
+        public PlayerInfo Creat(string account, string password, string title, List<CardDeck> deck, Dictionary<string, int> cardLibrary)
         {
             _id = System.Guid.NewGuid().ToString();
-            Account=account;
+            Account = account;
             Name = "外乡人";
             Title = title;
             Decks = deck;
@@ -52,6 +51,7 @@ namespace Server
             Rank = 0;
             UseDeckNum = 0;
             Resource = new Dictionary<string, int>();
+            OnlineUserState = new UserState();
             Resource.Add("faith", 0);
             Resource.Add("recharge", 0);
             return this;
@@ -100,7 +100,7 @@ namespace Server
         public string Winner { get; set; } = "";
         public List<TurnOperation> TurnOperations { get; set; } = new List<TurnOperation>();
         //简易的数字卡牌量化模型
-        
+
         public class TurnOperation
         {
             public int RoundRank { get; set; }//当前小局数
