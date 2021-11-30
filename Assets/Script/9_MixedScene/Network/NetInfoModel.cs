@@ -67,7 +67,7 @@ namespace TouhouMachineLearningSummary.Model
     public class PlayerInfo
     {
         public string _id { get; set; }
-        public string UUID { get; set; }
+        public string UID { get; set; }
         public string Account { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }

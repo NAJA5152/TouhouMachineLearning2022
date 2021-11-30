@@ -31,7 +31,7 @@ namespace TouhouMachineLearningSummary.Test
             var result = Command.Network.NetCommand.DownloadAgentSummaryAsync("0", 0, 100);
         }
         [Button("跳转到指定回合")]
-        public void Jump(int totalTurnRank, bool isOnTheOffensive,bool isPlayer1)
+        public void Jump(int totalTurnRank, bool isOnTheOffensive, bool isPlayer1)
         {
             //先加载
             Info.AgainstInfo.summary = AgainstSummaryManager.Load(1);
@@ -56,8 +56,21 @@ namespace TouhouMachineLearningSummary.Test
         {
             FiltercardSet = cardSet[tags.ToArray()];
         }
+        static Vector3 a;
+        static Vector3 b;
+        static Vector3 c;
+        private void Start()
+        {
+            a = new Vector3(5, 3, 4);
+            b = Random.onUnitSphere;
+            c = Vector3.Cross(a, b);
+        }
         private void Update()
         {
+            Debug.DrawLine(Vector3.zero, a, Color.red);
+            Debug.DrawLine(Vector3.zero, b, Color.green);
+            Debug.DrawLine(Vector3.zero, c, Color.blue);
+
             if (Input.GetMouseButtonDown(1))
             {
                 AgainstManager.Init();

@@ -1,6 +1,7 @@
 ﻿
 using Microsoft.AspNetCore.SignalR;
 using MongoDB.Bson;
+using Newtonsoft.Json;
 using Server;
 public class TouHouHub : Hub
 {
@@ -22,7 +23,7 @@ public class TouHouHub : Hub
         //判断是否已有
         if (playInfo != null)
         {
-          var targetRoom=  RoomManager.Rooms.FirstOrDefault(room => room.IsContain(playInfo.Account));
+            var targetRoom = RoomManager.Rooms.FirstOrDefault(room => room.IsContain(playInfo.Account));
         }
         return playInfo;
     }
@@ -54,7 +55,19 @@ public class TouHouHub : Hub
         }
     }
     //////////////////////////////////////////////用户操作////////////////////////////////////////////////////////////////////
-    public bool UpdateName(string account, string password,string name) => MongoDbCommand.UpdateName(account, password, name);
+    public bool UpdateName(string account, string password, string name) => MongoDbCommand.UpdateName(account, password, name);
+    public bool UpdateInfo(UpdateType updateType, string account, string password, object newView)
+    {
+        switch (updateType)
+        {
+           
+            case UpdateType.Name: return MongoDbCommand.UpdateInfo(account, password, (x => x.Name),  Convert.ChangeType(newView, typeof(string)));
+            case UpdateType.Deck: return MongoDbCommand.UpdateInfo(account, password, (x => x.Decks), Convert.ChangeType(newView, typeof(List<CardDeck>)));
+            case UpdateType.UseDeckNum: return MongoDbCommand.UpdateInfo(account, password, (x => x.UseDeckNum), Convert.ChangeType(newView, typeof(int)));
+            case UpdateType.UserState: return MongoDbCommand.UpdateInfo(account, password, (x => x.OnlineUserState), Convert.ChangeType(newView, typeof(UserState)));
+            default: return false;
+        }
+    }
     public bool UpdateDecks(PlayerInfo playerInfo) => MongoDbCommand.UpdateDecks(playerInfo);
     //public PlayerInfo? UpdateDecks(string account, string password, string stateName) => MongoDbCommand.Login(account, password);
     public static bool UpdateUserState(string account, string password, UserState userState) => MongoDbCommand.UpdateState(account, password, userState);

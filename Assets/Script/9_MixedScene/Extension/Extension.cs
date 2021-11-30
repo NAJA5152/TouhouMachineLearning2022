@@ -24,31 +24,14 @@ namespace TouhouMachineLearningSummary.Extension
         public static Color SetA(this Color color, float a) => new Color(color.r, color.g, color.b, a);
         public static List<int> EnumToOneHot<T>(this T targetEnum) => Enumerable.Range(0, Enum.GetNames(typeof(T)).Length).SelectList(index => index == (int)(object)targetEnum ? 1 : 0);
         public static TEnum OneHotToEnum<TEnum>(this List<int> targetEnum) => (TEnum)(object)targetEnum.IndexOf(1);
-        //构造一个三个泛型参数的函数 
-        //public static List<TResult> Select1<TList, TSource, TResult>(this TList list, Func<TSource, TResult> selector) where TList : IList<TSource>
-        //{
-        //    var result = new List<TResult>(list.Count);
-        //    result.AddRange(list.Select(selector));
-        //    return result;
-        //}
+
+        
         public static List<TResult> SelectList<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
             List<TResult> result = new List<TResult>(source.Count());
             result.AddRange(source.Select(selector));
             return result;
         }
-        //public static List<TResult> Select1<TSource, TResult>(this IList<TResult> list, Func<TSource, TResult> selector)
-        //{
-        //    List<TResult> result = new(list.Count);
-        //    result.AddRange(list.Select1(selector));
-        //    return result;
-        //}
-        //public static List<TResult> Select1<TList, TSource, TResult>(this TList list, Func<TSource, TResult> selector) where TList : IList<TSource>
-        //{
-        //    var result = new List<TResult>(list.Count);
-        //    result.AddRange(list.Select(selector));
-        //    return result;
-        //}
     }
 }
 

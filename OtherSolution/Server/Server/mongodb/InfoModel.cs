@@ -18,7 +18,7 @@ namespace Server
         [BsonId]
         //[BsonRepresentation(BsonType.ObjectId)]
         public string _id { get; set; }
-        public string UUID { get; set; }
+        public string UID { get; set; }
         public string Account { get; set; }
         public string Name { get; set; }
         public string Title { get; set; }
@@ -40,12 +40,13 @@ namespace Server
         public PlayerInfo() { }
         public PlayerInfo Creat(string account, string password, string title, List<CardDeck> deck, Dictionary<string, int> cardLibrary)
         {
-            _id = System.Guid.NewGuid().ToString();
+            _id = Guid.NewGuid().ToString();
+            UID = (MongoDbCommand.GetRegisterPlayerCount()+1000).ToString();
             Account = account;
-            Name = "外乡人";
+            Name = "村中人";
             Title = title;
             Decks = deck;
-            Password = password;
+            Password = password.GetSaltHash(UID);
             CardLibrary = cardLibrary;
             Level = 0;
             Rank = 0;

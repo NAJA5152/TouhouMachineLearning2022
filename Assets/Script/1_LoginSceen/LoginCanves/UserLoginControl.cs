@@ -27,10 +27,10 @@ namespace TouhouMachineLearningSummary.Control
             else
             {
                 await Command.BookCommand.InitAsync();
-                if (Command.Network.NetCommand.GetPlayerState(""))
-                {
+                //if (Command.Network.NetCommand.GetPlayerState(""))
+                //{
 
-                }
+                //}
             }
 
         }
@@ -94,7 +94,7 @@ namespace TouhouMachineLearningSummary.Control
             {
                 _ = Command.Network.NetCommand.RegisterAsync(Account.text, Password.text);
             }
-            catch (System.Exception e){Debug.LogException(e);}
+            catch (System.Exception e) { Debug.LogException(e); }
         }
 
         public async void UserLogin()
@@ -104,8 +104,8 @@ namespace TouhouMachineLearningSummary.Control
                 bool isSuccessLogin = await Command.Network.NetCommand.LoginAsync(Account.text, Password.text);
                 if (isSuccessLogin)
                 {
-                    _ = Command.Network.NetCommand.UpdateNameAsync("格子");
-
+                    _ = Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Name, "格子");
+                    _ = Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Deck, new List<CardDeck>() { Info.AgainstInfo.onlineUserInfo.UseDeck, Info.AgainstInfo.onlineUserInfo.UseDeck ,Info.AgainstInfo.onlineUserInfo.UseDeck });
                     //_ = Command.Network.NetCommand.CheckRoomAsync(Account.text, Password.text);
                 }
             }

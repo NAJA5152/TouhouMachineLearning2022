@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 
 namespace Server
 {
@@ -23,13 +24,9 @@ namespace Server
             cardConfigCollection = db.GetCollection<CardConfig>("CardConfig");
             summaryCollection = db.GetCollection<AgainstSummary>("AgainstSummary");
         }
+        public static int GetRegisterPlayerCount() => playerInfoCollection.AsQueryable().Count();
         public static int Register(string account, string password)
         {
-            if (password is null)
-            {
-                throw new ArgumentNullException(nameof(password));
-            }
-
             var CheckUserExistQuery = Builders<PlayerInfo>.Filter.Where(info => info.Account == account);
             if (playerInfoCollection.Find(CheckUserExistQuery).CountDocuments() > 0)
             {
@@ -38,7 +35,7 @@ namespace Server
             else
             {
                 playerInfoCollection.InsertOne(
-                    new PlayerInfo().Creat(account, password,"萌新",
+                    new PlayerInfo().Creat(account, password, "萌新",
                     new List<CardDeck>()
                     {
                         new CardDeck("初始卡组", 20001, new List<int>
@@ -55,26 +52,39 @@ namespace Server
             }
         }
 
-        
+
 
         public static PlayerInfo? Login(string account, string password)
         {
-            var LoadUserInfoQuery = Builders<PlayerInfo>.Filter.Where(info => info.Account == account && info.Password == password);
+            //var LoadUserInfoQuery = Builders<PlayerInfo>.Filter.Where(info => info.Account == account && password.GetSaltHash(info.UUID)==info.Password );
             var CheckUserExistQuery = Builders<PlayerInfo>.Filter.Where(info => info.Account == account);
-            PlayerInfo? UserInfo = null;
-            if (playerInfoCollection.Find(LoadUserInfoQuery).ToList().Count > 0)
+            PlayerInfo? userInfo = null;
+            if (playerInfoCollection.Find(CheckUserExistQuery).Any())
             {
-                UserInfo = playerInfoCollection.Find(LoadUserInfoQuery).ToList()[0];
+                userInfo = playerInfoCollection.Find(CheckUserExistQuery).FirstOrDefault();
+                if (userInfo.Password == password.GetSaltHash(userInfo.UID))
+                {
+
+                }
+                else
+                {
+                    userInfo = null;
+                }
             }
             //1正确,-1密码错误,-2无此账号
             //return (UserInfo != null ? 1 : playerInfoCollection.Find(CheckUserExistQuery).CountDocuments() > 0 ? -1 : -2, UserInfo);
-            return UserInfo;
+            return userInfo;
         }
         //////////////////////////////////////////////////用户信息更新///////////////////////////////////////////////////////////////////
-        internal static bool UpdateName(string account, string password,string name)
+        internal static bool UpdateName(string account, string password, string name)
+        {
+            return UpdateInfo(account, password, (x => x.Name), name);
+        }
+
+        public static bool UpdateInfo<TField>(string account, string password, Expression<Func<PlayerInfo, TField>> setOperator, TField field)
         {
             var CheckUserExistQuery = Builders<PlayerInfo>.Filter.Where(info => info.Account == account && info.Password == password);
-            var updateUserState = Builders<PlayerInfo>.Update.Set(x => x.Name, name);
+            var updateUserState = Builders<PlayerInfo>.Update.Set(setOperator, field);
             IFindFluent<PlayerInfo, PlayerInfo> findFluent = playerInfoCollection.Find(CheckUserExistQuery);
             if (findFluent.CountDocuments() > 0)
             {
@@ -86,6 +96,7 @@ namespace Server
                 return false;//修改失败
             }
         }
+
         public static bool UpdateDecks(PlayerInfo playinfo)
         {
             //先验证账号有效性

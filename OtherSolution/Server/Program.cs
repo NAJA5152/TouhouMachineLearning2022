@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Web;
 using Server;
 using Server.Data;
-
+using Newtonsoft.Json.Serialization;
 MongoDbCommand.Init();
 Console.WriteLine("数据库已初始化");
 
@@ -12,11 +12,16 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
+//builder.Services.AddControllers().add(options =>
+//{
+//    hubOptions.EnableDetailedErrors = true;
+//    hubOptions.MaximumReceiveMessageSize = null;
+//});
 builder.Services.AddSignalR(hubOptions =>
 {
     hubOptions.EnableDetailedErrors = true;
     hubOptions.MaximumReceiveMessageSize = null;
-});
+}).AddNewtonsoftJsonProtocol();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

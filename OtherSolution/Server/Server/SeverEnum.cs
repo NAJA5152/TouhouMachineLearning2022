@@ -10,3 +10,10 @@
     Pass,
     Surrender
 }
+public enum UpdateType
+{
+    Name,
+    Deck,
+    UseDeckNum,
+    UserState,
+}

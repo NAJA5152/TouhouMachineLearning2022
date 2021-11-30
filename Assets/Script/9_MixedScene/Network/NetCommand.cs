@@ -163,13 +163,24 @@ namespace TouhouMachineLearningSummary.Command
                 return null;
             }
             ///////////////////////////////////////////////////用户操作////////////////////////////////////////////////////////////////
+            public static async Task<bool> UpdateInfoAsync(UpdateType updateType, object updateValue)
+            {
+                try
+                {
+                    Debug.Log("更新");
+                    if (TohHouHub.State == HubConnectionState.Disconnected){await TohHouHub.StartAsync();}
+                    return await TohHouHub.InvokeAsync<bool>("UpdateInfo", updateType, AgainstInfo.onlineUserInfo.Account, AgainstInfo.onlineUserInfo.Password, updateValue);
+                }
+                catch (Exception e) { Debug.LogException(e); }
+                return false;
+            }
             public static async Task<bool> UpdateNameAsync(string name)
             {
                 try
                 {
                     Debug.Log("更新姓名");
-                    if (TohHouHub.State == HubConnectionState.Disconnected){await TohHouHub.StartAsync();}
-                    return await TohHouHub.InvokeAsync<bool>("UpdateName", AgainstInfo.onlineUserInfo.Account,AgainstInfo.onlineUserInfo.Password, name);
+                    if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                    return await TohHouHub.InvokeAsync<bool>("UpdateName", AgainstInfo.onlineUserInfo.Account, AgainstInfo.onlineUserInfo.Password, name);
                 }
                 catch (Exception e) { Debug.LogException(e); }
                 return false;
