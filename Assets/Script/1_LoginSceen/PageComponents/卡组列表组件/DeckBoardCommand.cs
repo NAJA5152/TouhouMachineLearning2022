@@ -49,7 +49,7 @@ namespace TouhouMachineLearningSummary.Command
                 Info.CardCompnentInfo.values.Add(Info.CardCompnentInfo.bias + i * Info.CardCompnentInfo.fre);
             }
         }
-        public static void OnDeckClick(GameObject deck)
+        public static async void OnDeckClick(GameObject deck)
         {
             int selectRank = Info.CardCompnentInfo.instance.deckModels.IndexOf(deck);
             if (Info.CardCompnentInfo.seleceDeckRank != selectRank)
@@ -57,7 +57,9 @@ namespace TouhouMachineLearningSummary.Command
                 Info.CardCompnentInfo.seleceDeckRank = selectRank;
                 Info.CardCompnentInfo.isCardClick = true;
                 Info.AgainstInfo.onlineUserInfo.UseDeckNum = Info.CardCompnentInfo.seleceDeckRank;
-                Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
+                //Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
+                await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Deck, Info.AgainstInfo.onlineUserInfo.Decks);
+                await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
                 Command.DeckBoardCommand.Init();
                 Command.CardListCommand.Init();
                 Debug.LogWarning("点击修改为" + Info.CardCompnentInfo.seleceDeckRank);
@@ -98,14 +100,16 @@ namespace TouhouMachineLearningSummary.Command
                 }
             }
         }
-        public static void CreatDeck()
+        public static async void CreatDeck()
         {
             Info.AgainstInfo.onlineUserInfo.Decks.Add(new Model.CardDeck("新卡组", 20002, new List<int> { 20002, 20001, 20001 }));
             Info.AgainstInfo.onlineUserInfo.UseDeckNum = Info.AgainstInfo.onlineUserInfo.Decks.Count - 1;
             //将牌库设为可编辑模式
             Info.CardCompnentInfo.isEditDeckMode = true;
             Debug.Log("切换到deck" + Info.AgainstInfo.onlineUserInfo.UseDeckNum);
-            Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
+            //Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
+            await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Deck, Info.AgainstInfo.onlineUserInfo.Decks);
+            await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
             Command.DeckBoardCommand.Init();
             Command.CardListCommand.Init();
             //切换状态至牌库
@@ -121,7 +125,9 @@ namespace TouhouMachineLearningSummary.Command
                     Debug.Log("删除卡组成功");
                     Info.AgainstInfo.onlineUserInfo.Decks.Remove(Info.AgainstInfo.onlineUserInfo.UseDeck);
                     Info.AgainstInfo.onlineUserInfo.UseDeckNum = Math.Max(0, Info.AgainstInfo.onlineUserInfo.UseDeckNum - 1);
-                    Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
+                    //Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
+                    await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Deck, Info.AgainstInfo.onlineUserInfo.Decks);
+                    await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
                     Command.DeckBoardCommand.Init();
                     Command.CardListCommand.Init();
                 }
@@ -139,8 +145,9 @@ namespace TouhouMachineLearningSummary.Command
                 Debug.Log("重命名卡组为" + text);
                 Info.AgainstInfo.onlineUserInfo.UseDeck.DeckName = text;
                 await Task.Delay(100);
-                Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
-
+                //Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
+                await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Deck, Info.AgainstInfo.onlineUserInfo.Decks);
+                await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
                 Command.DeckBoardCommand.Init();
                 Command.CardListCommand.Init();
 

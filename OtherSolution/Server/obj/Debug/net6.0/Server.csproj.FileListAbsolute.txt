@@ -99,3 +99,4 @@ G:\UnityProject\TouhouMachineLearning2022\OtherSolution\Server\obj\Debug\net6.0\
 G:\UnityProject\TouhouMachineLearning2022\OtherSolution\Server\obj\Debug\net6.0\ref\Server.dll
 G:\UnityProject\TouhouMachineLearning2022\OtherSolution\Server\obj\Debug\net6.0\Server.pdb
 G:\UnityProject\TouhouMachineLearning2022\OtherSolution\Server\obj\Debug\net6.0\Server.genruntimeconfig.cache
+G:\UnityProject\TouhouMachineLearning2022\OtherSolution\Server\bin\Debug\net6.0\Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson.dll

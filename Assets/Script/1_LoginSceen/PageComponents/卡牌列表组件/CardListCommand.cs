@@ -10,7 +10,7 @@ namespace TouhouMachineLearningSummary.Command
 {
     public class CardListCommand// : MonoBehaviour
     {
-        
+
         //初始化牌组列表组件
         public static void Init(bool isInitOptions = true, Model.CardDeck newTempDeck = null, bool canChangeCard = false)
         {
@@ -70,34 +70,44 @@ namespace TouhouMachineLearningSummary.Command
                 GameObject currentCardModel = Info.CardCompnentInfo.deckCardModels[i];
 
                 var info = CardAssemblyManager.lastMultiCardInfos.FirstOrDefault(cardInfo => cardInfo.cardID == cardID);
-                currentCardModel.transform.GetChild(0).GetComponent<Text>().text = info.translateName;
-                Sprite cardTex = Sprite.Create(info.icon, new Rect(0, 0, info.icon.width, info.icon.height), Vector2.zero);
-                currentCardModel.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = cardTex;
-                //设置数量
-                Color RankColor = Color.white;
-                switch (info.cardRank)
+                if (info!=null)
                 {
-                    case GameEnum.CardRank.Leader: RankColor = new Color(0.98f, 0.9f, 0.2f); break;
-                    case GameEnum.CardRank.Gold: RankColor = new Color(0.98f, 0.9f, 0.2f); break;
-                    case GameEnum.CardRank.Silver: RankColor = new Color(0.75f, 0.75f, 0.75f); break;
-                    case GameEnum.CardRank.Copper: RankColor = new Color(0.55f, 0.3f, 0.1f); break;
-                }
-                //品质
-                currentCardModel.transform.GetChild(2).GetComponent<Image>().color = RankColor;
-                //点数
-                int point = Manager.CardAssemblyManager.GetLastCardInfo(cardID).point;
-                currentCardModel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = point == 0 ? " " : point + "";
-                //数量
-                currentCardModel.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = "x" + Info.CardCompnentInfo.tempDeck.CardIds.Count(id => id == cardID);
+                    currentCardModel.transform.GetChild(0).GetComponent<Text>().text = info.translateName;
+                    Sprite cardTex = Sprite.Create(info.icon, new Rect(0, 0, info.icon.width, info.icon.height), Vector2.zero);
+                    currentCardModel.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = cardTex;
+                    //设置数量
+                    Color RankColor = Color.white;
+                    switch (info.cardRank)
+                    {
+                        case GameEnum.CardRank.Leader: RankColor = new Color(0.98f, 0.9f, 0.2f); break;
+                        case GameEnum.CardRank.Gold: RankColor = new Color(0.98f, 0.9f, 0.2f); break;
+                        case GameEnum.CardRank.Silver: RankColor = new Color(0.75f, 0.75f, 0.75f); break;
+                        case GameEnum.CardRank.Copper: RankColor = new Color(0.55f, 0.3f, 0.1f); break;
+                    }
+                    //品质
+                    currentCardModel.transform.GetChild(2).GetComponent<Image>().color = RankColor;
+                    //点数
+                    int point = Manager.CardAssemblyManager.GetLastCardInfo(cardID).point;
+                    currentCardModel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = point == 0 ? " " : point + "";
+                    //数量
+                    currentCardModel.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = "x" + Info.CardCompnentInfo.tempDeck.CardIds.Count(id => id == cardID);
 
-                currentCardModel.SetActive(true);
+                    currentCardModel.SetActive(true);
+                }
+                else
+                {
+                    Debug.Log(cardID+"查找失败");
+                }
+               
             }
         }
-        public static void SaveDeck()
+        public static async void SaveDeck()
         {
             Debug.Log("保存卡组");
             Info.AgainstInfo.onlineUserInfo.UseDeck = Info.CardCompnentInfo.tempDeck;
-            Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
+            //Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
+            await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Deck, Info.AgainstInfo.onlineUserInfo.Decks);
+            await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
             Command.CardListCommand.Init();
             Command.MenuStateCommand.RebackStare();
         }

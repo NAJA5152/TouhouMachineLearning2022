@@ -3,6 +3,8 @@ using Microsoft.AspNetCore.SignalR;
 using MongoDB.Bson;
 using Newtonsoft.Json;
 using Server;
+using System.Linq.Expressions;
+
 public class TouHouHub : Hub
 {
     public override Task OnConnectedAsync()
@@ -56,15 +58,15 @@ public class TouHouHub : Hub
     }
     //////////////////////////////////////////////用户操作////////////////////////////////////////////////////////////////////
     public bool UpdateName(string account, string password, string name) => MongoDbCommand.UpdateName(account, password, name);
-    public bool UpdateInfo(UpdateType updateType, string account, string password, object newView)
+    public bool UpdateInfo(UpdateType updateType, string account, string password, object updateValue)
     {
         switch (updateType)
         {
-           
-            case UpdateType.Name: return MongoDbCommand.UpdateInfo(account, password, (x => x.Name),  Convert.ChangeType(newView, typeof(string)));
-            case UpdateType.Deck: return MongoDbCommand.UpdateInfo(account, password, (x => x.Decks), Convert.ChangeType(newView, typeof(List<CardDeck>)));
-            case UpdateType.UseDeckNum: return MongoDbCommand.UpdateInfo(account, password, (x => x.UseDeckNum), Convert.ChangeType(newView, typeof(int)));
-            case UpdateType.UserState: return MongoDbCommand.UpdateInfo(account, password, (x => x.OnlineUserState), Convert.ChangeType(newView, typeof(UserState)));
+
+            case UpdateType.Name: return MongoDbCommand.UpdateInfo(account, password, (x => x.Name), Convert.ChangeType(updateValue, typeof(string)));
+            case UpdateType.Deck: return MongoDbCommand.UpdateInfo(account, password, (x => x.Decks), updateValue.ToJson().ToObject<List<CardDeck>>());
+            case UpdateType.UseDeckNum: return MongoDbCommand.UpdateInfo(account, password, (x => x.UseDeckNum), updateValue);
+            case UpdateType.UserState: return MongoDbCommand.UpdateInfo(account, password, (x => x.OnlineUserState), updateValue.ToJson().ToObject<UserState>());
             default: return false;
         }
     }

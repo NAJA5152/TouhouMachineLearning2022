@@ -6,6 +6,7 @@ using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
+using static UnityEngine.Mathf;
 
 namespace TouhouMachineLearningSummary.Test
 {
@@ -16,11 +17,11 @@ namespace TouhouMachineLearningSummary.Test
         [ShowInInspector]
         public CardSet FiltercardSet;
 
-
         public string text;
         [Button("上传记录")]
         public void test0()
         {
+
             AgainstInfo.summary.Upload();
             AgainstInfo.summary.Explort();
             AgainstInfo.summary.Show();
@@ -56,20 +57,38 @@ namespace TouhouMachineLearningSummary.Test
         {
             FiltercardSet = cardSet[tags.ToArray()];
         }
-        static Vector3 a;
-        static Vector3 b;
-        static Vector3 c;
+        public float a;
+        public float b;
+        public float c;
         private void Start()
         {
-            a = new Vector3(5, 3, 4);
-            b = Random.onUnitSphere;
-            c = Vector3.Cross(a, b);
+
         }
         private void Update()
         {
-            Debug.DrawLine(Vector3.zero, a, Color.red);
-            Debug.DrawLine(Vector3.zero, b, Color.green);
-            Debug.DrawLine(Vector3.zero, c, Color.blue);
+            Matrix4x4 matrix = new Matrix4x4
+                (
+                new Vector4(Cos(a) * Cos(c) - Cos(b) * Sin(a) * Sin(c), -Cos(b) * Cos(c) * Sin(a) - Cos(a) * Sin(c), Sin(a) * Sin(b)),
+                new Vector4(Cos(c) * Sin(a) + Cos(a) * Cos(b) * Sin(c), Cos(a) * Cos(b) * Cos(c) - Sin(a) * Sin(c), -Cos(a) * Sin(b)),
+                new Vector4(Sin(b) * Sin(c), Cos(c) * Sin(b), Cos(b)),
+                new Vector4(0, 0, 0, 0)
+                );
+            Debug.DrawLine(Vector3.zero, Vector3.right, Color.red);
+            Debug.DrawLine(Vector3.zero, Vector3.up, Color.green);
+            Debug.DrawLine(Vector3.zero, Vector3.forward, Color.blue);
+
+            Debug.DrawLine(Vector3.zero, matrix * Vector3.right, Color.red);
+            Debug.DrawLine(Vector3.zero, matrix * Vector3.up, Color.green);
+            Debug.DrawLine(Vector3.zero, matrix * Vector3.forward, Color.blue);
+            Debug.DrawLine(matrix *new Vector3(0,1,0), matrix * new Vector3(0, 1, 1), Color.white);
+            Debug.DrawLine(matrix *new Vector3(0,1,0), matrix * new Vector3(1, 1, 0), Color.white);
+            Debug.DrawLine(matrix *new Vector3(1,0,1), matrix * new Vector3(1, 1, 1), Color.white);
+            Debug.DrawLine(matrix *new Vector3(0,0,1), matrix * new Vector3(1, 0, 1), Color.white);
+            Debug.DrawLine(matrix *new Vector3(1,0,0), matrix * new Vector3(1, 0, 1), Color.white);
+            Debug.DrawLine(matrix * new Vector3(0, 0, 1), matrix * new Vector3(0, 1, 1), Color.white);
+            Debug.DrawLine(matrix * new Vector3(1, 0, 0), matrix * new Vector3(1, 1, 0), Color.white);
+            Debug.DrawLine(matrix * new Vector3(0, 1, 1), matrix * new Vector3(1, 1, 1), Color.white);
+            Debug.DrawLine(matrix * new Vector3(1, 1, 0), matrix * new Vector3(1, 1, 1), Color.white);
 
             if (Input.GetMouseButtonDown(1))
             {

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Manager;
@@ -104,8 +106,9 @@ namespace TouhouMachineLearningSummary.Control
                 bool isSuccessLogin = await Command.Network.NetCommand.LoginAsync(Account.text, Password.text);
                 if (isSuccessLogin)
                 {
-                    _ = Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Name, "格子");
-                    _ = Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Deck, new List<CardDeck>() { Info.AgainstInfo.onlineUserInfo.UseDeck, Info.AgainstInfo.onlineUserInfo.UseDeck ,Info.AgainstInfo.onlineUserInfo.UseDeck });
+                    
+                   _ = Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Name, "格子");
+                   _ = Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Deck, new List<CardDeck>() { Info.AgainstInfo.onlineUserInfo.UseDeck, Info.AgainstInfo.onlineUserInfo.UseDeck ,Info.AgainstInfo.onlineUserInfo.UseDeck });
                     //_ = Command.Network.NetCommand.CheckRoomAsync(Account.text, Password.text);
                 }
             }

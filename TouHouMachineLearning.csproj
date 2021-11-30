@@ -159,6 +159,7 @@
     <Compile Include="Assets\Script\9_MixedScene\Network\NetInfoModel.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Against\AgainstInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Audio\AudioInfo.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\Network\UpdateType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Script\0_Other\info.txt" />

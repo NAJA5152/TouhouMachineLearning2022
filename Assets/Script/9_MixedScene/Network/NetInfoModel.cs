@@ -5,7 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
-
+using TouhouMachineLearningSummary.GameEnum;
 
 namespace TouhouMachineLearningSummary.Model
 {
@@ -114,7 +114,7 @@ namespace TouhouMachineLearningSummary.Model
     {
         int step;
         int rank;
-        public async Task<bool> UpdateAsync() => await Command.Network.NetCommand.UpdateUserState(Info.AgainstInfo.onlineUserInfo);
+        public async Task<bool> UpdateAsync() => await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UserState,Info.AgainstInfo.onlineUserInfo.OnlineUserState);
     }
     /// <summary>
     /// 客户端服务器通讯通用指令模板

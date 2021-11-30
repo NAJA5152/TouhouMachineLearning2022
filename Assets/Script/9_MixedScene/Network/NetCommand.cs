@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using static UnityEngine.Networking.UnityWebRequest;
 using System;
 using Microsoft.AspNetCore.SignalR.Client;
+using System.Linq.Expressions;
 
 namespace TouhouMachineLearningSummary.Command
 {
@@ -89,7 +90,6 @@ namespace TouhouMachineLearningSummary.Command
                 bool isSuccess = await TohHouHub.InvokeAsync<bool>("UpdateTurnOperation", turnOperation);
 
             }
-
             public static async Task UpdateTurnPlayerOperationAsync(AgainstSummaryManager.TurnOperation.PlayerOperation playerOperation)
             {
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
@@ -174,17 +174,17 @@ namespace TouhouMachineLearningSummary.Command
                 catch (Exception e) { Debug.LogException(e); }
                 return false;
             }
-            public static async Task<bool> UpdateNameAsync(string name)
-            {
-                try
-                {
-                    Debug.Log("更新姓名");
-                    if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
-                    return await TohHouHub.InvokeAsync<bool>("UpdateName", AgainstInfo.onlineUserInfo.Account, AgainstInfo.onlineUserInfo.Password, name);
-                }
-                catch (Exception e) { Debug.LogException(e); }
-                return false;
-            }
+            //public static async Task<bool> UpdateNameAsync(string name)
+            //{
+            //    try
+            //    {
+            //        Debug.Log("更新姓名");
+            //        if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            //        return await TohHouHub.InvokeAsync<bool>("UpdateName", AgainstInfo.onlineUserInfo.Account, AgainstInfo.onlineUserInfo.Password, name);
+            //    }
+            //    catch (Exception e) { Debug.LogException(e); }
+            //    return false;
+            //}
             public static async Task<bool> UpdateDecksAsync(PlayerInfo playerInfo)
             {
                 try
@@ -196,17 +196,17 @@ namespace TouhouMachineLearningSummary.Command
                 catch (Exception e) { Debug.LogException(e); }
                 return false;
             }
-            public static async Task<bool> UpdateUserState(PlayerInfo playerInfo)
-            {
-                try
-                {
-                    Debug.Log("更新用户状态");
-                    if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
-                    return await TohHouHub.InvokeAsync<bool>("UpdateUserState", playerInfo.Account, playerInfo.Password, playerInfo.OnlineUserState);
-                }
-                catch (Exception e) { Debug.LogException(e); }
-                return false;
-            }
+            //public static async Task<bool> UpdateUserState(PlayerInfo playerInfo)
+            //{
+            //    try
+            //    {
+            //        Debug.Log("更新用户状态");
+            //        if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            //        return await TohHouHub.InvokeAsync<bool>("UpdateUserState", playerInfo.Account, playerInfo.Password, playerInfo.OnlineUserState);
+            //    }
+            //    catch (Exception e) { Debug.LogException(e); }
+            //    return false;
+            //}
 
             public static async Task ChatAsync(string name, string text, string target = "")
             {
