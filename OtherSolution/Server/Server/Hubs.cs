@@ -32,10 +32,7 @@ public class TouHouHub : Hub
 
     //////////////////////////////////////////////房间////////////////////////////////////////////////////////////////////
     public void Join(PlayerInfo playerInfo) => RoomManager.JoinRoom(Clients.Caller, playerInfo);
-    public void Leave(int roomID)
-    {
-        RoomManager.LeaveRoom(Clients.Caller, roomID);
-    }
+    public void Leave(int roomID) => RoomManager.LeaveRoom(Clients.Caller, roomID);
     public void AsyncInfo(NetAcyncType netAcyncType, int roomId, bool isPlayer1, object[] data)
     {
 

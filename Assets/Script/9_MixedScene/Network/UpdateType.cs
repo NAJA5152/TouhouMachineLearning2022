@@ -9,7 +9,7 @@ namespace TouhouMachineLearningSummary.GameEnum
     public enum UpdateType
     {
         Name,
-        Deck,
+        Decks,
         UseDeckNum,
         UserState,
     }

@@ -74,6 +74,11 @@ namespace TouhouMachineLearningSummary.Model
         public string Password { get; set; }
         public int Level { get; set; }
         public int Rank { get; set; }
+        public class UserState
+        {
+            public int Step { get; set; }
+            public int Rank { get; set; }
+        }
         public UserState OnlineUserState { get; set; } = new UserState();
 
         public Dictionary<string, int> Resource { get; set; } = new Dictionary<string, int>();
@@ -109,13 +114,22 @@ namespace TouhouMachineLearningSummary.Model
             sampleInfo.UseDeckNum = UseDeckNum;
             return sampleInfo;
         }
+        public async Task<bool> UpdateName(string name) => await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Name, name);
+        public async Task<bool> UpdateUserStateAsync(int step, int rank)
+        {
+            OnlineUserState.Step = step;
+            OnlineUserState.Rank = rank;
+            return await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UserState, OnlineUserState);
+        }
+        public async Task<bool> UpdateDecksAsync()
+        {
+            bool isSuccessUpdateDeck = await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Decks, Decks);
+            bool isSuccessUpdateUseDeckNum = await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, UseDeckNum);
+            return isSuccessUpdateDeck && isSuccessUpdateUseDeckNum;
+        }
     }
-    public class UserState
-    {
-        int step;
-        int rank;
-        public async Task<bool> UpdateAsync() => await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UserState,Info.AgainstInfo.onlineUserInfo.OnlineUserState);
-    }
+
+
     /// <summary>
     /// 客户端服务器通讯通用指令模板
     /// </summary>

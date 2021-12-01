@@ -185,17 +185,17 @@ namespace TouhouMachineLearningSummary.Command
             //    catch (Exception e) { Debug.LogException(e); }
             //    return false;
             //}
-            public static async Task<bool> UpdateDecksAsync(PlayerInfo playerInfo)
-            {
-                try
-                {
-                    Debug.Log("下载卡牌配置");
-                    if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
-                    return await TohHouHub.InvokeAsync<bool>("UpdateDecks", playerInfo);
-                }
-                catch (Exception e) { Debug.LogException(e); }
-                return false;
-            }
+            //public static async Task<bool> UpdateDecksAsync(PlayerInfo playerInfo)
+            //{
+            //    try
+            //    {
+            //        Debug.Log("下载卡牌配置");
+            //        if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            //        return await TohHouHub.InvokeAsync<bool>("UpdateDecks", playerInfo);
+            //    }
+            //    catch (Exception e) { Debug.LogException(e); }
+            //    return false;
+            //}
             //public static async Task<bool> UpdateUserState(PlayerInfo playerInfo)
             //{
             //    try

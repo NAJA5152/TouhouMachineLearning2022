@@ -70,7 +70,7 @@ namespace TouhouMachineLearningSummary.Command
                 GameObject currentCardModel = Info.CardCompnentInfo.deckCardModels[i];
 
                 var info = CardAssemblyManager.lastMultiCardInfos.FirstOrDefault(cardInfo => cardInfo.cardID == cardID);
-                if (info!=null)
+                if (info != null)
                 {
                     currentCardModel.transform.GetChild(0).GetComponent<Text>().text = info.translateName;
                     Sprite cardTex = Sprite.Create(info.icon, new Rect(0, 0, info.icon.width, info.icon.height), Vector2.zero);
@@ -96,9 +96,9 @@ namespace TouhouMachineLearningSummary.Command
                 }
                 else
                 {
-                    Debug.Log(cardID+"查找失败");
+                    Debug.Log(cardID + "查找失败");
                 }
-               
+
             }
         }
         public static async void SaveDeck()
@@ -106,8 +106,9 @@ namespace TouhouMachineLearningSummary.Command
             Debug.Log("保存卡组");
             Info.AgainstInfo.onlineUserInfo.UseDeck = Info.CardCompnentInfo.tempDeck;
             //Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
-            await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Deck, Info.AgainstInfo.onlineUserInfo.Decks);
-            await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
+            //await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
+            //await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
+            await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
             Command.CardListCommand.Init();
             Command.MenuStateCommand.RebackStare();
         }
