@@ -16,8 +16,8 @@ namespace TouhouMachineLearningSummary.Other
         static void UpdateCardSpace()
         {
             var gameCardAssembly = new DirectoryInfo(@"Library\ScriptAssemblies").GetFiles("GameCard*.dll").FirstOrDefault();
-            var singleCardFile = new FileInfo(@"Assets\Resources\CardData\CardData-Single.json");
-            var multiCardFile = new FileInfo(@"Assets\Resources\CardData\CardData-Multi.json");
+            var singleCardFile = new FileInfo(@"Assets\Resources\GameData\CardData-Single.json");
+            var multiCardFile = new FileInfo(@"Assets\Resources\GameData\CardData-Multi.json");
             if (gameCardAssembly != null && singleCardFile != null && multiCardFile != null)
             {
                 CardConfig cardConfig = new CardConfig(DateTime.Today.ToString("yyy_MM_dd"), gameCardAssembly, singleCardFile, multiCardFile);
@@ -31,9 +31,9 @@ namespace TouhouMachineLearningSummary.Other
         [MenuItem("Tools/打开服务端", false, 2)]
         static void StartServer() => Process.Start(@"OtherSolution\THMLS-Server\bin\Debug\netcoreapp3.0\THMLS-Server.exe");
         [MenuItem("Tools/打开游戏客户端", false, 2)]
-        static void StartClient() => Process.Start(@"G:\UnityProject\Pc\TouhouMachineLearning2021.exe");
+        static void StartClient() => Process.Start(@"Pc\TouhouMachineLearning2022.exe");
         [MenuItem("Tools/打开数据表格", false, 3)]
-        static void OpenXls() => Process.Start(@"Assets\Resources\CardData\GameData.xlsx");
+        static void OpenXls() => Process.Start(@"Assets\Resources\GameData\GameData.xlsx");
         [MenuItem("Tools/实时更新数据表格", false, 3)]
         static void UpdateXls() => Process.Start(@"OtherSolution\xls检测更新\bin\Debug\net461\xls检测更新.exe");
        
