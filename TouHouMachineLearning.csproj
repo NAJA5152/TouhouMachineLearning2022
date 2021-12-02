@@ -53,9 +53,6 @@
     <UnityVersion>2020.3.0f1c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Script\9_MixedScene\UI\Introduction\IntroductionEvent.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\Introduction\IntroductionControl.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡牌列表组件\CardListCommand.cs" />
@@ -103,12 +100,13 @@
     <Compile Include="Assets\Script\9_MixedScene\ParticleSystem\TheWorldEffect.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\UiInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\NoticeControl.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\Network\UpdateType.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\CardDeck.cs" />
     <Compile Include="Assets\Script\0_Other\Danmu.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Enum\GameEnum.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\Other\GearControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\CardCommand.cs" />
-    <Compile Include="Assets\Script\0_Other\EditorExtension\EditorExtension.cs" />
+    <Compile Include="Assets\Script\0_Other\EditorExtension.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Extension\Extension.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageState\MenuState.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Bullet\BulletEnum.cs" />
@@ -159,7 +157,6 @@
     <Compile Include="Assets\Script\9_MixedScene\Network\NetInfoModel.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Against\AgainstInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Audio\AudioInfo.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\Network\UpdateType.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Script\0_Other\info.txt" />
@@ -392,9 +389,6 @@
     </Reference>
     <Reference Include="UnityEditor.WindowsStandalone.Extensions">
       <HintPath>D:\Unity Hub\unity\2020.3.0f1c1\Editor\Data\PlaybackEngines\WindowsStandaloneSupport\UnityEditor.WindowsStandalone.Extensions.dll</HintPath>
-    </Reference>
-    <Reference Include="SyntaxTree.VisualStudio.Unity.Bridge">
-      <HintPath>C:\Program Files (x86)\Microsoft Visual Studio Tools for Unity\16.0\Editor\SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="RestSharp">
       <HintPath>Assets\Assemblies\RestSharp.dll</HintPath>

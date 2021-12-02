@@ -1,24 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\vs2022-Project\\TouhouMachineLearning-2021\\OtherSolution\\xls检测更新\\xls检测更新.csproj": {}
+    "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\xls检测更新.csproj": {}
   },
   "projects": {
-    "D:\\vs2022-Project\\TouhouMachineLearning-2021\\OtherSolution\\xls检测更新\\xls检测更新.csproj": {
+    "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\xls检测更新.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\vs2022-Project\\TouhouMachineLearning-2021\\OtherSolution\\xls检测更新\\xls检测更新.csproj",
+        "projectUniqueName": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\xls检测更新.csproj",
         "projectName": "xls检测更新",
-        "projectPath": "D:\\vs2022-Project\\TouhouMachineLearning-2021\\OtherSolution\\xls检测更新\\xls检测更新.csproj",
-        "packagesPath": "C:\\Users\\wuyunge\\.nuget\\packages\\",
-        "outputPath": "D:\\vs2022-Project\\TouhouMachineLearning-2021\\OtherSolution\\xls检测更新\\obj\\",
+        "projectPath": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\xls检测更新.csproj",
+        "packagesPath": "C:\\Users\\50606\\.nuget\\packages\\",
+        "outputPath": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "D:\\vs2022-Shared\\NuGetPackages"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\wuyunge\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Users\\50606\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -53,7 +52,7 @@
               "version": "[11.9.3, )"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100-preview.6.21355.2\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
         }
       },
       "runtimes": {

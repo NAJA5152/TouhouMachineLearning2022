@@ -1,0 +1,133 @@
+[
+  {
+    "Tag": null,
+    "Operations": [
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "你好呀",
+          "En": "aa",
+          "": ""
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "灵梦",
+        "Position": "右侧",
+        "Face": "",
+        "Text": {
+          "Ch": "你好呀，最近忙吗@忙@不忙@",
+          "En": "aa",
+          "": ""
+        }
+      },
+      {
+        "Branch": "1",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "还好啦，也不是很忙",
+          "En": "aa",
+          "": ""
+        }
+      },
+      {
+        "Branch": "2",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "唉，最近忙死了",
+          "En": "aa",
+          "": ""
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "灵梦",
+        "Position": "",
+        "Face": "",
+        "Text": {
+          "Ch": "我们换个话题吧",
+          "En": "aa",
+          "": ""
+        }
+      }
+    ]
+  },
+  {
+    "Tag": null,
+    "Operations": [
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "你好呀",
+          "En": "aa",
+          "": ""
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "灵梦",
+        "Position": "右侧",
+        "Face": "",
+        "Text": {
+          "Ch": "你好呀，最近忙吗@忙@不忙@",
+          "En": "aa",
+          "": ""
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "还好啦，也不是很忙",
+          "En": "aa",
+          "": ""
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "唉，最近忙死了",
+          "En": "aa",
+          "": ""
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "灵梦",
+        "Position": "",
+        "Face": "",
+        "Text": {
+          "Ch": "我们换个话题吧",
+          "En": "aa",
+          "": ""
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "好呀",
+          "En": "",
+          "": ""
+        }
+      }
+    ]
+  }
+]
