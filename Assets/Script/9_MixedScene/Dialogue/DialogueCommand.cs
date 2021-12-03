@@ -1,7 +1,12 @@
-﻿using System.Threading.Tasks;
-using TouhouMachineLearningSummary.Test.DialgueInfo;
+﻿using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using TouhouMachineLearningSummary.Extension;
+using TouhouMachineLearningSummary.Model;
+using TouhouMachineLearningSummary.Test;
 using UnityEngine;
-using static TouhouMachineLearningSummary.Info.Dialogue.DialgueInfo;
+using static TouhouMachineLearningSummary.Info.DialgueInfo;
 
 namespace TouhouMachineLearningSummary.Command.Dialogue
 {
@@ -10,18 +15,54 @@ namespace TouhouMachineLearningSummary.Command.Dialogue
     /// </summary>
     public class DialogueCommand
     {
-        public static void Play(int step, int rank)
+        public static void Load() => Info.DialgueInfo.DialogueModels = File.ReadAllText(@"Assets\Resources\CardData\CardData-Single.json").ToObject<List<DialogueModel>>();
+        public static void Play(string tag)
         {
-            foreach (var methond in typeof(DialogueTest).GetMethods())
+            CurrentPoint = 0;
+            Info.DialgueInfo.instance.DialogueCanvas.SetActive(true);
+            var targetDialogue = Info.DialgueInfo.DialogueModels.FirstOrDefault(model => model.Tag == tag);
+            if (targetDialogue != null)
             {
-                foreach (Dial info in methond.GetCustomAttributes(typeof(Dial), false))
-                {
-                    if (info.step == step && info.rank == rank)
-                    {
-                        methond.Invoke(DialogueTest.Instance, new object[] { });
-                    }
-                }
+                int maxCount = targetDialogue.Operations.Count();
             }
+            else
+            {
+                Debug.LogError("剧情加载失败");
+            }
+        }
+        public static void End()
+        {
+            Info.DialgueInfo.instance.DialogueCanvas.SetActive(false);
+        }
+        public static void RunNextOperations()
+        {
+            //如果没执行完则运行下一个指令，否则直接结束
+            if (Info.DialgueInfo.CurrentPoint < Info.DialgueInfo.currnetDialogueModel.Operations.Count)
+            {
+                var currentOperations = Info.DialgueInfo.currnetDialogueModel.Operations[Info.DialgueInfo.CurrentPoint];
+                if (currentOperations.Chara=="指令")
+                {
+                    //解析指令
+
+                    RunNextOperations();
+                }
+                Info.DialgueInfo.CurrentPoint++;
+            }
+            else
+            {
+                End();
+            }
+            if (Info.DialgueInfo.currnetDialogueModel.Operations.)
+            {
+
+            }
+            targetDialogue.Operations.ForEach(operations =>
+            {
+                if (operations.)
+                {
+
+                }
+            });
         }
         public static void voice(int v)
         {
@@ -43,12 +84,12 @@ namespace TouhouMachineLearningSummary.Command.Dialogue
             }
             await Task.Run(() =>
             {
-                while (!instance.IsNext)
+                while (!instance.RunNextOperations)
                 {
                     Debug.Log("yaya");
                 }
             });
-            instance.IsNext = false;
+            instance.RunNextOperations = false;
             if (IsLeft)
             {
                 instance.Left.gameObject.transform.localScale /= 1.1f;

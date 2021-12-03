@@ -1,32 +1,24 @@
 ﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-namespace TouhouMachineLearningSummary.Info.Dialogue
+using TouhouMachineLearningSummary.Model;
+namespace TouhouMachineLearningSummary.Info
 {
 
     public class DialgueInfo : MonoBehaviour
     {
         public static DialgueInfo instance;
         void Awake() => instance = this;
+        public GameObject DialogueCanvas;
+
         public GameObject Left;
         public GameObject Right;
         public Text Text;
-        public bool IsNext;
-        public enum Chara
-        {
-            灵梦A,
-            灵梦B,
-            早苗
-        }
-        public class Dial : Attribute
-        {
-            public int step;
-            public int rank;
-            public Dial(int step, int rank)
-            {
-                this.step = step;
-                this.rank = rank;
-            }
-        }
+        public static bool RunNextOperations { get; set; } = false;
+        public static int CurrentPoint { get; set; } = 0;
+        public static int SelectBranch { get; set; } = 0;
+        public static DialogueModel currnetDialogueModel { get; set; } = new DialogueModel();
+        public static List<DialogueModel> DialogueModels { get; set; } = new List<DialogueModel>();
     }
 }

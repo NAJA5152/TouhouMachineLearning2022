@@ -7,6 +7,7 @@ namespace Server
     {
         public static string ToJson(this object DataObject) => JsonConvert.SerializeObject(DataObject);
         public static T ToObject<T>(this string target) => JsonConvert.DeserializeObject<T>(target);
+        public static T To<T>(this object target) => target.ToJson().ToObject<T>();
         public static string GetSaltHash(this string password, string uuid)
         {
             string salt = uuid;

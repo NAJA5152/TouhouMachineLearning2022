@@ -1,5 +1,5 @@
 ﻿using TouhouMachineLearningSummary.Command.Dialogue;
-using TouhouMachineLearningSummary.Info.Dialogue;
+using TouhouMachineLearningSummary.Info;
 using UnityEngine;
 namespace TouhouMachineLearningSummary.Control.Dialogue
 {
@@ -8,19 +8,17 @@ namespace TouhouMachineLearningSummary.Control.Dialogue
     /// </summary>
     public class DialogueControl : MonoBehaviour
     {
-        public GameObject DialogueUI;
         void Update()
         {
             if (Input.GetMouseButtonDown(0))
             {
-                if (!DialogueUI.activeSelf)
+                if (!Info.DialgueInfo.instance.DialogueCanvas.activeSelf)
                 {
-                    DialogueUI.SetActive(true);
-                    DialogueCommand.Play(1, 1);
+                    Info.DialgueInfo.instance.DialogueCanvas.SetActive(true);
                 }
                 else
                 {
-                    DialgueInfo.instance.IsNext = true;
+                    DialgueInfo.instance.RunNextOperations = true;
                 }
             }
         }
