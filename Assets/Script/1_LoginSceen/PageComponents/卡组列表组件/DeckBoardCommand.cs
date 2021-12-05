@@ -40,7 +40,7 @@ namespace TouhouMachineLearningSummary.Command
                 //更新卡组信息
                 deckModels[i].transform.GetChild(1).GetComponent<Text>().text = decks[i].DeckName;
                 var cardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(decks[i].LeaderId);
-                Sprite cardTex = Sprite.Create(cardInfo.icon, new Rect(0, 0, cardInfo.icon.width, cardInfo.icon.height), Vector2.zero);
+                Sprite cardTex = cardInfo.icon.ToSprite();
                 deckModels[i].transform.GetComponent<Image>().sprite = cardTex;
             }
             Info.CardCompnentInfo.values.Clear();

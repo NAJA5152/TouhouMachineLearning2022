@@ -1,4 +1,4 @@
-﻿using TouhouMachineLearningSummary.Command.Dialogue;
+﻿using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.Info;
 using UnityEngine;
 namespace TouhouMachineLearningSummary.Control.Dialogue
@@ -8,18 +8,37 @@ namespace TouhouMachineLearningSummary.Control.Dialogue
     /// </summary>
     public class DialogueControl : MonoBehaviour
     {
-        void Update()
+        void Awake() => DialogueCommand.Load();
+        public void ShowNextText()
         {
-            if (Input.GetMouseButtonDown(0))
+            if (!Info.DialogueInfo.SelectMode)
             {
-                if (!Info.DialgueInfo.instance.DialogueCanvas.activeSelf)
-                {
-                    Info.DialgueInfo.instance.DialogueCanvas.SetActive(true);
-                }
-                else
-                {
-                    DialgueInfo.instance.RunNextOperations = true;
-                }
+                DialogueCommand.RunNextOperations();
+            }
+        }
+        public void ShowLastText()
+        {
+            Info.DialogueInfo.instance.selectUi.SetActive(false);
+            Info.DialogueInfo.CurrentPoint = Mathf.Max(0, Info.DialogueInfo.CurrentPoint - 2);
+            DialogueCommand.RunNextOperations();
+        }
+        public void SetBranch(int index)
+        {
+            Info.DialogueInfo.SelectBranch = index;
+            Info.DialogueInfo.instance.selectUi.SetActive(false);
+            Info.DialogueInfo.CurrentPoint++;
+            DialogueCommand.RunNextOperations();
+        }
+
+        private void OnGUI()
+        {
+            if (GUI.Button(new Rect(100, 100, 100, 100), "播放剧情"))
+            {
+                DialogueCommand.Play("1-1");
+            }
+            if (GUI.Button(new Rect(200, 100, 100, 100), "上一句话"))
+            {
+                ShowLastText();
             }
         }
     }

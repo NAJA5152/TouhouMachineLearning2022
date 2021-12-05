@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.Manager;
 using UnityEngine;
 using UnityEngine.UI;
@@ -51,7 +52,7 @@ namespace TouhouMachineLearningSummary.Command
 
                 newCardModel.name = cardId;
                 newCardModel.transform.localScale = Info.CardCompnentInfo.cardLibraryCardModel.transform.localScale;
-                Sprite cardTex = Sprite.Create(info.icon, new Rect(0, 0, info.icon.width, info.icon.height), Vector2.zero);
+                Sprite cardTex = info.icon.ToSprite();
                 newCardModel.GetComponent<Image>().sprite = cardTex;
                 newCardModel.transform.GetChild(1).GetComponent<Text>().text = info.translateName;
                 newCardModel.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Text>().text = "X" + (cardNum > 9 ? "9+" : cardNum + "");

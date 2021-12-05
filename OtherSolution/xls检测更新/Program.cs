@@ -19,8 +19,13 @@ namespace xls检测更新
         static void Main(string[] args)
         {
             Workbook workbook = new Workbook();
-            direPath = Directory.GetCurrentDirectory().Replace(@"OtherSolution\xls检测更新\bin\Debug\net461", @"Assets\Resources\GameData\");
+            direPath = Directory.GetCurrentDirectory().Replace(@"\OtherSolution\xls检测更新\bin\Debug\net461", "")+ @"\Assets\Resources\GameData\";
+            Console.WriteLine(Directory.GetCurrentDirectory());
+
+            Console.WriteLine(direPath);
+
             filePath = direPath + "GameData.xlsx";
+            Console.WriteLine(filePath);
             Task.Run(async () =>
             {
                 while (true)
@@ -101,7 +106,11 @@ namespace xls检测更新
                 string Chara = storyText[i, 3].DisplayedText;
                 string Position = storyText[i, 4].DisplayedText;
                 string Face = storyText[i, 5].DisplayedText;
-                Dictionary<string, string> text=new Dictionary<string, string>();
+                Dictionary<string, string> text = new Dictionary<string, string>();
+                if (Tag != "")
+                {
+                    currentDialogModel.Tag = Tag;
+                }
                 for (int j = 6; j < storyColCount; j++)
                 {
                     text[storyText[1, j].DisplayedText] = storyText[i, j].DisplayedText;

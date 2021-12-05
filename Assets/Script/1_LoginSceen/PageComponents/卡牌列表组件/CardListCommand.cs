@@ -73,7 +73,7 @@ namespace TouhouMachineLearningSummary.Command
                 if (info != null)
                 {
                     currentCardModel.transform.GetChild(0).GetComponent<Text>().text = info.translateName;
-                    Sprite cardTex = Sprite.Create(info.icon, new Rect(0, 0, info.icon.width, info.icon.height), Vector2.zero);
+                    Sprite cardTex = info.icon.ToSprite();
                     currentCardModel.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = cardTex;
                     //设置数量
                     Color RankColor = Color.white;

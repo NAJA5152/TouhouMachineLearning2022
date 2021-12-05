@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TouhouMachineLearningSummary.Command.CardLibrary;
+using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Manager;
 using UnityEngine;
@@ -86,6 +87,6 @@ namespace TouhouMachineLearningSummary.Model
             CardLibraryCommand.CreatScript(cardID);
             System.Diagnostics.Process.Start(targetPath);
         }
-        public Sprite GetCardSprite() => Sprite.Create(icon, new Rect(0, 0, icon.width, icon.height), Vector2.zero);
+        public Sprite GetCardSprite() =>icon.ToSprite();
     }
 }

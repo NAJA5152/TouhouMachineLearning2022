@@ -114,7 +114,13 @@ namespace TouhouMachineLearningSummary.Model
             sampleInfo.UseDeckNum = UseDeckNum;
             return sampleInfo;
         }
-        public async Task<bool> UpdateName(string name) => await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Name, name);
+        public async Task<bool> UpdateName(string name)
+        {
+            Info.AgainstInfo.onlineUserInfo.Name = name;
+            Manager.UserInfoManager.Refresh();
+            return await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Name, name);
+        }
+
         public async Task<bool> UpdateUserStateAsync(int step, int rank)
         {
             OnlineUserState.Step = step;

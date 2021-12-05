@@ -1,25 +1,23 @@
 [
   {
-    "Tag": "1-1",
+    "Tag": "0-0",
     "Operations": [
       {
         "Branch": "",
-        "Chara": "早苗",
+        "Chara": "灵梦",
         "Position": "左侧",
         "Face": "",
         "Text": {
-          "Ch": "你好呀",
-          "En": "aa"
+          "Ch": "咦？是不认识的人呢"
         }
       },
       {
         "Branch": "",
         "Chara": "灵梦",
-        "Position": "右侧",
+        "Position": "左侧",
         "Face": "",
         "Text": {
-          "Ch": "你好呀，最近忙吗",
-          "En": "aa"
+          "Ch": "你从何而来"
         }
       },
       {
@@ -28,8 +26,138 @@
         "Position": "",
         "Face": "",
         "Text": {
-          "Ch": "忙@不忙",
-          "En": ""
+          "Ch": "select:人间之里@外界"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "灵梦",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "哦？这样啊，那么你的名字是？"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "指令",
+        "Position": "",
+        "Face": "",
+        "Text": {
+          "Ch": "rename"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "灵梦",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "这个名字，我记下了"
+        }
+      }
+    ]
+  },
+  {
+    "Tag": "1-1",
+    "Operations": [
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "你好呀"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "灵梦",
+        "Position": "右侧",
+        "Face": "",
+        "Text": {
+          "Ch": "你好呀，最近忙吗"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "第一句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "第二句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "第三句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "指令",
+        "Position": "",
+        "Face": "",
+        "Text": {
+          "Ch": "select:忙@不忙"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "指令",
+        "Position": "",
+        "Face": "",
+        "Text": {
+          "Ch": "select:忙@不忙@很不忙"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "指令",
+        "Position": "",
+        "Face": "",
+        "Text": {
+          "Ch": "select:忙@不是很忙"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "指令",
+        "Position": "",
+        "Face": "",
+        "Text": {
+          "Ch": "select:忙"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "指令",
+        "Position": "",
+        "Face": "",
+        "Text": {
+          "Ch": "select:不忙"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "指令",
+        "Position": "",
+        "Face": "",
+        "Text": {
+          "Ch": "select:还行"
         }
       },
       {
@@ -38,8 +166,7 @@
         "Position": "左侧",
         "Face": "",
         "Text": {
-          "Ch": "还好啦，也不是很忙",
-          "En": "aa"
+          "Ch": "还好啦，也不是很忙"
         }
       },
       {
@@ -48,18 +175,61 @@
         "Position": "左侧",
         "Face": "",
         "Text": {
-          "Ch": "唉，最近忙死了",
-          "En": "aa"
+          "Ch": "唉，最近忙死了"
         }
       },
       {
         "Branch": "",
         "Chara": "灵梦",
+        "Position": "右侧",
+        "Face": "",
+        "Text": {
+          "Ch": "我们换个话题吧"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "指令",
         "Position": "",
         "Face": "",
         "Text": {
-          "Ch": "我们换个话题吧",
-          "En": "aa"
+          "Ch": "music:gezi的主题曲"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "指令",
+        "Position": "",
+        "Face": "",
+        "Text": {
+          "Ch": "backImage:哇啊的"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "倒数第二句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "只要不要停下来"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "道路就会不断延伸"
         }
       }
     ]
@@ -73,8 +243,25 @@
         "Position": "左侧",
         "Face": "",
         "Text": {
-          "Ch": "你好呀",
-          "En": "aa"
+          "Ch": "只要不要停下来"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "道路就会不断延伸"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "你好呀"
         }
       },
       {
@@ -83,8 +270,7 @@
         "Position": "右侧",
         "Face": "",
         "Text": {
-          "Ch": "你好呀，最近忙吗@忙@不忙@",
-          "En": "aa"
+          "Ch": "你好呀，最近忙吗@忙@不忙@"
         }
       },
       {
@@ -93,8 +279,7 @@
         "Position": "左侧",
         "Face": "",
         "Text": {
-          "Ch": "还好啦，也不是很忙",
-          "En": "aa"
+          "Ch": "还好啦，也不是很忙"
         }
       },
       {
@@ -103,8 +288,7 @@
         "Position": "左侧",
         "Face": "",
         "Text": {
-          "Ch": "唉，最近忙死了",
-          "En": "aa"
+          "Ch": "唉，最近忙死了"
         }
       },
       {
@@ -113,8 +297,7 @@
         "Position": "",
         "Face": "",
         "Text": {
-          "Ch": "我们换个话题吧",
-          "En": "aa"
+          "Ch": "我们换个话题吧"
         }
       },
       {
@@ -123,8 +306,7 @@
         "Position": "左侧",
         "Face": "",
         "Text": {
-          "Ch": "好呀",
-          "En": "aa"
+          "Ch": "好呀"
         }
       }
     ]

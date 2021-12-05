@@ -1,0 +1,25 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace TouhouMachineLearningSummary.Manager
+{
+    internal class UserInfoManager : MonoBehaviour
+    {
+        public Text userName;
+        public Text uid;
+        static UserInfoManager manager;
+        private void Awake() => manager = this;
+        public static void Refresh()
+        {
+            manager.userName.text = Info.AgainstInfo.onlineUserInfo.Name;
+            manager.uid.text ="UID:"+ Info.AgainstInfo.onlineUserInfo.UID;
+        }
+    }
+
+
+}

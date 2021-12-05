@@ -133,7 +133,7 @@
     <Compile Include="Assets\Script\9_MixedScene\CardInspector\CardLibraryInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\CardInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\CardAssemblyManager.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\Dialogue\DialgueInfo.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\Dialogue\DialogueInfo.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\State\StateControl.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Row\SingleRowControl.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\State\StateCommand.cs" />
@@ -143,7 +143,6 @@
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\牌库组件\CardLibraryCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Network\NetExtern.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\NotifyBoard\NoticeControl.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\Dialogue\DialogueTest.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Point\PointControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\Condition.cs" />
     <Compile Include="Assets\Script\test\TestAssemblyVersious.cs" />
@@ -152,11 +151,13 @@
     <Compile Include="Assets\Script\1_LoginSceen\LoginCanves\UserLoginControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Dialogue\DialogueCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Dialogue\Live2d\Live2dModelManager.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\Dialogue\DialogueModel.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\NotifyBoard\NotifyCommand.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡牌列表组件\CardListControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Network\NetInfoModel.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Against\AgainstInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Audio\AudioInfo.cs" />
+    <Compile Include="Assets\Script\1_LoginSceen\LoginCanves\UserInfoManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Script\0_Other\info.txt" />

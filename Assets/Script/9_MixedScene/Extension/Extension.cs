@@ -13,6 +13,8 @@ namespace TouhouMachineLearningSummary.Extension
         public static string ToJson(this object target) => JsonConvert.SerializeObject(target, Formatting.Indented);
         public static T ToObject<T>(this string Data) => JsonConvert.DeserializeObject<T>(Data);
         public static T Clone<T>(this T Object) => Object.ToJson().ToObject<T>();
+        public static Sprite ToSprite(this Texture2D texture) => Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+
 
         public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action) => enumerable.ToList().ForEach(action);
         public static void ForEach<T>(this IEnumerable<T> enumerable, Func<T> action) => enumerable.ToList().ForEach(action);

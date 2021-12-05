@@ -109,13 +109,11 @@ namespace TouhouMachineLearningSummary.Control
                     PlayerInfo.UserState onlineUserState = Info.AgainstInfo.onlineUserInfo.OnlineUserState;
                     if (onlineUserState.Step == 0 && onlineUserState.Step == 0)
                     {
-                        await Command.GameUI.NoticeCommand.ShowAsync("账号或密码错误，请重试", NotifyBoardMode.Input, inputAction: async (name) =>
-                        {
-                            _ =
-                            await Info.AgainstInfo.onlineUserInfo.UpdateName(name);
-                            await Info.AgainstInfo.onlineUserInfo.UpdateUserStateAsync(0, 1);
-                        }, inputField: "村中人");
+                        Command.DialogueCommand.Play("0-0");
+
+
                     }
+                    Manager.UserInfoManager.Refresh();
                     //_ = Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Decks, new List<CardDeck>() { Info.AgainstInfo.onlineUserInfo.UseDeck, Info.AgainstInfo.onlineUserInfo.UseDeck, Info.AgainstInfo.onlineUserInfo.UseDeck });
                     _ = Command.Network.NetCommand.CheckRoomAsync(Account.text, Password.text);
                 }
