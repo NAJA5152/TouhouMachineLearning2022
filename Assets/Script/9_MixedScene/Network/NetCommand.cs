@@ -41,23 +41,17 @@ namespace TouhouMachineLearningSummary.Command
                 await TohHouHub.StopAsync();
                 //AsyncConnect.Close();
             }
-            public static async Task RegisterAsync(string account, string password)
+            public static async Task<int> RegisterAsync(string account, string password)
             {
                 try
                 {
-                    if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
                     Debug.Log("注册请求");
-                    int result = await TohHouHub.InvokeAsync<int>("Register", account, password);
-                    //await accountHub.StopAsync();
-                    switch (result)
-                    {
-                        case (1): await Command.GameUI.NoticeCommand.ShowAsync("注册成功", NotifyBoardMode.Ok); break;
-                        case (-1): await Command.GameUI.NoticeCommand.ShowAsync("账号已存在", NotifyBoardMode.Ok); break;
-                        default: await Command.GameUI.NoticeCommand.ShowAsync("注册发生异常", NotifyBoardMode.Ok); break;
-                    }
+
+                    if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                    return await TohHouHub.InvokeAsync<int>("Register", account, password);
                 }
                 catch (Exception e) { Debug.LogException(e); }
-
+                return -1;
             }
             public static async Task<bool> LoginAsync(string account, string password)
             {
@@ -65,21 +59,11 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     Debug.Log("登陆请求");
                     if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
-                    PlayerInfo playerInfo = await TohHouHub.InvokeAsync<PlayerInfo>("Login", account, password);
-                    Info.AgainstInfo.onlineUserInfo = playerInfo;
+                    Info.AgainstInfo.onlineUserInfo = await TohHouHub.InvokeAsync<PlayerInfo>("Login", account, password);
                     Debug.Log(Info.AgainstInfo.onlineUserInfo.ToJson());
-                    if (playerInfo != null)
-                    {
-                        await Command.BookCommand.InitAsync();
-                        return true;
-                    }
-                    else
-                    {
-                        await Command.GameUI.NoticeCommand.ShowAsync("账号或密码错误，请重试", NotifyBoardMode.Ok);
-                    }
                 }
                 catch (Exception e) { Debug.LogException(e); }
-                return false;
+                return Info.AgainstInfo.onlineUserInfo != null;
             }
 
 
@@ -168,7 +152,7 @@ namespace TouhouMachineLearningSummary.Command
                 try
                 {
                     Debug.Log("更新");
-                    if (TohHouHub.State == HubConnectionState.Disconnected){await TohHouHub.StartAsync();}
+                    if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
                     return await TohHouHub.InvokeAsync<bool>("UpdateInfo", updateType, AgainstInfo.onlineUserInfo.Account, AgainstInfo.onlineUserInfo.Password, updateValue);
                 }
                 catch (Exception e) { Debug.LogException(e); }

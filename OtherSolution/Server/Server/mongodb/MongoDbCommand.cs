@@ -1,6 +1,7 @@
 ﻿using MongoDB.Driver;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -17,6 +18,7 @@ namespace Server
         public static void Init()
         {
             //client = new MongoClient("mongodb://127.0.0.1:28020");
+            Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
             Console.WriteLine("链接数据库");
             client = new MongoClient("mongodb://106.15.38.165:28020");
             db = client.GetDatabase("Gezi");

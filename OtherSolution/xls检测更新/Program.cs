@@ -101,23 +101,23 @@ namespace xls检测更新
             int storyRowCount = storyText.Rows.Length;
             for (int i = 2; i <= storyRowCount; i++)
             {
-                string Tag = storyText[i, 1].DisplayedText;
-                string Branch = storyText[i, 2].DisplayedText;
-                string Chara = storyText[i, 3].DisplayedText;
-                string Position = storyText[i, 4].DisplayedText;
-                string Face = storyText[i, 5].DisplayedText;
+                string tag = storyText[i, 1].DisplayedText;
+                string branch = storyText[i, 2].DisplayedText;
+                string chara = storyText[i, 3].DisplayedText;
+                string position = storyText[i, 4].DisplayedText;
+                string face = storyText[i, 5].DisplayedText;
                 Dictionary<string, string> text = new Dictionary<string, string>();
-                if (Tag != "")
+                if (tag != "")
                 {
-                    currentDialogModel.Tag = Tag;
+                    currentDialogModel.Tag = tag;
                 }
                 for (int j = 6; j < storyColCount; j++)
                 {
                     text[storyText[1, j].DisplayedText] = storyText[i, j].DisplayedText;
                 }
-                if (Chara != "")
+                if (chara != "")
                 {
-                    currentDialogModel.Operations.Add(new DialogModel.Operation(Branch, Chara, Position, Face, text));
+                    currentDialogModel.Operations.Add(new DialogModel.Operation(branch, chara, position, face, text));
                 }
                 else
                 {
