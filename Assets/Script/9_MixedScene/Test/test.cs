@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using System.Collections;
 using System.Collections.Generic;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
@@ -18,6 +19,26 @@ namespace TouhouMachineLearningSummary.Test
         public CardSet FiltercardSet;
 
         public string text;
+        [Button("截图")]
+        public Texture2D CaptureScreen()
+        {
+            //用屏幕的宽度和高度创建一个新的纹理
+            Texture2D texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
+
+            StartCoroutine(CaptureScreenshot(texture));
+
+            return texture;
+        }
+
+        IEnumerator CaptureScreenshot(Texture2D texture)
+        {
+            //只在每一帧渲染完成后才读取屏幕信息
+            yield return new WaitForEndOfFrame();
+
+            //读取屏幕像素信息并存储为纹理数据
+            texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            texture.Apply();// 这一句必须有，像素信息并没有保存在2D纹理贴图中
+        }
         [Button("上传记录")]
         public void test0()
         {
@@ -80,11 +101,11 @@ namespace TouhouMachineLearningSummary.Test
             Debug.DrawLine(Vector3.zero, matrix * Vector3.right, Color.red);
             Debug.DrawLine(Vector3.zero, matrix * Vector3.up, Color.green);
             Debug.DrawLine(Vector3.zero, matrix * Vector3.forward, Color.blue);
-            Debug.DrawLine(matrix *new Vector3(0,1,0), matrix * new Vector3(0, 1, 1), Color.white);
-            Debug.DrawLine(matrix *new Vector3(0,1,0), matrix * new Vector3(1, 1, 0), Color.white);
-            Debug.DrawLine(matrix *new Vector3(1,0,1), matrix * new Vector3(1, 1, 1), Color.white);
-            Debug.DrawLine(matrix *new Vector3(0,0,1), matrix * new Vector3(1, 0, 1), Color.white);
-            Debug.DrawLine(matrix *new Vector3(1,0,0), matrix * new Vector3(1, 0, 1), Color.white);
+            Debug.DrawLine(matrix * new Vector3(0, 1, 0), matrix * new Vector3(0, 1, 1), Color.white);
+            Debug.DrawLine(matrix * new Vector3(0, 1, 0), matrix * new Vector3(1, 1, 0), Color.white);
+            Debug.DrawLine(matrix * new Vector3(1, 0, 1), matrix * new Vector3(1, 1, 1), Color.white);
+            Debug.DrawLine(matrix * new Vector3(0, 0, 1), matrix * new Vector3(1, 0, 1), Color.white);
+            Debug.DrawLine(matrix * new Vector3(1, 0, 0), matrix * new Vector3(1, 0, 1), Color.white);
             Debug.DrawLine(matrix * new Vector3(0, 0, 1), matrix * new Vector3(0, 1, 1), Color.white);
             Debug.DrawLine(matrix * new Vector3(1, 0, 0), matrix * new Vector3(1, 1, 0), Color.white);
             Debug.DrawLine(matrix * new Vector3(0, 1, 1), matrix * new Vector3(1, 1, 1), Color.white);
