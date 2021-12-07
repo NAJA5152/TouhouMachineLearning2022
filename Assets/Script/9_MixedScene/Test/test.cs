@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
@@ -17,17 +18,19 @@ namespace TouhouMachineLearningSummary.Test
         public CardSet cardSet => AgainstInfo.cardSet;
         [ShowInInspector]
         public CardSet FiltercardSet;
-
+        [ShowInInspector]
+        public Texture2D tex;
         public string text;
         [Button("截图")]
-        public Texture2D CaptureScreen()
+        public void CaptureScreen(string name)
         {
-            //用屏幕的宽度和高度创建一个新的纹理
-            Texture2D texture = new Texture2D(Screen.width, Screen.height, TextureFormat.RGB24, false);
-
+            Texture2D texture = new Texture2D(Camera.main.pixelWidth, Camera.main.pixelHeight, TextureFormat.RGB24, false);
             StartCoroutine(CaptureScreenshot(texture));
-
-            return texture;
+           // File.WriteAllBytes(@"Assets/Art/Scene/" + name + ".png", texture.EncodeToPNG());
+            var file = File.Open(@"Assets/Art/Scene/" + name + ".png", FileMode.Create);
+            var binary = new BinaryWriter(file);
+            binary.Write(texture.EncodeToJPG());
+            file.Close();
         }
 
         IEnumerator CaptureScreenshot(Texture2D texture)
