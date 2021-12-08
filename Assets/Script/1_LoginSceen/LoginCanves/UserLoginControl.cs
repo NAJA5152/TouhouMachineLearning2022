@@ -19,6 +19,7 @@ namespace TouhouMachineLearningSummary.Control
         async void Start()
         {
             Manager.TakeLoopManager.Init();
+            await Manager.CameraViewManager.MoveToSceneViewPositionAsync(true);
             if (!isAleardyLogin)
             {
                 Command.Network.NetCommand.Init();

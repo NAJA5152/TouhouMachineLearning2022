@@ -183,7 +183,7 @@ namespace TouhouMachineLearningSummary.Command
                                 })
                           }));
                     Debug.Log("打开切换UI");
-                    Manager.LoadingManager.manager?.OpenAsync();
+                    //Manager.LoadingManager.manager?.OpenAsync();
                     Debug.Log("开始对战");
                     AgainstManager.Start();
                 });

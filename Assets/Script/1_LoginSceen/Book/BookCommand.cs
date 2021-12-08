@@ -23,7 +23,6 @@ namespace TouhouMachineLearningSummary.Command
             await SetCoverStateAsync(true);
             ActiveCompment();
             //Command.MenuStateCommand.ChangeToMainPage(MenuState.);
-            await Manager.CameraViewManager.MoveToPageViewAsync(true);
         }
         [Button]
         public static async Task SetCoverStateAsync(bool isBookOpen,bool isImmediately=false) =>

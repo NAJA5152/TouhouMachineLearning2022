@@ -13,27 +13,29 @@ namespace TouhouMachineLearningSummary.Manager
         public Transform pageViewPosition;
         // Start is called before the first frame update
         void Awake() => manager = this;
-
-        // Update is called once per frame
-        void Update()
-        {
-            //transform.position = Vector3.Lerp(transform.position, targetTransform.position, Time.deltaTime * 3);
-            //transform.eulerAngles = Vector3.Lerp(transform.eulerAngles, targetTransform.eulerAngles, Time.deltaTime * 3);
-        }
         public static async Task MoveToSceneViewPositionAsync(bool isImmediately = false)
         {
-            await CustomThread.TimerAsync(isImmediately ? 0 : 1, (time) =>
+            if (isImmediately)
+            {
+                Camera.main.transform.position = manager.sceneViewPosition.position;
+                Camera.main.transform.eulerAngles = manager.sceneViewPosition.eulerAngles;
+            }
+            else
+            {
+                await CustomThread.TimerAsync(1, (time) =>
                 {
-                    manager.transform.position = Vector3.Lerp(manager.transform.position, manager.sceneViewPosition.position, time);
-                    manager.transform.eulerAngles = Vector3.Lerp(manager.transform.eulerAngles, manager.sceneViewPosition.eulerAngles, time);
+                    Camera.main.transform.position = Vector3.Lerp(manager.transform.position, manager.sceneViewPosition.position, time);
+                    Camera.main.transform.eulerAngles = Vector3.Lerp(manager.transform.eulerAngles, manager.sceneViewPosition.eulerAngles, time);
                 });
+            }
+           
         }
         public static async Task MoveToBookViewAsync(bool isImmediately = false)
         {
             await CustomThread.TimerAsync(isImmediately ? 0 : 1, (time) =>
             {
-                manager.transform.position = Vector3.Lerp(manager.transform.position, manager.bookViewPosition.position, time);
-                manager.transform.eulerAngles = Vector3.Lerp(manager.transform.eulerAngles, manager.bookViewPosition.eulerAngles, time);
+                Camera.main.transform.position = Vector3.Lerp(manager.transform.position, manager.bookViewPosition.position, time);
+                Camera.main.transform.eulerAngles = Vector3.Lerp(manager.transform.eulerAngles, manager.bookViewPosition.eulerAngles, time);
             });
         }
 
@@ -41,8 +43,8 @@ namespace TouhouMachineLearningSummary.Manager
         {
             await CustomThread.TimerAsync(isImmediately ? 0 : 1, (time) =>
             {
-                manager.transform.position = Vector3.Lerp(manager.transform.position, manager.pageViewPosition.position, time);
-                manager.transform.eulerAngles = Vector3.Lerp(manager.transform.eulerAngles, manager.pageViewPosition.eulerAngles, time);
+                Camera.main.transform.position = Vector3.Lerp(manager.transform.position, manager.pageViewPosition.position, time);
+                Camera.main.transform.eulerAngles = Vector3.Lerp(manager.transform.eulerAngles, manager.pageViewPosition.eulerAngles, time);
             });
         }
     }

@@ -24,14 +24,16 @@ namespace TouhouMachineLearningSummary.Test
         [Button("截图")]
         public void CaptureScreen(string name)
         {
-            Texture2D texture = new Texture2D(Camera.main.pixelWidth, Camera.main.pixelHeight, TextureFormat.RGB24, false);
-            StartCoroutine(CaptureScreenshot(texture));
-           // File.WriteAllBytes(@"Assets/Art/Scene/" + name + ".png", texture.EncodeToPNG());
-            var file = File.Open(@"Assets/Art/Scene/" + name + ".png", FileMode.Create);
-            var binary = new BinaryWriter(file);
-            binary.Write(texture.EncodeToJPG());
-            file.Close();
+            ScreenCapture.CaptureScreenshot(@"Assets/Art/Scene/" + name + ".png");
+            //Texture2D texture = new Texture2D(Camera.main.pixelWidth, Camera.main.pixelHeight, TextureFormat.RGB24, false);
+            //StartCoroutine(CaptureScreenshot(texture));
+            //tex = texture;
+            //var file = File.Open(@"Assets/Art/Scene/" + name + ".png", FileMode.Create);
+            //var binary = new BinaryWriter(file);
+            //binary.Write(tex.EncodeToPNG());
+            //file.Close();
         }
+        // File.WriteAllBytes(@"Assets/Art/Scene/" + name + ".png", texture.EncodeToPNG());
 
         IEnumerator CaptureScreenshot(Texture2D texture)
         {
@@ -39,7 +41,7 @@ namespace TouhouMachineLearningSummary.Test
             yield return new WaitForEndOfFrame();
 
             //读取屏幕像素信息并存储为纹理数据
-            texture.ReadPixels(new Rect(0, 0, Screen.width, Screen.height), 0, 0);
+            texture.ReadPixels(new Rect(0, 0, Camera.main.pixelWidth, Camera.main.pixelHeight), 0, 0);
             texture.Apply();// 这一句必须有，像素信息并没有保存在2D纹理贴图中
         }
         [Button("上传记录")]

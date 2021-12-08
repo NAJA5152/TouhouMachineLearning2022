@@ -14,7 +14,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             if (translateData == null)
             {
-                translateData = File.ReadAllText("Assets\\Resources\\CardData\\Game-Text.json").ToObject<Dictionary<string, Dictionary<string, string>>>();
+                translateData = File.ReadAllText("Assets\\Resources\\GameData\\Game-Text.json").ToObject<Dictionary<string, Dictionary<string, string>>>();
 
             }
             if (translateData.ContainsKey(text))
