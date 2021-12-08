@@ -21,7 +21,7 @@ namespace TouhouMachineLearningSummary.Command
     {
         public static class NetCommand
         {
-            static string ip => Info.AgainstInfo.isHostNetMode ? "localhost:495" : "106.15.38.165:514";
+            static string ip => Info.AgainstInfo.isHostNetMode ? "localhost:495" : "106.15.38.165:495";
             //static string ip = "106.15.38.165:514";
             static WebSocket AsyncConnect = new WebSocket($"ws://{ip}/AsyncInfo");
 
@@ -33,6 +33,10 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     var receive = message.ToObject<(string name, string text, string targetUser)>();
                     ChatManager.MainChat.ReceiveMessage(receive.name, receive.text, receive.targetUser);
+                });
+                TohHouHub.On<string>("test", message =>
+                {
+                    Debug.Log(message);
                 });
             }
             public static async void Dispose()

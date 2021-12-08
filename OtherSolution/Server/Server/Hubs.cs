@@ -7,14 +7,19 @@ using System.Linq.Expressions;
 
 public class TouHouHub : Hub
 {
+    //int num => Clients.co.
     public override Task OnConnectedAsync()
     {
         Console.WriteLine("一个用户登录了" + Context.ConnectionId);
+        Clients.User(Context.ConnectionId).SendAsync("test","你好呀");
         return base.OnConnectedAsync();
     }
     public override Task OnDisconnectedAsync(Exception? exception)
     {
         Console.WriteLine("一个用户登出了" + Context.ConnectionId);
+        OnlineUserManager.Remove(Clients.Caller);
+        //OnlineUserManager.Remove(Context.ConnectionId);
+       
         return base.OnDisconnectedAsync(exception);
     }
     //////////////////////////////////////////////账户////////////////////////////////////////////////////////////////////
@@ -25,7 +30,8 @@ public class TouHouHub : Hub
         //判断是否已有
         if (playInfo != null)
         {
-            var targetRoom = RoomManager.Rooms.FirstOrDefault(room => room.IsContain(playInfo.Account));
+            OnlineUserManager.Add(Clients.Caller, playInfo);
+            //var targetRoom = RoomManager.Rooms.FirstOrDefault(room => room.IsContain(playInfo.Account));
         }
         return playInfo;
     }

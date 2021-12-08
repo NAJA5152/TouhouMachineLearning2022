@@ -15,11 +15,16 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async triggerInfo =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this,region,territory);
                    await GameSystem.TransSystem.DeployCard(new TriggerInfo(this).SetTargetCard(this));
                }, Condition.Default)
+                .AbilityAdd(async triggerInfo =>
+                {
+                    await GameSystem.SelectSystem.SelectLocation(this, region, territory);
+                    await GameSystem.TransSystem.DeployCard(new TriggerInfo(this).SetTargetCard(this));
+                }, Condition.Default)
                .AbilityAppend();
         }
     }
