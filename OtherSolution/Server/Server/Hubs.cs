@@ -17,7 +17,7 @@ public class TouHouHub : Hub
     public override Task OnDisconnectedAsync(Exception? exception)
     {
         Console.WriteLine("一个用户登出了" + Context.ConnectionId);
-        OnlineUserManager.Remove(Clients.Caller);
+        OnlineUserManager.Remove(Context.ConnectionId);
         //OnlineUserManager.Remove(Context.ConnectionId);
        
         return base.OnDisconnectedAsync(exception);
@@ -30,7 +30,7 @@ public class TouHouHub : Hub
         //判断是否已有
         if (playInfo != null)
         {
-            OnlineUserManager.Add(Clients.Caller, playInfo);
+            OnlineUserManager.Add(Context.ConnectionId, playInfo);
             //var targetRoom = RoomManager.Rooms.FirstOrDefault(room => room.IsContain(playInfo.Account));
         }
         return playInfo;

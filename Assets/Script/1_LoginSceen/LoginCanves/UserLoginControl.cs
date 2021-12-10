@@ -19,7 +19,7 @@ namespace TouhouMachineLearningSummary.Control
         async void Start()
         {
             Manager.TakeLoopManager.Init();
-            await Manager.CameraViewManager.MoveToSceneViewPositionAsync(true);
+            await Manager.CameraViewManager.MoveToViewAsync(0, true);
             if (!isAleardyLogin)
             {
                 Command.Network.NetCommand.Init();
@@ -56,7 +56,7 @@ namespace TouhouMachineLearningSummary.Control
                             _ = Command.GameUI.NoticeCommand.ShowAsync("退出登录",
                             okAction: async () =>
                             {
-                                CameraViewManager.MoveToSceneViewPositionAsync();
+                                await CameraViewManager.MoveToViewAsync(0);
                                 Command.MenuStateCommand.RebackStare();
                                 Command.MenuStateCommand.ChangeToMainPage(MenuState.Login);
                                 await Command.BookCommand.SetCoverStateAsync(false);

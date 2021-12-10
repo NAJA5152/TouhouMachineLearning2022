@@ -19,7 +19,7 @@ namespace TouhouMachineLearningSummary.Command
     {
         public static class CardLibraryCommand
         {
-            public static CardLibraryInfo GetLibraryInfo() => Resources.Load<CardLibraryInfo>("CardData\\SaveData");
+            public static CardLibraryInfo GetLibraryInfo() => Resources.Load<CardLibraryInfo>("GameData\\SaveData");
             //初始化每个牌库的每个关卡所包含的卡牌
             public static void Init()
             {
@@ -65,11 +65,11 @@ namespace TouhouMachineLearningSummary.Command
 
                 /////////////////////////////////////////////新版/////////////////////////////////////
                 //加载单人模式卡牌信息
-                string singleData = File.ReadAllText("Assets\\Resources\\CardData\\CardData-Single.json");
+                string singleData = File.ReadAllText("Assets\\Resources\\GameData\\CardData-Single.json");
                 GetLibraryInfo().singleModeCards.Clear();
                 GetLibraryInfo().singleModeCards.AddRange(singleData.ToObject<List<CardModel>>().Select(card => card.Init(true)));
                 //加载多人模式卡牌信息
-                string multiData = File.ReadAllText("Assets\\Resources\\CardData\\CardData-Multi.json");
+                string multiData = File.ReadAllText("Assets\\Resources\\GameData\\CardData-Multi.json");
                 GetLibraryInfo().multiModeCards.Clear();
                 GetLibraryInfo().multiModeCards.AddRange(multiData.ToObject<List<CardModel>>().Select(card => card.Init(false)));
                 Init();

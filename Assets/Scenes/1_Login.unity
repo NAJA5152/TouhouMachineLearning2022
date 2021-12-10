@@ -20074,6 +20074,7 @@ GameObject:
   - component: {fileID: 1237491789}
   - component: {fileID: 1237491790}
   - component: {fileID: 1237491791}
+  - component: {fileID: 1237491792}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -20139,6 +20140,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   userName: {fileID: 1234573632}
   uid: {fileID: 664513836}
+--- !u!114 &1237491792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237491787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f99b09a2d5184434e8e9113136a513bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneViewPoint: {fileID: 557111274}
+  bookViewPosition: {fileID: 675762199}
+  pageViewPosition: {fileID: 1913063667}
 --- !u!1 &1242244049
 GameObject:
   m_ObjectHideFlags: 0
@@ -32688,7 +32704,6 @@ GameObject:
   - component: {fileID: 1855280452}
   - component: {fileID: 1855280451}
   - component: {fileID: 1855280450}
-  - component: {fileID: 1855280454}
   - component: {fileID: 1855280455}
   m_Layer: 0
   m_Name: Camera
@@ -32719,6 +32734,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
   m_Antialiasing: 2
   m_AntialiasingQuality: 2
@@ -32794,21 +32810,6 @@ Transform:
   m_Father: {fileID: 1552091139}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
---- !u!114 &1855280454
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1855280449}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f99b09a2d5184434e8e9113136a513bc, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  sceneViewPosition: {fileID: 557111274}
-  bookViewPosition: {fileID: 675762199}
-  pageViewPosition: {fileID: 1913063667}
 --- !u!114 &1855280455
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -33482,7 +33483,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1913063666}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: 0.4722203, y: 0.36367166, z: 0.3019337}
+  m_LocalPosition: {x: 0.4726, y: 0.3665, z: 0.298}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 493249058}

@@ -15,7 +15,7 @@ namespace TouhouMachineLearningSummary.Command
             ActiveCompment();
             await Task.Delay(1000);
             Command.MenuStateCommand.ChangeToMainPage(MenuState.Single);
-            await Manager.CameraViewManager.MoveToBookViewAsync();
+            await Manager.CameraViewManager.MoveToViewAsync(1);
         }
         public static async Task InitToOpenStateAsync()
         {

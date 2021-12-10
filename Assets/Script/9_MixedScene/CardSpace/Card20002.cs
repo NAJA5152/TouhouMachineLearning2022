@@ -17,17 +17,15 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Play)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   await GameSystem.SelectSystem.SelectLocation(this,region,territory);
+                   await GameSystem.SelectSystem.SelectLocation(this, region, territory);
                    await GameSystem.TransSystem.DeployCard(new TriggerInfo(this).SetTargetCard(this));
                })
                .AbilityAppend();
-
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
                 .AbilityAdd(async (triggerInfo) =>
                 {
                     await GameSystem.PointSystem.Gain(new TriggerInfo(this).SetTargetCard(this).SetPoint(10));
                     UnityEngine.Debug.Log("增益自身10点");
-                   
                 }, Condition.Default)
                .AbilityAdd(async (triggerInfo) =>
                {
