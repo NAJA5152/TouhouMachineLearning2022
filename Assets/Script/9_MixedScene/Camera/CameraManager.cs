@@ -43,9 +43,9 @@ namespace TouhouMachineLearningSummary.Manager
         [Button]
         public async Task VibrationCameraAsync()
         {
-           await CustomThread.TimerAsync(time, (time) =>
+           await CustomThread.TimerAsync(time, process =>
             {
-                Camera.main.transform.position = DefaultPos + A * new Vector3(1, 1, 0) * Mathf.Sin(time * fre) / (time * 0.5f + 0.001f);
+                Camera.main.transform.position = DefaultPos + A * new Vector3(1, 1, 0) * Mathf.Sin(process * fre) / (process * 0.5f + 0.001f);
             });
             Camera.main.transform.position = DefaultPos;
         }

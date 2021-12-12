@@ -25,7 +25,7 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static MenuState GetCurrentState() => currentState.Last();
         public static int GetCurrentStateRank() => currentState.Count();
-        public static void AddStare(MenuState state)
+        public static void AddState(MenuState state)
         {
             currentState.Add(state);
             RefreshCurrentState();
@@ -110,6 +110,15 @@ namespace TouhouMachineLearningSummary.Command
                     Command.CampSelectCommand.Init();
                     Command.BookCommand.ActiveCompment(BookCompmentType.CardDetial, BookCompmentType.CampSelect);
                     break;
+                case MenuState.WaitForBattle:
+                    //设置书页翻页方向，并清除所有组件
+                    Command.BookCommand.ActiveCompment();
+                    break;
+                case MenuState.ScenePage:
+                    //场景组件初始化待补充
+                    Command.BookCommand.ActiveCompment(BookCompmentType.ScenePage);
+                    break;
+               
                 default:
                     break;
             }

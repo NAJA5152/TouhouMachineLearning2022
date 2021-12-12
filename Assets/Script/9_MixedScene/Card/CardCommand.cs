@@ -197,12 +197,19 @@ namespace TouhouMachineLearningSummary.Command
         {
             //Debug.Log("抽卡");
             _ = AudioCommand.PlayAsync(GameAudioType.DrawCard);
-            Card TargetCard = AgainstInfo.cardSet[isPlayerDraw ? Orientation.Down : Orientation.Up][GameRegion.Deck].CardList[0];
-            TargetCard.SetCardSeeAble(isPlayerDraw);
-            CardSet TargetCardtemp = AgainstInfo.cardSet[isPlayerDraw ? Orientation.Down : Orientation.Up][GameRegion.Deck];
+            Card TargetCard = AgainstInfo.cardSet[isPlayerDraw ? Orientation.Down : Orientation.Up][GameRegion.Deck].CardList.FirstOrDefault();
+            if (TargetCard == null)
+            {
+                Debug.LogError("无法进行抽卡");
+            }
+            else
+            {
+                TargetCard.SetCardSeeAble(isPlayerDraw);
+                CardSet TargetCardtemp = AgainstInfo.cardSet[isPlayerDraw ? Orientation.Down : Orientation.Up][GameRegion.Deck];
 
-            AgainstInfo.cardSet[isPlayerDraw ? Orientation.Down : Orientation.Up][GameRegion.Deck].Remove(TargetCard);
-            AgainstInfo.cardSet[isPlayerDraw ? Orientation.Down : Orientation.Up][GameRegion.Hand].Add(TargetCard);
+                AgainstInfo.cardSet[isPlayerDraw ? Orientation.Down : Orientation.Up][GameRegion.Deck].Remove(TargetCard);
+                AgainstInfo.cardSet[isPlayerDraw ? Orientation.Down : Orientation.Up][GameRegion.Hand].Add(TargetCard);
+            }
             if (isOrder)
             {
                 OrderCard();

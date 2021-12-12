@@ -106,6 +106,7 @@
     <Compile Include="Assets\Script\9_MixedScene\Enum\GameEnum.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\Other\GearControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\CardCommand.cs" />
+    <Compile Include="Assets\Script\1_LoginSceen\LoginCanves\UserInfoManager.cs" />
     <Compile Include="Assets\Script\0_Other\EditorExtension.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Extension\Extension.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageState\MenuState.cs" />
@@ -129,7 +130,7 @@
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡组列表组件\DeckBoardCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardInspector\CardInfoModel.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Thread\CustomThread.cs" />
-    <Compile Include="Assets\Script\2_BattleSenenScript\State\StateInfo.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\Thread\TaskLoopManager.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardInspector\CardLibraryInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\CardInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\CardAssemblyManager.cs" />
@@ -145,7 +146,7 @@
     <Compile Include="Assets\Script\9_MixedScene\UI\NotifyBoard\NoticeControl.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Point\PointControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\Condition.cs" />
-    <Compile Include="Assets\Script\test\TestAssemblyVersious.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\Test\TestAssemblyVersious.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\Book\BookInfo.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageState\MenuStateControl.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\LoginCanves\UserLoginControl.cs" />
@@ -157,7 +158,6 @@
     <Compile Include="Assets\Script\9_MixedScene\Network\NetInfoModel.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Against\AgainstInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Audio\AudioInfo.cs" />
-    <Compile Include="Assets\Script\1_LoginSceen\LoginCanves\UserInfoManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Script\0_Other\info.txt" />

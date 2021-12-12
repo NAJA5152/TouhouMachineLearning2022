@@ -6,6 +6,6 @@ namespace TouhouMachineLearningSummary.Control
     class MenuStateControl : MonoBehaviour
     {
         public MenuState state;
-        public void JumpToNewMenuState() => Command.MenuStateCommand.AddStare(state);
+        public void JumpToNewMenuState() => Command.MenuStateCommand.AddState(state);
     }
 }

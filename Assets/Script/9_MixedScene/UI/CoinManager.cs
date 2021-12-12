@@ -51,7 +51,7 @@ namespace TouhouMachineLearningSummary.Manager
             ShowCurrentPlayerCoin(true);
             while (true)
             {
-                Manager.TakeLoopManager.cancel.Token.ThrowIfCancellationRequested();
+                Manager.TaskLoopManager.cancel.Token.ThrowIfCancellationRequested();
                 transform.GetChild(1).transform.eulerAngles = new Vector3(0, 0, -Timer.Process);
                 await Task.Delay(1000);
             }

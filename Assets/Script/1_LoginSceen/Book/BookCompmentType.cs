@@ -11,5 +11,6 @@
         Map,
         CardDetial,
         CampSelect,
+        ScenePage,
     }
 }

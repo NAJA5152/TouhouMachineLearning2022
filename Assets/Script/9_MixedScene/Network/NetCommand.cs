@@ -111,7 +111,7 @@ namespace TouhouMachineLearningSummary.Command
                 client.Send(new GeneralCommand(playerName, skipCount, takeCount).ToJson());
                 while (!isReceive)
                 {
-                    TakeLoopManager.cancel.Token.ThrowIfCancellationRequested();
+                    TaskLoopManager.cancel.Token.ThrowIfCancellationRequested();
                     await Task.Delay(10);
                 }
                 return summarys;
@@ -227,7 +227,7 @@ namespace TouhouMachineLearningSummary.Command
                 client.Send(Info.AgainstInfo.currentUserInfo.ToJson());
                 while (!isReceive)
                 {
-                    TakeLoopManager.cancel.Token.ThrowIfCancellationRequested();
+                    TaskLoopManager.cancel.Token.ThrowIfCancellationRequested();
                     await Task.Delay(10);
                 }
                 AgainstManager.Init();

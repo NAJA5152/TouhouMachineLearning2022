@@ -43,5 +43,8 @@ namespace TouhouMachineLearningSummary.GameEnum
         CampSelect,
         CardListChange,
         CardDetail,
+        //场景书页
+        WaitForBattle,
+        ScenePage,
     }
 }

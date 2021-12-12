@@ -46,7 +46,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task AgainstStart()
         {
             Info.CardInfo.CreatCardRank = 0;
-            Manager.TakeLoopManager.Init();
+            Manager.TaskLoopManager.Init();
             //如果不是通过配置文件启动的场景
             if (AgainstInfo.currentUserInfo == null)
             {
@@ -143,7 +143,7 @@ namespace TouhouMachineLearningSummary.Command
             await GameUI.UiCommand.NoticeBoardShow($"对战终止\n{AgainstInfo.ShowScore.MyScore}:{AgainstInfo.ShowScore.OpScore}");
             await Task.Delay(2000);
             //Debug.Log("释放线程资源");
-            TakeLoopManager.cancel.Cancel();
+            TaskLoopManager.cancel.Cancel();
             //AgainstInfo.summary.Explort();
             //AgainstInfo.summary.Upload();
             SceneManager.LoadScene(0);
@@ -349,7 +349,7 @@ namespace TouhouMachineLearningSummary.Command
                     }
                 }
                 await Task.Delay(10);
-                TakeLoopManager.cancel.Token.ThrowIfCancellationRequested();
+                TaskLoopManager.Throw();
             }
             Timer.SetIsTimerClose();
         }
@@ -367,7 +367,7 @@ namespace TouhouMachineLearningSummary.Command
             // Debug.Log("等待选择属性");
             while (AgainstInfo.SelectProperty == BattleRegion.None)
             {
-                TakeLoopManager.cancel.Token.ThrowIfCancellationRequested();
+                TaskLoopManager.Throw();
                 if (AgainstInfo.isAIControl)
                 {
                     //Debug.Log("自动选择属性");
@@ -395,7 +395,7 @@ namespace TouhouMachineLearningSummary.Command
             RowCommand.SetRegionSelectable(regionTypes, territory);
             while (Info.AgainstInfo.SelectRegion == null)
             {
-                TakeLoopManager.cancel.Token.ThrowIfCancellationRequested();
+                TaskLoopManager.Throw();
                 if (AgainstInfo.isReplayMode)
                 {
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
@@ -433,7 +433,7 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.SelectLocation = -1;
             while (AgainstInfo.SelectLocation < 0)
             {
-                TakeLoopManager.cancel.Token.ThrowIfCancellationRequested();
+                TaskLoopManager.Throw();
                 if (AgainstInfo.isReplayMode)
                 {
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
@@ -481,7 +481,7 @@ namespace TouhouMachineLearningSummary.Command
             int selectableNum = Math.Min(filterCards.Count, num);
             while (AgainstInfo.selectUnits.Count < selectableNum)
             {
-                TakeLoopManager.cancel.Token.ThrowIfCancellationRequested();
+                TaskLoopManager.Throw();
                 //AI操作或者我方回合自动选择模式时 ，用自身随机决定，否则等待网络同步
                 if (AgainstInfo.isReplayMode)
                 {
@@ -543,7 +543,7 @@ namespace TouhouMachineLearningSummary.Command
                         AiCommand.RoundStartExchange(false);
                         while (Info.AgainstInfo.ExChangeableCardNum != 0 && !Info.AgainstInfo.IsSelectCardOver)
                         {
-                            TakeLoopManager.cancel.Token.ThrowIfCancellationRequested();
+                            TaskLoopManager.cancel.Token.ThrowIfCancellationRequested();
                             if (Info.AgainstInfo.selectBoardCardRanks.Count > 0)
                             {
                                 //List<Card> CardLists = CardIds.Cast<Card>().ToList();
@@ -575,7 +575,7 @@ namespace TouhouMachineLearningSummary.Command
                         bool isAlerdlySummaryPlayer2ExchangeOver = false;
                         while (true)
                         {
-                            TakeLoopManager.cancel.Token.ThrowIfCancellationRequested();
+                            TaskLoopManager.cancel.Token.ThrowIfCancellationRequested();
 
                             if (isAlerdlySummaryPlayer1ExchangeOver && isAlerdlySummaryPlayer2ExchangeOver)//退出流程
                             {

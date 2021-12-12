@@ -252,12 +252,12 @@ namespace TouhouMachineLearningSummary.Manager
         public static AgainstSummaryManager Load(int summaryID) => File.ReadAllText("summary.json").ToObject<AgainstSummaryManager>();
         public void Replay(int TotalRank)
         {
-            TakeLoopManager.cancel.Cancel();
+            TaskLoopManager.cancel.Cancel();
             //设置回合初始状态
         }
         public async Task JumpToTurnAsync(int totalTurnRank, bool isOnTheOffensive)
         {
-            TakeLoopManager.cancel.Cancel();
+            TaskLoopManager.cancel.Cancel();
             //设置回合初始状态
             TargetJumpTurn = TurnOperations.FirstOrDefault(turn => turn.IsOnTheOffensive == isOnTheOffensive && turn.TotalTurnRank == totalTurnRank);
             if (TargetJumpTurn == null)

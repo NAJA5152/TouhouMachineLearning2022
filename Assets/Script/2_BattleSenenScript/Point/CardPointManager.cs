@@ -46,10 +46,10 @@ namespace TouhouMachineLearningSummary.Manager
 
             }
 
-            await CustomThread.TimerAsync(5, (timer) =>
+            await CustomThread.TimerAsync(5, process =>
             {
                 pointCanvas.transform.position += Vector3.up * 0.02f;
-                pointCanvas.transform.GetComponent<CanvasGroup>().alpha = 1 - (1f / 5 * timer);
+                pointCanvas.transform.GetComponent<CanvasGroup>().alpha = 1 - process;
             });
             Destroy(pointCanvas.gameObject);
         }

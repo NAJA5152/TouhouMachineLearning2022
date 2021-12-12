@@ -7,13 +7,11 @@ namespace TouhouMachineLearningSummary.Control
     public class StateControl : MonoBehaviour
     {
         void Start() => _ = CreatAgainstProcess();
-        //private void OnApplicationQuit() => Manager.TakeLoopManager.cancel.Token.ThrowIfCancellationRequested();
-        private void OnApplicationQuit() => Manager.TakeLoopManager.cancel.Cancel();
         public static async Task CreatAgainstProcess()
         {
             try
             {
-                Manager.TakeLoopManager.Init() ;
+                Manager.TaskLoopManager.Init() ;
                 //如果位于跳转模式则直接跳过对局初始化阶段并在之后从对战记录初始化战场状态
 
                 if (!AgainstInfo.isJumpMode)

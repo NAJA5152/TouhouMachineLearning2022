@@ -12,13 +12,18 @@ namespace TouhouMachineLearningSummary.Thread
         /// </summary>
         public static async Task TimerAsync(float stopTime, Action<float> runAction = null)
         {
-            float currentTime = 0;
-            while (currentTime <= stopTime)
+            int currentMs = 0;
+            //DateTime time = DateTime.Now;
+            //Debug.Log("开始打印");
+            int stopMs = (int)(stopTime * 1000);
+            while (currentMs <= stopMs)
             {
-                runAction(currentTime);
-                currentTime += 0.1f;
-                await Task.Delay(10);
+                //Debug.Log("当前" + (currentMs));
+                runAction(stopTime == 0 ? 0 : currentMs * 1f / stopMs);
+                currentMs += 50;
+                await Task.Delay(50);
             }
+            //Debug.Log("结束打印"+( time - DateTime.Now));
         }
         /// <summary>
         /// 自定义延时函数，在训练模式下会变成无延时模式，加速训练

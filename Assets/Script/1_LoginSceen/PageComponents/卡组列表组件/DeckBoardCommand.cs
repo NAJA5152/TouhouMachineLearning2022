@@ -116,7 +116,7 @@ namespace TouhouMachineLearningSummary.Command
             Command.CardListCommand.Init();
             //切换状态至牌库
             Command.MenuStateCommand.RebackStare();
-            Command.MenuStateCommand.AddStare(MenuState.CardListChange);
+            Command.MenuStateCommand.AddState(MenuState.CardListChange);
         }
         public static void DeleteDeck()
         {
@@ -159,10 +159,17 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task StartAgainstAsync()
         {
+            await Manager.CameraViewManager.MoveToViewAsync(2);
+            Command.MenuStateCommand.AddState(MenuState.WaitForBattle);
+            Command.BookCommand.SimulateFilpPage(true);//开始翻书
             if (Command.MenuStateCommand.HasState(MenuState.LevelSelect))//单人关卡选择模式
             {
                 _ = Command.GameUI.NoticeCommand.ShowAsync("进入剧情关卡", NotifyBoardMode.Ok_Cancel, okAction: async () =>
                 {
+                    Command.BookCommand.SimulateFilpPage(false);//停止翻书
+                    Command.MenuStateCommand.AddState(MenuState.ScenePage);
+                    await Task.Delay(3000);
+
                     AgainstManager.Init();
                     AgainstManager.SetPvPMode(false);
                     AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
@@ -223,7 +230,7 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     Command.Network.NetCommand.LeaveRoom();
                 });
-               await Command.Network.NetCommand.JoinRoomAsync(MultiplayerModeType.Casual);
+                await Command.Network.NetCommand.JoinRoomAsync(MultiplayerModeType.Casual);
             }
             if (Command.MenuStateCommand.HasState(MenuState.RankModeDeckSelect))//多人休闲模式
             {

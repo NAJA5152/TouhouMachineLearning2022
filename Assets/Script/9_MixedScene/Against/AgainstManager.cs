@@ -47,7 +47,7 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 SetOpponentInfo(defaultPlayerInfo);
             }
-            await Manager.CameraViewManager.MoveToViewAsync(1);
+            await Manager.CameraViewManager.MoveToViewAsync(3);
             SceneManager.LoadSceneAsync(1);
         }
         //设置我方卡组

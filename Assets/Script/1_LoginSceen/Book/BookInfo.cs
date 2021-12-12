@@ -7,54 +7,32 @@ namespace TouhouMachineLearningSummary.Info
         [Header("书本模型")]
         [Sirenix.OdinInspector.ShowInInspector]
         public static bool isBookOpen;
+        public static bool IsSimulateFilpPage { get; set; }
         public static float angle = 0;
+        public static BookInfo instance;
 
         [Header("书本模型")]
 
-        public GameObject _coverModel;
-        public GameObject _axisModel;
-
-        public static GameObject coverModel;
-        public static GameObject axisModel;
+        public GameObject coverModel;
+        public GameObject axisModel;
+        //翻页过程中的空白书页
+        public GameObject voidPageModel;
+        //翻页过程中的虚假书页
+        public GameObject fakePageModel;
 
         [Header("UI组件")]
-        public GameObject _singleModeSelectComponent;
-        public GameObject _multiplayerModeSelectComponent;
-        public GameObject _practiceComponent;
-        public GameObject _cardListComponent;
-        public GameObject _cardDeckListComponent;
-        public GameObject _cardLibraryComponent;
-        public GameObject _mapComponent;
-        public GameObject _cardDetailComponent;
-        public  GameObject _campSelectComponent;
+        public GameObject singleModeSelectComponent;
+        public GameObject multiplayerModeSelectComponent;
+        public GameObject practiceComponent;
+        public GameObject cardListComponent;
+        public GameObject cardDeckListComponent;
+        public GameObject cardLibraryComponent;
+        public GameObject mapComponent;
+        public GameObject cardDetailComponent;
+        public GameObject campSelectComponent;
+        public GameObject scenePageComponent;
 
-
-        public static GameObject singleModeSelectComponent;
-        public static GameObject multiplayerModeSelectComponent;
-        public static GameObject practiceComponent;
-        public static GameObject cardListComponent;
-        public static GameObject cardDeckListComponent;
-        public static GameObject cardLibraryComponent;
-        public static GameObject mapComponent;
-        public static GameObject cardDetailComponent;
-        public static GameObject campSelectComponent;
-
-        // Start is called before the first frame update
-        void Awake()
-        {
-            coverModel = _coverModel;
-            axisModel = _axisModel;
-
-            singleModeSelectComponent = _singleModeSelectComponent;
-            multiplayerModeSelectComponent = _multiplayerModeSelectComponent;
-            practiceComponent = _practiceComponent;
-            cardListComponent = _cardListComponent;
-            cardDeckListComponent = _cardDeckListComponent;
-            cardLibraryComponent = _cardLibraryComponent;
-            mapComponent = _mapComponent;
-            cardDetailComponent = _cardDetailComponent;
-            campSelectComponent = _campSelectComponent;
-        }
+        void Awake() => instance = this;
     }
 }
 

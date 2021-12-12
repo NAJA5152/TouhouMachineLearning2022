@@ -32,29 +32,29 @@ namespace TouhouMachineLearningSummary.Manager
             player2.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = Info.AgainstInfo.currentOpponentInfo.Name;
             player2.transform.GetChild(0).GetChild(2).GetComponent<Text>().text = "ë´½ðµÄÍÁºÀ";
             player2.transform.GetChild(0).GetChild(1).GetComponent<Text>().text = Info.AgainstInfo.currentOpponentInfo.UseDeck.DeckName;
-            await CustomThread.TimerAsync(1, (time) =>
+            await CustomThread.TimerAsync(1, process =>
             {
-                Tex1.transform.localPosition = Vector3.Lerp(new Vector3(-2300, -265, 0), new Vector3(-1000, -265, 0), time);
-                Tex2.transform.localPosition = Vector3.Lerp(new Vector3(2300, -345, 0), new Vector3(1000, 345, 0), time);
+                Tex1.transform.localPosition = Vector3.Lerp(new Vector3(-2300, -265, 0), new Vector3(-1000, -265, 0), process);
+                Tex2.transform.localPosition = Vector3.Lerp(new Vector3(2300, -345, 0), new Vector3(1000, 345, 0), process);
             });
-            await CustomThread.TimerAsync(1, (time) =>
+            await CustomThread.TimerAsync(1, process =>
             {
-                player1.transform.localPosition = Vector3.Lerp(new Vector3(-1200, -372, 0), new Vector3(-500, -372, 0), time);
-                player2.transform.localPosition = Vector3.Lerp(new Vector3(1200, 241, 0), new Vector3(500, 241, 0), time);
+                player1.transform.localPosition = Vector3.Lerp(new Vector3(-1200, -372, 0), new Vector3(-500, -372, 0), process);
+                player2.transform.localPosition = Vector3.Lerp(new Vector3(1200, 241, 0), new Vector3(500, 241, 0), process);
             });
         }
         [Button]
         public async Task CloseAsync()
         {
-            await CustomThread.TimerAsync(1, runAction: (time) =>
+            await CustomThread.TimerAsync(1, runAction: process =>
             {
-                player1.transform.localPosition = Vector3.Lerp(new Vector3(-1200, -372, 0), new Vector3(-500, -372, 0), 1 - time);
-                player2.transform.localPosition = Vector3.Lerp(new Vector3(1200, 241, 0), new Vector3(500, 241, 0), 1 - time);
+                player1.transform.localPosition = Vector3.Lerp(new Vector3(-1200, -372, 0), new Vector3(-500, -372, 0), 1 - process);
+                player2.transform.localPosition = Vector3.Lerp(new Vector3(1200, 241, 0), new Vector3(500, 241, 0), 1 - process);
             });
-            await CustomThread.TimerAsync(1, runAction: (time) =>
+            await CustomThread.TimerAsync(1, runAction: process =>
             {
-                Tex1.transform.localPosition = Vector3.Lerp(new Vector3(-2300, -265, 0), new Vector3(-1000, -265, 0), 1 - time);
-                Tex2.transform.localPosition = Vector3.Lerp(new Vector3(2300, 345, 0), new Vector3(1000, 345, 0), 1 - time);
+                Tex1.transform.localPosition = Vector3.Lerp(new Vector3(-2300, -265, 0), new Vector3(-1000, -265, 0), 1 - process);
+                Tex2.transform.localPosition = Vector3.Lerp(new Vector3(2300, 345, 0), new Vector3(1000, 345, 0), 1 - process);
             });
             Tex1.SetActive(false);
             Tex2.SetActive(false);

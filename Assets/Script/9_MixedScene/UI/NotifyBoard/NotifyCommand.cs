@@ -64,7 +64,9 @@ namespace TouhouMachineLearningSummary.Command.GameUI
             isShowOver = true;
         }
 
-        public static async Task ShowAsync(string text,
+        public static async Task ShowAsync
+            (
+            string text,
             NotifyBoardMode notifyBoardMode = NotifyBoardMode.Ok_Cancel,
             Func<Task> okAction = null,
             Func<Task> cancelAction = null,
@@ -113,11 +115,10 @@ namespace TouhouMachineLearningSummary.Command.GameUI
                 default:
                     break;
             }
-            float second = 0.5f;
-            await CustomThread.TimerAsync(second, runAction: (time) => //在0.5秒内不断缩小并降低透明度
+            await CustomThread.TimerAsync(0.3f, runAction: process => //在0.5秒内不断缩小并降低透明度
             {
-                noticeTransform.localScale = new Vector3(1, time + 0.5f, 1);
-                image.color = color.SetA(time + 0.5f);
+                noticeTransform.localScale = new Vector3(1, process, 1);
+                image.color = color.SetA(process);
             });
             while (!isShowOver)
             {
@@ -127,11 +128,10 @@ namespace TouhouMachineLearningSummary.Command.GameUI
         public static async Task CloseAsync()
         {
             Color color = image.color;
-            await CustomThread.TimerAsync(0.5f,
-                 runAction: time =>
+            await CustomThread.TimerAsync(0.3f,runAction: process =>
                  {
-                     noticeTransform.localScale = new Vector3(1, 1 - time * 2, 1);
-                     image.color = color.SetA(1 - time * 2);
+                     noticeTransform.localScale = new Vector3(1, 1 - process, 1);
+                     image.color = color.SetA(1 - process);
                  });
             Info.GameUI.UiInfo.Notice.SetActive(false);
         }

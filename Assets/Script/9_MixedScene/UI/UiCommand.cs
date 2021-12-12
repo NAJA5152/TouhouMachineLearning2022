@@ -26,23 +26,18 @@ namespace TouhouMachineLearningSummary.Command.GameUI
         public static async Task NoticeBoardShow(string Title)
         {
 
-            float delayTime = 1f;
             Info.GameUI.UiInfo.NoticeBoard.transform.GetChild(0).GetComponent<Text>().text = Title;
             Info.GameUI.UiInfo.NoticeBoard.GetComponent<Image>().color = Info.AgainstInfo.isMyTurn ? new Color(0.2f, 0.5f, 1, 0.5f) : new Color(1, 0.2f, 0.2f, 0.5f);
             Info.GameUI.UiInfo.NoticeBoard.transform.localScale = new Vector3(1, 0, 1);
             Info.GameUI.UiInfo.NoticeBoard.SetActive(true);
-            await CustomThread.TimerAsync(delayTime,
-               runAction: (timer) =>
+            await CustomThread.TimerAsync(0.5f,runAction: process =>
                {
-                   float value = timer / delayTime;
-                   Info.GameUI.UiInfo.NoticeBoard.transform.localScale = new Vector3(1, value * value, 1);
+                   Info.GameUI.UiInfo.NoticeBoard.transform.localScale = new Vector3(1, process * process, 1);
                });
             await Task.Delay(1000);
-            await CustomThread.TimerAsync(delayTime,
-                  runAction: (timer) =>
+            await CustomThread.TimerAsync(0.5f, runAction: process =>
                   {
-                      float value = timer / delayTime;
-                      Info.GameUI.UiInfo.NoticeBoard.transform.localScale = new Vector3(1, 1 - value * value, 1);
+                      Info.GameUI.UiInfo.NoticeBoard.transform.localScale = new Vector3(1, 1 - process * process, 1);
                   });
             Info.GameUI.UiInfo.NoticeBoard.SetActive(false);
         }

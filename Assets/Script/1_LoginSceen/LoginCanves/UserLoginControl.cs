@@ -18,7 +18,7 @@ namespace TouhouMachineLearningSummary.Control
         bool isAleardyLogin = false;
         async void Start()
         {
-            Manager.TakeLoopManager.Init();
+            Manager.TaskLoopManager.Init();
             await Manager.CameraViewManager.MoveToViewAsync(0, true);
             if (!isAleardyLogin)
             {
@@ -124,7 +124,6 @@ namespace TouhouMachineLearningSummary.Control
             }
             catch (System.Exception e) { Debug.LogException(e); }
         }
-
         public async Task TestBattleAsync()
         {
             AgainstManager.Init();
