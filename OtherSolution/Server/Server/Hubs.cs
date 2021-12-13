@@ -91,8 +91,7 @@ public class TouHouHub : Hub
     }
     //////////////////////////////////////////////日志////////////////////////////////////////////////////////////////////
     //更新牌组信息
-    [Obsolete("废弃，不再由客户端上传")]
-    public void UploadAgentSummary(AgainstSummary summary) => MongoDbCommand.InsertAgainstSummary(summary);
+    
     public List<AgainstSummary> DownloadAgentSummary(string playerName, int skipNum, int takeNum) => MongoDbCommand.QueryAgainstSummary(playerName, skipNum, takeNum);
 
     public bool UpdateTurnOperation(int roomId, AgainstSummary.TurnOperation turnOperation)
@@ -102,7 +101,7 @@ public class TouHouHub : Hub
     }
     public bool UpdateTurnPlayerOperationAsync(int roomId, AgainstSummary.TurnOperation.PlayerOperation playerOperation)
     {
-        RoomCommand.GetRoom(roomId).Summary.UpdateTurnOperation
+        //RoomCommand.GetRoom(roomId).Summary.UpdateTurnOperation
         return true;
     }
     

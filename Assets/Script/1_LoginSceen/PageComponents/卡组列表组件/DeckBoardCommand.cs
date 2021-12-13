@@ -230,23 +230,23 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     Command.Network.NetCommand.LeaveRoom();
                 });
-                await Command.Network.NetCommand.JoinRoomAsync(MultiplayerModeType.Casual);
+                await Command.Network.NetCommand.JoinRoomAsync(AgainstModeType.Casual);
             }
-            if (Command.MenuStateCommand.HasState(MenuState.RankModeDeckSelect))//多人休闲模式
+            if (Command.MenuStateCommand.HasState(MenuState.RankModeDeckSelect))//多人天梯模式
             {
                 _ = Command.GameUI.NoticeCommand.ShowAsync("天梯模式匹配中", NotifyBoardMode.Cancel, cancelAction: async () =>
                 {
                     Command.Network.NetCommand.LeaveRoom();
                 });
-                Command.Network.NetCommand.JoinRoomAsync(MultiplayerModeType.Rank);
+                Command.Network.NetCommand.JoinRoomAsync(AgainstModeType.Rank);
             }
-            if (Command.MenuStateCommand.HasState(MenuState.ArenaModeDeckSelect))//多人休闲模式
+            if (Command.MenuStateCommand.HasState(MenuState.ArenaModeDeckSelect))//多人竞技场模式
             {
                 _ = Command.GameUI.NoticeCommand.ShowAsync("地下竞技场模式匹配中", NotifyBoardMode.Cancel, cancelAction: async () =>
                 {
                     Command.Network.NetCommand.LeaveRoom();
                 });
-                Command.Network.NetCommand.JoinRoomAsync(MultiplayerModeType.Arena);
+                Command.Network.NetCommand.JoinRoomAsync(AgainstModeType.Arena);
             }
         }
     }

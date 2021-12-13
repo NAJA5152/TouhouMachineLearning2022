@@ -3,11 +3,14 @@ using UnityEngine;
 namespace TouhouMachineLearningSummary.GameEnum
 {
     public enum FirstTurn { PlayerFirst, OpponentFirst, Random }
-    public enum MultiplayerModeType
+    public enum AgainstModeType
     {
-        Casual,
-        Rank,
-        Arena,
+        Story,//故事模式
+        Practice,//练习模式
+
+        Casual,//休闲模式
+        Rank,//天梯模式
+        Arena,//竞技场模式
     }
     public enum NotifyBoardMode
     {

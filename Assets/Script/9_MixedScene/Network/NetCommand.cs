@@ -160,47 +160,14 @@ namespace TouhouMachineLearningSummary.Command
                 catch (Exception e) { Debug.LogException(e); }
                 return false;
             }
-            //public static async Task<bool> UpdateNameAsync(string name)
-            //{
-            //    try
-            //    {
-            //        Debug.Log("更新姓名");
-            //        if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
-            //        return await TohHouHub.InvokeAsync<bool>("UpdateName", AgainstInfo.onlineUserInfo.Account, AgainstInfo.onlineUserInfo.Password, name);
-            //    }
-            //    catch (Exception e) { Debug.LogException(e); }
-            //    return false;
-            //}
-            //public static async Task<bool> UpdateDecksAsync(PlayerInfo playerInfo)
-            //{
-            //    try
-            //    {
-            //        Debug.Log("下载卡牌配置");
-            //        if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
-            //        return await TohHouHub.InvokeAsync<bool>("UpdateDecks", playerInfo);
-            //    }
-            //    catch (Exception e) { Debug.LogException(e); }
-            //    return false;
-            //}
-            //public static async Task<bool> UpdateUserState(PlayerInfo playerInfo)
-            //{
-            //    try
-            //    {
-            //        Debug.Log("更新用户状态");
-            //        if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
-            //        return await TohHouHub.InvokeAsync<bool>("UpdateUserState", playerInfo.Account, playerInfo.Password, playerInfo.OnlineUserState);
-            //    }
-            //    catch (Exception e) { Debug.LogException(e); }
-            //    return false;
-            //}
-
             public static async Task ChatAsync(string name, string text, string target = "")
             {
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
                 await TohHouHub.SendAsync("Chat", name, text, target);
             }
             ///////////////////////////////////////////////////房间操作////////////////////////////////////////////////////////////////
-            public static async Task JoinRoomAsync(MultiplayerModeType rank)
+            [Obsolete("须使用新网络框架进行重构")]
+            public static async Task JoinRoomAsync(AgainstModeType rank)
             {
                 Debug.Log("登录请求");
                 bool isReceive = false;
@@ -239,6 +206,7 @@ namespace TouhouMachineLearningSummary.Command
                 //Debug.Log(Info.AgainstInfo.currentUserInfo.ToJson());
                 //Debug.Log("发送完毕");
             }
+            [Obsolete("须使用新网络框架进行重构")]
             public static void LeaveRoom()
             {
                 Debug.Log("登录请求");
@@ -263,6 +231,8 @@ namespace TouhouMachineLearningSummary.Command
 
                 }
             }
+
+            [Obsolete("须使用新网络框架进行重构")]
             //初始化接收响应
             private static void InitAsyncConnection()
             {

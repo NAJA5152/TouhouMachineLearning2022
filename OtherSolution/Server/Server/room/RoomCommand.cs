@@ -7,7 +7,7 @@ namespace Server
 {
     partial class RoomCommand
     {
-        private static List<Room> Rooms { get; set; } = new List<Room>();
+        public static List<Room> Rooms { get; set; } = new List<Room>();
         public static Room GetRoom(int RoomId) => Rooms.First(room => room.RoomId == RoomId);
         public static Room? ContainPlayerRoom(string account) => Rooms.FirstOrDefault(room => room.Player1Info.Account == account || room.Player2Info.Account == account);
 

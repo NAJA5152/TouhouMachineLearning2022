@@ -141,14 +141,22 @@ namespace Server
                 public SelectOperation() { }
             }
         }
-        public void AddTurnOperation(TurnOperation turnOperation)
-        {
+        /// <summary>
+        /// 增加一个回合记录
+        /// </summary>
+        /// <param name="turnOperation"></param>
+        public void AddTurnOperation(TurnOperation turnOperation) => TurnOperations.Add(turnOperation);
+        /// <summary>
+        /// 增加一个回合玩家操作记录
+        /// </summary>
+        /// <param name="turnOperation"></param>
+        public void AddPlayerOperation(PlayerOperationType operation, TurnOperation.PlayerOperation playerOperation) => TurnOperations.Last().PlayerTurnOperation = playerOperation;
+        /// <summary>
+        /// 增加一个回合玩家选择记录
+        /// </summary>
+        /// <param name="turnOperation"></param>
+        public void UpdateTurnSelectOperation(TurnOperation.SelectOperation selectOperation) => TurnOperations.Last().SelectTurnOperations.Add(selectOperation);
 
-        }
-        public void AddPlayerOperation(PlayerOperationType operation, List<Card> targetcardList, Card selectCard)
-        {
-
-            TurnOperations.Last().playerOperation = new PlayerOperation(operation, targetcardList, selectCard);
-        }
+        public void UploadAgentSummary() => MongoDbCommand.InsertAgainstSummary(this);
     }
 }

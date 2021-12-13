@@ -37,4 +37,14 @@ app.Urls.Add("http://localhost:495");
 //app.Urls.Add("https://localhost:888");
 Console.WriteLine("已载入回应中心");
 Console.WriteLine("服务端已启动");
+Task.Run(() =>
+{
+    while (true)
+    {
+        Console.ReadLine();
+        RoomCommand.Rooms.FirstOrDefault()?.Summary.UploadAgentSummary();
+        Console.WriteLine("上传完毕");
+    }
+});
 app.Run();
+

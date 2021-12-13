@@ -20,7 +20,7 @@ namespace TouhouMachineLearningSummary.Control
                 }
                 for (; AgainstInfo.roundRank <= 3; AgainstInfo.roundRank++)
                 {
-                    AgainstInfo.summary.AddRound();
+                    AgainstInfo.summary.UploadRound();
                     //根据跳转的回合是否是第0回合（小局前置阶段）判断是否执行小局前抽卡操作
                     //在非跳转模式或者跳转目标为第0回合（小局前置阶段）时，会进入小局开始等待换牌阶段，否则直接略过
                     if (!AgainstInfo.isJumpMode || StateCommand.AgainstStateInit())
@@ -38,11 +38,11 @@ namespace TouhouMachineLearningSummary.Control
                         //}
                         await StateCommand.TurnStart();
                         UnityEngine.Debug.LogWarning("计算双方起始点数差");
-                        AgainstInfo.summary.AddStartPoint();
+                        AgainstInfo.summary.UploadStartPoint();
                         await StateCommand.WaitForPlayerOperation();
                         if (Info.AgainstInfo.isBoothPass) { break; }
                         UnityEngine.Debug.LogWarning("计算双方结束点数差");
-                        AgainstInfo.summary.AddEndPoint();
+                        AgainstInfo.summary.UploadEndPoint();
                         await StateCommand.TurnEnd();
                     }
                     await StateCommand.RoundEnd();

@@ -217,7 +217,7 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task TurnStart()
         {
-            AgainstInfo.summary.AddTurn();
+            AgainstInfo.summary.UploadTurn();
             await GameUI.UiCommand.NoticeBoardShow((AgainstInfo.isMyTurn ? "我方回合开始" : "对方回合开始").Translation());
             RowCommand.SetPlayCardMoveFree(AgainstInfo.isMyTurn);
             await CustomThread.Delay(1000);
@@ -253,7 +253,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             Debug.Log("投降");
             Command.Network.NetCommand.AsyncInfo(NetAcyncType.Surrender);
-            AgainstInfo.summary.AddSurrender(AgainstInfo.isPlayer1);
+            AgainstInfo.summary.UploadSurrender(AgainstInfo.isPlayer1);
             await AgainstEnd(true, false);
         }
         ////////////////////////////////////////////////////等待操作指令////////////////////////////////////////////////////////////////////////////////
@@ -320,7 +320,7 @@ namespace TouhouMachineLearningSummary.Command
                 if (Info.AgainstInfo.playerPlayCard != null)
                 {
                     Debug.Log("当前打出了牌");
-                    await Info.AgainstInfo.summary.AddPlayerOperationAsync(Manager.PlayerOperationType.PlayCard, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, Info.AgainstInfo.playerPlayCard);
+                    await Info.AgainstInfo.summary.UploadPlayerOperationAsync(Manager.PlayerOperationType.PlayCard, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, Info.AgainstInfo.playerPlayCard);
                     //假如是我的回合，则广播操作给对方，否则只接收操作不广播
                     await GameSystem.TransSystem.PlayCard(new TriggerInfo(null).SetTargetCard(Info.AgainstInfo.playerPlayCard), AgainstInfo.isMyTurn);
                     Debug.Log("打出效果执行完毕");
@@ -330,7 +330,7 @@ namespace TouhouMachineLearningSummary.Command
                 //如果当前回合弃牌
                 if (Info.AgainstInfo.playerDisCard != null)
                 {
-                    await Info.AgainstInfo.summary.AddPlayerOperationAsync(Manager.PlayerOperationType.DisCard, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, Info.AgainstInfo.playerDisCard);
+                    await Info.AgainstInfo.summary.UploadPlayerOperationAsync(Manager.PlayerOperationType.DisCard, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, Info.AgainstInfo.playerDisCard);
                     await GameSystem.TransSystem.DisCard(new TriggerInfo(null).SetTargetCard(Info.AgainstInfo.playerDisCard));
                     break;
                 }
@@ -342,7 +342,7 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     if (AgainstInfo.isPlayerPass)
                     {
-                        await Info.AgainstInfo.summary.AddPlayerOperationAsync(PlayerOperationType.Pass, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, null);
+                        await Info.AgainstInfo.summary.UploadPlayerOperationAsync(PlayerOperationType.Pass, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, null);
                         SetCurrentPass();
                         AgainstInfo.isPlayerPass = false;
                         break;
@@ -421,7 +421,7 @@ namespace TouhouMachineLearningSummary.Command
                 await Task.Delay(1);
             }
             Network.NetCommand.AsyncInfo(NetAcyncType.SelectRegion);
-            AgainstInfo.summary.AddSelectOperation(SelectOperationType.SelectRegion, triggerCard);
+            AgainstInfo.summary.UploadSelectOperation(SelectOperationType.SelectRegion, triggerCard);
             RowCommand.SetRegionSelectable(GameRegion.None);
             AgainstInfo.IsWaitForSelectRegion = false;
         }
@@ -460,7 +460,7 @@ namespace TouhouMachineLearningSummary.Command
                 await Task.Delay(1);
             }
             Network.NetCommand.AsyncInfo(NetAcyncType.SelectLocation);
-            AgainstInfo.summary.AddSelectOperation(SelectOperationType.SelectLocation, triggerCard);
+            AgainstInfo.summary.UploadSelectOperation(SelectOperationType.SelectLocation, triggerCard);
             RowCommand.SetRegionSelectable(GameRegion.None);
             AgainstInfo.IsWaitForSelectLocation = false;
         }
@@ -505,7 +505,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             //Debug.Log("选择单位完毕" + Math.Min(Cards.Count, num));
             Network.NetCommand.AsyncInfo(NetAcyncType.SelectUnites);
-            AgainstInfo.summary.AddSelectOperation(SelectOperationType.SelectUnite, triggerCard, filterCards, num);
+            AgainstInfo.summary.UploadSelectOperation(SelectOperationType.SelectUnite, triggerCard, filterCards, num);
             GameUI.UiCommand.DestoryAllArrow();
             await CustomThread.Delay(250);
             //Debug.Log("同步选择单位完毕");
@@ -550,7 +550,7 @@ namespace TouhouMachineLearningSummary.Command
                                 List<Card> CardLists = AgainstInfo.cardSet[Orientation.Down][GameRegion.Hand].CardList;
                                 int selectRank = AgainstInfo.selectBoardCardRanks[0];
                                 //卡牌记录出现问题？？？明天修
-                                AgainstInfo.summary.AddSelectOperation(SelectOperationType.SelectBoardCard, triggerCard, CardLists, 1);
+                                AgainstInfo.summary.UploadSelectOperation(SelectOperationType.SelectBoardCard, triggerCard, CardLists, 1);
                                 await CardCommand.ExchangeCard(CardLists[selectRank], isRoundStartExchange: true);
                                 Info.AgainstInfo.ExChangeableCardNum--;
                                 Info.AgainstInfo.selectBoardCardRanks.Clear();
@@ -592,12 +592,12 @@ namespace TouhouMachineLearningSummary.Command
                             {
                                 if (AgainstInfo.isPlayer1RoundStartExchangeOver && !isAlerdlySummaryPlayer1ExchangeOver)
                                 {
-                                    AgainstInfo.summary.AddSelectOperation(SelectOperationType.SelectExchangeOver, isPlayer1ExchangeOver: true);
+                                    AgainstInfo.summary.UploadSelectOperation(SelectOperationType.SelectExchangeOver, isPlayer1ExchangeOver: true);
                                     isAlerdlySummaryPlayer1ExchangeOver = true;
                                 }
                                 if (AgainstInfo.isPlayer2RoundStartExchangeOver && !isAlerdlySummaryPlayer2ExchangeOver)
                                 {
-                                    AgainstInfo.summary.AddSelectOperation(SelectOperationType.SelectExchangeOver, isPlayer1ExchangeOver: false);
+                                    AgainstInfo.summary.UploadSelectOperation(SelectOperationType.SelectExchangeOver, isPlayer1ExchangeOver: false);
                                     isAlerdlySummaryPlayer2ExchangeOver = true;
                                 }
                             }
