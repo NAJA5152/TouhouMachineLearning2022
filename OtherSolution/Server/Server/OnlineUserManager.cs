@@ -14,8 +14,8 @@ namespace Server
 
         public static bool hasAgainstRoom(string account)
         {
-           var room= RoomManager.Rooms.FirstOrDefault(room => room.Player1Info.Account== account|| room.Player2Info.Account == account);
-            return room!=null;
+            var room = RoomCommand.ContainPlayerRoom(account);
+            return room != null;
         }
     }
 }

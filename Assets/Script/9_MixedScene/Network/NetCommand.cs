@@ -75,21 +75,19 @@ namespace TouhouMachineLearningSummary.Command
             public static async Task UpdateTurnOperationAsync(AgainstSummaryManager.TurnOperation turnOperation)
             {
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
-                bool isSuccess = await TohHouHub.InvokeAsync<bool>("UpdateTurnOperation", turnOperation);
-
+                bool isSuccess = await TohHouHub.InvokeAsync<bool>("UpdateTurnOperation", Info.AgainstInfo.RoomID, turnOperation);
             }
             public static async Task UpdateTurnPlayerOperationAsync(AgainstSummaryManager.TurnOperation.PlayerOperation playerOperation)
             {
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
-                bool isSuccess = await TohHouHub.InvokeAsync<bool>("UpdateTurnPlayerOperation", playerOperation);
-
+                bool isSuccess = await TohHouHub.InvokeAsync<bool>("UpdateTurnPlayerOperation", Info.AgainstInfo.RoomID, playerOperation);
             }
             public static async Task UpdateTurnSelectOperationAsync(AgainstSummaryManager.TurnOperation.SelectOperation selectOperation)
             {
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
-                bool isSuccess = await TohHouHub.InvokeAsync<bool>("UpdateTurnSelectOperation", selectOperation);
-
+                bool isSuccess = await TohHouHub.InvokeAsync<bool>("UpdateTurnSelectOperation", Info.AgainstInfo.RoomID, selectOperation);
             }
+            [Obsolete("废弃，记录者转交给服务器")]
             public static void UploadAgentSummary(AgainstSummaryManager summary)
             {
                 var client = new WebSocket($"ws://{ip}/UploadAgentSummary");

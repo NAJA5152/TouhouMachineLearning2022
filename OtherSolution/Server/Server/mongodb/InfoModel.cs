@@ -41,7 +41,7 @@ namespace Server
         public PlayerInfo Creat(string account, string password, string title, List<CardDeck> deck, Dictionary<string, int> cardLibrary)
         {
             _id = Guid.NewGuid().ToString();
-            UID = (MongoDbCommand.GetRegisterPlayerCount()+1000).ToString();
+            UID = (MongoDbCommand.GetRegisterPlayerCount() + 1000).ToString();
             Account = account;
             Name = "村中人";
             Title = title;
@@ -141,9 +141,14 @@ namespace Server
                 public SelectOperation() { }
             }
         }
-        public void UpdateTurnOperation()
+        public void AddTurnOperation(TurnOperation turnOperation)
         {
 
+        }
+        public void AddPlayerOperation(PlayerOperationType operation, List<Card> targetcardList, Card selectCard)
+        {
+
+            TurnOperations.Last().playerOperation = new PlayerOperation(operation, targetcardList, selectCard);
         }
     }
 }

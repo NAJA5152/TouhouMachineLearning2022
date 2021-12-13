@@ -109,11 +109,18 @@ namespace TouhouMachineLearningSummary.Manager
             }
 
         }
-        public void AddPlayerOperation(PlayerOperationType operation, List<Card> targetcardList, Card selectCard)
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="operation"></param>
+        /// <param name="targetcardList"></param>
+        /// <param name="selectCard"></param>
+        public async Task AddPlayerOperationAsync(PlayerOperationType operation, List<Card> targetcardList, Card selectCard)
         {
-            if (!AgainstInfo.isReplayMode && AgainstInfo.isPlayer1)
+            if (!AgainstInfo.isReplayMode && AgainstInfo.isMyTurn)
             {
-                TurnOperations.Last().playerOperation = new PlayerOperation(operation, targetcardList, selectCard);
+                //TurnOperations.Last().playerOperation = new PlayerOperation(operation, targetcardList, selectCard);
+                await Command.Network.NetCommand.UpdateTurnPlayerOperationAsync(new PlayerOperation(operation, targetcardList, selectCard));
             }
         }
         public void AddSelectOperation(SelectOperationType operation, Card triggerCard = null, List<Card> targetcardList = null, int selectMaxNum = 0, bool isPlayer1ExchangeOver = false)//是否玩家1操作完成
@@ -176,7 +183,6 @@ namespace TouhouMachineLearningSummary.Manager
                 TurnOperations.Add(new TurnOperation().Init());
                 AgainstInfo.isOnTheOffensive = !AgainstInfo.isOnTheOffensive;
             }
-
         }
         public void AddStartPoint()
         {

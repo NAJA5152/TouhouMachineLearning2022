@@ -5,13 +5,14 @@ using Newtonsoft.Json;
 using Server;
 using System.Linq.Expressions;
 
+
 public class TouHouHub : Hub
 {
     //int num => Clients.co.
     public override Task OnConnectedAsync()
     {
         Console.WriteLine("一个用户登录了" + Context.ConnectionId);
-        Clients.User(Context.ConnectionId).SendAsync("test","你好呀");
+        Clients.User(Context.ConnectionId).SendAsync("test", "你好呀");
         return base.OnConnectedAsync();
     }
     public override Task OnDisconnectedAsync(Exception? exception)
@@ -19,7 +20,7 @@ public class TouHouHub : Hub
         Console.WriteLine("一个用户登出了" + Context.ConnectionId);
         OnlineUserManager.Remove(Context.ConnectionId);
         //OnlineUserManager.Remove(Context.ConnectionId);
-       
+
         return base.OnDisconnectedAsync(exception);
     }
     //////////////////////////////////////////////账户////////////////////////////////////////////////////////////////////
@@ -37,8 +38,8 @@ public class TouHouHub : Hub
     }
 
     //////////////////////////////////////////////房间////////////////////////////////////////////////////////////////////
-    public void Join(PlayerInfo playerInfo) => RoomManager.JoinRoom(Clients.Caller, playerInfo);
-    public void Leave(int roomID) => RoomManager.LeaveRoom(Clients.Caller, roomID);
+    public void Join(PlayerInfo playerInfo) => RoomCommand.JoinRoom(Clients.Caller, playerInfo);
+    public void Leave(int roomID) => RoomCommand.LeaveRoom(Clients.Caller, roomID);
     public void AsyncInfo(NetAcyncType netAcyncType, int roomId, bool isPlayer1, object[] data)
     {
 
@@ -47,16 +48,16 @@ public class TouHouHub : Hub
             Console.WriteLine("初始化连接");
             if (isPlayer1)
             {
-                RoomManager.GetRoom(roomId).P1 = Clients.Caller;
+                RoomCommand.GetRoom(roomId).P1 = Clients.Caller;
             }
             else
             {
-                RoomManager.GetRoom(roomId).P2 = Clients.Caller;
+                RoomCommand.GetRoom(roomId).P2 = Clients.Caller;
             }
         }
         else
         {
-            RoomManager.GetRoom(roomId).AsyncInfo(Clients.Caller, data);
+            RoomCommand.GetRoom(roomId).AsyncInfo(Clients.Caller, data);
         }
     }
     //////////////////////////////////////////////用户操作////////////////////////////////////////////////////////////////////
@@ -90,8 +91,21 @@ public class TouHouHub : Hub
     }
     //////////////////////////////////////////////日志////////////////////////////////////////////////////////////////////
     //更新牌组信息
+    [Obsolete("废弃，不再由客户端上传")]
     public void UploadAgentSummary(AgainstSummary summary) => MongoDbCommand.InsertAgainstSummary(summary);
     public List<AgainstSummary> DownloadAgentSummary(string playerName, int skipNum, int takeNum) => MongoDbCommand.QueryAgainstSummary(playerName, skipNum, takeNum);
+
+    public bool UpdateTurnOperation(int roomId, AgainstSummary.TurnOperation turnOperation)
+    {
+        RoomCommand.GetRoom(roomId).Summary.AddTurnOperation(turnOperation);
+        return true;
+    }
+    public bool UpdateTurnPlayerOperationAsync(int roomId, AgainstSummary.TurnOperation.PlayerOperation playerOperation)
+    {
+        RoomCommand.GetRoom(roomId).Summary.UpdateTurnOperation
+        return true;
+    }
+    
     //////////////////////////////////////////////卡牌配置////////////////////////////////////////////////////////////////////
     //查询最新版本
     public string GetCardConfigsVersion() => MongoDbCommand.GetLastCardUpdateTime();

@@ -5,10 +5,12 @@ using System.Linq;
 
 namespace Server
 {
-    partial class RoomManager
+    partial class RoomCommand
     {
-        public static List<Room> Rooms { get; set; } = new List<Room>();
+        private static List<Room> Rooms { get; set; } = new List<Room>();
         public static Room GetRoom(int RoomId) => Rooms.First(room => room.RoomId == RoomId);
+        public static Room? ContainPlayerRoom(string account) => Rooms.FirstOrDefault(room => room.Player1Info.Account == account || room.Player2Info.Account == account);
+
         public static void CreatRoom(IClientProxy playerID, PlayerInfo playerInfo)
         {
             List<int> RoomdIds = Rooms.Select(room => room.RoomId).ToList();
@@ -43,10 +45,6 @@ namespace Server
             Console.WriteLine("房间为是否空：" + Rooms[0].IsCanEnter);
         }
 
-        //public static AgainstSummary GetAgainstSummary()
-        //{
-        //    return Summary;
-        //}
         public static bool LeaveRoom(IClientProxy player, int roomID)
         {
             Room TargetRoom = GetRoom(roomID);

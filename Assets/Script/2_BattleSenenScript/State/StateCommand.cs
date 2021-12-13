@@ -147,7 +147,7 @@ namespace TouhouMachineLearningSummary.Command
             //AgainstInfo.summary.Explort();
             //AgainstInfo.summary.Upload();
             SceneManager.LoadScene(0);
-            await  Manager.CameraViewManager.MoveToViewAsync(2);
+            await Manager.CameraViewManager.MoveToViewAsync(2);
 
         }
         public static async Task RoundStart()
@@ -320,7 +320,7 @@ namespace TouhouMachineLearningSummary.Command
                 if (Info.AgainstInfo.playerPlayCard != null)
                 {
                     Debug.Log("当前打出了牌");
-                    Info.AgainstInfo.summary.AddPlayerOperation(Manager.PlayerOperationType.PlayCard, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, Info.AgainstInfo.playerPlayCard);
+                    await Info.AgainstInfo.summary.AddPlayerOperationAsync(Manager.PlayerOperationType.PlayCard, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, Info.AgainstInfo.playerPlayCard);
                     //假如是我的回合，则广播操作给对方，否则只接收操作不广播
                     await GameSystem.TransSystem.PlayCard(new TriggerInfo(null).SetTargetCard(Info.AgainstInfo.playerPlayCard), AgainstInfo.isMyTurn);
                     Debug.Log("打出效果执行完毕");
@@ -330,7 +330,7 @@ namespace TouhouMachineLearningSummary.Command
                 //如果当前回合弃牌
                 if (Info.AgainstInfo.playerDisCard != null)
                 {
-                    Info.AgainstInfo.summary.AddPlayerOperation(Manager.PlayerOperationType.DisCard, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, Info.AgainstInfo.playerDisCard);
+                    await Info.AgainstInfo.summary.AddPlayerOperationAsync(Manager.PlayerOperationType.DisCard, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, Info.AgainstInfo.playerDisCard);
                     await GameSystem.TransSystem.DisCard(new TriggerInfo(null).SetTargetCard(Info.AgainstInfo.playerDisCard));
                     break;
                 }
@@ -342,7 +342,7 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     if (AgainstInfo.isPlayerPass)
                     {
-                        Info.AgainstInfo.summary.AddPlayerOperation(PlayerOperationType.Pass, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, null);
+                        await Info.AgainstInfo.summary.AddPlayerOperationAsync(PlayerOperationType.Pass, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, null);
                         SetCurrentPass();
                         AgainstInfo.isPlayerPass = false;
                         break;
