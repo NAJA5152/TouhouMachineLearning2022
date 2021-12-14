@@ -46,6 +46,6 @@ Task.Run(() =>
         Console.WriteLine("上传完毕");
     }
 });
-TimerTask.Creat("进行匹配", HoldListManager.Match,0,0,0,0,0,0);
+//TimerTask.Creat("进行匹配", HoldListManager.Match,0,0,0,0,0,0);
 app.Run();
 

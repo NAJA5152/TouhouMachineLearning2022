@@ -3,10 +3,18 @@
 <PageTitle>Index</PageTitle>
 
 <h1>当前在线人数 @num </h1>
-
+<button @onclick="StopServer">停服 </button>
 Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
-@code{
+
+@code
+{
 	int num=>OnlineUserManager.OnlineUserList.Count;
+
+	public void StopServer()
+	{
+		Console.WriteLine("按下停服按钮");
+		TimerTask.Creat(()=>Console.WriteLine("停服") ,1,0);
+	}
 }

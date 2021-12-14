@@ -33,8 +33,8 @@ namespace Server
             if (Rooms.Where(room => room.IsCanEnter).Any())
             {
                 Room TargetRoom = Rooms.First(room => room.IsCanEnter);
-                TargetRoom.Join(modeType, player, playerInfo);
-                TargetRoom.Open();
+                //TargetRoom.Join(modeType, player, playerInfo);
+                //TargetRoom.Open();
                 Console.WriteLine("加入房间");
             }
             else
