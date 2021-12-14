@@ -25,7 +25,7 @@ namespace Server
                 }
             }
         }
-        public static void JoinRoom(IClientProxy player, PlayerInfo playerInfo)
+        public static void JoinRoom(AgainstModeType modeType, PlayerInfo playerInfo, IClientProxy player)
         {
 
             Console.WriteLine("房间数" + Rooms.Count);
@@ -33,7 +33,7 @@ namespace Server
             if (Rooms.Where(room => room.IsCanEnter).Any())
             {
                 Room TargetRoom = Rooms.First(room => room.IsCanEnter);
-                TargetRoom.Join(player, playerInfo);
+                TargetRoom.Join(modeType, player, playerInfo);
                 TargetRoom.Open();
                 Console.WriteLine("加入房间");
             }

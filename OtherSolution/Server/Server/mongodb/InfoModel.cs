@@ -155,7 +155,7 @@ namespace Server
         /// 增加一个回合玩家选择记录
         /// </summary>
         /// <param name="turnOperation"></param>
-        public void UpdateTurnSelectOperation(TurnOperation.SelectOperation selectOperation) => TurnOperations.Last().SelectTurnOperations.Add(selectOperation);
+        public void AddTurnSelectOperation(TurnOperation.SelectOperation selectOperation) => TurnOperations.Last().SelectTurnOperations.Add(selectOperation);
 
         public void UploadAgentSummary() => MongoDbCommand.InsertAgainstSummary(this);
     }

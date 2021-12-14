@@ -166,8 +166,19 @@ namespace TouhouMachineLearningSummary.Command
                 await TohHouHub.SendAsync("Chat", name, text, target);
             }
             ///////////////////////////////////////////////////房间操作////////////////////////////////////////////////////////////////
+            public static async Task<(PlayerInfo opponentInfo, bool IsOnTheOffensive)> JoinRoomAsync(AgainstModeType modeType, PlayerInfo userInfo)
+            {
+
+                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                object[] ReceiveInfo = await TohHouHub.InvokeAsync<object[]>("Join", modeType, userInfo);
+                Info.AgainstInfo.RoomID = int.Parse(ReceiveInfo[0].ToString());
+                Info.AgainstInfo.isPlayer1 = (bool)ReceiveInfo[1];
+                bool IsOnTheOffensive = (bool)ReceiveInfo[2];
+                PlayerInfo opponentInfo = ReceiveInfo[3].ToString().ToObject<PlayerInfo>();
+                return (opponentInfo, IsOnTheOffensive);
+            }
             [Obsolete("须使用新网络框架进行重构")]
-            public static async Task JoinRoomAsync(AgainstModeType rank)
+            public static async Task JoinRoomAsync()
             {
                 Debug.Log("登录请求");
                 bool isReceive = false;
@@ -179,13 +190,13 @@ namespace TouhouMachineLearningSummary.Command
                     Debug.LogError("收到了来自服务器的初始信息" + e.Data);
                     object[] ReceiveInfo = e.Data.ToObject<GeneralCommand>().Datas;
                     Info.AgainstInfo.RoomID = int.Parse(ReceiveInfo[0].ToString());
-                    Debug.Log("房间号为" + Info.AgainstInfo.RoomID);
                     Info.AgainstInfo.isPlayer1 = (bool)ReceiveInfo[1];
-                    Debug.Log("是否玩家1？：" + Info.AgainstInfo.isPlayer1);
-                    Info.AgainstInfo.isPVP = true;
                     userInfo = ReceiveInfo[2].ToString().ToObject<PlayerInfo>();
                     opponentInfo = ReceiveInfo[3].ToString().ToObject<PlayerInfo>();
+                    Debug.Log("房间号为" + Info.AgainstInfo.RoomID);
+                    Debug.Log("是否玩家1？：" + Info.AgainstInfo.isPlayer1);
                     Debug.Log("收到回应: " + e.Data);
+                    Info.AgainstInfo.isPVP = true;
                     isReceive = true;
                 };
                 client.Connect();
@@ -195,12 +206,7 @@ namespace TouhouMachineLearningSummary.Command
                     TaskLoopManager.cancel.Token.ThrowIfCancellationRequested();
                     await Task.Delay(10);
                 }
-                AgainstManager.Init();
-                AgainstManager.SetPlayerInfo(userInfo);
-                AgainstManager.SetOpponentInfo(opponentInfo);
-                AgainstManager.SetPvPMode(true);
-                AgainstManager.SetTurnFirst(FirstTurn.Random);
-                await AgainstManager.Start();
+
                 //创建联机连接
                 InitAsyncConnection();
                 //Debug.Log(Info.AgainstInfo.currentUserInfo.ToJson());
@@ -334,8 +340,8 @@ namespace TouhouMachineLearningSummary.Command
                                     AgainstInfo.IsSelectCardOver = (bool)receiveInfo[3];
                                     break;
                                 }
-                            case NetAcyncType.Init:
-                                break;
+                            //case NetAcyncType.Init:
+                            //    break;
 
                             default:
                                 break;
@@ -428,8 +434,8 @@ namespace TouhouMachineLearningSummary.Command
                                 break;
                             }
 
-                        case NetAcyncType.Init:
-                            break;
+                        //case NetAcyncType.Init:
+                        //    break;
                         case NetAcyncType.SelectBoardCard:
                             Debug.Log("同步面板卡牌数据选择");
                             AsyncConnect.Send(new GeneralCommand(AcyncType, Info.AgainstInfo.RoomID, Info.AgainstInfo.selectBoardCardRanks, Info.AgainstInfo.IsSelectCardOver).ToJson());

@@ -230,7 +230,14 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     Command.Network.NetCommand.LeaveRoom();
                 });
-                await Command.Network.NetCommand.JoinRoomAsync(AgainstModeType.Casual);
+                PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
+                (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinRoomAsync(AgainstModeType.Casual, userInfo);
+                AgainstManager.Init();
+                AgainstManager.SetPlayerInfo(userInfo);
+                AgainstManager.SetOpponentInfo(opponentInfo);
+                AgainstManager.SetPvPMode(true);
+                AgainstManager.SetTurnFirst(IsOnTheOffensive ? FirstTurn.PlayerFirst : FirstTurn.OpponentFirst);
+                await AgainstManager.Start();
             }
             if (Command.MenuStateCommand.HasState(MenuState.RankModeDeckSelect))//多人天梯模式
             {
@@ -238,7 +245,14 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     Command.Network.NetCommand.LeaveRoom();
                 });
-                Command.Network.NetCommand.JoinRoomAsync(AgainstModeType.Rank);
+                PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
+                (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinRoomAsync(AgainstModeType.Rank, userInfo);
+                AgainstManager.Init();
+                AgainstManager.SetPlayerInfo(userInfo);
+                AgainstManager.SetOpponentInfo(opponentInfo);
+                AgainstManager.SetPvPMode(true);
+                AgainstManager.SetTurnFirst(IsOnTheOffensive ? FirstTurn.PlayerFirst : FirstTurn.OpponentFirst);
+                await AgainstManager.Start();
             }
             if (Command.MenuStateCommand.HasState(MenuState.ArenaModeDeckSelect))//多人竞技场模式
             {
@@ -246,7 +260,14 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     Command.Network.NetCommand.LeaveRoom();
                 });
-                Command.Network.NetCommand.JoinRoomAsync(AgainstModeType.Arena);
+                PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
+                (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinRoomAsync(AgainstModeType.Arena, userInfo);
+                AgainstManager.Init();
+                AgainstManager.SetPlayerInfo(userInfo);
+                AgainstManager.SetOpponentInfo(opponentInfo);
+                AgainstManager.SetPvPMode(true);
+                AgainstManager.SetTurnFirst(IsOnTheOffensive ? FirstTurn.PlayerFirst : FirstTurn.OpponentFirst);
+                await AgainstManager.Start();
             }
         }
     }
