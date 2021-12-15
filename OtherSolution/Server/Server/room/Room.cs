@@ -28,7 +28,7 @@ namespace Server
             P1 = player;
             Player1Info = playerInfo;
         }
-        public void Join(IClientProxy player, PlayerInfo playerInfo)
+        public void Join(AgainstModeType modeType, IClientProxy player, PlayerInfo playerInfo)
         {
             Console.WriteLine($"加入一个房间：房客信息{playerInfo}\n\n");
 

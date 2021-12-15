@@ -9,6 +9,7 @@ Console.WriteLine("数据库已初始化");
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
+builder.Services.AddAntDesign();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSignalR(hubOptions =>
@@ -46,6 +47,6 @@ Task.Run(() =>
         Console.WriteLine("上传完毕");
     }
 });
-//TimerTask.Creat("进行匹配", HoldListManager.Match,0,0,0,0,0,0);
+PlanManager.Creat("进行匹配", HoldListManager.Match,0,0,0,0,0,0);
 app.Run();
 

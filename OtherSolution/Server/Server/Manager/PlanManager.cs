@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 namespace Server
 {
-    class TimerTask
+    class PlanManager
     {
         //设定指定时间间隔触发
         public static void Creat(Action action, int day, int hour, int minutes)
@@ -15,5 +15,7 @@ namespace Server
             Timer timer = new Timer(new TimerCallback(o => action()));
             timer.Change(delayMinutes * 1000 * 5, spwnSecond*1000);
         }
+
+    
     }
 }
