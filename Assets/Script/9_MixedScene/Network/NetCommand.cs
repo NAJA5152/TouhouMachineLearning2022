@@ -166,7 +166,7 @@ namespace TouhouMachineLearningSummary.Command
                 await TohHouHub.SendAsync("Chat", name, text, target);
             }
             ///////////////////////////////////////////////////房间操作////////////////////////////////////////////////////////////////
-            public static async Task<(PlayerInfo opponentInfo, bool IsOnTheOffensive)> JoinRoomAsync(AgainstModeType modeType, PlayerInfo userInfo)
+            public static async Task<(PlayerInfo opponentInfo, bool IsOnTheOffensive)> JoinHoldOnList(AgainstModeType modeType, PlayerInfo userInfo)
             {
 
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
