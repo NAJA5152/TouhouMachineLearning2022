@@ -48,5 +48,19 @@ Task.Run(() =>
     }
 });
 PlanManager.Creat("进行匹配", HoldListManager.Match,0,0,0,0,0,0);
+Timer timer = new Timer(new TimerCallback((o) => MatchAction()));
+timer.Change(0, 1000);
+while (true)
+{
+    Console.ReadLine();
+    AddUser();
+}
+void MatchAction()
+{
+    AddUser();
+    startTime = DateTime.Now;
+    Console.WriteLine("匹配成功数量：" + HoldListManager.Match());
+    Console.WriteLine("匹配耗时" + (startTime - DateTime.Now));
+}
 app.Run();
 
