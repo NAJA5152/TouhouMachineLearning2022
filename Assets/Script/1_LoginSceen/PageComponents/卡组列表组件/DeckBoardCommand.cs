@@ -231,7 +231,7 @@ namespace TouhouMachineLearningSummary.Command
                     Command.Network.NetCommand.LeaveRoom();
                 });
                 PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
-                (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinRoomAsync(AgainstModeType.Casual, userInfo);
+                (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Casual, userInfo);
                 AgainstManager.Init();
                 AgainstManager.SetPlayerInfo(userInfo);
                 AgainstManager.SetOpponentInfo(opponentInfo);
@@ -246,7 +246,7 @@ namespace TouhouMachineLearningSummary.Command
                     Command.Network.NetCommand.LeaveRoom();
                 });
                 PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
-                (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinRoomAsync(AgainstModeType.Rank, userInfo);
+                (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Rank, userInfo);
                 AgainstManager.Init();
                 AgainstManager.SetPlayerInfo(userInfo);
                 AgainstManager.SetOpponentInfo(opponentInfo);
@@ -261,7 +261,7 @@ namespace TouhouMachineLearningSummary.Command
                     Command.Network.NetCommand.LeaveRoom();
                 });
                 PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
-                (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinRoomAsync(AgainstModeType.Arena, userInfo);
+                (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Arena, userInfo);
                 AgainstManager.Init();
                 AgainstManager.SetPlayerInfo(userInfo);
                 AgainstManager.SetOpponentInfo(opponentInfo);

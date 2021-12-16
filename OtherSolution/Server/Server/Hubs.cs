@@ -40,7 +40,8 @@ public class TouHouHub : Hub
     //////////////////////////////////////////////房间////////////////////////////////////////////////////////////////////
     public void Join(AgainstModeType modeType, PlayerInfo playerInfo)
     {
-        RoomCommand.JoinRoom( modeType, playerInfo, Clients.Caller);
+        HoldListManager.Add(modeType,playerInfo);
+        //RoomCommand.JoinRoom( modeType, playerInfo, Clients.Caller);
     }
 
     public void Leave(int roomID) => RoomCommand.LeaveRoom(Clients.Caller, roomID);
