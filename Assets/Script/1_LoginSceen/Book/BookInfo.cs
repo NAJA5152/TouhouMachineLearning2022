@@ -32,6 +32,11 @@ namespace TouhouMachineLearningSummary.Info
         public GameObject campSelectComponent;
         public GameObject scenePageComponent;
 
+        public GameObject shrineComponent;
+        public GameObject collectComponent;
+        public GameObject configComponent;
+
+
         void Awake() => instance = this;
     }
 }

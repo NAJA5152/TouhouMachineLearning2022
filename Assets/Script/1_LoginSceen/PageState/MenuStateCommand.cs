@@ -8,6 +8,10 @@ namespace TouhouMachineLearningSummary.Command
     public partial class MenuStateCommand
     {
         static List<MenuState> currentState = new List<MenuState>() { MenuState.Login };
+        /// <summary>
+        /// 设置书本路径为登录前或者某个一级目录
+        /// </summary>
+        /// <param name="state"></param>
         public static void ChangeToMainPage(MenuState state)
         {
             //初始化组件状态
@@ -91,13 +95,13 @@ namespace TouhouMachineLearningSummary.Command
                     Command.BookCommand.ActiveCompment(BookCompmentType.CardDetial, BookCompmentType.CardLibrary);
                     break;
                 case MenuState.Shrine:
-                    //shrinePage.SetActive(true);
+                    Command.BookCommand.ActiveCompment(BookCompmentType.Shrine);
                     break;
                 case MenuState.Collect:
-                    //collectPage.SetActive(true);
+                    Command.BookCommand.ActiveCompment(BookCompmentType.Collect);
                     break;
                 case MenuState.Config:
-                    //configPage.SetActive(true);
+                    Command.BookCommand.ActiveCompment(BookCompmentType.Config);
                     break;
                 case MenuState.CardListChange:
                     Command.CardListCommand.Init(canChangeCard: true);
@@ -118,7 +122,7 @@ namespace TouhouMachineLearningSummary.Command
                     //场景组件初始化待补充
                     Command.BookCommand.ActiveCompment(BookCompmentType.ScenePage);
                     break;
-               
+
                 default:
                     break;
             }

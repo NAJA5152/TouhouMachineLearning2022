@@ -95,17 +95,6 @@ namespace TouhouMachineLearningSummary.GameEnum
         TurnStart,
         TurnEnd
     }
-    public enum PageMode//书页ui类型
-    {
-        Single,
-        Multiplayer,
-        ChangeDeckCards,
-        CardLibrary,
-        Shrine,
-        Collect,
-        Config,
-        None
-    }
     public enum Camp
     {
         [LabelText("中立")]

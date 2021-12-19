@@ -20,16 +20,16 @@ namespace TouhouMachineLearningSummary.Control
         {
             Manager.TaskLoopManager.Init();
             await Manager.CameraViewManager.MoveToViewAsync(0, true);
+            //初始化场景物体状态，如果已登录，则进入到指定页，否则进入初始场景
+            await Command.BookCommand.InitAsync(isAleardyLogin);
+            //
             if (!isAleardyLogin)
             {
                 Command.Network.NetCommand.Init();
                 await CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
                 //UserLogin();//自动登录
                 //TestBattleAsync();
-            }
-            else
-            {
-                await Command.BookCommand.InitAsync();
+                //await Command.BookCommand.InitAsync();
             }
         }
         private void Update()
@@ -114,7 +114,7 @@ namespace TouhouMachineLearningSummary.Control
                         await Info.AgainstInfo.onlineUserInfo.UpdateUserStateAsync(0, 1);
                     }
                     Manager.UserInfoManager.Refresh();
-                    await Command.BookCommand.InitAsync();
+                    await Command.BookCommand.InitToOpenStateAsync();
                     _ = Command.Network.NetCommand.CheckRoomAsync(Account.text, Password.text);
                 }
                 else

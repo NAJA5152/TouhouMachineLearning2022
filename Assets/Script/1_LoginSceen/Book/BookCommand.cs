@@ -8,21 +8,31 @@ namespace TouhouMachineLearningSummary.Command
 {
     public partial class BookCommand : MonoBehaviour
     {
-        public static async Task InitAsync()
+        /// <summary>
+        /// 场景载入状态(第一次进入与从对战界面退出时再次进入)
+        /// </summary>
+        /// <returns></returns>
+        public static async Task InitAsync(bool isAleardyLogin)
         {
-            Info.GameUI.UiInfo.loginCanvas.SetActive(false);
-            await SetCoverStateAsync(true);
+            Info.GameUI.UiInfo.loginCanvas.SetActive(!isAleardyLogin);
+            Info.BookInfo.instance.coverModel.transform.position = new Vector3(0.5f, 0.08f, 0);
+            Info.BookInfo.instance.coverModel.transform.eulerAngles = Vector3.zero;
             ActiveCompment();
-            await Task.Delay(1000);
-            Command.MenuStateCommand.ChangeToMainPage(MenuState.Single);
-            await Manager.CameraViewManager.MoveToViewAsync(1);
+            //初始状态待补充
+            //Command.MenuStateCommand.ChangeToMainPage(MenuState.Single);
+            //await Manager.CameraViewManager.MoveToViewAsync(1);
         }
+        /// <summary>
+        /// 进入书本翻开状态
+        /// </summary>
+        /// <returns></returns>
         public static async Task InitToOpenStateAsync()
         {
             Info.GameUI.UiInfo.loginCanvas.SetActive(false);
             await SetCoverStateAsync(true);
             ActiveCompment();
-            //Command.MenuStateCommand.ChangeToMainPage(MenuState.);
+            Command.MenuStateCommand.ChangeToMainPage(MenuState.Single);
+            await Manager.CameraViewManager.MoveToViewAsync(1);
         }
         [Button]
         public static async Task SetCoverStateAsync(bool isBookOpen, bool isImmediately = false) =>
@@ -47,6 +57,9 @@ namespace TouhouMachineLearningSummary.Command
             Info.BookInfo.instance.campSelectComponent.SetActive(false);
             Info.BookInfo.instance.campSelectComponent.SetActive(false);
             Info.BookInfo.instance.scenePageComponent.SetActive(false);
+            Info.BookInfo.instance.shrineComponent.SetActive(false);
+            Info.BookInfo.instance.collectComponent.SetActive(false);
+            Info.BookInfo.instance.configComponent.SetActive(false);
             types.ToList().ForEach(type =>
             {
                 GameObject targetUiComoinent;
@@ -62,6 +75,9 @@ namespace TouhouMachineLearningSummary.Command
                     case BookCompmentType.Map: targetUiComoinent = Info.BookInfo.instance.mapComponent; break;
                     case BookCompmentType.CampSelect: targetUiComoinent = Info.BookInfo.instance.campSelectComponent; break;
                     case BookCompmentType.ScenePage: targetUiComoinent = Info.BookInfo.instance.scenePageComponent; break;
+                    case BookCompmentType.Shrine: targetUiComoinent = Info.BookInfo.instance.shrineComponent; break;
+                    case BookCompmentType.Collect: targetUiComoinent = Info.BookInfo.instance.collectComponent; break;
+                    case BookCompmentType.Config: targetUiComoinent = Info.BookInfo.instance.configComponent; break;
                     default: targetUiComoinent = null; break;
                 }
                 if (targetUiComoinent != null)
@@ -78,7 +94,7 @@ namespace TouhouMachineLearningSummary.Command
             });
         }
 
-        public static async void SimulateFilpPage(bool IsSimulateFilpPage, bool isRightToLeft=true)
+        public static async void SimulateFilpPage(bool IsSimulateFilpPage, bool isRightToLeft = true)
         {
             Info.BookInfo.IsSimulateFilpPage = IsSimulateFilpPage;
             if (IsSimulateFilpPage)

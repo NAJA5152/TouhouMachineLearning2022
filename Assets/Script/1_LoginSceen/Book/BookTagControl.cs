@@ -8,7 +8,6 @@ namespace TouhouMachineLearningSummary.Control
         int targetIndex;
         public Text ForntTagText;
         public Text BackTagText;
-        public PageMode pageMode;
         public MenuState toMenuState;
         public void Init(int targetIndex, string tagText)
         {
