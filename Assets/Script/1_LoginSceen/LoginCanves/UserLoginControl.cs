@@ -15,20 +15,21 @@ namespace TouhouMachineLearningSummary.Control
         public Text Account;
         public Text Password;
 
-        bool isAleardyLogin = false;
+        bool IsAleardyLogin = false;
+        public static bool IsEnterRoom = false;
         async void Start()
         {
             Manager.TaskLoopManager.Init();
             await Manager.CameraViewManager.MoveToViewAsync(0, true);
             //初始化场景物体状态，如果已登录，则进入到指定页，否则进入初始场景
-            await Command.BookCommand.InitAsync(isAleardyLogin);
+            await Command.BookCommand.InitAsync(IsAleardyLogin);
             //
-            if (!isAleardyLogin)
+            if (!IsAleardyLogin)
             {
                 Command.Network.NetCommand.Init();
                 await CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
-                //UserLogin();//自动登录
-                //TestBattleAsync();
+                UserLogin();//自动登录
+                TestBattleAsync();
                 //await Command.BookCommand.InitAsync();
             }
         }
@@ -126,32 +127,41 @@ namespace TouhouMachineLearningSummary.Control
         }
         public async Task TestBattleAsync()
         {
-            AgainstManager.Init();
-            AgainstManager.SetPvPMode(false);
-            AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
-            AgainstManager.SetPlayerInfo(new PlayerInfo(
-                    "gezi", "yaya", "",
-                    new List<CardDeck>
-                    {
+            _ = Command.GameUI.NoticeCommand.ShowAsync("模拟排队中", NotifyBoardMode.Cancel,
+                cancelAction: async () =>
+                {
+                    Command.Network.NetCommand.LeaveRoom();
+                },
+                responseAction: async () =>
+                {
+                    await Command.GameUI.NoticeCommand.CloseAsync();
+                    AgainstManager.Init();
+                    AgainstManager.SetPvPMode(false);
+                    AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
+                    AgainstManager.SetPlayerInfo(new PlayerInfo(
+                            "gezi", "yaya", "",
+                            new List<CardDeck>
+                            {
                         new CardDeck("gezi", 10001, new List<int>
                         {
                             20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,
                         })
-                    })
-                );
-            AgainstManager.SetOpponentInfo(
-               new PlayerInfo(
-                    "gezi", "yaya", "",
-                    new List<CardDeck>
-                    {
+                            })
+                        );
+                    AgainstManager.SetOpponentInfo(
+                       new PlayerInfo(
+                            "gezi", "yaya", "",
+                            new List<CardDeck>
+                            {
                         new CardDeck("gezi", 10001, new List<int>
                         {
                             20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,
                         })
-                    })
-               );
-            Debug.Log("对战start");
-            await AgainstManager.Start();
+                            })
+                       );
+                    Debug.Log("对战start");
+                    await AgainstManager.Start();
+                });
         }
 
         public void UserServerSelect() => Info.AgainstInfo.isHostNetMode = !Info.AgainstInfo.isHostNetMode;

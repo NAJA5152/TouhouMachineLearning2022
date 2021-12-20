@@ -12,6 +12,7 @@ namespace TouhouMachineLearningSummary.Command.GameUI
         string language = "Ch";
         static Func<Task> okAction;
         static Func<Task> cancelAction;
+        static Func<Task> responseAction;
         static Func<string, Task> inputAction;
 
         static Image image => Info.GameUI.UiInfo.Notice.transform.GetComponent<Image>();
@@ -47,6 +48,24 @@ namespace TouhouMachineLearningSummary.Command.GameUI
             await Task.Delay(500);
             isShowOver = true;
         }
+        public static async Task ResponseAsync()
+        {
+            Control.UserLoginControl.IsEnterRoom = false;
+            //等待服务器进行响应
+            while (!Control.UserLoginControl.IsEnterRoom)
+            {
+                await Task.Delay(100);
+            }
+            //进入房间成功后
+            _ = Command.AudioCommand.PlayAsync(GameEnum.GameAudioType.UiButton);
+            await CloseAsync();
+            await Task.Delay(1000);
+            if (cancelAction != null)
+            {
+                await cancelAction();
+            }
+            isShowOver = true;
+        }
 
         public static async Task InputAsync()
         {
@@ -70,6 +89,7 @@ namespace TouhouMachineLearningSummary.Command.GameUI
             NotifyBoardMode notifyBoardMode = NotifyBoardMode.Ok_Cancel,
             Func<Task> okAction = null,
             Func<Task> cancelAction = null,
+            Func<Task> responseAction = null,
             Func<string, Task> inputAction = null,
             string inputField = ""
             )
@@ -120,6 +140,10 @@ namespace TouhouMachineLearningSummary.Command.GameUI
                 noticeTransform.localScale = new Vector3(1, process, 1);
                 image.color = color.SetA(process);
             });
+            if (responseAction!=null)
+            {
+                await responseAction();
+            }
             while (!isShowOver)
             {
                 await Task.Delay(10);

@@ -6,12 +6,27 @@ using System.Linq;
 using TouhouMachineLearningSummary.Model;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+
 namespace TouhouMachineLearningSummary.Other
 {
     public class EditorExtension : MonoBehaviour
     {
+        public SceneAsset asset;
         //[MenuItem("Tools/发布新游戏版本至服务端", false, 1)]
         //static void PublicClient() => Process.Start(@"E:\东方格致录\更新器\GameUpadteTool\客户端上传器\bin\Debug\客户端上传器.exe");
+        [MenuItem("Tools/打包素材")]
+        static void BuildAssetBundles() => BuildPipeline.BuildAssetBundles(Application.streamingAssetsPath, BuildAssetBundleOptions.UncompressedAssetBundle, BuildTarget.StandaloneWindows64);
+        [MenuItem("Tools/载入场景")]
+        static void LoadAssetBundles()
+        {
+            
+            string path = Path.Combine(Application.streamingAssetsPath, "sceneasset");
+            //加载场景Bundle
+            AssetBundle.LoadFromFile(path);
+            SceneManager.LoadScene("test");
+        }
+
         [MenuItem("Tools/发布当前卡牌版本", false, 1)]
         static void UpdateCardSpace()
         {
@@ -21,7 +36,7 @@ namespace TouhouMachineLearningSummary.Other
             if (gameCardAssembly != null && singleCardFile != null && multiCardFile != null)
             {
                 CardConfig cardConfig = new CardConfig(DateTime.Today.ToString("yyy_MM_dd"), gameCardAssembly, singleCardFile, multiCardFile);
-                _ =Command.Network.NetCommand.UploadCardConfigsAsync(cardConfig);
+                _ = Command.Network.NetCommand.UploadCardConfigsAsync(cardConfig);
             }
             else
             {
@@ -36,7 +51,7 @@ namespace TouhouMachineLearningSummary.Other
         static void OpenXls() => Process.Start(@"Assets\Resources\GameData\GameData.xlsx");
         [MenuItem("Tools/打开表格数据实时同步工具", false, 3)]
         static void UpdateXls() => Process.Start(@"OtherSolution\xls检测更新\bin\Debug\net461\xls检测更新.exe");
-       
+
     }
 }
 #endif

@@ -35,7 +35,16 @@ namespace TouhouMachineLearningSummary.Model
         [ShowInInspector]
         [LabelText("卡牌效果")]
         public Dictionary<string, string> ability = new Dictionary<string, string>();
-        public string translateName => name["Name-" + (name.ContainsKey("Name-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch")];
+        //public string translateName => name["Name-" + (name.ContainsKey("Name-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch")];
+        public string translateName
+        {
+            get
+            {
+                string name = (this.name.ContainsKey("Name-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch");
+                return this.name["Name-" + name];
+            }
+        }
+
         public string translateDescribe => describe["Describe-" + (describe.ContainsKey("Describe-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch")];
         public string translateAbility => ability["Ability-" + (ability.ContainsKey("Ability-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch")];
         public List<KeyValuePair<string, string>> a;
