@@ -13,4 +13,8 @@
     <SourceRoot Include="C:\Users\50606\.nuget\packages\" />
     <SourceRoot Include="C:\Program Files\dotnet\sdk\NuGetFallbackFolder\" />
   </ItemGroup>
+  <ImportGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
+    <Import Project="$(NuGetPackageRoot)antdesign.charts\0.2.0\buildTransitive\AntDesign.Charts.props" Condition="Exists('$(NuGetPackageRoot)antdesign.charts\0.2.0\buildTransitive\AntDesign.Charts.props')" />
+    <Import Project="$(NuGetPackageRoot)antdesign\0.10.2\buildTransitive\AntDesign.props" Condition="Exists('$(NuGetPackageRoot)antdesign\0.10.2\buildTransitive\AntDesign.props')" />
+  </ImportGroup>
 </Project>

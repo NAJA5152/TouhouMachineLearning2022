@@ -100,3 +100,7 @@ G:\UnityProject\TouhouMachineLearning2022\OtherSolution\Server\obj\Debug\net6.0\
 G:\UnityProject\TouhouMachineLearning2022\OtherSolution\Server\obj\Debug\net6.0\Server.pdb
 G:\UnityProject\TouhouMachineLearning2022\OtherSolution\Server\obj\Debug\net6.0\Server.genruntimeconfig.cache
 G:\UnityProject\TouhouMachineLearning2022\OtherSolution\Server\bin\Debug\net6.0\Microsoft.AspNetCore.SignalR.Protocols.NewtonsoftJson.dll
+G:\UnityProject\TouhouMachineLearning2022\OtherSolution\Server\bin\Debug\net6.0\AntDesign.dll
+G:\UnityProject\TouhouMachineLearning2022\OtherSolution\Server\bin\Debug\net6.0\AntDesign.Charts.dll
+G:\UnityProject\TouhouMachineLearning2022\OtherSolution\Server\bin\Debug\net6.0\Microsoft.AspNetCore.Components.DataAnnotations.Validation.dll
+G:\UnityProject\TouhouMachineLearning2022\OtherSolution\Server\bin\Debug\net6.0\OneOf.dll

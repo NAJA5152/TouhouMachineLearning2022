@@ -29,7 +29,7 @@ namespace TouhouMachineLearningSummary.Control
                 Command.Network.NetCommand.Init();
                 await CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
                 UserLogin();//自动登录
-                TestBattleAsync();
+                //TestBattleAsync();
                 //await Command.BookCommand.InitAsync();
             }
         }
