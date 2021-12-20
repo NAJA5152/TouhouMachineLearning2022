@@ -164,22 +164,26 @@ namespace TouhouMachineLearningSummary.Command
             Command.BookCommand.SimulateFilpPage(true);//开始翻书
             if (Command.MenuStateCommand.HasState(MenuState.LevelSelect))//单人关卡选择模式
             {
-                _ = Command.GameUI.NoticeCommand.ShowAsync("进入剧情关卡", NotifyBoardMode.Ok_Cancel, okAction: async () =>
+                _ = Command.GameUI.NoticeCommand.ShowAsync("进入剧情关卡", NotifyBoardMode.Cancel, cancelAction: async () =>
                 {
-                    Command.BookCommand.SimulateFilpPage(false);//停止翻书
-                    Command.MenuStateCommand.AddState(MenuState.ScenePage);
-                    await Task.Delay(3000);
+                    Command.Network.NetCommand.LeaveRoom();
+                });
+                PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
+                (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Casual, userInfo);
+                Command.BookCommand.SimulateFilpPage(false);//停止翻书
+                Command.MenuStateCommand.AddState(MenuState.ScenePage);
+                await Task.Delay(3000);
 
-                    AgainstManager.Init();
-                    AgainstManager.SetPvPMode(false);
-                    AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
-                    Debug.Log("进入对战配置模式");
-                    AgainstManager.SetPlayerInfo(Info.AgainstInfo.onlineUserInfo.GetSampleInfo());
-                    AgainstManager.SetOpponentInfo(
-                        new PlayerInfo(
-                          "神秘的妖怪", "yaya", "",
-                          new List<CardDeck>
-                          {
+                AgainstManager.Init();
+                AgainstManager.SetPvPMode(false);
+                AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
+                Debug.Log("进入对战配置模式");
+                AgainstManager.SetPlayerInfo(Info.AgainstInfo.onlineUserInfo.GetSampleInfo());
+                AgainstManager.SetOpponentInfo(
+                    new PlayerInfo(
+                      "神秘的妖怪", "yaya", "",
+                      new List<CardDeck>
+                      {
                                 new CardDeck("gezi", 20001, new List<int>
                                 {
                                     20002,20003,20004,20005,
@@ -188,12 +192,12 @@ namespace TouhouMachineLearningSummary.Command
                                     20012,20013,20014,20015,20016,
                                     20012,20013,20014,20015,20016,
                                 })
-                          }));
-                    Debug.Log("打开切换UI");
-                    //Manager.LoadingManager.manager?.OpenAsync();
-                    Debug.Log("开始对战");
-                    AgainstManager.Start();
-                });
+                      }));
+                Debug.Log("打开切换UI");
+                //Manager.LoadingManager.manager?.OpenAsync();
+                Debug.Log("开始对战");
+                AgainstManager.Start();
+
             }
             if (Command.MenuStateCommand.HasState(MenuState.PracticeConfig))//单人练习模式
             {
