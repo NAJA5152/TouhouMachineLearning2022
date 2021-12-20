@@ -2,14 +2,12 @@
 
 
 ## 相关项目
-+ [服务器(暂不开放)](https://github.com/red-gezi/TouHouCardServer)
-+ [更新启动器（不稳定）](https://github.com/red-gezi/GameUpadteTool)
-+ [网页端]
++ [服务器&&网页端](https://github.com/red-gezi/TouhouMachineLearning2022/tree/main/OtherSolution)
 
 ## 编译环境与开发软件
 
-+ 服务端项目：.NET Core
-+ 客户端项目：Unity 2022最新版 (64-bit)
++ 服务端项目：.NET6
++ 客户端项目：Unity 2020最新版 (64-bit)（不要使用2021和2022，会有dll版本冲突）
 ##### 注意事项：项目需要自己安装最新版odin插件包，上传到github会被版权警告
 ## 框架介绍
 + [游戏代码与框架介绍](https://github.com/red-gezi/TouhouMachineLearning-2021/tree/master/Assets/Script)
