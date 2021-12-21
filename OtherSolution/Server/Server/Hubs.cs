@@ -8,7 +8,6 @@ using System.Linq.Expressions;
 
 public class TouHouHub : Hub
 {
-    //int num => Clients.co.
     public override Task OnConnectedAsync()
     {
         Console.WriteLine("一个用户登录了" + Context.ConnectionId);
@@ -19,32 +18,17 @@ public class TouHouHub : Hub
     {
         Console.WriteLine("一个用户登出了" + Context.ConnectionId);
         OnlineUserManager.Remove(Context.ConnectionId);
-        //OnlineUserManager.Remove(Context.ConnectionId);
-
         return base.OnDisconnectedAsync(exception);
     }
     //////////////////////////////////////////////账户////////////////////////////////////////////////////////////////////
     public int Register(string account, string password) => MongoDbCommand.Register(account, password);
-    public PlayerInfo? Login(string account, string password)
-    {
-        var playInfo = MongoDbCommand.Login(account, password);
-        //判断是否已有
-        if (playInfo != null)
-        {
-            OnlineUserManager.Add(Context.ConnectionId, playInfo);
-            //var targetRoom = RoomManager.Rooms.FirstOrDefault(room => room.IsContain(playInfo.Account));
-        }
-        return playInfo;
-    }
-
+    public PlayerInfo? Login(string account, string password) => MongoDbCommand.Login(account, password);
+    //OnlineUserManager.Add(Context.ConnectionId, playInfo);
+    //var targetRoom = RoomManager.Rooms.FirstOrDefault(room => room.IsContain(playInfo.Account));
+    //////////////////////////////////////////////等候列表////////////////////////////////////////////////////////////////////
+    public void Join(AgainstModeType againstMode, PlayerInfo playerInfo, PlayerInfo virtualOpponentInfo) => HoldListManager.Add(againstMode, playerInfo, virtualOpponentInfo, Clients.Caller);
+    public void Leave(AgainstModeType againstMode, string account) => HoldListManager.Remove(againstMode, account);
     //////////////////////////////////////////////房间////////////////////////////////////////////////////////////////////
-    public void Join(AgainstModeType modeType, PlayerInfo playerInfo)
-    {
-        HoldListManager.Add(modeType,playerInfo);
-        //RoomCommand.JoinRoom( modeType, playerInfo, Clients.Caller);
-    }
-
-    public void Leave(int roomID) => RoomCommand.LeaveRoom(Clients.Caller, roomID);
     public void AsyncInfo(NetAcyncType netAcyncType, int roomId, bool isPlayer1, object[] data)
     {
 
@@ -53,16 +37,16 @@ public class TouHouHub : Hub
             Console.WriteLine("初始化连接");
             if (isPlayer1)
             {
-                RoomCommand.GetRoom(roomId).P1 = Clients.Caller;
+                RoomManager.GetRoom(roomId).P1 = Clients.Caller;
             }
             else
             {
-                RoomCommand.GetRoom(roomId).P2 = Clients.Caller;
+                RoomManager.GetRoom(roomId).P2 = Clients.Caller;
             }
         }
         else
         {
-            RoomCommand.GetRoom(roomId).AsyncInfo(Clients.Caller, data);
+            RoomManager.GetRoom(roomId).AsyncInfo(Clients.Caller, data);
         }
     }
     //////////////////////////////////////////////用户操作////////////////////////////////////////////////////////////////////
@@ -79,7 +63,7 @@ public class TouHouHub : Hub
             default: return false;
         }
     }
-    public bool UpdateDecks(PlayerInfo playerInfo) => MongoDbCommand.UpdateDecks(playerInfo);
+    //public bool UpdateDecks(PlayerInfo playerInfo) => MongoDbCommand.UpdateDecks(playerInfo);
     //public PlayerInfo? UpdateDecks(string account, string password, string stateName) => MongoDbCommand.Login(account, password);
     public static bool UpdateUserState(string account, string password, UserState userState) => MongoDbCommand.UpdateState(account, password, userState);
     public void Chat(string name, string message, string target)
@@ -101,7 +85,7 @@ public class TouHouHub : Hub
 
     public bool UpdateTurnOperation(int roomId, AgainstSummary.TurnOperation turnOperation)
     {
-        RoomCommand.GetRoom(roomId).Summary.AddTurnOperation(turnOperation);
+        RoomManager.GetRoom(roomId).Summary.AddTurnOperation(turnOperation);
         return true;
     }
     public bool UpdateTurnPlayerOperationAsync(int roomId, AgainstSummary.TurnOperation.PlayerOperation playerOperation)

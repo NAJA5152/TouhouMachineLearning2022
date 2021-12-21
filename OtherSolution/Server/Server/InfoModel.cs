@@ -1,4 +1,5 @@
-﻿using MongoDB.Bson;
+﻿using Microsoft.AspNetCore.SignalR;
+using MongoDB.Bson;
 using MongoDB.Bson.Serialization.Attributes;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,26 @@ namespace Server
     {
         public int Step { get; set; }
         public int Rank { get; set; }
+    }
+    public class HoldInfo
+    {
+        public HoldInfo(PlayerInfo playerInfo, PlayerInfo virtualOpponentInfo=null, IClientProxy client=null)
+        {
+            UserInfo = playerInfo;
+            VirtualOpponentInfo = virtualOpponentInfo;
+            Client = client;
+            Rank = playerInfo.Rank;
+            WinRate = playerInfo.WinRate;
+            CollectionRate = 0;
+            JoinTime = DateTime.Now;
+        }
+        public PlayerInfo UserInfo { get; set; }
+        public PlayerInfo VirtualOpponentInfo { get; set; }
+        public IClientProxy Client { get; set; }
+        public int Rank { get; set; }
+        public float WinRate { get; set; }
+        public float CollectionRate { get; set; }
+        public DateTime JoinTime { get; set; }
     }
     public class PlayerInfo
     {

@@ -159,120 +159,120 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task StartAgainstAsync()
         {
-            await Manager.CameraViewManager.MoveToViewAsync(2);
-            Command.MenuStateCommand.AddState(MenuState.WaitForBattle);
-            Command.BookCommand.SimulateFilpPage(true);//开始翻书
-            if (Command.MenuStateCommand.HasState(MenuState.LevelSelect))//单人关卡选择模式
-            {
-                _ = Command.GameUI.NoticeCommand.ShowAsync("进入剧情关卡", NotifyBoardMode.Cancel, cancelAction: async () =>
-                {
-                    Command.Network.NetCommand.LeaveRoom();
-                });
-                PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
-                (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Casual, userInfo);
-                Command.BookCommand.SimulateFilpPage(false);//停止翻书
-                Command.MenuStateCommand.AddState(MenuState.ScenePage);
-                await Task.Delay(3000);
+            //await Manager.CameraViewManager.MoveToViewAsync(2);
+            //Command.MenuStateCommand.AddState(MenuState.WaitForBattle);
+            //Command.BookCommand.SimulateFilpPage(true);//开始翻书
+            //if (Command.MenuStateCommand.HasState(MenuState.LevelSelect))//单人关卡选择模式
+            //{
+            //    _ = Command.GameUI.NoticeCommand.ShowAsync("进入剧情关卡", NotifyBoardMode.Cancel, cancelAction: async () =>
+            //    {
+            //        Command.Network.NetCommand.LeaveRoom();
+            //    });
+            //    PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
+            //    (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Casual, userInfo);
+            //    Command.BookCommand.SimulateFilpPage(false);//停止翻书
+            //    Command.MenuStateCommand.AddState(MenuState.ScenePage);
+            //    await Task.Delay(3000);
 
-                AgainstManager.Init();
-                AgainstManager.SetPvPMode(false);
-                AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
-                Debug.Log("进入对战配置模式");
-                AgainstManager.SetPlayerInfo(Info.AgainstInfo.onlineUserInfo.GetSampleInfo());
-                AgainstManager.SetOpponentInfo(
-                    new PlayerInfo(
-                      "神秘的妖怪", "yaya", "",
-                      new List<CardDeck>
-                      {
-                                new CardDeck("gezi", 20001, new List<int>
-                                {
-                                    20002,20003,20004,20005,
-                                    20006,20007,20008,20009,20010,20011,
-                                    20012,20013,20014,20015,20016,
-                                    20012,20013,20014,20015,20016,
-                                    20012,20013,20014,20015,20016,
-                                })
-                      }));
-                Debug.Log("打开切换UI");
-                //Manager.LoadingManager.manager?.OpenAsync();
-                Debug.Log("开始对战");
-                AgainstManager.Start();
+            //    AgainstManager.Init();
+            //    AgainstManager.SetPvPMode(false);
+            //    AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
+            //    Debug.Log("进入对战配置模式");
+            //    AgainstManager.SetPlayerInfo(Info.AgainstInfo.onlineUserInfo.GetSampleInfo());
+            //    AgainstManager.SetOpponentInfo(
+            //        new PlayerInfo(
+            //          "神秘的妖怪", "yaya", "",
+            //          new List<CardDeck>
+            //          {
+            //                    new CardDeck("gezi", 20001, new List<int>
+            //                    {
+            //                        20002,20003,20004,20005,
+            //                        20006,20007,20008,20009,20010,20011,
+            //                        20012,20013,20014,20015,20016,
+            //                        20012,20013,20014,20015,20016,
+            //                        20012,20013,20014,20015,20016,
+            //                    })
+            //          }));
+            //    Debug.Log("打开切换UI");
+            //    //Manager.LoadingManager.manager?.OpenAsync();
+            //    Debug.Log("开始对战");
+            //    AgainstManager.Start();
 
-            }
-            if (Command.MenuStateCommand.HasState(MenuState.PracticeConfig))//单人练习模式
-            {
-                _ = Command.GameUI.NoticeCommand.ShowAsync("生成练习对手", NotifyBoardMode.Ok_Cancel, okAction: async () =>
-                {
-                    AgainstManager.Init();
-                    AgainstManager.SetPvPMode(false);
-                    AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
-                    AgainstManager.SetPlayerInfo(new PlayerInfo(
-                    "gezi", "yaya", "",
-                    new List<CardDeck>
-                    {
-                        new CardDeck("gezi", 10001, new List<int>
-                        {
-                            10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,
-                        })
-                    }));
-                    AgainstManager.SetOpponentInfo(new PlayerInfo(
-                    "gezi", "yaya", "",
-                    new List<CardDeck>
-                    {
-                        new CardDeck("gezi", 10001, new List<int>
-                        {
-                            10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,
-                        })
-                    }));
-                    AgainstManager.Start();
-                });
-            }
-            if (Command.MenuStateCommand.HasState(MenuState.CasualModeDeckSelect))//多人休闲模式
-            {
-                Debug.LogWarning("开始匹配休闲模式");
-                _ = Command.GameUI.NoticeCommand.ShowAsync("休闲模式匹配中", NotifyBoardMode.Cancel, cancelAction: async () =>
-                {
-                    Command.Network.NetCommand.LeaveRoom();
-                });
-                PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
-                (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Casual, userInfo);
-                AgainstManager.Init();
-                AgainstManager.SetPlayerInfo(userInfo);
-                AgainstManager.SetOpponentInfo(opponentInfo);
-                AgainstManager.SetPvPMode(true);
-                AgainstManager.SetTurnFirst(IsOnTheOffensive ? FirstTurn.PlayerFirst : FirstTurn.OpponentFirst);
-                await AgainstManager.Start();
-            }
-            if (Command.MenuStateCommand.HasState(MenuState.RankModeDeckSelect))//多人天梯模式
-            {
-                _ = Command.GameUI.NoticeCommand.ShowAsync("天梯模式匹配中", NotifyBoardMode.Cancel, cancelAction: async () =>
-                {
-                    Command.Network.NetCommand.LeaveRoom();
-                });
-                PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
-                (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Rank, userInfo);
-                AgainstManager.Init();
-                AgainstManager.SetPlayerInfo(userInfo);
-                AgainstManager.SetOpponentInfo(opponentInfo);
-                AgainstManager.SetPvPMode(true);
-                AgainstManager.SetTurnFirst(IsOnTheOffensive ? FirstTurn.PlayerFirst : FirstTurn.OpponentFirst);
-                await AgainstManager.Start();
-            }
-            if (Command.MenuStateCommand.HasState(MenuState.ArenaModeDeckSelect))//多人竞技场模式
-            {
-                _ = Command.GameUI.NoticeCommand.ShowAsync("地下竞技场模式匹配中", NotifyBoardMode.Cancel, cancelAction: async () =>
-                {
-                    Command.Network.NetCommand.LeaveRoom();
-                });
-                PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
-                (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Arena, userInfo);
-                AgainstManager.Init();
-                AgainstManager.SetPlayerInfo(userInfo);
-                AgainstManager.SetOpponentInfo(opponentInfo);
-                AgainstManager.SetPvPMode(true);
-                AgainstManager.SetTurnFirst(IsOnTheOffensive ? FirstTurn.PlayerFirst : FirstTurn.OpponentFirst);
-                await AgainstManager.Start();
-            }
+            //}
+            //if (Command.MenuStateCommand.HasState(MenuState.PracticeConfig))//单人练习模式
+            //{
+            //    _ = Command.GameUI.NoticeCommand.ShowAsync("生成练习对手", NotifyBoardMode.Ok_Cancel, okAction: async () =>
+            //    {
+            //        AgainstManager.Init();
+            //        AgainstManager.SetPvPMode(false);
+            //        AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
+            //        AgainstManager.SetPlayerInfo(new PlayerInfo(
+            //        "gezi", "yaya", "",
+            //        new List<CardDeck>
+            //        {
+            //            new CardDeck("gezi", 10001, new List<int>
+            //            {
+            //                10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,
+            //            })
+            //        }));
+            //        AgainstManager.SetOpponentInfo(new PlayerInfo(
+            //        "gezi", "yaya", "",
+            //        new List<CardDeck>
+            //        {
+            //            new CardDeck("gezi", 10001, new List<int>
+            //            {
+            //                10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,10002,
+            //            })
+            //        }));
+            //        AgainstManager.Start();
+            //    });
+            //}
+            //if (Command.MenuStateCommand.HasState(MenuState.CasualModeDeckSelect))//多人休闲模式
+            //{
+            //    Debug.LogWarning("开始匹配休闲模式");
+            //    _ = Command.GameUI.NoticeCommand.ShowAsync("休闲模式匹配中", NotifyBoardMode.Cancel, cancelAction: async () =>
+            //    {
+            //        Command.Network.NetCommand.LeaveRoom();
+            //    });
+            //    PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
+            //    (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Casual, userInfo);
+            //    AgainstManager.Init();
+            //    AgainstManager.SetPlayerInfo(userInfo);
+            //    AgainstManager.SetOpponentInfo(opponentInfo);
+            //    AgainstManager.SetPvPMode(true);
+            //    AgainstManager.SetTurnFirst(IsOnTheOffensive ? FirstTurn.PlayerFirst : FirstTurn.OpponentFirst);
+            //    await AgainstManager.Start();
+            //}
+            //if (Command.MenuStateCommand.HasState(MenuState.RankModeDeckSelect))//多人天梯模式
+            //{
+            //    _ = Command.GameUI.NoticeCommand.ShowAsync("天梯模式匹配中", NotifyBoardMode.Cancel, cancelAction: async () =>
+            //    {
+            //        Command.Network.NetCommand.LeaveRoom();
+            //    });
+            //    PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
+            //    (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Rank, userInfo);
+            //    AgainstManager.Init();
+            //    AgainstManager.SetPlayerInfo(userInfo);
+            //    AgainstManager.SetOpponentInfo(opponentInfo);
+            //    AgainstManager.SetPvPMode(true);
+            //    AgainstManager.SetTurnFirst(IsOnTheOffensive ? FirstTurn.PlayerFirst : FirstTurn.OpponentFirst);
+            //    await AgainstManager.Start();
+            //}
+            //if (Command.MenuStateCommand.HasState(MenuState.ArenaModeDeckSelect))//多人竞技场模式
+            //{
+            //    _ = Command.GameUI.NoticeCommand.ShowAsync("地下竞技场模式匹配中", NotifyBoardMode.Cancel, cancelAction: async () =>
+            //    {
+            //        Command.Network.NetCommand.LeaveRoom();
+            //    });
+            //    PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
+            //    (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Arena, userInfo);
+            //    AgainstManager.Init();
+            //    AgainstManager.SetPlayerInfo(userInfo);
+            //    AgainstManager.SetOpponentInfo(opponentInfo);
+            //    AgainstManager.SetPvPMode(true);
+            //    AgainstManager.SetTurnFirst(IsOnTheOffensive ? FirstTurn.PlayerFirst : FirstTurn.OpponentFirst);
+            //    await AgainstManager.Start();
+            //}
         }
     }
 }

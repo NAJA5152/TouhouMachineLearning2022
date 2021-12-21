@@ -38,6 +38,29 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     Debug.Log(message);
                 });
+                TohHouHub.On<object[]>("StartAgainst", ReceiveInfo =>
+                {
+                    // Info.AgainstInfo.RoomID = int.Parse(ReceiveInfo[0].ToString());
+                    Info.AgainstInfo.RoomID = (int)ReceiveInfo[0];
+                    PlayerInfo playerInfo = ReceiveInfo[1].ToString().ToObject<PlayerInfo>();
+                    PlayerInfo opponentInfo = ReceiveInfo[2].ToString().ToObject<PlayerInfo>();
+                    Info.AgainstInfo.isPlayer1 = (bool)ReceiveInfo[3];
+                    bool IsOnTheOffensive = (bool)ReceiveInfo[4];
+
+                    _ = Command.GameUI.NoticeCommand.CloseAsync();//关闭ui
+                    Command.BookCommand.SimulateFilpPage(false);//停止翻书
+                    Command.MenuStateCommand.AddState(MenuState.ScenePage);//增加路由
+                    // await Task.Delay(2000);
+
+                    AgainstManager.Init();
+                    AgainstManager.SetPvPMode(false);
+                    AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
+                    Debug.Log("进入对战配置模式");
+                    AgainstManager.SetPlayerInfo(playerInfo);
+                    AgainstManager.SetOpponentInfo(opponentInfo);
+                    //Manager.LoadingManager.manager?.OpenAsync();
+                    AgainstManager.Start();
+                });
             }
             public static async void Dispose()
             {
@@ -166,16 +189,27 @@ namespace TouhouMachineLearningSummary.Command
                 await TohHouHub.SendAsync("Chat", name, text, target);
             }
             ///////////////////////////////////////////////////房间操作////////////////////////////////////////////////////////////////
-            public static async Task<(PlayerInfo opponentInfo, bool IsOnTheOffensive)> JoinHoldOnList(AgainstModeType modeType, PlayerInfo userInfo)
+            //public static async Task<(PlayerInfo opponentInfo, bool IsOnTheOffensive)> JoinHoldOnList(AgainstModeType modeType, PlayerInfo userInfo, PlayerInfo virtualOpponentInfo)
+            //{
+
+            //    if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            //    object[] ReceiveInfo = await TohHouHub.InvokeAsync<object[]>("Join", modeType, userInfo);
+            //    Info.AgainstInfo.RoomID = int.Parse(ReceiveInfo[0].ToString());
+            //    Info.AgainstInfo.isPlayer1 = (bool)ReceiveInfo[1];
+            //    bool IsOnTheOffensive = (bool)ReceiveInfo[2];
+            //    PlayerInfo opponentInfo = ReceiveInfo[3].ToString().ToObject<PlayerInfo>();
+            //    return (opponentInfo, IsOnTheOffensive);
+            //}
+            public static async Task JoinHoldOnList(AgainstModeType modeType, PlayerInfo userInfo, PlayerInfo virtualOpponentInfo)
+            {
+                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                await TohHouHub.SendAsync("Join", modeType, userInfo);
+            }
+            public static async Task<bool> LeaveHoldOnList(AgainstModeType modeType, string account)
             {
 
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
-                object[] ReceiveInfo = await TohHouHub.InvokeAsync<object[]>("Join", modeType, userInfo);
-                Info.AgainstInfo.RoomID = int.Parse(ReceiveInfo[0].ToString());
-                Info.AgainstInfo.isPlayer1 = (bool)ReceiveInfo[1];
-                bool IsOnTheOffensive = (bool)ReceiveInfo[2];
-                PlayerInfo opponentInfo = ReceiveInfo[3].ToString().ToObject<PlayerInfo>();
-                return (opponentInfo, IsOnTheOffensive);
+                return await TohHouHub.InvokeAsync<bool>("Leave", modeType, account);
             }
             [Obsolete("须使用新网络框架进行重构")]
             public static async Task JoinRoomAsync()

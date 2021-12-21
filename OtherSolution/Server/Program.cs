@@ -5,7 +5,7 @@ using Server.Data;
 using Newtonsoft.Json.Serialization;
 MongoDbCommand.Init();
 Console.WriteLine("数据库已初始化");
-
+HoldListManager.Init();
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
@@ -43,7 +43,7 @@ Task.Run(() =>
     while (true)
     {
         Console.ReadLine();
-        RoomCommand.Rooms.FirstOrDefault()?.Summary.UploadAgentSummary();
+        RoomManager.Rooms.FirstOrDefault()?.Summary.UploadAgentSummary();
         Console.WriteLine("上传完毕");
     }
 });

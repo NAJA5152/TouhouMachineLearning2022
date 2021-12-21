@@ -14,7 +14,7 @@ namespace Server
 
         public static bool hasAgainstRoom(string account)
         {
-            var room = RoomCommand.ContainPlayerRoom(account);
+            var room = RoomManager.ContainPlayerRoom(account);
             return room != null;
         }
     }

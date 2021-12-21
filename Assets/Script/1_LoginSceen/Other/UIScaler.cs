@@ -12,6 +12,7 @@ public class UIScaler : MonoBehaviour
     [Button]
     private void CreatTexture()
     {
+        //ºÜ¿¨
         texture = new Texture2D(256, 256);
         int size = 256;
         for (int i = 0; i < size; i++)

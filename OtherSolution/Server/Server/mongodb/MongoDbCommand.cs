@@ -103,29 +103,29 @@ namespace Server
             }
         }
 
-        public static bool UpdateDecks(PlayerInfo playinfo)
-        {
-            //先验证账号有效性
-            //然后验证卡组有效性
-            //最后修改数据库
-            var CheckUserExistQuery = Builders<PlayerInfo>.Filter.Where(info => info.Name == playinfo.Name);
-            var updateDecks = Builders<PlayerInfo>.Update.Set(x => x.Decks, playinfo.Decks);
-            var updateDecksNum = Builders<PlayerInfo>.Update.Set(x => x.UseDeckNum, playinfo.UseDeckNum);
-            IFindFluent<PlayerInfo, PlayerInfo> findFluent = playerInfoCollection.Find(CheckUserExistQuery);
+        //public static bool UpdateDecks(PlayerInfo playinfo)
+        //{
+        //    //先验证账号有效性
+        //    //然后验证卡组有效性
+        //    //最后修改数据库
+        //    var CheckUserExistQuery = Builders<PlayerInfo>.Filter.Where(info => info.Name == playinfo.Name);
+        //    var updateDecks = Builders<PlayerInfo>.Update.Set(x => x.Decks, playinfo.Decks);
+        //    var updateDecksNum = Builders<PlayerInfo>.Update.Set(x => x.UseDeckNum, playinfo.UseDeckNum);
+        //    IFindFluent<PlayerInfo, PlayerInfo> findFluent = playerInfoCollection.Find(CheckUserExistQuery);
 
-            if (findFluent.CountDocuments() > 0)
-            {
-                findFluent.FirstOrDefault().Decks = playinfo.Decks;
-                findFluent.FirstOrDefault().UseDeckNum = playinfo.UseDeckNum;
-                playerInfoCollection.UpdateOne(CheckUserExistQuery, updateDecks);
-                playerInfoCollection.UpdateOne(CheckUserExistQuery, updateDecksNum);
-                return true;//修改成功
-            }
-            else
-            {
-                return false;//修改失败
-            }
-        }
+        //    if (findFluent.CountDocuments() > 0)
+        //    {
+        //        findFluent.FirstOrDefault().Decks = playinfo.Decks;
+        //        findFluent.FirstOrDefault().UseDeckNum = playinfo.UseDeckNum;
+        //        playerInfoCollection.UpdateOne(CheckUserExistQuery, updateDecks);
+        //        playerInfoCollection.UpdateOne(CheckUserExistQuery, updateDecksNum);
+        //        return true;//修改成功
+        //    }
+        //    else
+        //    {
+        //        return false;//修改失败
+        //    }
+        //}
         public static bool UpdateState(string account, string password, UserState userState)
         {
 

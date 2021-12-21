@@ -1,36 +1,39 @@
-﻿namespace Server
+﻿using Microsoft.AspNetCore.SignalR;
+
+namespace Server
 {
     class HoldListManager
     {
         static Dictionary<AgainstModeType, List<HoldInfo>> HoldLists { get; set; } = new Dictionary<AgainstModeType, List<HoldInfo>>();
 
         static List<PlayerInfo> playerInfos = new List<PlayerInfo>();
-        public static void Add(AgainstModeType againstMode, PlayerInfo playerInfo)
+        public static void Init()
         {
-            if (!HoldLists.ContainsKey(againstMode))
+
+            foreach (AgainstModeType againstMode in Enum.GetValues(typeof(AgainstModeType)))
             {
                 HoldLists[againstMode] = new List<HoldInfo>();
             }
-            HoldLists[againstMode].Add(new HoldInfo(playerInfo));
         }
-
-        public class HoldInfo
+        public static void Add(AgainstModeType againstMode, PlayerInfo playerInfo, PlayerInfo virtualOpponentInfo,IClientProxy caller)
         {
-            public HoldInfo(PlayerInfo playerInfo)
-            {
-                UserInfo = playerInfo;
-                Rank = playerInfo.Rank;
-                WinRate = playerInfo.WinRate;
-                CollectionRate = 0;
-                JoinTime = DateTime.Now;
-            }
-            public PlayerInfo UserInfo { get; set; }
-
-            public int Rank { get; set; }
-            public float WinRate { get; set; }
-            public float CollectionRate { get; set; }
-            public DateTime JoinTime { get; set; }
+            Console.WriteLine(playerInfo.Account + "加入" + againstMode.ToString());
+            HoldLists[againstMode].Add(new HoldInfo(playerInfo, virtualOpponentInfo,caller));
         }
+        public static bool Remove(AgainstModeType againstMode, string account)
+        {
+            HoldInfo? target = HoldLists[againstMode].FirstOrDefault(x => x.UserInfo.Account == account);
+            if (target == null)
+            {
+                return false;
+            }
+            else
+            {
+                HoldLists[againstMode].Remove(target);
+                return true;
+            }
+        }
+        
         public static void Show()
         {
             Console.WriteLine("############################");
@@ -51,7 +54,7 @@
                 var insertUser = new PlayerInfo().Creat($"用户{i}", "", "", new List<CardDeck>() { new CardDeck() }, null);
                 insertUser.Rank = random.Next(0, 22);
                 insertUser.WinRate = random.NextSingle() * 50 + 25;
-                HoldListManager.Add(AgainstModeType.Casual, insertUser);
+                //HoldListManager.Add(AgainstModeType.Casual, insertUser);
             }
         }
         public static int Match()
@@ -63,7 +66,10 @@
                 var targetHoldList = HoldLists.Values.ToList()[i];
                 if (mode == AgainstModeType.Story || mode == AgainstModeType.Practice)
                 {
-                    //单人类型，直接创建房间并移除
+                    //单人类型，构造一个虚拟对手，并一起加入房间，随后从等待列表移除
+                    targetHoldList.ForEach(info => RoomManager.CreatRoom(info,new HoldInfo(info.VirtualOpponentInfo)));
+                    count += targetHoldList.Count();
+                    targetHoldList.Clear();
                 }
                 else if (mode == AgainstModeType.Casual || mode == AgainstModeType.Rank || mode == AgainstModeType.Arena)
                 {
@@ -99,8 +105,9 @@
                     successMatchList.ForEach(targetHoldInfo => targetHoldList.Remove(targetHoldInfo));
                     count += successMatchList.Count;
                 }
-                Console.WriteLine("当前等待列表" + targetHoldList.Count);
-                Console.WriteLine("等待最久的时间为" + (targetHoldList.FirstOrDefault()?.JoinTime - DateTime.Now));
+                Console.Write("-");
+                //Console.WriteLine("当前等待列表" + targetHoldList.Count);
+                //Console.WriteLine("等待最久的时间为" + (targetHoldList.FirstOrDefault()?.JoinTime - DateTime.Now));
             }
             return count;
             //匹配规则

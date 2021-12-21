@@ -29,7 +29,7 @@ namespace TouhouMachineLearningSummary.Control
                 Command.Network.NetCommand.Init();
                 await CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
                 UserLogin();//自动登录
-                //TestBattleAsync();
+                TestBattleAsync();
                 //await Command.BookCommand.InitAsync();
             }
         }
@@ -127,45 +127,31 @@ namespace TouhouMachineLearningSummary.Control
         }
         public async Task TestBattleAsync()
         {
-            _ = Command.GameUI.NoticeCommand.ShowAsync("模拟排队中", NotifyBoardMode.Cancel,
-                cancelAction: async () =>
-                {
-                    Command.Network.NetCommand.LeaveRoom();
-                },
-                responseAction: async () =>
-                {
-                    await Command.GameUI.NoticeCommand.CloseAsync();
-                    AgainstManager.Init();
-                    AgainstManager.SetPvPMode(false);
-                    AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
-                    AgainstManager.SetPlayerInfo(new PlayerInfo(
-                            "gezi", "yaya", "",
-                            new List<CardDeck>
-                            {
-                        new CardDeck("gezi", 10001, new List<int>
-                        {
-                            20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,
-                        })
-                            })
-                        );
-                    AgainstManager.SetOpponentInfo(
-                       new PlayerInfo(
-                            "gezi", "yaya", "",
-                            new List<CardDeck>
-                            {
-                        new CardDeck("gezi", 10001, new List<int>
-                        {
-                            20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,
-                        })
-                            })
-                       );
-                    Debug.Log("对战start");
-                    await AgainstManager.Start();
-                });
+            await Manager.CameraViewManager.MoveToViewAsync(2);
+            Command.MenuStateCommand.AddState(MenuState.WaitForBattle);
+            Command.BookCommand.SimulateFilpPage(true);//开始翻书
+            PlayerInfo userInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
+            _ = Command.GameUI.NoticeCommand.ShowAsync("排队中", NotifyBoardMode.Cancel, cancelAction: async () =>
+            {
+                Command.Network.NetCommand.LeaveHoldOnList(AgainstModeType.Story, userInfo.Account);
+            });
+            var virtualOpponentInfo = new PlayerInfo(
+                  "神秘的妖怪", "yaya", "",
+                  new List<CardDeck>
+                  {
+                                new CardDeck("gezi", 20001, new List<int>
+                                {
+                                    20002,20003,20004,20005,
+                                    20006,20007,20008,20009,20010,20011,
+                                    20012,20013,20014,20015,20016,
+                                    20012,20013,20014,20015,20016,
+                                    20012,20013,20014,20015,20016,
+                                })
+                  });
+            await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Story, userInfo, virtualOpponentInfo);
+            //(PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Story, userInfo, virtualOpponentInfo);
         }
-
         public void UserServerSelect() => Info.AgainstInfo.isHostNetMode = !Info.AgainstInfo.isHostNetMode;
-
         private void OnApplicationQuit() => Command.Network.NetCommand.Dispose();
     }
 }
