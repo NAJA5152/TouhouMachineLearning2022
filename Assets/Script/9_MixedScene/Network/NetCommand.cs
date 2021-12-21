@@ -203,7 +203,15 @@ namespace TouhouMachineLearningSummary.Command
             public static async Task JoinHoldOnList(AgainstModeType modeType, PlayerInfo userInfo, PlayerInfo virtualOpponentInfo)
             {
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
-                await TohHouHub.SendAsync("Join", modeType, userInfo);
+                try
+                {
+                    await TohHouHub.SendAsync("Join", modeType, userInfo);
+
+                }
+                catch (Exception ex)
+                {
+                    Debug.LogException(ex);
+                }
             }
             public static async Task<bool> LeaveHoldOnList(AgainstModeType modeType, string account)
             {

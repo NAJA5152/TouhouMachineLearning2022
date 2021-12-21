@@ -29,7 +29,8 @@ namespace TouhouMachineLearningSummary.Control
                 Command.Network.NetCommand.Init();
                 await CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
                 UserLogin();//自动登录
-                TestBattleAsync();
+                await Task.Delay(1000);
+                await TestBattleAsync();
                 //await Command.BookCommand.InitAsync();
             }
         }
@@ -133,7 +134,12 @@ namespace TouhouMachineLearningSummary.Control
             PlayerInfo userInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
             _ = Command.GameUI.NoticeCommand.ShowAsync("排队中", NotifyBoardMode.Cancel, cancelAction: async () =>
             {
-                Command.Network.NetCommand.LeaveHoldOnList(AgainstModeType.Story, userInfo.Account);
+                Command.BookCommand.SimulateFilpPage(false);//开始翻书
+                await Task.Delay(2000);
+                await Manager.CameraViewManager.MoveToViewAsync(1);
+                Command.MenuStateCommand.RebackStare();
+                await Command.Network.NetCommand.LeaveHoldOnList(AgainstModeType.Story, userInfo.Account);
+                
             });
             var virtualOpponentInfo = new PlayerInfo(
                   "神秘的妖怪", "yaya", "",

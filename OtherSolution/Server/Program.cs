@@ -31,7 +31,7 @@ app.UseRouting();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 app.MapHub<TouHouHub>("/TouHouHub");
-app.Urls.Add("https://localhost:555");
+//app.Urls.Add("https://localhost:555");
 app.Urls.Add("http://localhost:495");
 //app.Urls.Add("https://localhost:514");
 //app.Urls.Add("https://localhost:515");

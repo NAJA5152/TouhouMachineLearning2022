@@ -20,7 +20,7 @@ namespace TouhouMachineLearningSummary.Command
             Source.clip = audioCLip;
             Source.Play();
             await Task.Delay((int)(audioCLip.length * 1000));
-            GameObject.Destroy(Source);
+            GameObject.DestroyImmediate(Source);
         }
     }
 }
