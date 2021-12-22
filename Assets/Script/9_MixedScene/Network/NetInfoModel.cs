@@ -93,9 +93,10 @@ namespace TouhouMachineLearningSummary.Model
             set => Decks[UseDeckNum] = value;
         }
         public PlayerInfo() { }
-        public PlayerInfo(string name, string title, string password, List<CardDeck> decks)
+        public PlayerInfo(string account, string name, string title, string password, List<CardDeck> decks)
         {
-            this.Name = name;
+            Account = account;
+            Name = name;
             Title = title;
             Decks = decks;
             Password = password;
@@ -108,7 +109,7 @@ namespace TouhouMachineLearningSummary.Model
         }
         public PlayerInfo GetSampleInfo()
         {
-            PlayerInfo sampleInfo = new PlayerInfo(Name, Title, "", Decks);
+            PlayerInfo sampleInfo = new PlayerInfo(Account, Name, Title, "", Decks);
             sampleInfo.Level = Level;
             sampleInfo.Rank = Rank;
             sampleInfo.UseDeckNum = UseDeckNum;

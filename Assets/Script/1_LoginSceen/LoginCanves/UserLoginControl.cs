@@ -139,10 +139,10 @@ namespace TouhouMachineLearningSummary.Control
                 await Manager.CameraViewManager.MoveToViewAsync(1);
                 Command.MenuStateCommand.RebackStare();
                 await Command.Network.NetCommand.LeaveHoldOnList(AgainstModeType.Story, userInfo.Account);
-                
+
             });
             var virtualOpponentInfo = new PlayerInfo(
-                  "神秘的妖怪", "yaya", "",
+                  "NPC", "神秘的妖怪", "yaya", "",
                   new List<CardDeck>
                   {
                                 new CardDeck("gezi", 20001, new List<int>

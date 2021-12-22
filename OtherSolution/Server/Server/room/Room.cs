@@ -41,20 +41,11 @@ namespace Server
             Player2Info = Player2Info.ShufflePlayerDeck();
             //发送房间号，默认玩家1是先手，将玩家牌组信息打乱并发送给对方
 
-            P1.SendAsync("StartAgainst", new object[] { RoomId, Player1Info, Player2Info, true, true });
-            P2.SendAsync("StartAgainst", new object[] { RoomId, Player2Info, Player1Info, false, false });
+            P1?.SendAsync("StartAgainst", new object[] { RoomId, Player1Info, Player2Info, true, true });
+            P2?.SendAsync("StartAgainst", new object[] { RoomId, Player2Info, Player1Info, false, false });
         }
-
-        //public void Join(AgainstModeType modeType, IClientProxy player, PlayerInfo playerInfo)
-        //{
-        //    Console.WriteLine($"加入一个房间：房客信息{playerInfo}\n\n");
-
-        //    P2 = player;
-        //    Player2Info = playerInfo;
-        //}
         public AgainstSummary ReConnect(IClientProxy player, bool isPlayer1)
         {
-
             Console.WriteLine($"重新连接房间房间：房客信息{(isPlayer1 ? Player1Info.Name : Player2Info.Name)}\n\n");
             if (isPlayer1)
             {
@@ -66,12 +57,6 @@ namespace Server
             }
             return Summary;
         }
-        //public void Open()
-        //{
-        //    Console.WriteLine(P1 + "\n");
-        //    Console.WriteLine(P2 + "\n");
-
-        //}
         internal void Remove(IClientProxy player)
         {
             if (P1 == player)
@@ -85,7 +70,6 @@ namespace Server
                 P2 = null;
             }
         }
-
         public void AsyncInfo(IClientProxy player, object[] command)
         {
             Console.WriteLine("同步消息");

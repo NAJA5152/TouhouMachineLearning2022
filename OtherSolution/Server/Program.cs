@@ -31,11 +31,7 @@ app.UseRouting();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 app.MapHub<TouHouHub>("/TouHouHub");
-//app.Urls.Add("https://localhost:555");
 app.Urls.Add("http://localhost:495");
-//app.Urls.Add("https://localhost:514");
-//app.Urls.Add("https://localhost:515");
-//app.Urls.Add("https://localhost:888");
 Console.WriteLine("已载入回应中心");
 Console.WriteLine("服务端已启动");
 Task.Run(() =>
@@ -43,25 +39,18 @@ Task.Run(() =>
     while (true)
     {
         Console.ReadLine();
-        RoomManager.Rooms.FirstOrDefault()?.Summary.UploadAgentSummary();
+        //RoomManager.Rooms.ForEach(room => Console.WriteLine(room.Summary.ToJson()));
+        RoomManager.Rooms. FirstOrDefault()?.Summary.UploadAgentSummary();
         Console.WriteLine("上传完毕");
     }
 });
-//PlanManager.Creat("进行匹配", HoldListManager.Match,0,0,0,0,0,0);
-Timer timer = new Timer(new TimerCallback((o) => MatchAction()));
+Timer timer = new Timer(new TimerCallback((o) => HoldListManager.Match()));
 timer.Change(0, 5000);
 app.Run();
 
-//while (true)
-//{
-//    Console.ReadLine();
-//   // AddUser();
-//}
-void MatchAction()
-{
-    //AddUser();
-    HoldListManager.Match();
-    //Console.WriteLine("匹配成功数量：" + HoldListManager.Match());
-    //Console.WriteLine("匹配耗时" + (startTime - DateTime.Now));
-}
 
+//app.Urls.Add("https://localhost:496");
+//app.Urls.Add("https://localhost:555");
+//app.Urls.Add("https://localhost:514");
+//app.Urls.Add("https://localhost:515");
+//app.Urls.Add("https://localhost:888");

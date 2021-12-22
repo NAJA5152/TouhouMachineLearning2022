@@ -15,7 +15,7 @@ namespace TouhouMachineLearningSummary.Manager
     {
         // Start is called before the first frame update
         string LoadAssemblyDate = "";
-        static PlayerInfo defaultPlayerInfo => new PlayerInfo("默认NPC", "无名", "",
+        static PlayerInfo defaultPlayerInfo => new PlayerInfo("NPC", "默认NPC", "无名", "",
             new List<CardDeck>()
             {
              new CardDeck("默认卡组", 10001, new List<int>
@@ -48,7 +48,7 @@ namespace TouhouMachineLearningSummary.Manager
                 SetOpponentInfo(defaultPlayerInfo);
             }
             await Manager.CameraViewManager.MoveToViewAsync(3);
-            SceneManager.LoadSceneAsync(1);
+            SceneManager.LoadSceneAsync("2_BattleScene");
         }
         //设置我方卡组
         public static void SetPlayerInfo(PlayerInfo userInfo) => Info.AgainstInfo.currentUserInfo = userInfo;

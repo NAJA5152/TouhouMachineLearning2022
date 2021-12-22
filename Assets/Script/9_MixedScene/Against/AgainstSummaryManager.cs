@@ -124,8 +124,8 @@ namespace TouhouMachineLearningSummary.Manager
         /// </summary>
         public void UploadSelectOperation(SelectOperationType operation, Card triggerCard = null, List<Card> targetcardList = null, int selectMaxNum = 0, bool isPlayer1ExchangeOver = false)//是否玩家1操作完成
         {
-            //由玩家1记录
-            if (!AgainstInfo.isReplayMode && AgainstInfo.isPlayer1)
+            //单人模式客户端双方均上传记录，多人模式由双方在客户端主体方上传记录
+            if (!AgainstInfo.isReplayMode && ((AgainstInfo.isPVP&&AgainstInfo.isMyTurn)||AgainstInfo.isPVE))
             {
                 switch (operation)
                 {

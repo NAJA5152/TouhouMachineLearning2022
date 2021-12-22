@@ -52,7 +52,7 @@ namespace TouhouMachineLearningSummary.Command
             {
                 await Manager.CardAssemblyManager.SetCurrentAssembly("");
                 AgainstInfo.currentUserInfo = new PlayerInfo(
-                    "gezi", "yaya", "",
+                     "NPC", "gezi", "yaya", "",
                     new List<CardDeck>
                     {
                         new CardDeck("npc", 20001, new List<int>
@@ -72,7 +72,7 @@ namespace TouhouMachineLearningSummary.Command
                         })
                     });
                 AgainstInfo.currentOpponentInfo = new PlayerInfo(
-                    "gezi", "yaya", "",
+                     "NPC", "gezi", "yaya", "",
                     new List<CardDeck>
                     {
                         new CardDeck("npc", 20001, new List<int>
@@ -225,7 +225,8 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task TurnEnd()
         {
-
+            var a = (Input.gyro.userAcceleration- Input.gyro.gravity)*Time.deltaTime;
+            var b = Input.gyro.rotationRate;
             RowCommand.SetPlayCardMoveFree(false);
             await GameUI.UiCommand.NoticeBoardShow((AgainstInfo.isMyTurn ? "我方回合结束" : "对方回合结束").Translation());
             await GameSystem.ProcessSystem.WhenTurnEnd();

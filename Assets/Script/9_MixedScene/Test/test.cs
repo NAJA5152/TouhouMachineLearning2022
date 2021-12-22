@@ -90,7 +90,7 @@ namespace TouhouMachineLearningSummary.Test
                 AgainstManager.SetPvPMode(false);
                 AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
                 AgainstManager.SetPlayerInfo(new PlayerInfo(
-                        "gezi", "yaya", "",
+                         "NPC", "gezi", "yaya", "",
                         new List<CardDeck>
                         {
                         new CardDeck("gezi", 10001, new List<int>
@@ -101,7 +101,7 @@ namespace TouhouMachineLearningSummary.Test
                     );
                 AgainstManager.SetOpponentInfo(
                    new PlayerInfo(
-                        "gezi", "yaya", "",
+                         "NPC", "gezi", "yaya", "",
                         new List<CardDeck>
                         {
                         new CardDeck("gezi", 10001, new List<int>
