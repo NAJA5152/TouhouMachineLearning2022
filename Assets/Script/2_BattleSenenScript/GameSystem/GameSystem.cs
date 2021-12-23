@@ -119,7 +119,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         {
             if (Mode == CardBoardMode.Select)
             {
-                Mode = AgainstInfo.isMyTurn ? CardBoardMode.Select : CardBoardMode.ShowOnly;
+                Mode = AgainstInfo.IsMyTurn ? CardBoardMode.Select : CardBoardMode.ShowOnly;
             }
             await Command.StateCommand.WaitForSelectBoardCard(triggerCard,cards, Mode, num);
         }

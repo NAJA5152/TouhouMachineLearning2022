@@ -27,7 +27,6 @@ namespace TouhouMachineLearningSummary.Test
         public void test0()
         {
 
-            AgainstInfo.summary.Upload();
             AgainstInfo.summary.Explort();
             AgainstInfo.summary.Show();
         }
@@ -42,7 +41,7 @@ namespace TouhouMachineLearningSummary.Test
             //先加载
             Info.AgainstInfo.summary = AgainstSummaryManager.Load(1);
             Debug.LogWarning(Info.AgainstInfo.summary.ToJson());
-            AgainstInfo.isPlayer1 = isPlayer1;
+            AgainstInfo.IsPlayer1 = isPlayer1;
             //然后跳转
             _ = AgainstInfo.summary.JumpToTurnAsync(totalTurnRank, isOnTheOffensive);
         }

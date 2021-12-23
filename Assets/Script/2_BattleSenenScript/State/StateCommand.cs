@@ -141,11 +141,13 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task AgainstEnd(bool IsSurrender = false, bool IsWin = true)
         {
             await GameUI.UiCommand.NoticeBoardShow($"对战终止\n{AgainstInfo.ShowScore.MyScore}:{AgainstInfo.ShowScore.OpScore}");
+            if (AgainstInfo.isShouldUploadSummaryOperation)
+            {
+                await Command.Network.NetCommand.AgainstFinish();
+            }
             await Task.Delay(2000);
             //Debug.Log("释放线程资源");
             TaskLoopManager.cancel.Cancel();
-            //AgainstInfo.summary.Explort();
-            //AgainstInfo.summary.Upload();
             SceneManager.LoadScene(0);
             await Manager.CameraViewManager.MoveToViewAsync(2);
 
@@ -218,26 +220,26 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task TurnStart()
         {
             AgainstInfo.summary.UploadTurn();
-            await GameUI.UiCommand.NoticeBoardShow((AgainstInfo.isMyTurn ? "我方回合开始" : "对方回合开始").Translation());
-            RowCommand.SetPlayCardMoveFree(AgainstInfo.isMyTurn);
+            await GameUI.UiCommand.NoticeBoardShow((AgainstInfo.IsMyTurn ? "我方回合开始" : "对方回合开始").Translation());
+            RowCommand.SetPlayCardMoveFree(AgainstInfo.IsMyTurn);
             await CustomThread.Delay(1000);
 
         }
         public static async Task TurnEnd()
         {
-            var a = (Input.gyro.userAcceleration- Input.gyro.gravity)*Time.deltaTime;
+            var a = (Input.gyro.userAcceleration - Input.gyro.gravity) * Time.deltaTime;
             var b = Input.gyro.rotationRate;
             RowCommand.SetPlayCardMoveFree(false);
-            await GameUI.UiCommand.NoticeBoardShow((AgainstInfo.isMyTurn ? "我方回合结束" : "对方回合结束").Translation());
+            await GameUI.UiCommand.NoticeBoardShow((AgainstInfo.IsMyTurn ? "我方回合结束" : "对方回合结束").Translation());
             await GameSystem.ProcessSystem.WhenTurnEnd();
             await CustomThread.Delay(1000);
-            AgainstInfo.isMyTurn = !AgainstInfo.isMyTurn;
+            AgainstInfo.IsMyTurn = !AgainstInfo.IsMyTurn;
         }
         ////////////////////////////////////////////////////玩家操作指令////////////////////////////////////////////////////////////////////////////////
         public static void SetCurrentPass()
         {
             Info.GameUI.UiInfo.MyPass.SetActive(true);
-            switch (Info.AgainstInfo.isMyTurn)
+            switch (Info.AgainstInfo.IsMyTurn)
             {
                 case true: Info.AgainstInfo.isDownPass = true; break;
                 case false: Info.AgainstInfo.isUpPass = true; break;
@@ -254,7 +256,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             Debug.Log("投降");
             Command.Network.NetCommand.AsyncInfo(NetAcyncType.Surrender);
-            AgainstInfo.summary.UploadSurrender(AgainstInfo.isPlayer1);
+            AgainstInfo.summary.UploadSurrender(AgainstInfo.IsPlayer1);
             await AgainstEnd(true, false);
         }
         ////////////////////////////////////////////////////等待操作指令////////////////////////////////////////////////////////////////////////////////
@@ -300,14 +302,14 @@ namespace TouhouMachineLearningSummary.Command
                 else
                 {
                     //若果当前模式满足ai操作，则交由ai处理
-                    if (AgainstInfo.isAIControl)
+                    if (AgainstInfo.IsAIControl)
                     {
                         await AiCommand.TempPlayOperation();
                     }
                     else
                     {
                         //如果是我的回合则等待玩家操作，否则等待网络同步对方操作
-                        if (AgainstInfo.isMyTurn)
+                        if (AgainstInfo.IsMyTurn)
                         {
 
                         }
@@ -321,9 +323,9 @@ namespace TouhouMachineLearningSummary.Command
                 if (Info.AgainstInfo.playerPlayCard != null)
                 {
                     Debug.Log("当前打出了牌");
-                    await Info.AgainstInfo.summary.UploadPlayerOperationAsync(Manager.PlayerOperationType.PlayCard, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, Info.AgainstInfo.playerPlayCard);
+                    await AgainstInfo.summary.UploadPlayerOperationAsync(PlayerOperationType.PlayCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, AgainstInfo.playerPlayCard);
                     //假如是我的回合，则广播操作给对方，否则只接收操作不广播
-                    await GameSystem.TransSystem.PlayCard(new TriggerInfo(null).SetTargetCard(Info.AgainstInfo.playerPlayCard), AgainstInfo.isMyTurn);
+                    await GameSystem.TransSystem.PlayCard(new TriggerInfo(null).SetTargetCard(AgainstInfo.playerPlayCard), AgainstInfo.IsMyTurn);
                     Debug.Log("打出效果执行完毕");
 
                     break;
@@ -331,8 +333,8 @@ namespace TouhouMachineLearningSummary.Command
                 //如果当前回合弃牌
                 if (Info.AgainstInfo.playerDisCard != null)
                 {
-                    await Info.AgainstInfo.summary.UploadPlayerOperationAsync(Manager.PlayerOperationType.DisCard, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, Info.AgainstInfo.playerDisCard);
-                    await GameSystem.TransSystem.DisCard(new TriggerInfo(null).SetTargetCard(Info.AgainstInfo.playerDisCard));
+                    await AgainstInfo.summary.UploadPlayerOperationAsync(PlayerOperationType.DisCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, AgainstInfo.playerDisCard);
+                    await GameSystem.TransSystem.DisCard(new TriggerInfo(null).SetTargetCard(AgainstInfo.playerDisCard));
                     break;
                 }
                 if (AgainstInfo.isCurrectPass)//如果当前pass则结束回合
@@ -343,7 +345,7 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     if (AgainstInfo.isPlayerPass)
                     {
-                        await Info.AgainstInfo.summary.UploadPlayerOperationAsync(PlayerOperationType.Pass, Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, null);
+                        await AgainstInfo.summary.UploadPlayerOperationAsync(PlayerOperationType.Pass, AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, null);
                         SetCurrentPass();
                         AgainstInfo.isPlayerPass = false;
                         break;
@@ -369,7 +371,7 @@ namespace TouhouMachineLearningSummary.Command
             while (AgainstInfo.SelectProperty == BattleRegion.None)
             {
                 TaskLoopManager.Throw();
-                if (AgainstInfo.isAIControl)
+                if (AgainstInfo.IsAIControl)
                 {
                     //Debug.Log("自动选择属性");
                     int rowRank = AiCommand.GetRandom(0, 4);
@@ -400,10 +402,10 @@ namespace TouhouMachineLearningSummary.Command
                 if (AgainstInfo.isReplayMode)
                 {
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
-                    if (operation.operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectRegion)
+                    if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectRegion)
                     {
                         List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos.Where(row => row.CanBeSelected).ToList();
-                        int rowRank = operation.selectRegionRank;
+                        int rowRank = operation.SelectRegionRank;
                         AgainstInfo.SelectRegion = rows[rowRank];
                     }
                     else
@@ -412,7 +414,7 @@ namespace TouhouMachineLearningSummary.Command
                         throw new Exception("");
                     }
                 }
-                else if (AgainstInfo.isAIControl)
+                else if (AgainstInfo.IsAIControl)
                 {
                     await CustomThread.Delay(1000);
                     List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos.Where(row => row.CanBeSelected).ToList();
@@ -438,11 +440,11 @@ namespace TouhouMachineLearningSummary.Command
                 if (AgainstInfo.isReplayMode)
                 {
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
-                    if (operation.operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectLocation)
+                    if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectLocation)
                     {
                         List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos.Where(row => row.CanBeSelected).ToList();
-                        AgainstInfo.SelectRegion = rows[operation.selectRegionRank];
-                        AgainstInfo.SelectLocation = operation.selectLocation;
+                        AgainstInfo.SelectRegion = rows[operation.SelectRegionRank];
+                        AgainstInfo.SelectLocation = operation.SelectLocation;
                     }
                     else
                     {
@@ -450,7 +452,7 @@ namespace TouhouMachineLearningSummary.Command
                         throw new Exception("");
                     }
                 }
-                else if (AgainstInfo.isAIControl)
+                else if (AgainstInfo.IsAIControl)
                 {
                     await CustomThread.Delay(1000);
                     List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos.Where(row => row.CanBeSelected).ToList();
@@ -475,7 +477,7 @@ namespace TouhouMachineLearningSummary.Command
             filterCards.ForEach(card => card.isGray = false);
             AgainstInfo.selectUnits.Clear();
             //await Task.Delay(500);
-            if (Info.AgainstInfo.isMyTurn && !isAuto)
+            if (Info.AgainstInfo.IsMyTurn && !isAuto)
             {
                 GameUI.UiCommand.CreatFreeArrow();
             }
@@ -487,9 +489,9 @@ namespace TouhouMachineLearningSummary.Command
                 if (AgainstInfo.isReplayMode)
                 {
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
-                    if (operation.operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectUnite)
+                    if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectUnite)
                     {
-                        AgainstInfo.selectUnits = operation.selectCardRank.SelectList(index => filterCards[index]);
+                        AgainstInfo.selectUnits = operation.SelectCardRank.SelectList(index => filterCards[index]);
                     }
                     else
                     {
@@ -497,7 +499,7 @@ namespace TouhouMachineLearningSummary.Command
                         throw new Exception("");
                     }
                 }
-                else if (AgainstInfo.isAIControl || (isAuto && AgainstInfo.isMyTurn))
+                else if (AgainstInfo.IsAIControl || (isAuto && AgainstInfo.IsMyTurn))
                 {
                     Debug.Log("自动选择场上单位");
                     AgainstInfo.selectUnits = filterCards.OrderBy(x => AiCommand.GetRandom(0, 514)).Take(selectableNum).ToList();
@@ -560,7 +562,7 @@ namespace TouhouMachineLearningSummary.Command
                             }
                             await Task.Delay(10);
                         }
-                        if (AgainstInfo.isPlayer1)
+                        if (AgainstInfo.IsPlayer1)
                         {
                             AgainstInfo.isPlayer1RoundStartExchangeOver = true;
 

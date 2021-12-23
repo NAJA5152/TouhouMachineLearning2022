@@ -1,5 +1,4 @@
-﻿
-public enum AgainstModeType
+﻿public enum AgainstModeType
 {
     Story,//故事模式
     Practice,//练习模式

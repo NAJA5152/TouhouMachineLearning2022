@@ -15,7 +15,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (isControlPlayer)//超时自动操纵玩家时
             {
-                if (AgainstInfo.isPlayer1)
+                if (AgainstInfo.IsPlayer1)
                 {
                     AgainstInfo.isPlayer1RoundStartExchangeOver = true;
                 }
@@ -27,10 +27,10 @@ namespace TouhouMachineLearningSummary.Command
             }
             else//操纵对面Ai
             {
-                if (AgainstInfo.isPVE)
+                if (AgainstInfo.IsPVE)
                 {
                     //UnityEngine.Debug.Log("ai选择了交换卡牌"+ AgainstInfo.isPlayer1);
-                    if (AgainstInfo.isPlayer1)
+                    if (AgainstInfo.IsPlayer1)
                     {
                         AgainstInfo.isPlayer2RoundStartExchangeOver = true;
                     }

@@ -8,7 +8,7 @@ namespace Server
     partial class RoomManager
     {
         public static List<Room> Rooms { get; set; } = new List<Room>();
-        public static Room GetRoom(int RoomId) => Rooms.First(room => room.RoomId == RoomId);
+        public static Room? GetRoom(int RoomId) => Rooms.FirstOrDefault(room => room.RoomId == RoomId);
         public static Room? ContainPlayerRoom(string account) => Rooms.FirstOrDefault(room => room.Player1Info.Account == account || room.Player2Info.Account == account);
         public static void CreatRoom(HoldInfo player1, HoldInfo player2)
         {
@@ -25,15 +25,17 @@ namespace Server
                 }
             }
         }
-        public static bool DisponseRoom(int roomID)
+        public static bool DisponseRoom(int roomID, string account)
         {
-            Room TargetRoom = GetRoom(roomID);
-            if (TargetRoom != null)
+            Room? TargetRoom = GetRoom(roomID);
+            if (TargetRoom != null && (TargetRoom.Player1Info.Account == account || TargetRoom.Player2Info.Account == account))
             {
                 //房间上传数据
+                TargetRoom.Summary.UploadAgentSummary();
                 Rooms.Remove(TargetRoom);
+                return true;
             }
-            return true;
+            return false;
         }
         //public static void CreatRoom(IClientProxy playerID, PlayerInfo playerInfo)
         //{

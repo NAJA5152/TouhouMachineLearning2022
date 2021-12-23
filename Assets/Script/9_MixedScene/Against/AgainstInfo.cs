@@ -16,6 +16,7 @@ namespace TouhouMachineLearningSummary.Info
         public static bool isTrainMode = true;//训练加速模式，所有等待设为0
         public static bool isReplayMode = false;//回放模式，会加载指定对战记录读取操作
         public static bool isJumpMode = false;//跳转到指定回合模式
+        public static bool isShouldUploadSummaryOperation => !isReplayMode && ((IsPVP && IsMyTurn) || IsPVE);//是否处于应该上传对战记录操作状态,回放模式不上传，单人模式客户端双方均上传记录，多人模式由双方在客户端主体方上传记录
 
         ////对局的卡牌配置信息
         //public static CardConfig downloadCardConfigAssembly;
@@ -36,7 +37,7 @@ namespace TouhouMachineLearningSummary.Info
         public static string opponentName => currentOpponentInfo.Name;
         public static CardDeck userDeck => currentUserInfo.UseDeck;
         public static CardDeck opponentDeck => currentOpponentInfo.UseDeck;
-        
+
         public static Manager.AgainstSummaryManager summary = new Manager.AgainstSummaryManager();
 
         //网络同步信息
@@ -104,14 +105,13 @@ namespace TouhouMachineLearningSummary.Info
         //public static bool IsFinishSelectBoardCard;
         public static int ExChangeableCardNum = 0;
         //判断是否1号玩家
-        public static bool isPlayer1 = false;
-        public static bool isMyTurn;
-        public static bool isPVP = false;
-        public static bool isPVE => !isPVP;
+        public static bool IsPlayer1 { get; set; } = false;
+        public static bool IsMyTurn { get; set; }
+        public static bool IsPVP { get; set; } = false;
+        public static bool IsPVE => !IsPVP;
         //判断是用Ai代替玩家操作
-        public static bool isAiAgent = true;
-        // public static bool isAIControl => isPVE && (!isMyTurn || Timer.isTimeout);
-        public static bool isAIControl => isPVE && !isMyTurn || (!isPVP && isMyTurn && Timer.isTimeout);
+        public static bool IsAiAgent { get; set; } = true;
+        public static bool IsAIControl => IsPVE && !IsMyTurn || (!IsPVP && IsMyTurn && Timer.isTimeout);
 
         /// <summary>
         /// 对局中卡牌的集合
@@ -120,19 +120,19 @@ namespace TouhouMachineLearningSummary.Info
 
         public static List<Card> AllCardList => CardSet.globalCardList.SelectMany(x => x).ToList();
         public static (int P1Score, int P2Score) PlayerScore;
-        public static (int MyScore, int OpScore) ShowScore => isPlayer1 ? (PlayerScore.P1Score, PlayerScore.P2Score) : (PlayerScore.P2Score, PlayerScore.P1Score);
+        public static (int MyScore, int OpScore) ShowScore => IsPlayer1 ? (PlayerScore.P1Score, PlayerScore.P2Score) : (PlayerScore.P2Score, PlayerScore.P1Score);
         public static int TotalUpPoint => cardSet[Orientation.Up][GameRegion.Battle].CardList.Sum(card => card.showPoint);
         public static int TotalDownPoint => cardSet[Orientation.Down][GameRegion.Battle].CardList.Sum(card => card.showPoint);
         public static int TotalMyPoint => cardSet[Orientation.My][GameRegion.Battle].CardList.Sum(card => card.showPoint);
         public static int TotalOpPoint => cardSet[Orientation.Op][GameRegion.Battle].CardList.Sum(card => card.showPoint);
-        public static int TotalPlayer1Point => isPlayer1 ? TotalDownPoint : TotalUpPoint;
-        public static int TotalPlayer2Point => isPlayer1 ? TotalUpPoint : TotalDownPoint;
-        public static int turnChangePoint => Mathf.Abs(TotalMyPoint - TotalOpPoint);
+        public static int TotalPlayer1Point => IsPlayer1 ? TotalDownPoint : TotalUpPoint;
+        public static int TotalPlayer2Point => IsPlayer1 ? TotalUpPoint : TotalDownPoint;
+        public static int TurnRelativePoint => TotalMyPoint - TotalOpPoint;
         //嗯
         public static bool isUpPass = false;
         public static bool isDownPass = false;
 
-        public static bool isCurrectPass => isMyTurn ? isDownPass : isUpPass;
+        public static bool isCurrectPass => IsMyTurn ? isDownPass : isUpPass;
 
         public static bool isBoothPass => isUpPass && isDownPass;
     }

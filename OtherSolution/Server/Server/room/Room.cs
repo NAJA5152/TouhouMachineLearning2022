@@ -17,18 +17,7 @@ namespace Server
         public PlayerInfo Player2Info { get; set; }
         public AgainstSummary Summary { get; set; } = new AgainstSummary();
 
-        public Room(int roomId)
-        {
-            RoomId = roomId;
-        }
-
-        public void Creat(IClientProxy player, PlayerInfo playerInfo)
-        {
-            Console.WriteLine($"创建一个房间：房主信息{playerInfo}\n\n");
-            P1 = player;
-            Player1Info = playerInfo;
-        }
-
+        public Room(int roomId) => RoomId = roomId;
         internal void Creat(HoldInfo player1, HoldInfo player2)
         {
             P1 = player1.Client;
@@ -40,9 +29,15 @@ namespace Server
             Player1Info = Player1Info.ShufflePlayerDeck();
             Player2Info = Player2Info.ShufflePlayerDeck();
             //发送房间号，默认玩家1是先手，将玩家牌组信息打乱并发送给对方
+            Summary._id = Guid.NewGuid().ToString();
+            Summary.Player1Name = Player1Info.Name;
+            Summary.Player2Name = Player2Info.Name;
+            Summary.AssemblyVerision = MongoDbCommand.GetLastCardUpdateVersion();
 
             P1?.SendAsync("StartAgainst", new object[] { RoomId, Player1Info, Player2Info, true, true });
             P2?.SendAsync("StartAgainst", new object[] { RoomId, Player2Info, Player1Info, false, false });
+
+
         }
         public AgainstSummary ReConnect(IClientProxy player, bool isPlayer1)
         {
@@ -57,23 +52,10 @@ namespace Server
             }
             return Summary;
         }
-        internal void Remove(IClientProxy player)
-        {
-            if (P1 == player)
-            {
-                Console.WriteLine("玩家1" + P1 + "取消匹配");
-                P1 = null;
-            }
-            if (P2 == player)
-            {
-                Console.WriteLine("玩家1" + P2 + "取消匹配");
-                P2 = null;
-            }
-        }
-        public void AsyncInfo(IClientProxy player, object[] command)
+        public void AsyncInfo(NetAcyncType netAcyncType, object[] command, bool isPlayer1)
         {
             Console.WriteLine("同步消息");
-            (player == P1 ? P2 : P1).SendAsync("Async", command);
+            (isPlayer1 ? P2 : P1).SendAsync("Async", netAcyncType,command);
         }
     }
 }

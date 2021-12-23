@@ -25,7 +25,7 @@ namespace TouhouMachineLearningSummary.Control
         }
         public void TempCardControl()
         {
-            if (AgainstInfo.isMyTurn)
+            if (AgainstInfo.IsMyTurn)
             {
                 if (SingleInfo.TempCard == null && SingleInfo.CanBeSelected && AgainstInfo.PlayerFocusRegion == SingleInfo && !HasTempCard)
                 {

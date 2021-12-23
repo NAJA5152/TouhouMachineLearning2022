@@ -86,7 +86,7 @@ namespace Server
         [BsonId]
         public string _id { get; set; }
         public DateTime UpdataTime { get; set; }
-        public string Date { get; set; }
+        public string Version { get; set; }
         public byte[] AssemblyFileData { get; set; }
         public byte[] SingleCardFileData { get; set; }
         public byte[] MultiCardFileData { get; set; }
@@ -105,6 +105,7 @@ namespace Server
             this.CardIds = CardIds;
         }
     }
+    //简易的数字卡牌量化模型
     public class SampleCardModel
     {
         public int CardID { get; set; } = 0;
@@ -113,6 +114,7 @@ namespace Server
         public List<int> State { get; set; } = new List<int>();
         public SampleCardModel() { }
     }
+    //对战记录模型
     public class AgainstSummary
     {
         [BsonId]
@@ -122,21 +124,19 @@ namespace Server
         public string Player2Name { get; set; } = "";
         public string Winner { get; set; } = "";
         public List<TurnOperation> TurnOperations { get; set; } = new List<TurnOperation>();
-        //简易的数字卡牌量化模型
-
         public class TurnOperation
         {
             public int RoundRank { get; set; }//当前小局数
             public int TurnRank { get; set; }//当前回合数
             public int TotalTurnRank { get; set; }//当前总回合数
             public bool IsOnTheOffensive { get; set; }//是否先手
-            public int AbsoluteStartPoint { get; set; }//玩家操作前双方的点数差
-            public int AbsoluteEndPoint { get; set; }//玩家操作后双方的点数差  
+            public int RelativeStartPoint { get; set; }//玩家操作前双方的点数差
+            public int RelativeEndPoint { get; set; }//玩家操作后双方的点数差  
             //0表示不投降，1表示玩家1投降，2表示玩家2投降
-            public int isSurrender { get; set; } = 0;
+            public int SurrenderState { get; set; } = 0;
             public List<List<SampleCardModel>> AllCardList { get; set; } = new List<List<SampleCardModel>>();
-            public PlayerOperation PlayerTurnOperation { get; set; }
-            public List<SelectOperation> SelectTurnOperations { get; set; } = new List<SelectOperation>();
+            public PlayerOperation TurnPlayerOperation { get; set; }
+            public List<SelectOperation> TurnSelectOperations { get; set; } = new List<SelectOperation>();
             public TurnOperation() { }
             public class PlayerOperation
             {
@@ -150,7 +150,8 @@ namespace Server
                 //操作类型 选择场地属性/从战场选择多个单位/从卡牌面板中选择多张牌/从战场中选择一个位置/从战场选择多片对战区域
                 public List<int> Operation { get; set; }
                 public int TriggerCardID { get; set; }
-
+                //选择面板卡牌
+                public List<int> SelectBoardCardRanks { get; set; }
                 //选择单位
                 public List<SampleCardModel> TargetCardList { get; set; }
                 public List<int> SelectCardRank { get; set; }
@@ -172,13 +173,16 @@ namespace Server
         /// 增加一个回合玩家操作记录
         /// </summary>
         /// <param name="turnOperation"></param>
-        public void AddPlayerOperation(PlayerOperationType operation, TurnOperation.PlayerOperation playerOperation) => TurnOperations.Last().PlayerTurnOperation = playerOperation;
+        public void AddPlayerOperation( TurnOperation.PlayerOperation playerOperation) => TurnOperations.Last().TurnPlayerOperation = playerOperation;
         /// <summary>
         /// 增加一个回合玩家选择记录
         /// </summary>
         /// <param name="turnOperation"></param>
-        public void AddTurnSelectOperation(TurnOperation.SelectOperation selectOperation) => TurnOperations.Last().SelectTurnOperations.Add(selectOperation);
-
+        public void AddSelectOperation(TurnOperation.SelectOperation selectOperation) => TurnOperations.Last().TurnSelectOperations.Add(selectOperation);
+        public void AddStartPoint(int relativePoint) => TurnOperations.Last().RelativeStartPoint= relativePoint;
+        public void AddEndPoint(int relativePoint) => TurnOperations.Last().RelativeEndPoint = relativePoint;
+        public void AddSurrender(int surrendrState) => TurnOperations.Last().SurrenderState= surrendrState;
+   
         public void UploadAgentSummary() => MongoDbCommand.InsertAgainstSummary(this);
     }
 }

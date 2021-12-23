@@ -44,18 +44,18 @@ namespace TouhouMachineLearningSummary.Model
     {
         public string _id { get; set; }
         public DateTime UpdataTime { get; set; }
-        public string Date { get; set; }
+        public string Version { get; set; }
         public byte[] AssemblyFileData { get; set; }
         public byte[] SingleCardFileData { get; set; }
         public byte[] MultiCardFileData { get; set; }
 
         public CardConfig() { }
 
-        public CardConfig(string date, FileInfo assemblyFile, FileInfo singleCardFile, FileInfo multiCardFile)
+        public CardConfig(string version, FileInfo assemblyFile, FileInfo singleCardFile, FileInfo multiCardFile)
         {
             _id = Guid.NewGuid().ToString();
             this.UpdataTime = DateTime.Now;
-            this.Date = date;
+            this.Version = version;
             this.AssemblyFileData = File.ReadAllBytes(assemblyFile.FullName);
             this.SingleCardFileData = File.ReadAllBytes(singleCardFile.FullName);
             this.MultiCardFileData = File.ReadAllBytes(multiCardFile.FullName);

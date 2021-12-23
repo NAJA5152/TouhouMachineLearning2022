@@ -30,7 +30,7 @@ namespace TouhouMachineLearningSummary.Manager
         static List<CardModel> currenttSingleCardInfos;
         static List<CardModel> currentMultiCardInfos;
         //获取当前引用卡牌数据的日期
-        public static string GetCurrentConfigDate => currentConfig.Date;
+        public static string GetCurrentConfigDate => currentConfig.Version;
         [ShowInInspector]
         public static List<CardModel> GetcurrentSingleCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\CardData\CardData-Single.json").ToObject<List<CardModel>>().Select(card => card.Init(true)).ToList() : currenttSingleCardInfos;
         [ShowInInspector]
@@ -103,7 +103,7 @@ namespace TouhouMachineLearningSummary.Manager
             static async Task LoadOrDownloadConfig(string date)
             {
                 currentConfig= await Command.Network.NetCommand.DownloadCardConfigsAsync(date);
-                cardConfigs[currentConfig.Date] = currentConfig;
+                cardConfigs[currentConfig.Version] = currentConfig;
             }
         }
         public static async Task<string> GetCardConfigsVersionAsync() => await Command.Network.NetCommand.GetCardConfigsVersionAsync();

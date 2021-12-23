@@ -51,13 +51,13 @@ namespace TouhouMachineLearningSummary.Manager
             public int TotalTurnRank { get; set; }//当前总回合数
             public bool IsOnTheOffensive { get; set; }//是否先手
             public bool IsPlayer1Turn { get; set; }//是否处于玩家1的操作回合
-            public int AbsoluteStartPoint { get; set; }//玩家操作前双方的点数差
-            public int AbsoluteEndPoint { get; set; }//玩家操作后双方的点数差  
+            public int RelativeStartPoint { get; set; }//玩家操作前双方的点数差
+            public int RelativeEndPoint { get; set; }//玩家操作后双方的点数差  
             //0表示不投降，1表示玩家1投降，2表示玩家2投降
-            public int IsSurrender = 0;
+            public int SurrenderState { get; set; } = 0;
             public List<List<SampleCardModel>> AllCardList { get; set; } = new List<List<SampleCardModel>>();
-            public PlayerOperation playerOperation { get; set; }
-            public List<SelectOperation> selectOperations { get; set; } = new List<SelectOperation>();
+            public PlayerOperation TurnPlayerOperation { get; set; }
+            public List<SelectOperation> TurnSelectOperations { get; set; } = new List<SelectOperation>();
             public TurnOperation() { }
             public TurnOperation Init()
             {
@@ -65,7 +65,7 @@ namespace TouhouMachineLearningSummary.Manager
                 this.TurnRank = AgainstInfo.turnRank;
                 this.TotalTurnRank = AgainstInfo.totalTurnRank;
                 this.IsOnTheOffensive = AgainstInfo.isOnTheOffensive;
-                this.IsPlayer1Turn = AgainstInfo.isPlayer1 ^ AgainstInfo.isMyTurn;
+                this.IsPlayer1Turn = AgainstInfo.IsPlayer1 ^ AgainstInfo.IsMyTurn;
                 this.AllCardList = CardSet.globalCardList.SelectList(cardlist => cardlist.SelectList(card => new SampleCardModel(card)));
                 return this;
             }
@@ -92,19 +92,19 @@ namespace TouhouMachineLearningSummary.Manager
             public class SelectOperation
             {
                 //操作类型 选择场地属性/从战场选择多个单位/从卡牌面板中选择多张牌/从战场中选择一个位置/从战场选择多片对战区域
-                public List<int> operation;
-                public int triggerCardID;
+                public List<int> Operation { get; set; }
+                public int TriggerCardID { get; set; }
                 //选择面板卡牌
-                public List<int> selectBoardCardRanks;
+                public List<int> SelectBoardCardRanks { get; set; }
                 //选择单位
-                public List<SampleCardModel> targetCardList;
-                public List<int> selectCardRank;
-                public int selectMaxNum;
+                public List<SampleCardModel> TargetCardList { get; set; }
+                public List<int> SelectCardRank { get; set; }
+                public int SelectMaxNum { get; set; }
                 //区域
-                public int selectRegionRank;
-                public int selectLocation;
+                public int SelectRegionRank { get; set; }
+                public int SelectLocation { get; set; }
                 //换牌完成,true为玩家1换牌操作，false为玩家2换牌操作
-                public bool isPlay1ExchangeOver;
+                public bool IsPlay1ExchangeOver { get; set; }
                 public SelectOperation() { }
             }
 
@@ -114,7 +114,7 @@ namespace TouhouMachineLearningSummary.Manager
         /// </summary>
         public async Task UploadPlayerOperationAsync(PlayerOperationType operation, List<Card> targetcardList, Card selectCard)
         {
-            if (!AgainstInfo.isReplayMode && AgainstInfo.isMyTurn)
+            if (AgainstInfo.isShouldUploadSummaryOperation)
             {
                 await Command.Network.NetCommand.UpdateTurnPlayerOperationAsync(new PlayerOperation(operation, targetcardList, selectCard));
             }
@@ -122,72 +122,50 @@ namespace TouhouMachineLearningSummary.Manager
         /// <summary>
         /// 上传一个回合玩家选择记录
         /// </summary>
-        public void UploadSelectOperation(SelectOperationType operation, Card triggerCard = null, List<Card> targetcardList = null, int selectMaxNum = 0, bool isPlayer1ExchangeOver = false)//是否玩家1操作完成
+        public async void UploadSelectOperation(SelectOperationType operationType, Card triggerCard = null, List<Card> targetCardList = null, int selectMaxNum = 0, bool isPlayer1ExchangeOver = false)//是否玩家1操作完成
         {
-            //单人模式客户端双方均上传记录，多人模式由双方在客户端主体方上传记录
-            if (!AgainstInfo.isReplayMode && ((AgainstInfo.isPVP&&AgainstInfo.isMyTurn)||AgainstInfo.isPVE))
+            if (AgainstInfo.isShouldUploadSummaryOperation)
             {
-                switch (operation)
+                SelectOperation operation = new SelectOperation();
+                switch (operationType)
                 {
                     case SelectOperationType.SelectProperty:
                         break;
                     case SelectOperationType.SelectUnite:
-                        AddSelectUnite(triggerCard, targetcardList, selectMaxNum);
+                        operation.TriggerCardID = triggerCard.cardID;
+                        operation.SelectCardRank = AgainstInfo.selectUnits.SelectList(selectUnite => targetCardList.IndexOf(selectUnite));
+                        operation.TargetCardList = targetCardList.SelectList(card => new SampleCardModel(card));
+                        operation.SelectMaxNum = selectMaxNum;
+                        operation.Operation = SelectOperationType.SelectLocation.EnumToOneHot();
                         break;
                     case SelectOperationType.SelectBoardCard:
-                        AddSelectBoardCard(triggerCard);
+                        operation.TriggerCardID = triggerCard != null ? triggerCard.cardID : 0;
+                        operation.SelectBoardCardRanks = AgainstInfo.selectBoardCardRanks;
+                        operation.Operation = SelectOperationType.SelectBoardCard.EnumToOneHot();
                         break;
                     case SelectOperationType.SelectRegion:
-                        AddSelectRegion(triggerCard);
+                        operation.TriggerCardID = triggerCard.cardID;
+                        operation.SelectRegionRank = AgainstInfo.SelectRegion.RowRank;
+                        operation.Operation = SelectOperationType.SelectRegion.EnumToOneHot();
                         break;
                     case SelectOperationType.SelectLocation:
-                        AddSelectLocation(triggerCard);
+                        operation.TriggerCardID = triggerCard.cardID;
+                        operation.SelectRegionRank = AgainstInfo.SelectRegion.RowRank;
+                        operation.SelectLocation = AgainstInfo.SelectLocation;
+                        operation.Operation = SelectOperationType.SelectLocation.EnumToOneHot();
                         break;
                     case SelectOperationType.SelectExchangeOver:
-                        UploadExchangeOverAsync(isPlayer1ExchangeOver);
+                        operation.IsPlay1ExchangeOver = isPlayer1ExchangeOver;
+                        operation.Operation = SelectOperationType.SelectExchangeOver.EnumToOneHot();
                         break;
                     default:
                         break;
                 }
+                await Command.Network.NetCommand.UpdateTurnSelectOperationAsync(operation);
             }
             else
             {
                 currentSelectOperationsRank++;
-            }
-            void AddSelectRegion(Card triggerCard)
-            {
-                SelectOperation operation = new SelectOperation();
-                operation.triggerCardID = triggerCard.cardID;
-                operation.selectRegionRank = AgainstInfo.SelectRegion.RowRank;
-                operation.operation = SelectOperationType.SelectRegion.EnumToOneHot();
-                TurnOperations.Last().selectOperations.Add(operation);
-            }
-            void AddSelectBoardCard(Card triggerCard)
-            {
-                SelectOperation operation = new SelectOperation();
-                operation.triggerCardID = triggerCard != null ? triggerCard.cardID : 0;
-                operation.selectBoardCardRanks = AgainstInfo.selectBoardCardRanks;
-                operation.operation = SelectOperationType.SelectBoardCard.EnumToOneHot();
-                TurnOperations.Last().selectOperations.Add(operation);
-            }
-            void AddSelectLocation(Card triggerCard)
-            {
-                SelectOperation operation = new SelectOperation();
-                operation.triggerCardID = triggerCard.cardID;
-                operation.selectRegionRank = AgainstInfo.SelectRegion.RowRank;
-                operation.selectLocation = AgainstInfo.SelectLocation;
-                operation.operation = SelectOperationType.SelectLocation.EnumToOneHot();
-                TurnOperations.Last().selectOperations.Add(operation);
-            }
-            void AddSelectUnite(Card triggerCard, List<Card> targetCardList, int selectMaxNum)
-            {
-                SelectOperation operation = new SelectOperation();
-                operation.triggerCardID = triggerCard.cardID;
-                operation.selectCardRank = AgainstInfo.selectUnits.SelectList(selectUnite => targetCardList.IndexOf(selectUnite));
-                operation.targetCardList = targetCardList.SelectList(card => new SampleCardModel(card));
-                operation.selectMaxNum = selectMaxNum;
-                operation.operation = SelectOperationType.SelectLocation.EnumToOneHot();
-                TurnOperations.Last().selectOperations.Add(operation);
             }
         }
         /// <summary>
@@ -198,75 +176,84 @@ namespace TouhouMachineLearningSummary.Manager
             AgainstInfo.turnRank = 0;
             AgainstInfo.isOnTheOffensive = true;
             //添加换牌阶段回合操作，回合0代表换牌操作
-            await Command.Network.NetCommand.UpdateTurnOperationAsync(new TurnOperation().Init());
+            if (AgainstInfo.isShouldUploadSummaryOperation)
+            {
+                await Command.Network.NetCommand.UpdateTurnOperationAsync(new TurnOperation().Init());
+            }
         }
         /// <summary>
         /// 上传一个回合记录
         /// </summary>
         public async void UploadTurn()
         {
-            if (AgainstInfo.isReplayMode && AgainstInfo.isPlayer1)
-            {
-                //回放模式下每回合指针加一
-                currentTurnOperationsRank++;
-            }
-            else
+            if (AgainstInfo.isShouldUploadSummaryOperation)
             {
                 if (!AgainstInfo.isOnTheOffensive)
                 {
                     AgainstInfo.turnRank++;
                     AgainstInfo.totalTurnRank++;
                 }
-                //TurnOperations.Add(new TurnOperation().Init());
                 await Command.Network.NetCommand.UpdateTurnOperationAsync(new TurnOperation().Init());
                 AgainstInfo.isOnTheOffensive = !AgainstInfo.isOnTheOffensive;
             }
+            else
+            {
+                //回放模式下每回合指针加一
+                currentTurnOperationsRank++;
+            }
+            //if (AgainstInfo.isReplayMode && AgainstInfo.isPlayer1)
+            //{
+            //    //回放模式下每回合指针加一
+            //    currentTurnOperationsRank++;
+            //}
+            //else
+            //{
+            //    if (!AgainstInfo.isOnTheOffensive)
+            //    {
+            //        AgainstInfo.turnRank++;
+            //        AgainstInfo.totalTurnRank++;
+            //    }
+            //    //TurnOperations.Add(new TurnOperation().Init());
+            //    await Command.Network.NetCommand.UpdateTurnOperationAsync(new TurnOperation().Init());
+            //    AgainstInfo.isOnTheOffensive = !AgainstInfo.isOnTheOffensive;
+            //}
         }
         /// <summary>
         /// 上传回合开始后的点数
         /// </summary>
-        public void UploadStartPoint()
+        public async void UploadStartPoint()
         {
-            if (!AgainstInfo.isReplayMode && AgainstInfo.isPlayer1)
+            if (AgainstInfo.isShouldUploadSummaryOperation)
             {
-                TurnOperations.Last().AbsoluteStartPoint = AgainstInfo.turnChangePoint;
-                UnityEngine.Debug.LogWarning("双方起始点数差" + AgainstInfo.turnChangePoint);
+                await Command.Network.NetCommand.UploadStartPointAsync();
             }
         }
         /// <summary>
         /// 上传回合结束前的点数
         /// </summary>
-        public void UploadEndPoint()
+        public async void UploadEndPoint()
         {
-            if (!AgainstInfo.isReplayMode && AgainstInfo.isPlayer1)
+            if (AgainstInfo.isShouldUploadSummaryOperation)
             {
-                TurnOperations.Last().AbsoluteEndPoint = AgainstInfo.turnChangePoint;
-                UnityEngine.Debug.LogWarning("双方结束点数差" + AgainstInfo.turnChangePoint + "" + AgainstInfo.TotalMyPoint + "" + AgainstInfo.TotalOpPoint);
+                await Command.Network.NetCommand.UploadEndPointAsync();
             }
-        }
-        /// <summary>
-        /// 上传换牌完毕操作记录
-        /// </summary>
-        public async Task UploadExchangeOverAsync(bool isPlayer1Exchange)
-        {
-            UnityEngine.Debug.Log($"记录玩家{(isPlayer1Exchange ? "1" : "2")}换牌结束事件");
-            SelectOperation selectOperation = new SelectOperation();
-            //如果是玩家1主动结束选择或者玩家2收到被动结束选择，这是玩家1选择完毕
-            selectOperation.isPlay1ExchangeOver = isPlayer1Exchange;
-            selectOperation.operation = SelectOperationType.SelectExchangeOver.EnumToOneHot();
-            await Command.Network.NetCommand.UpdateTurnSelectOperationAsync(selectOperation);
-            //TurnOperations.Last().selectOperations.Add(selectOperation);
         }
         /// <summary>
         /// 上传投降记录
         /// </summary>
-        public void UploadSurrender(bool isPlayer1Surrenddr) => TurnOperations.Last().IsSurrender = isPlayer1Surrenddr ? 1 : 2;
+        public async void UploadSurrender(bool isPlayer1Surrenddr)
+        {
+            if (AgainstInfo.isShouldUploadSummaryOperation)
+            {
+                await Command.Network.NetCommand.UploadSurrenderAsync(isPlayer1Surrenddr ? 1 : 2);
+            }
+        }
 
         //////////////////////////////////对战指令解析/////////////////////////////////////////////    
         int currentTurnOperationsRank = 0;//当前指向的玩家回合操作命令编号
         int currentSelectOperationsRank = 0;//当前指向的玩家回合选择指令编号
-        public PlayerOperation GetCurrentPlayerOperation() => TurnOperations[currentTurnOperationsRank].playerOperation;
-        public SelectOperation GetCurrentSelectOperation() => TurnOperations[currentTurnOperationsRank].selectOperations[currentSelectOperationsRank];
+        public PlayerOperation GetCurrentPlayerOperation() => TurnOperations[currentTurnOperationsRank].TurnPlayerOperation;
+        public SelectOperation GetCurrentSelectOperation() => TurnOperations[currentTurnOperationsRank].TurnSelectOperations[currentSelectOperationsRank];
         //////////////////////////////////对战记录读取////////////////////////////////////////////
         public static AgainstSummaryManager Load(int summaryID) => File.ReadAllText("summary.json").ToObject<AgainstSummaryManager>();
         public void Replay(int TotalRank)
@@ -298,12 +285,6 @@ namespace TouhouMachineLearningSummary.Manager
         //////////////////////////////////对战记录输出////////////////////////////////////////////
         public void Show() => UnityEngine.Debug.LogWarning(this.ToJson());
         public void Explort() => File.WriteAllText("summary.json", this.ToJson());
-        public void Upload()
-        {
-            Player1Name = AgainstInfo.isPlayer1 ? AgainstInfo.userName : AgainstInfo.opponentName;
-            Player1Name = AgainstInfo.isPlayer1 ? AgainstInfo.opponentName : AgainstInfo.userName;
-            UpdateTime = DateTime.Now;
-            Command.Network.NetCommand.UploadAgentSummary(this);
-        }
+
     }
 }

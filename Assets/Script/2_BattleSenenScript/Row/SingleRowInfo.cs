@@ -25,7 +25,7 @@ namespace TouhouMachineLearningSummary.Info
                     regionId -= 2;
                 }
                 //根据玩家扮演角色（1或者2）分配上方区域和下方区域
-                return regionId + (AgainstInfo.isPlayer1 ^ (orientation == Orientation.Down) ? 9 : 0);
+                return regionId + (AgainstInfo.IsPlayer1 ^ (orientation == Orientation.Down) ? 9 : 0);
             }
         }
 

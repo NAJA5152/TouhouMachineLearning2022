@@ -59,14 +59,14 @@ namespace TouhouMachineLearningSummary.Manager
         {
             switch (firstTurn)
             {
-                case FirstTurn.PlayerFirst: Info.AgainstInfo.isMyTurn = true; break;
-                case FirstTurn.OpponentFirst: Info.AgainstInfo.isMyTurn = false; break;
-                case FirstTurn.Random: Info.AgainstInfo.isMyTurn = Info.AgainstInfo.isPlayer1; break;
+                case FirstTurn.PlayerFirst: Info.AgainstInfo.IsMyTurn = true; break;
+                case FirstTurn.OpponentFirst: Info.AgainstInfo.IsMyTurn = false; break;
+                case FirstTurn.Random: Info.AgainstInfo.IsMyTurn = Info.AgainstInfo.IsPlayer1; break;
                 default: break;
             }
         }
         //设置对局类型
-        public static void SetPvPMode(bool isPvPMode) => Info.AgainstInfo.isPVP = isPvPMode;
+        public static void SetPvPMode(bool isPvPMode) => Info.AgainstInfo.IsPVP = isPvPMode;
         //设置初始胜利小局数
         public static void SetScore(int Score1, int Score2)
         {

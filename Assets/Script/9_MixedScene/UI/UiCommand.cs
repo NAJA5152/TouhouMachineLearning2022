@@ -27,18 +27,18 @@ namespace TouhouMachineLearningSummary.Command.GameUI
         {
 
             Info.GameUI.UiInfo.NoticeBoard.transform.GetChild(0).GetComponent<Text>().text = Title;
-            Info.GameUI.UiInfo.NoticeBoard.GetComponent<Image>().color = Info.AgainstInfo.isMyTurn ? new Color(0.2f, 0.5f, 1, 0.5f) : new Color(1, 0.2f, 0.2f, 0.5f);
+            Info.GameUI.UiInfo.NoticeBoard.GetComponent<Image>().color = Info.AgainstInfo.IsMyTurn ? new Color(0.2f, 0.5f, 1, 0.5f) : new Color(1, 0.2f, 0.2f, 0.5f);
             Info.GameUI.UiInfo.NoticeBoard.transform.localScale = new Vector3(1, 0, 1);
             Info.GameUI.UiInfo.NoticeBoard.SetActive(true);
-            await CustomThread.TimerAsync(0.5f,runAction: process =>
-               {
-                   Info.GameUI.UiInfo.NoticeBoard.transform.localScale = new Vector3(1, process * process, 1);
-               });
+            await CustomThread.TimerAsync(0.5f, runAction: process =>
+            {
+                Info.GameUI.UiInfo.NoticeBoard.transform.localScale = new Vector3(1, process * process, 1);
+            });
             await Task.Delay(1000);
             await CustomThread.TimerAsync(0.5f, runAction: process =>
-                  {
-                      Info.GameUI.UiInfo.NoticeBoard.transform.localScale = new Vector3(1, 1 - process * process, 1);
-                  });
+            {
+                Info.GameUI.UiInfo.NoticeBoard.transform.localScale = new Vector3(1, 1 - process * process, 1);
+            });
             Info.GameUI.UiInfo.NoticeBoard.SetActive(false);
         }
         public void CardBoardClose() => Info.AgainstInfo.IsSelectCardOver = true;
@@ -82,6 +82,6 @@ namespace TouhouMachineLearningSummary.Command.GameUI
             Info.AgainstInfo.ArrowList.Clear();
         }
         //public static void SetCardBoardMode(CardBoardMode CardBoardMode) => Info.AgainstInfo.CardBoardMode = CardBoardMode;
-        
+
     }
 }

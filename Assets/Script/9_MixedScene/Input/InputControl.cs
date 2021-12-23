@@ -41,7 +41,7 @@ namespace TouhouMachineLearningSummary.Control
         private void KeyBoardEvent()
         {
 
-            if (Input.GetKey(KeyCode.Space) && Info.AgainstInfo.isMyTurn)
+            if (Input.GetKey(KeyCode.Space) && Info.AgainstInfo.IsMyTurn)
             {
                 PassPressTime += Time.deltaTime;
                 if (PassPressTime > 2)
@@ -52,7 +52,7 @@ namespace TouhouMachineLearningSummary.Control
                     PassPressTime = 0;
                 }
             }
-            if (Input.GetKeyUp(KeyCode.Space) && Info.AgainstInfo.isMyTurn)
+            if (Input.GetKeyUp(KeyCode.Space) && Info.AgainstInfo.IsMyTurn)
             {
                 PassPressTime = 0;
             }
@@ -63,7 +63,7 @@ namespace TouhouMachineLearningSummary.Control
         }
         private void MouseEvent()
         {
-            if (Input.GetMouseButtonDown(0) && Info.AgainstInfo.isMyTurn)
+            if (Input.GetMouseButtonDown(0) && Info.AgainstInfo.IsMyTurn)
             {
                 if (AgainstInfo.IsWaitForSelectRegion)
                 {
