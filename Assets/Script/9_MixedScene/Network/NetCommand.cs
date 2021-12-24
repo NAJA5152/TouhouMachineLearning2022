@@ -214,6 +214,9 @@ namespace TouhouMachineLearningSummary.Command
             [Obsolete("需要更换到新网络框架")]
             public static async Task<List<AgainstSummaryManager>> DownloadAgentSummaryAsync(string playerName, int skipCount, int takeCount)
             {
+                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                return await TohHouHub.InvokeAsync<List<AgainstSummaryManager>>("DownloadAgentSummary", playerName, skipCount, takeCount);
+
                 bool isReceive = false;
                 var client = new WebSocket($"ws://{ip}/DownloadAgentSummary");
                 List<AgainstSummaryManager> summarys = new List<AgainstSummaryManager>();
