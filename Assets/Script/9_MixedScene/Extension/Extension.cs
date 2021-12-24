@@ -12,6 +12,13 @@ namespace TouhouMachineLearningSummary.Extension
 
         public static string ToJson(this object target) => JsonConvert.SerializeObject(target, Formatting.Indented);
         public static T ToObject<T>(this string Data) => JsonConvert.DeserializeObject<T>(Data);
+        /// <summary>
+        /// 从object类型转为指定类型
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="target"></param>
+        /// <returns></returns>
+        public static T ToType<T>(this object target) => target.ToString().ToObject<T>();
         public static T Clone<T>(this T Object) => Object.ToJson().ToObject<T>();
         public static Sprite ToSprite(this Texture2D texture) => Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
 

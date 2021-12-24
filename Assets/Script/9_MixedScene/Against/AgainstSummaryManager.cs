@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using TouhouMachineLearningSummary.Extension;
-using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
 using static TouhouMachineLearningSummary.Manager.AgainstSummaryManager.TurnOperation;
