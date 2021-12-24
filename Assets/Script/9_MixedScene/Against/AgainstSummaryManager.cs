@@ -1,14 +1,13 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
-using static TouhouMachineLearningSummary.Manager.AgainstSummaryManager.TurnOperation;
-using Newtonsoft.Json;
 using UnityEngine;
-using System.Threading.Tasks;
 
 namespace TouhouMachineLearningSummary.Manager
 {
@@ -115,7 +114,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
-                await Command.Network.NetCommand.UpdateTurnPlayerOperationAsync(new PlayerOperation(operation, targetcardList, selectCard));
+                await Command.Network.NetCommand.UpdateTurnPlayerOperationAsync(new TurnOperation.PlayerOperation(operation, targetcardList, selectCard));
             }
         }
         /// <summary>
@@ -125,7 +124,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
-                SelectOperation operation = new SelectOperation();
+                TurnOperation.SelectOperation operation = new TurnOperation.SelectOperation();
                 switch (operationType)
                 {
                     case SelectOperationType.SelectProperty:
@@ -251,8 +250,8 @@ namespace TouhouMachineLearningSummary.Manager
         //////////////////////////////////对战指令解析/////////////////////////////////////////////    
         int currentTurnOperationsRank = 0;//当前指向的玩家回合操作命令编号
         int currentSelectOperationsRank = 0;//当前指向的玩家回合选择指令编号
-        public PlayerOperation GetCurrentPlayerOperation() => TurnOperations[currentTurnOperationsRank].TurnPlayerOperation;
-        public SelectOperation GetCurrentSelectOperation() => TurnOperations[currentTurnOperationsRank].TurnSelectOperations[currentSelectOperationsRank];
+        public TurnOperation.PlayerOperation GetCurrentPlayerOperation() => TurnOperations[currentTurnOperationsRank].TurnPlayerOperation;
+        public TurnOperation.SelectOperation GetCurrentSelectOperation() => TurnOperations[currentTurnOperationsRank].TurnSelectOperations[currentSelectOperationsRank];
         //////////////////////////////////对战记录读取////////////////////////////////////////////
         public static AgainstSummaryManager Load(int summaryID) => File.ReadAllText("summary.json").ToObject<AgainstSummaryManager>();
         public void Replay(int TotalRank)
