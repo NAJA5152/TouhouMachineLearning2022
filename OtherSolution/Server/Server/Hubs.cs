@@ -22,11 +22,11 @@ public class TouHouHub : Hub
     public void Join(AgainstModeType againstMode, PlayerInfo playerInfo, PlayerInfo virtualOpponentInfo) => HoldListManager.Add(againstMode, playerInfo, virtualOpponentInfo, Clients.Caller);
     public void Leave(AgainstModeType againstMode, string account) => HoldListManager.Remove(againstMode, account);
     //////////////////////////////////////////////房间////////////////////////////////////////////////////////////////////
-    public void AsyncInfo(NetAcyncType netAcyncType, int roomId, bool isPlayer1, object[] data)
+    public void AsyncInfo(NetAcyncType netAcyncType, string roomId, bool isPlayer1, object[] data)
     {
         RoomManager.GetRoom(roomId).AsyncInfo(netAcyncType, data, isPlayer1);
     }
-    public void AgainstFinish(int roomId, string account) => RoomManager.DisponseRoom(roomId, account);
+    public bool AgainstFinish(string roomId, string account) => RoomManager.DisponseRoom(roomId, account);
 
 
     //////////////////////////////////////////////用户信息更新操作////////////////////////////////////////////////////////////////////
@@ -58,12 +58,12 @@ public class TouHouHub : Hub
     //////////////////////////////////////////////日志////////////////////////////////////////////////////////////////////
     //更新牌组信息
     public List<AgainstSummary> DownloadAgentSummary(string playerName, int skipNum, int takeNum) => MongoDbCommand.QueryAgainstSummary(playerName, skipNum, takeNum);
-    public void UpdateTurnOperation(int roomId, AgainstSummary.TurnOperation turnOperation) => RoomManager.GetRoom(roomId).Summary.AddTurnOperation(turnOperation);
-    public void UpdatePlayerOperation(int roomId, AgainstSummary.TurnOperation.PlayerOperation playerOperation) => RoomManager.GetRoom(roomId).Summary.AddPlayerOperation(playerOperation);
-    public void UpdateSelectOperation(int roomId, AgainstSummary.TurnOperation.SelectOperation selectOperation) => RoomManager.GetRoom(roomId).Summary.AddSelectOperation(selectOperation);
-    public void UploadStartPoint(int roomId, int relativePoint) => RoomManager.GetRoom(roomId).Summary.AddStartPoint(relativePoint);
-    public void UploadEndPoint(int roomId, int relativePoint) => RoomManager.GetRoom(roomId).Summary.AddEndPoint(relativePoint);
-    public void UploadSurrender(int roomId, int surrenddrState) => RoomManager.GetRoom(roomId).Summary.AddSurrender(surrenddrState);
+    public void UpdateTurnOperation(string roomId, AgainstSummary.TurnOperation turnOperation) => RoomManager.GetRoom(roomId).Summary.AddTurnOperation(turnOperation);
+    public void UpdatePlayerOperation(string roomId, AgainstSummary.TurnOperation.PlayerOperation playerOperation) => RoomManager.GetRoom(roomId).Summary.AddPlayerOperation(playerOperation);
+    public void UpdateSelectOperation(string roomId, AgainstSummary.TurnOperation.SelectOperation selectOperation) => RoomManager.GetRoom(roomId).Summary.AddSelectOperation(selectOperation);
+    public void UploadStartPoint(string roomId, int relativePoint) => RoomManager.GetRoom(roomId).Summary.AddStartPoint(relativePoint);
+    public void UploadEndPoint(string roomId, int relativePoint) => RoomManager.GetRoom(roomId).Summary.AddEndPoint(relativePoint);
+    public void UploadSurrender(string roomId, int surrenddrState) => RoomManager.GetRoom(roomId)?.Summary.AddSurrender(surrenddrState);
     //////////////////////////////////////////////卡牌配置////////////////////////////////////////////////////////////////////
     //查询最新版本
     public string GetCardConfigsVersion() => MongoDbCommand.GetLastCardUpdateTime();

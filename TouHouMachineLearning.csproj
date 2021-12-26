@@ -70,6 +70,7 @@
     <Compile Include="Assets\Script\9_MixedScene\Against\AgainstManager.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Timer\Timer.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Row\SingleRowInfo.cs" />
+    <Compile Include="Assets\Script\1_LoginSceen\PageComponents\收藏组件\AgainstSummaryItemManager.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\Other\CameraViewManager.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\Other\UIScaler.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\共享信息类\CardCompnentInfo.cs" />
@@ -96,6 +97,7 @@
     <Compile Include="Assets\Script\2_BattleSenenScript\Bullet\BulletCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Dialogue\Live2d\ModelTriggerArea.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\Book\BookCommand.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\ParticleSystem\ParticeTest.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡组列表组件\DeckBoardControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\ParticleSystem\TheWorldEffect.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\UiInfo.cs" />
@@ -158,7 +160,6 @@
     <Compile Include="Assets\Script\9_MixedScene\Network\NetInfoModel.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Against\AgainstInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Audio\AudioInfo.cs" />
-    <Compile Include="Assets\Script\1_LoginSceen\PageComponents\对战记录组件\AgainstSummaryItemManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Script\0_Other\info.txt" />

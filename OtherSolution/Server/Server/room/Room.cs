@@ -6,7 +6,9 @@ namespace Server
 {
     class Room
     {
-        public int RoomId { get; set; }
+
+        public string RoomId { get; set; }
+        public AgainstModeType Mode { get; set; }
         public bool IsCanEnter => P2 == null;
         public bool IsEmpty => P1 == null && P2 == null;
         public bool IsContain(string Account) => Account == Player1Info.Account || Account == Player2Info.Account;
@@ -17,7 +19,7 @@ namespace Server
         public PlayerInfo Player2Info { get; set; }
         public AgainstSummary Summary { get; set; } = new AgainstSummary();
 
-        public Room(int roomId) => RoomId = roomId;
+        public Room(string roomId) => RoomId = roomId;
         internal void Creat(HoldInfo player1, HoldInfo player2)
         {
             P1 = player1.Client;
@@ -29,7 +31,7 @@ namespace Server
             Player1Info = Player1Info.ShufflePlayerDeck();
             Player2Info = Player2Info.ShufflePlayerDeck();
             //发送房间号，默认玩家1是先手，将玩家牌组信息打乱并发送给对方
-            Summary._id = Guid.NewGuid().ToString();
+            Summary._id = Guid.NewGuid().ToString("N");
             Summary.Player1Name = Player1Info.Name;
             Summary.Player2Name = Player2Info.Name;
             Summary.AssemblyVerision = MongoDbCommand.GetLastCardUpdateVersion();

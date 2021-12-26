@@ -67,7 +67,7 @@ namespace Server
                 if (mode == AgainstModeType.Story || mode == AgainstModeType.Practice)
                 {
                     //单人类型，构造一个虚拟对手，并一起加入房间，随后从等待列表移除
-                    targetHoldList.ForEach(info => RoomManager.CreatRoom(info,new HoldInfo(info.VirtualOpponentInfo)));
+                    targetHoldList.ForEach(info => RoomManager.CreatRoom(mode,info, new HoldInfo(info.VirtualOpponentInfo)));
                     count += targetHoldList.Count();
                     targetHoldList.Clear();
                 }

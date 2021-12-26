@@ -45,7 +45,7 @@ namespace TouhouMachineLearningSummary.Info
         public static int washInsertRank;
 
         public static bool IsSelectCardOver;
-        public static int RoomID;
+        public static string RoomID;
         //操作标志位
         public static List<GameObject> ArrowList = new List<GameObject>();
 

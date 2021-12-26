@@ -18,7 +18,19 @@ namespace TouhouMachineLearningSummary.Extension
         /// <typeparam name="T"></typeparam>
         /// <param name="target"></param>
         /// <returns></returns>
-        public static T ToType<T>(this object target) => target.ToString().ToObject<T>();
+        public static T ToType<T>(this object target)
+        {
+            if (typeof(T)== typeof(bool))
+            {
+                return (T)(object)bool.Parse(target.ToString());
+            }
+            if (typeof(T) == typeof(string))
+            {
+                return (T)(object)target.ToString();
+            }
+            return target.ToString().ToObject<T>();
+        }
+
         public static T Clone<T>(this T Object) => Object.ToJson().ToObject<T>();
         public static Sprite ToSprite(this Texture2D texture) => Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
 

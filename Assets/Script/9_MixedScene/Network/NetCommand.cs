@@ -37,12 +37,11 @@ namespace TouhouMachineLearningSummary.Command
                 });
                 TohHouHub.On<object[]>("StartAgainst", ReceiveInfo =>
                 {
-                    Info.AgainstInfo.RoomID = int.Parse(ReceiveInfo[0].ToString());
-                    //Info.AgainstInfo.RoomID = (int)ReceiveInfo[0];
-                    PlayerInfo playerInfo = ReceiveInfo[1].ToString().ToObject<PlayerInfo>();
-                    PlayerInfo opponentInfo = ReceiveInfo[2].ToString().ToObject<PlayerInfo>();
-                    Info.AgainstInfo.IsPlayer1 = bool.Parse(ReceiveInfo[3].ToString());
-                    bool IsOnTheOffensive = bool.Parse(ReceiveInfo[4].ToString()); ;
+                    Info.AgainstInfo.RoomID = ReceiveInfo[0].ToType<string>();
+                    PlayerInfo playerInfo = ReceiveInfo[1].ToType<PlayerInfo>();
+                    PlayerInfo opponentInfo = ReceiveInfo[2].ToType<PlayerInfo>();
+                    Info.AgainstInfo.IsPlayer1 = ReceiveInfo[3].ToType<bool>();
+                    bool IsOnTheOffensive = ReceiveInfo[4].ToType<bool>();
 
                     _ = Command.GameUI.NoticeCommand.CloseAsync();//关闭ui
                     Command.BookCommand.SimulateFilpPage(false);//停止翻书
@@ -217,23 +216,23 @@ namespace TouhouMachineLearningSummary.Command
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
                 return await TohHouHub.InvokeAsync<List<AgainstSummaryManager>>("DownloadAgentSummary", playerName, skipCount, takeCount);
 
-                bool isReceive = false;
-                var client = new WebSocket($"ws://{ip}/DownloadAgentSummary");
-                List<AgainstSummaryManager> summarys = new List<AgainstSummaryManager>();
-                client.OnMessage += (sender, e) =>
-                {
-                    var summary = e.Data.ToObject<List<AgainstSummaryManager>>();
-                    client.Close();
-                    isReceive = true;
-                };
-                client.Connect();
-                client.Send(new GeneralCommand(playerName, skipCount, takeCount).ToJson());
-                while (!isReceive)
-                {
-                    TaskLoopManager.cancel.Token.ThrowIfCancellationRequested();
-                    await Task.Delay(10);
-                }
-                return summarys;
+                //bool isReceive = false;
+                //var client = new WebSocket($"ws://{ip}/DownloadAgentSummary");
+                //List<AgainstSummaryManager> summarys = new List<AgainstSummaryManager>();
+                //client.OnMessage += (sender, e) =>
+                //{
+                //    var summary = e.Data.ToObject<List<AgainstSummaryManager>>();
+                //    client.Close();
+                //    isReceive = true;
+                //};
+                //client.Connect();
+                //client.Send(new GeneralCommand(playerName, skipCount, takeCount).ToJson());
+                //while (!isReceive)
+                //{
+                //    TaskLoopManager.cancel.Token.ThrowIfCancellationRequested();
+                //    await Task.Delay(10);
+                //}
+                //return summarys;
             }
             ///////////////////////////////////////卡牌配置///////////////////////////////////////////////////////////////////////
 

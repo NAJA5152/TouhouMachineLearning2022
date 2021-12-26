@@ -162,21 +162,49 @@ namespace Server
         /// 增加一个回合记录
         /// </summary>
         /// <param name="turnOperation"></param>
-        public void AddTurnOperation(TurnOperation turnOperation) => TurnOperations.Add(turnOperation);
+        public void AddTurnOperation(TurnOperation turnOperation)
+        {
+            Console.WriteLine("新增回合记录");
+            TurnOperations.Add(turnOperation);
+        }
         /// <summary>
         /// 增加一个回合玩家操作记录
         /// </summary>
         /// <param name="turnOperation"></param>
-        public void AddPlayerOperation( TurnOperation.PlayerOperation playerOperation) => TurnOperations.Last().TurnPlayerOperation = playerOperation;
+        public void AddPlayerOperation(TurnOperation.PlayerOperation playerOperation)
+        {
+            Console.WriteLine("新增回合玩家操作记录");
+            TurnOperations.Last().TurnPlayerOperation = playerOperation;
+        }
+
         /// <summary>
         /// 增加一个回合玩家选择记录
         /// </summary>
         /// <param name="turnOperation"></param>
-        public void AddSelectOperation(TurnOperation.SelectOperation selectOperation) => TurnOperations.Last().TurnSelectOperations.Add(selectOperation);
-        public void AddStartPoint(int relativePoint) => TurnOperations.Last().RelativeStartPoint= relativePoint;
-        public void AddEndPoint(int relativePoint) => TurnOperations.Last().RelativeEndPoint = relativePoint;
-        public void AddSurrender(int surrendrState) => TurnOperations.Last().SurrenderState= surrendrState;
-   
+        public void AddSelectOperation(TurnOperation.SelectOperation selectOperation)
+        {
+            Console.WriteLine("新增回合选择操作记录");
+            TurnOperations.Last().TurnSelectOperations.Add(selectOperation);
+        }
+
+        public void AddStartPoint(int relativePoint)
+        {
+            Console.WriteLine("新增开始点数"+ relativePoint);
+            TurnOperations.Last().RelativeStartPoint = relativePoint;
+        }
+
+        public void AddEndPoint(int relativePoint)
+        {
+            Console.WriteLine("新增结束点数" + relativePoint);
+            TurnOperations.Last().RelativeEndPoint = relativePoint;
+        }
+
+        public void AddSurrender(int surrendrState)
+        {
+            Console.WriteLine("新增投降事件" );
+            TurnOperations.Last().SurrenderState = surrendrState;
+        }
+
         public void UploadAgentSummary() => MongoDbCommand.InsertAgainstSummary(this);
     }
 }
