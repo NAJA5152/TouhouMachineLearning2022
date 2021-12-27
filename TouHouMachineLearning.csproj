@@ -144,7 +144,6 @@
     <Compile Include="Assets\Script\9_MixedScene\CardInspector\CardMenu.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\Arrow\ArrowManager.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\牌库组件\CardLibraryCommand.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\Network\NetExtern.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\NotifyBoard\NoticeControl.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Point\PointControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\Condition.cs" />
@@ -160,6 +159,7 @@
     <Compile Include="Assets\Script\9_MixedScene\Network\NetInfoModel.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Against\AgainstInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Audio\AudioInfo.cs" />
+    <Compile Include="Assets\Script\1_LoginSceen\PageComponents\收藏组件\CollectionManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Script\0_Other\info.txt" />

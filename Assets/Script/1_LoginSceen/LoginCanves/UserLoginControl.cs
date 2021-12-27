@@ -30,17 +30,17 @@ namespace TouhouMachineLearningSummary.Control
                 await Manager.CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
                 UserLogin();//自动登录
                 await Task.Delay(1000);
-                Task.Run(() =>
-                {
-                    var result2 = Command.NetCommand.DownloadAllAgentSummaryAsync(0, 100);
-                    Debug.Log(result2.ToJson());
+                //Task.Run(() =>
+                //{
+                //    var result2 = Command.NetCommand.DownloadAllAgentSummaryAsync(0, 100);
+                //    Debug.Log(result2.ToJson());
 
-                    var result1 = Command.NetCommand.DownloadOwnerAgentSummaryAsync(Info.AgainstInfo.onlineUserInfo.Account, 0, 100);
-                    Debug.Log(result1.ToJson());
-                });
+                //    var result1 = Command.NetCommand.DownloadOwnerAgentSummaryAsync(Info.AgainstInfo.onlineUserInfo.Account, 0, 100);
+                //    Debug.Log(result1.ToJson());
+                //});
 
 
-                await TestBattleAsync();
+                //await TestBattleAsync();
                 //await Command.BookCommand.InitAsync();
             }
         }

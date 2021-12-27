@@ -30,8 +30,8 @@ namespace TouhouMachineLearningSummary.Manager
     {
         public string _id { get; set; }
         public string AssemblyVerision { get; set; } = "";
-        public static PlayerInfo Player1Info { get; set; }
-        public static PlayerInfo Player2Info { get; set; }
+        public  PlayerInfo Player1Info { get; set; }
+        public  PlayerInfo Player2Info { get; set; }
         public string Winner { get; set; } = "";
         public DateTime UpdateTime { get; set; }
         //是否按照流程完成对局
