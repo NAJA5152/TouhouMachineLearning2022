@@ -114,8 +114,8 @@ namespace Server
         [BsonId]
         public string _id { get; set; }
         public string AssemblyVerision { get; set; } = "";
-        public string Player1Name { get; set; } = "";
-        public string Player2Name { get; set; } = "";
+        public PlayerInfo Player1Info { get; set; } 
+        public PlayerInfo Player2Info { get; set; } 
         public string Winner { get; set; } = "";
         public List<TurnOperation> TurnOperations { get; set; } = new List<TurnOperation>();
         public class TurnOperation
@@ -124,6 +124,8 @@ namespace Server
             public int TurnRank { get; set; }//当前回合数
             public int TotalTurnRank { get; set; }//当前总回合数
             public bool IsOnTheOffensive { get; set; }//是否先手
+            public bool IsPlayer1Turn { get; set; }//是否处于玩家1的操作回合
+
             public int RelativeStartPoint { get; set; }//玩家操作前双方的点数差
             public int RelativeEndPoint { get; set; }//玩家操作后双方的点数差  
             //0表示不投降，1表示玩家1投降，2表示玩家2投降
@@ -206,5 +208,8 @@ namespace Server
         }
 
         public void UploadAgentSummary() => MongoDbCommand.InsertAgainstSummary(this);
+        //public bool ContainAccount(string account) => Player1Info?.Account==account|| Player2Info?.Account == account;
+        public bool ContainAccount(string account) => true;
+
     }
 }

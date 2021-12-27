@@ -57,9 +57,9 @@ namespace TouhouMachineLearningSummary.Command
                 Info.CardCompnentInfo.seleceDeckRank = selectRank;
                 Info.CardCompnentInfo.isCardClick = true;
                 Info.AgainstInfo.onlineUserInfo.UseDeckNum = Info.CardCompnentInfo.seleceDeckRank;
-                //Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
-                //await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
-                //await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
+                //Command.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
+                //await Command.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
+                //await Command.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
                 await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
                 Command.DeckBoardCommand.Init();
                 Command.CardListCommand.Init();
@@ -108,9 +108,9 @@ namespace TouhouMachineLearningSummary.Command
             //将牌库设为可编辑模式
             Info.CardCompnentInfo.isEditDeckMode = true;
             Debug.Log("切换到deck" + Info.AgainstInfo.onlineUserInfo.UseDeckNum);
-            //Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
-            //await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
-            //await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
+            //Command.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
+            //await Command.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
+            //await Command.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
             await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
             Command.DeckBoardCommand.Init();
             Command.CardListCommand.Init();
@@ -127,9 +127,9 @@ namespace TouhouMachineLearningSummary.Command
                     Debug.Log("删除卡组成功");
                     Info.AgainstInfo.onlineUserInfo.Decks.Remove(Info.AgainstInfo.onlineUserInfo.UseDeck);
                     Info.AgainstInfo.onlineUserInfo.UseDeckNum = Math.Max(0, Info.AgainstInfo.onlineUserInfo.UseDeckNum - 1);
-                    //Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
-                    //await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
-                    //await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
+                    //Command.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
+                    //await Command.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
+                    //await Command.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
                     await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
                     Command.DeckBoardCommand.Init();
                     Command.CardListCommand.Init();
@@ -148,9 +148,9 @@ namespace TouhouMachineLearningSummary.Command
                 Debug.Log("重命名卡组为" + text);
                 Info.AgainstInfo.onlineUserInfo.UseDeck.DeckName = text;
                 await Task.Delay(100);
-                //Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
-                //await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
-                //await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
+                //Command.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
+                //await Command.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
+                //await Command.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
                 await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
                 Command.DeckBoardCommand.Init();
                 Command.CardListCommand.Init();
@@ -166,10 +166,10 @@ namespace TouhouMachineLearningSummary.Command
             //{
             //    _ = Command.GameUI.NoticeCommand.ShowAsync("进入剧情关卡", NotifyBoardMode.Cancel, cancelAction: async () =>
             //    {
-            //        Command.Network.NetCommand.LeaveRoom();
+            //        Command.NetCommand.LeaveRoom();
             //    });
             //    PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
-            //    (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Casual, userInfo);
+            //    (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.NetCommand.JoinHoldOnList(AgainstModeType.Casual, userInfo);
             //    Command.BookCommand.SimulateFilpPage(false);//停止翻书
             //    Command.MenuStateCommand.AddState(MenuState.ScenePage);
             //    await Task.Delay(3000);
@@ -232,10 +232,10 @@ namespace TouhouMachineLearningSummary.Command
             //    Debug.LogWarning("开始匹配休闲模式");
             //    _ = Command.GameUI.NoticeCommand.ShowAsync("休闲模式匹配中", NotifyBoardMode.Cancel, cancelAction: async () =>
             //    {
-            //        Command.Network.NetCommand.LeaveRoom();
+            //        Command.NetCommand.LeaveRoom();
             //    });
             //    PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
-            //    (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Casual, userInfo);
+            //    (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.NetCommand.JoinHoldOnList(AgainstModeType.Casual, userInfo);
             //    AgainstManager.Init();
             //    AgainstManager.SetPlayerInfo(userInfo);
             //    AgainstManager.SetOpponentInfo(opponentInfo);
@@ -247,10 +247,10 @@ namespace TouhouMachineLearningSummary.Command
             //{
             //    _ = Command.GameUI.NoticeCommand.ShowAsync("天梯模式匹配中", NotifyBoardMode.Cancel, cancelAction: async () =>
             //    {
-            //        Command.Network.NetCommand.LeaveRoom();
+            //        Command.NetCommand.LeaveRoom();
             //    });
             //    PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
-            //    (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Rank, userInfo);
+            //    (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.NetCommand.JoinHoldOnList(AgainstModeType.Rank, userInfo);
             //    AgainstManager.Init();
             //    AgainstManager.SetPlayerInfo(userInfo);
             //    AgainstManager.SetOpponentInfo(opponentInfo);
@@ -262,10 +262,10 @@ namespace TouhouMachineLearningSummary.Command
             //{
             //    _ = Command.GameUI.NoticeCommand.ShowAsync("地下竞技场模式匹配中", NotifyBoardMode.Cancel, cancelAction: async () =>
             //    {
-            //        Command.Network.NetCommand.LeaveRoom();
+            //        Command.NetCommand.LeaveRoom();
             //    });
             //    PlayerInfo userInfo = Info.AgainstInfo.currentUserInfo.GetSampleInfo();
-            //    (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Arena, userInfo);
+            //    (PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.NetCommand.JoinHoldOnList(AgainstModeType.Arena, userInfo);
             //    AgainstManager.Init();
             //    AgainstManager.SetPlayerInfo(userInfo);
             //    AgainstManager.SetOpponentInfo(opponentInfo);

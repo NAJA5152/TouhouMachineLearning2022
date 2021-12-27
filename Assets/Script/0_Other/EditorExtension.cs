@@ -36,7 +36,7 @@ namespace TouhouMachineLearningSummary.Other
             if (gameCardAssembly != null && singleCardFile != null && multiCardFile != null)
             {
                 CardConfig cardConfig = new CardConfig(DateTime.Today.ToString("yyy_MM_dd"), gameCardAssembly, singleCardFile, multiCardFile);
-                _ = Command.Network.NetCommand.UploadCardConfigsAsync(cardConfig);
+                _ = Command.NetCommand.UploadCardConfigsAsync(cardConfig);
             }
             else
             {

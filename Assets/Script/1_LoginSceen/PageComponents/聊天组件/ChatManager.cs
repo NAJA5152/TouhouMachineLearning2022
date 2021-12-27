@@ -28,7 +28,7 @@ namespace TouhouMachineLearningSummary.Manager
         public async void SendMessage()
         {
             string text = inputFiled.GetComponent<InputField>().text;
-            await Command.Network.NetCommand.ChatAsync("用户" + Info.AgainstInfo.onlineUserInfo.Name, text);
+            await Command.NetCommand.ChatAsync("用户" + Info.AgainstInfo.onlineUserInfo.Name, text);
         }
         public void OpenChat()
         {

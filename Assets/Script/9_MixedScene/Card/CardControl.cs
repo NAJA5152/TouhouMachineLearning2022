@@ -1,4 +1,4 @@
-﻿using TouhouMachineLearningSummary.Command.Network;
+﻿using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
@@ -57,4 +57,3 @@ namespace TouhouMachineLearningSummary.Control
         }
     }
 }
-

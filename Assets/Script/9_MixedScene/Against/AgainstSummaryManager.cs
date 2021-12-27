@@ -30,8 +30,6 @@ namespace TouhouMachineLearningSummary.Manager
     {
         public string _id { get; set; }
         public string AssemblyVerision { get; set; } = "";
-        public string Player1Name { get; set; } = "";
-        public string Player2Name { get; set; } = "";
         public static PlayerInfo Player1Info { get; set; }
         public static PlayerInfo Player2Info { get; set; }
         public string Winner { get; set; } = "";
@@ -114,7 +112,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
-                await Command.Network.NetCommand.UpdateTurnPlayerOperationAsync(new TurnOperation.PlayerOperation(operation, targetcardList, selectCard));
+                await Command.NetCommand.UpdateTurnPlayerOperationAsync(new TurnOperation.PlayerOperation(operation, targetcardList, selectCard));
             }
         }
         /// <summary>
@@ -159,7 +157,7 @@ namespace TouhouMachineLearningSummary.Manager
                     default:
                         break;
                 }
-                await Command.Network.NetCommand.UpdateTurnSelectOperationAsync(operation);
+                await Command.NetCommand.UpdateTurnSelectOperationAsync(operation);
             }
             else
             {
@@ -176,7 +174,7 @@ namespace TouhouMachineLearningSummary.Manager
             //添加换牌阶段回合操作，回合0代表换牌操作
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
-                await Command.Network.NetCommand.UpdateTurnOperationAsync(new TurnOperation().Init());
+                await Command.NetCommand.UpdateTurnOperationAsync(new TurnOperation().Init());
             }
         }
         /// <summary>
@@ -191,7 +189,7 @@ namespace TouhouMachineLearningSummary.Manager
                     AgainstInfo.turnRank++;
                     AgainstInfo.totalTurnRank++;
                 }
-                await Command.Network.NetCommand.UpdateTurnOperationAsync(new TurnOperation().Init());
+                await Command.NetCommand.UpdateTurnOperationAsync(new TurnOperation().Init());
                 AgainstInfo.isOnTheOffensive = !AgainstInfo.isOnTheOffensive;
             }
             else
@@ -212,7 +210,7 @@ namespace TouhouMachineLearningSummary.Manager
             //        AgainstInfo.totalTurnRank++;
             //    }
             //    //TurnOperations.Add(new TurnOperation().Init());
-            //    await Command.Network.NetCommand.UpdateTurnOperationAsync(new TurnOperation().Init());
+            //    await Command.NetCommand.UpdateTurnOperationAsync(new TurnOperation().Init());
             //    AgainstInfo.isOnTheOffensive = !AgainstInfo.isOnTheOffensive;
             //}
         }
@@ -223,7 +221,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
-                await Command.Network.NetCommand.UploadStartPointAsync();
+                await Command.NetCommand.UploadStartPointAsync();
             }
         }
         /// <summary>
@@ -233,7 +231,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
-                await Command.Network.NetCommand.UploadEndPointAsync();
+                await Command.NetCommand.UploadEndPointAsync();
             }
         }
         /// <summary>
@@ -243,7 +241,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
-                await Command.Network.NetCommand.UploadSurrenderAsync(isPlayer1Surrenddr ? 1 : 2);
+                await Command.NetCommand.UploadSurrenderAsync(isPlayer1Surrenddr ? 1 : 2);
             }
         }
 
@@ -253,7 +251,7 @@ namespace TouhouMachineLearningSummary.Manager
         public TurnOperation.PlayerOperation GetCurrentPlayerOperation() => TurnOperations[currentTurnOperationsRank].TurnPlayerOperation;
         public TurnOperation.SelectOperation GetCurrentSelectOperation() => TurnOperations[currentTurnOperationsRank].TurnSelectOperations[currentSelectOperationsRank];
         //////////////////////////////////对战记录读取////////////////////////////////////////////
-        public static AgainstSummaryManager Load(int summaryID) => File.ReadAllText("summary.json").ToObject<AgainstSummaryManager>();
+        public static AgainstSummaryManager Load(string summaryID) => File.ReadAllText("summary.json").ToObject<AgainstSummaryManager>();
         public void Replay(int TotalRank)
         {
             TaskLoopManager.cancel.Cancel();

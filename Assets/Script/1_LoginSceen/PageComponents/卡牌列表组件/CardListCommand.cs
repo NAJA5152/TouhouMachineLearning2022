@@ -105,9 +105,9 @@ namespace TouhouMachineLearningSummary.Command
         {
             Debug.Log("保存卡组");
             Info.AgainstInfo.onlineUserInfo.UseDeck = Info.CardCompnentInfo.tempDeck;
-            //Command.Network.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
-            //await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
-            //await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
+            //Command.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
+            //await Command.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
+            //await Command.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
             await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
             Command.CardListCommand.Init();
             Command.MenuStateCommand.RebackStare();

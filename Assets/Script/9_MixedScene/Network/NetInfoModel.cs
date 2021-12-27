@@ -119,19 +119,19 @@ namespace TouhouMachineLearningSummary.Model
         {
             Info.AgainstInfo.onlineUserInfo.Name = name;
             Manager.UserInfoManager.Refresh();
-            return await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Name, name);
+            return await Command.NetCommand.UpdateInfoAsync(UpdateType.Name, name);
         }
 
         public async Task<bool> UpdateUserStateAsync(int step, int rank)
         {
             OnlineUserState.Step = step;
             OnlineUserState.Rank = rank;
-            return await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UserState, OnlineUserState);
+            return await Command.NetCommand.UpdateInfoAsync(UpdateType.UserState, OnlineUserState);
         }
         public async Task<bool> UpdateDecksAsync()
         {
-            bool isSuccessUpdateDeck = await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.Decks, Decks);
-            bool isSuccessUpdateUseDeckNum = await Command.Network.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, UseDeckNum);
+            bool isSuccessUpdateDeck = await Command.NetCommand.UpdateInfoAsync(UpdateType.Decks, Decks);
+            bool isSuccessUpdateUseDeckNum = await Command.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, UseDeckNum);
             return isSuccessUpdateDeck && isSuccessUpdateUseDeckNum;
         }
     }

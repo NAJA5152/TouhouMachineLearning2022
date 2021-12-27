@@ -20,7 +20,7 @@ namespace TouhouMachineLearningSummary.Control.GameUI
                     //若是卡牌效果换牌，则同步换牌数据
                     if (!Info.AgainstInfo.isRoundStartExchange)
                     {
-                        Command.Network.NetCommand.AsyncInfo(GameEnum.NetAcyncType.SelectBoardCard);
+                        Command.NetCommand.AsyncInfo(GameEnum.NetAcyncType.SelectBoardCard);
                     }
                 }
                 else//否则加入选择列表
@@ -30,7 +30,7 @@ namespace TouhouMachineLearningSummary.Control.GameUI
                     Debug.Log("选择" + Rank);
                     if (!Info.AgainstInfo.isRoundStartExchange)
                     {
-                        Command.Network.NetCommand.AsyncInfo(GameEnum.NetAcyncType.SelectBoardCard);
+                        Command.NetCommand.AsyncInfo(GameEnum.NetAcyncType.SelectBoardCard);
                     }
 
                 }

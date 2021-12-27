@@ -22,6 +22,7 @@ namespace Server
         public Room(string roomId) => RoomId = roomId;
         internal void Creat(HoldInfo player1, HoldInfo player2)
         {
+            //此处打乱顺序
             P1 = player1.Client;
             P2 = player2.Client;
             Player1Info = player1.UserInfo;
@@ -30,14 +31,14 @@ namespace Server
 
             Player1Info = Player1Info.ShufflePlayerDeck();
             Player2Info = Player2Info.ShufflePlayerDeck();
-            //发送房间号，默认玩家1是先手，将玩家牌组信息打乱并发送给对方
+            //发送房间号，玩家1是先手，将玩家牌组信息打乱并发送给对方
             Summary._id = Guid.NewGuid().ToString("N");
-            Summary.Player1Name = Player1Info.Name;
-            Summary.Player2Name = Player2Info.Name;
+            Summary.Player1Info = Player1Info;
+            Summary.Player2Info = Player2Info;
             Summary.AssemblyVerision = MongoDbCommand.GetLastCardUpdateVersion();
 
-            P1?.SendAsync("StartAgainst", new object[] { RoomId, Player1Info, Player2Info, true, true });
-            P2?.SendAsync("StartAgainst", new object[] { RoomId, Player2Info, Player1Info, false, false });
+            P1?.SendAsync("StartAgainst", new object[] { RoomId, Player1Info, Player2Info, true });
+            P2?.SendAsync("StartAgainst", new object[] { RoomId, Player2Info, Player1Info, false });
 
 
         }

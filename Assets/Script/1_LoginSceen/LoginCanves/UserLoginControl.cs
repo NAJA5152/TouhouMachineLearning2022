@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,10 +26,20 @@ namespace TouhouMachineLearningSummary.Control
             //
             if (!IsAleardyLogin)
             {
-                Command.Network.NetCommand.Init();
-                await CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
+                Command.NetCommand.Init();
+                await Manager.CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
                 UserLogin();//自动登录
                 await Task.Delay(1000);
+                Task.Run(() =>
+                {
+                    var result2 = Command.NetCommand.DownloadAllAgentSummaryAsync(0, 100);
+                    Debug.Log(result2.ToJson());
+
+                    var result1 = Command.NetCommand.DownloadOwnerAgentSummaryAsync(Info.AgainstInfo.onlineUserInfo.Account, 0, 100);
+                    Debug.Log(result1.ToJson());
+                });
+
+
                 await TestBattleAsync();
                 //await Command.BookCommand.InitAsync();
             }
@@ -58,7 +68,7 @@ namespace TouhouMachineLearningSummary.Control
                             _ = Command.GameUI.NoticeCommand.ShowAsync("退出登录",
                             okAction: async () =>
                             {
-                                await CameraViewManager.MoveToViewAsync(0);
+                                await Manager.CameraViewManager.MoveToViewAsync(0);
                                 Command.MenuStateCommand.RebackStare();
                                 Command.MenuStateCommand.ChangeToMainPage(MenuState.Login);
                                 await Command.BookCommand.SetCoverStateAsync(false);
@@ -91,7 +101,7 @@ namespace TouhouMachineLearningSummary.Control
         {
             try
             {
-                int result = await Command.Network.NetCommand.RegisterAsync(Account.text, Password.text);
+                int result = await Command.NetCommand.RegisterAsync(Account.text, Password.text);
                 switch (result)
                 {
                     case (1): await Command.GameUI.NoticeCommand.ShowAsync("注册成功", NotifyBoardMode.Ok); break;
@@ -106,7 +116,7 @@ namespace TouhouMachineLearningSummary.Control
         {
             try
             {
-                bool isSuccessLogin = await Command.Network.NetCommand.LoginAsync(Account.text, Password.text);
+                bool isSuccessLogin = await Command.NetCommand.LoginAsync(Account.text, Password.text);
                 if (isSuccessLogin)
                 {
                     PlayerInfo.UserState onlineUserState = Info.AgainstInfo.onlineUserInfo.OnlineUserState;
@@ -117,7 +127,7 @@ namespace TouhouMachineLearningSummary.Control
                     }
                     Manager.UserInfoManager.Refresh();
                     await Command.BookCommand.InitToOpenStateAsync();
-                    _ = Command.Network.NetCommand.CheckRoomAsync(Account.text, Password.text);
+                    _ = Command.NetCommand.CheckRoomAsync(Account.text, Password.text);
                 }
                 else
                 {
@@ -131,17 +141,10 @@ namespace TouhouMachineLearningSummary.Control
             await Manager.CameraViewManager.MoveToViewAsync(2);
             Command.MenuStateCommand.AddState(MenuState.WaitForBattle);
             Command.BookCommand.SimulateFilpPage(true);//开始翻书
-            PlayerInfo userInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
-            _ = Command.GameUI.NoticeCommand.ShowAsync("排队中", NotifyBoardMode.Cancel, cancelAction: async () =>
-            {
-                Command.BookCommand.SimulateFilpPage(false);//开始翻书
-                await Task.Delay(2000);
-                await Manager.CameraViewManager.MoveToViewAsync(1);
-                Command.MenuStateCommand.RebackStare();
-                await Command.Network.NetCommand.LeaveHoldOnList(AgainstModeType.Story, userInfo.Account);
-
-            });
-            var virtualOpponentInfo = new PlayerInfo(
+            
+            AgainstModeType targetAgainstMode = AgainstModeType.Story;
+            PlayerInfo sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
+            PlayerInfo virtualOpponentInfo = new PlayerInfo(
                   "NPC", "神秘的妖怪", "yaya", "",
                   new List<CardDeck>
                   {
@@ -154,10 +157,22 @@ namespace TouhouMachineLearningSummary.Control
                                     20012,20013,20014,20015,20016,
                                 })
                   });
-            await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Story, userInfo, virtualOpponentInfo);
-            //(PlayerInfo opponentInfo, bool IsOnTheOffensive) = await Command.Network.NetCommand.JoinHoldOnList(AgainstModeType.Story, userInfo, virtualOpponentInfo);
+
+            _ = Command.GameUI.NoticeCommand.ShowAsync("少女排队中~", NotifyBoardMode.Cancel, cancelAction: async () =>
+            {
+                Command.BookCommand.SimulateFilpPage(false);//开始翻书
+                await Task.Delay(2000);
+                await Manager.CameraViewManager.MoveToViewAsync(1);
+                Command.MenuStateCommand.RebackStare();
+                await Command.NetCommand.LeaveHoldOnList(AgainstModeType.Story, sampleUserInfo.Account);
+            });
+            //配置对战模式
+            Manager.AgainstManager.Init();
+            Manager.AgainstManager.SetAgainstMode(targetAgainstMode);
+            //开始排队
+            await Command.NetCommand.JoinHoldOnList(targetAgainstMode, sampleUserInfo, virtualOpponentInfo);
         }
         public void UserServerSelect() => Info.AgainstInfo.isHostNetMode = !Info.AgainstInfo.isHostNetMode;
-        private void OnApplicationQuit() => Command.Network.NetCommand.Dispose();
+        private void OnApplicationQuit() => Command.NetCommand.Dispose();
     }
 }

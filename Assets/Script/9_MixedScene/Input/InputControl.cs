@@ -46,7 +46,7 @@ namespace TouhouMachineLearningSummary.Control
                 PassPressTime += Time.deltaTime;
                 if (PassPressTime > 2)
                 {
-                    Command.Network.NetCommand.AsyncInfo(NetAcyncType.Pass);
+                    Command.NetCommand.AsyncInfo(NetAcyncType.Pass);
                     Info.AgainstInfo.isPlayerPass = true;
                     //Command.GameUI.UiCommand.SetCurrentPass();
                     PassPressTime = 0;

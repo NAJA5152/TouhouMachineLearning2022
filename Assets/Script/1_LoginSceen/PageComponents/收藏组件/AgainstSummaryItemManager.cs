@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,5 +28,10 @@ public class AgainstSummaryItemManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    internal void Init(TouhouMachineLearningSummary.Manager.AgainstSummaryManager summary)
+    {
+        throw new NotImplementedException();
     }
 }

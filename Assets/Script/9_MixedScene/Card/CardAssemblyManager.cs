@@ -102,11 +102,11 @@ namespace TouhouMachineLearningSummary.Manager
 
             static async Task LoadOrDownloadConfig(string date)
             {
-                currentConfig= await Command.Network.NetCommand.DownloadCardConfigsAsync(date);
+                currentConfig= await Command.NetCommand.DownloadCardConfigsAsync(date);
                 cardConfigs[currentConfig.Version] = currentConfig;
             }
         }
-        public static async Task<string> GetCardConfigsVersionAsync() => await Command.Network.NetCommand.GetCardConfigsVersionAsync();
+        public static async Task<string> GetCardConfigsVersionAsync() => await Command.NetCommand.GetCardConfigsVersionAsync();
         public static Type GetCardScript(int id)
         {
             if (isUseLocalAssembly)

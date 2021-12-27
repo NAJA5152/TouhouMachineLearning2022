@@ -3,7 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using System.IO;
 using TouhouMachineLearningSummary.Extension;
-using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
@@ -30,16 +29,23 @@ namespace TouhouMachineLearningSummary.Test
             AgainstInfo.summary.Explort();
             AgainstInfo.summary.Show();
         }
-        [Button("下载记录")]
+        [Button("下载拥有记录")]
         public void test1()
         {
-            var result = Command.Network.NetCommand.DownloadAgentSummaryAsync("0", 0, 100);
+            var result = Command.NetCommand.DownloadOwnerAgentSummaryAsync("0", 0, 100);
+            Debug.Log(result.ToJson());
+        }
+        [Button("下载所有记录")]
+        public void test2()
+        {
+            var result = Command.NetCommand.DownloadAllAgentSummaryAsync(0, 100);
+            Debug.Log(result.ToJson());
         }
         [Button("跳转到指定回合")]
         public void Jump(int totalTurnRank, bool isOnTheOffensive, bool isPlayer1)
         {
             //先加载
-            Info.AgainstInfo.summary = AgainstSummaryManager.Load(1);
+            Info.AgainstInfo.summary = AgainstSummaryManager.Load("");
             Debug.LogWarning(Info.AgainstInfo.summary.ToJson());
             AgainstInfo.IsPlayer1 = isPlayer1;
             //然后跳转
@@ -61,22 +67,6 @@ namespace TouhouMachineLearningSummary.Test
         {
             FiltercardSet = cardSet[tags.ToArray()];
         }
-        public float a;
-        public float b;
-        public float c;
-        private void Start()
-        {
-
-        }
-        private void Update()
-        {
-            //if (Input.GetMouseButtonDown(1))
-            //{
-            //    AgainstManager.Init();
-            //    AgainstManager.SetReplayMode(11);
-            //    AgainstManager.Start();
-            //}
-        }
         private void OnGUI()
         {
             if (GUI.Button(new Rect(0, 0, 100, 50), "翻页模拟效果"))
@@ -86,9 +76,9 @@ namespace TouhouMachineLearningSummary.Test
             if (GUI.Button(new Rect(0, 100, 100, 50), "新版本效果"))
             {
                 AgainstManager.Init();
-                AgainstManager.SetPvPMode(false);
-                AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
-                AgainstManager.SetPlayerInfo(new PlayerInfo(
+                //AgainstManager.SetPvPMode(false);
+                //AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
+                AgainstManager.AutoSetPlayerInfo(new PlayerInfo(
                          "NPC", "gezi", "yaya", "",
                         new List<CardDeck>
                         {
@@ -98,7 +88,7 @@ namespace TouhouMachineLearningSummary.Test
                         })
                         })
                     );
-                AgainstManager.SetOpponentInfo(
+                AgainstManager.AutoSetOpponentInfo(
                    new PlayerInfo(
                          "NPC", "gezi", "yaya", "",
                         new List<CardDeck>
@@ -109,15 +99,15 @@ namespace TouhouMachineLearningSummary.Test
                         })
                         })
                    );
-                AgainstManager.SetCardVersion("");
+                //AgainstManager.SetCardVersion("");
                 Debug.Log("对战start");
-                AgainstManager.Start();
+                AgainstManager.AutoStart();
             }
             if (GUI.Button(new Rect(0, 150, 100, 50), "启动回放模式"))
             {
                 AgainstManager.Init();
-                AgainstManager.SetReplayMode(11);
-                AgainstManager.Start();
+                //AgainstManager.SetReplayMode(11);
+                AgainstManager.AutoStart();
             }
         }
     }

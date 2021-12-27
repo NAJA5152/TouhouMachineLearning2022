@@ -143,7 +143,7 @@ namespace TouhouMachineLearningSummary.Command
             await GameUI.UiCommand.NoticeBoardShow($"对战终止\n{AgainstInfo.ShowScore.MyScore}:{AgainstInfo.ShowScore.OpScore}");
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
-                await Command.Network.NetCommand.AgainstFinish();
+                await Command.NetCommand.AgainstFinish();
             }
             await Task.Delay(2000);
             //Debug.Log("释放线程资源");
@@ -255,7 +255,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task Surrender()
         {
             Debug.Log("投降");
-            Command.Network.NetCommand.AsyncInfo(NetAcyncType.Surrender);
+            Command.NetCommand.AsyncInfo(NetAcyncType.Surrender);
             AgainstInfo.summary.UploadSurrender(AgainstInfo.IsPlayer1);
             await AgainstEnd(true, false);
         }
@@ -379,7 +379,7 @@ namespace TouhouMachineLearningSummary.Command
                 }
                 await Task.Delay(1);
             }
-            Command.Network.NetCommand.AsyncInfo(NetAcyncType.SelectProperty);
+            Command.NetCommand.AsyncInfo(NetAcyncType.SelectProperty);
             Timer.SetIsTimerClose();
             AgainstInfo.IsWaitForSelectProperty = false;
             await CustomThread.Delay(1000);
@@ -423,7 +423,7 @@ namespace TouhouMachineLearningSummary.Command
                 }
                 await Task.Delay(1);
             }
-            Network.NetCommand.AsyncInfo(NetAcyncType.SelectRegion);
+            NetCommand.AsyncInfo(NetAcyncType.SelectRegion);
             AgainstInfo.summary.UploadSelectOperation(SelectOperationType.SelectRegion, triggerCard);
             RowCommand.SetRegionSelectable(GameRegion.None);
             AgainstInfo.IsWaitForSelectRegion = false;
@@ -462,7 +462,7 @@ namespace TouhouMachineLearningSummary.Command
                 }
                 await Task.Delay(1);
             }
-            Network.NetCommand.AsyncInfo(NetAcyncType.SelectLocation);
+            NetCommand.AsyncInfo(NetAcyncType.SelectLocation);
             AgainstInfo.summary.UploadSelectOperation(SelectOperationType.SelectLocation, triggerCard);
             RowCommand.SetRegionSelectable(GameRegion.None);
             AgainstInfo.IsWaitForSelectLocation = false;
@@ -507,7 +507,7 @@ namespace TouhouMachineLearningSummary.Command
                 await Task.Delay(1);
             }
             //Debug.Log("选择单位完毕" + Math.Min(Cards.Count, num));
-            Network.NetCommand.AsyncInfo(NetAcyncType.SelectUnites);
+            NetCommand.AsyncInfo(NetAcyncType.SelectUnites);
             AgainstInfo.summary.UploadSelectOperation(SelectOperationType.SelectUnite, triggerCard, filterCards, num);
             GameUI.UiCommand.DestoryAllArrow();
             await CustomThread.Delay(250);
@@ -572,7 +572,7 @@ namespace TouhouMachineLearningSummary.Command
                             AgainstInfo.isPlayer2RoundStartExchangeOver = true;
                         }
                         GameUI.UiCommand.SetCardBoardHide();
-                        Network.NetCommand.AsyncInfo(NetAcyncType.RoundStartExchangeOver);
+                        NetCommand.AsyncInfo(NetAcyncType.RoundStartExchangeOver);
 
                         bool isAlerdlySummaryPlayer1ExchangeOver = false;
                         bool isAlerdlySummaryPlayer2ExchangeOver = false;

@@ -224,7 +224,7 @@ namespace TouhouMachineLearningSummary.Command
                 AgainstInfo.TargetCard = TargetCard;
                 int MaxCardRank = AgainstInfo.cardSet[Orientation.Down][GameRegion.Deck].CardList.Count;
                 AgainstInfo.washInsertRank = AiCommand.GetRandom(0, MaxCardRank);
-                Network.NetCommand.AsyncInfo(NetAcyncType.ExchangeCard);
+                NetCommand.AsyncInfo(NetAcyncType.ExchangeCard);
                 AgainstInfo.cardSet[Orientation.Down][GameRegion.Hand].Remove(TargetCard);
                 AgainstInfo.cardSet[Orientation.Down][GameRegion.Deck].Add(TargetCard, AgainstInfo.washInsertRank);
                 TargetCard.SetCardSeeAble(false);
@@ -244,7 +244,7 @@ namespace TouhouMachineLearningSummary.Command
             targetCard.isPrepareToPlay = false;
             if (IsAnsy)
             {
-                Network.NetCommand.AsyncInfo(NetAcyncType.PlayCard);
+                NetCommand.AsyncInfo(NetAcyncType.PlayCard);
             }
             targetCard.SetCardSeeAble(true);
             RemoveCard(targetCard);

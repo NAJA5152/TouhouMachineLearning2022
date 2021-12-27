@@ -105,7 +105,7 @@ namespace Server
                     successMatchList.ForEach(targetHoldInfo => targetHoldList.Remove(targetHoldInfo));
                     count += successMatchList.Count;
                 }
-                Console.Write("-");
+                //Console.Write("-");
                 //Console.WriteLine("当前等待列表" + targetHoldList.Count);
                 //Console.WriteLine("等待最久的时间为" + (targetHoldList.FirstOrDefault()?.JoinTime - DateTime.Now));
             }

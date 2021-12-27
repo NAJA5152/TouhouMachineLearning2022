@@ -55,9 +55,16 @@ public class TouHouHub : Hub
             Clients.Client("").SendAsync("ChatReceive", (name, message).ToJson());
         }
     }
+    public void Test(string text)
+    {
+        Clients.Caller.SendAsync("Test","服务器向你问候"+text);
+        Console.WriteLine(text);
+    }
     //////////////////////////////////////////////日志////////////////////////////////////////////////////////////////////
-    //更新牌组信息
-    public List<AgainstSummary> DownloadAgentSummary(string playerName, int skipNum, int takeNum) => MongoDbCommand.QueryAgainstSummary(playerName, skipNum, takeNum);
+    //下载自己的记录
+    public List<AgainstSummary> DownloadOwnerAgentSummary(string playerName, int skipNum, int takeNum) => MongoDbCommand.QueryAgainstSummary(playerName, skipNum, takeNum);
+    //下载所有的记录
+    public List<AgainstSummary> DownloadAllAgentSummary(int skipNum, int takeNum) => MongoDbCommand.QueryAgainstSummary( skipNum, takeNum);
     public void UpdateTurnOperation(string roomId, AgainstSummary.TurnOperation turnOperation) => RoomManager.GetRoom(roomId).Summary.AddTurnOperation(turnOperation);
     public void UpdatePlayerOperation(string roomId, AgainstSummary.TurnOperation.PlayerOperation playerOperation) => RoomManager.GetRoom(roomId).Summary.AddPlayerOperation(playerOperation);
     public void UpdateSelectOperation(string roomId, AgainstSummary.TurnOperation.SelectOperation selectOperation) => RoomManager.GetRoom(roomId).Summary.AddSelectOperation(selectOperation);
