@@ -108,7 +108,7 @@ namespace TouhouMachineLearningSummary.Manager
         /// <summary>
         /// 上传一个回合玩家操作记录
         /// </summary>
-        public async Task UploadPlayerOperationAsync(PlayerOperationType operation, List<Card> targetcardList, Card selectCard)
+        public static async Task UploadPlayerOperationAsync(PlayerOperationType operation, List<Card> targetcardList, Card selectCard)
         {
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
@@ -118,7 +118,7 @@ namespace TouhouMachineLearningSummary.Manager
         /// <summary>
         /// 上传一个回合玩家选择记录
         /// </summary>
-        public async void UploadSelectOperation(SelectOperationType operationType, Card triggerCard = null, List<Card> targetCardList = null, int selectMaxNum = 0, bool isPlayer1ExchangeOver = false)//是否玩家1操作完成
+        public static async void UploadSelectOperation(SelectOperationType operationType, Card triggerCard = null, List<Card> targetCardList = null, int selectMaxNum = 0, bool isPlayer1ExchangeOver = false)//是否玩家1操作完成
         {
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
@@ -167,7 +167,7 @@ namespace TouhouMachineLearningSummary.Manager
         /// <summary>
         /// 上传一个小局记录
         /// </summary>
-        public async void UploadRound()
+        public static async void UploadRound()
         {
             AgainstInfo.turnRank = 0;
             AgainstInfo.isOnTheOffensive = true;
@@ -180,7 +180,7 @@ namespace TouhouMachineLearningSummary.Manager
         /// <summary>
         /// 上传一个回合记录
         /// </summary>
-        public async void UploadTurn()
+        public static async void UploadTurn()
         {
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
@@ -217,7 +217,7 @@ namespace TouhouMachineLearningSummary.Manager
         /// <summary>
         /// 上传回合开始后的点数
         /// </summary>
-        public async void UploadStartPoint()
+        public static async void UploadStartPoint()
         {
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
@@ -227,7 +227,7 @@ namespace TouhouMachineLearningSummary.Manager
         /// <summary>
         /// 上传回合结束前的点数
         /// </summary>
-        public async void UploadEndPoint()
+        public static async void UploadEndPoint()
         {
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
@@ -237,7 +237,7 @@ namespace TouhouMachineLearningSummary.Manager
         /// <summary>
         /// 上传投降记录
         /// </summary>
-        public async void UploadSurrender(bool isPlayer1Surrenddr)
+        public static async void UploadSurrender(bool isPlayer1Surrenddr)
         {
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
@@ -246,8 +246,8 @@ namespace TouhouMachineLearningSummary.Manager
         }
 
         //////////////////////////////////对战指令解析/////////////////////////////////////////////    
-        int currentTurnOperationsRank = 0;//当前指向的玩家回合操作命令编号
-        int currentSelectOperationsRank = 0;//当前指向的玩家回合选择指令编号
+        static int currentTurnOperationsRank = 0;//当前指向的玩家回合操作命令编号
+        static int currentSelectOperationsRank = 0;//当前指向的玩家回合选择指令编号
         public TurnOperation.PlayerOperation GetCurrentPlayerOperation() => TurnOperations[currentTurnOperationsRank].TurnPlayerOperation;
         public TurnOperation.SelectOperation GetCurrentSelectOperation() => TurnOperations[currentTurnOperationsRank].TurnSelectOperations[currentSelectOperationsRank];
         //////////////////////////////////对战记录读取////////////////////////////////////////////

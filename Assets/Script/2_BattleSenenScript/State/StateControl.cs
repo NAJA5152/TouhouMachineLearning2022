@@ -11,7 +11,7 @@ namespace TouhouMachineLearningSummary.Control
         {
             try
             {
-                Manager.TaskLoopManager.Init() ;
+                Manager.TaskLoopManager.Init();
                 //如果位于跳转模式则直接跳过对局初始化阶段并在之后从对战记录初始化战场状态
 
                 if (!AgainstInfo.isJumpMode)
@@ -20,8 +20,8 @@ namespace TouhouMachineLearningSummary.Control
                 }
                 for (; AgainstInfo.roundRank <= 3; AgainstInfo.roundRank++)
                 {
-                    
-                    AgainstInfo.summary.UploadRound();
+
+                    Manager.AgainstSummaryManager.UploadRound();
                     //根据跳转的回合是否是第0回合（小局前置阶段）判断是否执行小局前抽卡操作
                     //在非跳转模式或者跳转目标为第0回合（小局前置阶段）时，会进入小局开始等待换牌阶段，否则直接略过
                     if (!AgainstInfo.isJumpMode || StateCommand.AgainstStateInit())
@@ -38,10 +38,10 @@ namespace TouhouMachineLearningSummary.Control
                         //    StateCommand.AgainstStateInit();
                         //}
                         await StateCommand.TurnStart();
-                        AgainstInfo.summary.UploadStartPoint();
+                        Manager.AgainstSummaryManager.UploadStartPoint();
                         await StateCommand.WaitForPlayerOperation();
                         if (Info.AgainstInfo.isBoothPass) { break; }
-                        AgainstInfo.summary.UploadEndPoint();
+                        Manager.AgainstSummaryManager.UploadEndPoint();
                         await StateCommand.TurnEnd();
                     }
                     await StateCommand.RoundEnd();

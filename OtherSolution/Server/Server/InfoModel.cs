@@ -208,8 +208,5 @@ namespace Server
         }
 
         public void UploadAgentSummary() => MongoDbCommand.InsertAgainstSummary(this);
-        //public bool ContainAccount(string account) => Player1Info?.Account==account|| Player2Info?.Account == account;
-        public bool ContainAccount(string account) => true;
-
     }
 }

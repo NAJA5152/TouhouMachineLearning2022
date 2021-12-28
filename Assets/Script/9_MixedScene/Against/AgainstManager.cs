@@ -92,7 +92,7 @@ namespace TouhouMachineLearningSummary.Manager
         public static async Task AutoStart()
         {
             Info.AgainstInfo.IsMyTurn = Info.AgainstInfo.IsPlayer1;
-            await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.summary.AssemblyVerision);
+            await CardAssemblyManager.SetCurrentAssembly(LoadAssemblyVerision);
             if (Info.AgainstInfo.userDeck == null)
             {
                 AutoSetPlayerInfo(defaultPlayerInfo);
