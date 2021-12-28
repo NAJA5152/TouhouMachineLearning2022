@@ -21,7 +21,7 @@ namespace TouhouMachineLearningSummary.Info
         /// </summary>
         public bool triggerMeanWhile = false;
         [JsonIgnore]
-        public Card targetCard => targetCards[0];
+        public Card targetCard => targetCards.FirstOrDefault();
         public int point;
         public Location location = new Location(-1, -1);
         public BulletModel bulletModel { get; set; }
