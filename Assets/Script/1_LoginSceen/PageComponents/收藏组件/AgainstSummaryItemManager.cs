@@ -11,6 +11,7 @@ namespace TouhouMachineLearningSummary.Manager
         public Text time;
         public Text tag;
         public Text result;
+        AgainstManager summary;
         public void ChangeTag()
         {
 

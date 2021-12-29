@@ -98,7 +98,7 @@ namespace TouhouMachineLearningSummary.Command
                     Command.BookCommand.ActiveCompment(BookCompmentType.Shrine);
                     break;
                 case MenuState.Collect:
-                    Manager.CollectionManager.Init();
+                    Command.CollectionCommand.Init();
                     Command.BookCommand.ActiveCompment(BookCompmentType.Collect);
                     break;
                 case MenuState.Config:

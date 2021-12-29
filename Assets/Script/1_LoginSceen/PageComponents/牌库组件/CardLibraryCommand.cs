@@ -16,7 +16,6 @@ namespace TouhouMachineLearningSummary.Command
             //multiModeCards = Command.CardLibrary.CardLibraryCommand.GetLibraryInfo().multiModeCards;
 
             //牌库卡牌列表
-           
             var showCardList = CardAssemblyManager.GetLastMultiCardInfos;
             //如果当前是编辑卡组模式，则只显示指定阵营
             if (Info.CardCompnentInfo.isEditDeckMode)
@@ -25,9 +24,7 @@ namespace TouhouMachineLearningSummary.Command
                 showCardList = showCardList.Where(card => card.cardRank == GameEnum.CardRank.Silver).ToList();
             }
             int libraryCardNumber = showCardList.Count();
-
             //如果处于卡组编辑状态，则对卡牌列表做个筛选
-
             //已生成卡牌列表
             int libraryModelNumber = Info.CardCompnentInfo.libraryCardModels.Count;
             Info.CardCompnentInfo.libraryCardModels.ForEach(model => model.SetActive(false));
@@ -64,7 +61,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (Info.CardCompnentInfo.IsAdmin)
             {
-                return 10;
+                return 3;
             }
             else
             {

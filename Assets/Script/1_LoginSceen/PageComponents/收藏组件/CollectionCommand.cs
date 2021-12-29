@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TouhouMachineLearningSummary.Manager;
 using UnityEngine;
-namespace TouhouMachineLearningSummary.Manager
+namespace TouhouMachineLearningSummary.Command
 {
-    public class CollectionManager : MonoBehaviour
+    public class CollectionCommand : MonoBehaviour
     {
         public GameObject againstSummaryComponent;
         public GameObject againstSummaryItem;
@@ -15,7 +16,7 @@ namespace TouhouMachineLearningSummary.Manager
         public GameObject cgComponent;
 
         static List<GameObject> CreatItem { get; set; }=new List<GameObject>();
-        public static CollectionManager Manager { get; set; }
+        public static CollectionCommand Manager { get; set; }
         void Awake() => Manager = this;
         public static void Init()
         {
