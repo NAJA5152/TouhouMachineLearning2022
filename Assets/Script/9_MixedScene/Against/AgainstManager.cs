@@ -5,6 +5,7 @@ using TouhouMachineLearningSummary.Thread;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 namespace TouhouMachineLearningSummary.Manager
 {
@@ -31,12 +32,15 @@ namespace TouhouMachineLearningSummary.Manager
             });
         public static void Init()
         {
+           
+
             AutoSetPlayerInfo(null);
             AutoSetOpponentInfo(null);
             LoadAssemblyVerision = "";
             Info.AgainstInfo.isReplayMode = false;
             Info.AgainstInfo.summary = null;
         }
+
 
         /////////////////////////////////////////////////////////////////////自定义配置///////////////////////////////////////////////////////////
         /// <summary>
@@ -48,10 +52,11 @@ namespace TouhouMachineLearningSummary.Manager
         /// 设置为回放模式
         /// </summary>
         /// <param name="rules"></param>
-        public static void SetReplayMode(string summaryID)
+        public static void SetReplayMode(AgainstSummaryManager summary)
         {
             Info.AgainstInfo.isReplayMode = true;
-            Info.AgainstInfo.summary = AgainstSummaryManager.Load(summaryID);
+            //Info.AgainstInfo.summary = AgainstSummaryManager.Load(summaryID);
+            Info.AgainstInfo.summary = summary;
             LoadAssemblyVerision = Info.AgainstInfo.summary.AssemblyVerision;
         }
         /// <summary>

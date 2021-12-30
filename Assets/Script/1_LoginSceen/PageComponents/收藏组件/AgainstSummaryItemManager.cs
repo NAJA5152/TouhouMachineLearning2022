@@ -11,7 +11,7 @@ namespace TouhouMachineLearningSummary.Manager
         public Text time;
         public Text tag;
         public Text result;
-        AgainstManager summary;
+        AgainstSummaryManager summary;
         public void ChangeTag()
         {
 
@@ -20,9 +20,11 @@ namespace TouhouMachineLearningSummary.Manager
         {
 
         }
-        public void Replay()
+        public async void Replay()
         {
-
+            AgainstManager.Init();
+            AgainstManager.SetReplayMode(summary);
+           await AgainstManager.AutoStart();
         }
         // Start is called before the first frame update
         void Start()

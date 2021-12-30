@@ -61,7 +61,7 @@ namespace TouhouMachineLearningSummary.Manager
                 this.TurnRank = AgainstInfo.turnRank;
                 this.TotalTurnRank = AgainstInfo.totalTurnRank;
                 this.IsOnTheOffensive = AgainstInfo.isOnTheOffensive;
-                this.IsPlayer1Turn = AgainstInfo.IsPlayer1 ^ AgainstInfo.IsMyTurn;
+                this.IsPlayer1Turn = AgainstInfo.IsPlayer1 !^ AgainstInfo.IsMyTurn;
                 this.AllCardList = CardSet.globalCardList.SelectList(cardlist => cardlist.SelectList(card => new SampleCardModel(card)));
                 return this;
             }
