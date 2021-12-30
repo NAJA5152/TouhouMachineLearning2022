@@ -6,12 +6,11 @@ namespace TouhouMachineLearningSummary.Manager
 {
     public class AgainstSummaryItemManager : MonoBehaviour
     {
-        public string id;
         public Text playerName;
         public Text time;
         public Text tag;
         public Text result;
-        AgainstSummaryManager summary;
+        AgainstSummaryManager Summary { get; set; }
         public void ChangeTag()
         {
 
@@ -23,8 +22,8 @@ namespace TouhouMachineLearningSummary.Manager
         public async void Replay()
         {
             AgainstManager.Init();
-            AgainstManager.SetReplayMode(summary);
-           await AgainstManager.AutoStart();
+            AgainstManager.SetReplayStart(Summary);
+            await AgainstManager.AutoStart();
         }
         // Start is called before the first frame update
         void Start()
@@ -40,9 +39,10 @@ namespace TouhouMachineLearningSummary.Manager
 
         public void Init(AgainstSummaryManager summary)
         {
+            Summary = summary;
             playerName.text = summary.Player1Info.Name + " VS " + summary.Player2Info.Name;
             time.text = summary.UpdateTime.ToString();
-            result.text= "Ê¤¸º";
+            result.text = "Ê¤¸º";
         }
     }
 }

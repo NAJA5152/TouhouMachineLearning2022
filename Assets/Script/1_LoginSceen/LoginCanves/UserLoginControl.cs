@@ -40,7 +40,7 @@ namespace TouhouMachineLearningSummary.Control
                 //});
 
 
-                await TestBattleAsync();
+                //await TestBattleAsync();
                 //await Command.BookCommand.InitAsync();
             }
         }

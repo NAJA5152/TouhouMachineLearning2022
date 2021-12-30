@@ -32,7 +32,7 @@ namespace TouhouMachineLearningSummary.Manager
             });
         public static void Init()
         {
-           
+
 
             AutoSetPlayerInfo(null);
             AutoSetOpponentInfo(null);
@@ -49,15 +49,19 @@ namespace TouhouMachineLearningSummary.Manager
         /// <param name="rules"></param>
         public static void SetRules(params bool[] rules) => Console.WriteLine("待定");
         /// <summary>
-        /// 设置为回放模式
+        /// 设置回放模式
         /// </summary>
         /// <param name="rules"></param>
-        public static void SetReplayMode(AgainstSummaryManager summary)
+        public static void SetReplayStart(AgainstSummaryManager summary)
         {
             Info.AgainstInfo.isReplayMode = true;
             //Info.AgainstInfo.summary = AgainstSummaryManager.Load(summaryID);
             Info.AgainstInfo.summary = summary;
             LoadAssemblyVerision = Info.AgainstInfo.summary.AssemblyVerision;
+            Info.AgainstInfo.IsPlayer1 = true;
+            Info.AgainstInfo.currentUserInfo = summary.Player1Info;
+            Info.AgainstInfo.currentOpponentInfo = summary.Player2Info;
+            AutoStart();
         }
         /// <summary>
         /// 设置对战模式

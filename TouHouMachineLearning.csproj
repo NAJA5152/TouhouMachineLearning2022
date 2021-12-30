@@ -156,7 +156,7 @@
     <Compile Include="Assets\Script\9_MixedScene\Dialogue\DialogueModel.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\NotifyBoard\NotifyCommand.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡牌列表组件\CardListControl.cs" />
-    <Compile Include="Assets\Script\1_LoginSceen\PageComponents\收藏组件\CollectionManager.cs" />
+    <Compile Include="Assets\Script\1_LoginSceen\PageComponents\收藏组件\CollectionCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Network\NetInfoModel.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Against\AgainstInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Audio\AudioInfo.cs" />
