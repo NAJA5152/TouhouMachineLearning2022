@@ -227,8 +227,6 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task TurnEnd()
         {
-            var a = (Input.gyro.userAcceleration - Input.gyro.gravity) * Time.deltaTime;
-            var b = Input.gyro.rotationRate;
             RowCommand.SetPlayCardMoveFree(false);
             await GameUI.UiCommand.NoticeBoardShow((AgainstInfo.IsMyTurn ? "我方回合结束" : "对方回合结束").Translation());
             await GameSystem.ProcessSystem.WhenTurnEnd();
@@ -277,7 +275,7 @@ namespace TouhouMachineLearningSummary.Command
             //初始化要打出/放弃/过牌操作
             while (true)
             {
-                //如果是录播模式，则通过制定的对局数据获取操作记录
+                //如果是录播模式，则通过指定的对局数据获取操作记录
                 if (AgainstInfo.isReplayMode)
                 {
                     var operation = AgainstInfo.summary.GetCurrentPlayerOperation();
@@ -287,7 +285,7 @@ namespace TouhouMachineLearningSummary.Command
                     }
                     else if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.DisCard)
                     {
-                        Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList[operation.SelectCardIndex];
+                        Info.AgainstInfo.playerDisCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList[operation.SelectCardIndex];
                     }
                     else if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.Pass)
                     {
@@ -322,11 +320,11 @@ namespace TouhouMachineLearningSummary.Command
                 //如果当前回合出牌
                 if (Info.AgainstInfo.playerPlayCard != null)
                 {
-                    Debug.Log("当前打出了牌");
+                    //Debug.Log("当前打出了牌");
                     await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.PlayCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, AgainstInfo.playerPlayCard);
                     //假如是我的回合，则广播操作给对方，否则只接收操作不广播
                     await GameSystem.TransSystem.PlayCard(new TriggerInfo(null).SetTargetCard(AgainstInfo.playerPlayCard), AgainstInfo.IsMyTurn);
-                    Debug.Log("打出效果执行完毕");
+                    //Debug.Log("打出效果执行完毕");
 
                     break;
                 }
@@ -442,7 +440,8 @@ namespace TouhouMachineLearningSummary.Command
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
                     if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectLocation)
                     {
-                        List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos.Where(row => row.CanBeSelected).ToList();
+                        //List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos.Where(row => row.CanBeSelected).ToList();//不进行筛选
+                        List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos;
                         AgainstInfo.SelectRegion = rows[operation.SelectRegionRank];
                         AgainstInfo.SelectLocation = operation.SelectLocation;
                     }

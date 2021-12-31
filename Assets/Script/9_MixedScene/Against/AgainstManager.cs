@@ -15,7 +15,7 @@ namespace TouhouMachineLearningSummary.Manager
     public partial class AgainstManager
     {
         //对战加载的卡牌数据版本
-        static string LoadAssemblyVerision = "";
+        //static string LoadAssemblyVerision = "";
         static PlayerInfo defaultPlayerInfo => new PlayerInfo("NPC", "默认NPC", "无名", "",
             new List<CardDeck>()
             {
@@ -36,7 +36,7 @@ namespace TouhouMachineLearningSummary.Manager
 
             AutoSetPlayerInfo(null);
             AutoSetOpponentInfo(null);
-            LoadAssemblyVerision = "";
+            //LoadAssemblyVerision = "";
             Info.AgainstInfo.isReplayMode = false;
             Info.AgainstInfo.summary = null;
         }
@@ -52,16 +52,18 @@ namespace TouhouMachineLearningSummary.Manager
         /// 设置回放模式
         /// </summary>
         /// <param name="rules"></param>
-        public static void SetReplayStart(AgainstSummaryManager summary)
+        public static async void ReplayStart(AgainstSummaryManager summary)
         {
             Info.AgainstInfo.isReplayMode = true;
-            //Info.AgainstInfo.summary = AgainstSummaryManager.Load(summaryID);
             Info.AgainstInfo.summary = summary;
-            LoadAssemblyVerision = Info.AgainstInfo.summary.AssemblyVerision;
-            Info.AgainstInfo.IsPlayer1 = true;
+            //LoadAssemblyVerision = Info.AgainstInfo.summary.AssemblyVerision;
+            Info.AgainstInfo.IsPlayer1 = true;//待完善，默认1号玩家
             Info.AgainstInfo.currentUserInfo = summary.Player1Info;
             Info.AgainstInfo.currentOpponentInfo = summary.Player2Info;
-            AutoStart();
+            Info.AgainstInfo.IsMyTurn = Info.AgainstInfo.IsPlayer1;
+            await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.summary.AssemblyVerision);
+            SceneManager.LoadSceneAsync("2_BattleScene");
+
         }
         /// <summary>
         /// 设置对战模式
@@ -101,7 +103,7 @@ namespace TouhouMachineLearningSummary.Manager
         public static async Task AutoStart()
         {
             Info.AgainstInfo.IsMyTurn = Info.AgainstInfo.IsPlayer1;
-            await CardAssemblyManager.SetCurrentAssembly(LoadAssemblyVerision);
+            await CardAssemblyManager.SetCurrentAssembly("");
             if (Info.AgainstInfo.userDeck == null)
             {
                 AutoSetPlayerInfo(defaultPlayerInfo);

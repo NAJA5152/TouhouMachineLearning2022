@@ -30,8 +30,8 @@ namespace TouhouMachineLearningSummary.Manager
     {
         public string _id { get; set; }
         public string AssemblyVerision { get; set; } = "";
-        public  PlayerInfo Player1Info { get; set; }
-        public  PlayerInfo Player2Info { get; set; }
+        public PlayerInfo Player1Info { get; set; }
+        public PlayerInfo Player2Info { get; set; }
         public string Winner { get; set; } = "";
         public DateTime UpdateTime { get; set; }
         //是否按照流程完成对局
@@ -61,7 +61,7 @@ namespace TouhouMachineLearningSummary.Manager
                 this.TurnRank = AgainstInfo.turnRank;
                 this.TotalTurnRank = AgainstInfo.totalTurnRank;
                 this.IsOnTheOffensive = AgainstInfo.isOnTheOffensive;
-                this.IsPlayer1Turn = AgainstInfo.IsPlayer1 !^ AgainstInfo.IsMyTurn;
+                this.IsPlayer1Turn = AgainstInfo.IsPlayer1! ^ AgainstInfo.IsMyTurn;
                 this.AllCardList = CardSet.globalCardList.SelectList(cardlist => cardlist.SelectList(card => new SampleCardModel(card)));
                 return this;
             }
@@ -195,24 +195,12 @@ namespace TouhouMachineLearningSummary.Manager
             else
             {
                 //回放模式下每回合指针加一
-                currentTurnOperationsRank++;
+                if (AgainstInfo.isReplayMode)
+                {
+                    currentTurnOperationsRank++;
+                }
             }
-            //if (AgainstInfo.isReplayMode && AgainstInfo.isPlayer1)
-            //{
-            //    //回放模式下每回合指针加一
-            //    currentTurnOperationsRank++;
-            //}
-            //else
-            //{
-            //    if (!AgainstInfo.isOnTheOffensive)
-            //    {
-            //        AgainstInfo.turnRank++;
-            //        AgainstInfo.totalTurnRank++;
-            //    }
-            //    //TurnOperations.Add(new TurnOperation().Init());
-            //    await Command.NetCommand.UpdateTurnOperationAsync(new TurnOperation().Init());
-            //    AgainstInfo.isOnTheOffensive = !AgainstInfo.isOnTheOffensive;
-            //}
+            currentSelectOperationsRank = 0;
         }
         /// <summary>
         /// 上传回合开始后的点数
@@ -248,8 +236,26 @@ namespace TouhouMachineLearningSummary.Manager
         //////////////////////////////////对战指令解析/////////////////////////////////////////////    
         static int currentTurnOperationsRank = 0;//当前指向的玩家回合操作命令编号
         static int currentSelectOperationsRank = 0;//当前指向的玩家回合选择指令编号
-        public TurnOperation.PlayerOperation GetCurrentPlayerOperation() => TurnOperations[currentTurnOperationsRank].TurnPlayerOperation;
-        public TurnOperation.SelectOperation GetCurrentSelectOperation() => TurnOperations[currentTurnOperationsRank].TurnSelectOperations[currentSelectOperationsRank];
+        public TurnOperation.PlayerOperation GetCurrentPlayerOperation()
+        {
+            TurnOperation.PlayerOperation turnPlayerOperation = TurnOperations[currentTurnOperationsRank].TurnPlayerOperation;
+
+            Debug.Log($"读取到指令类型：{turnPlayerOperation.Operation.OneHotToEnum<PlayerOperationType>()} 目标卡片为：{turnPlayerOperation.SelectCardID}");
+
+            return turnPlayerOperation;
+        }
+
+        public TurnOperation.SelectOperation GetCurrentSelectOperation()
+        {
+            int maxRank = TurnOperations[currentTurnOperationsRank].TurnSelectOperations.Count;
+            if (currentSelectOperationsRank>= maxRank)
+            {
+                //执行到最后检查一下状态，看看是否投降  检查是否投降
+            }
+            TurnOperation.SelectOperation selectOperation = TurnOperations[currentTurnOperationsRank].TurnSelectOperations[currentSelectOperationsRank];
+            Debug.Log($"读取到指令类型{selectOperation.Operation.OneHotToEnum<SelectOperationType>()} {selectOperation.SelectMaxNum}");
+            return selectOperation;
+        }
         //////////////////////////////////对战记录读取////////////////////////////////////////////
         public static AgainstSummaryManager Load(string summaryID) => File.ReadAllText("summary.json").ToObject<AgainstSummaryManager>();
         public void Replay(int TotalRank)

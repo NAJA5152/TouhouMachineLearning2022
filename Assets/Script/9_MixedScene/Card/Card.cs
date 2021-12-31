@@ -202,7 +202,6 @@ namespace TouhouMachineLearningSummary.Model
             {
                 async (triggerInfo) =>
                 {
-                    Debug.LogError("开始召唤");
                   await Command.CardCommand.SummonCard(this);
                 }
             };

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
@@ -39,7 +40,7 @@ namespace TouhouMachineLearningSummary.Control
                 //    Debug.Log(result1.ToJson());
                 //});
 
-
+                await TestReplayAsync();
                 //await TestBattleAsync();
                 //await Command.BookCommand.InitAsync();
             }
@@ -136,12 +137,18 @@ namespace TouhouMachineLearningSummary.Control
             }
             catch (System.Exception e) { Debug.LogException(e); }
         }
+        public async Task TestReplayAsync()
+        {
+            var summarys = await Command.NetCommand.DownloadOwnerAgentSummaryAsync(Info.AgainstInfo.onlineUserInfo.Account, 0, 20);
+            Manager.AgainstManager.ReplayStart(summarys.Last());
+        }
         public async Task TestBattleAsync()
         {
+
             await Manager.CameraViewManager.MoveToViewAsync(2);
             Command.MenuStateCommand.AddState(MenuState.WaitForBattle);
             Command.BookCommand.SimulateFilpPage(true);//开始翻书
-            
+
             AgainstModeType targetAgainstMode = AgainstModeType.Story;
             PlayerInfo sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
             PlayerInfo virtualOpponentInfo = new PlayerInfo(

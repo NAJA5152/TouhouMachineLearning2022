@@ -22,8 +22,7 @@ namespace TouhouMachineLearningSummary.Manager
         public async void Replay()
         {
             AgainstManager.Init();
-            AgainstManager.SetReplayStart(Summary);
-            await AgainstManager.AutoStart();
+            AgainstManager.ReplayStart(Summary);
         }
         // Start is called before the first frame update
         void Start()
