@@ -2,11 +2,30 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TouhouMachineLearningSummary.Manager;
 using UnityEngine;
 namespace TouhouMachineLearningSummary.Thread
 {
     public class CustomThread : MonoBehaviour
     {
+        /// <summary>
+        /// 等待指定值函数
+        /// </summary>
+        public static async Task UnitllAcync(Func<bool> cond, Action runAction = null)
+        {
+            while (true)
+            {
+                TaskLoopManager.Throw();
+
+                if (cond())
+                {
+                    runAction();
+                    break;
+                }
+                await Task.Delay(10);
+
+            }
+        }
         /// <summary>
         /// 定时任务模块
         /// </summary>

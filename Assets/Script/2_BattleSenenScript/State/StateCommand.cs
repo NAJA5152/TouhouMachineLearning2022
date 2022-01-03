@@ -162,8 +162,7 @@ namespace TouhouMachineLearningSummary.Command
             {
                 case (1):
                     {
-                        Info.AgainstInfo.ExChangeableCardNum = 0;
-                        //Info.AgainstInfo.ExChangeableCardNum = 3;
+                        Info.AgainstInfo.ExChangeableCardNum = 3;
                         Info.GameUI.UiInfo.CardBoardTitle = "剩余抽卡次数为".Translation() + Info.AgainstInfo.ExChangeableCardNum;
                         for (int i = 0; i < 10; i++)
                         {
@@ -219,7 +218,7 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task TurnStart()
         {
-           Manager.AgainstSummaryManager.UploadTurn();
+            Manager.AgainstSummaryManager.UploadTurn();
             await GameUI.UiCommand.NoticeBoardShow((AgainstInfo.IsMyTurn ? "我方回合开始" : "对方回合开始").Translation());
             RowCommand.SetPlayCardMoveFree(AgainstInfo.IsMyTurn);
             await CustomThread.Delay(1000);
@@ -254,7 +253,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             Debug.Log("投降");
             Command.NetCommand.AsyncInfo(NetAcyncType.Surrender);
-           Manager.AgainstSummaryManager.UploadSurrender(AgainstInfo.IsPlayer1);
+            Manager.AgainstSummaryManager.UploadSurrender(AgainstInfo.IsPlayer1);
             await AgainstEnd(true, false);
         }
         ////////////////////////////////////////////////////等待操作指令////////////////////////////////////////////////////////////////////////////////
@@ -279,7 +278,7 @@ namespace TouhouMachineLearningSummary.Command
                 if (AgainstInfo.isReplayMode)
                 {
                     var operation = AgainstInfo.summary.GetCurrentPlayerOperation();
-                    if (operation!=null)//如果拥有指令则执行，否则为pass跳过
+                    if (operation != null)//如果拥有指令则执行，否则为pass跳过
                     {
                         if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.PlayCard)
                         {
@@ -549,82 +548,136 @@ namespace TouhouMachineLearningSummary.Command
                     break;
                 case CardBoardMode.ExchangeCard:
                     {
-                        AiCommand.RoundStartExchange(false);
-                        while (Info.AgainstInfo.ExChangeableCardNum != 0 && !Info.AgainstInfo.IsSelectCardOver)
+
+
+                        //await CustomThread.UnitllAcync(() => Info.AgainstInfo.ExChangeableCardNum != 0 && !Info.AgainstInfo.IsSelectCardOver, null);
+                        if (AgainstInfo.isReplayMode)
                         {
-                            TaskLoopManager.Throw();
-                            if (AgainstInfo.isReplayMode)
+                            Debug.LogWarning("以记录方式读取操作");
+                            AgainstInfo.summary.GetCurrentSelectOperations().ForEach(async operation =>
                             {
-                                var operation = AgainstInfo.summary.GetCurrentSelectOperation();
                                 if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectBoardCard)
                                 {
+                                    //如果是我方换牌，则记录，如果是对方换牌，直接生效
                                     Info.AgainstInfo.selectBoardCardRanks = operation.SelectBoardCardRanks;
+                                    Info.AgainstInfo.washInsertRank = operation.WashInsertRank;
+                                    bool isPlayer1Select = operation.IsPlayer1Select;
+
+                                    List<Card> CardLists = AgainstInfo.cardSet[Orientation.Down][GameRegion.Hand].CardList;
+                                    int selectRank = AgainstInfo.selectBoardCardRanks[0];
+                                    //卡牌记录出现问题？？？明天修
+                                    AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectBoardCard, triggerCard, CardLists, 1);
+                                    //交换对象需要重新考究
+                                    await CardCommand.ExchangeCard(CardLists[selectRank], IsPlayerExchange: isPlayer1Select, isRoundStartExchange: true, WashInsertRank: AgainstInfo.washInsertRank);
+                                    Info.AgainstInfo.ExChangeableCardNum--;
+                                    Info.AgainstInfo.selectBoardCardRanks.Clear();
+                                    GameUI.UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
+                                }
+                                else if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectExchangeOver)
+                                {
+
+                                    if (operation.IsPlay1ExchangeOver)
+                                    {
+                                        AgainstInfo.isPlayer1RoundStartExchangeOver = true;
+                                    }
+                                    else
+                                    {
+                                        AgainstInfo.isPlayer2RoundStartExchangeOver = true;
+                                    }
                                 }
                                 else
                                 {
                                     Debug.LogError("对战记录识别出现严重bug");
                                     throw new Exception("");
                                 }
-                            }
-                            if (Info.AgainstInfo.selectBoardCardRanks.Count > 0)
-                            {
-                                //List<Card> CardLists = CardIds.Cast<Card>().ToList();
-                                List<Card> CardLists = AgainstInfo.cardSet[Orientation.Down][GameRegion.Hand].CardList;
-                                int selectRank = AgainstInfo.selectBoardCardRanks[0];
-                                //卡牌记录出现问题？？？明天修
-                                AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectBoardCard, triggerCard, CardLists, 1);
-                                await CardCommand.ExchangeCard(CardLists[selectRank], isRoundStartExchange: true);
-                                Info.AgainstInfo.ExChangeableCardNum--;
-                                Info.AgainstInfo.selectBoardCardRanks.Clear();
-                                GameUI.UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
-
-                            }
-                            await Task.Delay(10);
-                        }
-                        if (AgainstInfo.IsPlayer1)
-                        {
-                            AgainstInfo.isPlayer1RoundStartExchangeOver = true;
-
+                            });
                         }
                         else
                         {
-                            AgainstInfo.isPlayer2RoundStartExchangeOver = true;
-                        }
-                        GameUI.UiCommand.SetCardBoardHide();
-                        NetCommand.AsyncInfo(NetAcyncType.RoundStartExchangeOver);
-
-                        bool isAlerdlySummaryPlayer1ExchangeOver = false;
-                        bool isAlerdlySummaryPlayer2ExchangeOver = false;
-                        while (true)
-                        {
-                            TaskLoopManager.cancel.Token.ThrowIfCancellationRequested();
-
-                            if (isAlerdlySummaryPlayer1ExchangeOver && isAlerdlySummaryPlayer2ExchangeOver)//退出流程
+                            //我方超时或者打ai时对方自动结束换牌
+                            AiCommand.RoundStartExchange(false);
+                            //如果满足换牌条件则持续换牌状态
+                            while (Info.AgainstInfo.ExChangeableCardNum != 0 && !Info.AgainstInfo.IsSelectCardOver)
                             {
-                                if (AgainstInfo.isPlayer1RoundStartExchangeOver && AgainstInfo.isPlayer2RoundStartExchangeOver)
-                                {
-                                    AgainstInfo.isPlayer1RoundStartExchangeOver = false;
-                                    AgainstInfo.isPlayer2RoundStartExchangeOver = false;
-                                    AgainstInfo.IsSelectCardOver = false;
-                                    break;
-                                }
+                                TaskLoopManager.Throw();
+                                //通过对战记录换牌
 
+                                //有牌要被换
+                                if (Info.AgainstInfo.selectBoardCardRanks.Count > 0)
+                                {
+                                    List<Card> CardLists = AgainstInfo.cardSet[Orientation.Down][GameRegion.Hand].CardList;
+                                    int selectRank = AgainstInfo.selectBoardCardRanks[0];
+                                    //卡牌记录出现问题？？？明天修
+                                    AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectBoardCard, triggerCard, CardLists, 1, isPlayer1Select: Info.AgainstInfo.IsPlayer1);
+                                    await CardCommand.ExchangeCard(CardLists[selectRank], isRoundStartExchange: true, WashInsertRank: AgainstInfo.washInsertRank);
+                                    Info.AgainstInfo.ExChangeableCardNum--;
+                                    Info.AgainstInfo.selectBoardCardRanks.Clear();
+                                    GameUI.UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
+                                }
+                                await Task.Delay(10);
+                            }
+                            //跳出换牌循环，并告知对面
+                            if (AgainstInfo.IsPlayer1)
+                            {
+                                AgainstInfo.isPlayer1RoundStartExchangeOver = true;
                             }
                             else
                             {
-                                if (AgainstInfo.isPlayer1RoundStartExchangeOver && !isAlerdlySummaryPlayer1ExchangeOver)
-                                {
-                                    AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectExchangeOver, isPlayer1ExchangeOver: true);
-                                    isAlerdlySummaryPlayer1ExchangeOver = true;
-                                }
-                                if (AgainstInfo.isPlayer2RoundStartExchangeOver && !isAlerdlySummaryPlayer2ExchangeOver)
-                                {
-                                    AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectExchangeOver, isPlayer1ExchangeOver: false);
-                                    isAlerdlySummaryPlayer2ExchangeOver = true;
-                                }
+                                AgainstInfo.isPlayer2RoundStartExchangeOver = true;
                             }
-                            await Task.Delay(10);
+                            NetCommand.AsyncInfo(NetAcyncType.RoundStartExchangeOver);
                         }
+
+                        GameUI.UiCommand.SetCardBoardHide();
+
+
+                        //等待双方退出（新）
+                        await CustomThread.UnitllAcync(
+                            () => AgainstInfo.isPlayer1RoundStartExchangeOver,
+                            () => AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectExchangeOver, isPlayer1ExchangeOver: true)
+                        );
+                        await CustomThread.UnitllAcync(
+                            () => AgainstInfo.isPlayer2RoundStartExchangeOver,
+                            () => AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectExchangeOver, isPlayer1ExchangeOver: false)
+                        );
+
+                        AgainstInfo.isPlayer1RoundStartExchangeOver = false;
+                        AgainstInfo.isPlayer2RoundStartExchangeOver = false;
+                        AgainstInfo.IsSelectCardOver = false;
+
+
+                        ////等待双方都退出
+                        //bool isAlerdlySummaryPlayer1ExchangeOver = false;
+                        //bool isAlerdlySummaryPlayer2ExchangeOver = false;
+                        //while (true)
+                        //{
+                        //    TaskLoopManager.cancel.Token.ThrowIfCancellationRequested();
+
+                        //    if (isAlerdlySummaryPlayer1ExchangeOver && isAlerdlySummaryPlayer2ExchangeOver)//退出流程
+                        //    {
+                        //        if (AgainstInfo.isPlayer1RoundStartExchangeOver && AgainstInfo.isPlayer2RoundStartExchangeOver)
+                        //        {
+                        //            AgainstInfo.isPlayer1RoundStartExchangeOver = false;
+                        //            AgainstInfo.isPlayer2RoundStartExchangeOver = false;
+                        //            AgainstInfo.IsSelectCardOver = false;
+                        //            break;
+                        //        }
+                        //    }
+                        //    else
+                        //    {
+                        //        if (AgainstInfo.isPlayer1RoundStartExchangeOver && !isAlerdlySummaryPlayer1ExchangeOver)
+                        //        {
+                        //            AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectExchangeOver, isPlayer1ExchangeOver: true);
+                        //            isAlerdlySummaryPlayer1ExchangeOver = true;
+                        //        }
+                        //        if (AgainstInfo.isPlayer2RoundStartExchangeOver && !isAlerdlySummaryPlayer2ExchangeOver)
+                        //        {
+                        //            AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectExchangeOver, isPlayer1ExchangeOver: false);
+                        //            isAlerdlySummaryPlayer2ExchangeOver = true;
+                        //        }
+                        //    }
+                        //    await Task.Delay(10);
+                        //}
                         break;
                     }
                 case CardBoardMode.ShowOnly:

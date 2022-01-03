@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
@@ -13,7 +14,8 @@ namespace TouhouMachineLearningSummary.Command
         public static int GetRandom(int Min, int Max) => rand.Next(Min, Max);
         public static void RoundStartExchange(bool isControlPlayer)
         {
-            if (isControlPlayer)//超时自动操纵玩家时
+            //如果超时，自动设置当前操作者结束换牌
+            if (isControlPlayer)
             {
                 if (AgainstInfo.IsPlayer1)
                 {
@@ -52,7 +54,7 @@ namespace TouhouMachineLearningSummary.Command
             else
             {
 
-                Card targetCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList[0];
+                Card targetCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList.Last();
                 Info.AgainstInfo.playerPlayCard = targetCard;
             }
         }

@@ -32,7 +32,7 @@ namespace TouhouMachineLearningSummary.Manager
         public string AssemblyVerision { get; set; } = "";
         public PlayerInfo Player1Info { get; set; }
         public PlayerInfo Player2Info { get; set; }
-        public string Winner { get; set; } = "";
+        public int Winner { get; set; } = 0;
         public DateTime UpdateTime { get; set; }
         //是否按照流程完成对局
         bool IsFinishAgainst { get; set; }
@@ -92,6 +92,12 @@ namespace TouhouMachineLearningSummary.Manager
                 public int TriggerCardID { get; set; }
                 //选择面板卡牌
                 public List<int> SelectBoardCardRanks { get; set; }
+                //换牌时洗入的位置
+                public int WashInsertRank { get; internal set; }
+                public bool IsPlayer1Select { get; set; }
+                //换牌完成,true为玩家1换牌操作，false为玩家2换牌操作
+                public bool IsPlay1ExchangeOver { get; set; }
+
                 //选择单位
                 public List<SampleCardModel> TargetCardList { get; set; }
                 public List<int> SelectCardRank { get; set; }
@@ -99,8 +105,8 @@ namespace TouhouMachineLearningSummary.Manager
                 //区域
                 public int SelectRegionRank { get; set; }
                 public int SelectLocation { get; set; }
-                //换牌完成,true为玩家1换牌操作，false为玩家2换牌操作
-                public bool IsPlay1ExchangeOver { get; set; }
+            
+
                 public SelectOperation() { }
             }
 
@@ -118,7 +124,7 @@ namespace TouhouMachineLearningSummary.Manager
         /// <summary>
         /// 上传一个回合玩家选择记录
         /// </summary>
-        public static async void UploadSelectOperation(SelectOperationType operationType, Card triggerCard = null, List<Card> targetCardList = null, int selectMaxNum = 0, bool isPlayer1ExchangeOver = false)//是否玩家1操作完成
+        public static async void UploadSelectOperation(SelectOperationType operationType, Card triggerCard = null, List<Card> targetCardList = null, int selectMaxNum = 0, bool isPlayer1Select = false, bool isPlayer1ExchangeOver = false)//是否玩家1操作完成
         {
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
@@ -136,7 +142,9 @@ namespace TouhouMachineLearningSummary.Manager
                         break;
                     case SelectOperationType.SelectBoardCard:
                         operation.TriggerCardID = triggerCard != null ? triggerCard.cardID : 0;
+                        operation.IsPlayer1Select= isPlayer1Select;
                         operation.SelectBoardCardRanks = AgainstInfo.selectBoardCardRanks;
+                        operation.WashInsertRank = AgainstInfo.washInsertRank;
                         operation.Operation = SelectOperationType.SelectBoardCard.EnumToOneHot();
                         break;
                     case SelectOperationType.SelectRegion:
@@ -250,11 +258,13 @@ namespace TouhouMachineLearningSummary.Manager
             if (currentSelectOperationsRank>= maxRank)
             {
                 //执行到最后检查一下状态，看看是否投降  检查是否投降
+                return null;
             }
             TurnOperation.SelectOperation selectOperation = TurnOperations[currentTurnOperationsRank].TurnSelectOperations[currentSelectOperationsRank];
             Debug.Log($"读取到指令类型{selectOperation.Operation.OneHotToEnum<SelectOperationType>()} {selectOperation.SelectMaxNum}");
             return selectOperation;
         }
+        public List<TurnOperation.SelectOperation> GetCurrentSelectOperations() => TurnOperations[currentTurnOperationsRank].TurnSelectOperations;
         //////////////////////////////////对战记录读取////////////////////////////////////////////
         public static AgainstSummaryManager Load(string summaryID) => File.ReadAllText("summary.json").ToObject<AgainstSummaryManager>();
         public void Replay(int TotalRank)

@@ -121,7 +121,7 @@ namespace TouhouMachineLearningSummary.GameEnum
     }
     public enum BattleRegion
     {
-        Water, Fire, Wind, Soil, All, None
+        Water, Fire, Wind, Soil, All = 99, None = 100
     }
     public enum CardState
     {

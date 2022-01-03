@@ -28,7 +28,7 @@ namespace TouhouMachineLearningSummary.Command
             return new Location(RankX, RankY);
         }
         public static Card GetCard(int x, int y) => x == -1 ? null : CardSet.GlobalCardList[x][y];
-        public static Card GetCard(Location Locat) => Locat.X == -1 ? null : CardSet.GlobalCardList[Locat.X][Locat.Y];
+        public static Card GetCard(Location location) => location.X == -1 ? null : CardSet.GlobalCardList[location.X][location.Y];
         public static SingleRowManager GetSingleRowInfoById(int Id) => AgainstInfo.cardSet.SingleRowInfos.First(infos => infos.CardList == CardSet.GlobalCardList[Id]);
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public static void SetPlayCardMoveFree(bool isFree)

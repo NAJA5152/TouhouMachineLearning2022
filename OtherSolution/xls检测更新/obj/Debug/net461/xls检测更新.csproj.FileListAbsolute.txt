@@ -58,3 +58,4 @@ G:\UnityProject\TouhouMachineLearning2022\OtherSolution\xls检测更新\obj\Debu
 G:\UnityProject\TouhouMachineLearning2022\OtherSolution\xls检测更新\obj\Debug\net461\xls检测更新.csproj.CopyComplete
 G:\UnityProject\TouhouMachineLearning2022\OtherSolution\xls检测更新\obj\Debug\net461\xls检测更新.exe
 G:\UnityProject\TouhouMachineLearning2022\OtherSolution\xls检测更新\obj\Debug\net461\xls检测更新.pdb
+G:\UnityProject\TouhouMachineLearning2022\OtherSolution\xls检测更新\obj\Debug\net461\xls检测更新.csproj.SuggestedBindingRedirects.cache

@@ -22,16 +22,16 @@ namespace TouhouMachineLearningSummary.Manager
         [ShowInInspector]
         //计算在全局卡组中对应的顺序
         //根据玩家扮演角色（1或者2）分配上方区域和下方区域
-        public int Rank => (int)region + (AgainstInfo.IsPlayer1 ^ (orientation == Orientation.Down) ? 9 : 0);
+        public int RowRank => (int)region + (AgainstInfo.IsPlayer1 ^ (orientation == Orientation.Down) ? 9 : 0);
         private void Awake() => AgainstInfo.cardSet.SingleRowInfos.Add(this);
         public int Location => JudgeRank(this, AgainstInfo.FocusPoint);
-        public int RowRank => CardSet.GlobalCardList.IndexOf(CardList);
+        //public int RowRank => CardSet.GlobalCardList.IndexOf(CardList);
         public Material CardMaterial => transform.GetComponent<Renderer>().material;
         [System.Obsolete("废弃，调整结构")]
         public List<Card> CardList
         {
-            get => AgainstInfo.cardSet[Rank];
-            set => AgainstInfo.cardSet[Rank] = value;
+            get => AgainstInfo.cardSet[RowRank];
+            set => AgainstInfo.cardSet[RowRank] = value;
         }
 
         void Update()

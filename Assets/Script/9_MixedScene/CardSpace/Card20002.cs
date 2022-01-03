@@ -38,8 +38,8 @@ namespace TouhouMachineLearningSummary.CardSpace
                    );
                    if (AgainstInfo.selectUnits.Any())
                    {
-                       AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(AgainstInfo.selectUnits[0].location.X);
-                       AgainstInfo.SelectLocation = AgainstInfo.selectUnits[0].location.Y;
+                       AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(AgainstInfo.selectUnits[0].Location.X);
+                       AgainstInfo.SelectLocation = AgainstInfo.selectUnits[0].Location.Y;
                    }
                    await GameSystem.TransSystem.DeployCard(new TriggerInfo(this).SetTargetCard(AgainstInfo.selectUnits));
                }, Condition.Default)

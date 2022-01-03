@@ -109,7 +109,7 @@ namespace TouhouMachineLearningSummary.Command
                             Debug.Log("交换卡牌信息");
                             Location location = receiveInfo[0].ToType<Location>();
                             int randomRank = receiveInfo[1].ToType<int>();
-                            _ = CardCommand.ExchangeCard(Command.RowCommand.GetCard(location), IsPlayerExchange: false, RandomRank: randomRank);
+                            _ = CardCommand.ExchangeCard(Command.RowCommand.GetCard(location), IsPlayerExchange: false, WashInsertRank: randomRank);
                             break;
                         }
                     case NetAcyncType.RoundStartExchangeOver:
@@ -306,14 +306,14 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     case NetAcyncType.FocusCard:
                         {
-                            Location TargetCardLocation = Info.AgainstInfo.playerFocusCard != null ? Info.AgainstInfo.playerFocusCard.location : new Location(-1, -1);
+                            Location TargetCardLocation = Info.AgainstInfo.playerFocusCard != null ? Info.AgainstInfo.playerFocusCard.Location : new Location(-1, -1);
                             await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { TargetCardLocation.X, TargetCardLocation.Y });
                             break;
                         }
                     case NetAcyncType.PlayCard:
                         {
                             Debug.Log("同步打出卡牌");
-                            Location TargetCardLocation = Info.AgainstInfo.playerPlayCard.location;
+                            Location TargetCardLocation = Info.AgainstInfo.playerPlayCard.Location;
                             await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { TargetCardLocation.X, TargetCardLocation.Y });
                             break;
                         }
@@ -326,7 +326,7 @@ namespace TouhouMachineLearningSummary.Command
                         }
                     case NetAcyncType.SelectUnites:
                         {
-                            List<Location> Locations = Info.AgainstInfo.selectUnits.SelectList(unite => unite.location);
+                            List<Location> Locations = Info.AgainstInfo.selectUnits.SelectList(unite => unite.Location);
                             Debug.LogError("选择单位完成：" + Locations.ToJson());
                             await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { Locations });
                             break;
@@ -342,7 +342,7 @@ namespace TouhouMachineLearningSummary.Command
                     case NetAcyncType.ExchangeCard:
                         {
                             Debug.Log("触发交换卡牌信息");
-                            Location Locat = Info.AgainstInfo.TargetCard.location;
+                            Location Locat = Info.AgainstInfo.TargetCard.Location;
                             int RandomRank = Info.AgainstInfo.washInsertRank;
                             await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { RandomRank });
                             break;

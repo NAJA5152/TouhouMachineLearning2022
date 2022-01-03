@@ -67,11 +67,11 @@ namespace TouhouMachineLearningSummary.Model
         public bool IsAutoMove => this != AgainstInfo.playerPrePlayCard;
 
         public List<Card> belongCardList => Command.RowCommand.GetCardList(this);
-        public Location location => Command.RowCommand.GetLocation(this);
+        public Location Location => Command.RowCommand.GetLocation(this);
         //[ShowInInspector]
-        public Card LeftCard => location.Y > 0 ? belongCardList[location.Y - 1] : null;
+        public Card LeftCard => Location.Y > 0 ? belongCardList[Location.Y - 1] : null;
         //[ShowInInspector]
-        public Card RightCard => location.Y < belongCardList.Count - 1 ? belongCardList[location.Y + 1] : null;
+        public Card RightCard => Location.Y < belongCardList.Count - 1 ? belongCardList[Location.Y + 1] : null;
         [ShowInInspector]
         public int twoSideVitality => (LeftCard == null || LeftCard[CardState.Seal] ? 0 : LeftCard[CardField.Vitality]) + (RightCard == null || RightCard[CardState.Seal] ? 0 : RightCard[CardField.Vitality]);
 
