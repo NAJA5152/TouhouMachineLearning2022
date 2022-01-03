@@ -21,12 +21,12 @@ namespace TouhouMachineLearningSummary.Info
 
         public List<Card> CardList { get => cardList ?? globalCardList.SelectMany(x => x).ToList(); set => cardList = value; }
 
-        /// <summary>
-        /// 得到触发牌之外的卡牌列表，用于广播触发事件的前后相关事件
-        /// </summary>
-        /// <param name="card"></param>
-        /// <returns></returns>
-        public List<Card> BroastCardList(Card card) => Info.AgainstInfo.cardSet[Orientation.All].CardList.Except(new List<Card> { card }).ToList();
+        ///// <summary>
+        ///// 得到触发牌之外的卡牌列表，用于广播触发事件的前后相关事件
+        ///// </summary>
+        ///// <param name="card"></param>
+        ///// <returns></returns>
+        //public List<Card> BroastCardList(Card card) => Info.AgainstInfo.cardSet[Orientation.All].CardList.Except(new List<Card> { card }).ToList();
 
         public CardSet()
         {

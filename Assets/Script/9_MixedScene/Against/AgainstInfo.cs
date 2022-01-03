@@ -128,7 +128,7 @@ namespace TouhouMachineLearningSummary.Info
         public static int TotalPlayer1Point => IsPlayer1 ? TotalDownPoint : TotalUpPoint;
         public static int TotalPlayer2Point => IsPlayer1 ? TotalUpPoint : TotalDownPoint;
         public static int TurnRelativePoint => TotalMyPoint - TotalOpPoint;
-        //嗯
+
         public static bool isUpPass = false;
         public static bool isDownPass = false;
 

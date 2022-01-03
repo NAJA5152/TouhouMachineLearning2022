@@ -69,46 +69,45 @@ namespace TouhouMachineLearningSummary.Test
         }
         private void OnGUI()
         {
-            if (GUI.Button(new Rect(0, 0, 100, 50), "翻页模拟效果"))
-            {
-                Command.BookCommand.SimulateFilpPage(true);
-            }
-            if (GUI.Button(new Rect(0, 100, 100, 50), "新版本效果"))
-            {
-                AgainstManager.Init();
-                //AgainstManager.SetPvPMode(false);
-                //AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
-                AgainstManager.AutoSetPlayerInfo(new PlayerInfo(
-                         "NPC", "gezi", "yaya", "",
-                        new List<CardDeck>
-                        {
-                        new CardDeck("gezi", 10001, new List<int>
-                        {
-                            20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,
-                        })
-                        })
-                    );
-                AgainstManager.AutoSetOpponentInfo(
-                   new PlayerInfo(
-                         "NPC", "gezi", "yaya", "",
-                        new List<CardDeck>
-                        {
-                        new CardDeck("gezi", 10001, new List<int>
-                        {
-                            20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,
-                        })
-                        })
-                   );
-                //AgainstManager.SetCardVersion("");
-                Debug.Log("对战start");
-                AgainstManager.AutoStart();
-            }
-            if (GUI.Button(new Rect(0, 150, 100, 50), "启动回放模式"))
-            {
-                AgainstManager.Init();
-                //AgainstManager.SetReplayMode(11);
-                AgainstManager.AutoStart();
-            }
+            //if (GUI.Button(new Rect(0, 0, 100, 50), "翻页模拟效果"))
+            //{
+            //    Command.BookCommand.SimulateFilpPage(true);
+            //}
+            //if (GUI.Button(new Rect(0, 100, 100, 50), "新版本效果"))
+            //{
+            //    AgainstManager.Init();
+            //    //AgainstManager.SetPvPMode(false);
+            //    //AgainstManager.SetTurnFirst(FirstTurn.PlayerFirst);
+            //    AgainstManager.AutoSetPlayerInfo(new PlayerInfo(
+            //             "NPC", "gezi", "yaya", "",
+            //            new List<CardDeck>
+            //            {
+            //            new CardDeck("gezi", 10001, new List<int>
+            //            {
+            //                20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,
+            //            })
+            //            })
+            //        );
+            //    AgainstManager.AutoSetOpponentInfo(
+            //       new PlayerInfo(
+            //             "NPC", "gezi", "yaya", "",
+            //            new List<CardDeck>
+            //            {
+            //            new CardDeck("gezi", 10001, new List<int>
+            //            {
+            //                20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,20002,
+            //            })
+            //            })
+            //       );
+            //    //AgainstManager.SetCardVersion("");
+            //    Debug.Log("对战start");
+            //    AgainstManager.AutoStart();
+            //}
+            //if (GUI.Button(new Rect(0, 150, 100, 50), "启动回放模式"))
+            //{
+            //    AgainstManager.Init();
+            //    AgainstManager.AutoStart();
+            //}
         }
     }
 }

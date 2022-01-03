@@ -269,7 +269,7 @@ namespace TouhouMachineLearningSummary.Command
             if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
             try
             {
-                Debug.Log("发送数据");
+                Debug.Log($"发送数据 我方牌组数：{userInfo.UseDeck.CardIds.Count} 敌方牌组数{virtualOpponentInfo.UseDeck.CardIds.Count}");
                 await TohHouHub.SendAsync("Join", modeType, userInfo, virtualOpponentInfo);
             }
             catch (Exception ex) { Debug.LogException(ex); }

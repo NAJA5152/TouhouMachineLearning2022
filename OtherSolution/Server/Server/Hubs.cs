@@ -19,7 +19,12 @@ public class TouHouHub : Hub
     public int Register(string account, string password) => MongoDbCommand.Register(account, password);
     public PlayerInfo? Login(string account, string password) => MongoDbCommand.Login(account, password);
     //////////////////////////////////////////////等候列表////////////////////////////////////////////////////////////////////
-    public void Join(AgainstModeType againstMode, PlayerInfo playerInfo, PlayerInfo virtualOpponentInfo) => HoldListManager.Add(againstMode, playerInfo, virtualOpponentInfo, Clients.Caller);
+    public void Join(AgainstModeType againstMode, PlayerInfo userInfo, PlayerInfo virtualOpponentInfo)
+    {
+        Console.WriteLine($"发送数据 我方牌组数：{userInfo.UseDeck.CardIds.Count} 敌方牌组数{virtualOpponentInfo.UseDeck.CardIds.Count}");
+        HoldListManager.Add(againstMode, userInfo, virtualOpponentInfo, Clients.Caller);
+    }
+
     public void Leave(AgainstModeType againstMode, string account) => HoldListManager.Remove(againstMode, account);
     //////////////////////////////////////////////房间////////////////////////////////////////////////////////////////////
     public void AsyncInfo(NetAcyncType netAcyncType, string roomId, bool isPlayer1, object[] data) => RoomManager.GetRoom(roomId).AsyncInfo(netAcyncType, isPlayer1, data);
@@ -52,14 +57,14 @@ public class TouHouHub : Hub
     }
     public void Test(string text)
     {
-        Clients.Caller.SendAsync("Test","服务器向你问候"+text);
+        Clients.Caller.SendAsync("Test", "服务器向你问候" + text);
         Console.WriteLine(text);
     }
     //////////////////////////////////////////////日志////////////////////////////////////////////////////////////////////
     //下载自己的记录
     public List<AgainstSummary> DownloadOwnerAgentSummary(string playerName, int skipNum, int takeNum) => MongoDbCommand.QueryAgainstSummary(playerName, skipNum, takeNum);
     //下载所有的记录
-    public List<AgainstSummary> DownloadAllAgentSummary(int skipNum, int takeNum) => MongoDbCommand.QueryAgainstSummary( skipNum, takeNum);
+    public List<AgainstSummary> DownloadAllAgentSummary(int skipNum, int takeNum) => MongoDbCommand.QueryAgainstSummary(skipNum, takeNum);
     public void UpdateTurnOperation(string roomId, AgainstSummary.TurnOperation turnOperation) => RoomManager.GetRoom(roomId).Summary.AddTurnOperation(turnOperation);
     public void UpdatePlayerOperation(string roomId, AgainstSummary.TurnOperation.PlayerOperation playerOperation) => RoomManager.GetRoom(roomId).Summary.AddPlayerOperation(playerOperation);
     public void UpdateSelectOperation(string roomId, AgainstSummary.TurnOperation.SelectOperation selectOperation) => RoomManager.GetRoom(roomId).Summary.AddSelectOperation(selectOperation);

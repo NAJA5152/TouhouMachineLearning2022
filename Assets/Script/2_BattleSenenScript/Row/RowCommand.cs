@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
@@ -9,6 +10,26 @@ namespace TouhouMachineLearningSummary.Command
 {
     public static class RowCommand
     {
+        ///////////////////////////////////////////////////////////////////////////////////原本的INFO/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        public static List<Card> GetCardList(Card targetCard) => CardSet.globalCardList.First(list => list.Contains(targetCard));
+        public static Location GetLocation(Card TargetCard)
+        {
+            int RankX = -1;
+            int RankY = -1;
+            for (int i = 0; i < CardSet.globalCardList.Count; i++)
+            {
+                if (CardSet.globalCardList[i].Contains(TargetCard))
+                {
+                    RankX = i;
+                    RankY = CardSet.globalCardList[i].IndexOf(TargetCard);
+                }
+            }
+            return new Location(RankX, RankY);
+        }
+        public static Card GetCard(int x, int y) => x == -1 ? null : CardSet.globalCardList[x][y];
+        public static Card GetCard(Location Locat) => Locat.X == -1 ? null : CardSet.globalCardList[Locat.X][Locat.Y];
+        public static SingleRowInfo GetSingleRowInfoById(int Id) => AgainstInfo.cardSet.singleRowInfos.First(infos => infos.ThisRowCards == CardSet.globalCardList[Id]);
+        ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public static async Task CreatTempCard(SingleRowInfo SingleInfo)
         {
             Card modelCard = AgainstInfo.cardSet[Orientation.My][GameRegion.Uesd].CardList[0];
@@ -41,11 +62,19 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (region == GameRegion.None)
             {
-                AgainstInfo.cardSet[GameRegion.Battle].singleRowInfos.ForEach(row => row.SetRegionSelectable(false));
+                AgainstInfo.cardSet[GameRegion.Battle].singleRowInfos.ForEach(row =>
+                {
+                    row.CanBeSelected = false;
+                    row.CardMaterial.SetColor("_GlossColor", Color.black);
+                });
             }
             else
             {
-                AgainstInfo.cardSet[region][(Orientation)territory].singleRowInfos.ForEach(row => row.SetRegionSelectable(true));
+                AgainstInfo.cardSet[region][(Orientation)territory].singleRowInfos.ForEach(row =>
+                {
+                    row.CanBeSelected = true;
+                    row.CardMaterial.SetColor("_GlossColor", row.color);
+                });
             }
         }
     }

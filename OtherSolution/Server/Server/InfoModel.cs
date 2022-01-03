@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace Server
 {
@@ -47,6 +48,7 @@ namespace Server
         public Dictionary<string, int> CardLibrary { get; set; }
         public int UseDeckNum { get; set; }
         public List<CardDeck> Decks { get; set; }
+        [JsonIgnore]
         public CardDeck UseDeck => Decks[UseDeckNum];
         public PlayerInfo ShufflePlayerDeck()
         {

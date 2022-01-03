@@ -32,11 +32,11 @@ namespace TouhouMachineLearningSummary.Manager
             });
         public static void Init()
         {
-
-
             AutoSetPlayerInfo(null);
             AutoSetOpponentInfo(null);
-            //LoadAssemblyVerision = "";
+            //初始化对战信息
+            Info.AgainstInfo.isUpPass = false;
+            Info.AgainstInfo.isDownPass = false;
             Info.AgainstInfo.isReplayMode = false;
             Info.AgainstInfo.summary = null;
         }

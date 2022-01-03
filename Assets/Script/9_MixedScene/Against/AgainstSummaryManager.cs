@@ -61,7 +61,7 @@ namespace TouhouMachineLearningSummary.Manager
                 this.TurnRank = AgainstInfo.turnRank;
                 this.TotalTurnRank = AgainstInfo.totalTurnRank;
                 this.IsOnTheOffensive = AgainstInfo.isOnTheOffensive;
-                this.IsPlayer1Turn = AgainstInfo.IsPlayer1! ^ AgainstInfo.IsMyTurn;
+                this.IsPlayer1Turn = !(AgainstInfo.IsPlayer1 ^ AgainstInfo.IsMyTurn);
                 this.AllCardList = CardSet.globalCardList.SelectList(cardlist => cardlist.SelectList(card => new SampleCardModel(card)));
                 return this;
             }
@@ -145,6 +145,7 @@ namespace TouhouMachineLearningSummary.Manager
                         operation.Operation = SelectOperationType.SelectRegion.EnumToOneHot();
                         break;
                     case SelectOperationType.SelectLocation:
+                        //上传选择的次序
                         operation.TriggerCardID = triggerCard.cardID;
                         operation.SelectRegionRank = AgainstInfo.SelectRegion.RowRank;
                         operation.SelectLocation = AgainstInfo.SelectLocation;
@@ -239,9 +240,7 @@ namespace TouhouMachineLearningSummary.Manager
         public TurnOperation.PlayerOperation GetCurrentPlayerOperation()
         {
             TurnOperation.PlayerOperation turnPlayerOperation = TurnOperations[currentTurnOperationsRank].TurnPlayerOperation;
-
-            Debug.Log($"读取到指令类型：{turnPlayerOperation.Operation.OneHotToEnum<PlayerOperationType>()} 目标卡片为：{turnPlayerOperation.SelectCardID}");
-
+            Debug.Log($"读取到指令{currentTurnOperationsRank} 类型：{turnPlayerOperation?.Operation.OneHotToEnum<PlayerOperationType>()} 目标卡片为：{turnPlayerOperation?.SelectCardID}");
             return turnPlayerOperation;
         }
 

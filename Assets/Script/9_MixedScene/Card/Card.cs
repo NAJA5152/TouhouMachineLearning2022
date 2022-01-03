@@ -244,7 +244,6 @@ namespace TouhouMachineLearningSummary.Model
                 {
                     if (AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this))
                     {
-                        Debug.Log("移除啦");
                         await Command.CardCommand.MoveToGrave(this);
                     }
                 }

@@ -279,22 +279,29 @@ namespace TouhouMachineLearningSummary.Command
                 if (AgainstInfo.isReplayMode)
                 {
                     var operation = AgainstInfo.summary.GetCurrentPlayerOperation();
-                    if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.PlayCard)
+                    if (operation!=null)//如果拥有指令则执行，否则为pass跳过
                     {
-                        Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList[operation.SelectCardIndex];
-                    }
-                    else if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.DisCard)
-                    {
-                        Info.AgainstInfo.playerDisCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList[operation.SelectCardIndex];
-                    }
-                    else if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.Pass)
-                    {
-                        AgainstInfo.isPlayerPass = true;
+                        if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.PlayCard)
+                        {
+                            Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList[operation.SelectCardIndex];
+                        }
+                        else if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.DisCard)
+                        {
+                            Info.AgainstInfo.playerDisCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList[operation.SelectCardIndex];
+                        }
+                        else if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.Pass)
+                        {
+                            AgainstInfo.isPlayerPass = true;
+                        }
+                        else
+                        {
+                            Debug.LogError("对战记录识别出现严重bug");
+                            throw new Exception("");
+                        }
                     }
                     else
                     {
-                        Debug.LogError("对战记录识别出现严重bug");
-                        throw new Exception("");
+
                     }
                 }
                 else
@@ -402,9 +409,7 @@ namespace TouhouMachineLearningSummary.Command
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
                     if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectRegion)
                     {
-                        List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos.Where(row => row.CanBeSelected).ToList();
-                        int rowRank = operation.SelectRegionRank;
-                        AgainstInfo.SelectRegion = rows[rowRank];
+                        AgainstInfo.SelectRegion = Info.RowsInfo.GetSingleRowInfoById(operation.SelectRegionRank);
                     }
                     else
                     {
@@ -441,8 +446,10 @@ namespace TouhouMachineLearningSummary.Command
                     if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectLocation)
                     {
                         //List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos.Where(row => row.CanBeSelected).ToList();//不进行筛选
-                        List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos;
-                        AgainstInfo.SelectRegion = rows[operation.SelectRegionRank];
+                        //设置选择的次序
+                        //List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos;
+                        //AgainstInfo.SelectRegion = rows[operation.SelectRegionRank];
+                        AgainstInfo.SelectRegion = Info.RowsInfo.GetSingleRowInfoById(operation.SelectRegionRank);
                         AgainstInfo.SelectLocation = operation.SelectLocation;
                     }
                     else
@@ -521,6 +528,7 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.IsSelectCardOver = false;
             AgainstInfo.cardBoardMode = mode;
             GameUI.UiCommand.SetCardBoardShow();
+            //加载真实或虚拟的卡牌列表
             if (typeof(T) == typeof(Card))
             {
                 GameUI.CardBoardCommand.LoadBoardCardList(cardIds.Cast<Card>().ToList());
@@ -533,10 +541,9 @@ namespace TouhouMachineLearningSummary.Command
             switch (mode)
             {
                 case CardBoardMode.Select:
-                    //while (AgainstInfo.selectBoardCardRanks.Count < Mathf.Min(cardIds.Count, num) && !AgainstInfo.IsFinishSelectBoardCard)
                     while (AgainstInfo.selectBoardCardRanks.Count < Mathf.Min(cardIds.Count, num) && !AgainstInfo.IsSelectCardOver)
                     {
-                        await Task.Delay(1);
+                        await Task.Delay(10);
                     }
                     GameUI.UiCommand.SetCardBoardHide();
                     break;
@@ -545,7 +552,20 @@ namespace TouhouMachineLearningSummary.Command
                         AiCommand.RoundStartExchange(false);
                         while (Info.AgainstInfo.ExChangeableCardNum != 0 && !Info.AgainstInfo.IsSelectCardOver)
                         {
-                            TaskLoopManager.cancel.Token.ThrowIfCancellationRequested();
+                            TaskLoopManager.Throw();
+                            if (AgainstInfo.isReplayMode)
+                            {
+                                var operation = AgainstInfo.summary.GetCurrentSelectOperation();
+                                if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectBoardCard)
+                                {
+                                    Info.AgainstInfo.selectBoardCardRanks = operation.SelectBoardCardRanks;
+                                }
+                                else
+                                {
+                                    Debug.LogError("对战记录识别出现严重bug");
+                                    throw new Exception("");
+                                }
+                            }
                             if (Info.AgainstInfo.selectBoardCardRanks.Count > 0)
                             {
                                 //List<Card> CardLists = CardIds.Cast<Card>().ToList();
@@ -605,12 +625,6 @@ namespace TouhouMachineLearningSummary.Command
                             }
                             await Task.Delay(10);
                         }
-                        //while (!(AgainstInfo.isPlayer1RoundStartExchangeOver && AgainstInfo.isPlayer2RoundStartExchangeOver))
-                        //{
-                        //    TakeLoopManager.cancel.Token.ThrowIfCancellationRequested();
-                        //    await Task.Delay(10);
-                        //}
-
                         break;
                     }
                 case CardBoardMode.ShowOnly:

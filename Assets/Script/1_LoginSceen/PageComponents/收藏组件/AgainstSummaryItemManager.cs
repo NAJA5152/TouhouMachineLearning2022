@@ -24,18 +24,6 @@ namespace TouhouMachineLearningSummary.Manager
             AgainstManager.Init();
             AgainstManager.ReplayStart(Summary);
         }
-        // Start is called before the first frame update
-        void Start()
-        {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public void Init(AgainstSummaryManager summary)
         {
             Summary = summary;
