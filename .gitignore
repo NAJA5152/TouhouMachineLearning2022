@@ -13,4 +13,7 @@ Temp/*
 *.log
 *.cache
 Packages/*
-OtherSolution/THMLS-Server/.vs/*
+OtherSolution/Server/bin/*
+OtherSolution/Server/.vs/*
+OtherSolution/xls检测更新/bin/*
+OtherSolution/xls检测更新/.vs/*
