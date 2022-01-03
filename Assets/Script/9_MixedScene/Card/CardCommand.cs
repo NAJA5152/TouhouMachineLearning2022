@@ -126,7 +126,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             List<Card> TargetRow = AgainstInfo
                 .cardSet[(GameRegion)targetCard.region][targetCard.orientation]
-                .singleRowInfos.First().ThisRowCards;
+                .SingleRowInfos.First().CardList;
             Debug.LogWarning("召唤卡牌于" + targetCard.orientation);
             RemoveCard(targetCard);
             TargetRow.Add(targetCard);
@@ -144,7 +144,7 @@ namespace TouhouMachineLearningSummary.Command
 
             List<Card> TargetRow = AgainstInfo
                 .cardSet[regionTypes][orientation]
-                .singleRowInfos.First().ThisRowCards;
+                .SingleRowInfos.First().CardList;
             Debug.LogWarning("移动卡牌于" + targetCard.orientation);
             RemoveCard(targetCard);
             TargetRow.Add(targetCard);
@@ -158,7 +158,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task MoveCard(Card targetCard, Location location)
         {
 
-            List<Card> TargetRow = CardSet.globalCardList[location.X];
+            List<Card> TargetRow = CardSet.GlobalCardList[location.X];
             RemoveCard(targetCard);
             int rank = location.Y >= 0 ? Math.Min(location.Y, TargetRow.Count) : Math.Max(0, TargetRow.Count + location.Y + 1);
             UnityEngine.Debug.Log("设置移动目标为" + location.X + "," + location.Y);
@@ -170,7 +170,7 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task DeployCard(Card targetCard)
         {
-            List<Card> TargetRow = AgainstInfo.SelectRegion.ThisRowCards;
+            List<Card> TargetRow = AgainstInfo.SelectRegion.CardList;
             RemoveCard(targetCard);
             TargetRow.Insert(AgainstInfo.SelectLocation, targetCard);
             //targetCard.moveSpeed = 0.1f;
@@ -307,7 +307,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             Orientation orientation = card.belong == Territory.My ? Orientation.Down : Orientation.Up;
             RemoveCard(card);
-            AgainstInfo.cardSet[orientation][GameRegion.Grave].singleRowInfos[0].ThisRowCards.Insert(Index, card);
+            AgainstInfo.cardSet[orientation][GameRegion.Grave].SingleRowInfos[0].CardList.Insert(Index, card);
             card.SetCardSeeAble(false);
             card.changePoint = 0;
             card.isMoveStepOver = false;

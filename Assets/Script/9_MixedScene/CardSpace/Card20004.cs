@@ -25,7 +25,7 @@ namespace TouhouMachineLearningSummary.CardSpace
              .AbilityAdd(async (triggerInfo) =>
              {
                  await GameSystem.SelectSystem.SelectRegion(this,GameRegion.Battle, Territory.Op);
-                 List<Card> targetCardList = AgainstInfo.SelectRegion.ThisRowCards;
+                 List<Card> targetCardList = AgainstInfo.SelectRegion.CardList;
                  int hurtMaxValue = GameSystem.FieldSystem.GetTwoSideField(this, CardField.Vitality) + 1;
                  for (int i = 0; i < Math.Min(targetCardList.Count, hurtMaxValue); i++)
                  {

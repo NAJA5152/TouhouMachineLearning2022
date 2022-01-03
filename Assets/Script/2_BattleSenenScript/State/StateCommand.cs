@@ -31,12 +31,12 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.cardSet = new CardSet();
             foreach (var item in GameObject.FindGameObjectsWithTag("SingleInfo"))
             {
-                SingleRowInfo singleRowInfo = item.GetComponent<SingleRowInfo>();
-                AgainstInfo.cardSet.singleRowInfos.Add(singleRowInfo);
+                SingleRowManager singleRowInfo = item.GetComponent<SingleRowManager>();
+                AgainstInfo.cardSet.SingleRowInfos.Add(singleRowInfo);
             }
             //CardSet.globalCardList = AgainstInfo.summary.targetJumpTurn.allCardList
             //    .Select(sampleCardList => sampleCardList.Select(CardCommand.CreateCard).ToList()).ToList();
-            CardSet.globalCardList = targetJumpTurn.AllCardList.SelectList(sampleCardList => sampleCardList.SelectList(CardCommand.CreateCard));
+            CardSet.GlobalCardList = targetJumpTurn.AllCardList.SelectList(sampleCardList => sampleCardList.SelectList(CardCommand.CreateCard));
             AgainstInfo.cardSet[GameRegion.Leader, GameRegion.Battle].CardList.ForEach(card => card.isCanSee = true);
             AgainstInfo.cardSet[GameRegion.Hand][AgainstInfo.isReplayMode ? Orientation.All : Orientation.My].CardList.ForEach(card => card.isCanSee = true);
             AgainstInfo.isJumpMode = false;
@@ -94,8 +94,8 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.cardSet = new CardSet();
             foreach (var item in GameObject.FindGameObjectsWithTag("SingleInfo"))
             {
-                SingleRowInfo singleRowInfo = item.GetComponent<SingleRowInfo>();
-                AgainstInfo.cardSet.singleRowInfos.Add(singleRowInfo);
+                SingleRowManager singleRowInfo = item.GetComponent<SingleRowManager>();
+                AgainstInfo.cardSet.SingleRowInfos.Add(singleRowInfo);
             }
             //可以舍去？
             //AgainstInfo.cardSet.CardList = null;
@@ -409,7 +409,7 @@ namespace TouhouMachineLearningSummary.Command
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
                     if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectRegion)
                     {
-                        AgainstInfo.SelectRegion = Info.RowsInfo.GetSingleRowInfoById(operation.SelectRegionRank);
+                        AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(operation.SelectRegionRank);
                     }
                     else
                     {
@@ -420,7 +420,7 @@ namespace TouhouMachineLearningSummary.Command
                 else if (AgainstInfo.IsAIControl)
                 {
                     await CustomThread.Delay(1000);
-                    List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos.Where(row => row.CanBeSelected).ToList();
+                    List<SingleRowManager> rows = AgainstInfo.cardSet.SingleRowInfos.Where(row => row.CanBeSelected).ToList();
                     int rowRank = AiCommand.GetRandom(0, rows.Count());
                     AgainstInfo.SelectRegion = rows[rowRank];//设置部署区域
                 }
@@ -449,7 +449,7 @@ namespace TouhouMachineLearningSummary.Command
                         //设置选择的次序
                         //List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos;
                         //AgainstInfo.SelectRegion = rows[operation.SelectRegionRank];
-                        AgainstInfo.SelectRegion = Info.RowsInfo.GetSingleRowInfoById(operation.SelectRegionRank);
+                        AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(operation.SelectRegionRank);
                         AgainstInfo.SelectLocation = operation.SelectLocation;
                     }
                     else
@@ -461,7 +461,7 @@ namespace TouhouMachineLearningSummary.Command
                 else if (AgainstInfo.IsAIControl)
                 {
                     await CustomThread.Delay(1000);
-                    List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos.Where(row => row.CanBeSelected).ToList();
+                    List<SingleRowManager> rows = AgainstInfo.cardSet.SingleRowInfos.Where(row => row.CanBeSelected).ToList();
                     int rowRank = AiCommand.GetRandom(0, rows.Count());
                     AgainstInfo.SelectRegion = rows[rowRank];//设置部署区域
                     AgainstInfo.SelectLocation = 0;//设置部署次序

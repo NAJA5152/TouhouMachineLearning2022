@@ -57,14 +57,14 @@ namespace TouhouMachineLearningSummary.Command
                         {
                             int X = receiveInfo[0].ToType<int>();
                             int Y = receiveInfo[1].ToType<int>();
-                            AgainstInfo.opponentFocusCard = RowsInfo.GetCard(X, Y);
+                            AgainstInfo.opponentFocusCard = Command.RowCommand.GetCard(X, Y);
                             break;
                         }
                     case NetAcyncType.PlayCard:
                         {
                             int X = receiveInfo[0].ToType<int>();
                             int Y = receiveInfo[1].ToType<int>();
-                            Card targetCard = RowsInfo.GetCard(X, Y);
+                            Card targetCard = Command.RowCommand.GetCard(X, Y);
                             Info.AgainstInfo.playerPlayCard = targetCard;
                             break;
                         }
@@ -72,14 +72,14 @@ namespace TouhouMachineLearningSummary.Command
                         {
                             Debug.Log("触发区域同步");
                             int X = receiveInfo[0].ToType<int>();
-                            AgainstInfo.SelectRegion = Info.RowsInfo.GetSingleRowInfoById(X);
+                            AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(X);
                             break;
                         }
                     case NetAcyncType.SelectUnites:
                         {
                             Debug.Log("收到同步单位信息");
                             List<Location> Locations = receiveInfo[0].ToType<List<Location>>();
-                            AgainstInfo.selectUnits.AddRange(Locations.Select(location => RowsInfo.GetCard(location.X, location.Y)));
+                            AgainstInfo.selectUnits.AddRange(Locations.Select(location => Command.RowCommand.GetCard(location.X, location.Y)));
                             break;
                         }
                     case NetAcyncType.SelectLocation:
@@ -87,7 +87,7 @@ namespace TouhouMachineLearningSummary.Command
                             Debug.Log("触发坐标同步");
                             int X = receiveInfo[0].ToType<int>();
                             int Y = receiveInfo[1].ToType<int>();
-                            Info.AgainstInfo.SelectRegion = Info.RowsInfo.GetSingleRowInfoById(X);
+                            Info.AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(X);
                             Info.AgainstInfo.SelectLocation = Y;
                             Debug.Log($"坐标为：{X}:{Y}");
                             break;
@@ -109,7 +109,7 @@ namespace TouhouMachineLearningSummary.Command
                             Debug.Log("交换卡牌信息");
                             Location location = receiveInfo[0].ToType<Location>();
                             int randomRank = receiveInfo[1].ToType<int>();
-                            _ = CardCommand.ExchangeCard(RowsInfo.GetCard(location), IsPlayerExchange: false, RandomRank: randomRank);
+                            _ = CardCommand.ExchangeCard(Command.RowCommand.GetCard(location), IsPlayerExchange: false, RandomRank: randomRank);
                             break;
                         }
                     case NetAcyncType.RoundStartExchangeOver:

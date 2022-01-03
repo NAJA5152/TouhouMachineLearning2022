@@ -62,7 +62,7 @@ namespace TouhouMachineLearningSummary.Manager
                 this.TotalTurnRank = AgainstInfo.totalTurnRank;
                 this.IsOnTheOffensive = AgainstInfo.isOnTheOffensive;
                 this.IsPlayer1Turn = !(AgainstInfo.IsPlayer1 ^ AgainstInfo.IsMyTurn);
-                this.AllCardList = CardSet.globalCardList.SelectList(cardlist => cardlist.SelectList(card => new SampleCardModel(card)));
+                this.AllCardList = CardSet.GlobalCardList.SelectList(cardlist => cardlist.SelectList(card => new SampleCardModel(card)));
                 return this;
             }
             //回合开始时的基本操作，共三类
@@ -273,8 +273,8 @@ namespace TouhouMachineLearningSummary.Manager
                 TargetJumpTurn = TurnOperations.Last();
             }
             //清空所有卡牌
-            CardSet.globalCardList.ForEach(cardlist => cardlist.ForEach(card => UnityEngine.Object.Destroy(card.gameObject)));
-            CardSet.globalCardList.ForEach(cardlist => cardlist.Clear());
+            CardSet.GlobalCardList.ForEach(cardlist => cardlist.ForEach(card => UnityEngine.Object.Destroy(card.gameObject)));
+            CardSet.GlobalCardList.ForEach(cardlist => cardlist.Clear());
             //await Task.Delay(1000);
 
             //设置当前为跳转模式
