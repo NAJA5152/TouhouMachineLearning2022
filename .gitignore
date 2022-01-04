@@ -1,4 +1,5 @@
 Library/*
+Log/*
 PC/*
 .vs/*
 Library/ArtifactDB
@@ -11,6 +12,7 @@ Temp/*
 *.cache
 .vs/TouhouMachineLearning2021/v16/.suo
 *.log
+*.csproj
 *.cache
 Packages/*
 OtherSolution/Server/bin/*
