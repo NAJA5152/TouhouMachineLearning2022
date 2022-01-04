@@ -13,46 +13,46 @@ namespace TouhouMachineLearningSummary.Info
         /// 卡牌数据集的最源头，可直接修改
         /// </summary>
         [ShowInInspector]
-        public static List<List<Card>> globalCardList = new List<List<Card>>();
-        public List<SingleRowInfo> singleRowInfos = new List<SingleRowInfo>();
+        public static List<List<Card>> GlobalCardList { get; set; } = new List<List<Card>>();
+        public List<SingleRowManager> SingleRowInfos { get; set; } = new List<SingleRowManager>();
         [ShowInInspector]
         private List<Card> cardList = null;
         public int count => CardList.Count;
 
-        public List<Card> CardList { get => cardList ?? globalCardList.SelectMany(x => x).ToList(); set => cardList = value; }
+        public List<Card> CardList { get => cardList ?? GlobalCardList.SelectMany(x => x).ToList(); set => cardList = value; }
 
-        /// <summary>
-        /// 得到触发牌之外的卡牌列表，用于广播触发事件的前后相关事件
-        /// </summary>
-        /// <param name="card"></param>
-        /// <returns></returns>
-        public List<Card> BroastCardList(Card card) => Info.AgainstInfo.cardSet[Orientation.All].CardList.Except(new List<Card> { card }).ToList();
+        ///// <summary>
+        ///// 得到触发牌之外的卡牌列表，用于广播触发事件的前后相关事件
+        ///// </summary>
+        ///// <param name="card"></param>
+        ///// <returns></returns>
+        //public List<Card> BroastCardList(Card card) => Info.AgainstInfo.cardSet[Orientation.All].CardList.Except(new List<Card> { card }).ToList();
 
         public CardSet()
         {
-            globalCardList.Clear();
-            Enumerable.Range(0, 18).ToList().ForEach(x => globalCardList.Add(new List<Card>()));
+            GlobalCardList.Clear();
+            Enumerable.Range(0, 18).ToList().ForEach(x => GlobalCardList.Add(new List<Card>()));
         }
-        public CardSet(List<SingleRowInfo> singleRowInfos, List<Card> cardList = null)
+        public CardSet(List<SingleRowManager> singleRowInfos, List<Card> cardList = null)
         {
-            this.singleRowInfos = singleRowInfos;
+            this.SingleRowInfos = singleRowInfos;
             this.CardList = cardList;
         }
         public List<Card> this[int rank]
         {
-            get => globalCardList[rank];
-            set => globalCardList[rank] = value;
+            get => GlobalCardList[rank];
+            set => GlobalCardList[rank] = value;
         }
         public CardSet this[params GameRegion[] regions]
         {
             get
             {
-                List<SingleRowInfo> targetRows = new List<SingleRowInfo>();
+                List<SingleRowManager> targetRows = new List<SingleRowManager>();
                 regions.ToList().ForEach(region =>
                 {
                     if (region == GameRegion.Battle)
                     {
-                        targetRows.AddRange(singleRowInfos.Where(row =>
+                        targetRows.AddRange(SingleRowInfos.Where(row =>
                         row.region == GameRegion.Water ||
                         row.region == GameRegion.Fire ||
                         row.region == GameRegion.Wind ||
@@ -61,11 +61,11 @@ namespace TouhouMachineLearningSummary.Info
                     }
                     else
                     {
-                        targetRows.AddRange(singleRowInfos.Where(row => row.region == region));
+                        targetRows.AddRange(SingleRowInfos.Where(row => row.region == region));
                     }
                 });
-                List<Card> filterCardList = CardList ?? globalCardList.SelectMany(x => x).ToList();
-                filterCardList = filterCardList.Intersect(targetRows.SelectMany(x => x.ThisRowCards)).ToList();
+                List<Card> filterCardList = CardList ?? GlobalCardList.SelectMany(x => x).ToList();
+                filterCardList = filterCardList.Intersect(targetRows.SelectMany(x => x.CardList)).ToList();
                 return new CardSet(targetRows, filterCardList);
             }
         }
@@ -73,23 +73,22 @@ namespace TouhouMachineLearningSummary.Info
         {
             get
             {
-                List<SingleRowInfo> targetRows = new List<SingleRowInfo>();
+                List<SingleRowManager> targetRows = new List<SingleRowManager>();
                 switch (orientation)
                 {
                     case Orientation.Up:
-                        targetRows = singleRowInfos.Where(row => row.orientation == orientation).ToList(); break;
+                        targetRows = SingleRowInfos.Where(row => row.orientation == orientation).ToList(); break;
                     case Orientation.Down:
-                        targetRows = singleRowInfos.Where(row => row.orientation == orientation).ToList(); break;
+                        targetRows = SingleRowInfos.Where(row => row.orientation == orientation).ToList(); break;
                     case Orientation.My:
                         return this[AgainstInfo.IsMyTurn ? Orientation.Down : Orientation.Up];
                     case Orientation.Op:
                         return this[AgainstInfo.IsMyTurn ? Orientation.Up : Orientation.Down];
                     case Orientation.All:
-                        targetRows = singleRowInfos; break;
+                        targetRows = SingleRowInfos; break;
                 }
-                //List<Card> filterCardList = cardList ?? globalCardList.SelectMany(x => x).ToList();
                 List<Card> filterCardList = CardList;
-                filterCardList = filterCardList.Intersect(targetRows.SelectMany(x => x.ThisRowCards)).ToList();
+                filterCardList = filterCardList.Intersect(targetRows.SelectMany(x => x.CardList)).ToList();
                 return new CardSet(targetRows, filterCardList);
             }
         }
@@ -98,11 +97,10 @@ namespace TouhouMachineLearningSummary.Info
         {
             get
             {
-                //CardList = CardList ?? globalCardList.SelectMany(x => x).ToList();
                 List<Card> filterCardList = CardList.Where(card =>
                    card.cardStates.ContainsKey(cardState) && card.cardStates[cardState])
                     .ToList();
-                return new CardSet(singleRowInfos, filterCardList);
+                return new CardSet(SingleRowInfos, filterCardList);
             }
         }
         //待补充
@@ -110,11 +108,10 @@ namespace TouhouMachineLearningSummary.Info
         {
             get
             {
-                //CardList = CardList ?? globalCardList.SelectMany(x => x).ToList();
                 List<Card> filterCardList = CardList.Where(card =>
                    card.cardFields.ContainsKey(cardField))
                     .ToList();
-                return new CardSet(singleRowInfos, filterCardList);
+                return new CardSet(SingleRowInfos, filterCardList);
             }
         }
         /// <summary>
@@ -126,12 +123,12 @@ namespace TouhouMachineLearningSummary.Info
         {
             get
             {
-                CardList = CardList ?? globalCardList.SelectMany(x => x).ToList();
+                CardList = CardList ?? GlobalCardList.SelectMany(x => x).ToList();
                 List<Card> filterCardList = CardList.Where(card =>
                     tags.Any(tag =>
                         card.cardTag.Contains(tag.ToString().Translation())))
                     .ToList();
-                return new CardSet(singleRowInfos, filterCardList);
+                return new CardSet(SingleRowInfos, filterCardList);
             }
         }
         //待补充
@@ -156,7 +153,7 @@ namespace TouhouMachineLearningSummary.Info
                             break;
                     }
                 }
-                return new CardSet(singleRowInfos, filterCardList);
+                return new CardSet(SingleRowInfos, filterCardList);
             }
         }
         //按卡牌阶级筛选
@@ -167,7 +164,7 @@ namespace TouhouMachineLearningSummary.Info
                 List<Card> filterCardList = CardList
                     .Where(card => ranks.Any(rank => card.cardRank == rank))
                     .ToList();
-                return new CardSet(singleRowInfos, filterCardList);
+                return new CardSet(SingleRowInfos, filterCardList);
             }
         }
         //按卡牌类型筛选
@@ -178,30 +175,30 @@ namespace TouhouMachineLearningSummary.Info
                 List<Card> filterCardList = CardList
                     .Where(card => card.cardType == type)
                     .ToList();
-                return new CardSet(singleRowInfos, filterCardList);
+                return new CardSet(SingleRowInfos, filterCardList);
             }
         }
         public void Add(Card card, int rank = -1)
         {
-            if (singleRowInfos.Count != 1)
+            if (SingleRowInfos.Count != 1)
             {
-                Debug.LogWarning("选择区域异常，数量为" + singleRowInfos.Count);
+                Debug.LogWarning("选择区域异常，数量为" + SingleRowInfos.Count);
             }
             if (rank == -1)
             {
-                rank = singleRowInfos[0].ThisRowCards.Count;
+                rank = SingleRowInfos[0].CardList.Count;
             }
-            singleRowInfos[0].ThisRowCards.Insert(rank, card);
+            SingleRowInfos[0].CardList.Insert(rank, card);
         }
         public void Remove(Card card)
         {
-            if (singleRowInfos.Count != 1)
+            if (SingleRowInfos.Count != 1)
             {
-                Debug.LogWarning("选择区域异常，数量为" + singleRowInfos.Count);
+                Debug.LogWarning("选择区域异常，数量为" + SingleRowInfos.Count);
             }
-            singleRowInfos[0].ThisRowCards.Remove(card);
+            SingleRowInfos[0].CardList.Remove(card);
         }
         //任意区域排序
-        public void Order() => singleRowInfos.ForEach(x => x.ThisRowCards = x.ThisRowCards.OrderByDescending(card => card.cardRank).ThenBy(card => card.basePoint).ThenBy(card => card.cardID).ToList());
+        public void Order() => SingleRowInfos.ForEach(x => x.CardList = x.CardList.OrderByDescending(card => card.cardRank).ThenBy(card => card.basePoint).ThenBy(card => card.cardID).ToList());
     }
 }

@@ -1,5 +1,6 @@
 ﻿using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
+using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 
@@ -24,9 +25,9 @@ namespace TouhouMachineLearningSummary.Control
             {
                 for (int i = 0; i < Infos.Length; i++)
                 {
-                    if (Infos[i].transform.GetComponent<SingleRowInfo>() != null)
+                    if (Infos[i].transform.GetComponent<SingleRowManager>() != null)
                     {
-                        AgainstInfo.PlayerFocusRegion = Infos[i].transform.GetComponent<SingleRowInfo>();
+                        AgainstInfo.PlayerFocusRegion = Infos[i].transform.GetComponent<SingleRowManager>();
                         AgainstInfo.FocusPoint = Infos[i].point;
                         break;
                     }

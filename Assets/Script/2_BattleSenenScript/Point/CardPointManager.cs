@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 namespace TouhouMachineLearningSummary.Manager
 {
+    //ÕâÉ¶ÍæÒâ£¿£¿Ğü¸¡ÉËº¦Êı×ÖÂğ
     public class CardPointManager : MonoBehaviour
     {
         public Canvas pointCanvas;

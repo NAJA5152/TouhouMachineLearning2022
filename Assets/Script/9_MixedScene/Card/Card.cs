@@ -29,7 +29,7 @@ namespace TouhouMachineLearningSummary.Model
         [ShowInInspector]
         public Orientation orientation => AgainstInfo.cardSet[Orientation.Down].CardList.Contains(this) ? Orientation.Down : Orientation.Up;
         //获取全局牌表区域
-        public GameRegion currentRegion => AgainstInfo.cardSet.singleRowInfos.First(row => row.ThisRowCards.Contains(this)).region;
+        public GameRegion currentRegion => AgainstInfo.cardSet.SingleRowInfos.First(row => row.CardList.Contains(this)).region;
         public string cardTag;
         public CardRank cardRank;
         public CardType cardType;
@@ -66,12 +66,12 @@ namespace TouhouMachineLearningSummary.Model
         public bool isPrepareToPlay = false;
         public bool IsAutoMove => this != AgainstInfo.playerPrePlayCard;
 
-        public List<Card> belongCardList => RowsInfo.GetCardList(this);
-        public Location location => RowsInfo.GetLocation(this);
+        public List<Card> belongCardList => Command.RowCommand.GetCardList(this);
+        public Location Location => Command.RowCommand.GetLocation(this);
         //[ShowInInspector]
-        public Card LeftCard => location.Y > 0 ? belongCardList[location.Y - 1] : null;
+        public Card LeftCard => Location.Y > 0 ? belongCardList[Location.Y - 1] : null;
         //[ShowInInspector]
-        public Card RightCard => location.Y < belongCardList.Count - 1 ? belongCardList[location.Y + 1] : null;
+        public Card RightCard => Location.Y < belongCardList.Count - 1 ? belongCardList[Location.Y + 1] : null;
         [ShowInInspector]
         public int twoSideVitality => (LeftCard == null || LeftCard[CardState.Seal] ? 0 : LeftCard[CardField.Vitality]) + (RightCard == null || RightCard[CardState.Seal] ? 0 : RightCard[CardField.Vitality]);
 
@@ -244,7 +244,6 @@ namespace TouhouMachineLearningSummary.Model
                 {
                     if (AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this))
                     {
-                        Debug.Log("移除啦");
                         await Command.CardCommand.MoveToGrave(this);
                     }
                 }

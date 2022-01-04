@@ -69,7 +69,7 @@
     <Compile Include="Assets\Script\9_MixedScene\Audio\AudioType.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Against\AgainstManager.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Timer\Timer.cs" />
-    <Compile Include="Assets\Script\2_BattleSenenScript\Row\SingleRowInfo.cs" />
+    <Compile Include="Assets\Script\2_BattleSenenScript\Row\SingleRowManager.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\收藏组件\AgainstSummaryItemManager.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\Other\CameraViewManager.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\Other\UIScaler.cs" />
@@ -89,7 +89,6 @@
     <Compile Include="Assets\Script\9_MixedScene\Card\CardAbilityManeger.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\CardBoard\BoardCardControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardInspector\CardLibraryCommand.cs" />
-    <Compile Include="Assets\Script\2_BattleSenenScript\Row\RowsInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Network\NetCommand.cs" />
     <Compile Include="Assets\Script\8_BulletEffectScene\BulletOnGui.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\CardBoard\CardBoardCommand.cs" />
@@ -114,7 +113,6 @@
     <Compile Include="Assets\Script\1_LoginSceen\PageState\MenuState.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Bullet\BulletEnum.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Input\InputControl.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\Extension\RowInfoExtension.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡组阵营选择界面\CampSelectCommand.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\详情介绍组件\cardDetailCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\ParticleSystem\EffectCommand.cs" />
@@ -138,7 +136,6 @@
     <Compile Include="Assets\Script\9_MixedScene\Card\CardAssemblyManager.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Dialogue\DialogueInfo.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\State\StateControl.cs" />
-    <Compile Include="Assets\Script\2_BattleSenenScript\Row\SingleRowControl.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\State\StateCommand.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Ai\AiCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardInspector\CardMenu.cs" />

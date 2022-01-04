@@ -40,7 +40,7 @@ namespace TouhouMachineLearningSummary.Control
                 //    Debug.Log(result1.ToJson());
                 //});
 
-                await TestReplayAsync();
+                //await TestReplayAsync();
                 //await TestBattleAsync();
                 //await Command.BookCommand.InitAsync();
             }
@@ -181,5 +181,16 @@ namespace TouhouMachineLearningSummary.Control
         }
         public void UserServerSelect() => Info.AgainstInfo.isHostNetMode = !Info.AgainstInfo.isHostNetMode;
         private void OnApplicationQuit() => Command.NetCommand.Dispose();
+        private void OnGUI()
+        {
+            if (GUI.Button(new Rect(0, 0, 100, 50), "回放测试"))
+            {
+                TestReplayAsync();
+            }
+            if (GUI.Button(new Rect(0, 100, 100, 50), "对战测试"))
+            {
+                TestBattleAsync();
+            }
+        }
     }
 }

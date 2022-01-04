@@ -1,4 +1,5 @@
-﻿using Sirenix.OdinInspector;
+﻿using Newtonsoft.Json;
+using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -87,6 +88,7 @@ namespace TouhouMachineLearningSummary.Model
         public Dictionary<string, int> CardLibrary { get; set; } = new Dictionary<string, int>();
         public int UseDeckNum { get; set; } = 0;
         public List<CardDeck> Decks { get; set; }
+        [JsonIgnore]
         public CardDeck UseDeck
         {
             get => Decks[UseDeckNum];
@@ -135,37 +137,4 @@ namespace TouhouMachineLearningSummary.Model
             return isSuccessUpdateDeck && isSuccessUpdateUseDeckNum;
         }
     }
-
-
-    /// <summary>
-    /// 客户端服务器通讯通用指令模板
-    /// </summary>
-    [Serializable]
-    public class GeneralCommand
-    {
-        public object[] Datas;
-        public GeneralCommand()
-        {
-        }
-        public GeneralCommand(params object[] Datas)
-        {
-            this.Datas = Datas;
-        }
-    }
-    /// <summary>
-    /// 客户端服务器通讯通用指令模板
-    /// </summary>
-    [Serializable]
-    public class GeneralCommand<T>
-    {
-        public T[] Datas;
-        public GeneralCommand()
-        {
-        }
-        public GeneralCommand(params T[] Datas)
-        {
-            this.Datas = Datas;
-        }
-    }
 }
-

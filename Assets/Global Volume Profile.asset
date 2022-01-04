@@ -12,14 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
   m_Name: ColorAdjustments
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   postExposure:
     m_OverrideState: 1
-    m_Value: 0.13
+    m_Value: 0.42
   contrast:
     m_OverrideState: 1
-    m_Value: 21
+    m_Value: 0.27
     min: -100
     max: 100
   colorFilter:
@@ -30,7 +30,7 @@ MonoBehaviour:
     showEyeDropper: 1
   hueShift:
     m_OverrideState: 0
-    m_Value: -6
+    m_Value: -14.12
     min: -180
     max: 180
   saturation:
@@ -50,16 +50,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 221518ef91623a7438a71fef23660601, type: 3}
   m_Name: WhiteBalance
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   m_AdvancedMode: 0
   temperature:
     m_OverrideState: 1
-    m_Value: 18.7
+    m_Value: 2
     min: -100
     max: 100
   tint:
     m_OverrideState: 1
-    m_Value: 35.6
+    m_Value: 2.2
     min: -100
     max: 100
 --- !u!114 &-3648725762316930681
@@ -78,11 +78,11 @@ MonoBehaviour:
   m_AdvancedMode: 0
   threshold:
     m_OverrideState: 1
-    m_Value: 2.5
+    m_Value: 1.96
     min: 0
   intensity:
     m_OverrideState: 1
-    m_Value: 0.73
+    m_Value: 1.1
     min: 0
   scatter:
     m_OverrideState: 0

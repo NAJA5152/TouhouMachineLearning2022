@@ -19,7 +19,7 @@ namespace xls检测更新
         static void Main(string[] args)
         {
             Workbook workbook = new Workbook();
-            direPath = Directory.GetCurrentDirectory().Replace(@"\OtherSolution\xls检测更新\bin\Debug\net461", "")+ @"\Assets\Resources\GameData\";
+            direPath = Directory.GetCurrentDirectory().Replace(@"\OtherSolution\xls检测更新\bin\Debug\net6.0", "")+ @"\Assets\Resources\GameData\";
             Console.WriteLine(Directory.GetCurrentDirectory());
 
             Console.WriteLine(direPath);
@@ -186,6 +186,10 @@ namespace xls检测更新
                 cardCamp = cards[i, cards.GetIndex("Camp")].GetXlsData<string>().ToEnumIndex("中立", "道教", "神道教", "佛教", "科学");
                 cardRank = cards[i, cards.GetIndex("Rank")].GetXlsData<string>().ToEnumIndex("领袖", "金", "银", "铜"); ;
                 cardDeployRegion = cards[i, cards.GetIndex("Region")].GetXlsData<string>().ToEnumIndex("水", "火", "风", "土", "任意");
+                if (cardDeployRegion==4)
+                {
+                    cardDeployRegion = 99;
+                }
                 cardDeployTerritory = cards[i, cards.GetIndex("Territory")].GetXlsData<string>().ToEnumIndex("我方", "敌方");
                 ramification = cards[i, cards.GetIndex("Ramification")].GetXlsData<string>().ToEnumIndex("正体", "衍生");
                 imageUrl = cards[i, cards.GetIndex("ImageUrl")].GetXlsData<string>();

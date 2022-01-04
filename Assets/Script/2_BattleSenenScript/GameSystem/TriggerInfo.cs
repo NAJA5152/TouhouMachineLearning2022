@@ -77,7 +77,7 @@ namespace TouhouMachineLearningSummary.Info
         /// </summary>
         public TriggerInfo SetLocation(Orientation orientation, GameRegion regionType, int rank)
         {
-            int x = AgainstInfo .cardSet[regionType][orientation].singleRowInfos.First().RowRank;
+            int x = AgainstInfo .cardSet[regionType][orientation].SingleRowInfos.First().RowRank;
             int y = rank;// >= 0 ? Math.Min(rank, CardSet.globalCardList[x].Count) : Math.Max(0, CardSet.globalCardList[x].Count + rank + 1);
             location = new Location(x, y);
             

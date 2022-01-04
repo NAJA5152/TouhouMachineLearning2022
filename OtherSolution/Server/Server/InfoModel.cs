@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 using MongoDB.Bson.Serialization.Attributes;
+using Newtonsoft.Json;
 
 namespace Server
 {
@@ -47,6 +48,7 @@ namespace Server
         public Dictionary<string, int> CardLibrary { get; set; }
         public int UseDeckNum { get; set; }
         public List<CardDeck> Decks { get; set; }
+        [JsonIgnore]
         public CardDeck UseDeck => Decks[UseDeckNum];
         public PlayerInfo ShufflePlayerDeck()
         {
@@ -116,7 +118,8 @@ namespace Server
         public string AssemblyVerision { get; set; } = "";
         public PlayerInfo Player1Info { get; set; } 
         public PlayerInfo Player2Info { get; set; } 
-        public string Winner { get; set; } = "";
+        public int Winner { get; set; } = 0;
+        public DateTime UpdateTime { get; set; }
         public List<TurnOperation> TurnOperations { get; set; } = new List<TurnOperation>();
         public class TurnOperation
         {
@@ -148,6 +151,12 @@ namespace Server
                 public int TriggerCardID { get; set; }
                 //选择面板卡牌
                 public List<int> SelectBoardCardRanks { get; set; }
+                //换牌时洗入的位置
+                public int WashInsertRank { get; internal set; }
+                public bool IsPlayer1Select { get; set; }
+                //换牌完成,true为玩家1换牌操作，false为玩家2换牌操作
+                public bool IsPlay1ExchangeOver { get; set; }
+
                 //选择单位
                 public List<SampleCardModel> TargetCardList { get; set; }
                 public List<int> SelectCardRank { get; set; }
@@ -155,8 +164,6 @@ namespace Server
                 //区域
                 public int SelectRegionRank { get; set; }
                 public int SelectLocation { get; set; }
-                //换牌完成,true为玩家1换牌操作，false为玩家2换牌操作
-                public bool IsPlay1ExchangeOver { get; set; }
                 public SelectOperation() { }
             }
         }

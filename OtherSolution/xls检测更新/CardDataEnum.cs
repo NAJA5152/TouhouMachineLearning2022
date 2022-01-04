@@ -23,17 +23,18 @@ namespace xls检测更新
             Fire,
             Wind,
             Soil,
-            Battle,
-            None,
+           
             Leader,
             Hand,
             Uesd,
             Deck,
             Grave,
+            Battle=99,
+            None=100,
         }
         public enum BattleRegion
         {
-            Water, Fire, Wind, Soil, All, None
+            Water, Fire, Wind, Soil, All = 99, None = 100
         }
         public enum CardState
         {

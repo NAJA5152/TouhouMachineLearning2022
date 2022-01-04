@@ -32,7 +32,7 @@ namespace TouhouMachineLearningSummary.Manager
         public string AssemblyVerision { get; set; } = "";
         public PlayerInfo Player1Info { get; set; }
         public PlayerInfo Player2Info { get; set; }
-        public string Winner { get; set; } = "";
+        public int Winner { get; set; } = 0;
         public DateTime UpdateTime { get; set; }
         //是否按照流程完成对局
         bool IsFinishAgainst { get; set; }
@@ -61,8 +61,8 @@ namespace TouhouMachineLearningSummary.Manager
                 this.TurnRank = AgainstInfo.turnRank;
                 this.TotalTurnRank = AgainstInfo.totalTurnRank;
                 this.IsOnTheOffensive = AgainstInfo.isOnTheOffensive;
-                this.IsPlayer1Turn = AgainstInfo.IsPlayer1! ^ AgainstInfo.IsMyTurn;
-                this.AllCardList = CardSet.globalCardList.SelectList(cardlist => cardlist.SelectList(card => new SampleCardModel(card)));
+                this.IsPlayer1Turn = !(AgainstInfo.IsPlayer1 ^ AgainstInfo.IsMyTurn);
+                this.AllCardList = CardSet.GlobalCardList.SelectList(cardlist => cardlist.SelectList(card => new SampleCardModel(card)));
                 return this;
             }
             //回合开始时的基本操作，共三类
@@ -92,6 +92,12 @@ namespace TouhouMachineLearningSummary.Manager
                 public int TriggerCardID { get; set; }
                 //选择面板卡牌
                 public List<int> SelectBoardCardRanks { get; set; }
+                //换牌时洗入的位置
+                public int WashInsertRank { get; internal set; }
+                public bool IsPlayer1Select { get; set; }
+                //换牌完成,true为玩家1换牌操作，false为玩家2换牌操作
+                public bool IsPlay1ExchangeOver { get; set; }
+
                 //选择单位
                 public List<SampleCardModel> TargetCardList { get; set; }
                 public List<int> SelectCardRank { get; set; }
@@ -99,8 +105,8 @@ namespace TouhouMachineLearningSummary.Manager
                 //区域
                 public int SelectRegionRank { get; set; }
                 public int SelectLocation { get; set; }
-                //换牌完成,true为玩家1换牌操作，false为玩家2换牌操作
-                public bool IsPlay1ExchangeOver { get; set; }
+            
+
                 public SelectOperation() { }
             }
 
@@ -118,7 +124,7 @@ namespace TouhouMachineLearningSummary.Manager
         /// <summary>
         /// 上传一个回合玩家选择记录
         /// </summary>
-        public static async void UploadSelectOperation(SelectOperationType operationType, Card triggerCard = null, List<Card> targetCardList = null, int selectMaxNum = 0, bool isPlayer1ExchangeOver = false)//是否玩家1操作完成
+        public static async void UploadSelectOperation(SelectOperationType operationType, Card triggerCard = null, List<Card> targetCardList = null, int selectMaxNum = 0, bool isPlayer1Select = false, bool isPlayer1ExchangeOver = false)//是否玩家1操作完成
         {
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
@@ -136,7 +142,9 @@ namespace TouhouMachineLearningSummary.Manager
                         break;
                     case SelectOperationType.SelectBoardCard:
                         operation.TriggerCardID = triggerCard != null ? triggerCard.cardID : 0;
+                        operation.IsPlayer1Select= isPlayer1Select;
                         operation.SelectBoardCardRanks = AgainstInfo.selectBoardCardRanks;
+                        operation.WashInsertRank = AgainstInfo.washInsertRank;
                         operation.Operation = SelectOperationType.SelectBoardCard.EnumToOneHot();
                         break;
                     case SelectOperationType.SelectRegion:
@@ -145,6 +153,7 @@ namespace TouhouMachineLearningSummary.Manager
                         operation.Operation = SelectOperationType.SelectRegion.EnumToOneHot();
                         break;
                     case SelectOperationType.SelectLocation:
+                        //上传选择的次序
                         operation.TriggerCardID = triggerCard.cardID;
                         operation.SelectRegionRank = AgainstInfo.SelectRegion.RowRank;
                         operation.SelectLocation = AgainstInfo.SelectLocation;
@@ -239,9 +248,7 @@ namespace TouhouMachineLearningSummary.Manager
         public TurnOperation.PlayerOperation GetCurrentPlayerOperation()
         {
             TurnOperation.PlayerOperation turnPlayerOperation = TurnOperations[currentTurnOperationsRank].TurnPlayerOperation;
-
-            Debug.Log($"读取到指令类型：{turnPlayerOperation.Operation.OneHotToEnum<PlayerOperationType>()} 目标卡片为：{turnPlayerOperation.SelectCardID}");
-
+            Debug.Log($"读取到指令{currentTurnOperationsRank} 类型：{turnPlayerOperation?.Operation.OneHotToEnum<PlayerOperationType>()} 目标卡片为：{turnPlayerOperation?.SelectCardID}");
             return turnPlayerOperation;
         }
 
@@ -251,11 +258,13 @@ namespace TouhouMachineLearningSummary.Manager
             if (currentSelectOperationsRank>= maxRank)
             {
                 //执行到最后检查一下状态，看看是否投降  检查是否投降
+                return null;
             }
             TurnOperation.SelectOperation selectOperation = TurnOperations[currentTurnOperationsRank].TurnSelectOperations[currentSelectOperationsRank];
             Debug.Log($"读取到指令类型{selectOperation.Operation.OneHotToEnum<SelectOperationType>()} {selectOperation.SelectMaxNum}");
             return selectOperation;
         }
+        public List<TurnOperation.SelectOperation> GetCurrentSelectOperations() => TurnOperations[currentTurnOperationsRank].TurnSelectOperations;
         //////////////////////////////////对战记录读取////////////////////////////////////////////
         public static AgainstSummaryManager Load(string summaryID) => File.ReadAllText("summary.json").ToObject<AgainstSummaryManager>();
         public void Replay(int TotalRank)
@@ -274,8 +283,8 @@ namespace TouhouMachineLearningSummary.Manager
                 TargetJumpTurn = TurnOperations.Last();
             }
             //清空所有卡牌
-            CardSet.globalCardList.ForEach(cardlist => cardlist.ForEach(card => UnityEngine.Object.Destroy(card.gameObject)));
-            CardSet.globalCardList.ForEach(cardlist => cardlist.Clear());
+            CardSet.GlobalCardList.ForEach(cardlist => cardlist.ForEach(card => UnityEngine.Object.Destroy(card.gameObject)));
+            CardSet.GlobalCardList.ForEach(cardlist => cardlist.Clear());
             //await Task.Delay(1000);
 
             //设置当前为跳转模式

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using TouhouMachineLearningSummary.GameEnum;
+using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 
@@ -77,9 +78,9 @@ namespace TouhouMachineLearningSummary.Info
         public static bool IsWaitForSelectProperty { get; set; }
 
         //选择的区域
-        public static SingleRowInfo PlayerFocusRegion { get; set; }
+        public static SingleRowManager PlayerFocusRegion { get; set; }
         public static bool IsWaitForSelectRegion { get; set; }
-        public static SingleRowInfo SelectRegion { get; set; }
+        public static SingleRowManager SelectRegion { get; set; }
         //选择的单位
         public static Card ArrowStartCard { get; set; }
         public static Card ArrowEndCard { get; set; }
@@ -118,7 +119,7 @@ namespace TouhouMachineLearningSummary.Info
         /// </summary>
         public static CardSet cardSet = new CardSet();
 
-        public static List<Card> AllCardList => CardSet.globalCardList.SelectMany(x => x).ToList();
+        public static List<Card> AllCardList => CardSet.GlobalCardList.SelectMany(x => x).ToList();
         public static (int P1Score, int P2Score) PlayerScore;
         public static (int MyScore, int OpScore) ShowScore => IsPlayer1 ? (PlayerScore.P1Score, PlayerScore.P2Score) : (PlayerScore.P2Score, PlayerScore.P1Score);
         public static int TotalUpPoint => cardSet[Orientation.Up][GameRegion.Battle].CardList.Sum(card => card.showPoint);
@@ -128,7 +129,7 @@ namespace TouhouMachineLearningSummary.Info
         public static int TotalPlayer1Point => IsPlayer1 ? TotalDownPoint : TotalUpPoint;
         public static int TotalPlayer2Point => IsPlayer1 ? TotalUpPoint : TotalDownPoint;
         public static int TurnRelativePoint => TotalMyPoint - TotalOpPoint;
-        //嗯
+
         public static bool isUpPass = false;
         public static bool isDownPass = false;
 
