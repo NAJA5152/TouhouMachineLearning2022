@@ -138,34 +138,30 @@ namespace TouhouMachineLearningSummary.Manager
                         operation.SelectCardRank = AgainstInfo.selectUnits.SelectList(selectUnite => targetCardList.IndexOf(selectUnite));
                         operation.TargetCardList = targetCardList.SelectList(card => new SampleCardModel(card));
                         operation.SelectMaxNum = selectMaxNum;
-                        operation.Operation = SelectOperationType.SelectLocation.EnumToOneHot();
                         break;
                     case SelectOperationType.SelectBoardCard:
                         operation.TriggerCardID = triggerCard != null ? triggerCard.cardID : 0;
                         operation.IsPlayer1Select= isPlayer1Select;
                         operation.SelectBoardCardRanks = AgainstInfo.selectBoardCardRanks;
                         operation.WashInsertRank = AgainstInfo.washInsertRank;
-                        operation.Operation = SelectOperationType.SelectBoardCard.EnumToOneHot();
                         break;
                     case SelectOperationType.SelectRegion:
                         operation.TriggerCardID = triggerCard.cardID;
                         operation.SelectRegionRank = AgainstInfo.SelectRegion.RowRank;
-                        operation.Operation = SelectOperationType.SelectRegion.EnumToOneHot();
                         break;
                     case SelectOperationType.SelectLocation:
                         //上传选择的次序
                         operation.TriggerCardID = triggerCard.cardID;
                         operation.SelectRegionRank = AgainstInfo.SelectRegion.RowRank;
                         operation.SelectLocation = AgainstInfo.SelectLocation;
-                        operation.Operation = SelectOperationType.SelectLocation.EnumToOneHot();
                         break;
                     case SelectOperationType.SelectExchangeOver:
                         operation.IsPlay1ExchangeOver = isPlayer1ExchangeOver;
-                        operation.Operation = SelectOperationType.SelectExchangeOver.EnumToOneHot();
                         break;
                     default:
                         break;
                 }
+                operation.Operation = operationType.EnumToOneHot();
                 await Command.NetCommand.UpdateTurnSelectOperationAsync(operation);
             }
             else
@@ -258,7 +254,7 @@ namespace TouhouMachineLearningSummary.Manager
             if (currentSelectOperationsRank>= maxRank)
             {
                 //执行到最后检查一下状态，看看是否投降  检查是否投降
-                return null;
+                //return null;
             }
             TurnOperation.SelectOperation selectOperation = TurnOperations[currentTurnOperationsRank].TurnSelectOperations[currentSelectOperationsRank];
             Debug.Log($"读取到指令类型{selectOperation.Operation.OneHotToEnum<SelectOperationType>()} {selectOperation.SelectMaxNum}");
