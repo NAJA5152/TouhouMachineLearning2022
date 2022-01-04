@@ -167,6 +167,7 @@ namespace TouhouMachineLearningSummary.Manager
             else
             {
                 currentSelectOperationsRank++;
+                Debug.Log("当前操作指针" + currentSelectOperationsRank);
             }
         }
         /// <summary>

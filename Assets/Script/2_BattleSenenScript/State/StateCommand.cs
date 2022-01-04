@@ -517,11 +517,11 @@ namespace TouhouMachineLearningSummary.Command
                     await Task.Delay(10);
                 }
                 //Debug.Log("选择单位完毕" + Math.Min(Cards.Count, num));
-                NetCommand.AsyncInfo(NetAcyncType.SelectUnites);
-                AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectUnite, triggerCard, filterCards, num);
-                GameUI.UiCommand.DestoryAllArrow();
+               
             }
-
+            NetCommand.AsyncInfo(NetAcyncType.SelectUnites);
+            AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectUnite, triggerCard, filterCards, num);
+            GameUI.UiCommand.DestoryAllArrow();
             await CustomThread.Delay(250);
             //Debug.Log("同步选择单位完毕");
             AgainstInfo.AllCardList.ForEach(card => card.isGray = false);
