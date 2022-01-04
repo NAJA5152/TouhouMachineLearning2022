@@ -207,6 +207,7 @@ namespace TouhouMachineLearningSummary.Manager
                 }
             }
             currentSelectOperationsRank = 0;
+            Debug.Log("当前操作指针" + currentSelectOperationsRank);
         }
         /// <summary>
         /// 上传回合开始后的点数
