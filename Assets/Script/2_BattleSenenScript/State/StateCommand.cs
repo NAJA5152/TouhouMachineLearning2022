@@ -482,39 +482,46 @@ namespace TouhouMachineLearningSummary.Command
             filterCards.ForEach(card => card.isGray = false);
             AgainstInfo.selectUnits.Clear();
             //await Task.Delay(500);
-            if (Info.AgainstInfo.IsMyTurn && !isAuto)
+            //若为回放模式
+            if (AgainstInfo.isReplayMode)
             {
-                GameUI.UiCommand.CreatFreeArrow();
+                var operation = AgainstInfo.summary.GetCurrentSelectOperation();
+                if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectUnite)
+                {
+                    AgainstInfo.selectUnits = operation.SelectCardRank.SelectList(index => filterCards[index]);
+                }
+                else
+                {
+                    Debug.LogError("对战记录识别出现严重bug");
+                    throw new Exception("");
+                }
             }
-            int selectableNum = Math.Min(filterCards.Count, num);
-            while (AgainstInfo.selectUnits.Count < selectableNum)
+            else
             {
-                TaskLoopManager.Throw();
-                //AI操作或者我方回合自动选择模式时 ，用自身随机决定，否则等待网络同步
-                if (AgainstInfo.isReplayMode)
+                if (Info.AgainstInfo.IsMyTurn && !isAuto)
                 {
-                    var operation = AgainstInfo.summary.GetCurrentSelectOperation();
-                    if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectUnite)
-                    {
-                        AgainstInfo.selectUnits = operation.SelectCardRank.SelectList(index => filterCards[index]);
-                    }
-                    else
-                    {
-                        Debug.LogError("对战记录识别出现严重bug");
-                        throw new Exception("");
-                    }
+                    GameUI.UiCommand.CreatFreeArrow();
                 }
-                else if (AgainstInfo.IsAIControl || (isAuto && AgainstInfo.IsMyTurn))
+                int selectableNum = Math.Min(filterCards.Count, num);
+                while (AgainstInfo.selectUnits.Count < selectableNum)
                 {
-                    Debug.Log("自动选择场上单位");
-                    AgainstInfo.selectUnits = filterCards.OrderBy(x => AiCommand.GetRandom(0, 514)).Take(selectableNum).ToList();
+                    TaskLoopManager.Throw();
+                    //AI操作或者我方回合自动选择模式时 ，用自身随机决定，否则等待网络同步
+
+                    if (AgainstInfo.IsAIControl || (isAuto && AgainstInfo.IsMyTurn))
+                    {
+                        Debug.Log("自动选择场上单位");
+                        IEnumerable<Card> autoSelectTarget = filterCards.OrderBy(x => AiCommand.GetRandom(0, 514)).Take(selectableNum);
+                        AgainstInfo.selectUnits = autoSelectTarget.ToList();
+                    }
+                    await Task.Delay(10);
                 }
-                await Task.Delay(1);
+                //Debug.Log("选择单位完毕" + Math.Min(Cards.Count, num));
+                NetCommand.AsyncInfo(NetAcyncType.SelectUnites);
+                AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectUnite, triggerCard, filterCards, num);
+                GameUI.UiCommand.DestoryAllArrow();
             }
-            //Debug.Log("选择单位完毕" + Math.Min(Cards.Count, num));
-            NetCommand.AsyncInfo(NetAcyncType.SelectUnites);
-            AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectUnite, triggerCard, filterCards, num);
-            GameUI.UiCommand.DestoryAllArrow();
+
             await CustomThread.Delay(250);
             //Debug.Log("同步选择单位完毕");
             AgainstInfo.AllCardList.ForEach(card => card.isGray = false);
@@ -548,27 +555,23 @@ namespace TouhouMachineLearningSummary.Command
                     break;
                 case CardBoardMode.ExchangeCard:
                     {
-
-
-                        //await CustomThread.UnitllAcync(() => Info.AgainstInfo.ExChangeableCardNum != 0 && !Info.AgainstInfo.IsSelectCardOver, null);
                         if (AgainstInfo.isReplayMode)
                         {
                             Debug.LogWarning("以记录方式读取操作");
-                            AgainstInfo.summary.GetCurrentSelectOperations().ForEach(async operation =>
+                            List<AgainstSummaryManager.TurnOperation.SelectOperation> selectOperations = AgainstInfo.summary.GetCurrentSelectOperations();
+                            for (int i = 0; i < selectOperations.Count; i++)
                             {
+                                var operation = selectOperations[i];
                                 if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectBoardCard)
                                 {
                                     //如果是我方换牌，则记录，如果是对方换牌，直接生效
                                     Info.AgainstInfo.selectBoardCardRanks = operation.SelectBoardCardRanks;
                                     Info.AgainstInfo.washInsertRank = operation.WashInsertRank;
                                     bool isPlayer1Select = operation.IsPlayer1Select;
-
                                     List<Card> CardLists = AgainstInfo.cardSet[Orientation.Down][GameRegion.Hand].CardList;
                                     int selectRank = AgainstInfo.selectBoardCardRanks[0];
-                                    //卡牌记录出现问题？？？明天修
-                                    AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectBoardCard, triggerCard, CardLists, 1);
                                     //交换对象需要重新考究
-                                    await CardCommand.ExchangeCard(CardLists[selectRank], IsPlayerExchange: isPlayer1Select, isRoundStartExchange: true, WashInsertRank: AgainstInfo.washInsertRank);
+                                    await CardCommand.ExchangeCard(CardLists[selectRank], IsPlayerExchange: !(isPlayer1Select ^ Info.AgainstInfo.IsPlayer1), isRoundStartExchange: true, WashInsertRank: AgainstInfo.washInsertRank);
                                     Info.AgainstInfo.ExChangeableCardNum--;
                                     Info.AgainstInfo.selectBoardCardRanks.Clear();
                                     GameUI.UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
@@ -590,7 +593,7 @@ namespace TouhouMachineLearningSummary.Command
                                     Debug.LogError("对战记录识别出现严重bug");
                                     throw new Exception("");
                                 }
-                            });
+                            }
                         }
                         else
                         {
@@ -609,7 +612,7 @@ namespace TouhouMachineLearningSummary.Command
                                     int selectRank = AgainstInfo.selectBoardCardRanks[0];
                                     //卡牌记录出现问题？？？明天修
                                     AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectBoardCard, triggerCard, CardLists, 1, isPlayer1Select: Info.AgainstInfo.IsPlayer1);
-                                    await CardCommand.ExchangeCard(CardLists[selectRank], isRoundStartExchange: true, WashInsertRank: AgainstInfo.washInsertRank);
+                                    await CardCommand.ExchangeCard(CardLists[selectRank], IsPlayerExchange: true, isRoundStartExchange: true, WashInsertRank: AgainstInfo.washInsertRank);
                                     Info.AgainstInfo.ExChangeableCardNum--;
                                     Info.AgainstInfo.selectBoardCardRanks.Clear();
                                     GameUI.UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);

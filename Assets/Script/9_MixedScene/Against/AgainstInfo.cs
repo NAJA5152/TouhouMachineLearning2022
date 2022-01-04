@@ -111,8 +111,9 @@ namespace TouhouMachineLearningSummary.Info
         public static bool IsPVP { get; set; } = false;
         public static bool IsPVE => !IsPVP;
         //判断是用Ai代替玩家操作
-        public static bool IsAiAgent { get; set; } = true;
-        public static bool IsAIControl => IsPVE && !IsMyTurn || (!IsPVP && IsMyTurn && Timer.isTimeout);
+        public static bool IsAiAgent { get; set; } = false;
+        //PvP我方超时，或者是PVE对方回合或者是Ai代理模式下
+        public static bool IsAIControl => IsAiAgent || (IsPVE && !IsMyTurn || (IsPVP && IsMyTurn && Timer.isTimeout));
 
         /// <summary>
         /// 对局中卡牌的集合

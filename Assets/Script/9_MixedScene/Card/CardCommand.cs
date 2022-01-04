@@ -179,6 +179,14 @@ namespace TouhouMachineLearningSummary.Command
             targetCard.isMoveStepOver = true;
             _ = AudioCommand.PlayAsync(GameAudioType.Deploy);
         }
+        /// <summary>
+        /// 洗牌
+        /// </summary>
+        /// <param name="targetCard">要洗的卡牌</param>
+        /// <param name="IsPlayerExchange">是否操控当前玩家洗牌</param>
+        /// <param name="isRoundStartExchange">是否回合开始洗牌</param>
+        /// <param name="WashInsertRank">洗入位置</param>
+        /// <returns></returns>
         public static async Task ExchangeCard(Card targetCard, bool IsPlayerExchange = true, bool isRoundStartExchange = false, int WashInsertRank = 0)
         {
             //Debug.Log("交换卡牌");

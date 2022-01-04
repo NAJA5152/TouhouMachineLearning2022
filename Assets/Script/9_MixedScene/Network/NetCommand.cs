@@ -108,8 +108,8 @@ namespace TouhouMachineLearningSummary.Command
                         {
                             Debug.Log("交换卡牌信息");
                             Location location = receiveInfo[0].ToType<Location>();
-                            int randomRank = receiveInfo[1].ToType<int>();
-                            _ = CardCommand.ExchangeCard(Command.RowCommand.GetCard(location), IsPlayerExchange: false, WashInsertRank: randomRank);
+                            int washInsertRank = receiveInfo[1].ToType<int>();
+                            _ = CardCommand.ExchangeCard(Command.RowCommand.GetCard(location), IsPlayerExchange: false, WashInsertRank: washInsertRank);
                             break;
                         }
                     case NetAcyncType.RoundStartExchangeOver:
