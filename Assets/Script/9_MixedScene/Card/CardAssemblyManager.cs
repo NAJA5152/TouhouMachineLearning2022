@@ -15,7 +15,7 @@ namespace TouhouMachineLearningSummary.Manager
 
     class CardAssemblyManager : MonoBehaviour
     {
-        static bool isUseLocalAssembly = false;
+        static bool isUseLocalAssembly = true;
         /// <summary>
         /// 已下载的历史配置文件
         /// </summary>
@@ -32,13 +32,13 @@ namespace TouhouMachineLearningSummary.Manager
         //获取当前引用卡牌数据的日期
         public static string GetCurrentConfigDate => currentConfig.Version;
         [ShowInInspector]
-        public static List<CardModel> GetcurrentSingleCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\CardData\CardData-Single.json").ToObject<List<CardModel>>().Select(card => card.Init(true)).ToList() : currenttSingleCardInfos;
+        public static List<CardModel> GetcurrentSingleCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Single.json").ToObject<List<CardModel>>().Select(card => card.Init(true)).ToList() : currenttSingleCardInfos;
         [ShowInInspector]
-        public static List<CardModel> GetcurrentMultiCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\CardData\CardData-Multi.json").ToObject<List<CardModel>>().Select(card => card.Init(false)).ToList() : currentMultiCardInfos;
+        public static List<CardModel> GetcurrentMultiCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Multi.json").ToObject<List<CardModel>>().Select(card => card.Init(false)).ToList() : currentMultiCardInfos;
         [ShowInInspector]
-        public static List<CardModel> GetLastSingleCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\CardData\CardData-Single.json").ToObject<List<CardModel>>().Select(card => card.Init(true)).ToList() : lastSingleCardInfos;
+        public static List<CardModel> GetLastSingleCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Single.json").ToObject<List<CardModel>>().Select(card => card.Init(true)).ToList() : lastSingleCardInfos;
         [ShowInInspector]
-        public static List<CardModel> GetLastMultiCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\CardData\CardData-Multi.json").ToObject<List<CardModel>>().Select(card => card.Init(false)).ToList() : lastMultiCardInfos;
+        public static List<CardModel> GetLastMultiCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Multi.json").ToObject<List<CardModel>>().Select(card => card.Init(false)).ToList() : lastMultiCardInfos;
         /// <summary>
         /// 最新版本的配置文件
         /// </summary>

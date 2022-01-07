@@ -19,9 +19,9 @@ namespace TouhouMachineLearningSummary.Info
             //[LabelText("多人牌库图标")]
             //public Texture2D MultiIcon;
 
-            [HorizontalGroup("Button", 120, LabelWidth = 70)]
-            [Button("刷新卡牌数据")]
-            public void Refresh() => CardLibraryCommand.Refresh();
+            //[HorizontalGroup("Button", 120, LabelWidth = 70)]
+            //[Button("刷新卡牌数据")]
+            //public void Refresh() => CardLibraryCommand.Refresh();
 
             [HorizontalGroup("Button", 120, LabelWidth = 70)]
             [Button("载入卡牌数据从表格")]
@@ -31,9 +31,9 @@ namespace TouhouMachineLearningSummary.Info
             [Button("清空卡牌数据")]
             public void Clear() => CardLibraryCommand.ClearCsvData();
 
-            [HorizontalGroup("Button", 120, LabelWidth = 70)]
-            [Button("保存卡牌数据到表格")]
-            public void Save() => CardLibraryCommand.SaveToCsv();
+            //[HorizontalGroup("Button", 120, LabelWidth = 70)]
+            //[Button("保存卡牌数据到表格")]
+            //public void Save() => CardLibraryCommand.SaveToCsv();
 
             [ShowInInspector]
             [LabelText("单人模式牌库卡牌数量")]

@@ -1,10 +1,7 @@
-using System;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Collections.Generic;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
-using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {

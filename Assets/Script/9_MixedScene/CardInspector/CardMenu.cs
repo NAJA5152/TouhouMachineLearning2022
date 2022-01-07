@@ -16,14 +16,19 @@ namespace TouhouMachineLearningSummary.CardInspector
     {
 
         static CardMenu instance;
-
+        static bool initialized = false;
         [MenuItem("Tools/卡组编辑器")]
         private static void OpenWindow()
         {
             CardMenu window = GetWindow<CardMenu>();
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(700, 700);
+            if (!initialized)
+            {
+                CardLibraryCommand.LoadFromCsv();
+                initialized=true;
+            }
         }
-        public static void UpdateInspector() => instance.ForceMenuTreeRebuild();
+        public static void UpdateInspector() => instance?.ForceMenuTreeRebuild();
         protected override OdinMenuTree BuildMenuTree()
         {
             CardLibraryInfo cardLibraryInfo = CardLibraryCommand.GetLibraryInfo();

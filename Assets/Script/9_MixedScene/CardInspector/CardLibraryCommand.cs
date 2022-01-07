@@ -82,11 +82,11 @@ namespace TouhouMachineLearningSummary.Command
                 CardInspector.CardMenu.UpdateInspector();
 #endif
             }
-            public static void SaveToCsv()
-            {
+            //public static void SaveToCsv()
+            //{
 
 
-            }
+            //}
             public static void ClearCsvData()
             {
                 GetLibraryInfo().multiModeCards.Clear();

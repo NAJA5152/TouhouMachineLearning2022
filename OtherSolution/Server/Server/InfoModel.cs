@@ -142,6 +142,8 @@ namespace Server
                 public List<int> Operation { get; set; }
                 public List<SampleCardModel> TargetcardList { get; set; }
                 public int SelectCardID { get; set; }
+                public int SelectCardIndex { get; set; }     //打出的目标卡牌索引
+
                 public PlayerOperation() { }
             }
             public class SelectOperation

@@ -26,10 +26,14 @@ namespace TouhouMachineLearningSummary.Info
         /// </summary>
         [ShowInInspector]
         public static PlayerInfo onlineUserInfo;
-        //玩家的用户信息（可能为线上信息或者单机固定卡组信息）
+        /// <summary>
+        /// 玩家的用户信息（可能为线上信息或者单机固定卡组信息）
+        /// </summary>
         [ShowInInspector]
         public static PlayerInfo currentUserInfo;
-        //对手的用户信息（可能为线上信息或者单机固定卡组信息）
+        /// <summary>
+        /// 对手的用户信息（可能为线上信息或者单机固定卡组信息）\
+        /// </summary>
         [ShowInInspector]
         public static PlayerInfo currentOpponentInfo;
         //双方用户信息
@@ -39,7 +43,7 @@ namespace TouhouMachineLearningSummary.Info
         public static CardDeck userDeck => currentUserInfo.UseDeck;
         public static CardDeck opponentDeck => currentOpponentInfo.UseDeck;
 
-        public static Manager.AgainstSummaryManager summary = new Manager.AgainstSummaryManager();
+        public static AgainstSummaryManager summary = new AgainstSummaryManager();
 
         //网络同步信息
         public static Card TargetCard;

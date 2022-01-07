@@ -283,6 +283,8 @@ namespace TouhouMachineLearningSummary.Command
                         if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.PlayCard)
                         {
                             Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList[operation.SelectCardIndex];
+                            Debug.LogWarning("打出卡牌"+ Info.AgainstInfo.playerPlayCard.cardID);
+
                         }
                         else if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.DisCard)
                         {
@@ -517,7 +519,7 @@ namespace TouhouMachineLearningSummary.Command
                     await Task.Delay(10);
                 }
                 //Debug.Log("选择单位完毕" + Math.Min(Cards.Count, num));
-               
+
             }
             NetCommand.AsyncInfo(NetAcyncType.SelectUnites);
             AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectUnite, triggerCard, filterCards, num);
