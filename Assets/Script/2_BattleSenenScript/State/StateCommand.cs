@@ -282,13 +282,13 @@ namespace TouhouMachineLearningSummary.Command
                     {
                         if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.PlayCard)
                         {
-                            Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList[operation.SelectCardIndex];
+                            Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Leader,GameRegion.Hand].CardList[operation.SelectCardIndex];
                             Debug.LogWarning("打出卡牌"+ Info.AgainstInfo.playerPlayCard.cardID);
 
                         }
                         else if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.DisCard)
                         {
-                            Info.AgainstInfo.playerDisCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList[operation.SelectCardIndex];
+                            Info.AgainstInfo.playerDisCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList[operation.SelectCardIndex];
                         }
                         else if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.Pass)
                         {
@@ -329,7 +329,7 @@ namespace TouhouMachineLearningSummary.Command
                 if (Info.AgainstInfo.playerPlayCard != null)
                 {
                     //Debug.Log("当前打出了牌");
-                    await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.PlayCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, AgainstInfo.playerPlayCard);
+                    await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.PlayCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Leader,GameRegion.Hand].CardList, AgainstInfo.playerPlayCard);
                     //假如是我的回合，则广播操作给对方，否则只接收操作不广播
                     await GameSystem.TransSystem.PlayCard(new TriggerInfo(null).SetTargetCard(AgainstInfo.playerPlayCard), AgainstInfo.IsMyTurn);
                     //Debug.Log("打出效果执行完毕");
@@ -339,7 +339,7 @@ namespace TouhouMachineLearningSummary.Command
                 //如果当前回合弃牌
                 if (Info.AgainstInfo.playerDisCard != null)
                 {
-                    await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.DisCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, AgainstInfo.playerDisCard);
+                    await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.DisCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList, AgainstInfo.playerDisCard);
                     await GameSystem.TransSystem.DisCard(new TriggerInfo(null).SetTargetCard(AgainstInfo.playerDisCard));
                     break;
                 }
@@ -351,7 +351,7 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     if (AgainstInfo.isPlayerPass)
                     {
-                        await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.Pass, AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList, null);
+                        await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.Pass, AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList, null);
                         SetCurrentPass();
                         AgainstInfo.isPlayerPass = false;
                         break;

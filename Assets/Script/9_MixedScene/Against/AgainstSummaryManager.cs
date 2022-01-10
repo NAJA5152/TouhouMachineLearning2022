@@ -182,6 +182,11 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 await Command.NetCommand.UpdateTurnOperationAsync(new TurnOperation().Init());
             }
+            else
+            {
+                //对战模式下，每次回合指针跟着增一
+                currentTurnOperationsRank++;
+            }
         }
         /// <summary>
         /// 上传一个回合记录
@@ -207,7 +212,7 @@ namespace TouhouMachineLearningSummary.Manager
                 }
             }
             currentSelectOperationsRank = 0;
-            Debug.Log("当前操作指针" + currentSelectOperationsRank);
+            Debug.Log("当前回合操作指针" + currentTurnOperationsRank);
         }
         /// <summary>
         /// 上传回合开始后的点数
@@ -241,7 +246,7 @@ namespace TouhouMachineLearningSummary.Manager
         }
 
         //////////////////////////////////对战指令解析/////////////////////////////////////////////    
-        static int currentTurnOperationsRank = 0;//当前指向的玩家回合操作命令编号
+        static int currentTurnOperationsRank = -1;//当前指向的玩家回合操作命令编号（因为在换牌阶段也要增一所以默认为-1，这样第一次换牌时会变成0）
         static int currentSelectOperationsRank = 0;//当前指向的玩家回合选择指令编号
         public TurnOperation.PlayerOperation GetCurrentPlayerOperation()
         {
