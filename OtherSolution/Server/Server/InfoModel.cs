@@ -216,6 +216,11 @@ namespace Server
             TurnOperations.Last().SurrenderState = surrendrState;
         }
 
-        public void UploadAgentSummary() => MongoDbCommand.InsertAgainstSummary(this);
+        public void UploadAgentSummary(int p1Score, int p2Score)
+        {
+            UpdateTime = DateTime.Now;
+
+            MongoDbCommand.InsertAgainstSummary(this);
+        }
     }
 }

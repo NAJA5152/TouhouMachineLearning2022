@@ -20,7 +20,7 @@ namespace Server
             TargetRoom.Creat(player1, player2);
 
         }
-        public static bool DisponseRoom(string roomID, string account)
+        public static bool DisponseRoom(string roomID, string account, int p1Score, int p2Score)
         {
             Room? TargetRoom = GetRoom(roomID);
             //验证是否合法
@@ -28,7 +28,7 @@ namespace Server
             {
                 Console.WriteLine("销毁房间"+ roomID);
                 //房间上传数据
-                TargetRoom.Summary.UploadAgentSummary();
+                TargetRoom.Summary.UploadAgentSummary(p1Score, p2Score);
                 Rooms.Remove(TargetRoom);
                 return true;
             }

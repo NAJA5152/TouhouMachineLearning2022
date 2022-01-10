@@ -282,7 +282,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task<bool> AgainstFinish()
         {
             if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
-            return await TohHouHub.InvokeAsync<bool>("AgainstFinish", Info.AgainstInfo.RoomID, AgainstInfo.onlineUserInfo.Account);
+            return await TohHouHub.InvokeAsync<bool>("AgainstFinish", Info.AgainstInfo.RoomID, AgainstInfo.onlineUserInfo.Account,AgainstInfo.PlayerScore.P1Score, AgainstInfo.PlayerScore.P2Score);
         }
         //判断是否存在正在对战中的房间
         internal static async Task CheckRoomAsync(string text1, string text2)
