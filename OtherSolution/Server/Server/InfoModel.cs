@@ -108,8 +108,8 @@ namespace Server
         public int BasePoint { get; set; } = 0;
         public int ChangePoint { get; set; } = 0;
         public List<int> State { get; set; } = new List<int>();
-        public Dictionary<CardField, int> CardFields { get; set; }
-        public Dictionary<CardState, bool> CardStates { get; set; }
+        public Dictionary<string, int> CardFields { get; set; }
+        public Dictionary<string, bool> CardStates { get; set; }
         public SampleCardModel() { }
     }
     //对战记录模型

@@ -31,6 +31,7 @@ namespace TouhouMachineLearningSummary.Manager
         public static void Init()
         {
             //初始化对战信息
+            Info.AgainstInfo.roundRank = 0;
             Info.AgainstInfo.isUpPass = false;
             Info.AgainstInfo.isDownPass = false;
             Info.AgainstInfo.isReplayMode = false;

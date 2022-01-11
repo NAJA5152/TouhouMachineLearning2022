@@ -41,3 +41,14 @@ public enum SelectOperationType
     SelectBoardCard,//从面板中选择卡牌
     SelectExchangeOver,//选择换牌完毕
 }
+public enum CardState
+{
+    Spy,
+    Seal
+}
+public enum CardField
+{
+    Timer,//计时
+    Vitality,//活力
+    Point
+}

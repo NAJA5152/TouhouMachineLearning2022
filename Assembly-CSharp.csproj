@@ -147,6 +147,7 @@
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamDatagramTickets\SteamDatagramRelayAuthTicket.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamFriends\FriendsGroupID_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\isteamnetworking.cs" />
+    <Compile Include="Assets\shan.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworkingtypes\SteamNetworkingIPAddr.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\autogen\NativeMethods.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamClientPublic\CSteamID.cs" />
