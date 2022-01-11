@@ -12,9 +12,6 @@ namespace TouhouMachineLearningSummary.Other
 {
     public class EditorExtension : MonoBehaviour
     {
-        
-
-       
         [MenuItem("Tools/打开服务端", false, 1)]
         static void StartServer() => Process.Start(@"OtherSolution\Server\bin\Debug\net6.0\Server.exe");
         [MenuItem("Tools/打开游戏客户端", false, 2)]
@@ -44,7 +41,6 @@ namespace TouhouMachineLearningSummary.Other
         [MenuItem("Tools/载入场景", priority = 102)]
         static void LoadAssetBundles()
         {
-
             string path = Path.Combine(Application.streamingAssetsPath, "sceneasset");
             //加载场景Bundle
             AssetBundle.LoadFromFile(path);

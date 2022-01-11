@@ -19,12 +19,7 @@ public class TouHouHub : Hub
     public int Register(string account, string password) => MongoDbCommand.Register(account, password);
     public PlayerInfo? Login(string account, string password) => MongoDbCommand.Login(account, password);
     //////////////////////////////////////////////等候列表////////////////////////////////////////////////////////////////////
-    public void Join(AgainstModeType againstMode, PlayerInfo userInfo, PlayerInfo virtualOpponentInfo)
-    {
-        Console.WriteLine($"发送数据 我方牌组数：{userInfo.UseDeck.CardIds.Count} 敌方牌组数{virtualOpponentInfo.UseDeck.CardIds.Count}");
-        HoldListManager.Add(againstMode, userInfo, virtualOpponentInfo, Clients.Caller);
-    }
-
+    public void Join(AgainstModeType againstMode, PlayerInfo userInfo, PlayerInfo virtualOpponentInfo) => HoldListManager.Add(againstMode, userInfo, virtualOpponentInfo, Clients.Caller);
     public void Leave(AgainstModeType againstMode, string account) => HoldListManager.Remove(againstMode, account);
     //////////////////////////////////////////////房间////////////////////////////////////////////////////////////////////
     public void AsyncInfo(NetAcyncType netAcyncType, string roomId, bool isPlayer1, object[] data) => RoomManager.GetRoom(roomId).AsyncInfo(netAcyncType, isPlayer1, data);
@@ -34,31 +29,12 @@ public class TouHouHub : Hub
     {
         switch (updateType)
         {
-
             case UpdateType.Name: return MongoDbCommand.UpdateInfo(account, password, (x => x.Name), updateValue.To<string>());
             case UpdateType.Deck: return MongoDbCommand.UpdateInfo(account, password, (x => x.Decks), updateValue.To<List<CardDeck>>());
             case UpdateType.UseDeckNum: return MongoDbCommand.UpdateInfo(account, password, (x => x.UseDeckNum), updateValue.To<int>());
             case UpdateType.UserState: return MongoDbCommand.UpdateInfo(account, password, (x => x.OnlineUserState), updateValue.To<UserState>());
             default: return false;
         }
-    }
-    //////////////////////////////////////////////聊天////////////////////////////////////////////////////////////////////
-    public void Chat(string name, string message, string target)
-    {
-        Console.WriteLine("转发聊天记录" + message);
-        if (target == "")
-        {
-            Clients.All.SendAsync("ChatReceive", (name, message).ToJson());
-        }
-        else
-        {
-            Clients.Client("").SendAsync("ChatReceive", (name, message).ToJson());
-        }
-    }
-    public void Test(string text)
-    {
-        Clients.Caller.SendAsync("Test", "服务器向你问候" + text);
-        Console.WriteLine(text);
     }
     //////////////////////////////////////////////日志////////////////////////////////////////////////////////////////////
     //下载自己的记录
@@ -78,4 +54,18 @@ public class TouHouHub : Hub
     public string UploadCardConfigs(CardConfig cardConfig) => MongoDbCommand.InsertOrUpdateCardConfig(cardConfig);
     //下载卡牌配置信息
     public CardConfig DownloadCardConfigs(string date) => MongoDbCommand.GetCardConfig(date);
+    //////////////////////////////////////////////聊天////////////////////////////////////////////////////////////////////
+    public void Chat(string name, string message, string target)
+    {
+        Console.WriteLine("转发聊天记录" + message);
+        if (target == "")
+        {
+            Clients.All.SendAsync("ChatReceive", (name, message).ToJson());
+        }
+        else
+        {
+            Clients.Client("").SendAsync("ChatReceive", (name, message).ToJson());
+        }
+    }
+    public void Test(string text) => Clients.Caller.SendAsync("Test", "服务器向你问候" + text);
 }

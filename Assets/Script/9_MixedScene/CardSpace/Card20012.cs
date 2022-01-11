@@ -19,7 +19,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this,region,territory);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfo(this).SetTargetCard(this));
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
                })
                .AbilityAppend();
 
@@ -27,7 +27,7 @@ namespace TouhouMachineLearningSummary.CardSpace
              .AbilityAdd(async (triggerInfo) =>
              {
                  await GameSystem.SelectSystem.SelectUnite(this, AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardRank.Copper].CardList, 1);
-                 await GameSystem.PointSystem.Cure(new TriggerInfo(this).SetTargetCard(AgainstInfo.selectUnits));
+                 await GameSystem.PointSystem.Cure(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.SelectUnits));
              }, Condition.Default)
              .AbilityAppend();
         }

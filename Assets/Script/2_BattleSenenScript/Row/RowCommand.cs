@@ -29,12 +29,8 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static Card GetCard(int x, int y) => x == -1 ? null : CardSet.GlobalCardList[x][y];
         public static Card GetCard(Location location) => location.X == -1 ? null : CardSet.GlobalCardList[location.X][location.Y];
-        public static SingleRowManager GetSingleRowInfoById(int Id) => AgainstInfo.cardSet.SingleRowInfos.First(infos => infos.CardList == CardSet.GlobalCardList[Id]);
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public static void SetPlayCardMoveFree(bool isFree)
-        {
-            AgainstInfo.cardSet[Orientation.Down][GameRegion.Leader, GameRegion.Hand].CardList.ForEach(card => card.isFree = isFree);
-        }
+        public static void SetPlayCardMoveFree(bool isFree) => AgainstInfo.cardSet[Orientation.Down][GameRegion.Leader, GameRegion.Hand].CardList.ForEach(card => card.IsFree = isFree);
         public static void SetRegionSelectable(GameRegion region, Territory territory = Territory.All)
         {
             if (region == GameRegion.None)

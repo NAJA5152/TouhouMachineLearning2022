@@ -54,14 +54,14 @@ namespace TouhouMachineLearningSummary.Model
         public Quaternion targetQuaternion;
 
         //状态相关参数
-        public bool isInit = false;
-        public bool isGray = false;
-        public bool isCover = false;
-        public bool isLocked = false;
-        public bool isFree = false;
-        public bool isCanSee = false;
-        public bool isCardDead => showPoint == 0 && AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this);
-        public void SetCardSeeAble(bool isCanSee) => this.isCanSee = isCanSee;
+        public bool IsInit { get; set; } = false;
+        public bool IsGray { get; set; } = false;
+        public bool IsCover { get; set; } = false;
+        public bool IsLocked { get; set; } = false;
+        public bool IsFree { get; set; } = false;
+        public bool IsCanSee { get; set; } = false;
+        public bool IsCardDead => showPoint == 0 && AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this);
+        public void SetCardSeeAble(bool isCanSee) => this.IsCanSee = isCanSee;
         public bool isMoveStepOver = true;
         public bool isPrepareToPlay = false;
         public bool IsAutoMove => this != AgainstInfo.playerPrePlayCard;
@@ -92,7 +92,7 @@ namespace TouhouMachineLearningSummary.Model
             }
         }
 
-        public Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<TriggerInfo, Task>>>> cardAbility = new Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<TriggerInfo, Task>>>>();
+        public Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<TriggerInfoModel, Task>>>> cardAbility = new Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<TriggerInfoModel, Task>>>>();
 
         private void Update() => RefreshCardUi();
 
@@ -117,51 +117,38 @@ namespace TouhouMachineLearningSummary.Model
         /// </summary>
         public virtual void Init()
         {
-            isInit = true;
-
+            IsInit = true;
             foreach (TriggerTime tirggerTime in Enum.GetValues(typeof(TriggerTime)))
             {
-                cardAbility[tirggerTime] = new Dictionary<TriggerType, List<Func<TriggerInfo, Task>>>();
+                cardAbility[tirggerTime] = new Dictionary<TriggerType, List<Func<TriggerInfoModel, Task>>>();
                 foreach (TriggerType triggerType in Enum.GetValues(typeof(TriggerType)))
                 {
-                    cardAbility[tirggerTime][triggerType] = new List<Func<TriggerInfo, Task>>();
+                    cardAbility[tirggerTime][triggerType] = new List<Func<TriggerInfoModel, Task>>();
                 }
             }
+
             AbalityRegister(TriggerTime.When, TriggerType.Discard)
-              .AbilityAdd(async (triggerInfo) =>
-              {
-                  await Command.CardCommand.DisCard(triggerInfo.targetCard);
-                  Debug.Log("执行丢弃操作");
-              })
+              .AbilityAdd(async (triggerInfo) =>{await Command.CardCommand.DisCard(triggerInfo.targetCard);})
               .AbilityAppend();
 
-            cardAbility[TriggerTime.When][TriggerType.Gain] = new List<Func<TriggerInfo, Task>>()
-            {
-                async (triggerInfo) =>
-                {
-                    await Command.CardCommand.Gain(triggerInfo);
-                }
-            };
+            AbalityRegister(TriggerTime.When, TriggerType.Gain)
+             .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Gain(triggerInfo); })
+             .AbilityAppend();
             //默认受伤效果：当卡牌受到伤害时则会受到伤害，当卡牌死亡时，就会死
-            cardAbility[TriggerTime.When][TriggerType.Hurt] = new List<Func<TriggerInfo, Task>>()
+            AbalityRegister(TriggerTime.When, TriggerType.Hurt)
+            .AbilityAdd(async (triggerInfo) => 
             {
-                async (triggerInfo) =>
+                await Command.CardCommand.Hurt(triggerInfo);
+                if (IsCardDead)
                 {
-                    await Command.CardCommand.Hurt(triggerInfo);
-                    if (isCardDead)
-                    {
-                        await GameSystem.TransSystem.DeadCard(triggerInfo);
-                    }
+                    await GameSystem.TransSystem.DeadCard(triggerInfo);
                 }
-            };
-            cardAbility[TriggerTime.When][TriggerType.Dead] = new List<Func<TriggerInfo, Task>>()
-            {
-                async (triggerInfo) =>
-                {
-                   await Command.CardCommand.MoveToGrave(this);
-                }
-            };
-            cardAbility[TriggerTime.When][TriggerType.Destory] = new List<Func<TriggerInfo, Task>>()
+            })
+            .AbilityAppend();
+            AbalityRegister(TriggerTime.When, TriggerType.Dead)
+            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.MoveToGrave(this); })
+            .AbilityAppend();
+            cardAbility[TriggerTime.When][TriggerType.Destory] = new List<Func<TriggerInfoModel, Task>>()
             {
                 async (triggerInfo) =>
                 {
@@ -169,7 +156,7 @@ namespace TouhouMachineLearningSummary.Model
                     await Command.CardCommand.Hurt(triggerInfo);
                 }
             };
-            cardAbility[TriggerTime.When][TriggerType.Cure] = new List<Func<TriggerInfo, Task>>()
+            cardAbility[TriggerTime.When][TriggerType.Cure] = new List<Func<TriggerInfoModel, Task>>()
             {
                 async (triggerInfo) =>
                 {
@@ -177,35 +164,28 @@ namespace TouhouMachineLearningSummary.Model
                      await Command.CardCommand.Gain(triggerInfo);
                 }
             };
-            //cardAbility[TriggerTime.When][TriggerType.SelectUnite] = new List<Func<TriggerInfo, Task>>()
-            //{
-            //    async (triggerInfo) =>
-            //    {
-            //        await Command.StateCommand.WaitForSelecUnit(triggerInfo.triggerCard, triggerInfo.targetCards, triggerInfo.selectNum, triggerInfo.autoSelect);
-            //    }
-            //};
-            cardAbility[TriggerTime.When][TriggerType.Move] = new List<Func<TriggerInfo, Task>>()
+            cardAbility[TriggerTime.When][TriggerType.Move] = new List<Func<TriggerInfoModel, Task>>()
             {
                 async (triggerInfo) =>
                 {
                   await Command.CardCommand.MoveCard(triggerInfo.targetCard,triggerInfo.location);
                 }
             };
-            cardAbility[TriggerTime.When][TriggerType.Banish] = new List<Func<TriggerInfo, Task>>()
+            cardAbility[TriggerTime.When][TriggerType.Banish] = new List<Func<TriggerInfoModel, Task>>()
             {
                 async (triggerInfo) =>
                 {
                   await Command.CardCommand.BanishCard(this);
                 }
             };
-            cardAbility[TriggerTime.When][TriggerType.Summon] = new List<Func<TriggerInfo, Task>>()
+            cardAbility[TriggerTime.When][TriggerType.Summon] = new List<Func<TriggerInfoModel, Task>>()
             {
                 async (triggerInfo) =>
                 {
                   await Command.CardCommand.SummonCard(this);
                 }
             };
-            cardAbility[TriggerTime.When][TriggerType.Revive] = new List<Func<TriggerInfo, Task>>()
+            cardAbility[TriggerTime.When][TriggerType.Revive] = new List<Func<TriggerInfoModel, Task>>()
             {
                 async (triggerInfo) =>
                 {
@@ -214,7 +194,7 @@ namespace TouhouMachineLearningSummary.Model
                 }
             };
             //卡牌状态变化时效果
-            cardAbility[TriggerTime.When][TriggerType.Seal] = new List<Func<TriggerInfo, Task>>()
+            cardAbility[TriggerTime.When][TriggerType.Seal] = new List<Func<TriggerInfoModel, Task>>()
             {
                 async (triggerInfo) =>
                 {
@@ -222,12 +202,12 @@ namespace TouhouMachineLearningSummary.Model
                 }
             };
             //登记卡牌回合状态变化时效果
-            cardAbility[TriggerTime.When][TriggerType.TurnEnd] = new List<Func<TriggerInfo, Task>>()
+            cardAbility[TriggerTime.When][TriggerType.TurnEnd] = new List<Func<TriggerInfoModel, Task>>()
             {
                 async (triggerInfo) =>
                 {
                     //我死啦
-                    if (isCardDead)
+                    if (IsCardDead)
                     {
 
                     }
@@ -238,7 +218,7 @@ namespace TouhouMachineLearningSummary.Model
 	                }
                 }
             };
-            cardAbility[TriggerTime.When][TriggerType.RoundEnd] = new List<Func<TriggerInfo, Task>>()
+            cardAbility[TriggerTime.When][TriggerType.RoundEnd] = new List<Func<TriggerInfoModel, Task>>()
             {
                 async (triggerInfo) =>
                 {
@@ -252,12 +232,12 @@ namespace TouhouMachineLearningSummary.Model
         public void SetMoveTarget(Vector3 TargetPosition, Vector3 TargetEulers)
         {
             targetPosition = TargetPosition;
-            targetQuaternion = Quaternion.Euler(TargetEulers + new Vector3(0, 0, isCanSee ? 0 : 180));
-            if (isInit)
+            targetQuaternion = Quaternion.Euler(TargetEulers + new Vector3(0, 0, IsCanSee ? 0 : 180));
+            if (IsInit)
             {
                 transform.position = targetPosition;
                 transform.rotation = targetQuaternion;
-                isInit = false;
+                IsInit = false;
             }
         }
 
@@ -278,11 +258,11 @@ namespace TouhouMachineLearningSummary.Model
             {
                 material.SetFloat("_IsFocus", 0);
             }
-            material.SetFloat("_IsTemp", isGray ? 0 : 1);
+            material.SetFloat("_IsTemp", IsGray ? 0 : 1);
             transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion, Time.deltaTime * 10);
             PointText.text = cardType == CardType.Unite ? showPoint.ToString() : "";
         }
-        protected CardAbilityManeger AbalityRegister(TriggerTime time, TriggerType type) => new CardAbilityManeger(this, time, type);
+        public CardAbilityManeger AbalityRegister(TriggerTime time, TriggerType type) => new CardAbilityManeger(this, time, type);
     }
 }

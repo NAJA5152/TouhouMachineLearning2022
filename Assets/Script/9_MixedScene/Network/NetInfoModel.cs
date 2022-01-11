@@ -15,6 +15,8 @@ namespace TouhouMachineLearningSummary.Model
         public int CardID { get; set; } = 0;
         public int BasePoint { get; set; } = 0;
         public int ChangePoint { get; set; } = 0;
+        public Dictionary<CardField, int> CardFields { get; set; }
+        public Dictionary<CardState, bool> CardStates { get; set; }
         public List<int> State { get; set; } = new List<int>();
         public SampleCardModel() { }
         public SampleCardModel(Card card)
@@ -22,6 +24,8 @@ namespace TouhouMachineLearningSummary.Model
             CardID = card.cardID;
             BasePoint = card.basePoint;
             ChangePoint = card.changePoint;
+            CardFields = card.cardFields;
+            CardStates = card.cardStates;
             State = Enumerable.Range(0, Enum.GetNames(typeof(GameEnum.CardState)).Length).SelectList(index => card[(GameEnum.CardState)index] ? 1 : 0);
         }
     }

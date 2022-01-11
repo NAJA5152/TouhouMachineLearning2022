@@ -18,15 +18,15 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this,region,territory);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfo(this).SetTargetCard(this));
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
                })
                .AbilityAppend();
 
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
               .AbilityAdd(async (triggerInfo) =>
               {
-                  AgainstInfo.selectUnits = AgainstInfo.cardSet[GameRegion.Battle][CardRank.Copper, CardRank.Silver][CardFeature.Largest].CardList;
-                  await GameSystem.PointSystem.Destory(new TriggerInfo(this).SetTargetCard(AgainstInfo.selectUnits));               
+                  AgainstInfo.SelectUnits = AgainstInfo.cardSet[GameRegion.Battle][CardRank.Copper, CardRank.Silver][CardFeature.Largest].CardList;
+                  await GameSystem.PointSystem.Destory(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.SelectUnits));               
               }, Condition.Default)
               .AbilityAppend();
         }

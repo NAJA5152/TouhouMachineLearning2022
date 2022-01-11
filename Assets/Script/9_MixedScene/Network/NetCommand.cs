@@ -41,13 +41,9 @@ namespace TouhouMachineLearningSummary.Command
                 _ = Command.GameUI.NoticeCommand.CloseAsync();//关闭ui
                 Command.BookCommand.SimulateFilpPage(false);//停止翻书
                 Command.MenuStateCommand.AddState(MenuState.ScenePage);//增加路由
-
                 Debug.Log("进入对战配置模式");
-                AgainstManager.AutoSetRole(isPlayer1);
-                AgainstManager.AutoSetPlayerInfo(playerInfo);
-                AgainstManager.AutoSetOpponentInfo(opponentInfo);
                 //Manager.LoadingManager.manager?.OpenAsync();
-                AgainstManager.AutoStart();
+                _ = AgainstManager.OnlineStart(isPlayer1, playerInfo, opponentInfo);
             });
             TohHouHub.On<NetAcyncType, object[]>("Async", (type, receiveInfo) =>
             {
@@ -71,15 +67,14 @@ namespace TouhouMachineLearningSummary.Command
                     case NetAcyncType.SelectRegion:
                         {
                             Debug.Log("触发区域同步");
-                            int X = receiveInfo[0].ToType<int>();
-                            AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(X);
+                            AgainstInfo.SelectRowRank = receiveInfo[0].ToType<int>();
                             break;
                         }
                     case NetAcyncType.SelectUnites:
                         {
                             Debug.Log("收到同步单位信息");
                             List<Location> Locations = receiveInfo[0].ToType<List<Location>>();
-                            AgainstInfo.selectUnits.AddRange(Locations.Select(location => Command.RowCommand.GetCard(location.X, location.Y)));
+                            AgainstInfo.SelectUnits.AddRange(Locations.Select(location => Command.RowCommand.GetCard(location.X, location.Y)));
                             break;
                         }
                     case NetAcyncType.SelectLocation:
@@ -87,8 +82,8 @@ namespace TouhouMachineLearningSummary.Command
                             Debug.Log("触发坐标同步");
                             int X = receiveInfo[0].ToType<int>();
                             int Y = receiveInfo[1].ToType<int>();
-                            Info.AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(X);
-                            Info.AgainstInfo.SelectLocation = Y;
+                            Info.AgainstInfo.SelectRowRank = X;
+                            Info.AgainstInfo.SelectRank = Y;
                             Debug.Log($"坐标为：{X}:{Y}");
                             break;
                         }
@@ -169,8 +164,6 @@ namespace TouhouMachineLearningSummary.Command
             catch (Exception e) { Debug.LogException(e); }
             return Info.AgainstInfo.onlineUserInfo != null;
         }
-
-
         ///////////////////////////////////////对战记录///////////////////////////////////////////////////////////////////////
         public static async Task UpdateTurnOperationAsync(AgainstSummaryManager.TurnOperation turnOperation)
         {
@@ -282,7 +275,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task<bool> AgainstFinish()
         {
             if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
-            return await TohHouHub.InvokeAsync<bool>("AgainstFinish", Info.AgainstInfo.RoomID, AgainstInfo.onlineUserInfo.Account,AgainstInfo.PlayerScore.P1Score, AgainstInfo.PlayerScore.P2Score);
+            return await TohHouHub.InvokeAsync<bool>("AgainstFinish", Info.AgainstInfo.RoomID, AgainstInfo.onlineUserInfo.Account, AgainstInfo.PlayerScore.P1Score, AgainstInfo.PlayerScore.P2Score);
         }
         //判断是否存在正在对战中的房间
         internal static async Task CheckRoomAsync(string text1, string text2)
@@ -297,8 +290,6 @@ namespace TouhouMachineLearningSummary.Command
         //数据同步类型
         public static async void AsyncInfo(NetAcyncType AcyncType)
         {
-
-
             if (Info.AgainstInfo.IsPVP && (Info.AgainstInfo.IsMyTurn || AcyncType == NetAcyncType.FocusCard || AcyncType == NetAcyncType.ExchangeCard || AcyncType == NetAcyncType.RoundStartExchangeOver))
             {
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
@@ -319,22 +310,22 @@ namespace TouhouMachineLearningSummary.Command
                         }
                     case NetAcyncType.SelectRegion:
                         {
-                            int RowRank = Info.AgainstInfo.SelectRegion.RowRank;
+                            int RowRank = Info.AgainstInfo.SelectRowRank;
                             Debug.Log("同步焦点区域为" + RowRank);
                             await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { RowRank });
                             break;
                         }
                     case NetAcyncType.SelectUnites:
                         {
-                            List<Location> Locations = Info.AgainstInfo.selectUnits.SelectList(unite => unite.Location);
+                            List<Location> Locations = Info.AgainstInfo.SelectUnits.SelectList(unite => unite.Location);
                             Debug.LogError("选择单位完成：" + Locations.ToJson());
                             await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { Locations });
                             break;
                         }
                     case NetAcyncType.SelectLocation:
                         {
-                            int RowRank = Info.AgainstInfo.SelectRegion.RowRank;
-                            int LocationRank = Info.AgainstInfo.SelectLocation;
+                            int RowRank = Info.AgainstInfo.SelectRowRank;
+                            int LocationRank = Info.AgainstInfo.SelectRank;
                             Debug.Log("同步焦点坐标给对面：" + RowRank);
                             await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { RowRank, LocationRank });
                             break;

@@ -38,7 +38,6 @@ namespace TouhouMachineLearningSummary.GameEnum
         Deploy,
         Discard,
         Dead,
-
         /// <summary>
         /// 复活
         /// </summary>
@@ -97,9 +96,7 @@ namespace TouhouMachineLearningSummary.GameEnum
     }
     public enum Camp
     {
-        [LabelText("中立")]
         Neutral,
-        [InspectorName("道教")]
         Taoism,
         Shintoism,
         Buddhism,
@@ -123,12 +120,7 @@ namespace TouhouMachineLearningSummary.GameEnum
     {
         Water, Fire, Wind, Soil, All = 99, None = 100
     }
-    public enum CardState
-    {
-        Spy,
-        Seal
-
-    }
+   
     public enum CardType
     {
         Unite,
@@ -145,6 +137,11 @@ namespace TouhouMachineLearningSummary.GameEnum
         Gold,
         Silver,
         Copper,
+    }
+    public enum CardState
+    {
+        Spy,
+        Seal
     }
     public enum CardField
     {

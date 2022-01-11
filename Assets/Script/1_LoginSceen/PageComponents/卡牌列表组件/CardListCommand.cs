@@ -5,10 +5,9 @@ using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Manager;
 using UnityEngine;
 using UnityEngine.UI;
-//using static Info.CardCompnentInfo;
 namespace TouhouMachineLearningSummary.Command
 {
-    public class CardListCommand// : MonoBehaviour
+    public class CardListCommand
     {
 
         //初始化牌组列表组件
@@ -52,17 +51,14 @@ namespace TouhouMachineLearningSummary.Command
             int deskCardNumber = Info.CardCompnentInfo.distinctCardIds.Count();
             int deskModelNumber = Info.CardCompnentInfo.deckCardModels.Count;
             Info.CardCompnentInfo.deckCardModels.ForEach(model => model.SetActive(false));
-            //Debug.Log("卡牌数量比" + deskCardNumber + "-" + deskModelNumber);
             if (deskCardNumber > deskModelNumber)
             {
                 for (int i = 0; i < deskCardNumber - deskModelNumber; i++)
                 {
                     var newCardModel = Object.Instantiate(Info.CardCompnentInfo.cardDeckCardModel, Info.CardCompnentInfo.cardDeckContent.transform);
                     Info.CardCompnentInfo.deckCardModels.Add(newCardModel);
-                    //Debug.Log("新增卡牌");
                 }
             }
-            // Debug.Log("去重数量为" + distinctCardIds.Count());
             //初始化卡牌栏
             for (int i = 0; i < Info.CardCompnentInfo.distinctCardIds.Count(); i++)
             {
@@ -98,16 +94,12 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     Debug.Log(cardID + "查找失败");
                 }
-
             }
         }
         public static async void SaveDeck()
         {
             Debug.Log("保存卡组");
             Info.AgainstInfo.onlineUserInfo.UseDeck = Info.CardCompnentInfo.tempDeck;
-            //Command.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
-            //await Command.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
-            //await Command.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
             await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
             Command.CardListCommand.Init();
             Command.MenuStateCommand.RebackStare();
@@ -182,4 +174,3 @@ namespace TouhouMachineLearningSummary.Command
         }
     }
 }
-

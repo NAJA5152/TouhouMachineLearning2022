@@ -93,7 +93,6 @@ namespace TouhouMachineLearningSummary.Command
                 }
             });
         }
-
         public static async void SimulateFilpPage(bool IsSimulateFilpPage, bool isRightToLeft = true)
         {
             Info.BookInfo.IsSimulateFilpPage = IsSimulateFilpPage;
@@ -119,7 +118,6 @@ namespace TouhouMachineLearningSummary.Command
                     await FileSinglePage(isRightToLeft, endPage);
                 }
             }
-
             static async Task FileSinglePage(bool isRightToLeft, GameObject page)
             {
                 page.SetActive(true);
@@ -134,7 +132,5 @@ namespace TouhouMachineLearningSummary.Command
                 DestroyImmediate(page);
             }
         }
-
     }
 }
-

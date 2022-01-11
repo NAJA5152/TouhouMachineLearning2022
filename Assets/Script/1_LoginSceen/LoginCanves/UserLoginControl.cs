@@ -24,25 +24,14 @@ namespace TouhouMachineLearningSummary.Control
             await Manager.CameraViewManager.MoveToViewAsync(0, true);
             //初始化场景物体状态，如果已登录，则进入到指定页，否则进入初始场景
             await Command.BookCommand.InitAsync(IsAleardyLogin);
-            //
             if (!IsAleardyLogin)
             {
                 Command.NetCommand.Init();
                 await Manager.CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
                 UserLogin();//自动登录
                 await Task.Delay(1000);
-                //Task.Run(() =>
-                //{
-                //    var result2 = Command.NetCommand.DownloadAllAgentSummaryAsync(0, 100);
-                //    Debug.Log(result2.ToJson());
-
-                //    var result1 = Command.NetCommand.DownloadOwnerAgentSummaryAsync(Info.AgainstInfo.onlineUserInfo.Account, 0, 100);
-                //    Debug.Log(result1.ToJson());
-                //});
-
                 //await TestReplayAsync();
                 //await TestBattleAsync();
-                //await Command.BookCommand.InitAsync();
             }
         }
         private void Update()
@@ -74,8 +63,7 @@ namespace TouhouMachineLearningSummary.Control
                                 Command.MenuStateCommand.ChangeToMainPage(MenuState.Login);
                                 await Command.BookCommand.SetCoverStateAsync(false);
                                 Info.GameUI.UiInfo.loginCanvas.SetActive(true);
-                            }
-                            );
+                            });
                             break;
                         }
                     default://如果当前状态为多级页面，则返回上级（个别页面需要询问）

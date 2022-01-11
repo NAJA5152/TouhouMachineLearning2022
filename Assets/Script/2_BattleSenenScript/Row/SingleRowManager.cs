@@ -27,12 +27,8 @@ namespace TouhouMachineLearningSummary.Manager
         public int Location => JudgeRank(this, AgainstInfo.FocusPoint);
         //public int RowRank => CardSet.GlobalCardList.IndexOf(CardList);
         public Material CardMaterial => transform.GetComponent<Renderer>().material;
-        [System.Obsolete("废弃，调整结构")]
-        public List<Card> CardList
-        {
-            get => AgainstInfo.cardSet[RowRank];
-            set => AgainstInfo.cardSet[RowRank] = value;
-        }
+        //当前行管理其所管理的的卡牌列表
+        public List<Card> CardList => AgainstInfo.cardSet[RowRank];
 
         void Update()
         {
@@ -40,7 +36,7 @@ namespace TouhouMachineLearningSummary.Manager
             SetCardsPosition(CardList);
             if (IsMyHandRegion)
             {
-                CardList.ForEach(card => card.isPrepareToPlay = (AgainstInfo.playerFocusCard != null && card == AgainstInfo.playerFocusCard && card.isFree));
+                CardList.ForEach(card => card.isPrepareToPlay = (AgainstInfo.playerFocusCard != null && card == AgainstInfo.playerFocusCard && card.IsFree));
             }
             GetComponent<Renderer>().material.SetFloat("_Strength", Mathf.PingPong(Time.time * 10, 10) + 10);
         }
@@ -53,7 +49,7 @@ namespace TouhouMachineLearningSummary.Manager
                 {
                     Card modelCard = AgainstInfo.cardSet[Orientation.My][GameRegion.Uesd].CardList[0];
                     TempCard = Command.CardCommand.CreateCard(modelCard.cardID);
-                    TempCard.isGray = true;
+                    TempCard.IsGray = true;
                     TempCard.SetCardSeeAble(true);
                     CardList.Insert(Location, TempCard);
                     TempCard.Init();
@@ -99,7 +95,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             int Rank = 0;
             float posx = -(point.x - singleRowInfo.transform.position.x);
-            int UniteNum = singleRowInfo.CardList.Where(card => !card.isGray).Count();
+            int UniteNum = singleRowInfo.CardList.Where(card => !card.IsGray).Count();
             for (int i = 0; i < UniteNum; i++)
             {
                 if (posx > i * 1.6 - (UniteNum - 1) * 0.8)

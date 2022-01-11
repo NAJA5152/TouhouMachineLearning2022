@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-//using static Info.CardCompnentInfo;
 
 namespace TouhouMachineLearningSummary.Control
 {
@@ -12,4 +11,3 @@ namespace TouhouMachineLearningSummary.Control
         public void LostFocusCamp() => Command.CampSelectCommand.LostFocusCamp();
     }
 }
-

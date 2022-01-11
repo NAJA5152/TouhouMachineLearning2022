@@ -21,7 +21,7 @@ namespace TouhouMachineLearningSummary.Command
             TargetParticle.Play();
             GameObject.Destroy(TargetParticle.gameObject, 2);
         }
-        public static void Bullet_Gain(TriggerInfo triggerInfo)
+        public static void Bullet_Gain(TriggerInfoModel triggerInfo)
         {
             GameObject Bullet = GameObject.Instantiate(Info.ParticleInfo.Instance.GainBullet);
             BulletControl bulletControl = Bullet.GetComponent<BulletControl>();
@@ -29,7 +29,7 @@ namespace TouhouMachineLearningSummary.Command
             bulletControl.Play();
             Bullet.GetComponent<ParticleSystem>().Play();
         }
-        internal static void Bullet_Hurt(TriggerInfo triggerInfo)
+        internal static void Bullet_Hurt(TriggerInfoModel triggerInfo)
         {
             GameObject Bullet = GameObject.Instantiate(Info.ParticleInfo.Instance.HurtBullet);
             BulletControl bulletControl = Bullet.GetComponent<BulletControl>();

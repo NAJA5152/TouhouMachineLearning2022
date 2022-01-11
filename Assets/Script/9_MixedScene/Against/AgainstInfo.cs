@@ -18,9 +18,6 @@ namespace TouhouMachineLearningSummary.Info
         public static bool isReplayMode = false;//回放模式，会加载指定对战记录读取操作
         public static bool isJumpMode = false;//跳转到指定回合模式
         public static bool isShouldUploadSummaryOperation => !isReplayMode && ((IsPVP && IsMyTurn) || IsPVE);//是否处于应该上传对战记录操作状态,回放模式不上传，单人模式客户端双方均上传记录，多人模式由双方在客户端主体方上传记录
-
-        ////对局的卡牌配置信息
-        //public static CardConfig downloadCardConfigAssembly;
         /// <summary>
         /// 玩家线上人物信息
         /// </summary>
@@ -54,7 +51,6 @@ namespace TouhouMachineLearningSummary.Info
         //操作标志位
         public static List<GameObject> ArrowList = new List<GameObject>();
 
-        //public static CardBoardMode CardBoardMode;
         public static List<int> Player1BlackCardList;
         public static List<int> Player2BlackCardList;
 
@@ -71,7 +67,7 @@ namespace TouhouMachineLearningSummary.Info
         public static Card playerDisCard;
         //玩家选择过牌
         public static bool isPlayerPass = false;
-
+        //小局回合信息
         public static int roundRank = 1;
         public static int turnRank = 0;
         public static int totalTurnRank = 0;
@@ -84,16 +80,17 @@ namespace TouhouMachineLearningSummary.Info
         //选择的区域
         public static SingleRowManager PlayerFocusRegion { get; set; }
         public static bool IsWaitForSelectRegion { get; set; }
-        public static SingleRowManager SelectRegion { get; set; }
+        public static int SelectRowRank { get; set; }
+        public static List<Card> SelectRowCardList => cardSet[SelectRowRank];
         //选择的单位
         public static Card ArrowStartCard { get; set; }
         public static Card ArrowEndCard { get; set; }
         public static bool IsWaitForSelectUnits { get; set; }
-        public static List<Card> selectUnits = new List<Card>();//玩家选择的单位
-        //选择的坐标
+        public static List<Card> SelectUnits { get; set; } = new List<Card>();//玩家选择的单位
+        //选择的次序
         public static Vector3 FocusPoint;
         public static bool IsWaitForSelectLocation;
-        public static int SelectLocation = -1;
+        public static int SelectRank = -1;
         //选择的卡牌面板卡片
         public static bool isRoundStartExchange = false;
         public static bool isPlayer1RoundStartExchangeOver = false;
@@ -107,7 +104,6 @@ namespace TouhouMachineLearningSummary.Info
         public static List<Card> selectActualCards => selectBoardCardRanks.Select(rank => cardBoardList[rank]).ToList();
         public static List<int> selectVirualCardIds => selectBoardCardRanks.Select(rank => cardBoardIDList[rank]).ToList();
 
-        //public static bool IsFinishSelectBoardCard;
         public static int ExChangeableCardNum = 0;
         //判断是否1号玩家
         public static bool IsPlayer1 { get; set; } = false;
@@ -118,13 +114,13 @@ namespace TouhouMachineLearningSummary.Info
         public static bool IsAiAgent { get; set; } = false;
         //PvP我方超时，或者是PVE对方回合或者是Ai代理模式下
         public static bool IsAIControl => IsAiAgent || (IsPVE && !IsMyTurn || (IsPVP && IsMyTurn && Timer.isTimeout));
-
         /// <summary>
         /// 对局中卡牌的集合
         /// </summary>
         public static CardSet cardSet = new CardSet();
 
         public static List<Card> AllCardList => CardSet.GlobalCardList.SelectMany(x => x).ToList();
+        //分数
         public static (int P1Score, int P2Score) PlayerScore;
         public static (int MyScore, int OpScore) ShowScore => IsPlayer1 ? (PlayerScore.P1Score, PlayerScore.P2Score) : (PlayerScore.P2Score, PlayerScore.P1Score);
         public static int TotalUpPoint => cardSet[Orientation.Up][GameRegion.Battle].CardList.Sum(card => card.showPoint);
@@ -134,12 +130,10 @@ namespace TouhouMachineLearningSummary.Info
         public static int TotalPlayer1Point => IsPlayer1 ? TotalDownPoint : TotalUpPoint;
         public static int TotalPlayer2Point => IsPlayer1 ? TotalUpPoint : TotalDownPoint;
         public static int TurnRelativePoint => TotalMyPoint - TotalOpPoint;
-
+        //pass状态
         public static bool isUpPass = false;
         public static bool isDownPass = false;
-
         public static bool isCurrectPass => IsMyTurn ? isDownPass : isUpPass;
-
         public static bool isBoothPass => isUpPass && isDownPass;
     }
 }

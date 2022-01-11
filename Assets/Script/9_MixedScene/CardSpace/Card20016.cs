@@ -17,8 +17,8 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectBoardCard(this,AgainstInfo.cardSet[Orientation.My][GameRegion.Grave][CardRank.Copper][CardTag.Fairy][CardType.Unite].CardList);
-                   await GameSystem.TransSystem.MoveToGrave(new TriggerInfo(this).SetTargetCard(this));
-                   await GameSystem.TransSystem.ReviveCard(new TriggerInfo(this).SetTargetCard(AgainstInfo.selectActualCards));
+                   await GameSystem.TransSystem.MoveToGrave(new TriggerInfoModel(this).SetTargetCard(this));
+                   await GameSystem.TransSystem.ReviveCard(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.selectActualCards));
                })
                .AbilityAppend();
         }

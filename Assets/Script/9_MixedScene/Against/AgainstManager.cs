@@ -14,8 +14,6 @@ namespace TouhouMachineLearningSummary.Manager
     /// </summary>
     public partial class AgainstManager
     {
-        //对战加载的卡牌数据版本
-        //static string LoadAssemblyVerision = "";
         static PlayerInfo defaultPlayerInfo => new PlayerInfo("NPC", "默认NPC", "无名", "",
             new List<CardDeck>()
             {
@@ -32,39 +30,19 @@ namespace TouhouMachineLearningSummary.Manager
             });
         public static void Init()
         {
-            AutoSetPlayerInfo(null);
-            AutoSetOpponentInfo(null);
             //初始化对战信息
             Info.AgainstInfo.isUpPass = false;
             Info.AgainstInfo.isDownPass = false;
             Info.AgainstInfo.isReplayMode = false;
             Info.AgainstInfo.summary = null;
         }
-
-
         /////////////////////////////////////////////////////////////////////自定义配置///////////////////////////////////////////////////////////
         /// <summary>
         /// 设置特殊对战规则
         /// </summary>
         /// <param name="rules"></param>
         public static void SetRules(params bool[] rules) => Console.WriteLine("待定");
-        /// <summary>
-        /// 设置回放模式
-        /// </summary>
-        /// <param name="rules"></param>
-        public static async void ReplayStart(AgainstSummaryManager summary)
-        {
-            Info.AgainstInfo.isReplayMode = true;
-            Info.AgainstInfo.summary = summary;
-            //LoadAssemblyVerision = Info.AgainstInfo.summary.AssemblyVerision;
-            Info.AgainstInfo.IsPlayer1 = true;//待完善，默认1号玩家
-            Info.AgainstInfo.currentUserInfo = summary.Player1Info;
-            Info.AgainstInfo.currentOpponentInfo = summary.Player2Info;
-            Info.AgainstInfo.IsMyTurn = Info.AgainstInfo.IsPlayer1;
-            await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.summary.AssemblyVerision);
-            SceneManager.LoadSceneAsync("2_BattleScene");
 
-        }
         /// <summary>
         /// 设置对战模式
         /// </summary>
@@ -81,38 +59,38 @@ namespace TouhouMachineLearningSummary.Manager
                 Info.AgainstInfo.IsPVP = true;
             }
         }
-
-        //设置对局类型
-        //public static void SetPvPMode(bool isPvPMode) => Info.AgainstInfo.IsPVP = isPvPMode;
-        //设置初始胜利小局数
-        //public static void SetScore(int Score1, int Score2)
-        //{
-        //    //Info.AgainstInfo.isPVP = isPvPMode;
-        //}
         /////////////////////////////////////////////////////////////////////默认配置///////////////////////////////////////////////////////////
         /// <summary>
+        /// 以在线模式开始对局，会上传对战记录，可被观战，包括PVP和PVE
         /// 设置客户端扮演的角色，玩家1为第一回合先攻，玩家二为后攻
+        /// 设置我方卡组
+        /// 设置对方卡组
         /// </summary>
-        /// <param name="xx"></param>
-        public static void AutoSetRole(bool isPlayer1) => Info.AgainstInfo.IsPlayer1 = isPlayer1;
-
-        //设置我方卡组
-        public static void AutoSetPlayerInfo(PlayerInfo userInfo) => Info.AgainstInfo.currentUserInfo = userInfo;
-        ////设置对方卡组
-        public static void AutoSetOpponentInfo(PlayerInfo opponentInfo) => Info.AgainstInfo.currentOpponentInfo = opponentInfo;
-        public static async Task AutoStart()
+        /// <returns></returns>
+        public static async Task OnlineStart(bool isPlayer1, PlayerInfo userInfo = null, PlayerInfo opponentInfo=null)
         {
+            Info.AgainstInfo.IsPlayer1 = isPlayer1;
+            Info.AgainstInfo.currentUserInfo = (userInfo==null? defaultPlayerInfo: userInfo);
+            Info.AgainstInfo.currentOpponentInfo = (opponentInfo == null ? defaultPlayerInfo : opponentInfo);
             Info.AgainstInfo.IsMyTurn = Info.AgainstInfo.IsPlayer1;
             await CardAssemblyManager.SetCurrentAssembly("");
-            if (Info.AgainstInfo.userDeck == null)
-            {
-                AutoSetPlayerInfo(defaultPlayerInfo);
-            }
-            if (Info.AgainstInfo.opponentDeck == null)
-            {
-                AutoSetOpponentInfo(defaultPlayerInfo);
-            }
             await Manager.CameraViewManager.MoveToViewAsync(3);
+            SceneManager.LoadSceneAsync("2_BattleScene");
+        }
+        /// <summary>
+        /// 以回放模式开始对局
+        /// </summary>
+        /// <param name="rules"></param>
+        public static async void ReplayStart(AgainstSummaryManager summary)
+        {
+            Info.AgainstInfo.isReplayMode = true;
+            Info.AgainstInfo.summary = summary;
+            //LoadAssemblyVerision = Info.AgainstInfo.summary.AssemblyVerision;
+            Info.AgainstInfo.IsPlayer1 = true;//待完善，默认1号玩家
+            Info.AgainstInfo.currentUserInfo = summary.Player1Info;
+            Info.AgainstInfo.currentOpponentInfo = summary.Player2Info;
+            Info.AgainstInfo.IsMyTurn = Info.AgainstInfo.IsPlayer1;
+            await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.summary.AssemblyVerision);
             SceneManager.LoadSceneAsync("2_BattleScene");
         }
     }

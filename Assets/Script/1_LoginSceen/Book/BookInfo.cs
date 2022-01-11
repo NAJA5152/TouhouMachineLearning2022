@@ -8,11 +8,9 @@ namespace TouhouMachineLearningSummary.Info
         [Sirenix.OdinInspector.ShowInInspector]
         public static bool isBookOpen;
         public static bool IsSimulateFilpPage { get; set; }
-        public static float angle = 0;
         public static BookInfo instance;
 
         [Header("书本模型")]
-
         public GameObject coverModel;
         public GameObject axisModel;
         //翻页过程中的空白书页
@@ -35,8 +33,6 @@ namespace TouhouMachineLearningSummary.Info
         public GameObject shrineComponent;
         public GameObject collectComponent;
         public GameObject configComponent;
-
-
         void Awake() => instance = this;
     }
 }

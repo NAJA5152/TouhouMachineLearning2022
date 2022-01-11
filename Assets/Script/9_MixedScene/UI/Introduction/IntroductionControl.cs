@@ -41,11 +41,11 @@ namespace TouhouMachineLearningSummary.Control.GameUI
                 {
                     if (Command.MenuStateCommand.HasState(MenuState.CardLibrary))
                     {
-                        Command.cardDetailCommand.ChangeFocusCard(focusCardID);
+                        Command.CardDetailCommand.ChangeFocusCard(focusCardID);
                     }
                     if (Command.MenuStateCommand.HasState(MenuState.CampSelect))
                     {
-                        Command.cardDetailCommand.ChangeFocusCamp();
+                        Command.CardDetailCommand.ChangeFocusCamp();
                     }
                     else
                     {
@@ -60,7 +60,7 @@ namespace TouhouMachineLearningSummary.Control.GameUI
             }
             else
             {
-                if (Info.AgainstInfo.playerFocusCard != null && Info.AgainstInfo.playerFocusCard.isCanSee)
+                if (Info.AgainstInfo.playerFocusCard != null && Info.AgainstInfo.playerFocusCard.IsCanSee)
                 {
                     Cd = Mathf.Min(0.25f, Cd + Time.deltaTime);
                 }

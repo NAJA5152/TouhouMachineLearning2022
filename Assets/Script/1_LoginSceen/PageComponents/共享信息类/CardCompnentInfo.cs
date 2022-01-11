@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 
 namespace TouhouMachineLearningSummary.Info

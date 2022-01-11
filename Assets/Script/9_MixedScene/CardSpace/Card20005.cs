@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
 
 namespace TouhouMachineLearningSummary.CardSpace
@@ -19,7 +15,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this,region,territory);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfo(this).SetTargetCard(this));
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
                })
                .AbilityAppend();
 
@@ -28,8 +24,8 @@ namespace TouhouMachineLearningSummary.CardSpace
              {
                  for (int i = 0; i < 1 + GameSystem.FieldSystem.GetTwoSideField(this, CardField.Vitality); i++)
                  {
-                     await GameSystem.SelectSystem.SelectUnite(this, AgainstInfo.cardSet[Orientation.Op][GameRegion.Battle][CardRank.Copper, CardRank.Silver][CardFeature.Largest].CardList, 1, true);
-                     await GameSystem.PointSystem.Hurt(new TriggerInfo(this).SetTargetCard(AgainstInfo.selectUnits).SetPoint(1));
+                     await GameSystem.SelectSystem.SelectUnite(this,GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Battle][CardRank.Copper, CardRank.Silver][CardFeature.Largest].CardList, 1, true);
+                     await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this).SetTargetCard(GameSystem.InfoSystem.SelectUnits).SetPoint(1));
                  }
              }, Condition.Default)
              .AbilityAppend();

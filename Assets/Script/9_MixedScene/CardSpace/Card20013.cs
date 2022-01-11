@@ -20,8 +20,8 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectUnite(this, cardSet[Orientation.My][GameRegion.Battle][CardRank.Copper, CardRank.Silver][CardTag.Fairy].CardList, 1);
-                   await GameSystem.TransSystem.MoveToGrave(new TriggerInfo(this).SetTargetCard(this));
-                   await GameSystem.TransSystem.PlayCard(new TriggerInfo(this).SetTargetCard(selectUnits));
+                   await GameSystem.TransSystem.MoveToGrave(new TriggerInfoModel(this).SetTargetCard(this));
+                   await GameSystem.TransSystem.PlayCard(new TriggerInfoModel(this).SetTargetCard(SelectUnits));
                })
                .AbilityAppend();
         }

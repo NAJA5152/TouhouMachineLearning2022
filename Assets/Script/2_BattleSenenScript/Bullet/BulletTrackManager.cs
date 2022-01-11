@@ -1,7 +1,7 @@
 ﻿using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Thread;
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Info;
+using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 namespace TouhouMachineLearningSummary.Manager
 {
@@ -11,7 +11,7 @@ namespace TouhouMachineLearningSummary.Manager
         public float maxDinsance = 2;
         public float speed = 1.5f;
         Vector3 startPosition, endPosition;
-        public async Task Play(TriggerInfo triggerInfo, BulletTrack track)
+        public async Task Play(TriggerInfoModel triggerInfo, BulletTrack track)
         {
             this.startPosition = triggerInfo.triggerCard.transform.position;
             this.endPosition = triggerInfo.targetCard.transform.position;

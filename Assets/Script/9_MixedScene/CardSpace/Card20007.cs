@@ -21,15 +21,15 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this,region,territory);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfo(this).SetTargetCard(this));
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
                })
                .AbilityAppend();
 
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
              .AbilityAdd(async (triggerInfo) =>
              {
-                 AgainstInfo.selectUnits = AgainstInfo.cardSet[Orientation.My][GameRegion.Deck].CardList.Where(card => card.cardID == 20006 || card.cardID == 20008).ToList();
-                 await GameSystem.TransSystem.SummonCard(new TriggerInfo(this).SetTargetCard(AgainstInfo.selectUnits));
+                 AgainstInfo.SelectUnits = AgainstInfo.cardSet[Orientation.My][GameRegion.Deck].CardList.Where(card => card.cardID == 20006 || card.cardID == 20008).ToList();
+                 await GameSystem.TransSystem.SummonCard(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.SelectUnits));
              }, Condition.Default)
              .AbilityAppend();
 

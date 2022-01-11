@@ -12,9 +12,6 @@ namespace TouhouMachineLearningSummary.Command
         /// </summary>
         public static void Init()
         {
-            //Command.CardListCommand.Init();
-            //multiModeCards = Command.CardLibrary.CardLibraryCommand.GetLibraryInfo().multiModeCards;
-
             //牌库卡牌列表
             var showCardList = CardAssemblyManager.GetLastMultiCardInfos;
             //如果当前是编辑卡组模式，则只显示指定阵营
@@ -57,16 +54,6 @@ namespace TouhouMachineLearningSummary.Command
                 newCardModel.SetActive(true);
             }
         }
-        public static int GetHasCardNum(string cardId)
-        {
-            if (Info.CardCompnentInfo.IsAdmin)
-            {
-                return 3;
-            }
-            else
-            {
-                return Info.AgainstInfo.onlineUserInfo.CardLibrary.ContainsKey(cardId) ? Info.AgainstInfo.onlineUserInfo.CardLibrary[cardId] : 0;
-            }
-        }
+        public static int GetHasCardNum(string cardId) => Info.CardCompnentInfo.IsAdmin ? 3 : Info.AgainstInfo.onlineUserInfo.CardLibrary.ContainsKey(cardId) ? Info.AgainstInfo.onlineUserInfo.CardLibrary[cardId] : 0;
     }
 }

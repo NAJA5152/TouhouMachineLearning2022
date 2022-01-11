@@ -37,8 +37,8 @@ namespace TouhouMachineLearningSummary.Command
             //CardSet.globalCardList = AgainstInfo.summary.targetJumpTurn.allCardList
             //    .Select(sampleCardList => sampleCardList.Select(CardCommand.CreateCard).ToList()).ToList();
             CardSet.GlobalCardList = targetJumpTurn.AllCardList.SelectList(sampleCardList => sampleCardList.SelectList(CardCommand.CreateCard));
-            AgainstInfo.cardSet[GameRegion.Leader, GameRegion.Battle].CardList.ForEach(card => card.isCanSee = true);
-            AgainstInfo.cardSet[GameRegion.Hand][AgainstInfo.isReplayMode ? Orientation.All : Orientation.My].CardList.ForEach(card => card.isCanSee = true);
+            AgainstInfo.cardSet[GameRegion.Leader, GameRegion.Battle].CardList.ForEach(card => card.IsCanSee = true);
+            AgainstInfo.cardSet[GameRegion.Hand][AgainstInfo.isReplayMode ? Orientation.All : Orientation.My].CardList.ForEach(card => card.IsCanSee = true);
             AgainstInfo.isJumpMode = false;
             return isExchangeTurn;
         }
@@ -282,8 +282,8 @@ namespace TouhouMachineLearningSummary.Command
                     {
                         if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.PlayCard)
                         {
-                            Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Leader,GameRegion.Hand].CardList[operation.SelectCardIndex];
-                            Debug.LogWarning("打出卡牌"+ Info.AgainstInfo.playerPlayCard.cardID);
+                            Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList[operation.SelectCardIndex];
+                            Debug.LogWarning("打出卡牌" + Info.AgainstInfo.playerPlayCard.cardID);
 
                         }
                         else if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.DisCard)
@@ -329,9 +329,9 @@ namespace TouhouMachineLearningSummary.Command
                 if (Info.AgainstInfo.playerPlayCard != null)
                 {
                     //Debug.Log("当前打出了牌");
-                    await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.PlayCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Leader,GameRegion.Hand].CardList, AgainstInfo.playerPlayCard);
+                    await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.PlayCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList, AgainstInfo.playerPlayCard);
                     //假如是我的回合，则广播操作给对方，否则只接收操作不广播
-                    await GameSystem.TransSystem.PlayCard(new TriggerInfo(null).SetTargetCard(AgainstInfo.playerPlayCard), AgainstInfo.IsMyTurn);
+                    await GameSystem.TransSystem.PlayCard(new TriggerInfoModel(null).SetTargetCard(AgainstInfo.playerPlayCard), AgainstInfo.IsMyTurn);
                     //Debug.Log("打出效果执行完毕");
 
                     break;
@@ -340,7 +340,7 @@ namespace TouhouMachineLearningSummary.Command
                 if (Info.AgainstInfo.playerDisCard != null)
                 {
                     await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.DisCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList, AgainstInfo.playerDisCard);
-                    await GameSystem.TransSystem.DisCard(new TriggerInfo(null).SetTargetCard(AgainstInfo.playerDisCard));
+                    await GameSystem.TransSystem.DisCard(new TriggerInfoModel(null).SetTargetCard(AgainstInfo.playerDisCard));
                     break;
                 }
                 if (AgainstInfo.isCurrectPass)//如果当前pass则结束回合
@@ -400,9 +400,11 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task WaitForSelectRegion(Card triggerCard, GameRegion regionTypes, Territory territory)
         {
             AgainstInfo.IsWaitForSelectRegion = true;
-            AgainstInfo.SelectRegion = null;
+            AgainstInfo.SelectRowRank = -1;
+            //AgainstInfo.SelectRegion = null;
             RowCommand.SetRegionSelectable(regionTypes, territory);
-            while (Info.AgainstInfo.SelectRegion == null)
+            //while (Info.AgainstInfo.SelectRegion == null)
+            while (AgainstInfo.SelectRowRank == -1)
             {
                 TaskLoopManager.Throw();
                 if (AgainstInfo.isReplayMode)
@@ -410,7 +412,8 @@ namespace TouhouMachineLearningSummary.Command
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
                     if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectRegion)
                     {
-                        AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(operation.SelectRegionRank);
+                        //AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(operation.SelectRegionRank);
+                        AgainstInfo.SelectRowRank = operation.SelectRegionRank;
                     }
                     else
                     {
@@ -421,9 +424,10 @@ namespace TouhouMachineLearningSummary.Command
                 else if (AgainstInfo.IsAIControl)
                 {
                     await CustomThread.Delay(1000);
-                    List<SingleRowManager> rows = AgainstInfo.cardSet.SingleRowInfos.Where(row => row.CanBeSelected).ToList();
-                    int rowRank = AiCommand.GetRandom(0, rows.Count());
-                    AgainstInfo.SelectRegion = rows[rowRank];//设置部署区域
+                    //List<SingleRowManager> rows = AgainstInfo.cardSet.SingleRowInfos.Where(row => row.CanBeSelected).ToList();
+                    //int rowRank = AiCommand.GetRandom(0, rows.Count());
+                    //AgainstInfo.SelectRegion = rows[rowRank];//设置部署区域
+                    AgainstInfo.SelectRowRank = AgainstInfo.cardSet.SingleRowInfos.Where(row => row.CanBeSelected).OrderBy(x => AiCommand.GetRandom()).FirstOrDefault().RowRank;
                 }
                 await Task.Delay(1);
             }
@@ -437,8 +441,8 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.IsWaitForSelectLocation = true;
             //设置指定坐标可选
             RowCommand.SetRegionSelectable((GameRegion)region, territory);
-            AgainstInfo.SelectLocation = -1;
-            while (AgainstInfo.SelectLocation < 0)
+            AgainstInfo.SelectRank = -1;
+            while (AgainstInfo.SelectRank < 0)
             {
                 TaskLoopManager.Throw();
                 if (AgainstInfo.isReplayMode)
@@ -450,8 +454,9 @@ namespace TouhouMachineLearningSummary.Command
                         //设置选择的次序
                         //List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos;
                         //AgainstInfo.SelectRegion = rows[operation.SelectRegionRank];
-                        AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(operation.SelectRegionRank);
-                        AgainstInfo.SelectLocation = operation.SelectLocation;
+                        //AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(operation.SelectRegionRank);
+                        AgainstInfo.SelectRowRank = operation.SelectRegionRank;
+                        AgainstInfo.SelectRank = operation.SelectLocation;
                     }
                     else
                     {
@@ -462,12 +467,13 @@ namespace TouhouMachineLearningSummary.Command
                 else if (AgainstInfo.IsAIControl)
                 {
                     await CustomThread.Delay(1000);
-                    List<SingleRowManager> rows = AgainstInfo.cardSet.SingleRowInfos.Where(row => row.CanBeSelected).ToList();
-                    int rowRank = AiCommand.GetRandom(0, rows.Count());
-                    AgainstInfo.SelectRegion = rows[rowRank];//设置部署区域
-                    AgainstInfo.SelectLocation = 0;//设置部署次序
+                    //List<SingleRowManager> rows = AgainstInfo.cardSet.SingleRowInfos.Where(row => row.CanBeSelected).ToList();
+                    //int rowRank = AiCommand.GetRandom(0, rows.Count());
+                    //AgainstInfo.SelectRegion = rows[rowRank];//设置部署区域
+                    AgainstInfo.SelectRowRank = AgainstInfo.cardSet.SingleRowInfos.Where(row => row.CanBeSelected).OrderBy(x => AiCommand.GetRandom()).FirstOrDefault().RowRank;
+                    AgainstInfo.SelectRank = 0;//设置部署次序
                 }
-                await Task.Delay(1);
+                await Task.Delay(10);
             }
             NetCommand.AsyncInfo(NetAcyncType.SelectLocation);
             AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectLocation, triggerCard);
@@ -480,9 +486,9 @@ namespace TouhouMachineLearningSummary.Command
             filterCards.Remove(triggerCard);
             AgainstInfo.ArrowStartCard = triggerCard;
             AgainstInfo.IsWaitForSelectUnits = true;
-            AgainstInfo.AllCardList.ForEach(card => card.isGray = true);
-            filterCards.ForEach(card => card.isGray = false);
-            AgainstInfo.selectUnits.Clear();
+            AgainstInfo.AllCardList.ForEach(card => card.IsGray = true);
+            filterCards.ForEach(card => card.IsGray = false);
+            AgainstInfo.SelectUnits.Clear();
             //await Task.Delay(500);
             //若为回放模式
             if (AgainstInfo.isReplayMode)
@@ -490,7 +496,7 @@ namespace TouhouMachineLearningSummary.Command
                 var operation = AgainstInfo.summary.GetCurrentSelectOperation();
                 if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectUnite)
                 {
-                    AgainstInfo.selectUnits = operation.SelectCardRank.SelectList(index => filterCards[index]);
+                    AgainstInfo.SelectUnits = operation.SelectCardRank.SelectList(index => filterCards[index]);
                 }
                 else
                 {
@@ -505,7 +511,7 @@ namespace TouhouMachineLearningSummary.Command
                     GameUI.UiCommand.CreatFreeArrow();
                 }
                 int selectableNum = Math.Min(filterCards.Count, num);
-                while (AgainstInfo.selectUnits.Count < selectableNum)
+                while (AgainstInfo.SelectUnits.Count < selectableNum)
                 {
                     TaskLoopManager.Throw();
                     //AI操作或者我方回合自动选择模式时 ，用自身随机决定，否则等待网络同步
@@ -514,7 +520,7 @@ namespace TouhouMachineLearningSummary.Command
                     {
                         Debug.Log("自动选择场上单位");
                         IEnumerable<Card> autoSelectTarget = filterCards.OrderBy(x => AiCommand.GetRandom(0, 514)).Take(selectableNum);
-                        AgainstInfo.selectUnits = autoSelectTarget.ToList();
+                        AgainstInfo.SelectUnits = autoSelectTarget.ToList();
                     }
                     await Task.Delay(10);
                 }
@@ -526,7 +532,7 @@ namespace TouhouMachineLearningSummary.Command
             GameUI.UiCommand.DestoryAllArrow();
             await CustomThread.Delay(250);
             //Debug.Log("同步选择单位完毕");
-            AgainstInfo.AllCardList.ForEach(card => card.isGray = false);
+            AgainstInfo.AllCardList.ForEach(card => card.IsGray = false);
             AgainstInfo.IsWaitForSelectUnits = false;
             //Debug.Log("结束选择单位");
         }

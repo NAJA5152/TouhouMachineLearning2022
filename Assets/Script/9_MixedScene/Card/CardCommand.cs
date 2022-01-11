@@ -44,7 +44,14 @@ namespace TouhouMachineLearningSummary.Command
 
 
 
-        public static void OrderCard() => AgainstInfo.cardSet[GameRegion.Hand].Order();
+        public static void OrderCard()
+        {
+            AgainstInfo.cardSet[GameRegion.Hand].SingleRowInfos.ForEach(singleRowInfo =>
+            {
+                AgainstInfo.cardSet[singleRowInfo.RowRank]= AgainstInfo.cardSet[singleRowInfo.RowRank].OrderByDescending(card => card.cardRank).ThenBy(card => card.basePoint).ThenBy(card => card.cardID).ToList();
+            });
+        }
+
         public static void RemoveCard(Card card) => card.belongCardList.Remove(card);
         public static Card CreateCard(int id)
         {
@@ -82,7 +89,7 @@ namespace TouhouMachineLearningSummary.Command
         /// <returns></returns>
         public static Card CreateCard(SampleCardModel sampleCard)
         {
-           
+
             //Card card = NewCard.GetComponent<Card>();
             GameObject newCard = GameObject.Instantiate(Info.CardInfo.cardModel, new Vector3(0, 100, 0), Info.CardInfo.cardModel.transform.rotation);
             newCard.transform.SetParent(GameObject.FindGameObjectWithTag("Card").transform);
@@ -130,27 +137,10 @@ namespace TouhouMachineLearningSummary.Command
             Debug.LogWarning("召唤卡牌于" + targetCard.orientation);
             RemoveCard(targetCard);
             TargetRow.Add(targetCard);
-            targetCard.isCanSee = true;
+            targetCard.IsCanSee = true;
             //targetCard.moveSpeed = 0.1f;
             targetCard.isMoveStepOver = false;
             await Task.Delay(1000);
-            targetCard.isMoveStepOver = true;
-            //targetCard.moveSpeed = 0.1f;
-            await AudioCommand.PlayAsync(GameAudioType.DrawCard);
-        }
-        [Obsolete("废弃")]
-        public static async Task MoveCard(Card targetCard, GameRegion regionTypes, Orientation orientation, int rank)
-        {
-
-            List<Card> TargetRow = AgainstInfo
-                .cardSet[regionTypes][orientation]
-                .SingleRowInfos.First().CardList;
-            Debug.LogWarning("移动卡牌于" + targetCard.orientation);
-            RemoveCard(targetCard);
-            TargetRow.Add(targetCard);
-            //targetCard.moveSpeed = 0.1f;
-            targetCard.isMoveStepOver = false;
-            await Task.Delay(500);
             targetCard.isMoveStepOver = true;
             //targetCard.moveSpeed = 0.1f;
             await AudioCommand.PlayAsync(GameAudioType.DrawCard);
@@ -170,9 +160,8 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task DeployCard(Card targetCard)
         {
-            List<Card> TargetRow = AgainstInfo.SelectRegion.CardList;
             RemoveCard(targetCard);
-            TargetRow.Insert(AgainstInfo.SelectLocation, targetCard);
+            AgainstInfo.SelectRowCardList.Insert(AgainstInfo.SelectRank, targetCard);
             //targetCard.moveSpeed = 0.1f;
             targetCard.isMoveStepOver = false;
             await Task.Delay(1000);
@@ -269,7 +258,7 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.playerDisCard = null;
         }
 
-        public static async Task ReviveCard(TriggerInfo triggerInfo)
+        public static async Task ReviveCard(TriggerInfoModel triggerInfo)
         {
             Card card = triggerInfo.targetCard;
             await AudioCommand.PlayAsync(GameEnum.GameAudioType.DrawCard);
@@ -296,14 +285,14 @@ namespace TouhouMachineLearningSummary.Command
             }
         }
 
-        public static async Task Gain(TriggerInfo triggerInfo)
+        public static async Task Gain(TriggerInfoModel triggerInfo)
         {
             await BulletCommand.InitBulletAsync(triggerInfo);
             await Task.Delay(1000);
             triggerInfo.targetCard.changePoint += triggerInfo.point;
             await Task.Delay(1000);
         }
-        public static async Task Hurt(TriggerInfo triggerInfo)
+        public static async Task Hurt(TriggerInfoModel triggerInfo)
         {
             await BulletCommand.InitBulletAsync(triggerInfo);
             triggerInfo.point = new System.Random().Next(-10, 10);

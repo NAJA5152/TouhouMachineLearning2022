@@ -11,7 +11,7 @@ namespace Server
     }
     public class HoldInfo
     {
-        public HoldInfo(PlayerInfo playerInfo, PlayerInfo virtualOpponentInfo=null, IClientProxy client=null)
+        public HoldInfo(PlayerInfo playerInfo, PlayerInfo virtualOpponentInfo = null, IClientProxy client = null)
         {
             UserInfo = playerInfo;
             VirtualOpponentInfo = virtualOpponentInfo;
@@ -108,6 +108,8 @@ namespace Server
         public int BasePoint { get; set; } = 0;
         public int ChangePoint { get; set; } = 0;
         public List<int> State { get; set; } = new List<int>();
+        public Dictionary<CardField, int> CardFields { get; set; }
+        public Dictionary<CardState, bool> CardStates { get; set; }
         public SampleCardModel() { }
     }
     //对战记录模型
@@ -116,8 +118,8 @@ namespace Server
         [BsonId]
         public string _id { get; set; }
         public string AssemblyVerision { get; set; } = "";
-        public PlayerInfo Player1Info { get; set; } 
-        public PlayerInfo Player2Info { get; set; } 
+        public PlayerInfo Player1Info { get; set; }
+        public PlayerInfo Player2Info { get; set; }
         public int Winner { get; set; } = 0;
         public DateTime UpdateTime { get; set; }
         public List<TurnOperation> TurnOperations { get; set; } = new List<TurnOperation>();
@@ -200,7 +202,7 @@ namespace Server
 
         public void AddStartPoint(int relativePoint)
         {
-            Console.WriteLine("新增开始点数"+ relativePoint);
+            Console.WriteLine("新增开始点数" + relativePoint);
             TurnOperations.Last().RelativeStartPoint = relativePoint;
         }
 
@@ -212,14 +214,16 @@ namespace Server
 
         public void AddSurrender(int surrendrState)
         {
-            Console.WriteLine("新增投降事件" );
+            Console.WriteLine("新增投降事件");
             TurnOperations.Last().SurrenderState = surrendrState;
         }
 
         public void UploadAgentSummary(int p1Score, int p2Score)
         {
             UpdateTime = DateTime.Now;
-
+            if (p1Score > p2Score) { Winner = 1; }
+            if (p1Score < p2Score) { Winner = 2; }
+            if (p1Score == p2Score) { Winner = 3; }
             MongoDbCommand.InsertAgainstSummary(this);
         }
     }

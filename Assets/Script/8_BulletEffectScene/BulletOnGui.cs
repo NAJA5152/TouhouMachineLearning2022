@@ -2,22 +2,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Info;
+using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 namespace TouhouMachineLearningSummary.Test
 {
     public class BulletOnGui : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
         public List<string> toolbarStrings => Init(typeof(BulletType));
         private static List<string> Init(Type type)
         {
@@ -41,7 +31,7 @@ namespace TouhouMachineLearningSummary.Test
             {
                 var tirggerCard = Info.AgainstInfo.cardSet[Orientation.Down][GameRegion.Battle].CardList.FirstOrDefault();
                 var targetCards = Info.AgainstInfo.cardSet[Orientation.Up][GameRegion.Battle].CardList.Take(3).ToList();
-                _ = GameSystem.PointSystem.Hurt(new TriggerInfo(tirggerCard)
+                _ = GameSystem.PointSystem.Hurt(new TriggerInfoModel(tirggerCard)
                     .SetTargetCard(targetCards)
                     .SetPoint(1)
                     .SetBullet(
@@ -70,9 +60,9 @@ namespace TouhouMachineLearningSummary.Test
             if (GUI.Button(new Rect(25, 180, 250, 30), "’ŸªΩø®∆¨"))
             {
                 var cards1 = Info.AgainstInfo.cardSet[Orientation.Down][GameRegion.Deck].CardList.Take(3);
-                _ = GameSystem.TransSystem.SummonCard(new TriggerInfo(null).SetTargetCard(cards1.ToList()));
+                _ = GameSystem.TransSystem.SummonCard(new TriggerInfoModel(null).SetTargetCard(cards1.ToList()));
                 var cards2 = Info.AgainstInfo.cardSet[Orientation.Up][GameRegion.Deck].CardList.Take(3);
-                _ = GameSystem.TransSystem.SummonCard(new TriggerInfo(null).SetTargetCard(cards2.ToList()));
+                _ = GameSystem.TransSystem.SummonCard(new TriggerInfoModel(null).SetTargetCard(cards2.ToList()));
             }
         }
 

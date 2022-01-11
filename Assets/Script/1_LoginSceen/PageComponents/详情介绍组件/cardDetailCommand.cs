@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace TouhouMachineLearningSummary.Command
 {
-    class cardDetailCommand
+    class CardDetailCommand
     {
         public static void ChangeFocusCard(int cardID)
         {

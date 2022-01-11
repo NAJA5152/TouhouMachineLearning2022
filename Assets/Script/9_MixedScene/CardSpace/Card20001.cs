@@ -18,7 +18,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this,region,territory);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfo(this).SetTargetCard(this));
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
@@ -27,10 +27,10 @@ namespace TouhouMachineLearningSummary.CardSpace
                    await GameSystem.SelectSystem.SelectUnite(this,AgainstInfo.cardSet[Orientation.My][GameRegion.Battle].CardList,2);
                    for (int i = 0; i < 5; i++)
                    {
-                       await GameSystem.TransSystem.MoveCard(new TriggerInfo(this).SetTargetCard(AgainstInfo.selectUnits).SetLocation(Orientation.My, GameRegion.Water, 0));
-                       await GameSystem.TransSystem.MoveCard(new TriggerInfo(this).SetTargetCard(AgainstInfo.selectUnits).SetLocation(Orientation.My, GameRegion.Fire, 0));
-                       await GameSystem.TransSystem.MoveCard(new TriggerInfo(this).SetTargetCard(AgainstInfo.selectUnits).SetLocation(Orientation.My, GameRegion.Wind, 0));
-                       await GameSystem.TransSystem.MoveCard(new TriggerInfo(this).SetTargetCard(AgainstInfo.selectUnits).SetLocation(Orientation.My, GameRegion.Soil, 0));
+                       await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.SelectUnits).SetLocation(Orientation.My, GameRegion.Water, 0));
+                       await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.SelectUnits).SetLocation(Orientation.My, GameRegion.Fire, 0));
+                       await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.SelectUnits).SetLocation(Orientation.My, GameRegion.Wind, 0));
+                       await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.SelectUnits).SetLocation(Orientation.My, GameRegion.Soil, 0));
                    }
                    //int targetCount = AgainstInfo.cardSet[Orientation.My][RegionTypes.Battle][CardTag.Fairy].count;
                    //Debug.Log("场上妖精数量为" + targetCount);

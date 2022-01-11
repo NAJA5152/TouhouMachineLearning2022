@@ -1,6 +1,4 @@
 ﻿using UnityEngine;
-//using static Info.CardCompnentInfo;
-
 namespace TouhouMachineLearningSummary.Control
 {
     public class CardListControl : MonoBehaviour
@@ -14,4 +12,3 @@ namespace TouhouMachineLearningSummary.Control
         public void RemoveCardFromDeck(GameObject clickCard) => Command.CardListCommand.RemoveCardFromDeck(clickCard);
     }
 }
-

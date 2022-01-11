@@ -135,7 +135,7 @@ namespace TouhouMachineLearningSummary.Manager
                         break;
                     case SelectOperationType.SelectUnite:
                         operation.TriggerCardID = triggerCard.cardID;
-                        operation.SelectCardRank = AgainstInfo.selectUnits.SelectList(selectUnite => targetCardList.IndexOf(selectUnite));
+                        operation.SelectCardRank = AgainstInfo.SelectUnits.SelectList(selectUnite => targetCardList.IndexOf(selectUnite));
                         operation.TargetCardList = targetCardList.SelectList(card => new SampleCardModel(card));
                         operation.SelectMaxNum = selectMaxNum;
                         break;
@@ -147,13 +147,13 @@ namespace TouhouMachineLearningSummary.Manager
                         break;
                     case SelectOperationType.SelectRegion:
                         operation.TriggerCardID = triggerCard.cardID;
-                        operation.SelectRegionRank = AgainstInfo.SelectRegion.RowRank;
+                        operation.SelectRegionRank = AgainstInfo.SelectRowRank;
                         break;
                     case SelectOperationType.SelectLocation:
                         //上传选择的次序
                         operation.TriggerCardID = triggerCard.cardID;
-                        operation.SelectRegionRank = AgainstInfo.SelectRegion.RowRank;
-                        operation.SelectLocation = AgainstInfo.SelectLocation;
+                        operation.SelectRegionRank = AgainstInfo.SelectRowRank;
+                        operation.SelectLocation = AgainstInfo.SelectRank;
                         break;
                     case SelectOperationType.SelectExchangeOver:
                         operation.IsPlay1ExchangeOver = isPlayer1ExchangeOver;
@@ -299,6 +299,5 @@ namespace TouhouMachineLearningSummary.Manager
         //////////////////////////////////对战记录输出////////////////////////////////////////////
         public void Show() => UnityEngine.Debug.LogWarning(this.ToJson());
         public void Explort() => File.WriteAllText("summary.json", this.ToJson());
-
     }
 }

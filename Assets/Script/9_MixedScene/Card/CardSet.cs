@@ -198,7 +198,5 @@ namespace TouhouMachineLearningSummary.Info
             }
             SingleRowInfos[0].CardList.Remove(card);
         }
-        //任意区域排序
-        public void Order() => SingleRowInfos.ForEach(x => x.CardList = x.CardList.OrderByDescending(card => card.cardRank).ThenBy(card => card.basePoint).ThenBy(card => card.cardID).ToList());
     }
 }

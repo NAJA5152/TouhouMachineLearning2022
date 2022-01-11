@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Info;
+using TouhouMachineLearningSummary.Model;
 using TouhouMachineLearningSummary.Manager;
 using UnityEngine;
 
@@ -14,7 +14,7 @@ namespace TouhouMachineLearningSummary.Command
         //附加控制器
         //生成空物体
         //配置danmu
-        public static async Task InitBulletAsync(TriggerInfo triggerInfo)
+        public static async Task InitBulletAsync(TriggerInfoModel triggerInfo)
         {
             //bool isEnd = false;
             Model.BulletModel danmuInfo = triggerInfo.bulletModel;

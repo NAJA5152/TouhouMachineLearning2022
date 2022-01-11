@@ -57,9 +57,6 @@ namespace TouhouMachineLearningSummary.Command
                 Info.CardCompnentInfo.seleceDeckRank = selectRank;
                 Info.CardCompnentInfo.isCardClick = true;
                 Info.AgainstInfo.onlineUserInfo.UseDeckNum = Info.CardCompnentInfo.seleceDeckRank;
-                //Command.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
-                //await Command.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
-                //await Command.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
                 await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
                 Command.DeckBoardCommand.Init();
                 Command.CardListCommand.Init();
@@ -108,9 +105,6 @@ namespace TouhouMachineLearningSummary.Command
             //将牌库设为可编辑模式
             Info.CardCompnentInfo.isEditDeckMode = true;
             Debug.Log("切换到deck" + Info.AgainstInfo.onlineUserInfo.UseDeckNum);
-            //Command.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
-            //await Command.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
-            //await Command.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
             await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
             Command.DeckBoardCommand.Init();
             Command.CardListCommand.Init();
@@ -127,9 +121,6 @@ namespace TouhouMachineLearningSummary.Command
                     Debug.Log("删除卡组成功");
                     Info.AgainstInfo.onlineUserInfo.Decks.Remove(Info.AgainstInfo.onlineUserInfo.UseDeck);
                     Info.AgainstInfo.onlineUserInfo.UseDeckNum = Math.Max(0, Info.AgainstInfo.onlineUserInfo.UseDeckNum - 1);
-                    //Command.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
-                    //await Command.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
-                    //await Command.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
                     await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
                     Command.DeckBoardCommand.Init();
                     Command.CardListCommand.Init();
@@ -148,9 +139,6 @@ namespace TouhouMachineLearningSummary.Command
                 Debug.Log("重命名卡组为" + text);
                 Info.AgainstInfo.onlineUserInfo.UseDeck.DeckName = text;
                 await Task.Delay(100);
-                //Command.NetCommand.UpdateDecksAsync(Info.AgainstInfo.onlineUserInfo);
-                //await Command.NetCommand.UpdateInfoAsync(UpdateType.Decks, Info.AgainstInfo.onlineUserInfo.Decks);
-                //await Command.NetCommand.UpdateInfoAsync(UpdateType.UseDeckNum, Info.AgainstInfo.onlineUserInfo.UseDeckNum);
                 await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
                 Command.DeckBoardCommand.Init();
                 Command.CardListCommand.Init();

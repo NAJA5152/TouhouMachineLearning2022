@@ -54,7 +54,6 @@ namespace TouhouMachineLearningSummary.Command
         {
             Init();
             Manager.cgComponent.SetActive(true);
-
         }
     }
 }

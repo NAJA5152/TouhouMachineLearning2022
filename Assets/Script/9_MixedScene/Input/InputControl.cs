@@ -68,22 +68,22 @@ namespace TouhouMachineLearningSummary.Control
             {
                 if (AgainstInfo.IsWaitForSelectRegion)
                 {
-                    AgainstInfo.SelectRegion = AgainstInfo.PlayerFocusRegion;
+                    AgainstInfo.SelectRowRank = AgainstInfo.PlayerFocusRegion.RowRank;
                 }
                 //处理选择单位的箭头
-                if (AgainstInfo.IsWaitForSelectUnits && AgainstInfo.playerFocusCard != null && !AgainstInfo.playerFocusCard.isGray)
+                if (AgainstInfo.IsWaitForSelectUnits && AgainstInfo.playerFocusCard != null && !AgainstInfo.playerFocusCard.IsGray)
                 {
                     Card playerFocusCard = AgainstInfo.playerFocusCard;
-                    if (!AgainstInfo.selectUnits.Contains(playerFocusCard))
+                    if (!AgainstInfo.SelectUnits.Contains(playerFocusCard))
                     {
                         //Debug.LogError("add" + playerFocusCard);
-                        AgainstInfo.selectUnits.Add(playerFocusCard);
+                        AgainstInfo.SelectUnits.Add(playerFocusCard);
                         Command.GameUI.UiCommand.CreatFixedArrow(playerFocusCard);
                     }
                     else
                     {
                         //Debug.LogError("remove" + playerFocusCard);
-                        AgainstInfo.selectUnits.Remove(playerFocusCard);
+                        AgainstInfo.SelectUnits.Remove(playerFocusCard);
                         Command.GameUI.UiCommand.DestoryFixedArrow(playerFocusCard);
                     }
                 }
@@ -91,8 +91,8 @@ namespace TouhouMachineLearningSummary.Control
                 {
                     if (AgainstInfo.PlayerFocusRegion != null && AgainstInfo.PlayerFocusRegion.CanBeSelected)
                     {
-                        AgainstInfo.SelectRegion = AgainstInfo.PlayerFocusRegion;
-                        AgainstInfo.SelectLocation = AgainstInfo.PlayerFocusRegion.Location;
+                        AgainstInfo.SelectRowRank = AgainstInfo.PlayerFocusRegion.RowRank;
+                        AgainstInfo.SelectRank = AgainstInfo.PlayerFocusRegion.Location;
                     }
                 }
             }

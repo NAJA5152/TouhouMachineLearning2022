@@ -11,6 +11,7 @@ namespace TouhouMachineLearningSummary.Command
     {
         static Random rand = new Random("gezi".GetHashCode());
         public static void Init() => rand = new Random("gezi".GetHashCode());
+        public static int GetRandom() => rand.Next();
         public static int GetRandom(int Min, int Max) => rand.Next(Min, Max);
         public static void RoundStartExchange(bool isControlPlayer)
         {
@@ -31,7 +32,6 @@ namespace TouhouMachineLearningSummary.Command
             {
                 if (AgainstInfo.IsPVE)
                 {
-                    //UnityEngine.Debug.Log("ai选择了交换卡牌"+ AgainstInfo.isPlayer1);
                     if (AgainstInfo.IsPlayer1)
                     {
                         AgainstInfo.isPlayer2RoundStartExchangeOver = true;
@@ -53,7 +53,6 @@ namespace TouhouMachineLearningSummary.Command
             }
             else
             {
-
                 Card targetCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList.Last();
                 Info.AgainstInfo.playerPlayCard = targetCard;
             }

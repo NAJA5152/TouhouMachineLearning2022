@@ -20,13 +20,13 @@ namespace TouhouMachineLearningSummary.CardSpace
                    UnityEngine.Debug.Log("开始选择坐标");
                    await GameSystem.SelectSystem.SelectLocation(this, region, territory);
                    UnityEngine.Debug.Log("选择单位完毕");
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfo(this).SetTargetCard(this));
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
                 .AbilityAdd(async (triggerInfo) =>
                 {
-                    await GameSystem.PointSystem.Gain(new TriggerInfo(this).SetTargetCard(this).SetPoint(10));
+                    await GameSystem.PointSystem.Gain(new TriggerInfoModel(this).SetTargetCard(this).SetPoint(10));
                     UnityEngine.Debug.Log("增益自身10点");
                 }, Condition.Default)
                .AbilityAdd(async (triggerInfo) =>
@@ -36,16 +36,17 @@ namespace TouhouMachineLearningSummary.CardSpace
                    UnityEngine.Debug.Log("选择单位完毕");
                    await GameSystem.PointSystem.Cure
                    (
-                       new TriggerInfo(this)
-                       .SetTargetCard(AgainstInfo.selectUnits)
+                       new TriggerInfoModel(this)
+                       .SetTargetCard(AgainstInfo.SelectUnits)
                        .SetBullet(new BulletModel(BulletType.BigBall, BulletColor.Green, BulletTrack.Line))
                    );
-                   if (AgainstInfo.selectUnits.Any())
+                   if (AgainstInfo.SelectUnits.Any())
                    {
-                       AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(AgainstInfo.selectUnits[0].Location.X);
-                       AgainstInfo.SelectLocation = AgainstInfo.selectUnits[0].Location.Y;
+                       //AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(AgainstInfo.SelectUnits[0].Location.X);
+                       AgainstInfo.SelectRowRank = AgainstInfo.SelectUnits[0].Location.X;
+                       AgainstInfo.SelectRank = AgainstInfo.SelectUnits[0].Location.Y;
                    }
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfo(this).SetTargetCard(AgainstInfo.selectUnits));
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.SelectUnits));
                }, Condition.Default)
                .AbilityAppend();
         }
