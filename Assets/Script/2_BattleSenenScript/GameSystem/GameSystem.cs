@@ -82,9 +82,29 @@ namespace TouhouMachineLearningSummary.GameSystem
         public static async Task SealCard(TriggerInfoModel triggerInfo) => await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Seal]);
         public static async Task CloseCard(TriggerInfoModel triggerInfo) => await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Close]);
         public static async Task ScoutCard(TriggerInfoModel triggerInfo) => await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Scout]);
+
+        public static async Task SetState(TriggerInfoModel triggerInfo)
+        {
+            triggerInfo.SetTargetCard(triggerInfo.targetCards.Where(card=>card[triggerInfo.SetField]));
+            await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Scout]);
+        }
+
+        public static async Task ClearState(TriggerInfoModel triggerInfo) => await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Scout]);
+        public static async Task ChangeState(TriggerInfoModel triggerInfo) => await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Scout]);
     }
     public class FieldSystem
     {
+        public static async Task SetField(TriggerInfoModel triggerInfo, CardField cardField)
+        {
+            foreach (var targetCard in triggerInfo.targetCards)
+            {
+
+                if (targetCard[cardField] != 0)
+                {
+                    targetCard[cardField]++;
+                }
+            }
+        }
         //直接改变，不触发机制
         public static async Task Increase(TriggerInfoModel triggerInfo, CardField cardField)
         {
@@ -97,6 +117,18 @@ namespace TouhouMachineLearningSummary.GameSystem
                 }
             }
         }
+        public static async Task Decrease(TriggerInfoModel triggerInfo, CardField cardField)
+        {
+            foreach (var targetCard in triggerInfo.targetCards)
+            {
+
+                if (targetCard[cardField] != 0)
+                {
+                    targetCard[cardField]++;
+                }
+            }
+        }
+        
         //临时方案
         public static async Task Change(TriggerInfoModel triggerInfo)
         {
@@ -105,8 +137,7 @@ namespace TouhouMachineLearningSummary.GameSystem
                 await CardEffectStackControl.TriggerBroadcast(triggerInfo[targetCard][TriggerType.FieldChange]);
             }
         }
-        public static int GetField(Card card, CardField cardField) => card[cardField];
-        public static int GetTwoSideField(Card card, CardField cardField) => (card.LeftCard == null || card.LeftCard[CardState.Seal] ? 0 : card.LeftCard[cardField]) + (card.RightCard == null || card.RightCard[CardState.Seal] ? 0 : card.RightCard[cardField]);
+        
     }
     /// <summary>
     /// 选择单位、区域、场景属性的相关机制
@@ -117,6 +148,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         public static async Task SelectLocation(Card triggerCard, BattleRegion region, Territory territory) => await Command.StateCommand.WaitForSelectLocation(triggerCard, region, territory);
         public static async Task SelectBoardCard(Card triggerCard, List<Card> cards, CardBoardMode Mode = CardBoardMode.Select, int num = 1)
         {
+            //在对方视角时选择时为只读无法改变
             if (Mode == CardBoardMode.Select)
             {
                 Mode = AgainstInfo.IsMyTurn ? CardBoardMode.Select : CardBoardMode.ShowOnly;
@@ -151,5 +183,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         public static int SelectRowRank => AgainstInfo.SelectRowRank;
         public static List<Card> SelectRowCardList => AgainstInfo.SelectRowCardList;
         public static int SelectLocation => AgainstInfo.SelectRank;
+        public static int GetField(Card card, CardField cardField) => card[cardField];
+        public static int GetTwoSideField(Card card, CardField cardField) => (card.LeftCard == null || card.LeftCard[CardState.Seal] ? 0 : card.LeftCard[cardField]) + (card.RightCard == null || card.RightCard[CardState.Seal] ? 0 : card.RightCard[cardField]);
     }
 }

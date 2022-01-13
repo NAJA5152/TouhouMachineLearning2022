@@ -113,6 +113,10 @@ namespace TouhouMachineLearningSummary.Model
             Resource.Add("faith", 0);
             Resource.Add("recharge", 0);
         }
+        /// <summary>
+        /// 返回脱敏后的简易用户信息
+        /// </summary>
+        /// <returns></returns>
         public PlayerInfo GetSampleInfo()
         {
             PlayerInfo sampleInfo = new PlayerInfo(Account, Name, Title, "", Decks);

@@ -16,8 +16,8 @@ namespace TouhouMachineLearningSummary.Control
         public Text Account;
         public Text Password;
 
-        bool IsAleardyLogin = false;
-        public static bool IsEnterRoom = false;
+        bool IsAleardyLogin { get; set; } = false;
+        public static bool IsEnterRoom { get; set; } = false;
         async void Start()
         {
             Manager.TaskLoopManager.Init();
@@ -26,8 +26,7 @@ namespace TouhouMachineLearningSummary.Control
             await Command.BookCommand.InitAsync(IsAleardyLogin);
             if (!IsAleardyLogin)
             {
-                Command.NetCommand.Init();
-                await Manager.CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
+                await Command.NetCommand.Init();
                 UserLogin();//自动登录
                 await Task.Delay(1000);
                 //await TestReplayAsync();
@@ -36,6 +35,7 @@ namespace TouhouMachineLearningSummary.Control
         }
         private void Update()
         {
+            //临时，显示当前的ui路径
             if (Input.GetKeyDown(KeyCode.S))
             {
                 Command.MenuStateCommand.ShowStare();
@@ -58,6 +58,7 @@ namespace TouhouMachineLearningSummary.Control
                             _ = Command.GameUI.NoticeCommand.ShowAsync("退出登录",
                             okAction: async () =>
                             {
+                                IsAleardyLogin = false;
                                 await Manager.CameraViewManager.MoveToViewAsync(0);
                                 Command.MenuStateCommand.RebackStare();
                                 Command.MenuStateCommand.ChangeToMainPage(MenuState.Login);
@@ -98,7 +99,7 @@ namespace TouhouMachineLearningSummary.Control
                     default: await Command.GameUI.NoticeCommand.ShowAsync("注册发生异常", NotifyBoardMode.Ok); break;
                 }
             }
-            catch (System.Exception e) { Debug.LogException(e); }
+            catch (Exception e) { Debug.LogException(e); }
         }
 
         public async void UserLogin()

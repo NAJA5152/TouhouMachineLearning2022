@@ -11,6 +11,8 @@ namespace TouhouMachineLearningSummary.Model
         public TriggerType triggerType;
         public Card triggerCard;
         public List<Card> targetCards;
+        CardState targetState;
+        CardField targetFiled;
         /// <summary>
         /// 判断多个卡牌目标是否同时触发效果
         /// </summary>
@@ -91,6 +93,30 @@ namespace TouhouMachineLearningSummary.Model
         /// </summary>
         /// <returns></returns>
         public TriggerInfoModel SetMeanWhile()
+        {
+            this.triggerMeanWhile = true;
+            return this;
+        }
+        /// <summary>
+        /// 设置状态响应方式
+        /// 0赋予，只有原先未有该状态才会清除并触发衍生效果
+        /// 1改变,取反特定状态的
+        /// 2清除,只有原先已有该状态才会清除并触发衍生效果
+        /// </summary>
+        /// <returns></returns>
+        public TriggerInfoModel SetTargetState(CardState targetState)
+        {
+            this.targetState = targetState;
+            return this;
+        }
+        /// <summary>
+        /// 设置状态或字段的附加方式
+        /// 0赋予 直接设置字段的值，无论原先有没有
+        /// 1减少 只对原先有该值的卡牌产生效果并触发衍生效果
+        /// 2增加 只对原先有该值的卡牌产生效果并触发衍生效果
+        /// </summary>
+        /// <returns></returns>
+        public TriggerInfoModel SetField()
         {
             this.triggerMeanWhile = true;
             return this;

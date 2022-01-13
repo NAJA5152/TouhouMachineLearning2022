@@ -35,6 +35,7 @@ namespace TouhouMachineLearningSummary.Manager
             Info.AgainstInfo.isUpPass = false;
             Info.AgainstInfo.isDownPass = false;
             Info.AgainstInfo.isReplayMode = false;
+            Info.AgainstInfo.PlayerScore = (0, 0);
             Info.AgainstInfo.summary = null;
         }
         /////////////////////////////////////////////////////////////////////自定义配置///////////////////////////////////////////////////////////
