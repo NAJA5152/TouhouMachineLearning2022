@@ -39,8 +39,8 @@ namespace TouhouMachineLearningSummary.Manager
                 {
                     conditions.AddRange(new Condition[] { Condition.NotDead, Condition.NotSeal, Condition.OnBattle });
                 }
-                isAbilityActive &= JudgeAbilityActive(card, Condition.NotDead, card.showPoint > 0);
-                isAbilityActive &= JudgeAbilityActive(card, Condition.Dead, card.showPoint == 0);
+                isAbilityActive &= JudgeAbilityActive(card, Condition.NotDead, card.ShowPoint > 0);
+                isAbilityActive &= JudgeAbilityActive(card, Condition.Dead, card.ShowPoint == 0);
                 isAbilityActive &= JudgeAbilityActive(card, Condition.NotSeal, !card[GameEnum.CardState.Seal]);
                 isAbilityActive &= JudgeAbilityActive(card, Condition.OnBattle, Info.AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(card));
                 isAbilityActive &= JudgeAbilityActive(card, Condition.OnMyTurn, Info.AgainstInfo.cardSet[Orientation.My].CardList.Contains(card));

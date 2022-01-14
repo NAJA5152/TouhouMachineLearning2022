@@ -14,25 +14,25 @@ namespace TouhouMachineLearningSummary.Model
 
     public class Card : MonoBehaviour
     {
-        public int cardID;
+        public int CardID { get; set; }
 
-        public int basePoint;
-        public int changePoint;
-        public int showPoint => Mathf.Max(0, basePoint + changePoint);
+        public int BasePoint { get; set; }
+        public int ChangePoint { get; set; }
+        public int ShowPoint => Mathf.Max(0, BasePoint + ChangePoint);
 
-        public Texture2D icon;
-        public float moveSpeed = 0.1f;
+        public Texture2D Icon { get; set; }
+        public float MoveSpeed { get; set; } = 0.1f;
         //卡牌默认可部署属性区域
-        public BattleRegion region;
+        public BattleRegion region { get; set; }
         //卡牌默认可部署所属
-        public Territory territory;
+        public Territory territory { get; set; }
         [ShowInInspector]
         public Orientation orientation => AgainstInfo.cardSet[Orientation.Down].CardList.Contains(this) ? Orientation.Down : Orientation.Up;
         //获取全局牌表区域
-        public GameRegion currentRegion => AgainstInfo.cardSet.SingleRowInfos.First(row => row.CardList.Contains(this)).region;
-        public string cardTag;
-        public CardRank cardRank;
-        public CardType cardType;
+        public GameRegion CurrentRegion => AgainstInfo.cardSet.SingleRowInfos.First(row => row.CardList.Contains(this)).region;
+        public string cardTag { get; set; }
+        public CardRank cardRank { get; set; }
+        public CardType cardType { get; set; }
 
 
         [ShowInInspector]
@@ -60,7 +60,7 @@ namespace TouhouMachineLearningSummary.Model
         public bool IsLocked { get; set; } = false;
         public bool IsFree { get; set; } = false;
         public bool IsCanSee { get; set; } = false;
-        public bool IsCardDead => showPoint == 0 && AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this);
+        public bool IsCardDead => ShowPoint == 0 && AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this);
         public void SetCardSeeAble(bool isCanSee) => this.IsCanSee = isCanSee;
         public bool isMoveStepOver = true;
         public bool isPrepareToPlay = false;
@@ -68,22 +68,17 @@ namespace TouhouMachineLearningSummary.Model
 
         public List<Card> belongCardList => Command.RowCommand.GetCardList(this);
         public Location Location => Command.RowCommand.GetLocation(this);
-        //[ShowInInspector]
         public Card LeftCard => Location.Y > 0 ? belongCardList[Location.Y - 1] : null;
-        //[ShowInInspector]
         public Card RightCard => Location.Y < belongCardList.Count - 1 ? belongCardList[Location.Y + 1] : null;
-        [ShowInInspector]
-        public int twoSideVitality => (LeftCard == null || LeftCard[CardState.Seal] ? 0 : LeftCard[CardField.Vitality]) + (RightCard == null || RightCard[CardState.Seal] ? 0 : RightCard[CardField.Vitality]);
-
         public Text PointText => transform.GetChild(0).GetChild(0).GetComponent<Text>();
-        public string CardName => Manager.CardAssemblyManager.GetCurrentCardInfos(cardID).translateName;
+        public string CardName => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).translateName;
 
         [ShowInInspector]
         public string CardIntroduction
         {
             get
             {
-                string describe = Manager.CardAssemblyManager.GetCurrentCardInfos(cardID).translateAbility;
+                string describe = Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).translateAbility;
                 typeof(CardField).GetEnumNames().ToList().ForEach(name =>
                 {
                     describe = describe.Replace($"{{{name}}}", this[(CardField)Enum.Parse(typeof(CardField), name)].ToString());
@@ -98,12 +93,12 @@ namespace TouhouMachineLearningSummary.Model
 
         public void RefreshCardUi()
         {
-            PointText.text = cardType == CardType.Unite ? showPoint.ToString() : "";
-            if (changePoint > 0)
+            PointText.text = cardType == CardType.Unite ? ShowPoint.ToString() : "";
+            if (ChangePoint > 0)
             {
                 PointText.color = Color.green;
             }
-            else if (changePoint < 0)
+            else if (ChangePoint < 0)
             {
                 PointText.color = Color.red;
             }
@@ -118,6 +113,7 @@ namespace TouhouMachineLearningSummary.Model
         public virtual void Init()
         {
             IsInit = true;
+            //初始化卡牌效果并填充空效果
             foreach (TriggerTime tirggerTime in Enum.GetValues(typeof(TriggerTime)))
             {
                 cardAbility[tirggerTime] = new Dictionary<TriggerType, List<Func<TriggerInfoModel, Task>>>();
@@ -126,17 +122,37 @@ namespace TouhouMachineLearningSummary.Model
                     cardAbility[tirggerTime][triggerType] = new List<Func<TriggerInfoModel, Task>>();
                 }
             }
-
+            //当弃牌时移动至墓地
             AbalityRegister(TriggerTime.When, TriggerType.Discard)
-              .AbilityAdd(async (triggerInfo) =>{await Command.CardCommand.DisCard(triggerInfo.targetCard);})
+              .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.DisCard(triggerInfo.targetCard); })
               .AbilityAppend();
-
+            //当死亡时移至墓地
+            AbalityRegister(TriggerTime.When, TriggerType.Dead)
+            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.MoveToGrave(this); })
+            .AbilityAppend();
+            //当复活时移至出牌区
+            AbalityRegister(TriggerTime.When, TriggerType.Revive)
+            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.ReviveCard(triggerInfo); })
+            .AbilityAppend();
+            //当移动时移到指定位置
+            AbalityRegister(TriggerTime.When, TriggerType.Move)
+            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.MoveCard(triggerInfo.targetCard, triggerInfo.location); })
+            .AbilityAppend();
+            //当间隙时从游戏中除外
+            AbalityRegister(TriggerTime.When, TriggerType.Banish)
+            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.BanishCard(this); })
+            .AbilityAppend();
+            //当召唤时从卡组中拉出
+            AbalityRegister(TriggerTime.When, TriggerType.Summon)
+            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.SummonCard(this); })
+            .AbilityAppend();
+            //当获得增益时获得点数增加
             AbalityRegister(TriggerTime.When, TriggerType.Gain)
              .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Gain(triggerInfo); })
              .AbilityAppend();
-            //默认受伤效果：当卡牌受到伤害时则会受到伤害，当卡牌死亡时，就会死
+            //默认受伤效果：当卡牌受到伤害时则会受到伤害，当卡牌死亡时，触发卡牌死亡机制
             AbalityRegister(TriggerTime.When, TriggerType.Hurt)
-            .AbilityAdd(async (triggerInfo) => 
+            .AbilityAdd(async (triggerInfo) =>
             {
                 await Command.CardCommand.Hurt(triggerInfo);
                 if (IsCardDead)
@@ -145,87 +161,72 @@ namespace TouhouMachineLearningSummary.Model
                 }
             })
             .AbilityAppend();
-            AbalityRegister(TriggerTime.When, TriggerType.Dead)
-            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.MoveToGrave(this); })
-            .AbilityAppend();
-            cardAbility[TriggerTime.When][TriggerType.Destory] = new List<Func<TriggerInfoModel, Task>>()
+            //当治愈时
+            AbalityRegister(TriggerTime.When, TriggerType.Cure)
+            .AbilityAdd(async (triggerInfo) =>
             {
-                async (triggerInfo) =>
-                {
-                    triggerInfo.point=showPoint;
-                    await Command.CardCommand.Hurt(triggerInfo);
-                }
-            };
-            cardAbility[TriggerTime.When][TriggerType.Cure] = new List<Func<TriggerInfoModel, Task>>()
+                triggerInfo.point = -Math.Min(0, triggerInfo.targetCard.ChangePoint);
+                await Command.CardCommand.Gain(triggerInfo);
+            })
+           .AbilityAppend();
+            //当被摧毁时以自身点数对自己造成伤害
+            AbalityRegister(TriggerTime.When, TriggerType.Destory)
+            .AbilityAdd(async (triggerInfo) =>
             {
-                async (triggerInfo) =>
-                {
-                    triggerInfo.point=-Math.Min(0, triggerInfo.targetCard.changePoint);
-                     await Command.CardCommand.Gain(triggerInfo);
-                }
-            };
-            cardAbility[TriggerTime.When][TriggerType.Move] = new List<Func<TriggerInfoModel, Task>>()
-            {
-                async (triggerInfo) =>
-                {
-                  await Command.CardCommand.MoveCard(triggerInfo.targetCard,triggerInfo.location);
-                }
-            };
-            cardAbility[TriggerTime.When][TriggerType.Banish] = new List<Func<TriggerInfoModel, Task>>()
-            {
-                async (triggerInfo) =>
-                {
-                  await Command.CardCommand.BanishCard(this);
-                }
-            };
-            cardAbility[TriggerTime.When][TriggerType.Summon] = new List<Func<TriggerInfoModel, Task>>()
-            {
-                async (triggerInfo) =>
-                {
-                  await Command.CardCommand.SummonCard(this);
-                }
-            };
-            cardAbility[TriggerTime.When][TriggerType.Revive] = new List<Func<TriggerInfoModel, Task>>()
-            {
-                async (triggerInfo) =>
-                {
-                  await Command.CardCommand.ReviveCard(triggerInfo);
-                  //await Command.CardCommand.PlayCard(this);
-                }
-            };
-            //卡牌状态变化时效果
-            cardAbility[TriggerTime.When][TriggerType.Seal] = new List<Func<TriggerInfoModel, Task>>()
-            {
-                async (triggerInfo) =>
-                {
-                    await Command.CardCommand.SealCard(this);
-                }
-            };
+                triggerInfo.point = ShowPoint;
+                await Command.CardCommand.Hurt(triggerInfo);
+            })
+           .AbilityAppend();
             //登记卡牌回合状态变化时效果
-            cardAbility[TriggerTime.When][TriggerType.TurnEnd] = new List<Func<TriggerInfoModel, Task>>()
+            AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
+            .AbilityAdd(async (triggerInfo) =>
             {
-                async (triggerInfo) =>
+                //我死啦
+                if (IsCardDead)
                 {
-                    //我死啦
-                    if (IsCardDead)
-                    {
 
-                    }
-                    //延命
-                    if (false)
-                    {
-                        //摧毁自身同时触发咒术
-	                }
                 }
-            };
-            cardAbility[TriggerTime.When][TriggerType.RoundEnd] = new List<Func<TriggerInfoModel, Task>>()
+                //延命
+                if (false)
+                {
+                    //摧毁自身同时触发咒术
+                }
+            })
+           .AbilityAppend();
+
+            AbalityRegister(TriggerTime.When, TriggerType.RoundEnd)
+            .AbilityAdd(async (triggerInfo) =>
+            {
+                if (AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this))
+                {
+                    await Command.CardCommand.MoveToGrave(this);
+                }
+            })
+           .AbilityAppend();
+            //卡牌状态变化时效果
+            AbalityRegister(TriggerTime.When, TriggerType.StateSet)
+            .AbilityAdd(async (triggerInfo) =>
+            {
+                switch (triggerInfo.targetState)
+                {
+                    case CardState.Spy:; break;
+                    case CardState.Seal: await Command.CardCommand.SealCard(this); break;
+                    default: break;
+                }
+            })
+           .AbilityAppend();
+            cardAbility[TriggerTime.When][TriggerType.FieldSet] = new List<Func<TriggerInfoModel, Task>>()
             {
                 async (triggerInfo) =>
                 {
-                    if (AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this))
+                    switch (triggerInfo.targetFiled)
                     {
-                        await Command.CardCommand.MoveToGrave(this);
+                        case CardField.Timer:break;
+                        case CardField.Vitality:break;
+                        case CardField.Point:break;
+                        default:break;
                     }
+                    
                 }
             };
         }
@@ -240,7 +241,6 @@ namespace TouhouMachineLearningSummary.Model
                 IsInit = false;
             }
         }
-
         public void RefreshState()
         {
             Material material = GetComponent<Renderer>().material;
@@ -259,9 +259,9 @@ namespace TouhouMachineLearningSummary.Model
                 material.SetFloat("_IsFocus", 0);
             }
             material.SetFloat("_IsTemp", IsGray ? 0 : 1);
-            transform.position = Vector3.Lerp(transform.position, targetPosition, moveSpeed);
+            transform.position = Vector3.Lerp(transform.position, targetPosition, MoveSpeed);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion, Time.deltaTime * 10);
-            PointText.text = cardType == CardType.Unite ? showPoint.ToString() : "";
+            PointText.text = cardType == CardType.Unite ? ShowPoint.ToString() : "";
         }
         public CardAbilityManeger AbalityRegister(TriggerTime time, TriggerType type) => new CardAbilityManeger(this, time, type);
     }

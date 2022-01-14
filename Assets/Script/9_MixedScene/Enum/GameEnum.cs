@@ -33,6 +33,7 @@ namespace TouhouMachineLearningSummary.GameEnum
     }
     public enum TriggerType
     {
+        ////////////////////////////////////////////////移动/////////////////////////////////////////
         Draw,
         Play,
         Deploy,
@@ -43,18 +44,18 @@ namespace TouhouMachineLearningSummary.GameEnum
         /// </summary>
         Revive,
         /// <summary>
-        /// 移动
+        /// 位移
         /// </summary>
         Move,
         /// <summary>
-        /// 除外
+        /// 间隙
         /// </summary>
         Banish,
         /// <summary>
         /// 召唤
         /// </summary>
         Summon,
-
+        ////////////////////////////////////////////////点数/////////////////////////////////////////
         /// <summary>
         /// 增益
         /// </summary>
@@ -71,21 +72,27 @@ namespace TouhouMachineLearningSummary.GameEnum
         Destory,
         Strengthen,
         Weak,
+        ////////////////////////////////////////////////状态/////////////////////////////////////////
         /// <summary>
         /// 封印
         /// </summary>
-        Seal,
-        Close,
-        /// <summary>
-        /// 侦查
-        /// </summary>
-        Scout,
-        /// <summary>
-        /// 揭示
-        /// </summary>
-        Reveal,
-
-        FieldChange,//当字段值改变
+        //Seal,
+        //Close,
+        ///// <summary>
+        ///// 侦查
+        ///// </summary>
+        //Scout,
+        ///// <summary>
+        ///// 揭示
+        ///// </summary>
+        //Reveal,
+        StateSet,
+        StateClear,
+        ////////////////////////////////////////////////字段/////////////////////////////////////////
+        FieldSet,
+        FieldIncrease,
+        FieldDecrease,
+        ////////////////////////////////////////////////选择/////////////////////////////////////////
 
         SelectUnite,
 
@@ -93,6 +100,17 @@ namespace TouhouMachineLearningSummary.GameEnum
         RoundEnd,
         TurnStart,
         TurnEnd
+    }
+    public enum CardState
+    {
+        Spy,
+        Seal
+    }
+    public enum CardField
+    {
+        Timer,//计时
+        Vitality,//活力
+        Point
     }
     public enum Camp
     {
@@ -138,17 +156,7 @@ namespace TouhouMachineLearningSummary.GameEnum
         Silver,
         Copper,
     }
-    public enum CardState
-    {
-        Spy,
-        Seal
-    }
-    public enum CardField
-    {
-        Timer,//计时
-        Vitality,//活力
-        Point
-    }
+   
     public enum CardBoardMode
     {
         None,//默认状态

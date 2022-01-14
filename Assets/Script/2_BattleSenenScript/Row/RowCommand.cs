@@ -12,7 +12,6 @@ namespace TouhouMachineLearningSummary.Command
     public static class RowCommand
     {
         ///////////////////////////////////////////////////////////////////////////////////原本的INFO/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-        public static List<Card> GetCardList(Card targetCard) => CardSet.GlobalCardList.First(list => list.Contains(targetCard));
         public static Location GetLocation(Card TargetCard)
         {
             int RankX = -1;
@@ -29,6 +28,8 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static Card GetCard(int x, int y) => x == -1 ? null : CardSet.GlobalCardList[x][y];
         public static Card GetCard(Location location) => location.X == -1 ? null : CardSet.GlobalCardList[location.X][location.Y];
+        public static List<Card> GetCardList(Card targetCard) => CardSet.GlobalCardList.First(list => list.Contains(targetCard));
+
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public static void SetPlayCardMoveFree(bool isFree) => AgainstInfo.cardSet[Orientation.Down][GameRegion.Leader, GameRegion.Hand].CardList.ForEach(card => card.IsFree = isFree);
         public static void SetRegionSelectable(GameRegion region, Territory territory = Territory.All)

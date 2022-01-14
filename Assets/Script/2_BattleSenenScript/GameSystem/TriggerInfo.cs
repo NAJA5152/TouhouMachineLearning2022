@@ -11,8 +11,8 @@ namespace TouhouMachineLearningSummary.Model
         public TriggerType triggerType;
         public Card triggerCard;
         public List<Card> targetCards;
-        CardState targetState;
-        CardField targetFiled;
+        public CardState targetState;
+        public CardField targetFiled;
         /// <summary>
         /// 判断多个卡牌目标是否同时触发效果
         /// </summary>
@@ -21,6 +21,9 @@ namespace TouhouMachineLearningSummary.Model
         public Card targetCard => targetCards.FirstOrDefault();
         public int point;
         public Location location = new Location(-1, -1);
+        private int targetStateMode;
+        private int targetFieldMode;
+
         public BulletModel bulletModel { get; set; }
         [JsonIgnore]
         public TriggerInfoModel this[TriggerTime triggerTime] => Clone(triggerTime: triggerTime);
@@ -40,6 +43,8 @@ namespace TouhouMachineLearningSummary.Model
             triggerInfo.bulletModel = bulletModel;
             triggerInfo.location = location;
             triggerInfo.point = point;
+            triggerInfo.targetState = targetState;
+            triggerInfo.targetFiled = targetFiled;
             return triggerInfo;
         }
         public TriggerInfoModel() { }
@@ -89,12 +94,27 @@ namespace TouhouMachineLearningSummary.Model
             return this;
         }
         /// <summary>
-        /// 以同时的方式触发弹幕和卡牌效果
+        /// 以同时的方式触发弹幕和卡牌效果,触发后再进行结算
         /// </summary>
         /// <returns></returns>
         public TriggerInfoModel SetMeanWhile()
         {
             this.triggerMeanWhile = true;
+            return this;
+        }
+        /// <summary>
+        /// 设置目标状态
+        /// </summary>
+        /// <param name="targetState"></param>
+        /// <returns></returns>
+        public TriggerInfoModel SetTargetState(CardState targetState)
+        {
+            this.targetState = targetState;
+            return this;
+        }
+        public TriggerInfoModel SetField(CardField targetField)
+        {
+            this.targetFiled = targetField;
             return this;
         }
         /// <summary>
@@ -104,9 +124,9 @@ namespace TouhouMachineLearningSummary.Model
         /// 2清除,只有原先已有该状态才会清除并触发衍生效果
         /// </summary>
         /// <returns></returns>
-        public TriggerInfoModel SetTargetState(CardState targetState)
+        public TriggerInfoModel SetTargetStateMode(int targetStateMode)
         {
-            this.targetState = targetState;
+            this.targetStateMode = targetStateMode;
             return this;
         }
         /// <summary>
@@ -116,10 +136,11 @@ namespace TouhouMachineLearningSummary.Model
         /// 2增加 只对原先有该值的卡牌产生效果并触发衍生效果
         /// </summary>
         /// <returns></returns>
-        public TriggerInfoModel SetField()
+        private TriggerInfoModel SetTargetFieldMode(int targetFieldMode)
         {
-            this.triggerMeanWhile = true;
+            this.targetFieldMode = targetFieldMode;
             return this;
         }
+        
     }
 }

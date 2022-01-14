@@ -81,7 +81,7 @@ namespace TouhouMachineLearningSummary.Manager
                 {
                     this.Operation = operation.EnumToOneHot();
                     this.TargetcardList = targetcardList.SelectList(card => new SampleCardModel(card));
-                    this.SelectCardID = selectCard == null ? 0 : selectCard.cardID;
+                    this.SelectCardID = selectCard == null ? 0 : selectCard.CardID;
                     this.SelectCardIndex = selectCard == null ? -1 : targetcardList.IndexOf(selectCard);
                 }
             }
@@ -134,24 +134,24 @@ namespace TouhouMachineLearningSummary.Manager
                     case SelectOperationType.SelectProperty:
                         break;
                     case SelectOperationType.SelectUnite:
-                        operation.TriggerCardID = triggerCard.cardID;
+                        operation.TriggerCardID = triggerCard.CardID;
                         operation.SelectCardRank = AgainstInfo.SelectUnits.SelectList(selectUnite => targetCardList.IndexOf(selectUnite));
                         operation.TargetCardList = targetCardList.SelectList(card => new SampleCardModel(card));
                         operation.SelectMaxNum = selectMaxNum;
                         break;
                     case SelectOperationType.SelectBoardCard:
-                        operation.TriggerCardID = triggerCard != null ? triggerCard.cardID : 0;
+                        operation.TriggerCardID = triggerCard != null ? triggerCard.CardID : 0;
                         operation.IsPlayer1Select= isPlayer1Select;
                         operation.SelectBoardCardRanks = AgainstInfo.selectBoardCardRanks;
                         operation.WashInsertRank = AgainstInfo.washInsertRank;
                         break;
                     case SelectOperationType.SelectRegion:
-                        operation.TriggerCardID = triggerCard.cardID;
+                        operation.TriggerCardID = triggerCard.CardID;
                         operation.SelectRegionRank = AgainstInfo.SelectRowRank;
                         break;
                     case SelectOperationType.SelectLocation:
                         //上传选择的次序
-                        operation.TriggerCardID = triggerCard.cardID;
+                        operation.TriggerCardID = triggerCard.CardID;
                         operation.SelectRegionRank = AgainstInfo.SelectRowRank;
                         operation.SelectLocation = AgainstInfo.SelectRank;
                         break;

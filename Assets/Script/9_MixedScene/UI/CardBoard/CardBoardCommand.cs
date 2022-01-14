@@ -29,7 +29,7 @@ namespace TouhouMachineLearningSummary.Command.GameUI
             List<Card> Cards = Info.AgainstInfo.cardBoardList;
             for (int i = 0; i < Cards.Count; i++)
             {
-                var CardStandardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(Cards[i].cardID);
+                var CardStandardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(Cards[i].CardID);
                 GameObject NewCard = GameObject.Instantiate(Info.GameUI.UiInfo.CardModel);
 
                 NewCard.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = CardStandardInfo.translateAbility;

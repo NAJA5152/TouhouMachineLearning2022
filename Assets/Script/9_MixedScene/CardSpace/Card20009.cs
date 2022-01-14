@@ -16,7 +16,7 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Play)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   await GameSystem.SelectSystem.SelectLocation(this,region,territory);
+                   await GameSystem.SelectSystem.SelectLocation(this, region, territory);
                    await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
                })
                .AbilityAppend();
@@ -24,10 +24,10 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
              .AbilityAdd(async (triggerInfo) =>
              {
-                 for (int i = 0; i < 1 + GameSystem.FieldSystem.GetTwoSideField(this, CardField.Vitality)+1; i++)
+                 for (int i = 0; i < 1 + GameSystem.InfoSystem.GetTwoSideField(this, CardField.Vitality) + 1; i++)
                  {
                      await GameSystem.SelectSystem.SelectUnite(this, AgainstInfo.cardSet[GameRegion.Battle].CardList, 1, false);
-                     await GameSystem.StateSystem.SealCard(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.SelectUnits));
+                     await GameSystem.StateSystem.ChangeState(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.SelectUnits).SetTargetState(CardState.Seal));
                  }
              }, Condition.Default)
              .AbilityAppend();

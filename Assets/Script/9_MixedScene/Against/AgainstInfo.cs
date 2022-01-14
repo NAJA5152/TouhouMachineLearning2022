@@ -123,10 +123,10 @@ namespace TouhouMachineLearningSummary.Info
         //分数
         public static (int P1Score, int P2Score) PlayerScore;
         public static (int MyScore, int OpScore) ShowScore => IsPlayer1 ? (PlayerScore.P1Score, PlayerScore.P2Score) : (PlayerScore.P2Score, PlayerScore.P1Score);
-        public static int TotalUpPoint => cardSet[Orientation.Up][GameRegion.Battle].CardList.Sum(card => card.showPoint);
-        public static int TotalDownPoint => cardSet[Orientation.Down][GameRegion.Battle].CardList.Sum(card => card.showPoint);
-        public static int TotalMyPoint => cardSet[Orientation.My][GameRegion.Battle].CardList.Sum(card => card.showPoint);
-        public static int TotalOpPoint => cardSet[Orientation.Op][GameRegion.Battle].CardList.Sum(card => card.showPoint);
+        public static int TotalUpPoint => cardSet[Orientation.Up][GameRegion.Battle].CardList.Sum(card => card.ShowPoint);
+        public static int TotalDownPoint => cardSet[Orientation.Down][GameRegion.Battle].CardList.Sum(card => card.ShowPoint);
+        public static int TotalMyPoint => cardSet[Orientation.My][GameRegion.Battle].CardList.Sum(card => card.ShowPoint);
+        public static int TotalOpPoint => cardSet[Orientation.Op][GameRegion.Battle].CardList.Sum(card => card.ShowPoint);
         public static int TotalPlayer1Point => IsPlayer1 ? TotalDownPoint : TotalUpPoint;
         public static int TotalPlayer2Point => IsPlayer1 ? TotalUpPoint : TotalDownPoint;
         public static int TurnRelativePoint => TotalMyPoint - TotalOpPoint;

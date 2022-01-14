@@ -85,28 +85,39 @@ namespace TouhouMachineLearningSummary.GameSystem
 
         public static async Task SetState(TriggerInfoModel triggerInfo)
         {
-            triggerInfo.SetTargetCard(triggerInfo.targetCards.Where(card=>card[triggerInfo.SetField]));
-            await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Scout]);
+            //检查触发目标，对不包含该状态的卡牌才会设置效果
+            triggerInfo.SetTargetCard(triggerInfo.targetCards.Where(card => card[triggerInfo.targetState]).ToList());
+            await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.StateSet]);
         }
-
-        public static async Task ClearState(TriggerInfoModel triggerInfo) => await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Scout]);
-        public static async Task ChangeState(TriggerInfoModel triggerInfo) => await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Scout]);
+        public static async Task ClearState(TriggerInfoModel triggerInfo)
+        {
+            triggerInfo.SetTargetCard(triggerInfo.targetCards.Where(card => !card[triggerInfo.targetState]).ToList());
+            await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.StateClear]);
+        }
+        public static async Task ChangeState(TriggerInfoModel triggerInfo)
+        {
+            List<Card> stateActivateCardList = triggerInfo.targetCards.Where(card => card[triggerInfo.targetState]).ToList();
+            List<Card> stateUnActivateCardList = triggerInfo.targetCards.Where(card => !card[triggerInfo.targetState]).ToList();
+            //设置所有状态未激活的为激活状态
+            triggerInfo.SetTargetCard(stateUnActivateCardList);
+            await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.StateSet]);
+            //设置所有状态激活的为未激活状态
+            triggerInfo.SetTargetCard(stateActivateCardList);
+            await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.StateClear]);
+        }
     }
     public class FieldSystem
     {
-        public static async Task SetField(TriggerInfoModel triggerInfo, CardField cardField)
+        public static async Task SetField(TriggerInfoModel triggerInfo)
         {
-            foreach (var targetCard in triggerInfo.targetCards)
-            {
-
-                if (targetCard[cardField] != 0)
-                {
-                    targetCard[cardField]++;
-                }
-            }
+            await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.FieldSet]);
         }
         //直接改变，不触发机制
-        public static async Task Increase(TriggerInfoModel triggerInfo, CardField cardField)
+        public static async Task Increase(TriggerInfoModel triggerInfo)
+        {
+            await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.FieldClear]);
+        }
+        public static async Task Decrease(TriggerInfoModel triggerInfo)
         {
             foreach (var targetCard in triggerInfo.targetCards)
             {
@@ -117,18 +128,7 @@ namespace TouhouMachineLearningSummary.GameSystem
                 }
             }
         }
-        public static async Task Decrease(TriggerInfoModel triggerInfo, CardField cardField)
-        {
-            foreach (var targetCard in triggerInfo.targetCards)
-            {
 
-                if (targetCard[cardField] != 0)
-                {
-                    targetCard[cardField]++;
-                }
-            }
-        }
-        
         //临时方案
         public static async Task Change(TriggerInfoModel triggerInfo)
         {
@@ -137,7 +137,7 @@ namespace TouhouMachineLearningSummary.GameSystem
                 await CardEffectStackControl.TriggerBroadcast(triggerInfo[targetCard][TriggerType.FieldChange]);
             }
         }
-        
+
     }
     /// <summary>
     /// 选择单位、区域、场景属性的相关机制

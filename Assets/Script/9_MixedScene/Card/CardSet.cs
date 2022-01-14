@@ -142,12 +142,12 @@ namespace TouhouMachineLearningSummary.Info
                     switch (cardFeature)
                     {
                         case CardFeature.Largest:
-                            int largestPoint = CardList.Max(card => card.showPoint);
-                            filterCardList = CardList.Where(card => card.showPoint == largestPoint).ToList();
+                            int largestPoint = CardList.Max(card => card.ShowPoint);
+                            filterCardList = CardList.Where(card => card.ShowPoint == largestPoint).ToList();
                             break;
                         case CardFeature.Lowest:
-                            int lowestPoint = CardList.Min(card => card.showPoint);
-                            filterCardList = CardList.Where(card => card.showPoint == lowestPoint).ToList();
+                            int lowestPoint = CardList.Min(card => card.ShowPoint);
+                            filterCardList = CardList.Where(card => card.ShowPoint == lowestPoint).ToList();
                             break;
                         default:
                             break;

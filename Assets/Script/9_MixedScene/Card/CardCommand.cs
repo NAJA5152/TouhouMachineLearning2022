@@ -48,7 +48,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             AgainstInfo.cardSet[GameRegion.Hand].SingleRowInfos.ForEach(singleRowInfo =>
             {
-                AgainstInfo.cardSet[singleRowInfo.RowRank]= AgainstInfo.cardSet[singleRowInfo.RowRank].OrderByDescending(card => card.cardRank).ThenBy(card => card.basePoint).ThenBy(card => card.cardID).ToList();
+                AgainstInfo.cardSet[singleRowInfo.RowRank]= AgainstInfo.cardSet[singleRowInfo.RowRank].OrderByDescending(card => card.cardRank).ThenBy(card => card.BasePoint).ThenBy(card => card.CardID).ToList();
             });
         }
 
@@ -62,15 +62,15 @@ namespace TouhouMachineLearningSummary.Command
             newCard.AddComponent(Manager.CardAssemblyManager.GetCardScript(id));
             Card card = newCard.GetComponent<Card>();
             var CardStandardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(id);
-            card.cardID = CardStandardInfo.cardID;
-            card.basePoint = CardStandardInfo.point;
-            card.icon = CardStandardInfo.icon;
+            card.CardID = CardStandardInfo.cardID;
+            card.BasePoint = CardStandardInfo.point;
+            card.Icon = CardStandardInfo.icon;
             card.region = CardStandardInfo.cardDeployRegion;
             card.territory = CardStandardInfo.cardDeployTerritory;
             card.cardTag = CardStandardInfo.cardTag;
             card.cardRank = CardStandardInfo.cardRank;
             card.cardType = CardStandardInfo.cardType;
-            card.GetComponent<Renderer>().material.SetTexture("_Front", card.icon);
+            card.GetComponent<Renderer>().material.SetTexture("_Front", card.Icon);
             switch (card.cardRank)
             {
                 case CardRank.Leader: card.GetComponent<Renderer>().material.SetColor("_side", new Color(0.43f, 0.6f, 1f)); break;
@@ -100,15 +100,15 @@ namespace TouhouMachineLearningSummary.Command
             Card card = newCard.GetComponent<Card>();
             var CardStandardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(sampleCard.CardID);
             ///然后根据sampleCard设置具体参数，先暂时设为默认
-            card.cardID = CardStandardInfo.cardID;
-            card.basePoint = CardStandardInfo.point;
-            card.icon = CardStandardInfo.icon;
+            card.CardID = CardStandardInfo.cardID;
+            card.BasePoint = CardStandardInfo.point;
+            card.Icon = CardStandardInfo.icon;
             card.region = CardStandardInfo.cardDeployRegion;
             card.territory = CardStandardInfo.cardDeployTerritory;
             card.cardTag = CardStandardInfo.cardTag;
             card.cardRank = CardStandardInfo.cardRank;
             card.cardType = CardStandardInfo.cardType;
-            card.GetComponent<Renderer>().material.SetTexture("_Front", card.icon);
+            card.GetComponent<Renderer>().material.SetTexture("_Front", card.Icon);
             switch (card.cardRank)
             {
                 case CardRank.Leader: newCard.GetComponent<Renderer>().material.SetColor("_side", new Color(0.43f, 0.6f, 1f)); break;
@@ -289,7 +289,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             await BulletCommand.InitBulletAsync(triggerInfo);
             await Task.Delay(1000);
-            triggerInfo.targetCard.changePoint += triggerInfo.point;
+            triggerInfo.targetCard.ChangePoint += triggerInfo.point;
             await Task.Delay(1000);
         }
         public static async Task Hurt(TriggerInfoModel triggerInfo)
@@ -298,7 +298,7 @@ namespace TouhouMachineLearningSummary.Command
             triggerInfo.point = new System.Random().Next(-10, 10);
             //悬浮伤害数字
             //await Manager.CardPointManager.CaretPointAsync(triggerInfo.targetCard, Mathf.Abs(triggerInfo.point), triggerInfo.point > 0 ? CardPointType.red : CardPointType.green);
-            triggerInfo.targetCard.changePoint -= triggerInfo.point;
+            triggerInfo.targetCard.ChangePoint -= triggerInfo.point;
             await Task.Delay(1000);
         }
         public static async Task MoveToGrave(Card card, int Index = 0)
@@ -307,7 +307,7 @@ namespace TouhouMachineLearningSummary.Command
             RemoveCard(card);
             AgainstInfo.cardSet[orientation][GameRegion.Grave].SingleRowInfos[0].CardList.Insert(Index, card);
             card.SetCardSeeAble(false);
-            card.changePoint = 0;
+            card.ChangePoint = 0;
             card.isMoveStepOver = false;
             await Task.Delay(100);
             card.isMoveStepOver = true;

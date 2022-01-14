@@ -283,7 +283,7 @@ namespace TouhouMachineLearningSummary.Command
                         if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.PlayCard)
                         {
                             Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList[operation.SelectCardIndex];
-                            Debug.LogWarning("打出卡牌" + Info.AgainstInfo.playerPlayCard.cardID);
+                            Debug.LogWarning("打出卡牌" + Info.AgainstInfo.playerPlayCard.CardID);
 
                         }
                         else if (operation.Operation.OneHotToEnum<PlayerOperationType>() == PlayerOperationType.DisCard)
@@ -372,7 +372,6 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.SelectProperty = BattleRegion.None;
             //暂时设为1秒，之后还原成10秒
             Timer.SetIsTimerStart(1);
-            //AgainstInfo.SelectRegion = null;
             // Debug.Log("等待选择属性");
             while (AgainstInfo.SelectProperty == BattleRegion.None)
             {
@@ -401,9 +400,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             AgainstInfo.IsWaitForSelectRegion = true;
             AgainstInfo.SelectRowRank = -1;
-            //AgainstInfo.SelectRegion = null;
             RowCommand.SetRegionSelectable(regionTypes, territory);
-            //while (Info.AgainstInfo.SelectRegion == null)
             while (AgainstInfo.SelectRowRank == -1)
             {
                 TaskLoopManager.Throw();
@@ -412,7 +409,6 @@ namespace TouhouMachineLearningSummary.Command
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
                     if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectRegion)
                     {
-                        //AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(operation.SelectRegionRank);
                         AgainstInfo.SelectRowRank = operation.SelectRegionRank;
                     }
                     else
@@ -424,9 +420,6 @@ namespace TouhouMachineLearningSummary.Command
                 else if (AgainstInfo.IsAIControl)
                 {
                     await CustomThread.Delay(1000);
-                    //List<SingleRowManager> rows = AgainstInfo.cardSet.SingleRowInfos.Where(row => row.CanBeSelected).ToList();
-                    //int rowRank = AiCommand.GetRandom(0, rows.Count());
-                    //AgainstInfo.SelectRegion = rows[rowRank];//设置部署区域
                     AgainstInfo.SelectRowRank = AgainstInfo.cardSet.SingleRowInfos.Where(row => row.CanBeSelected).OrderBy(x => AiCommand.GetRandom()).FirstOrDefault().RowRank;
                 }
                 await Task.Delay(1);
@@ -450,11 +443,6 @@ namespace TouhouMachineLearningSummary.Command
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
                     if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectLocation)
                     {
-                        //List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos.Where(row => row.CanBeSelected).ToList();//不进行筛选
-                        //设置选择的次序
-                        //List<SingleRowInfo> rows = AgainstInfo.cardSet.singleRowInfos;
-                        //AgainstInfo.SelectRegion = rows[operation.SelectRegionRank];
-                        //AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(operation.SelectRegionRank);
                         AgainstInfo.SelectRowRank = operation.SelectRegionRank;
                         AgainstInfo.SelectRank = operation.SelectLocation;
                     }
@@ -467,9 +455,6 @@ namespace TouhouMachineLearningSummary.Command
                 else if (AgainstInfo.IsAIControl)
                 {
                     await CustomThread.Delay(1000);
-                    //List<SingleRowManager> rows = AgainstInfo.cardSet.SingleRowInfos.Where(row => row.CanBeSelected).ToList();
-                    //int rowRank = AiCommand.GetRandom(0, rows.Count());
-                    //AgainstInfo.SelectRegion = rows[rowRank];//设置部署区域
                     AgainstInfo.SelectRowRank = AgainstInfo.cardSet.SingleRowInfos.Where(row => row.CanBeSelected).OrderBy(x => AiCommand.GetRandom()).FirstOrDefault().RowRank;
                     AgainstInfo.SelectRank = 0;//设置部署次序
                 }
@@ -618,7 +603,6 @@ namespace TouhouMachineLearningSummary.Command
                                 {
                                     List<Card> CardLists = AgainstInfo.cardSet[Orientation.Down][GameRegion.Hand].CardList;
                                     int selectRank = AgainstInfo.selectBoardCardRanks[0];
-                                    //卡牌记录出现问题？？？明天修
                                     AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectBoardCard, triggerCard, CardLists, 1, isPlayer1Select: Info.AgainstInfo.IsPlayer1);
                                     await CardCommand.ExchangeCard(CardLists[selectRank], IsPlayerExchange: true, isRoundStartExchange: true, WashInsertRank: AgainstInfo.washInsertRank);
                                     Info.AgainstInfo.ExChangeableCardNum--;
@@ -640,9 +624,7 @@ namespace TouhouMachineLearningSummary.Command
                         }
 
                         GameUI.UiCommand.SetCardBoardHide();
-
-
-                        //等待双方退出（新）
+                        //等待双方退出
                         await CustomThread.UnitllAcync(
                             () => AgainstInfo.isPlayer1RoundStartExchangeOver,
                             () => AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectExchangeOver, isPlayer1ExchangeOver: true)
@@ -655,44 +637,9 @@ namespace TouhouMachineLearningSummary.Command
                         AgainstInfo.isPlayer1RoundStartExchangeOver = false;
                         AgainstInfo.isPlayer2RoundStartExchangeOver = false;
                         AgainstInfo.IsSelectCardOver = false;
-
-
-                        ////等待双方都退出
-                        //bool isAlerdlySummaryPlayer1ExchangeOver = false;
-                        //bool isAlerdlySummaryPlayer2ExchangeOver = false;
-                        //while (true)
-                        //{
-                        //    TaskLoopManager.cancel.Token.ThrowIfCancellationRequested();
-
-                        //    if (isAlerdlySummaryPlayer1ExchangeOver && isAlerdlySummaryPlayer2ExchangeOver)//退出流程
-                        //    {
-                        //        if (AgainstInfo.isPlayer1RoundStartExchangeOver && AgainstInfo.isPlayer2RoundStartExchangeOver)
-                        //        {
-                        //            AgainstInfo.isPlayer1RoundStartExchangeOver = false;
-                        //            AgainstInfo.isPlayer2RoundStartExchangeOver = false;
-                        //            AgainstInfo.IsSelectCardOver = false;
-                        //            break;
-                        //        }
-                        //    }
-                        //    else
-                        //    {
-                        //        if (AgainstInfo.isPlayer1RoundStartExchangeOver && !isAlerdlySummaryPlayer1ExchangeOver)
-                        //        {
-                        //            AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectExchangeOver, isPlayer1ExchangeOver: true);
-                        //            isAlerdlySummaryPlayer1ExchangeOver = true;
-                        //        }
-                        //        if (AgainstInfo.isPlayer2RoundStartExchangeOver && !isAlerdlySummaryPlayer2ExchangeOver)
-                        //        {
-                        //            AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectExchangeOver, isPlayer1ExchangeOver: false);
-                        //            isAlerdlySummaryPlayer2ExchangeOver = true;
-                        //        }
-                        //    }
-                        //    await Task.Delay(10);
-                        //}
                         break;
                     }
                 case CardBoardMode.ShowOnly:
-                    //while (AgainstInfo.selectBoardCardRanks.Count < Mathf.Min(cardIds.Count, num) && !AgainstInfo.IsFinishSelectBoardCard)
                     while (AgainstInfo.selectBoardCardRanks.Count < Mathf.Min(cardIds.Count, num) && !AgainstInfo.IsSelectCardOver)
                     {
                         await Task.Delay(1);
@@ -701,7 +648,6 @@ namespace TouhouMachineLearningSummary.Command
                     break;
                 default:
                     break;
-
             }
             AgainstInfo.cardBoardMode = CardBoardMode.None;
         }
