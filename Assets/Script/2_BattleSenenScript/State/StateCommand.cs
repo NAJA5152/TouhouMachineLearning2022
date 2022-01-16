@@ -85,21 +85,12 @@ namespace TouhouMachineLearningSummary.Command
                         })
                     });
             }
-            //if (AgainstInfo.isReplayMode)
-            //{
-            //    AgainstInfo.currentUserInfo = AgainstInfo.isPlayer1 ? AgainstSummaryManager.player1Info : AgainstSummaryManager.player2Info;
-            //    AgainstInfo.currentOpponentInfo = AgainstInfo.isPlayer1 ? AgainstSummaryManager.player2Info : AgainstSummaryManager.player1Info;
-            //}
-            //AgainstInfo.isMyTurn = AgainstInfo.isPlayer1;
             AgainstInfo.cardSet = new CardSet();
             foreach (var item in GameObject.FindGameObjectsWithTag("SingleInfo"))
             {
                 SingleRowManager singleRowInfo = item.GetComponent<SingleRowManager>();
                 AgainstInfo.cardSet.SingleRowInfos.Add(singleRowInfo);
             }
-            //可以舍去？
-            //AgainstInfo.cardSet.CardList = null;
-
             RowCommand.SetRegionSelectable(GameRegion.None);
             await CustomThread.Delay(1500);
             Manager.LoadingManager.manager?.CloseAsync();
@@ -107,7 +98,6 @@ namespace TouhouMachineLearningSummary.Command
             try
             {
                 //await Task.Delay(500);
-                //Debug.Log("对战开始".TransUiText());
                 await GameUI.UiCommand.NoticeBoardShow("对战开始".Translation());
 
                 //初始化我方领袖卡

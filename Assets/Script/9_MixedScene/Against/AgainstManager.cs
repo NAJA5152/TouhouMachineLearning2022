@@ -31,7 +31,11 @@ namespace TouhouMachineLearningSummary.Manager
         public static void Init()
         {
             //初始化对战信息
-            Info.AgainstInfo.roundRank = 0;
+            Info.AgainstInfo.roundRank = 1;
+            //小局回合信息
+            Info.AgainstInfo.turnRank = 0;
+            Info.AgainstInfo.totalTurnRank = 0;
+
             Info.AgainstInfo.isUpPass = false;
             Info.AgainstInfo.isDownPass = false;
             Info.AgainstInfo.isReplayMode = false;
@@ -69,10 +73,10 @@ namespace TouhouMachineLearningSummary.Manager
         /// 设置对方卡组
         /// </summary>
         /// <returns></returns>
-        public static async Task OnlineStart(bool isPlayer1, PlayerInfo userInfo = null, PlayerInfo opponentInfo=null)
+        public static async Task OnlineStart(bool isPlayer1, PlayerInfo userInfo = null, PlayerInfo opponentInfo = null)
         {
             Info.AgainstInfo.IsPlayer1 = isPlayer1;
-            Info.AgainstInfo.currentUserInfo = (userInfo==null? defaultPlayerInfo: userInfo);
+            Info.AgainstInfo.currentUserInfo = (userInfo == null ? defaultPlayerInfo : userInfo);
             Info.AgainstInfo.currentOpponentInfo = (opponentInfo == null ? defaultPlayerInfo : opponentInfo);
             Info.AgainstInfo.IsMyTurn = Info.AgainstInfo.IsPlayer1;
             await CardAssemblyManager.SetCurrentAssembly("");

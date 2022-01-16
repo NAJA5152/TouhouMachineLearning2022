@@ -113,6 +113,7 @@
     <Compile Include="Assets\Script\1_LoginSceen\PageState\MenuState.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Bullet\BulletEnum.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Input\InputControl.cs" />
+    <Compile Include="Assets\Script\1_LoginSceen\Other\Log.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡组阵营选择界面\CampSelectCommand.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\详情介绍组件\cardDetailCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\ParticleSystem\EffectCommand.cs" />

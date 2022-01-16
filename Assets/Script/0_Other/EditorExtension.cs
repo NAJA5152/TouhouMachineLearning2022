@@ -19,7 +19,7 @@ namespace TouhouMachineLearningSummary.Other
         [MenuItem("Tools/打开数据表格", false, 51)]
         static void OpenXls() => Process.Start(@"Assets\Resources\GameData\GameData.xlsx");
         [MenuItem("Tools/打开表格数据实时同步工具", false, 52)]
-        static void UpdateXls() => Process.Start(@"OtherSolution\xls检测更新\bin\Debug\net461\xls检测更新.exe");
+        static void UpdateXls() => Process.Start(@"OtherSolution\xls检测更新\bin\Debug\net6.0\xls检测更新.exe");
         [MenuItem("Tools/发布当前卡牌版本", false, 53)]
         static void UpdateCardSpace()
         {

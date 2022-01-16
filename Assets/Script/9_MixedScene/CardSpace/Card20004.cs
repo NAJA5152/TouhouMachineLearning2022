@@ -26,7 +26,7 @@ namespace TouhouMachineLearningSummary.CardSpace
              {
                  await GameSystem.SelectSystem.SelectRegion(this, GameRegion.Battle, Territory.Op);
                  List<Card> targetCardList = GameSystem.InfoSystem.AgainstCardSet[GameSystem.InfoSystem.SelectRowRank];
-                 int hurtMaxValue = GameSystem.FieldSystem.GetTwoSideField(this, CardField.Vitality) + 1;
+                 int hurtMaxValue = GameSystem.InfoSystem.GetTwoSideField(this, CardField.Vitality) + 1;
                  for (int i = 0; i < Math.Min(targetCardList.Count, hurtMaxValue); i++)
                  {
                      await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this).SetTargetCard(targetCardList[i]).SetPoint(hurtMaxValue - i));

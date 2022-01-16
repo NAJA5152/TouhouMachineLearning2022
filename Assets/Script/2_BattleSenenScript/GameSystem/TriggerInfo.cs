@@ -112,35 +112,37 @@ namespace TouhouMachineLearningSummary.Model
             this.targetState = targetState;
             return this;
         }
-        public TriggerInfoModel SetField(CardField targetField)
+        /// <summary>
+        ///设置目标字段和目标值
+        /// </summary>
+        public TriggerInfoModel SetTargetField(CardField targetField,int ponit)
         {
             this.targetFiled = targetField;
+            this.point = ponit;
             return this;
         }
-        /// <summary>
-        /// 设置状态响应方式
-        /// 0赋予，只有原先未有该状态才会清除并触发衍生效果
-        /// 1改变,取反特定状态的
-        /// 2清除,只有原先已有该状态才会清除并触发衍生效果
-        /// </summary>
-        /// <returns></returns>
-        public TriggerInfoModel SetTargetStateMode(int targetStateMode)
-        {
-            this.targetStateMode = targetStateMode;
-            return this;
-        }
-        /// <summary>
-        /// 设置状态或字段的附加方式
-        /// 0赋予 直接设置字段的值，无论原先有没有
-        /// 1减少 只对原先有该值的卡牌产生效果并触发衍生效果
-        /// 2增加 只对原先有该值的卡牌产生效果并触发衍生效果
-        /// </summary>
-        /// <returns></returns>
-        private TriggerInfoModel SetTargetFieldMode(int targetFieldMode)
-        {
-            this.targetFieldMode = targetFieldMode;
-            return this;
-        }
+        ///// <summary>
+        ///// 设置状态响应方式
+        ///// 0赋予，只有原先未有该状态才会清除并触发衍生效果
+        ///// 1改变,取反特定状态的
+        ///// 2清除,只有原先已有该状态才会清除并触发衍生效果
+        ///// </summary>
+        //public TriggerInfoModel SetTargetStateMode(int targetStateMode)
+        //{
+        //    this.targetStateMode = targetStateMode;
+        //    return this;
+        //}
+        ///// <summary>
+        ///// 设置状态或字段的附加方式
+        ///// 0赋予 直接设置字段的值，无论原先有没有
+        ///// 1减少 只对原先有该值的卡牌产生效果并触发衍生效果
+        ///// 2增加 只对原先有该值的卡牌产生效果并触发衍生效果
+        ///// </summary>
+        //private TriggerInfoModel SetTargetFieldMode(int targetFieldMode)
+        //{
+        //    this.targetFieldMode = targetFieldMode;
+        //    return this;
+        //}
         
     }
 }

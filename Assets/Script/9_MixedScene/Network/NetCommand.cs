@@ -138,7 +138,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             catch (Exception e)
             {
-                await Command.GameUI.NoticeCommand.ShowAsync("无法链接到服务器,请点击重连\n" + e.Data,
+                await Command.GameUI.NoticeCommand.ShowAsync("无法链接到服务器,请点击重连\n" + e.Message,
                      NotifyBoardMode.Ok,
                      okAction: async () =>
                      {
@@ -257,7 +257,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             try
             {
-                Debug.Log("更新");
+                Log.Show("更新");
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
                 return await TohHouHub.InvokeAsync<bool>("UpdateInfo", updateType, AgainstInfo.onlineUserInfo.Account, AgainstInfo.onlineUserInfo.Password, updateValue);
             }

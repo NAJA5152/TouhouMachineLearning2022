@@ -79,9 +79,9 @@ namespace TouhouMachineLearningSummary.GameSystem
     }
     public class StateSystem
     {
-        public static async Task SealCard(TriggerInfoModel triggerInfo) => await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Seal]);
-        public static async Task CloseCard(TriggerInfoModel triggerInfo) => await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Close]);
-        public static async Task ScoutCard(TriggerInfoModel triggerInfo) => await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Scout]);
+        //public static async Task SealCard(TriggerInfoModel triggerInfo) => await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Seal]);
+        //public static async Task CloseCard(TriggerInfoModel triggerInfo) => await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Close]);
+        //public static async Task ScoutCard(TriggerInfoModel triggerInfo) => await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.Scout]);
 
         public static async Task SetState(TriggerInfoModel triggerInfo)
         {
@@ -108,34 +108,34 @@ namespace TouhouMachineLearningSummary.GameSystem
     }
     public class FieldSystem
     {
+        /// <summary>
+        /// 直接设置字段值
+        /// </summary>
         public static async Task SetField(TriggerInfoModel triggerInfo)
         {
             await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.FieldSet]);
         }
-        //直接改变，不触发机制
-        public static async Task Increase(TriggerInfoModel triggerInfo)
-        {
-            await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.FieldClear]);
-        }
-        public static async Task Decrease(TriggerInfoModel triggerInfo)
-        {
-            foreach (var targetCard in triggerInfo.targetCards)
-            {
+        ////直接改变，不触发机制
+        //public static async Task Increase(TriggerInfoModel triggerInfo)
+        //{
+        //    await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.FieldIncrease]);
+        //}
+        //public static async Task Decrease(TriggerInfoModel triggerInfo)
+        //{
+        //    await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.FieldDecrease]);
+        //}
 
-                if (targetCard[cardField] != 0)
-                {
-                    targetCard[cardField]++;
-                }
-            }
-        }
-
-        //临时方案
-        public static async Task Change(TriggerInfoModel triggerInfo)
+        /// <summary>
+        /// 设置字段值改变量
+        /// </summary>
+        public static async Task ChangeField(TriggerInfoModel triggerInfo)
         {
-            foreach (var targetCard in triggerInfo.targetCards)
-            {
-                await CardEffectStackControl.TriggerBroadcast(triggerInfo[targetCard][TriggerType.FieldChange]);
-            }
+            await CardEffectStackControl.TriggerBroadcast(triggerInfo[TriggerType.FieldChange]);
+
+            //foreach (var targetCard in triggerInfo.targetCards)
+            //{
+            //    await CardEffectStackControl.TriggerBroadcast(triggerInfo[targetCard][TriggerType.FieldChange]);
+            //}
         }
 
     }

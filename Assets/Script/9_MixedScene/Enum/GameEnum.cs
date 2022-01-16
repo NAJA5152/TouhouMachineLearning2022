@@ -90,8 +90,9 @@ namespace TouhouMachineLearningSummary.GameEnum
         StateClear,
         ////////////////////////////////////////////////×Ö¶Î/////////////////////////////////////////
         FieldSet,
-        FieldIncrease,
-        FieldDecrease,
+        FieldChange,
+        //FieldIncrease,
+        //FieldDecrease,
         ////////////////////////////////////////////////Ñ¡Ôñ/////////////////////////////////////////
 
         SelectUnite,

@@ -81,7 +81,7 @@ namespace TouhouMachineLearningSummary.Model
                 string describe = Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).translateAbility;
                 typeof(CardField).GetEnumNames().ToList().ForEach(name =>
                 {
-                    describe = describe.Replace($"{{{name}}}", this[(CardField)Enum.Parse(typeof(CardField), name)].ToString());
+                    describe = describe.Replace($"${name}", this[(CardField)Enum.Parse(typeof(CardField), name)].ToString());
                 });
                 return describe;
             }
@@ -215,20 +215,40 @@ namespace TouhouMachineLearningSummary.Model
                 }
             })
            .AbilityAppend();
-            cardAbility[TriggerTime.When][TriggerType.FieldSet] = new List<Func<TriggerInfoModel, Task>>()
+
+            AbalityRegister(TriggerTime.When, TriggerType.FieldSet)
+            .AbilityAdd(async (triggerInfo) =>
             {
-                async (triggerInfo) =>
+                Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段设置，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},设置值{triggerInfo.point}");
+                this[triggerInfo.targetFiled] = triggerInfo.point;
+                Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
+
+                switch (triggerInfo.targetFiled)
                 {
-                    switch (triggerInfo.targetFiled)
-                    {
-                        case CardField.Timer:break;
-                        case CardField.Vitality:break;
-                        case CardField.Point:break;
-                        default:break;
-                    }
-                    
+                    case CardField.Timer: break;
+                    case CardField.Vitality: break;
+                    case CardField.Point: break;
+                    default: break;
                 }
-            };
+            })
+           .AbilityAppend();
+
+            AbalityRegister(TriggerTime.When, TriggerType.FieldChange)
+            .AbilityAdd(async (triggerInfo) =>
+            {
+                Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段变化，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},变化值{triggerInfo.point}");
+                this[triggerInfo.targetFiled] += triggerInfo.point;
+                Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
+
+                switch (triggerInfo.targetFiled)
+                {
+                    case CardField.Timer: break;
+                    case CardField.Vitality: break;
+                    case CardField.Point: break;
+                    default: break;
+                }
+            })
+           .AbilityAppend();
         }
         public void SetMoveTarget(Vector3 TargetPosition, Vector3 TargetEulers)
         {

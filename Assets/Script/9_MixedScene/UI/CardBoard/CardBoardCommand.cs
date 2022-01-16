@@ -32,7 +32,7 @@ namespace TouhouMachineLearningSummary.Command.GameUI
                 var CardStandardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(Cards[i].CardID);
                 GameObject NewCard = GameObject.Instantiate(Info.GameUI.UiInfo.CardModel);
 
-                NewCard.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = CardStandardInfo.translateAbility;
+                NewCard.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = Cards[i].CardIntroduction;
                 NewCard.name = CardStandardInfo.translateName;
 
                 ////修改文本为富文本

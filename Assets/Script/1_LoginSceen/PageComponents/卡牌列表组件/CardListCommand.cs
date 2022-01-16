@@ -13,15 +13,15 @@ namespace TouhouMachineLearningSummary.Command
         //初始化牌组列表组件
         public static void Init(bool isInitOptions = true, Model.CardDeck newTempDeck = null, bool canChangeCard = false)
         {
+            Log.Show("配置面板");
             canChangeCard = Command.MenuStateCommand.GetCurrentState() == MenuState.CardListChange;
-            Debug.Log("设置卡牌改动性" + canChangeCard);
             Info.CardCompnentInfo.cardListCanChange = canChangeCard;
             Info.CardCompnentInfo.okButton.SetActive(canChangeCard);
             Info.CardCompnentInfo.cancelButton.SetActive(canChangeCard);
             Info.CardCompnentInfo.changeButton.SetActive(!canChangeCard);
             //根据当前玩家牌组生成临时牌组
             //Info.CardCompnentInfo.tempDeck = newTempDeck ?? Info.AgainstInfo.UserInfo.UseDeck.Clone();
-            Debug.Log(Info.CardCompnentInfo.tempDeck.ToJson());
+            //Debug.Log(Info.CardCompnentInfo.tempDeck.ToJson());
             if (Command.MenuStateCommand.GetCurrentState() == MenuState.CardListChange)
             {
                 Info.CardCompnentInfo.cardDeckNameModel.GetComponent<Text>().text = Info.CardCompnentInfo.tempDeck.DeckName;
@@ -30,6 +30,7 @@ namespace TouhouMachineLearningSummary.Command
             {
                 Info.CardCompnentInfo.cardDeckNameModel.GetComponent<Text>().text = Info.AgainstInfo.onlineUserInfo.UseDeck.DeckName;
             }
+            Log.Show("配置卡组名");
             if (isInitOptions)
             {
                 //初始化领袖栏
@@ -48,6 +49,7 @@ namespace TouhouMachineLearningSummary.Command
                 Info.CardCompnentInfo.deckCardModels.Clear();
                 //cardDeckNameModel.transform.GetChild(0).GetComponent<Image>().mainTexture. material.SetTexture("_Detail", cardTexture)  ;
             }
+            Log.Show("配置领袖");
             int deskCardNumber = Info.CardCompnentInfo.distinctCardIds.Count();
             int deskModelNumber = Info.CardCompnentInfo.deckCardModels.Count;
             Info.CardCompnentInfo.deckCardModels.ForEach(model => model.SetActive(false));
@@ -59,6 +61,8 @@ namespace TouhouMachineLearningSummary.Command
                     Info.CardCompnentInfo.deckCardModels.Add(newCardModel);
                 }
             }
+            Log.Show("新增牌组栏");
+
             //初始化卡牌栏
             for (int i = 0; i < Info.CardCompnentInfo.distinctCardIds.Count(); i++)
             {
@@ -95,6 +99,8 @@ namespace TouhouMachineLearningSummary.Command
                     Debug.Log(cardID + "查找失败");
                 }
             }
+            Log.Show("配置牌组");
+
         }
         public static async void SaveDeck()
         {

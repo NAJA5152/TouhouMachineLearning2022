@@ -28,7 +28,6 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
              .AbilityAdd(async (triggerInfo) =>
              {
-                 GameSystem.FieldSystem.GetField
                  AgainstInfo.SelectUnits =GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck].CardList.Where(card => card.CardID == 20007 || card.CardID == 20008).ToList();
                  await GameSystem.TransSystem.SummonCard(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.SelectUnits));
              }, Condition.Default)
