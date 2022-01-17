@@ -62,7 +62,6 @@
     <Compile Include="Assets\Script\2_BattleSenenScript\GameSystem\TriggerInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Loading\LoadingBarManager.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\CardSet.cs" />
-    <Compile Include="Assets\Script\2_BattleSenenScript\GameSystem\CardEffectStackControl.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡组阵营选择界面\CampInfo.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\GameSystem\GameSystem.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\Arrow\ArrowEndManager.cs" />
@@ -156,6 +155,7 @@
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡牌列表组件\CardListControl.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\收藏组件\CollectionCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Network\NetInfoModel.cs" />
+    <Compile Include="Assets\Script\2_BattleSenenScript\GameSystem\CardAbilityControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Against\AgainstInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Audio\AudioInfo.cs" />
   </ItemGroup>

@@ -7,10 +7,12 @@ using TouhouMachineLearningSummary.Model;
 
 namespace TouhouMachineLearningSummary.CardSpace
 {
-    public class Card20009 : Card
+    public class Card2003001 : Card
     {
         public override void Init()
         {
+            this[CardField.Vitality] = 1;
+
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
@@ -24,11 +26,8 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
              .AbilityAdd(async (triggerInfo) =>
              {
-                 for (int i = 0; i < 1 + GameSystem.InfoSystem.GetTwoSideField(this, CardField.Vitality) + 1; i++)
-                 {
-                     await GameSystem.SelectSystem.SelectUnite(this, AgainstInfo.cardSet[GameRegion.Battle].CardList, 1, false);
-                     await GameSystem.StateSystem.ChangeState(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.SelectUnits).SetTargetState(CardState.Seal));
-                 }
+                 await GameSystem.SelectSystem.SelectUnite(this, AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardRank.Copper].CardList, 1);
+                 await GameSystem.PointSystem.Cure(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.SelectUnits));
              }, Condition.Default)
              .AbilityAppend();
         }

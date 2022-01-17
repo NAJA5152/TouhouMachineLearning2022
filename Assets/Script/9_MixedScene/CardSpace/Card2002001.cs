@@ -1,9 +1,11 @@
+using System.Linq;
 using TouhouMachineLearningSummary.GameEnum;
+using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
 
 namespace TouhouMachineLearningSummary.CardSpace
 {
-    public class Card20004 : Card
+    public class Card2002001 : Card
     {
         public override void Init()
         {
@@ -16,15 +18,17 @@ namespace TouhouMachineLearningSummary.CardSpace
                    await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
                })
                .AbilityAppend();
-
+            //²¿ÊðÐ§¹û
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
              .AbilityAdd(async (triggerInfo) =>
              {
-                 for (int i = 0; i < 1 + GameSystem.InfoSystem.GetTwoSideField(this, CardField.Vitality); i++)
-                 {
-                     await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Battle][CardRank.Copper, CardRank.Silver][CardFeature.Largest].CardList, 1, true);
-                     await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this).SetTargetCard(GameSystem.InfoSystem.SelectUnits).SetPoint(1));
-                 }
+                 await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this).SetTargetField(CardField.Vitality, 2));
+                 await GameSystem.TransSystem.SummonCard(
+                     new TriggerInfoModel(this)
+                     .SetTargetCard(GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck].CardList
+                     .Where(card => card.CardID == 20007 || card.CardID == 20008)
+                     .ToList())
+                     );
              }, Condition.Default)
              .AbilityAppend();
         }

@@ -53,39 +53,25 @@
     <UnityVersion>2020.3.0f1c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20003.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10012.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20011.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10015.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20009.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10007.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10014.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20014.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2001002.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2002006.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2002004.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2003003.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card0.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10001.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10003.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10005.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10013.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20010.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10009.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10011.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10002.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20016.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10008.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10006.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20013.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10016.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20008.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20004.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20005.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20006.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20015.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10004.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20007.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20002.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card10010.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20012.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card20001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2002005.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1000001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2003005.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2003002.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2002003.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2001003.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2001004.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1001003.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2002001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2003004.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2002002.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2001001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2003001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2000001.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Script\9_MixedScene\CardSpace\GameCard.asmdef" />

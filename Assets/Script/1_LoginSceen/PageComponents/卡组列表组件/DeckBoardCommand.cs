@@ -158,17 +158,30 @@ namespace TouhouMachineLearningSummary.Command
             {
                 targetAgainstMode = AgainstModeType.Story;
                 sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
+                sampleUserInfo = new PlayerInfo(
+                     "NPC", "神秘的妖怪", "yaya", "",
+                     new List<CardDeck>
+                     {
+                                new CardDeck("gezi", 2000001, new List<int>
+                                {
+                                    2001001,2001002,2001003,2001004,
+                                    2002001,2002002,2002003,2002004,2002005,2002006,
+                                    2003001,2003002,2003003,2003004,2003005,
+                                    2003001,2003002,2003003,2003004,2003005,
+                                    2003001,2003002,2003003,2003004,2003005,
+                                })
+                     });
                 virtualOpponentInfo = new PlayerInfo(
                      "NPC", "神秘的妖怪", "yaya", "",
                      new List<CardDeck>
                      {
-                                new CardDeck("gezi", 20001, new List<int>
+                                new CardDeck("gezi", 2000001, new List<int>
                                 {
-                                    20002,20003,20004,20005,
-                                    20006,20007,20008,20009,20010,20011,
-                                    20012,20013,20014,20015,20016,
-                                    20012,20013,20014,20015,20016,
-                                    20012,20013,20014,20015,20016,
+                                    2001001,2001002,2001003,2001004,
+                                    2002001,2002002,2002003,2002004,2002005,2002006,
+                                    2003001,2003002,2003003,2003004,2003005,
+                                    2003001,2003002,2003003,2003004,2003005,
+                                    2003001,2003002,2003003,2003004,2003005,
                                 })
                      });
             }

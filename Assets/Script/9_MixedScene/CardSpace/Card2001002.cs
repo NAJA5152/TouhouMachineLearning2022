@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
@@ -7,7 +8,7 @@ using TouhouMachineLearningSummary.Model;
 
 namespace TouhouMachineLearningSummary.CardSpace
 {
-    public class Card20011 : Card
+    public class Card2001002 : Card
     {
         public override void Init()
         {
@@ -22,15 +23,14 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAppend();
 
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-             .AbilityAdd(async (triggerInfo) =>
-             {
-                 await GameSystem.SelectSystem.SelectUnite(this, AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardField.Vitality].CardList, 2, false);
-                 foreach (var unite in GameSystem.InfoSystem.AgainstCardSet.CardList)
-                 {
-                     await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this).SetTargetCard(unite).SetTargetField( CardField.Vitality, unite[CardField.Vitality] * 2));
-                 }
-             }, Condition.Default)
-             .AbilityAppend();
+              .AbilityAdd(async (triggerInfo) =>
+              {
+                  await GameSystem.PointSystem.Destory(
+                      new TriggerInfoModel(this)
+                      .SetTargetCard(GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][CardRank.Copper, CardRank.Silver][CardFeature.Largest].CardList)
+                      );
+              }, Condition.Default)
+              .AbilityAppend();
         }
     }
 }

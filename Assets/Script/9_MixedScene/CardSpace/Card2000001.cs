@@ -8,7 +8,7 @@ using UnityEngine;
 
 namespace TouhouMachineLearningSummary.CardSpace
 {
-    public class Card20001 : Card
+    public class Card2000001 : Card
     {
         public override void Init()
         {
