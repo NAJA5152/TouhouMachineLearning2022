@@ -18,17 +18,12 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    UnityEngine.Debug.Log("开始选择坐标");
-                   await GameSystem.SelectSystem.SelectLocation(this, region, territory);
+                   await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
                    UnityEngine.Debug.Log("选择单位完毕");
                    await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-                .AbilityAdd(async (triggerInfo) =>
-                {
-                    await GameSystem.PointSystem.Gain(new TriggerInfoModel(this).SetTargetCard(this).SetPoint(10));
-                    UnityEngine.Debug.Log("增益自身10点");
-                }, Condition.Default)
                .AbilityAdd(async (triggerInfo) =>
                {
                    UnityEngine.Debug.Log("开始选择单位");
@@ -42,7 +37,6 @@ namespace TouhouMachineLearningSummary.CardSpace
                    );
                    if (AgainstInfo.SelectUnits.Any())
                    {
-                       //AgainstInfo.SelectRegion = Command.RowCommand.GetSingleRowInfoById(AgainstInfo.SelectUnits[0].Location.X);
                        AgainstInfo.SelectRowRank = AgainstInfo.SelectUnits[0].Location.X;
                        AgainstInfo.SelectRank = AgainstInfo.SelectUnits[0].Location.Y;
                    }

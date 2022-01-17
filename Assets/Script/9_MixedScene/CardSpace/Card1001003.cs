@@ -1,13 +1,13 @@
-using System;
+using System.Linq;
 using System.Collections.Generic;
-using System.Threading.Tasks;
-using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
-
+using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
-    public class Card10004 : Card
+    /// <summary>
+    /// 卡牌名称:卡牌生成模板
+    /// </summary>
+    public class Card1001003 : Card
     {
         public override void Init()
         {
@@ -16,7 +16,7 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Play)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   await GameSystem.SelectSystem.SelectLocation(this,region,territory);
+                   await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
                    await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
                }, Condition.Default)
                .AbilityAppend();

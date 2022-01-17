@@ -48,7 +48,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             AgainstInfo.cardSet[GameRegion.Hand].SingleRowInfos.ForEach(singleRowInfo =>
             {
-                AgainstInfo.cardSet[singleRowInfo.RowRank]= AgainstInfo.cardSet[singleRowInfo.RowRank].OrderByDescending(card => card.cardRank).ThenBy(card => card.BasePoint).ThenBy(card => card.CardID).ToList();
+                AgainstInfo.cardSet[singleRowInfo.RowRank] = AgainstInfo.cardSet[singleRowInfo.RowRank].OrderByDescending(card => card.cardRank).ThenBy(card => card.BasePoint).ThenBy(card => card.CardID).ToList();
             });
         }
 
@@ -65,8 +65,8 @@ namespace TouhouMachineLearningSummary.Command
             card.CardID = CardStandardInfo.cardID;
             card.BasePoint = CardStandardInfo.point;
             card.Icon = CardStandardInfo.icon;
-            card.region = CardStandardInfo.cardDeployRegion;
-            card.territory = CardStandardInfo.cardDeployTerritory;
+            card.CardDeployRegion = CardStandardInfo.cardDeployRegion;
+            card.CardDeployTerritory = CardStandardInfo.cardDeployTerritory;
             card.cardTag = CardStandardInfo.cardTag;
             card.cardRank = CardStandardInfo.cardRank;
             card.cardType = CardStandardInfo.cardType;
@@ -103,8 +103,8 @@ namespace TouhouMachineLearningSummary.Command
             card.CardID = CardStandardInfo.cardID;
             card.BasePoint = CardStandardInfo.point;
             card.Icon = CardStandardInfo.icon;
-            card.region = CardStandardInfo.cardDeployRegion;
-            card.territory = CardStandardInfo.cardDeployTerritory;
+            card.CardDeployRegion = CardStandardInfo.cardDeployRegion;
+            card.CardDeployTerritory = CardStandardInfo.cardDeployTerritory;
             card.cardTag = CardStandardInfo.cardTag;
             card.cardRank = CardStandardInfo.cardRank;
             card.cardType = CardStandardInfo.cardType;
@@ -132,7 +132,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task SummonCard(Card targetCard)
         {
             List<Card> TargetRow = AgainstInfo
-                .cardSet[(GameRegion)targetCard.region][targetCard.orientation]
+                .cardSet[(GameRegion)targetCard.CardDeployRegion][targetCard.orientation]
                 .SingleRowInfos.First().CardList;
             Debug.LogWarning("召唤卡牌于" + targetCard.orientation);
             RemoveCard(targetCard);
@@ -261,7 +261,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task ReviveCard(TriggerInfoModel triggerInfo)
         {
             Card card = triggerInfo.targetCard;
-            await AudioCommand.PlayAsync(GameEnum.GameAudioType.DrawCard);
+            await AudioCommand.PlayAsync(GameAudioType.DrawCard);
 
             card.SetCardSeeAble(true);
             RemoveCard(card);
@@ -295,10 +295,10 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task Hurt(TriggerInfoModel triggerInfo)
         {
             await BulletCommand.InitBulletAsync(triggerInfo);
-            triggerInfo.point = new System.Random().Next(-10, 10);
+            //triggerInfo.point = new System.Random().Next(-10, 10);
             //悬浮伤害数字
-            //await Manager.CardPointManager.CaretPointAsync(triggerInfo.targetCard, Mathf.Abs(triggerInfo.point), triggerInfo.point > 0 ? CardPointType.red : CardPointType.green);
-            triggerInfo.targetCard.ChangePoint -= triggerInfo.point;
+            await Manager.CardPointManager.CaretPointAsync(triggerInfo.targetCard, Mathf.Abs(triggerInfo.point), triggerInfo.point > 0 ? CardPointType.red : CardPointType.green);
+            triggerInfo.targetCard.ChangePoint = Math.Max(triggerInfo.targetCard.ChangePoint - triggerInfo.point, 0);
             await Task.Delay(1000);
         }
         public static async Task MoveToGrave(Card card, int Index = 0)
@@ -311,7 +311,7 @@ namespace TouhouMachineLearningSummary.Command
             card.isMoveStepOver = false;
             await Task.Delay(100);
             card.isMoveStepOver = true;
-            await AudioCommand.PlayAsync(GameEnum.GameAudioType.DrawCard);
+            await AudioCommand.PlayAsync(GameAudioType.DrawCard);
         }
     }
 }

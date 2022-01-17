@@ -91,7 +91,7 @@ namespace TouhouMachineLearningSummary.Command
                 SingleRowManager singleRowInfo = item.GetComponent<SingleRowManager>();
                 AgainstInfo.cardSet.SingleRowInfos.Add(singleRowInfo);
             }
-            RowCommand.SetRegionSelectable(GameRegion.None);
+            RowCommand.SetRegionSelectable(region: GameRegion.None);
             await CustomThread.Delay(1500);
             Manager.LoadingManager.manager?.CloseAsync();
             //Debug.LogError("初始双方信息");
@@ -386,11 +386,11 @@ namespace TouhouMachineLearningSummary.Command
             await WaitForSelectBoardCard(null, AgainstInfo.cardSet[Orientation.Down][GameRegion.Hand].CardList, CardBoardMode.ExchangeCard);
             AgainstInfo.isRoundStartExchange = false;
         }
-        public static async Task WaitForSelectRegion(Card triggerCard, GameRegion regionTypes, Territory territory)
+        public static async Task WaitForSelectRegion(Card triggerCard, Territory territory, GameRegion regionTypes)
         {
             AgainstInfo.IsWaitForSelectRegion = true;
             AgainstInfo.SelectRowRank = -1;
-            RowCommand.SetRegionSelectable(regionTypes, territory);
+            RowCommand.SetRegionSelectable(territory, regionTypes);
             while (AgainstInfo.SelectRowRank == -1)
             {
                 TaskLoopManager.Throw();
@@ -416,14 +416,14 @@ namespace TouhouMachineLearningSummary.Command
             }
             NetCommand.AsyncInfo(NetAcyncType.SelectRegion);
             AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectRegion, triggerCard);
-            RowCommand.SetRegionSelectable(GameRegion.None);
+            RowCommand.SetRegionSelectable(region: GameRegion.None);
             AgainstInfo.IsWaitForSelectRegion = false;
         }
-        public static async Task WaitForSelectLocation(Card triggerCard, BattleRegion region, Territory territory)
+        public static async Task WaitForSelectLocation(Card triggerCard, Territory territory, BattleRegion region)
         {
             AgainstInfo.IsWaitForSelectLocation = true;
             //设置指定坐标可选
-            RowCommand.SetRegionSelectable((GameRegion)region, territory);
+            RowCommand.SetRegionSelectable(territory, (GameRegion)region);
             AgainstInfo.SelectRank = -1;
             while (AgainstInfo.SelectRank < 0)
             {
@@ -452,7 +452,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             NetCommand.AsyncInfo(NetAcyncType.SelectLocation);
             AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectLocation, triggerCard);
-            RowCommand.SetRegionSelectable(GameRegion.None);
+            RowCommand.SetRegionSelectable(region:GameRegion.None);
             AgainstInfo.IsWaitForSelectLocation = false;
         }
         public static async Task WaitForSelecUnit(Card triggerCard, List<Card> filterCards, int num, bool isAuto)

@@ -8,7 +8,7 @@ using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 namespace TouhouMachineLearningSummary.Control
 {
-    public class CardEffectStackControl : MonoBehaviour
+    public class CardAbilityControl : MonoBehaviour
     {
         //触发xx效果时，先对目标卡牌以外的卡牌触发在xx效果前对应效果，然后对所有目标同时触发xx效果，最后对目标卡牌以外的卡牌触发在xx效果后对应效果
         public static async Task TriggerBroadcast(TriggerInfoModel triggerInfo)

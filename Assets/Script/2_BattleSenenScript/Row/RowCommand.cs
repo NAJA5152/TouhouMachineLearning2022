@@ -32,7 +32,7 @@ namespace TouhouMachineLearningSummary.Command
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public static void SetPlayCardMoveFree(bool isFree) => AgainstInfo.cardSet[Orientation.Down][GameRegion.Leader, GameRegion.Hand].CardList.ForEach(card => card.IsFree = isFree);
-        public static void SetRegionSelectable(GameRegion region, Territory territory = Territory.All)
+        public static void SetRegionSelectable(Territory territory = Territory.All, GameRegion region= GameRegion.None)
         {
             if (region == GameRegion.None)
             {

@@ -23,9 +23,9 @@ namespace TouhouMachineLearningSummary.Model
         public Texture2D Icon { get; set; }
         public float MoveSpeed { get; set; } = 0.1f;
         //卡牌默认可部署属性区域
-        public BattleRegion region { get; set; }
+        public BattleRegion CardDeployRegion { get; set; }
         //卡牌默认可部署所属
-        public Territory territory { get; set; }
+        public Territory CardDeployTerritory { get; set; }
         [ShowInInspector]
         public Orientation orientation => AgainstInfo.cardSet[Orientation.Down].CardList.Contains(this) ? Orientation.Down : Orientation.Up;
         //获取全局牌表区域
@@ -148,18 +148,11 @@ namespace TouhouMachineLearningSummary.Model
             .AbilityAppend();
             //当获得增益时获得点数增加
             AbalityRegister(TriggerTime.When, TriggerType.Gain)
-             .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Gain(triggerInfo); })
-             .AbilityAppend();
+            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Gain(triggerInfo); })
+            .AbilityAppend();
             //默认受伤效果：当卡牌受到伤害时则会受到伤害，当卡牌死亡时，触发卡牌死亡机制
             AbalityRegister(TriggerTime.When, TriggerType.Hurt)
-            .AbilityAdd(async (triggerInfo) =>
-            {
-                await Command.CardCommand.Hurt(triggerInfo);
-                if (IsCardDead)
-                {
-                    await GameSystem.TransSystem.DeadCard(triggerInfo);
-                }
-            })
+            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Hurt(triggerInfo); })
             .AbilityAppend();
             //当治愈时
             AbalityRegister(TriggerTime.When, TriggerType.Cure)
@@ -184,7 +177,7 @@ namespace TouhouMachineLearningSummary.Model
                 //我死啦
                 if (IsCardDead)
                 {
-
+                    await GameSystem.TransSystem.DeadCard(triggerInfo);
                 }
                 //延命
                 if (false)
@@ -239,7 +232,8 @@ namespace TouhouMachineLearningSummary.Model
                 Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段变化，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},变化值{triggerInfo.point}");
                 this[triggerInfo.targetFiled] += triggerInfo.point;
                 Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
-
+                Command.EffectCommand.Bullet_Gain(triggerInfo);
+                await Command.AudioCommand.PlayAsync(GameAudioType.Biu);
                 switch (triggerInfo.targetFiled)
                 {
                     case CardField.Timer: break;

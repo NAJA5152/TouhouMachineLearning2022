@@ -24,6 +24,9 @@ namespace TouhouMachineLearningSummary.Model
         [LabelText("所属关卡")]
         public string level;
         [VerticalGroup("Split/Meta")]
+        [LabelText("所属系列")]
+        public string series;
+        [VerticalGroup("Split/Meta")]
         [LabelText("名字")]
         [ShowInInspector]
         [Sirenix.Serialization.OdinSerialize]
@@ -80,11 +83,11 @@ namespace TouhouMachineLearningSummary.Model
             a = name.ToList();
             if (isSingle)
             {
-                cardID = cardID + 10000;
+                cardID = int.Parse($"1{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3,'0')}");
             }
             else
             {
-                cardID = cardID + 20000;
+                cardID = int.Parse($"2{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3, '0')}");
             }
             icon = Resources.Load<Texture2D>("CardTex\\" + imageUrl);
             return this;

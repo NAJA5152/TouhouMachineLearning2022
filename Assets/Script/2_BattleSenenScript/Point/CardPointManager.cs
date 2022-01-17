@@ -33,20 +33,6 @@ namespace TouhouMachineLearningSummary.Manager
                 default:
                     break;
             }
-            if (point > 0)
-            {
-
-
-            }
-            if (point < 0)
-            {
-
-            }
-            else
-            {
-
-            }
-
             await CustomThread.TimerAsync(5, process =>
             {
                 pointCanvas.transform.position += Vector3.up * 0.02f;

@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
 
 namespace TouhouMachineLearningSummary.CardSpace
@@ -16,7 +12,7 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Play)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   await GameSystem.SelectSystem.SelectLocation(this, region, territory);
+                   await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
                    await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
                })
                .AbilityAppend();
@@ -24,12 +20,10 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
              .AbilityAdd(async (triggerInfo) =>
              {
-                 await GameSystem.SelectSystem.SelectRegion(this, GameRegion.Battle, Territory.Op);
-                 List<Card> targetCardList = GameSystem.InfoSystem.AgainstCardSet[GameSystem.InfoSystem.SelectRowRank];
-                 int hurtMaxValue = GameSystem.InfoSystem.GetTwoSideField(this, CardField.Vitality) + 1;
-                 for (int i = 0; i < Math.Min(targetCardList.Count, hurtMaxValue); i++)
+                 for (int i = 0; i < 1 + GameSystem.InfoSystem.GetTwoSideField(this, CardField.Vitality); i++)
                  {
-                     await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this).SetTargetCard(targetCardList[i]).SetPoint(hurtMaxValue - i));
+                     await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Battle][CardRank.Copper, CardRank.Silver][CardFeature.Largest].CardList, 1, true);
+                     await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this).SetTargetCard(GameSystem.InfoSystem.SelectUnits).SetPoint(1));
                  }
              }, Condition.Default)
              .AbilityAppend();

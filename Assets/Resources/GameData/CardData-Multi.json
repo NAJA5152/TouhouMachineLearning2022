@@ -2,7 +2,7 @@
   {
     "cardID": 1,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "妖精",
     "point": 9,
     "name": {
@@ -25,9 +25,9 @@
     "isFinish": true
   },
   {
-    "cardID": 2,
+    "cardID": 1,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "妖精",
     "point": 2,
     "name": {
@@ -35,7 +35,7 @@
       "Name-En": "bigfairy"
     },
     "ability": {
-      "Ability-Ch": "（测试更新，增益自身10点生命）治愈一个非金妖精单位并重新触发其部署效果"
+      "Ability-Ch": "治愈一个非金妖精单位并重新触发其部署效果"
     },
     "describe": {
       "Describe-Ch": ""
@@ -50,9 +50,9 @@
     "isFinish": true
   },
   {
-    "cardID": 3,
+    "cardID": 2,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "妖精",
     "point": 4,
     "name": {
@@ -75,9 +75,9 @@
     "isFinish": true
   },
   {
-    "cardID": 4,
+    "cardID": 3,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "妖精",
     "point": 1,
     "name": {
@@ -100,9 +100,9 @@
     "isFinish": true
   },
   {
-    "cardID": 5,
+    "cardID": 4,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "妖精",
     "point": 3,
     "name": {
@@ -125,9 +125,9 @@
     "isFinish": true
   },
   {
-    "cardID": 6,
+    "cardID": 1,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "妖精",
     "point": 3,
     "name": {
@@ -150,9 +150,9 @@
     "isFinish": true
   },
   {
-    "cardID": 7,
+    "cardID": 2,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "妖精",
     "point": 2,
     "name": {
@@ -175,9 +175,9 @@
     "isFinish": true
   },
   {
-    "cardID": 8,
+    "cardID": 3,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "妖精",
     "point": 2,
     "name": {
@@ -200,9 +200,9 @@
     "isFinish": true
   },
   {
-    "cardID": 9,
+    "cardID": 4,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "妖精",
     "point": 2,
     "name": {
@@ -225,9 +225,9 @@
     "isFinish": true
   },
   {
-    "cardID": 10,
+    "cardID": 5,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "妖精",
     "point": 6,
     "name": {
@@ -250,9 +250,9 @@
     "isFinish": true
   },
   {
-    "cardID": 11,
+    "cardID": 6,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "妖精",
     "point": 6,
     "name": {
@@ -275,9 +275,9 @@
     "isFinish": true
   },
   {
-    "cardID": 12,
+    "cardID": 1,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "妖精",
     "point": 2,
     "name": {
@@ -300,9 +300,9 @@
     "isFinish": true
   },
   {
-    "cardID": 13,
+    "cardID": 2,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "策略",
     "point": 0,
     "name": {
@@ -325,9 +325,9 @@
     "isFinish": true
   },
   {
-    "cardID": 14,
+    "cardID": 3,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "妖精",
     "point": 2,
     "name": {
@@ -350,9 +350,9 @@
     "isFinish": true
   },
   {
-    "cardID": 15,
+    "cardID": 4,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "妖精",
     "point": 2,
     "name": {
@@ -375,9 +375,9 @@
     "isFinish": true
   },
   {
-    "cardID": 16,
+    "cardID": 5,
     "level": "",
-    "series": "1",
+    "series": "0",
     "tag": "物体",
     "point": 0,
     "name": {

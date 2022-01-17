@@ -110,9 +110,9 @@ namespace TouhouMachineLearningSummary.Command
                 if (!File.Exists(targetPath))
                 {
                     string OriginPath = Application.dataPath + @"\Script\9_MixedScene\CardSpace\Card0.cs";
-                    string ScriptText = File.ReadAllText(OriginPath).Replace("Card0", "Card" + cardId);
+                    string ScriptText = File.ReadAllText(OriginPath, System.Text.Encoding.GetEncoding("GB2312")).Replace("Card0", "Card" + cardId);
                     File.Create(targetPath).Close();
-                    File.WriteAllText(targetPath, ScriptText);
+                    File.WriteAllText(targetPath, ScriptText, System.Text.Encoding.GetEncoding("GB2312"));
 #if UNITY_EDITOR
                     AssetDatabase.Refresh();
 #endif
