@@ -100,7 +100,7 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async void CreatDeck()
         {
-            Info.AgainstInfo.onlineUserInfo.Decks.Add(new Model.CardDeck("新卡组", 20002, new List<int> { 20002, 20001, 20001 }));
+            Info.AgainstInfo.onlineUserInfo.Decks.Add(new Model.CardDeck("新卡组", 2000001, new List<int> { 2001001, 2001002, 2001003, 2001004 }));
             Info.AgainstInfo.onlineUserInfo.UseDeckNum = Info.AgainstInfo.onlineUserInfo.Decks.Count - 1;
             //将牌库设为可编辑模式
             Info.CardCompnentInfo.isEditDeckMode = true;

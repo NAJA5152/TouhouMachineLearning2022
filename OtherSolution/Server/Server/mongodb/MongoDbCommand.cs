@@ -38,19 +38,19 @@ namespace Server
                     new PlayerInfo().Creat(account, password, "萌新",
                     new List<CardDeck>()
                     {
-                        new CardDeck("npc", 20001, new List<int>
-                        {
-                            20002,20003,20004,20005,
-                            20006,20007,20008,20009,20010,20011,
-                            20012,20013,20014,20015,20016,
-                            20012,20013,20014,20015,20016,
-                            20012,20013,20014,20015,20016,
-                        })
+                         new CardDeck("萌新的第一套卡组", 2000001, new List<int>
+                         {
+                             2001001,2001002,2001003,2001004,
+                             2002001,2002002,2002003,2002004,2002005,2002006,
+                             2003001,2003002,2003003,2003004,2003005,
+                             2003001,2003002,2003003,2003004,2003005,
+                             2003001,2003002,2003003,2003004,2003005,
+                         })
                     },
                     new Dictionary<string, int>
                     {
-                        {  "20001",3  },
-                        {  "20002",3  },
+                        {  "2000001",3  },
+                        {  "2001001",3  },
                     }));
                 return 1;//成功
             }
@@ -64,7 +64,7 @@ namespace Server
                 userInfo = PlayerInfoCollection.Find(CheckUserExistQuery).FirstOrDefault();
                 if (userInfo.Password == password.GetSaltHash(userInfo.UID))
                 {
-
+                    
                 }
                 else
                 {

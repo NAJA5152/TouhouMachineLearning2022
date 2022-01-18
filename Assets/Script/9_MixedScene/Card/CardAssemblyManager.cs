@@ -15,7 +15,8 @@ namespace TouhouMachineLearningSummary.Manager
 
     class CardAssemblyManager : MonoBehaviour
     {
-        static bool isUseLocalAssembly = false;
+        //是否使用本地卡牌版本，若为是则会卡顿
+        static bool isUseLocalAssembly = true;
         /// <summary>
         /// 已下载的历史配置文件
         /// </summary>
