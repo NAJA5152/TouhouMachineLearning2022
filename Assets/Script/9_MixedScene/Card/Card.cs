@@ -71,6 +71,8 @@ namespace TouhouMachineLearningSummary.Model
         public Card LeftCard => Location.Y > 0 ? belongCardList[Location.Y - 1] : null;
         public Card RightCard => Location.Y < belongCardList.Count - 1 ? belongCardList[Location.Y + 1] : null;
         public Text PointText => transform.GetChild(0).GetChild(0).GetComponent<Text>();
+        public Transform FieldIconContent => transform.GetChild(0).GetChild(1);
+        public Transform StateIconContent => transform.GetChild(0).GetChild(2);
         public string CardName => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).translateName;
 
         [ShowInInspector]
@@ -89,24 +91,7 @@ namespace TouhouMachineLearningSummary.Model
 
         public Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<TriggerInfoModel, Task>>>> cardAbility = new Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<TriggerInfoModel, Task>>>>();
 
-        private void Update() => RefreshCardUi();
 
-        public void RefreshCardUi()
-        {
-            PointText.text = cardType == CardType.Unite ? ShowPoint.ToString() : "";
-            if (ChangePoint > 0)
-            {
-                PointText.color = Color.green;
-            }
-            else if (ChangePoint < 0)
-            {
-                PointText.color = Color.red;
-            }
-            else
-            {
-                PointText.color = Color.black;
-            }
-        }
         /// <summary>
         /// 注册默认共通的卡牌效果
         /// </summary>
@@ -278,5 +263,60 @@ namespace TouhouMachineLearningSummary.Model
             PointText.text = cardType == CardType.Unite ? ShowPoint.ToString() : "";
         }
         public CardAbilityManeger AbalityRegister(TriggerTime time, TriggerType type) => new CardAbilityManeger(this, time, type);
+        private void Update() => RefreshCardUi();
+
+        public void RefreshCardUi()
+        {
+
+            //数字
+            if (ChangePoint > 0)
+            {
+                PointText.color = Color.green;
+            }
+            else if (ChangePoint < 0)
+            {
+                PointText.color = Color.red;
+            }
+            else
+            {
+                PointText.color = Color.black;
+            }
+            PointText.text = cardType == CardType.Unite ? ShowPoint.ToString() : "";
+            //字段
+            for (int i = 0; i < 4; i++)
+            {
+                if (cardFields.Count > 4 && i == 3)
+                {
+                    //icon是省略号
+                }
+                else if (i < cardFields.Count)
+                {
+                    FieldIconContent.GetChild(i).GetComponent<Image>();
+                    FieldIconContent.GetChild(i).GetChild(0).GetComponent<Text>().text = cardFields.ToList()[i].Value.ToString();
+                    FieldIconContent.GetChild(i).gameObject.SetActive(true);
+                }
+                else
+                {
+                    FieldIconContent.GetChild(i).gameObject.SetActive(false);
+                }
+            }
+            //状态
+            for (int i = 0; i < 3; i++)
+            {
+                if (cardStates.Count > 3 && i == 2)
+                {
+                    //icon是省略号
+                }
+                else if (i < cardStates.Count)
+                {
+                    StateIconContent.GetChild(i).GetComponent<Image>();
+                    StateIconContent.GetChild(i).gameObject.SetActive(true);
+                }
+                else
+                {
+                    StateIconContent.GetChild(i).gameObject.SetActive(false);
+                }
+            }
+        }
     }
 }

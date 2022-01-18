@@ -16,7 +16,7 @@ namespace TouhouMachineLearningSummary.Manager
     class CardAssemblyManager : MonoBehaviour
     {
         //是否使用本地卡牌版本，若为是则会卡顿
-        static bool isUseLocalAssembly = true;
+        //static bool isUseLocalAssembly = true;
         /// <summary>
         /// 已下载的历史配置文件
         /// </summary>
@@ -32,14 +32,22 @@ namespace TouhouMachineLearningSummary.Manager
         static List<CardModel> currentMultiCardInfos;
         //获取当前引用卡牌数据的日期
         public static string GetCurrentConfigDate => currentConfig.Version;
+        //[ShowInInspector]
+        //public static List<CardModel> GetcurrentSingleCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Single.json").ToObject<List<CardModel>>().Select(card => card.Init(true)).ToList() : currenttSingleCardInfos;
+        //[ShowInInspector]
+        //public static List<CardModel> GetcurrentMultiCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Multi.json").ToObject<List<CardModel>>().Select(card => card.Init(false)).ToList() : currentMultiCardInfos;
+        //[ShowInInspector]
+        //public static List<CardModel> GetLastSingleCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Single.json").ToObject<List<CardModel>>().Select(card => card.Init(true)).ToList() : lastSingleCardInfos;
+        //[ShowInInspector]
+        //public static List<CardModel> GetLastMultiCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Multi.json").ToObject<List<CardModel>>().Select(card => card.Init(false)).ToList() : lastMultiCardInfos;
         [ShowInInspector]
-        public static List<CardModel> GetcurrentSingleCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Single.json").ToObject<List<CardModel>>().Select(card => card.Init(true)).ToList() : currenttSingleCardInfos;
+        public static List<CardModel> GetcurrentSingleCardInfos =>  currenttSingleCardInfos;
         [ShowInInspector]
-        public static List<CardModel> GetcurrentMultiCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Multi.json").ToObject<List<CardModel>>().Select(card => card.Init(false)).ToList() : currentMultiCardInfos;
+        public static List<CardModel> GetcurrentMultiCardInfos => currentMultiCardInfos;
         [ShowInInspector]
-        public static List<CardModel> GetLastSingleCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Single.json").ToObject<List<CardModel>>().Select(card => card.Init(true)).ToList() : lastSingleCardInfos;
+        public static List<CardModel> GetLastSingleCardInfos =>  lastSingleCardInfos;
         [ShowInInspector]
-        public static List<CardModel> GetLastMultiCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Multi.json").ToObject<List<CardModel>>().Select(card => card.Init(false)).ToList() : lastMultiCardInfos;
+        public static List<CardModel> GetLastMultiCardInfos =>  lastMultiCardInfos;
         /// <summary>
         /// 最新版本的配置文件
         /// </summary>
@@ -110,15 +118,16 @@ namespace TouhouMachineLearningSummary.Manager
         public static async Task<string> GetCardConfigsVersionAsync() => await Command.NetCommand.GetCardConfigsVersionAsync();
         public static Type GetCardScript(int id)
         {
-            if (isUseLocalAssembly)
-            {
-                var file = new DirectoryInfo(@"Library\ScriptAssemblies").GetFiles("GameCard*.dll").FirstOrDefault();
-                return Assembly.Load(File.ReadAllBytes(file.FullName)).GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
-            }
-            else
-            {
-                return currentAssembly.GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
-            }
+            return currentAssembly.GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
+            //if (isUseLocalAssembly)
+            //{
+            //    var file = new DirectoryInfo(@"Library\ScriptAssemblies").GetFiles("GameCard*.dll").FirstOrDefault();
+            //    return Assembly.Load(File.ReadAllBytes(file.FullName)).GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
+            //}
+            //else
+            //{
+                
+            //}
         }
         /// <summary>
         /// 获取当前加载版本的卡牌信息，用于在对局内回放指定版本的牌库，卡组信息

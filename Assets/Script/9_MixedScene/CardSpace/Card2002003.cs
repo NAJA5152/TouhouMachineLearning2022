@@ -17,25 +17,32 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
-               {
-                   await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
-               })
-               .AbilityAppend();
+                .AbilityAdd(async (triggerInfo) =>
+                {
+                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
+                    await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
+                })
+                .AbilityAppend();
             //部署效果
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-             .AbilityAdd(async (triggerInfo) =>
-             {
-                 await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this).SetTargetField(CardField.Vitality, 2));
-                 await GameSystem.TransSystem.SummonCard(
-                     new TriggerInfoModel(this)
-                     .SetTargetCard(GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck].CardList
-                     .Where(card => card.CardID == 20006 || card.CardID == 20007)
-                     .ToList())
-                     );
-             }, Condition.Default)
-             .AbilityAppend();
+                .AbilityAdd(async (triggerInfo) =>
+                {
+                    await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this).SetTargetCard(this).SetTargetField(CardField.Vitality, 2));
+                    await GameSystem.TransSystem.SummonCard(
+                        new TriggerInfoModel(this)
+                        .SetTargetCard(GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck].CardList
+                        .Where(card => card.CardID == 2002001 || card.CardID == 2002002)
+                        .ToList())
+                        );
+                }, Condition.Default)
+                .AbilityAppend();
+            //被召唤时效果
+            AbalityRegister(TriggerTime.When, TriggerType.Summon)
+               .AbilityAdd(async (triggerInfo) =>
+               {
+                   await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this).SetTargetCard(this).SetTargetField(CardField.Vitality, 2));
+               }, Condition.Default)
+               .AbilityAppend();
         }
     }
 }

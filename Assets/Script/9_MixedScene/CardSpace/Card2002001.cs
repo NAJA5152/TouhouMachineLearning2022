@@ -22,15 +22,22 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
              .AbilityAdd(async (triggerInfo) =>
              {
-                 await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this).SetTargetField(CardField.Vitality, 2));
+                 await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this).SetTargetCard(this).SetTargetField(CardField.Vitality, 2));
                  await GameSystem.TransSystem.SummonCard(
                      new TriggerInfoModel(this)
                      .SetTargetCard(GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck].CardList
-                     .Where(card => card.CardID == 20007 || card.CardID == 20008)
+                     .Where(card => card.CardID == 2002002 || card.CardID == 2002003)
                      .ToList())
                      );
              }, Condition.Default)
              .AbilityAppend();
+            //被召唤时效果
+            AbalityRegister(TriggerTime.When, TriggerType.Summon)
+               .AbilityAdd(async (triggerInfo) =>
+               {
+                   await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this).SetTargetCard(this).SetTargetField(CardField.Vitality, 2));
+               }, Condition.Default)
+               .AbilityAppend();
         }
     }
 }
