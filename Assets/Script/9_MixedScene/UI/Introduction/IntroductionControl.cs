@@ -1,4 +1,5 @@
-﻿using TouhouMachineLearningSummary.GameEnum;
+﻿using System.Linq;
+using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.UI;
@@ -84,26 +85,56 @@ namespace TouhouMachineLearningSummary.Control.GameUI
         {
             var cardInfo = Manager.CardAssemblyManager.GetLastCardInfo(cardID);
             string Title = cardInfo.translateName;
-            string Text = cardInfo.translateAbility;
-            string Effect = "";
-            int Heigh = Text.Length / 13 * 15 + 100;
+            string Ability = cardInfo.translateAbility;
+            string Introduction = "";
+            //cardInfo.cardFields.ToList().ForEach(field =>
+            //{
+            //    switch (field.Key)
+            //    {
+            //        case CardField.Timer:
+            //            break;
+            //        case CardField.Vitality:
+            //            Introduction += $"活力：增强两侧单位效果{field.Value}";
+            //            break;
+            //        case CardField.Point:
+            //            break;
+            //        default:
+            //            break;
+            //    }
+            //});
+            int Heigh = Ability.Length / 13 * 15 + 100;
             IntroductionTextBackground.sizeDelta = new Vector2(300, Heigh);
             //修改文本为富文本
             IntroductionTitle.text = Title;
-            IntroductionText.text = Text;
-            IntroductionEffect.text = Effect;
+            IntroductionText.text = Ability;
+            IntroductionEffect.text = Introduction;
         }
         public void ChangeIntroduction(Card target)
         {
             string Title = target.CardName;
-            string Text = target.CardIntroduction;
-            string Effect = "";
-            int Heigh = Text.Length / 13 * 15 + 100;
+            string Ability = target.CardIntroduction;
+            string Introduction = "";
+            target.cardFields.ToList().ForEach(field =>
+            {
+                switch (field.Key)
+                {
+                    case CardField.Timer:
+                        break;
+                    case CardField.Vitality:
+                        Introduction += $"活力：增强两侧单位效果{field.Value}";
+                        break;
+                    case CardField.Point:
+                        break;
+                    default:
+                        break;
+                }
+            });
+            int Heigh = Ability.Length / 13 * 15 + 100;
             IntroductionTextBackground.sizeDelta = new Vector2(300, Heigh);
             //修改文本为富文本
             IntroductionTitle.text = Title;
-            IntroductionText.text = Text;
-            IntroductionEffect.text = Effect;
+            IntroductionText.text = Ability;
+            IntroductionEffect.text = Introduction;
         }
         //public  void ChangeIntroduction<T>(T target)
         //{
