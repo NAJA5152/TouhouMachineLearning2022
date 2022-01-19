@@ -82,13 +82,13 @@ namespace TouhouMachineLearningSummary.GameSystem
         public static async Task SetState(TriggerInfoModel triggerInfo)
         {
             //筛选触发目标，对不包含该状态的卡牌才会激活状态
-            triggerInfo.SetTargetCard(triggerInfo.targetCards.Where(card => card[triggerInfo.targetState]).ToList());
+            triggerInfo.targetCards = triggerInfo.targetCards.Where(card => card[triggerInfo.targetState]).ToList();
             await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateSet]);
         }
         public static async Task ClearState(TriggerInfoModel triggerInfo)
         {
             //筛选触发目标，对包含该状态的卡牌才会清空状态
-            triggerInfo.SetTargetCard(triggerInfo.targetCards.Where(card => !card[triggerInfo.targetState]).ToList());
+            triggerInfo.targetCards = triggerInfo.targetCards.Where(card => !card[triggerInfo.targetState]).ToList();
             await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateClear]);
         }
         public static async Task ChangeState(TriggerInfoModel triggerInfo)
@@ -96,10 +96,10 @@ namespace TouhouMachineLearningSummary.GameSystem
             List<Card> stateActivateCardList = triggerInfo.targetCards.Where(card => card[triggerInfo.targetState]).ToList();
             List<Card> stateUnActivateCardList = triggerInfo.targetCards.Where(card => !card[triggerInfo.targetState]).ToList();
             //设置所有状态未激活的为激活状态
-            triggerInfo.SetTargetCard(stateUnActivateCardList);
+            triggerInfo.targetCards = stateUnActivateCardList;
             await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateSet]);
             //设置所有状态激活的为未激活状态
-            triggerInfo.SetTargetCard(stateActivateCardList);
+            triggerInfo.targetCards = stateActivateCardList;
             await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateClear]);
         }
     }
@@ -140,10 +140,10 @@ namespace TouhouMachineLearningSummary.GameSystem
     //由系统触发的状态机制
     public class ProcessSystem
     {
-        public static async Task WhenTurnStart() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null).SetTargetCard(AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.TurnStart]);
-        public static async Task WhenTurnEnd() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null).SetTargetCard(AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.TurnEnd]);
-        public static async Task WhenRoundStart() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null).SetTargetCard(AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.RoundStart]);
-        public static async Task WhenRoundEnd() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null).SetTargetCard(AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.RoundEnd]);
+        public static async Task WhenTurnStart() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.TurnStart]);
+        public static async Task WhenTurnEnd() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.TurnEnd]);
+        public static async Task WhenRoundStart() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.RoundStart]);
+        public static async Task WhenRoundEnd() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.RoundEnd]);
     }
     /// <summary>
     /// 获取游戏内对战信息的高层api接口

@@ -20,7 +20,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                    UnityEngine.Debug.Log("开始选择坐标");
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
                    UnityEngine.Debug.Log("选择单位完毕");
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
@@ -31,8 +31,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                    UnityEngine.Debug.Log("选择单位完毕");
                    await GameSystem.PointSystem.Cure
                    (
-                       new TriggerInfoModel(this)
-                       .SetTargetCard(AgainstInfo.SelectUnits)
+                       new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits)
                        .SetBullet(new BulletModel(BulletType.BigBall, BulletColor.Green, BulletTrack.Line))
                    );
                    if (AgainstInfo.SelectUnits.Any())
@@ -40,7 +39,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                        AgainstInfo.SelectRowRank = AgainstInfo.SelectUnits[0].Location.X;
                        AgainstInfo.SelectRank = AgainstInfo.SelectUnits[0].Location.Y;
                    }
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(AgainstInfo.SelectUnits));
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits));
                }, Condition.Default)
                .AbilityAppend();
         }

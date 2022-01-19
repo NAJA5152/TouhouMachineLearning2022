@@ -314,7 +314,7 @@ namespace TouhouMachineLearningSummary.Command
                     //Debug.Log("当前打出了牌");
                     await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.PlayCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList, AgainstInfo.playerPlayCard);
                     //假如是我的回合，则广播操作给对方，否则只接收操作不广播
-                    await GameSystem.TransSystem.PlayCard(new TriggerInfoModel(null).SetTargetCard(AgainstInfo.playerPlayCard), AgainstInfo.IsMyTurn);
+                    await GameSystem.TransSystem.PlayCard(new TriggerInfoModel(null, AgainstInfo.playerPlayCard), AgainstInfo.IsMyTurn);
                     //Debug.Log("打出效果执行完毕");
 
                     break;
@@ -323,7 +323,7 @@ namespace TouhouMachineLearningSummary.Command
                 if (Info.AgainstInfo.playerDisCard != null)
                 {
                     await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.DisCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList, AgainstInfo.playerDisCard);
-                    await GameSystem.TransSystem.DisCard(new TriggerInfoModel(null).SetTargetCard(AgainstInfo.playerDisCard));
+                    await GameSystem.TransSystem.DisCard(new TriggerInfoModel(null, AgainstInfo.playerDisCard));
                     break;
                 }
                 if (AgainstInfo.isCurrectPass)//如果当前pass则结束回合

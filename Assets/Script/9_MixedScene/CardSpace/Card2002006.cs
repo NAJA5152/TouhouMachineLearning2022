@@ -17,17 +17,21 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
 
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
              .AbilityAdd(async (triggerInfo) =>
              {
-                 await GameSystem.SelectSystem.SelectUnite(this, AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardField.Vitality].CardList, 2, false);
-                 foreach (var unite in GameSystem.InfoSystem.AgainstCardSet.CardList)
+                 await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardField.Vitality].CardList, 2, false);
+                 GameSystem.InfoSystem.SelectUnits.ForEach(async unite =>
                  {
-                     await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this).SetTargetCard(unite).SetTargetField( CardField.Vitality, unite[CardField.Vitality] * 2));
+                     await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, unite).SetTargetField(CardField.Vitality, unite[CardField.Vitality] * 2));
+                 });
+                 foreach (var unite in GameSystem.InfoSystem.SelectUnits)
+                 {
+                    
                  }
              }, Condition.Default)
              .AbilityAppend();

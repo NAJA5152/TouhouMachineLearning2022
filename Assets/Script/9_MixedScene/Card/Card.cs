@@ -187,7 +187,7 @@ namespace TouhouMachineLearningSummary.Model
             {
                 switch (triggerInfo.targetState)
                 {
-                    case CardState.Spy:; break;
+                    case CardState.Lurk:; break;
                     case CardState.Seal: await Command.CardCommand.SealCard(this); break;
                     default: break;
                 }
@@ -291,7 +291,7 @@ namespace TouhouMachineLearningSummary.Model
                 }
                 else if (i < cardFields.Count)
                 {
-                    FieldIconContent.GetChild(i).GetComponent<Image>();
+                    FieldIconContent.GetChild(i).GetComponent<Image>().sprite= Resources.Load<Sprite>("FieldAndState\\" + cardFields.ToList()[i].Key.ToString());
                     FieldIconContent.GetChild(i).GetChild(0).GetComponent<Text>().text = cardFields.ToList()[i].Value.ToString();
                     FieldIconContent.GetChild(i).gameObject.SetActive(true);
                 }
@@ -309,7 +309,7 @@ namespace TouhouMachineLearningSummary.Model
                 }
                 else if (i < cardStates.Count)
                 {
-                    StateIconContent.GetChild(i).GetComponent<Image>();
+                    StateIconContent.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>("FieldAndState\\" + cardFields.ToList()[i].Key.ToString()); ;
                     StateIconContent.GetChild(i).gameObject.SetActive(true);
                 }
                 else

@@ -16,7 +16,7 @@ namespace TouhouMachineLearningSummary.CardSpace
               .AbilityAdd(async (triggerInfo) =>
               {
                   await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                  await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
+                  await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
               })
               .AbilityAppend();
 
@@ -28,7 +28,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                  int hurtMaxValue = GameSystem.InfoSystem.GetTwoSideField(this, CardField.Vitality) + 1;
                  for (int i = 0; i < Math.Min(targetCardList.Count, hurtMaxValue); i++)
                  {
-                     await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this).SetTargetCard(targetCardList[i]).SetPoint(hurtMaxValue - i));
+                     await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, targetCardList[i]).SetPoint(hurtMaxValue - i));
                  }
              }, Condition.Default)
              .AbilityAppend();

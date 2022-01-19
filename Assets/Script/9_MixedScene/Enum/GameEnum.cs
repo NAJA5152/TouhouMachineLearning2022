@@ -104,8 +104,15 @@ namespace TouhouMachineLearningSummary.GameEnum
     }
     public enum CardState
     {
-        Spy,
-        Seal
+        Seal,//·âÓ¡
+        Invisibility,//·âÓ¡
+        Pry,//¿úÌ½
+        Fate,//ÃüÔË
+        Lurk,//Ç±·ü
+        Furor,//¿ñ±©
+        Docile,//ÎÂË³
+        Poisoning,//ÖÐ¶¾
+        Rely,//Æ¾ÒÀ
     }
     public enum CardField
     {
@@ -126,20 +133,20 @@ namespace TouhouMachineLearningSummary.GameEnum
         Water,
         Fire,
         Wind,
-        Soil,       
+        Soil,
         Leader,
         Hand,
         Uesd,
         Deck,
         Grave,
-        Battle=99,
-        None=100,
+        Battle = 99,
+        None = 100,
     }
     public enum BattleRegion
     {
         Water, Fire, Wind, Soil, All = 99, None = 100
     }
-   
+
     public enum CardType
     {
         Unite,
@@ -157,7 +164,7 @@ namespace TouhouMachineLearningSummary.GameEnum
         Silver,
         Copper,
     }
-   
+
     public enum CardBoardMode
     {
         None,//Ä¬ÈÏ×´Ì¬

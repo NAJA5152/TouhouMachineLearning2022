@@ -31,8 +31,7 @@ namespace TouhouMachineLearningSummary.Test
             {
                 var tirggerCard = Info.AgainstInfo.cardSet[Orientation.Down][GameRegion.Battle].CardList.FirstOrDefault();
                 var targetCards = Info.AgainstInfo.cardSet[Orientation.Up][GameRegion.Battle].CardList.Take(3).ToList();
-                _ = GameSystem.PointSystem.Hurt(new TriggerInfoModel(tirggerCard)
-                    .SetTargetCard(targetCards)
+                _ = GameSystem.PointSystem.Hurt(new TriggerInfoModel(tirggerCard, targetCards)
                     .SetPoint(1)
                     .SetBullet(
                        new Model.BulletModel
@@ -60,9 +59,9 @@ namespace TouhouMachineLearningSummary.Test
             if (GUI.Button(new Rect(25, 180, 250, 30), "’ŸªΩø®∆¨"))
             {
                 var cards1 = Info.AgainstInfo.cardSet[Orientation.Down][GameRegion.Deck].CardList.Take(3);
-                _ = GameSystem.TransSystem.SummonCard(new TriggerInfoModel(null).SetTargetCard(cards1.ToList()));
+                _ = GameSystem.TransSystem.SummonCard(new TriggerInfoModel(null, cards1.ToList()));
                 var cards2 = Info.AgainstInfo.cardSet[Orientation.Up][GameRegion.Deck].CardList.Take(3);
-                _ = GameSystem.TransSystem.SummonCard(new TriggerInfoModel(null).SetTargetCard(cards2.ToList()));
+                _ = GameSystem.TransSystem.SummonCard(new TriggerInfoModel(null, cards2.ToList()));
             }
         }
 

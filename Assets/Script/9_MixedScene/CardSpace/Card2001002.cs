@@ -18,7 +18,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this).SetTargetCard(this));
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
 
@@ -26,8 +26,7 @@ namespace TouhouMachineLearningSummary.CardSpace
               .AbilityAdd(async (triggerInfo) =>
               {
                   await GameSystem.PointSystem.Destory(
-                      new TriggerInfoModel(this)
-                      .SetTargetCard(GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][CardRank.Copper, CardRank.Silver][CardFeature.Largest].CardList)
+                      new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][CardRank.Copper, CardRank.Silver][CardFeature.Largest].CardList)
                       );
               }, Condition.Default)
               .AbilityAppend();

@@ -20,7 +20,7 @@ public class leimi : MonoBehaviour
         //我方计时牌
         cardSet = cardSet[Orientation.My][CardField.Timer];
         //敌方间谍牌
-        cardSet = cardSet[Orientation.Op][CardState.Spy];
+        cardSet = cardSet[Orientation.Op][CardState.Lurk];
         //含有机器标签的牌
         cardSet = cardSet[CardTag.Machine];
 

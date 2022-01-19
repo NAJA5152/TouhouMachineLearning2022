@@ -21,8 +21,6 @@ namespace TouhouMachineLearningSummary.Model
         public Card targetCard => targetCards.FirstOrDefault();
         public int point;
         public Location location = new Location(-1, -1);
-        private int targetStateMode;
-        private int targetFieldMode;
 
         public BulletModel bulletModel { get; set; }
         [JsonIgnore]
@@ -34,7 +32,7 @@ namespace TouhouMachineLearningSummary.Model
 
         private TriggerInfoModel Clone(TriggerTime? triggerTime = null, TriggerType? triggerType = null, List<Card> targetCards = null)
         {
-            TriggerInfoModel triggerInfo = new TriggerInfoModel(triggerCard);
+            TriggerInfoModel triggerInfo = new TriggerInfoModel(triggerCard, targetCards);
             triggerInfo.triggerTime = triggerTime ?? this.triggerTime;
             triggerInfo.triggerType = triggerType ?? this.triggerType;
             triggerInfo.targetCards = targetCards ?? this.targetCards;
@@ -47,27 +45,23 @@ namespace TouhouMachineLearningSummary.Model
             triggerInfo.targetFiled = targetFiled;
             return triggerInfo;
         }
+        //反序列化时使用
         public TriggerInfoModel() { }
         /// <summary>
-        /// 创建一个卡牌触发信息模板，并设置触发者（某卡牌,若是由系统触发则填null）
+        /// 创建一个卡牌触发信息模板，并设置触发者（某卡牌,若是由系统触发则填null）、触发对象(单个)
         /// </summary>
-        public TriggerInfoModel(Card triggerCard) => this.triggerCard = triggerCard;
-
-        /// <summary>
-        /// 设置触发对象(单个)
-        /// </summary>
-        public TriggerInfoModel SetTargetCard(Card targetCard)
+        public TriggerInfoModel(Card triggerCard, Card targetCard)
         {
+            this.triggerCard = triggerCard;
             this.targetCards = new List<Card>() { targetCard }; ;
-            return this;
         }
         /// <summary>
-        /// 设置触发对象(多个)
+        /// 创建一个卡牌触发信息模板，并设置触发者（某卡牌,若是由系统触发则填null）、触发对象(多个)
         /// </summary>
-        public TriggerInfoModel SetTargetCard(List<Card> targetCards)
+        public TriggerInfoModel(Card triggerCard, List<Card> targetCards)
         {
+            this.triggerCard = triggerCard;
             this.targetCards = targetCards;
-            return this;
         }
         /// <summary>
         /// 设置部署区域（靠所属，区域和次序定位，次序为正代表从左往右，最左侧位置为0，为负代表从右往左，最右侧为-1）
@@ -77,13 +71,12 @@ namespace TouhouMachineLearningSummary.Model
             int x = GameSystem.InfoSystem.AgainstCardSet[regionType][orientation].SingleRowInfos.First().RowRank;
             int y = rank;
             location = new Location(x, y);
-
             return this;
         }
         /// <summary>
         /// 设置触发点数信息
         /// </summary>
-        public TriggerInfoModel SetPoint(int point)
+        public TriggerInfoModel SetPoint(int point) 
         {
             this.point = point;
             return this;
@@ -121,28 +114,5 @@ namespace TouhouMachineLearningSummary.Model
             this.point = ponit;
             return this;
         }
-        ///// <summary>
-        ///// 设置状态响应方式
-        ///// 0赋予，只有原先未有该状态才会清除并触发衍生效果
-        ///// 1改变,取反特定状态的
-        ///// 2清除,只有原先已有该状态才会清除并触发衍生效果
-        ///// </summary>
-        //public TriggerInfoModel SetTargetStateMode(int targetStateMode)
-        //{
-        //    this.targetStateMode = targetStateMode;
-        //    return this;
-        //}
-        ///// <summary>
-        ///// 设置状态或字段的附加方式
-        ///// 0赋予 直接设置字段的值，无论原先有没有
-        ///// 1减少 只对原先有该值的卡牌产生效果并触发衍生效果
-        ///// 2增加 只对原先有该值的卡牌产生效果并触发衍生效果
-        ///// </summary>
-        //private TriggerInfoModel SetTargetFieldMode(int targetFieldMode)
-        //{
-        //    this.targetFieldMode = targetFieldMode;
-        //    return this;
-        //}
-        
     }
 }

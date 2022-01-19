@@ -12,16 +12,14 @@ namespace TouhouMachineLearningSummary.CardSpace
     {
         public override void Init()
         {
-            this[CardField.Vitality] = 1;
-
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectUnite(this, cardSet[Orientation.My][GameRegion.Battle][CardRank.Copper, CardRank.Silver][CardTag.Fairy].CardList, 1);
-                   await GameSystem.TransSystem.MoveToGrave(new TriggerInfoModel(this).SetTargetCard(this));
-                   await GameSystem.TransSystem.PlayCard(new TriggerInfoModel(this).SetTargetCard(SelectUnits));
+                   await GameSystem.TransSystem.MoveToGrave(new TriggerInfoModel(this, this));
+                   await GameSystem.TransSystem.PlayCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits));
                })
                .AbilityAppend();
         }
