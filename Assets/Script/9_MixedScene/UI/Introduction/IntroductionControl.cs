@@ -13,11 +13,11 @@ namespace TouhouMachineLearningSummary.Control.GameUI
         public static int focusCardID = -1;
 
 
-        public Text IntroductionTitle => transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
-        public Text IntroductionText => transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>();
-        public Text IntroductionEffect => transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Text>();
-        public RectTransform IntroductionTextBackground => transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
-        public RectTransform IntroductionEffectBackground => transform.GetChild(0).GetChild(1).GetComponent<RectTransform>();
+        public Text Title => transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
+        public Text AbilityText => transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>();
+        public Text IntroductionText => transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Text>();
+        public RectTransform AbilityBackground => transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
+        public RectTransform IntroductionBackground => transform.GetChild(0).GetChild(1).GetComponent<RectTransform>();
 
         float Cd;
         public Vector3 Bias;
@@ -28,6 +28,8 @@ namespace TouhouMachineLearningSummary.Control.GameUI
         {
             Bias = new Vector3(IsRight ? 0.1f : -0.1f, IsDown ? 0.1f : -0.1f);
             transform.position = Camera.main.ViewportToScreenPoint(ViewportPoint + Bias);
+            //菜单场景下，获取卡牌id信息，并进行显示
+            //对战场景下，获取卡牌实例信息，并进行显示
             if (isOnMenu)
             {
                 if (focusCardID > 0 || Info.CardCompnentInfo.focusCamp != GameEnum.Camp.Neutral)
@@ -81,86 +83,104 @@ namespace TouhouMachineLearningSummary.Control.GameUI
             }
 
         }
-        public void ChangeIntroduction(int cardID)
-        {
-            var cardInfo = Manager.CardAssemblyManager.GetLastCardInfo(cardID);
-            string Title = cardInfo.translateName;
-            string Ability = cardInfo.translateAbility;
-            string Introduction = "";
-            //cardInfo.cardFields.ToList().ForEach(field =>
-            //{
-            //    switch (field.Key)
-            //    {
-            //        case CardField.Timer:
-            //            break;
-            //        case CardField.Vitality:
-            //            Introduction += $"活力：增强两侧单位效果{field.Value}";
-            //            break;
-            //        case CardField.Point:
-            //            break;
-            //        default:
-            //            break;
-            //    }
-            //});
-            int Heigh = Ability.Length / 13 * 15 + 100;
-            IntroductionTextBackground.sizeDelta = new Vector2(300, Heigh);
-            //修改文本为富文本
-            IntroductionTitle.text = Title;
-            IntroductionText.text = Ability;
-            IntroductionEffect.text = Introduction;
-        }
-        public void ChangeIntroduction(Card target)
-        {
-            string Title = target.CardName;
-            string Ability = target.CardIntroduction;
-            string Introduction = "";
-            target.cardFields.ToList().ForEach(field =>
-            {
-                switch (field.Key)
-                {
-                    case CardField.Timer:
-                        break;
-                    case CardField.Vitality:
-                        Introduction += $"活力：增强两侧单位效果{field.Value}";
-                        break;
-                    case CardField.Point:
-                        break;
-                    default:
-                        break;
-                }
-            });
-            int Heigh = Ability.Length / 13 * 15 + 100;
-            IntroductionTextBackground.sizeDelta = new Vector2(300, Heigh);
-            //修改文本为富文本
-            IntroductionTitle.text = Title;
-            IntroductionText.text = Ability;
-            IntroductionEffect.text = Introduction;
-        }
-        //public  void ChangeIntroduction<T>(T target)
+        //public void ChangeIntroduction(int cardID)
         //{
-        //    string Title;
-        //    string Text;
-        //    if (typeof(T) == typeof(int))
-        //    {
-        //        var cardInfo = Command.CardInspector.CardLibraryCommand.GetCardStandardInfo((int) target);
-        //        Title = card.CardName;
-        //        Text = card.CardIntroduction;
-        //    }
-        //    else
-        //    {
-        //        Card cardInfo = (Card)target;
-        //        Title = cardInfo.CardName;
-        //        Text = cardInfo.CardIntroduction;
-        //    }
-
-
-        //    string Effect = "";
-        //    int Heigh = Text.Length / 13 * 15 + 100;
-        //    Info.GameUI.UiInfo.IntroductionTextBackground.sizeDelta = new Vector2(300, Heigh);
+        //    var cardInfo = Manager.CardAssemblyManager.GetLastCardInfo(cardID);
+        //    string cardName = cardInfo.translateName;
+        //    string ability = cardInfo.translateAbility;
+        //    string introduction = "";
+        //    //cardInfo.cardFields.ToList().ForEach(field =>
+        //    //{
+        //    //    switch (field.Key)
+        //    //    {
+        //    //        case CardField.Timer:
+        //    //            break;
+        //    //        case CardField.Vitality:
+        //    //            Introduction += $"活力：增强两侧单位效果{field.Value}";
+        //    //            break;
+        //    //        case CardField.Point:
+        //    //            break;
+        //    //        default:
+        //    //            break;
+        //    //    }
+        //    //});
+        //    int Heigh = ability.Length / 13 * 15 + 100;
+        //    AbilityBackground.sizeDelta = new Vector2(300, Heigh);
         //    //修改文本为富文本
-        //    IntroductionTitle.text = Title;
-        //    IntroductionText.text = Text;
-        //    IntroductionEffect.text = Effect;
+        //    Title.text = cardName;
+        //    AbilityText.text = ability;
+        //    IntroductionText.text = introduction;
         //}
+        //public void ChangeIntroduction(Card target)
+        //{
+        //    string cardName = target.CardName;
+        //    string Ability = target.CardIntroduction;
+        //    string Introduction = "";
+        //    target.cardFields.ToList().ForEach(field =>
+        //    {
+        //        switch (field.Key)
+        //        {
+        //            case CardField.Timer:
+        //                break;
+        //            case CardField.Vitality:
+        //                Introduction += $"活力：增强两侧单位效果{field.Value}";
+        //                break;
+        //            case CardField.Point:
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //    });
+        //    int Heigh = Ability.Length / 13 * 15 + 100;
+        //    AbilityBackground.sizeDelta = new Vector2(300, Heigh);
+        //    //修改文本为富文本
+        //    Title.text = cardName;
+        //    AbilityText.text = Ability;
+        //    IntroductionText.text = Introduction;
+        //}
+        public void ChangeIntroduction<T>(T target)
+        {
+            string cardName = "";
+            string ability = "";
+            string Introduction = "";
+            if (typeof(T) == typeof(int))
+            {
+                //var cardInfo = Manager.CardAssemblyManager.GetLastCardInfo(int.Parse(target.ToString()));
+                var cardInfo = Manager.CardAssemblyManager.GetLastCardInfo((int)(object)target);
+                cardName = cardInfo.translateName;
+                ability = cardInfo.translateAbility;
+            }
+            else
+            {
+                Card card = (Card)(object)target;
+                cardName = card.CardName;
+                ability = card.CardIntroduction;
+                card.cardFields.ToList().ForEach(field =>
+                {
+                    switch (field.Key)
+                    {
+                        case CardField.Timer:
+                            break;
+                        case CardField.Vitality:
+                            Introduction += $"活力：增强两侧单位效果{field.Value}";
+                            break;
+                        case CardField.Point:
+                            break;
+                        default:
+                            break;
+                    }
+                });
+            }
+
+
+            
+            
+            int Heigh = ability.Length / 13 * 15 + 100;
+            AbilityBackground.sizeDelta = new Vector2(300, Heigh);
+            //修改文本为富文本
+            Title.text = cardName;
+            AbilityText.text = ability;
+            IntroductionText.text = Introduction;
+        }
     }
 }
