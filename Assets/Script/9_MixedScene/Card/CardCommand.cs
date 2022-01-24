@@ -271,18 +271,11 @@ namespace TouhouMachineLearningSummary.Command
 
         public static async Task SealCard(Card card)
         {
-            await Task.Delay(0);//之后实装卡牌特效需要时间延迟配合
-            Debug.Log("锁定卡牌！");
-            if (card.cardStates.ContainsKey(CardState.Seal) && card.cardStates[CardState.Seal])
-            {
-                card.cardStates[CardState.Seal] = false;
-                card.transform.GetChild(2).gameObject.SetActive(false);
-            }
-            else
-            {
-                card.cardStates[CardState.Seal] = true;
-                card.transform.GetChild(2).gameObject.SetActive(true);
-            }
+            card.transform.GetChild(2).gameObject.SetActive(true);
+        }
+        public static async Task UnSealCard(Card card)
+        {
+            card.transform.GetChild(2).gameObject.SetActive(false);
         }
 
         public static async Task Gain(TriggerInfoModel triggerInfo)

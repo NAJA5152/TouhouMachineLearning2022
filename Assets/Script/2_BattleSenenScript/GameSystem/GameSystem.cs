@@ -83,7 +83,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         {
             //筛选触发目标，对不包含该状态的卡牌才会激活状态
             triggerInfo.targetCards = triggerInfo.targetCards.Where(card => card[triggerInfo.targetState]).ToList();
-            await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateSet]);
+            await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateAdd]);
         }
         public static async Task ClearState(TriggerInfoModel triggerInfo)
         {
@@ -97,7 +97,7 @@ namespace TouhouMachineLearningSummary.GameSystem
             List<Card> stateUnActivateCardList = triggerInfo.targetCards.Where(card => !card[triggerInfo.targetState]).ToList();
             //设置所有状态未激活的为激活状态
             triggerInfo.targetCards = stateUnActivateCardList;
-            await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateSet]);
+            await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateAdd]);
             //设置所有状态激活的为未激活状态
             triggerInfo.targetCards = stateActivateCardList;
             await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateClear]);

@@ -181,10 +181,11 @@ namespace TouhouMachineLearningSummary.Model
                 }
             })
            .AbilityAppend();
-            //卡牌状态变化时效果
-            AbalityRegister(TriggerTime.When, TriggerType.StateSet)
+            //卡牌状态附加时效果
+            AbalityRegister(TriggerTime.When, TriggerType.StateAdd)
             .AbilityAdd(async (triggerInfo) =>
             {
+                this[triggerInfo.targetState] = true;
                 switch (triggerInfo.targetState)
                 {
                     case CardState.Lurk:; break;
@@ -193,7 +194,20 @@ namespace TouhouMachineLearningSummary.Model
                 }
             })
            .AbilityAppend();
-
+            //卡牌状态取消时效果
+            AbalityRegister(TriggerTime.When, TriggerType.StateClear)
+            .AbilityAdd(async (triggerInfo) =>
+            {
+                this[triggerInfo.targetState] = false;
+                switch (triggerInfo.targetState)
+                {
+                    case CardState.Lurk:; break;
+                    case CardState.Seal: await Command.CardCommand.UnSealCard(this); break;
+                    default: break;
+                }
+            })
+           .AbilityAppend();
+            //卡牌字段设置时效果
             AbalityRegister(TriggerTime.When, TriggerType.FieldSet)
             .AbilityAdd(async (triggerInfo) =>
             {
@@ -205,12 +219,12 @@ namespace TouhouMachineLearningSummary.Model
                 {
                     case CardField.Timer: break;
                     case CardField.Vitality: break;
-                    case CardField.Point: break;
+                    case CardField.Apothanasia: break;
                     default: break;
                 }
             })
            .AbilityAppend();
-
+            //卡牌字段改变时效果
             AbalityRegister(TriggerTime.When, TriggerType.FieldChange)
             .AbilityAdd(async (triggerInfo) =>
             {
@@ -223,7 +237,7 @@ namespace TouhouMachineLearningSummary.Model
                 {
                     case CardField.Timer: break;
                     case CardField.Vitality: break;
-                    case CardField.Point: break;
+                    case CardField.Apothanasia: break;
                     default: break;
                 }
             })

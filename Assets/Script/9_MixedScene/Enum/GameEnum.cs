@@ -73,28 +73,12 @@ namespace TouhouMachineLearningSummary.GameEnum
         Strengthen,
         Weak,
         ////////////////////////////////////////////////×´Ì¬/////////////////////////////////////////
-        /// <summary>
-        /// ·âÓ¡
-        /// </summary>
-        //Seal,
-        //Close,
-        ///// <summary>
-        ///// Õì²é
-        ///// </summary>
-        //Scout,
-        ///// <summary>
-        ///// ½ÒÊ¾
-        ///// </summary>
-        //Reveal,
-        StateSet,
+        StateAdd,
         StateClear,
         ////////////////////////////////////////////////×Ö¶Î/////////////////////////////////////////
         FieldSet,
         FieldChange,
-        //FieldIncrease,
-        //FieldDecrease,
         ////////////////////////////////////////////////Ñ¡Ôñ/////////////////////////////////////////
-
         SelectUnite,
 
         RoundStart,
@@ -105,20 +89,30 @@ namespace TouhouMachineLearningSummary.GameEnum
     public enum CardState
     {
         Seal,//·âÓ¡
-        Invisibility,//·âÓ¡
+        Invisibility,//ÒşÉí
         Pry,//¿úÌ½
+        Close,//·â±Õ
         Fate,//ÃüÔË
-        Lurk,//Ç±·ü
+        Lurk,//Ç±·ü£¨¼äµı£©
+        Secret,//ÒşÃØ£¨¸ÇÅÆ£©
         Furor,//¿ñ±©
         Docile,//ÎÂË³
         Poisoning,//ÖĞ¶¾
         Rely,//Æ¾ÒÀ
+        Water,//Ë®
+        Fire,//»ğ
+        Wind,//·ç
+        Soil,//ÍÁ
+        Hold, //×¤ÊØ
     }
     public enum CardField
     {
         Timer,//¼ÆÊ±
         Vitality,//»îÁ¦
-        Point
+        Apothanasia,//ÑÓÃü
+        Chain,//Á¬Ëø
+        Energy,//ÄÜÁ¿
+        Shield,//»¤¶Ü
     }
     public enum Camp
     {

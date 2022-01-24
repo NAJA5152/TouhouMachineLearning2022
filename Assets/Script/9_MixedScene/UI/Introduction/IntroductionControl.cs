@@ -83,61 +83,6 @@ namespace TouhouMachineLearningSummary.Control.GameUI
             }
 
         }
-        //public void ChangeIntroduction(int cardID)
-        //{
-        //    var cardInfo = Manager.CardAssemblyManager.GetLastCardInfo(cardID);
-        //    string cardName = cardInfo.translateName;
-        //    string ability = cardInfo.translateAbility;
-        //    string introduction = "";
-        //    //cardInfo.cardFields.ToList().ForEach(field =>
-        //    //{
-        //    //    switch (field.Key)
-        //    //    {
-        //    //        case CardField.Timer:
-        //    //            break;
-        //    //        case CardField.Vitality:
-        //    //            Introduction += $"活力：增强两侧单位效果{field.Value}";
-        //    //            break;
-        //    //        case CardField.Point:
-        //    //            break;
-        //    //        default:
-        //    //            break;
-        //    //    }
-        //    //});
-        //    int Heigh = ability.Length / 13 * 15 + 100;
-        //    AbilityBackground.sizeDelta = new Vector2(300, Heigh);
-        //    //修改文本为富文本
-        //    Title.text = cardName;
-        //    AbilityText.text = ability;
-        //    IntroductionText.text = introduction;
-        //}
-        //public void ChangeIntroduction(Card target)
-        //{
-        //    string cardName = target.CardName;
-        //    string Ability = target.CardIntroduction;
-        //    string Introduction = "";
-        //    target.cardFields.ToList().ForEach(field =>
-        //    {
-        //        switch (field.Key)
-        //        {
-        //            case CardField.Timer:
-        //                break;
-        //            case CardField.Vitality:
-        //                Introduction += $"活力：增强两侧单位效果{field.Value}";
-        //                break;
-        //            case CardField.Point:
-        //                break;
-        //            default:
-        //                break;
-        //        }
-        //    });
-        //    int Heigh = Ability.Length / 13 * 15 + 100;
-        //    AbilityBackground.sizeDelta = new Vector2(300, Heigh);
-        //    //修改文本为富文本
-        //    Title.text = cardName;
-        //    AbilityText.text = Ability;
-        //    IntroductionText.text = Introduction;
-        //}
         public void ChangeIntroduction<T>(T target)
         {
             string cardName = "";
@@ -145,7 +90,6 @@ namespace TouhouMachineLearningSummary.Control.GameUI
             string Introduction = "";
             if (typeof(T) == typeof(int))
             {
-                //var cardInfo = Manager.CardAssemblyManager.GetLastCardInfo(int.Parse(target.ToString()));
                 var cardInfo = Manager.CardAssemblyManager.GetLastCardInfo((int)(object)target);
                 cardName = cardInfo.translateName;
                 ability = cardInfo.translateAbility;
@@ -164,7 +108,7 @@ namespace TouhouMachineLearningSummary.Control.GameUI
                         case CardField.Vitality:
                             Introduction += $"活力：增强两侧单位效果{field.Value}";
                             break;
-                        case CardField.Point:
+                        case CardField.Apothanasia:
                             break;
                         default:
                             break;
@@ -172,9 +116,6 @@ namespace TouhouMachineLearningSummary.Control.GameUI
                 });
             }
 
-
-            
-            
             int Heigh = ability.Length / 13 * 15 + 100;
             AbilityBackground.sizeDelta = new Vector2(300, Heigh);
             //修改文本为富文本
