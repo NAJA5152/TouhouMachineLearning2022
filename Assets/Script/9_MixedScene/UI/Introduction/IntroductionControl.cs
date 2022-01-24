@@ -93,6 +93,7 @@ namespace TouhouMachineLearningSummary.Control.GameUI
                 var cardInfo = Manager.CardAssemblyManager.GetLastCardInfo((int)(object)target);
                 cardName = cardInfo.translateName;
                 ability = cardInfo.translateAbility;
+                IntroductionBackground.gameObject.SetActive(false);
             }
             else
             {
@@ -114,14 +115,14 @@ namespace TouhouMachineLearningSummary.Control.GameUI
                             break;
                     }
                 });
+                IntroductionBackground.gameObject.SetActive(true);
+                IntroductionBackground.sizeDelta = new Vector2(300, ability.Length / 13 * 15 + 100);
+                IntroductionText.text = Introduction;
             }
-
-            int Heigh = ability.Length / 13 * 15 + 100;
-            AbilityBackground.sizeDelta = new Vector2(300, Heigh);
-            //修改文本为富文本
             Title.text = cardName;
+            AbilityBackground.sizeDelta = new Vector2(300, ability.Length / 13 * 15 + 100);
+            //修改文本为富文本
             AbilityText.text = ability;
-            IntroductionText.text = Introduction;
         }
     }
 }
