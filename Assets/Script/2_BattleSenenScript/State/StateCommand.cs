@@ -146,7 +146,8 @@ namespace TouhouMachineLearningSummary.Command
                 case (1):
                     {
                         Info.AgainstInfo.ExChangeableCardNum = 3;
-                        Info.GameUI.UiInfo.CardBoardTitle = "剩余抽卡次数为".Translation() + Info.AgainstInfo.ExChangeableCardNum;
+                        Command.GameUI.UiCommand.SetCardBoardTitle("剩余抽卡次数为".Translation() + Info.AgainstInfo.ExChangeableCardNum);
+                        // Info.GameUI.UiInfo.CardBoardTitle = "剩余抽卡次数为".Translation() + Info.AgainstInfo.ExChangeableCardNum;
                         for (int i = 0; i < 10; i++)
                         {
                             await CardCommand.DrawCard(isPlayerDraw: true, isOrder: false);
@@ -155,13 +156,14 @@ namespace TouhouMachineLearningSummary.Command
                         {
                             await CardCommand.DrawCard(isPlayerDraw: false, isOrder: false);
                         }
-                        CardCommand.OrderCard();
+                        CardCommand.OrderHandCard();
                         break;
                     }
                 case (2):
                     {
                         Info.AgainstInfo.ExChangeableCardNum += 1;
-                        Info.GameUI.UiInfo.CardBoardTitle = "剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum;
+                        Command.GameUI.UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
+                        //Info.GameUI.UiInfo.CardBoardTitle ="剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum ;
                         await CardCommand.DrawCard();
                         await CardCommand.DrawCard(false);
                         break;
@@ -169,13 +171,15 @@ namespace TouhouMachineLearningSummary.Command
                 case (3):
                     {
                         Info.AgainstInfo.ExChangeableCardNum += 1;
-                        Info.GameUI.UiInfo.CardBoardTitle = "剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum;
+                        Command.GameUI.UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
+                        //Info.GameUI.UiInfo.CardBoardTitle ="剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum ;
                         await CardCommand.DrawCard();
                         await CardCommand.DrawCard(false);
                         break;
                     }
                 default:
                     break;
+
             }
             await CustomThread.Delay(2500);
             //Debug.LogWarning("等待换牌选择");
@@ -445,7 +449,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             NetCommand.AsyncInfo(NetAcyncType.SelectLocation);
             AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectLocation, triggerCard);
-            RowCommand.SetRegionSelectable(region:GameRegion.None);
+            RowCommand.SetRegionSelectable(region: GameRegion.None);
             AgainstInfo.IsWaitForSelectLocation = false;
         }
         public static async Task WaitForSelecUnit(Card triggerCard, List<Card> filterCards, int num, bool isAuto)

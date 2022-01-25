@@ -24,7 +24,7 @@ namespace TouhouMachineLearningSummary.Command.GameUI
         //生成对局存在的卡牌
         public static void CreatBoardCardActual()
         {
-            Info.GameUI.UiInfo.CardBoard.transform.GetChild(1).GetComponent<Text>().text = Info.GameUI.UiInfo.CardBoardTitle;
+            //Info.GameUI.UiInfo.CardBoard.transform.GetChild(1).GetComponent<Text>().text = Info.GameUI.UiInfo.CardBoardTitle;
             Info.GameUI.UiInfo.ShowCardLIstOnBoard.ForEach(GameObject.Destroy);
             List<Card> Cards = Info.AgainstInfo.cardBoardList;
             for (int i = 0; i < Cards.Count; i++)
@@ -51,7 +51,7 @@ namespace TouhouMachineLearningSummary.Command.GameUI
         //生成对局不存在的卡牌
         private static void CreatBoardCardVitual()
         {
-            Info.GameUI.UiInfo.CardBoard.transform.GetChild(1).GetComponent<Text>().text = Info.GameUI.UiInfo.CardBoardTitle;
+            //Info.GameUI.UiInfo.CardBoard.transform.GetChild(1).GetComponent<Text>().text = Info.GameUI.UiInfo.CardBoardTitle;
             Info.GameUI.UiInfo.ShowCardLIstOnBoard.ForEach(GameObject.Destroy);
             List<int> CardIds = Info.AgainstInfo.cardBoardIDList;
             for (int i = 0; i < CardIds.Count; i++)

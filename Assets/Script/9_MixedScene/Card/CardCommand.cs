@@ -44,7 +44,7 @@ namespace TouhouMachineLearningSummary.Command
 
 
 
-        public static void OrderCard()
+        public static void OrderHandCard()
         {
             AgainstInfo.cardSet[GameRegion.Hand].SingleRowInfos.ForEach(singleRowInfo =>
             {
@@ -209,7 +209,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             if (isOrder)
             {
-                OrderCard();
+                OrderHandCard();
             }
             await Task.Delay(100);
         }

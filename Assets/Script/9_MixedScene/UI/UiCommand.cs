@@ -10,19 +10,23 @@ namespace TouhouMachineLearningSummary.Command.GameUI
 {
     public class UiCommand : MonoBehaviour
     {
-        static GameObject MyPass => Info.GameUI.UiInfo.Instance.DownPass;
-        static GameObject OpPass => Info.GameUI.UiInfo.Instance.UpPass;
+        //////////////////////////////////////////////////////////对战中游戏卡牌面板//////////////////////////////////////////////////////////////
         public static void SetCardBoardShow()
         {
-            //Debug.Log("开启告示板");
             Info.GameUI.UiInfo.CardBoard.SetActive(true);
-            Info.GameUI.UiInfo.CardBoard.transform.GetChild(1).GetComponent<Text>().text = Info.GameUI.UiInfo.CardBoardTitle;
-            //Debug.Log("开启告示板完毕");
+            //Info.GameUI.UiInfo.CardBoard.transform.GetChild(1).GetComponent<Text>().text = Info.GameUI.UiInfo.CardBoardTitle;
         }
         public static void SetCardBoardHide() => Info.GameUI.UiInfo.CardBoard.SetActive(false);
         public static void CardBoardReload() => Command.GameUI.CardBoardCommand.CreatBoardCardActual();
-        public static void SetCardBoardTitle(string Title) => Info.GameUI.UiInfo.CardBoardTitle = Title;
-        //public static void SetNoticeBoardTitle(string Title) => Info.GameUI.UiInfo.NoticeBoardTitle = Title;
+        public void CardBoardClose() => Info.AgainstInfo.IsSelectCardOver = true;
+
+        public static void SetCardBoardTitle(string Title)
+        {
+            Info.GameUI.UiInfo.CardBoard.transform.GetChild(1).GetComponent<Text>().text = Title;
+            //Info.GameUI.UiInfo.CardBoardTitle = Title;
+        }
+
+        //回合阶段提示UI
         public static async Task NoticeBoardShow(string Title)
         {
 
@@ -41,7 +45,10 @@ namespace TouhouMachineLearningSummary.Command.GameUI
             });
             Info.GameUI.UiInfo.NoticeBoard.SetActive(false);
         }
-        public void CardBoardClose() => Info.AgainstInfo.IsSelectCardOver = true;
+        //卡牌能力弹窗CardAbilityPopup
+        //卡牌能力组件CardAbilityComponent
+        //卡牌能力面板CardAbilityBoard
+        //箭头
         public static void CreatFreeArrow()
         {
             GameObject newArrow = Instantiate(Info.GameUI.UiInfo.Arrow);

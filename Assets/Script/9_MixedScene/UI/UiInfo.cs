@@ -6,7 +6,7 @@ namespace TouhouMachineLearningSummary.Info.GameUI
 {
     public class UiInfo : MonoBehaviour
     {
-        public static UiInfo Instance;
+        public static UiInfo Instance { get; set; }
         public GameObject DownPass;
         public GameObject UpPass;
         public static GameObject MyPass => AgainstInfo.IsMyTurn ? Instance.DownPass : Instance.UpPass;
@@ -39,7 +39,7 @@ namespace TouhouMachineLearningSummary.Info.GameUI
                 //ConstantInstance.GetComponent<RectTransform>().rect.x=>
             }
         }
-        public static string CardBoardTitle = "";
+        //public static string CardBoardTitle = "";
         [ShowInInspector]
         public static bool isNoticeBoardShow = false;
 
