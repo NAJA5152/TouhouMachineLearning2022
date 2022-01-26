@@ -2536,7 +2536,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1544909960}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9998722
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -3585,9 +3585,9 @@ RectTransform:
   m_Father: {fileID: 1975226360}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -50}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 280, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &156954050
@@ -5774,7 +5774,6 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
   - {fileID: 1453560886}
-  - {fileID: 776973011}
   m_Father: {fileID: 546064685}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -11476,7 +11475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000044901903}
+  m_AnchoredPosition: {x: 0, y: -0.000060714247}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &559512099
@@ -13134,6 +13133,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 776973011}
   - {fileID: 1361171888}
   - {fileID: 1338688411}
   - {fileID: 673259624}
@@ -13195,7 +13195,7 @@ Transform:
   - {fileID: 1408776107}
   - {fileID: 99600720}
   m_Father: {fileID: 670355334}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &675762198
 GameObject:
@@ -15034,7 +15034,7 @@ GameObject:
   - component: {fileID: 776973013}
   - component: {fileID: 776973012}
   m_Layer: 0
-  m_Name: CardIntroduction
+  m_Name: CardAbilityPopup
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15052,13 +15052,13 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 906136286}
-  m_Father: {fileID: 265434001}
-  m_RootOrder: 1
+  m_Father: {fileID: 670355334}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.42100003, y: 0.30100003}
   m_AnchorMax: {x: 0.57754177, y: 0.63900006}
-  m_AnchoredPosition: {x: 1.5, y: 32.5}
-  m_SizeDelta: {x: -1, y: -65}
+  m_AnchoredPosition: {x: 960.10016, y: 540.10004}
+  m_SizeDelta: {x: 299.56018, y: 300.04004}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &776973012
 MonoBehaviour:
@@ -27416,7 +27416,7 @@ RectTransform:
   m_Children:
   - {fileID: 664513835}
   m_Father: {fileID: 670355334}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -27654,7 +27654,7 @@ GameObject:
   - component: {fileID: 1361171890}
   - component: {fileID: 1361171889}
   m_Layer: 5
-  m_Name: CardDisplayBoard
+  m_Name: CardAbilityBoard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27674,7 +27674,7 @@ RectTransform:
   - {fileID: 706708821}
   - {fileID: 1625233980}
   m_Father: {fileID: 670355334}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -29032,9 +29032,9 @@ RectTransform:
   m_Father: {fileID: 1975226360}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -250}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 280, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1400094928
@@ -32158,7 +32158,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000044901903}
+  m_AnchoredPosition: {x: 0, y: -0.000060714247}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1513978239
@@ -32794,7 +32794,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 40160435}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9998722
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -37134,9 +37134,9 @@ RectTransform:
   m_Father: {fileID: 1975226360}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -450}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 280, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1708277652
@@ -37424,7 +37424,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -0.000044901903}
+  m_AnchoredPosition: {x: 0, y: -0.000060714247}
   m_SizeDelta: {x: 0, y: 300}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1722978762
@@ -37734,7 +37734,7 @@ MonoBehaviour:
   CardInstanceModel: {fileID: 0}
   NoticeBoard_Model: {fileID: 0}
   ArrowEndPoint_Model: {fileID: 0}
-  ConstantInstance: {fileID: 0}
+  ContentInstance: {fileID: 0}
   CardBoardInstance: {fileID: 0}
   CardIntroductionModel: {fileID: 0}
   Notice_Model: {fileID: 1749838552}
@@ -37900,7 +37900,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 843147356}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0.9998722
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -41758,6 +41758,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1
   m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
   m_Antialiasing: 2
   m_AntialiasingQuality: 2
@@ -42594,9 +42595,9 @@ RectTransform:
   m_Father: {fileID: 1975226360}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -150}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 280, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1906220295
@@ -44546,7 +44547,7 @@ GameObject:
   - component: {fileID: 2007680774}
   - component: {fileID: 2007680778}
   m_Layer: 5
-  m_Name: NotifyCanvas
+  m_Name: NoticeCanvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -44679,9 +44680,9 @@ RectTransform:
   m_Father: {fileID: 1975226360}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 1}
-  m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 150, y: -350}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 280, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2010518357
@@ -48059,7 +48060,7 @@ RectTransform:
   m_Children:
   - {fileID: 2056459868}
   m_Father: {fileID: 670355334}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}

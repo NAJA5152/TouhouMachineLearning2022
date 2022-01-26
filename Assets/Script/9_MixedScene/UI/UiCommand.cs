@@ -11,22 +11,12 @@ namespace TouhouMachineLearningSummary.Command.GameUI
     public class UiCommand : MonoBehaviour
     {
         //////////////////////////////////////////////////////////对战中游戏卡牌面板//////////////////////////////////////////////////////////////
-        public static void SetCardBoardShow()
-        {
-            Info.GameUI.UiInfo.CardBoard.SetActive(true);
-            //Info.GameUI.UiInfo.CardBoard.transform.GetChild(1).GetComponent<Text>().text = Info.GameUI.UiInfo.CardBoardTitle;
-        }
+        public static void SetCardBoardShow() => Info.GameUI.UiInfo.CardBoard.SetActive(true);
         public static void SetCardBoardHide() => Info.GameUI.UiInfo.CardBoard.SetActive(false);
-        public static void CardBoardReload() => Command.GameUI.CardBoardCommand.CreatBoardCardActual();
+        public static void CardBoardReload() => CardBoardCommand.CreatBoardCardActual();
         public void CardBoardClose() => Info.AgainstInfo.IsSelectCardOver = true;
-
-        public static void SetCardBoardTitle(string Title)
-        {
-            Info.GameUI.UiInfo.CardBoard.transform.GetChild(1).GetComponent<Text>().text = Title;
-            //Info.GameUI.UiInfo.CardBoardTitle = Title;
-        }
-
-        //回合阶段提示UI
+        public static void SetCardBoardTitle(string Title) => Info.GameUI.UiInfo.CardBoard.transform.GetChild(1).GetComponent<Text>().text = Title;
+        //////////////////////////////////////////////////////////回合阶段提示UI//////////////////////////////////////////////////////////////
         public static async Task NoticeBoardShow(string Title)
         {
 
@@ -45,18 +35,13 @@ namespace TouhouMachineLearningSummary.Command.GameUI
             });
             Info.GameUI.UiInfo.NoticeBoard.SetActive(false);
         }
-        //卡牌能力弹窗CardAbilityPopup
-        //卡牌能力组件CardAbilityComponent
-        //卡牌能力面板CardAbilityBoard
-        //箭头
+
+        //////////////////////////////////////////////////////////箭头//////////////////////////////////////////////////////////////
         public static void CreatFreeArrow()
         {
             GameObject newArrow = Instantiate(Info.GameUI.UiInfo.Arrow);
             newArrow.name = "Arrow-null";
-            newArrow.GetComponent<ArrowManager>().InitArrow(
-                Info.AgainstInfo.ArrowStartCard,
-                Info.GameUI.UiInfo.ArrowEndPoint
-                );
+            newArrow.GetComponent<ArrowManager>().InitArrow(Info.AgainstInfo.ArrowStartCard, Info.GameUI.UiInfo.ArrowEndPoint);
             Info.AgainstInfo.ArrowList.Add(newArrow);
         }
         public static void DestoryFreeArrow()
@@ -69,17 +54,12 @@ namespace TouhouMachineLearningSummary.Command.GameUI
         {
             GameObject newArrow = Instantiate(Info.GameUI.UiInfo.Arrow);
             newArrow.name = "Arrow-" + card.name;
-            newArrow.GetComponent<ArrowManager>().InitArrow(
-                Info.AgainstInfo.ArrowStartCard,
-                Info.AgainstInfo.playerFocusCard
-                );
+            newArrow.GetComponent<ArrowManager>().InitArrow(Info.AgainstInfo.ArrowStartCard, Info.AgainstInfo.playerFocusCard);
             Info.AgainstInfo.ArrowList.Add(newArrow);
         }
         public static void DestoryFixedArrow(Card card)
         {
             GameObject targetArrow = Info.AgainstInfo.ArrowList.First(arrow => arrow.GetComponent<ArrowManager>().targetCard == card);
-            Debug.LogError("确实是" + targetArrow.GetComponent<ArrowManager>().targetCard);
-            Debug.LogError("确实是" + targetArrow);
             Info.AgainstInfo.ArrowList.Remove(targetArrow);
             Destroy(targetArrow);
         }
@@ -88,7 +68,5 @@ namespace TouhouMachineLearningSummary.Command.GameUI
             Info.AgainstInfo.ArrowList.ForEach(Destroy);
             Info.AgainstInfo.ArrowList.Clear();
         }
-        //public static void SetCardBoardMode(CardBoardMode CardBoardMode) => Info.AgainstInfo.CardBoardMode = CardBoardMode;
-
     }
 }

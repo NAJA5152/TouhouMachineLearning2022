@@ -1,5 +1,3 @@
-using Sirenix.OdinInspector;
-using UnityEngine;
 namespace TouhouMachineLearningSummary.GameEnum
 {
     public enum FirstTurn { PlayerFirst, OpponentFirst, Random }

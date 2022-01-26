@@ -135,11 +135,11 @@ namespace TouhouMachineLearningSummary.Command
         {
             int focusCardRank = Info.CardCompnentInfo.deckCardModels.IndexOf(cardModel);
             int cardID = Info.CardCompnentInfo.distinctCardIds[focusCardRank];
-            Control.GameUI.IntroductionControl.focusCardID = cardID;
+            CardAbilityPopupManager.focusCardID = cardID;
         }
         public static void LostFocusCardOnMenu()
         {
-            Control.GameUI.IntroductionControl.focusCardID = 0;
+            CardAbilityPopupManager.focusCardID = 0;
         }
         public static void AddCardFromLibrary(GameObject clickCard)
         {

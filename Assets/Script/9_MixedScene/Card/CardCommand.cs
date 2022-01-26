@@ -183,7 +183,7 @@ namespace TouhouMachineLearningSummary.Command
             await DrawCard(IsPlayerExchange, true);
             if (IsPlayerExchange)
             {
-                GameUI.CardBoardCommand.LoadBoardCardList(AgainstInfo.cardSet[isRoundStartExchange ? Orientation.Down : Orientation.My][GameRegion.Hand].CardList);
+                CardBoardCommand.LoadBoardCardList(AgainstInfo.cardSet[isRoundStartExchange ? Orientation.Down : Orientation.My][GameRegion.Hand].CardList);
             }
         }
         internal static Task RebackCard()

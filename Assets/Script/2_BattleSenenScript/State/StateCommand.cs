@@ -517,11 +517,11 @@ namespace TouhouMachineLearningSummary.Command
             //加载真实或虚拟的卡牌列表
             if (typeof(T) == typeof(Card))
             {
-                GameUI.CardBoardCommand.LoadBoardCardList(cardIds.Cast<Card>().ToList());
+                CardBoardCommand.LoadBoardCardList(cardIds.Cast<Card>().ToList());
             }
             else
             {
-                GameUI.CardBoardCommand.LoadBoardCardList(cardIds.Cast<int>().ToList());
+                CardBoardCommand.LoadBoardCardList(cardIds.Cast<int>().ToList());
             }
             //Debug.Log("进入选择模式");
             switch (mode)

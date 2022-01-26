@@ -20,26 +20,13 @@ namespace TouhouMachineLearningSummary.Info.GameUI
         public GameObject CardInstanceModel;
         public GameObject NoticeBoard_Model;
         public GameObject ArrowEndPoint_Model;
-        public Transform ConstantInstance;
+        public Transform ContentInstance;
         public GameObject CardBoardInstance;
         public GameObject CardIntroductionModel;
 
         public GameObject Notice_Model;
 
-        //卡牌面板进度
-        [ShowInInspector]
-        //public  float cardBoardProcess => ConstantInstance.GetComponent<RectTransform>().rect.x;
-        //public  RectOffset cardBoardProcess => ConstantInstance.GetComponent<HorizontalLayoutGroup>();
-        //public static float targetCardBoardProcess=> cardBoardProcess;
         private void Awake() => Instance = this;
-        private void Update()
-        {
-            if (true)
-            {
-                //ConstantInstance.GetComponent<RectTransform>().rect.x=>
-            }
-        }
-        //public static string CardBoardTitle = "";
         [ShowInInspector]
         public static bool isNoticeBoardShow = false;
 
@@ -49,7 +36,7 @@ namespace TouhouMachineLearningSummary.Info.GameUI
 
         public static GameObject Arrow => Instance.Arrow_Model;
         public static GameObject ArrowEndPoint => Instance.ArrowEndPoint_Model;
-        public static Transform Constant => Instance.ConstantInstance;
+        public static Transform Content => Instance.ContentInstance;
         public static GameObject CardModel => Instance.CardInstanceModel;
         public static GameObject CardBoard => Instance.CardBoardInstance;
         public static GameObject NoticeBoard => Instance.NoticeBoard_Model;
