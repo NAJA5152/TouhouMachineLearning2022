@@ -35,7 +35,7 @@ namespace TouhouMachineLearningSummary.Info
         public static List<GameObject> deckCardModels = new List<GameObject>();
 
         public static Model.CardDeck tempDeck;
-
+        List<GameObject> ShowCardList;
         //获得指定卡组的去重并按品质排序后的列表
         public static List<int> distinctCardIds => tempDeck.CardIds
             .Distinct()

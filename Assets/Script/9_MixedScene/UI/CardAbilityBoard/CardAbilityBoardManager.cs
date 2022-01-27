@@ -17,25 +17,45 @@ namespace TouhouMachineLearningSummary.Manager
         public bool isOnMenu;//判断属于菜单场景还是战斗场景
         public static int focusCardID = -1;
         List<int> cardIds = new List<int>();
+        List<Card> cards = new List<Card>();
+        int currentRank;
 
         public Text Title => transform.GetChild(0).GetChild(0).GetChild(0).GetComponent<Text>();
         public Text AbilityText => transform.GetChild(0).GetChild(0).GetChild(1).GetComponent<Text>();
         public Text IntroductionText => transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Text>();
         public RectTransform AbilityBackground => transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
         public RectTransform IntroductionBackground => transform.GetChild(0).GetChild(1).GetComponent<RectTransform>();
-       
+
         void Update()
         {
-         
-           
+
+
         }
         public void LoadCards()
         {
-
+            //装填备选列表
         }
-        public void LoadCardsIds()
+        public void LoadCardsIdsFromCardList(Card card)
+        {
+            //装填备选列表
+            cards = card.belongCardList;
+            currentRank = cards.IndexOf(card);
+        }
+        public void LoadCardsIdsFromCardList(int targetCardId)
         {
 
+            //装填备选列表
+            cardIds = new List<int> { Info.CardCompnentInfo.tempDeck.LeaderId };
+            cardIds.AddRange(Info.CardCompnentInfo.tempDeck.CardIds);
+            ChangeIntroduction(targetCardId);
+        }
+        public void LoadCardsIdsFromCardLibrary(int targetCardId)
+        {
+
+            //装填备选列表
+            cardIds = new List<int> { Info.CardCompnentInfo.tempDeck.LeaderId };
+            cardIds.AddRange(Info.CardCompnentInfo.tempDeck.CardIds);
+            ChangeIntroduction(targetCardId);
         }
         public void ChangeIntroduction<T>(T target)
         {
