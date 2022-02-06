@@ -348,7 +348,7 @@ namespace TouhouMachineLearningSummary.Command
                             Debug.Log("触发交换卡牌信息");
                             Location Locat = Info.AgainstInfo.TargetCard.Location;
                             int RandomRank = Info.AgainstInfo.washInsertRank;
-                            await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { RandomRank });
+                            await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { Locat, RandomRank });
                             break;
                         }
                     case NetAcyncType.RoundStartExchangeOver:
