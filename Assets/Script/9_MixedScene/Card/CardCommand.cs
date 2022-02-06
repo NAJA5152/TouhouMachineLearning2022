@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TouhouMachineLearningSummary.Control;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
+using TouhouMachineLearningSummary.Manager;
 //using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
@@ -57,6 +57,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             GameObject newCard = GameObject.Instantiate(Info.CardInfo.cardModel, new Vector3(0, 100, 0), Info.CardInfo.cardModel.transform.rotation);
             newCard.transform.SetParent(GameObject.FindGameObjectWithTag("Card").transform);
+            newCard.SetActive(true);
             newCard.name = "Card" + Info.CardInfo.CreatCardRank++;
             //Debug.Log("创建卡牌"+id);
             newCard.AddComponent(Manager.CardAssemblyManager.GetCardScript(id));
@@ -122,11 +123,11 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task BanishCard(Card card)
         {
-            card.GetComponent<CardControl>().CreatGap();
+            card.GetComponent<CardManager>().CreatGap();
             await Task.Delay(800);
-            card.GetComponent<CardControl>().FoldGap();
+            card.GetComponent<CardManager>().FoldGap();
             await Task.Delay(800);
-            card.GetComponent<CardControl>().DestoryGap();
+            card.GetComponent<CardManager>().DestoryGap();
             RemoveCard(card);
         }
         public static async Task SummonCard(Card targetCard)

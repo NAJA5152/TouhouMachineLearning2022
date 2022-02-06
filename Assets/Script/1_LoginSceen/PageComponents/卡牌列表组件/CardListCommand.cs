@@ -14,8 +14,8 @@ namespace TouhouMachineLearningSummary.Command
         public static void Init(bool isInitOptions = true, Model.CardDeck newTempDeck = null, bool canChangeCard = false)
         {
             Log.Show("配置面板");
-            canChangeCard = Command.MenuStateCommand.GetCurrentState() == MenuState.CardListChange;
-            Info.CardCompnentInfo.cardListCanChange = canChangeCard;
+            //canChangeCard = Command.MenuStateCommand.GetCurrentState() == MenuState.CardListChange;
+            Info.CardCompnentInfo.isEditDeckMode = canChangeCard;
             Info.CardCompnentInfo.okButton.SetActive(canChangeCard);
             Info.CardCompnentInfo.cancelButton.SetActive(canChangeCard);
             Info.CardCompnentInfo.changeButton.SetActive(!canChangeCard);
@@ -148,34 +148,48 @@ namespace TouhouMachineLearningSummary.Command
                 Debug.Log("添加卡牌" + clickCard.name);
                 int clickCardId = int.Parse(clickCard.name);
                 int usedCardIdsNum = Info.CardCompnentInfo.tempDeck.CardIds.Count(id => id == clickCardId);
-
                 var cardInfo = Manager.CardAssemblyManager.GetLastCardInfo(clickCardId);
-                int allowAddNum = cardInfo.cardRank == GameEnum.CardRank.Copper ? 3 : 1;
-                if (usedCardIdsNum < Mathf.Min(allowAddNum, Command.CardLibraryCommand.GetHasCardNum(clickCard.name)))
+                if (cardInfo.cardRank == CardRank.Leader)
                 {
-                    Info.CardCompnentInfo.tempDeck.CardIds.Add(clickCardId);
-                    Command.CardListCommand.Init(newTempDeck: Info.CardCompnentInfo.tempDeck, canChangeCard: true);
+                    Info.CardCompnentInfo.tempDeck.LeaderId = cardInfo.cardID;
+                    _ = Command.AudioCommand.PlayAsync(GameAudioType.ChangeSuccess);
                 }
                 else
                 {
-                    //添加失败
+                    int allowAddNum = cardInfo.cardRank == GameEnum.CardRank.Copper ? 3 : 1;
+                    if (usedCardIdsNum < Mathf.Min(allowAddNum, Command.CardLibraryCommand.GetHasCardNum(clickCard.name)))
+                    {
+                        Info.CardCompnentInfo.tempDeck.CardIds.Add(clickCardId);
+                        Command.CardListCommand.Init(newTempDeck: Info.CardCompnentInfo.tempDeck, canChangeCard: true);
+                        _ = Command.AudioCommand.PlayAsync(GameAudioType.ChangeSuccess);
+                    }
+                    else
+                    {
+                        _ = Command.AudioCommand.PlayAsync(GameAudioType.ChangeFailed);
+                    }
                 }
             }
             else
             {
                 Debug.Log("当前为不可编辑模式");
+                _ = Command.AudioCommand.PlayAsync(GameAudioType.ChangeFailed);
             }
         }
         public static void RemoveCardFromDeck(GameObject clickCard)
         {
             Debug.Log("准备移除卡牌");
 
-            if (Info.CardCompnentInfo.cardListCanChange)
+            if (Info.CardCompnentInfo.isEditDeckMode)
             {
                 Debug.Log("移除卡牌");
+                _ = Command.AudioCommand.PlayAsync(GameAudioType.ChangeSuccess);
                 int removeCardId = Info.CardCompnentInfo.distinctCardIds[Info.CardCompnentInfo.deckCardModels.IndexOf(clickCard)];
                 Info.CardCompnentInfo.tempDeck.CardIds.Remove(removeCardId);
                 Command.CardListCommand.Init(newTempDeck: Info.CardCompnentInfo.tempDeck, canChangeCard: true);
+            }
+            else
+            {
+                _ = Command.AudioCommand.PlayAsync(GameAudioType.ChangeFailed);
             }
         }
     }

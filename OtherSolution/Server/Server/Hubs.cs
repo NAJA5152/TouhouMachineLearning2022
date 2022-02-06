@@ -22,7 +22,7 @@ public class TouHouHub : Hub
     public void Join(AgainstModeType againstMode, PlayerInfo userInfo, PlayerInfo virtualOpponentInfo) => HoldListManager.Add(againstMode, userInfo, virtualOpponentInfo, Clients.Caller);
     public void Leave(AgainstModeType againstMode, string account) => HoldListManager.Remove(againstMode, account);
     //////////////////////////////////////////////房间////////////////////////////////////////////////////////////////////
-    public void AsyncInfo(NetAcyncType netAcyncType, string roomId, bool isPlayer1, object[] data) => RoomManager.GetRoom(roomId).AsyncInfo(netAcyncType, isPlayer1, data);
+    public void Async(NetAcyncType netAcyncType, string roomId, bool isPlayer1, object[] data) => RoomManager.GetRoom(roomId)?.AsyncInfo(netAcyncType, isPlayer1, data);
     public bool AgainstFinish(string roomId, string account,int P1Score,int P2Score) => RoomManager.DisponseRoom(roomId, account, P1Score, P2Score);
     //////////////////////////////////////////////用户信息更新操作////////////////////////////////////////////////////////////////////
     public bool UpdateInfo(UpdateType updateType, string account, string password, object updateValue)

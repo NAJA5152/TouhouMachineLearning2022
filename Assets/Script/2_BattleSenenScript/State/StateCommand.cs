@@ -50,6 +50,8 @@ namespace TouhouMachineLearningSummary.Command
             //如果不是通过配置文件启动的场景
             if (AgainstInfo.currentUserInfo == null)
             {
+                //初始化网络系统，用于获取指定版本卡牌信息
+                await Command.NetCommand.Init();
                 await Manager.CardAssemblyManager.SetCurrentAssembly("");
                 AgainstInfo.currentUserInfo = new PlayerInfo(
                      "NPC", "gezi", "yaya", "",

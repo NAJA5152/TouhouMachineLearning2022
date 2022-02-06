@@ -13,14 +13,17 @@ namespace TouhouMachineLearningSummary.Command
         public static void Init()
         {
             //牌库卡牌列表
-            var showCardList = CardAssemblyManager.GetLastMultiCardInfos;
+            //var showCardList = CardAssemblyManager.GetLastMultiCardInfos;
+            Info.CardCompnentInfo.LibraryFilterCardList = CardAssemblyManager.GetLastMultiCardInfos;
             //如果当前是编辑卡组模式，则只显示指定阵营
             if (Info.CardCompnentInfo.isEditDeckMode)
             {
-                showCardList = showCardList.Where(card => card.cardCamp == Info.CardCompnentInfo.targetCamp).ToList();
-                showCardList = showCardList.Where(card => card.cardRank == GameEnum.CardRank.Silver).ToList();
+                //showCardList = showCardList.Where(card => card.cardCamp == Info.CardCompnentInfo.targetCamp).ToList();
+                //showCardList = showCardList.Where(card => card.cardRank == GameEnum.CardRank.Silver).ToList();
+                Info.CardCompnentInfo.LibraryFilterCardList = Info.CardCompnentInfo.LibraryFilterCardList.Where(card => card.cardCamp == Info.CardCompnentInfo.targetCamp|| card.cardCamp ==  GameEnum.Camp.Neutral).ToList();
+                //Info.CardCompnentInfo.LibraryFilterCardList = Info.CardCompnentInfo.LibraryFilterCardList.Where(card => card.cardRank == GameEnum.CardRank.Silver).ToList();
             }
-            int libraryCardNumber = showCardList.Count();
+            int libraryCardNumber = Info.CardCompnentInfo.LibraryFilterCardList.Count();
             //如果处于卡组编辑状态，则对卡牌列表做个筛选
             //已生成卡牌列表
             int libraryModelNumber = Info.CardCompnentInfo.libraryCardModels.Count;
@@ -36,7 +39,8 @@ namespace TouhouMachineLearningSummary.Command
             for (int i = 0; i < libraryCardNumber; i++)
             {
                 //卡牌信息集合
-                var info = CardAssemblyManager.lastMultiCardInfos[i];
+                //var info = CardAssemblyManager.lastMultiCardInfos[i];
+                var info = Info.CardCompnentInfo.LibraryFilterCardList[i];
                 //卡牌对应场景模型
                 var newCardModel = Info.CardCompnentInfo.libraryCardModels[i];
                 //卡牌id

@@ -53,8 +53,8 @@
     <UnityVersion>2020.3.0f1c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\9_MixedScene\UI\Introduction\IntroductionEvent.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\UI\Introduction\IntroductionControl.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\UI\UIEvent.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\UI\CardAbilityPopup\CardAbilityPopupManager.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡牌列表组件\CardListCommand.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Bullet\BulletTrackManager.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Point\CardPointManager.cs" />
@@ -64,8 +64,9 @@
     <Compile Include="Assets\Script\9_MixedScene\Card\CardSet.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡组阵营选择界面\CampInfo.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\GameSystem\GameSystem.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\UI\Arrow\ArrowEndManager.cs" />
+    <Compile Include="Assets\Script\2_BattleSenenScript\UI\Arrow\ArrowEndManager.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Audio\AudioType.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\UI\CardAbilityBoard\CardAbilityBoardManager.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Against\AgainstManager.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Timer\Timer.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Row\SingleRowManager.cs" />
@@ -78,7 +79,7 @@
     <Compile Include="Assets\Script\1_LoginSceen\PageState\MenuStateCommand.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\聊天组件\ChatManager.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\Card.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\Card\CardControl.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\Card\CardManager.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Row\RowCommand.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\牌库组件\CardLibraryControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Against\AgainstSummaryManager.cs" />
@@ -86,12 +87,13 @@
     <Compile Include="Assets\Script\1_LoginSceen\Book\BookTagControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\ParticleSystem\SceneEffectInfo.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\CardAbilityManeger.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\UI\CardBoard\BoardCardControl.cs" />
+    <Compile Include="Assets\Script\2_BattleSenenScript\UI\CardBoard\BoardCardControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardInspector\CardLibraryCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Network\NetCommand.cs" />
     <Compile Include="Assets\Script\8_BulletEffectScene\BulletOnGui.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\UI\CardBoard\CardBoardCommand.cs" />
+    <Compile Include="Assets\Script\2_BattleSenenScript\UI\CardBoard\CardBoardCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\ParticleSystem\BulletControl.cs" />
+    <Compile Include="Assets\Script\2_BattleSenenScript\UI\CoinManager.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Bullet\BulletCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Dialogue\Live2d\ModelTriggerArea.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\Book\BookCommand.cs" />
@@ -99,7 +101,6 @@
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡组列表组件\DeckBoardControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\ParticleSystem\TheWorldEffect.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\UiInfo.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\UI\NoticeControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Network\UpdateType.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\CardDeck.cs" />
     <Compile Include="Assets\Script\0_Other\Danmu.cs" />
@@ -116,7 +117,6 @@
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡组阵营选择界面\CampSelectCommand.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\详情介绍组件\cardDetailCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\ParticleSystem\EffectCommand.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\UI\CoinManager.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Scene\DontDestory.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Translate\TranslateManager.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\UiCommand.cs" />
@@ -124,6 +124,7 @@
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡组阵营选择界面\CampSelectControl.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\Book\BookCompmentType.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Test\test.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\UI\NotifyBoard\NoticeCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Audio\AudioCommand.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Bullet\BulletModel.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Camera\CameraManager.cs" />
@@ -139,7 +140,7 @@
     <Compile Include="Assets\Script\2_BattleSenenScript\State\StateCommand.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Ai\AiCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardInspector\CardMenu.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\UI\Arrow\ArrowManager.cs" />
+    <Compile Include="Assets\Script\2_BattleSenenScript\UI\Arrow\ArrowManager.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\牌库组件\CardLibraryCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\NotifyBoard\NoticeControl.cs" />
     <Compile Include="Assets\Script\2_BattleSenenScript\Point\PointControl.cs" />
@@ -151,7 +152,6 @@
     <Compile Include="Assets\Script\9_MixedScene\Dialogue\DialogueCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Dialogue\Live2d\Live2dModelManager.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Dialogue\DialogueModel.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\UI\NotifyBoard\NotifyCommand.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡牌列表组件\CardListControl.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\收藏组件\CollectionCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Network\NetInfoModel.cs" />

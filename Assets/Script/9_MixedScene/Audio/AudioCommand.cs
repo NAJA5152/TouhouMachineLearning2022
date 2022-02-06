@@ -10,7 +10,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             for (int i = 0; i < Enum.GetValues(typeof(GameAudioType)).Length; i++)
             {
-                Info.AudioInfo.StaticClips[(GameAudioType)i] = Resources.Load<AudioClip>("Sound/" + ((GameEnum.GameAudioType)i).ToString());
+                Info.AudioInfo.StaticClips[(GameAudioType)i] = Resources.Load<AudioClip>("Sound/" + ((GameAudioType)i).ToString());
             }
         }
         public static async Task PlayAsync(GameAudioType type)

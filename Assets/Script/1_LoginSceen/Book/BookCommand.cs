@@ -44,8 +44,13 @@ namespace TouhouMachineLearningSummary.Command
                     Info.BookInfo.instance.coverModel.transform.localPosition = new Vector3(0, 0.08f, 0) + new Vector3(length * Mathf.Cos(Mathf.PI / 180 * angle), length * Mathf.Sin(Mathf.PI / 180 * angle));
                     Info.BookInfo.instance.coverModel.transform.eulerAngles = new Vector3(0, 0, angle);
                 });
-        public static void ActiveCompment(params BookCompmentType[] types)
+        public static async void ActiveCompment(params BookCompmentType[] types)
         {
+            await CustomThread.TimerAsync(0.2f, runAction: (process) => //在0.4秒内不断移动并降低透明度
+            {
+                Info.BookInfo.instance.UIComponent.GetComponent<CanvasGroup>().alpha = 1 - process;
+                Info.BookInfo.instance.UIComponent.transform.localPosition = new Vector3(50, 0, 0) * (process);
+            });
             Info.BookInfo.instance.singleModeSelectComponent.SetActive(false);
             Info.BookInfo.instance.multiplayerModeSelectComponent.SetActive(false);
             Info.BookInfo.instance.practiceComponent.SetActive(false);
@@ -80,17 +85,12 @@ namespace TouhouMachineLearningSummary.Command
                     case BookCompmentType.Config: targetUiComoinent = Info.BookInfo.instance.configComponent; break;
                     default: targetUiComoinent = null; break;
                 }
-                if (targetUiComoinent != null)
-                {
-                    targetUiComoinent.GetComponent<CanvasGroup>().alpha = 0;
-                    Vector3 point = targetUiComoinent.transform.position;
-                    targetUiComoinent.SetActive(true);
-                    _ = CustomThread.TimerAsync(0.2f, runAction: (process) => //在0.4秒内不断移动并降低透明度
-                    {
-                        targetUiComoinent.GetComponent<CanvasGroup>().alpha = process;
-                        targetUiComoinent.transform.position = point + new Vector3(-1, 0, 1) * (1 - process) * 0.05f;
-                    });
-                }
+                targetUiComoinent?.SetActive(true);
+            });
+            await CustomThread.TimerAsync(0.2f, runAction: (process) => //在0.4秒内不断移动并降低透明度
+            {
+                Info.BookInfo.instance.UIComponent.GetComponent<CanvasGroup>().alpha = process;
+                Info.BookInfo.instance.UIComponent.transform.localPosition = new Vector3(-50, 0, 0) * (1 - process);
             });
         }
         public static async void SimulateFilpPage(bool IsSimulateFilpPage, bool isRightToLeft = true)

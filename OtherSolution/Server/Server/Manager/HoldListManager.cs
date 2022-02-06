@@ -95,7 +95,7 @@ namespace Server
                             {
                                 successMatchList.Add(currentHoldInfo);
                                 successMatchList.Add(result.holdInfo);
-                                //RoomCommand.CreatRoom(currentHoldInfo, result.holdInfo);
+                                RoomManager.CreatRoom(mode,currentHoldInfo, result.holdInfo);
                                 Console.WriteLine($"成功配对目标{ currentHoldInfo.UserInfo.Account}-等级:{currentHoldInfo.Rank}-胜率：{(int)currentHoldInfo.WinRate}%" +
                                     $" ---- { result.holdInfo.UserInfo.Account}-等级:{result.holdInfo.Rank}-胜率：{(int)result.holdInfo.WinRate}%");
                             }

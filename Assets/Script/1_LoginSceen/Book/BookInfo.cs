@@ -19,6 +19,8 @@ namespace TouhouMachineLearningSummary.Info
         public GameObject fakePageModel;
 
         [Header("UI组件")]
+        public GameObject UIComponent;
+
         public GameObject singleModeSelectComponent;
         public GameObject multiplayerModeSelectComponent;
         public GameObject practiceComponent;

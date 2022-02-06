@@ -13,7 +13,7 @@ namespace TouhouMachineLearningSummary.Info
     {
         //全卡牌解锁的管理员账户
         public static bool IsAdmin = true;
-        public static bool cardListCanChange = false;
+        //public static bool cardListCanChange = false;
 
         [Header("卡组组件")]
         public GameObject _cardDeckNameModel;
@@ -35,12 +35,13 @@ namespace TouhouMachineLearningSummary.Info
         public static List<GameObject> deckCardModels = new List<GameObject>();
 
         public static Model.CardDeck tempDeck;
-        List<GameObject> ShowCardList;
+        //List<GameObject> ShowCardList;
         //获得指定卡组的去重并按品质排序后的列表
         public static List<int> distinctCardIds => tempDeck.CardIds
             .Distinct()
             .OrderBy(id => Manager.CardAssemblyManager.GetLastCardInfo(id).cardRank)
             .ThenByDescending(id => Manager.CardAssemblyManager.GetLastCardInfo(id).point)
+            .ThenByDescending(id=>id)
             .ToList();
 
 
@@ -54,6 +55,8 @@ namespace TouhouMachineLearningSummary.Info
 
         public static List<GameObject> libraryCardModels = new List<GameObject>();
         public static bool isEditDeckMode = true;
+        public static List<Model.CardModel> LibraryFilterCardList { get; set; }
+        /// ////////////////////////////////////////////////////////卡牌能力详情组件/////////////////////////////
         [Header("卡牌能力详情组件")]
         public GameObject _targetCardTexture;
         public GameObject _targetCardName;
@@ -64,15 +67,15 @@ namespace TouhouMachineLearningSummary.Info
         public static GameObject targetCardName;
         public static GameObject targetCardTag;
         public static GameObject targetCardAbility;
-        public static bool isCampIntroduction=false;
-        public static Camp focusCamp =  Camp.Neutral;
+        public static bool isCampIntroduction = false;
+        public static Camp focusCamp = Camp.Neutral;
         /// ////////////////////////////////////////////////////////阵营选择信息信息/////////////////////////////
 
         [Header("阵营组件")]
         public static List<GameObject> campCardModels = new List<GameObject>();
-        public static Camp targetCamp= Camp.Neutral;
-        public  GameObject campContent;
-        public  GameObject CampModel;
+        public static Camp targetCamp = Camp.Neutral;
+        public GameObject campContent;
+        public GameObject CampModel;
         public Texture2D TaoismTex;
         public Texture2D ShintoismTex;
         public Texture2D BuddhismTex;

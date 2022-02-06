@@ -201,7 +201,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             if (Command.MenuStateCommand.HasState(MenuState.CasualModeDeckSelect))//多人休闲模式
             {
-                targetAgainstMode = AgainstModeType.Practice;
+                targetAgainstMode = AgainstModeType.Casual;
                 sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
             }
             if (Command.MenuStateCommand.HasState(MenuState.RankModeDeckSelect))//多人天梯模式
