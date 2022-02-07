@@ -109,6 +109,7 @@ namespace TouhouMachineLearningSummary.Command
                                 break;
                             }
                         case NetAcyncType.RoundStartExchangeOver:
+                            Debug.LogError("交换卡牌完毕");
                             if (AgainstInfo.IsPlayer1)
                             {
                                 AgainstInfo.isPlayer2RoundStartExchangeOver = true;
