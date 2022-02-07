@@ -35,10 +35,10 @@
       "Name-En": "bigfairy"
     },
     "ability": {
-      "Ability-Ch": "治愈一个非金妖精单位并重新触发其部署效果"
+      "Ability-Ch": "部署:治愈一个非金妖精单位并重新触发其部署效果"
     },
     "describe": {
-      "Describe-Ch": ""
+      "Describe-Ch": "再，一起努力一下吧！"
     },
     "cardType": 0,
     "cardCamp": 0,
@@ -60,10 +60,10 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "摧毁场上所有点数最大的非金单位"
+      "Ability-Ch": "部署:摧毁场上所有点数最大的非金单位"
     },
     "describe": {
-      "Describe-Ch": ""
+      "Describe-Ch": "所有挡在我面前的都燃为灰烬吧！"
     },
     "cardType": 0,
     "cardCamp": 0,
@@ -85,7 +85,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "对场上所有最高的单位造成一点伤害，重复x+1次，x为两侧单位的活力值总和"
+      "Ability-Ch": "部署:对场上所有最高的单位造成一点伤害，重复x+1次(x为两侧单位的活力值总和)"
     },
     "describe": {
       "Describe-Ch": ""
@@ -110,7 +110,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "对一行最左侧个单位造成x+1点伤害，并向右侧依此递减，x为两侧单位的活力值总和"
+      "Ability-Ch": "部署:对一行最左侧个单位造成x+1点伤害，并向右侧依此递减(x为两侧单位的活力值总和)"
     },
     "describe": {
       "Describe-Ch": ""
@@ -135,7 +135,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "召唤月，星，活力（$Vitality）"
+      "Ability-Ch": "部署:设置自身活力为2,\n并召唤三月精*月，三月精*星\n被召唤时:设置自身活力为2"
     },
     "describe": {
       "Describe-Ch": ""
@@ -160,7 +160,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "召唤日，星，活力（$Vitality）"
+      "Ability-Ch": "部署:设置自身活力为2,\n并召唤三月精*日，三月精*星\n被召唤时:设置自身活力为2"
     },
     "describe": {
       "Describe-Ch": ""
@@ -185,7 +185,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "召唤日，月，活力（$Vitality）"
+      "Ability-Ch": "部署:设置自身活力为2,\n并召唤三月精*星，三月精*星\n被召唤时:设置自身活力为2"
     },
     "describe": {
       "Describe-Ch": ""
@@ -210,10 +210,10 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "锁定1+x个单位并给与2点伤害，x为两侧单位的活力值总和"
+      "Ability-Ch": "部署:锁定1+x个单位并给与2点伤害，x为两侧单位的活力值总和"
     },
     "describe": {
-      "Describe-Ch": ""
+      "Describe-Ch": "冻结吧！"
     },
     "cardType": 0,
     "cardCamp": 0,
@@ -235,10 +235,10 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "永久强化所有妖精牌的活力点数1"
+      "Ability-Ch": "部署:增加场上所有妖精牌1点活力"
     },
     "describe": {
-      "Describe-Ch": ""
+      "Describe-Ch": "春天来了哦！"
     },
     "cardType": 0,
     "cardCamp": 0,
@@ -260,10 +260,10 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "翻倍两个妖精单位的活力值"
+      "Ability-Ch": "部署:选择两个妖精单位并翻倍其活力"
     },
     "describe": {
-      "Describe-Ch": ""
+      "Describe-Ch": "陷入疯狂，激发你的活力吧！"
     },
     "cardType": 0,
     "cardCamp": 0,
@@ -285,7 +285,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "治愈一个妖精单位，活力（$Vitality）"
+      "Ability-Ch": "部署:治愈一个妖精单位，活力（$Vitality）"
     },
     "describe": {
       "Describe-Ch": ""
@@ -313,7 +313,7 @@
       "Ability-Ch": "重新打出一张非金妖精单位"
     },
     "describe": {
-      "Describe-Ch": ""
+      "Describe-Ch": "好可怕，快溜"
     },
     "cardType": 1,
     "cardCamp": 0,
@@ -397,6 +397,456 @@
     "cardDeployTerritory": 0,
     "ramification": 0,
     "imageUrl": "妖精的复生",
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "",
+    "series": "1",
+    "tag": "妖怪",
+    "point": 3,
+    "name": {
+      "Name-Ch": "鬼人正邪",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "己方每打出一个单位，在其部署效果生效前，选择场上一个单位与其战力互换"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 0,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "鬼人正邪",
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "",
+    "series": "1",
+    "tag": "妖怪",
+    "point": 3,
+    "name": {
+      "Name-Ch": "少名针妙丸",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "摧毁一个点数大于自身3倍的妖怪"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 1,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "少名针妙丸",
+    "isFinish": true
+  },
+  {
+    "cardID": 2,
+    "level": "",
+    "series": "1",
+    "tag": "妖怪",
+    "point": 8,
+    "name": {
+      "Name-Ch": "堀川雷鼓",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "部署，使与自身点数相同的所有非金单位与自身点数减半"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 1,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "堀川雷鼓",
+    "isFinish": true
+  },
+  {
+    "cardID": 3,
+    "level": "",
+    "series": "1",
+    "tag": "异变",
+    "point": 0,
+    "name": {
+      "Name-Ch": "天空的逆城",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "回合开始：场上所有单位阶级循环一轮"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 1,
+    "cardCamp": 0,
+    "cardRank": 1,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "天空的逆城",
+    "isFinish": true
+  },
+  {
+    "cardID": 4,
+    "level": "",
+    "series": null,
+    "tag": "妖怪",
+    "point": 2,
+    "name": {
+      "Name-Ch": "作弊的天邪鬼",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "部署：检索牌组中一张道具卡并打出"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 1,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "作弊的天邪鬼",
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "",
+    "series": "1",
+    "tag": "妖怪",
+    "point": 4,
+    "name": {
+      "Name-Ch": " 若鹭姬",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "暴躁：两侧单位受到伤害\n温顺：两侧单位受到增益"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 2,
+    "cardDeployRegion": 0,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": " 若鹭姬",
+    "isFinish": true
+  },
+  {
+    "cardID": 2,
+    "level": "",
+    "series": "1",
+    "tag": "妖怪",
+    "point": 4,
+    "name": {
+      "Name-Ch": "赤蛮奇",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "暴躁：在敌方同排两侧生成一个头，每回合对两侧单位造成1点伤害\n温顺：在我方同排两侧生成一个头，每回合对两侧单生成一点增益"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 2,
+    "cardDeployRegion": 1,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "赤蛮奇",
+    "isFinish": true
+  },
+  {
+    "cardID": 3,
+    "level": "",
+    "series": "1",
+    "tag": "妖怪",
+    "point": 4,
+    "name": {
+      "Name-Ch": "今泉影狼",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "暴躁：对方排所有目标获得一点伤害\n温顺：顺时针移动至下一排"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 2,
+    "cardDeployRegion": 2,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "今泉影狼",
+    "isFinish": true
+  },
+  {
+    "cardID": 4,
+    "level": "",
+    "series": "1",
+    "tag": "妖怪",
+    "point": 5,
+    "name": {
+      "Name-Ch": "九十九弁弁",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "令所有高于自身点数的单位点数减一"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 2,
+    "cardDeployRegion": 0,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "九十九弁弁",
+    "isFinish": true
+  },
+  {
+    "cardID": 5,
+    "level": "",
+    "series": "1",
+    "tag": "妖怪",
+    "point": 5,
+    "name": {
+      "Name-Ch": "九十九八桥",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "令所有低于自身点数的单位点数加一"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 2,
+    "cardDeployRegion": 0,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "九十九八桥",
+    "isFinish": true
+  },
+  {
+    "cardID": 6,
+    "level": "",
+    "series": "1",
+    "tag": "符卡",
+    "point": 5,
+    "name": {
+      "Name-Ch": "逆符「天下翻覆」",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "部署：逆转自身与场上点数最大的单位的点数"
+    },
+    "describe": {
+      "Describe-Ch": "此乃以下克上的奥义！"
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "逆符「天下翻覆」",
+    "isFinish": true
+  },
+  {
+    "cardID": 7,
+    "level": "",
+    "series": "1",
+    "tag": "特殊",
+    "point": 0,
+    "name": {
+      "Name-Ch": "草根妖怪网络",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "召唤一个草根妖怪"
+    },
+    "describe": {
+      "Describe-Ch": "姐妹们，来帮忙！"
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "草根妖怪网络",
+    "isFinish": true
+  },
+  {
+    "cardID": 8,
+    "level": "",
+    "series": "1",
+    "tag": "道具",
+    "point": 0,
+    "name": {
+      "Name-Ch": "万宝槌",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "对同排所有单位产生2点增益"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "万宝槌",
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "",
+    "series": "1",
+    "tag": "道具",
+    "point": 0,
+    "name": {
+      "Name-Ch": "替身地藏",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "重新打出一张铜色单位"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 1,
+    "cardCamp": 0,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "替身地藏",
+    "isFinish": true
+  },
+  {
+    "cardID": 2,
+    "level": "",
+    "series": "1",
+    "tag": "道具",
+    "point": 0,
+    "name": {
+      "Name-Ch": "万宝槌（仿制品）",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "把一个单位造成伤害使其点数为1"
+    },
+    "describe": {
+      "Describe-Ch": "虽然看着跟正品一样，但其实只是砸起来很痛的锤子"
+    },
+    "cardType": 1,
+    "cardCamp": 0,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "万宝槌（仿制品）",
+    "isFinish": true
+  },
+  {
+    "cardID": 3,
+    "level": "",
+    "series": "1",
+    "tag": "道具",
+    "point": 0,
+    "name": {
+      "Name-Ch": "亡灵的送行提灯",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "赋予一个单位延命1"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 1,
+    "cardCamp": 0,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "亡灵的送行提灯",
+    "isFinish": true
+  },
+  {
+    "cardID": 4,
+    "level": "",
+    "series": "1",
+    "tag": "道具",
+    "point": 0,
+    "name": {
+      "Name-Ch": "隙间的折叠伞",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "将一个单位移动至横向的另一排"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 1,
+    "cardCamp": 0,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "隙间的折叠伞",
+    "isFinish": true
+  },
+  {
+    "cardID": 5,
+    "level": "",
+    "series": "1",
+    "tag": "道具",
+    "point": 0,
+    "name": {
+      "Name-Ch": "闪避布",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "为一个单位添加隐身状态"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 1,
+    "cardCamp": 0,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "闪避布",
     "isFinish": true
   }
 ]
