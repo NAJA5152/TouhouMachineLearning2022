@@ -410,7 +410,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "己方每打出一个单位，在其部署效果生效前，选择场上一个单位与其战力互换"
+      "Ability-Ch": "每当己方打出并部署一个单位时，在其部署效果生效前，选择我方场上一个单位与其点数互换"
     },
     "describe": {
       "Describe-Ch": ""
@@ -435,7 +435,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "摧毁一个点数大于自身3倍的妖怪"
+      "Ability-Ch": "部署：摧毁一个点数大于自身3倍的妖怪"
     },
     "describe": {
       "Describe-Ch": ""
@@ -460,7 +460,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "部署，使与自身点数相同的所有非金单位与自身点数减半"
+      "Ability-Ch": "部署：使与自身点数相同的所有非金单位与自身点数减半，重复三次"
     },
     "describe": {
       "Describe-Ch": ""
