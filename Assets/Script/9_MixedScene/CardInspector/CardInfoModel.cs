@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using TouhouMachineLearningSummary.Command.CardLibrary;
 using TouhouMachineLearningSummary.Extension;
@@ -83,13 +84,19 @@ namespace TouhouMachineLearningSummary.Model
             a = name.ToList();
             if (isSingle)
             {
-                cardID = int.Parse($"1{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3,'0')}");
+                cardID = int.Parse($"1{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3, '0')}");
             }
             else
             {
                 cardID = int.Parse($"2{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3, '0')}");
             }
+            Debug.Log(cardID);
             icon = Resources.Load<Texture2D>("CardTex\\" + imageUrl);
+            if (icon == null)
+            {
+                icon = Resources.Load<Texture2D>("CardTex\\default");
+            }
+            //如果不存在该id对应脚本则自动创建
             return this;
         }
         [Button("打开脚本")]
@@ -99,6 +106,6 @@ namespace TouhouMachineLearningSummary.Model
             CardLibraryCommand.CreatScript(cardID);
             System.Diagnostics.Process.Start(targetPath);
         }
-        public Sprite GetCardSprite() =>icon.ToSprite();
+        public Sprite GetCardSprite() => icon.ToSprite();
     }
 }

@@ -70,18 +70,19 @@ namespace xls检测更新
             int multiRowCount = multiCards.Rows.Length;
             var multiRange = multiCards.Range;
             List<CardModelInfo> MultiCardList = new List<CardModelInfo>();
-            for (int i = 2; i <= singleRowCount; i++)
+            for (int i = 2; i <= multiRowCount; i++)
             {
                 MultiCardList.Add(new CardModelInfo(multiCards, i));
             }
+            Console.WriteLine(JsonConvert.SerializeObject(MultiCardList, Formatting.Indented));
+
             File.WriteAllText(direPath + @"\CardData-Multi.json", JsonConvert.SerializeObject(MultiCardList.Where(cardInfo => cardInfo.isFinish).ToList(), Formatting.Indented));
             //加载和储存游戏内文本的各种翻译
             var gameText = workbook.Worksheets["Game-Text"];
             int textColCount = gameText.Columns.Length;
             int textRowCount = gameText.Rows.Length;
-            //var textRange = gameText.Range;
             var textTranslate = new Dictionary<string, Dictionary<string, string>>();
-            for (int i = 2; i <= singleRowCount; i++)
+            for (int i = 2; i <= textRowCount; i++)
             {
                 Dictionary<string, string> singleTextTranslate = new Dictionary<string, string>();
                 for (int j = 1; j <= textColCount; j++)
@@ -90,7 +91,7 @@ namespace xls检测更新
                 }
                 textTranslate[gameText[i, 1].DisplayedText] = singleTextTranslate;
             }
-            Console.WriteLine(JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
+            //Console.WriteLine(JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
             File.WriteAllText(direPath + @"\Game-Text.json", JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
             Console.WriteLine("///////////////");
             //加载和储存游戏对话文本系统和各种翻译
@@ -128,7 +129,7 @@ namespace xls检测更新
                     }
                 }
             }
-            Console.WriteLine(JsonConvert.SerializeObject(dialogModels, Formatting.Indented));
+            //Console.WriteLine(JsonConvert.SerializeObject(dialogModels, Formatting.Indented));
             File.WriteAllText(direPath + @"\Story.json", JsonConvert.SerializeObject(dialogModels, Formatting.Indented));
             Console.WriteLine("///////////////");
         }

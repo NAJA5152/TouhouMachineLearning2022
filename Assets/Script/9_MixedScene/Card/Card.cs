@@ -155,6 +155,10 @@ namespace TouhouMachineLearningSummary.Model
                 await Command.CardCommand.Hurt(triggerInfo);
             })
            .AbilityAppend();
+            //当点数逆转时触发
+            AbalityRegister(TriggerTime.When, TriggerType.Reverse)
+            .AbilityAdd(async (triggerInfo) =>{await Command.CardCommand.Reversal(triggerInfo);})
+           .AbilityAppend();
             //登记卡牌回合状态变化时效果
             AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
             .AbilityAdd(async (triggerInfo) =>

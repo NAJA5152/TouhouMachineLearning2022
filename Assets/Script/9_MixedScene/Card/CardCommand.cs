@@ -159,6 +159,9 @@ namespace TouhouMachineLearningSummary.Command
             targetCard.isMoveStepOver = true;
             _ = AudioCommand.PlayAsync(GameAudioType.DrawCard);
         }
+
+
+
         public static async Task DeployCard(Card targetCard)
         {
             RemoveCard(targetCard);
@@ -292,6 +295,15 @@ namespace TouhouMachineLearningSummary.Command
             //悬浮伤害数字
             //await Manager.CardPointManager.CaretPointAsync(triggerInfo.targetCard, Mathf.Abs(triggerInfo.point), triggerInfo.point > 0 ? CardPointType.red : CardPointType.green);
             triggerInfo.targetCard.ChangePoint = Math.Max(triggerInfo.targetCard.ChangePoint - triggerInfo.point, 0);
+            await Task.Delay(1000);
+        }
+        //逆转
+        public static async Task Reversal(TriggerInfoModel triggerInfo)
+        {
+            int triggerCardPoint = triggerInfo.triggerCard.ShowPoint;
+            int targetCardPoint = triggerInfo.targetCard.ShowPoint;
+            triggerInfo.triggerCard.ChangePoint = targetCardPoint - triggerInfo.triggerCard.BasePoint;
+            triggerInfo.targetCard.ChangePoint = triggerCardPoint - triggerInfo.targetCard.BasePoint;
             await Task.Delay(1000);
         }
         public static async Task MoveToGrave(Card card, int Index = 0)

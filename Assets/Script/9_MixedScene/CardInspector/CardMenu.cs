@@ -24,7 +24,7 @@ namespace TouhouMachineLearningSummary.CardInspector
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(700, 700);
             if (!initialized)
             {
-                CardLibraryCommand.LoadFromCsv();
+                CardLibraryCommand.LoadFromJson();
                 initialized=true;
             }
         }

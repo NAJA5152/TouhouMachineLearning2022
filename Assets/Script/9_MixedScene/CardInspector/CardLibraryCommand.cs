@@ -60,7 +60,7 @@ namespace TouhouMachineLearningSummary.Command
                     }
                 }
             }
-            public static void LoadFromCsv()
+            public static void LoadFromJson()
             {
 
                 /////////////////////////////////////////////新版/////////////////////////////////////
@@ -74,6 +74,8 @@ namespace TouhouMachineLearningSummary.Command
                 GetLibraryInfo().multiModeCards.AddRange(multiData.ToObject<List<CardModel>>().Select(card => card.Init(false)));
                 Init();
                 Refresh();
+                GetLibraryInfo().singleModeCards.ForEach(card => CreatScript(card.cardID));
+                GetLibraryInfo().multiModeCards.ForEach(card => CreatScript(card.cardID));
             }
 
             public static void Refresh()
@@ -87,7 +89,7 @@ namespace TouhouMachineLearningSummary.Command
 
 
             //}
-            public static void ClearCsvData()
+            public static void ClearCardData()
             {
                 GetLibraryInfo().multiModeCards.Clear();
                 GetLibraryInfo().singleModeCards.Clear();
@@ -110,7 +112,19 @@ namespace TouhouMachineLearningSummary.Command
                 if (!File.Exists(targetPath))
                 {
                     string OriginPath = Application.dataPath + @"\Script\9_MixedScene\CardSpace\Card0.cs";
-                    string ScriptText = File.ReadAllText(OriginPath, System.Text.Encoding.GetEncoding("GB2312")).Replace("Card0", "Card" + cardId);
+                    string cardName = "";
+                    var single = GetLibraryInfo().singleModeCards.FirstOrDefault(card => card.cardID == cardId);
+                    var multi = GetLibraryInfo().multiModeCards.FirstOrDefault(card => card.cardID == cardId);
+                    if (single != null)
+                    {
+                        cardName = single.name["Name-Ch"];
+                    }
+                    if (multi != null)
+                    {
+                        cardName = multi.name["Name-Ch"];
+                    }
+
+                    string ScriptText = File.ReadAllText(OriginPath, System.Text.Encoding.GetEncoding("GB2312")).Replace("Card0", "Card" + cardId).Replace("卡牌生成模板", cardName);
                     File.Create(targetPath).Close();
                     File.WriteAllText(targetPath, ScriptText, System.Text.Encoding.GetEncoding("GB2312"));
 #if UNITY_EDITOR

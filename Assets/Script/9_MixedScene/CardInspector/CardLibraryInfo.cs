@@ -25,11 +25,11 @@ namespace TouhouMachineLearningSummary.Info
 
             [HorizontalGroup("Button", 120, LabelWidth = 70)]
             [Button("载入卡牌数据从表格")]
-            public void Load() => CardLibraryCommand.LoadFromCsv();
+            public void Load() => CardLibraryCommand.LoadFromJson();
 
             [HorizontalGroup("Button", 120, LabelWidth = 70)]
             [Button("清空卡牌数据")]
-            public void Clear() => CardLibraryCommand.ClearCsvData();
+            public void Clear() => CardLibraryCommand.ClearCardData();
 
             //[HorizontalGroup("Button", 120, LabelWidth = 70)]
             //[Button("保存卡牌数据到表格")]
@@ -51,7 +51,6 @@ namespace TouhouMachineLearningSummary.Info
             [ShowInInspector]
             public List<string> includeLevel => singleModeCards.Select(x => x.level).Distinct().ToList();
 
-            List<string> test = new List<string>() { "aa,bb" };
 
 
 
