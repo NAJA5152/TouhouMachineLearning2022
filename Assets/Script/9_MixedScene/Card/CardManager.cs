@@ -31,11 +31,11 @@ namespace TouhouMachineLearningSummary.Manager
                 NetCommand.AsyncInfo(NetAcyncType.FocusCard);
             }
         }
-        private void OnMouseDown() => _ = CardCommand.OnMouseDown(thisCard);
-        private void OnMouseUp() => _ = CardCommand.OnMouseUp(thisCard);
+        private void OnMouseDown() => CardCommand.OnMouseDown(thisCard);
+        private void OnMouseUp() => CardCommand.OnMouseUp(thisCard);
         private void OnMouseOver()
         {
-            if (Input.GetMouseButtonUp(1)&& thisCard.IsCanSee)
+            if (Input.GetMouseButtonUp(1) && thisCard.IsCanSee)
             {
                 cardAbilityBoardManager.LoadCardFromGameCard(gameObject);
             }

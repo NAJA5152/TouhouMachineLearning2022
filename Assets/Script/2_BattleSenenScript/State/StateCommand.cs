@@ -57,7 +57,7 @@ namespace TouhouMachineLearningSummary.Command
                      "NPC", "gezi", "yaya", "",
                     new List<CardDeck>
                     {
-                        new CardDeck("萌新的第一套卡组", 2000001, new List<int>
+                        new CardDeck("萌新的第一套卡组", 2010001, new List<int>
                          {
                              2001001,2001002,2001003,2001004,
                              2002001,2002002,2002003,2002004,2002005,2002006,

@@ -41,11 +41,11 @@ public class TouHouHub : Hub
     public List<AgainstSummary> DownloadOwnerAgentSummary(string playerName, int skipNum, int takeNum) => MongoDbCommand.QueryAgainstSummary(playerName, skipNum, takeNum);
     //下载所有的记录
     public List<AgainstSummary> DownloadAllAgentSummary(int skipNum, int takeNum) => MongoDbCommand.QueryAgainstSummary(skipNum, takeNum);
-    public void UpdateTurnOperation(string roomId, AgainstSummary.TurnOperation turnOperation) => RoomManager.GetRoom(roomId).Summary.AddTurnOperation(turnOperation);
-    public void UpdatePlayerOperation(string roomId, AgainstSummary.TurnOperation.PlayerOperation playerOperation) => RoomManager.GetRoom(roomId).Summary.AddPlayerOperation(playerOperation);
-    public void UpdateSelectOperation(string roomId, AgainstSummary.TurnOperation.SelectOperation selectOperation) => RoomManager.GetRoom(roomId).Summary.AddSelectOperation(selectOperation);
-    public void UploadStartPoint(string roomId, int relativePoint) => RoomManager.GetRoom(roomId).Summary.AddStartPoint(relativePoint);
-    public void UploadEndPoint(string roomId, int relativePoint) => RoomManager.GetRoom(roomId).Summary.AddEndPoint(relativePoint);
+    public void UpdateTurnOperation(string roomId, AgainstSummary.TurnOperation turnOperation) => RoomManager.GetRoom(roomId)?.Summary.AddTurnOperation(turnOperation);
+    public void UpdatePlayerOperation(string roomId, AgainstSummary.TurnOperation.PlayerOperation playerOperation) => RoomManager.GetRoom(roomId)?.Summary.AddPlayerOperation(playerOperation);
+    public void UpdateSelectOperation(string roomId, AgainstSummary.TurnOperation.SelectOperation selectOperation) => RoomManager.GetRoom(roomId)?.Summary.AddSelectOperation(selectOperation);
+    public void UploadStartPoint(string roomId, int relativePoint) => RoomManager.GetRoom(roomId)?.Summary.AddStartPoint(relativePoint);
+    public void UploadEndPoint(string roomId, int relativePoint) => RoomManager.GetRoom(roomId)?.Summary.AddEndPoint(relativePoint);
     public void UploadSurrender(string roomId, int surrenddrState) => RoomManager.GetRoom(roomId)?.Summary.AddSurrender(surrenddrState);
     //////////////////////////////////////////////卡牌配置////////////////////////////////////////////////////////////////////
     //查询最新版本

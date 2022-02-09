@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
@@ -14,14 +16,14 @@ namespace TouhouMachineLearningSummary.Command
     //具体实现，还需进一步简化
     public static class CardCommand
     {
-        internal static async Task OnMouseDown(Card thisCard)
+        internal static void OnMouseDown(Card thisCard)
         {
             if (thisCard.isPrepareToPlay)
             {
                 AgainstInfo.playerPrePlayCard = thisCard;
             }
         }
-        public static async Task OnMouseUp(Card thisCard)
+        public static void OnMouseUp(Card thisCard)
         {
             if (AgainstInfo.playerPrePlayCard != null)
             {
@@ -60,7 +62,16 @@ namespace TouhouMachineLearningSummary.Command
             newCard.SetActive(true);
             newCard.name = "Card" + Info.CardInfo.CreatCardRank++;
             //Debug.Log("创建卡牌"+id);
-            newCard.AddComponent(Manager.CardAssemblyManager.GetCardScript(id));
+
+
+#if UNITY_EDITOR
+            Type componentType = Assembly.Load(File.ReadAllBytes(@"Library\ScriptAssemblies\GameCard.dll")).GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
+            newCard.AddComponent(componentType);
+
+#else
+               newCard.AddComponent(Manager.CardAssemblyManager.GetCardScript(id));
+#endif
+
             Card card = newCard.GetComponent<Card>();
             var CardStandardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(id);
             card.CardID = CardStandardInfo.cardID;
