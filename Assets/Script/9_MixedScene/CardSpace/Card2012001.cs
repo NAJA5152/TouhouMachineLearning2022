@@ -26,11 +26,15 @@ namespace TouhouMachineLearningSummary.CardSpace
               .AbilityAdd(async (triggerInfo) => { 
                   if (triggerInfo.targetState== CardState.Furor)
                   {
+                      UnityEngine.Debug.Log("狂躁");
+
                       //狂躁效果
                   }
                   if (triggerInfo.targetState == CardState.Docile)
                   {
                       //温顺效果
+                      UnityEngine.Debug.Log("温顺");
+
                   }
               },Condition.Default)
               .AbilityAppend();

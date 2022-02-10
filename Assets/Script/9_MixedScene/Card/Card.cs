@@ -132,10 +132,9 @@ namespace TouhouMachineLearningSummary.Model
             .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.SummonCard(this); })
             .AbilityAppend();
             //当设置点数时，修改变更点数值
-            AbalityRegister(TriggerTime.When, TriggerType.Gain)
+            AbalityRegister(TriggerTime.When, TriggerType.Set)
             .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Set(triggerInfo); })
             .AbilityAppend();
-           
             //当获得增益时获得点数增加
             AbalityRegister(TriggerTime.When, TriggerType.Gain)
             .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Gain(triggerInfo); })

@@ -319,10 +319,10 @@ namespace TouhouMachineLearningSummary.Command
         {
             int triggerCardPoint = triggerInfo.triggerCard.ShowPoint;
             int targetCardPoint = triggerInfo.targetCard.ShowPoint;
-            _ = GameSystem.PointSystem.Set(new TriggerInfoModel(triggerInfo.triggerCard, triggerInfo.targetCard).SetPoint(targetCardPoint));
-            _ = GameSystem.PointSystem.Set(new TriggerInfoModel(triggerInfo.targetCard, triggerInfo.triggerCard).SetPoint(triggerCardPoint));
+            _ = GameSystem.PointSystem.Set(new TriggerInfoModel(triggerInfo.triggerCard, triggerInfo.targetCard).SetPoint(triggerCardPoint));
+            _ = GameSystem.PointSystem.Set(new TriggerInfoModel(triggerInfo.targetCard, triggerInfo.triggerCard).SetPoint(targetCardPoint));
            
-            triggerInfo.targetCard.ChangePoint = triggerCardPoint - triggerInfo.targetCard.BasePoint;
+            //triggerInfo.targetCard.ChangePoint = triggerCardPoint - triggerInfo.targetCard.BasePoint;
             await Task.Delay(1000);
         }
         public static async Task MoveToGrave(Card card, int Index = 0)
