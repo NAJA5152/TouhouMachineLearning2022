@@ -17,6 +17,7 @@ namespace TouhouMachineLearningSummary.Info
         public static bool isTrainMode = true;//训练加速模式，所有等待设为0
         public static bool isReplayMode = false;//回放模式，会加载指定对战记录读取操作
         public static bool isJumpMode = false;//跳转到指定回合模式
+        public static VariationType VariationType =  VariationType.None;//默认为无异变模式
         public static bool isShouldUploadSummaryOperation => !isReplayMode && ((IsPVP && IsMyTurn) || IsPVE);//是否处于应该上传对战记录操作状态,回放模式不上传，单人模式客户端双方均上传记录，多人模式由双方在客户端主体方上传记录
         /// <summary>
         /// 玩家线上人物信息

@@ -53,6 +53,7 @@ namespace TouhouMachineLearningSummary.Command
                 //初始化网络系统，用于获取指定版本卡牌信息
                 await Command.NetCommand.Init();
                 await Manager.CardAssemblyManager.SetCurrentAssembly("");
+                AgainstInfo.IsMyTurn = true;
                 AgainstInfo.currentUserInfo = new PlayerInfo(
                      "NPC", "gezi", "yaya", "",
                     new List<CardDeck>

@@ -131,13 +131,28 @@ namespace TouhouMachineLearningSummary.Model
             AbalityRegister(TriggerTime.When, TriggerType.Summon)
             .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.SummonCard(this); })
             .AbilityAppend();
+            //当设置点数时，修改变更点数值
+            AbalityRegister(TriggerTime.When, TriggerType.Gain)
+            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Set(triggerInfo); })
+            .AbilityAppend();
+           
             //当获得增益时获得点数增加
             AbalityRegister(TriggerTime.When, TriggerType.Gain)
             .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Gain(triggerInfo); })
             .AbilityAppend();
             //默认受伤效果：当卡牌受到伤害时则会受到伤害，当卡牌死亡时，触发卡牌死亡机制
             AbalityRegister(TriggerTime.When, TriggerType.Hurt)
-            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Hurt(triggerInfo); })
+            .AbilityAdd(async (triggerInfo) =>
+            {
+                if (this[cardState: CardState.Congealbounds])
+                {
+                    await GameSystem.StateSystem.ClearState(new TriggerInfoModel(triggerInfo.triggerCard, this));
+                }
+                else
+                {
+                    await Command.CardCommand.Hurt(triggerInfo);
+                }
+            })
             .AbilityAppend();
             //当治愈时
             AbalityRegister(TriggerTime.When, TriggerType.Cure)
@@ -157,7 +172,7 @@ namespace TouhouMachineLearningSummary.Model
            .AbilityAppend();
             //当点数逆转时触发
             AbalityRegister(TriggerTime.When, TriggerType.Reverse)
-            .AbilityAdd(async (triggerInfo) =>{await Command.CardCommand.Reversal(triggerInfo);})
+            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Reversal(triggerInfo); })
            .AbilityAppend();
             //登记卡牌回合状态变化时效果
             AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
@@ -309,7 +324,7 @@ namespace TouhouMachineLearningSummary.Model
                 }
                 else if (i < cardFields.Count)
                 {
-                    FieldIconContent.GetChild(i).GetComponent<Image>().sprite= Resources.Load<Sprite>("FieldAndState\\" + cardFields.ToList()[i].Key.ToString());
+                    FieldIconContent.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>("FieldAndState\\" + cardFields.ToList()[i].Key.ToString());
                     FieldIconContent.GetChild(i).GetChild(0).GetComponent<Text>().text = cardFields.ToList()[i].Value.ToString();
                     FieldIconContent.GetChild(i).gameObject.SetActive(true);
                 }

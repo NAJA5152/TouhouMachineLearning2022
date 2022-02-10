@@ -5,7 +5,7 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// ¿¨ÅÆÃû³Æ:¿¨ÅÆÉú³ÉÄ£°å
+    /// ¿¨ÅÆÃû³Æ:Â¶ÄÈ
     /// </summary>
     public class Card1001003 : Card
     {
@@ -17,8 +17,8 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
-               }, Condition.Default)
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this,this));
+               })
                .AbilityAppend();
         }
     }

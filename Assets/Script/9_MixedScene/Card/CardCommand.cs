@@ -292,7 +292,13 @@ namespace TouhouMachineLearningSummary.Command
         {
             card.transform.GetChild(2).gameObject.SetActive(false);
         }
-
+        public static async Task Set(TriggerInfoModel triggerInfo)
+        {
+            await BulletCommand.InitBulletAsync(triggerInfo);
+            await Task.Delay(1000);
+            triggerInfo.targetCard.ChangePoint = triggerInfo.point - triggerInfo.targetCard.BasePoint;
+            await Task.Delay(1000);
+        }
         public static async Task Gain(TriggerInfoModel triggerInfo)
         {
             await BulletCommand.InitBulletAsync(triggerInfo);
@@ -313,7 +319,9 @@ namespace TouhouMachineLearningSummary.Command
         {
             int triggerCardPoint = triggerInfo.triggerCard.ShowPoint;
             int targetCardPoint = triggerInfo.targetCard.ShowPoint;
-            triggerInfo.triggerCard.ChangePoint = targetCardPoint - triggerInfo.triggerCard.BasePoint;
+            _ = GameSystem.PointSystem.Set(new TriggerInfoModel(triggerInfo.triggerCard, triggerInfo.targetCard).SetPoint(targetCardPoint));
+            _ = GameSystem.PointSystem.Set(new TriggerInfoModel(triggerInfo.targetCard, triggerInfo.triggerCard).SetPoint(triggerCardPoint));
+           
             triggerInfo.targetCard.ChangePoint = triggerCardPoint - triggerInfo.targetCard.BasePoint;
             await Task.Delay(1000);
         }

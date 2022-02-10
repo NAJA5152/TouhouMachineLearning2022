@@ -1,9 +1,12 @@
-using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Info;
+using System.Linq;
+using System.Collections.Generic;
 using TouhouMachineLearningSummary.Model;
-
+using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
+    /// <summary>
+    /// 卡牌名称:板烧琪露诺
+    /// </summary>
     public class Card1000001 : Card
     {
         public override void Init()
@@ -11,16 +14,11 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async triggerInfo =>
+               .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
-               }, Condition.Default)
-                .AbilityAdd(async triggerInfo =>
-                {
-                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                    await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
-                }, Condition.Default)
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this,this));
+               })
                .AbilityAppend();
         }
     }

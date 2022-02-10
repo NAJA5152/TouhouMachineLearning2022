@@ -16,6 +16,8 @@ namespace TouhouMachineLearningSummary.GameSystem
     /// </summary>
     public class PointSystem
     {
+        //设置
+        public static async Task Set(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Set]);
         //增益
         public static async Task Gain(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Gain]);
         //伤害
@@ -117,6 +119,20 @@ namespace TouhouMachineLearningSummary.GameSystem
         public static async Task ChangeField(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.FieldChange]);
     }
     /// <summary>
+    /// 异变系统
+    /// </summary>
+    public class VariationSystem
+    {
+        /// <summary>
+        /// 设置当前异变情况
+        /// </summary>
+        public static async Task SetVariation(VariationType variationType) => Info.AgainstInfo.VariationType = variationType;
+        /// <summary>
+        /// 清空当前异变
+        /// </summary>
+        public static async Task ClearVariation(VariationType variationType) => Info.AgainstInfo.VariationType= VariationType.None;
+    }
+    /// <summary>
     /// 选择单位、区域、场景属性的相关机制
     /// </summary>
     public class SelectSystem
@@ -159,6 +175,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         public static List<Card> SelectUnits => AgainstInfo.SelectUnits;
         public static int SelectRowRank => AgainstInfo.SelectRowRank;
         public static List<Card> SelectRowCardList => AgainstInfo.SelectRowCardList;
+        public static List<int> SelectBoardCardRanks => AgainstInfo.selectBoardCardRanks;
         public static int SelectLocation => AgainstInfo.SelectRank;
         public static int GetField(Card card, CardField cardField) => card[cardField];
         public static int GetTwoSideField(Card card, CardField cardField) => (card.LeftCard == null || card.LeftCard[CardState.Seal] ? 0 : card.LeftCard[cardField]) + (card.RightCard == null || card.RightCard[CardState.Seal] ? 0 : card.RightCard[cardField]);

@@ -55,6 +55,10 @@ namespace TouhouMachineLearningSummary.GameEnum
         Summon,
         ////////////////////////////////////////////////点数/////////////////////////////////////////
         /// <summary>
+        /// 设置
+        /// </summary>
+        Set,
+        /// <summary>
         /// 增益
         /// </summary>
         Gain,
@@ -107,6 +111,7 @@ namespace TouhouMachineLearningSummary.GameEnum
     }
     public enum CardState
     {
+        None,
         Seal,//封印
         Invisibility,//隐身
         Pry,//窥探
@@ -123,9 +128,11 @@ namespace TouhouMachineLearningSummary.GameEnum
         Wind,//风
         Soil,//土
         Hold, //驻守
+        Congealbounds//结界
     }
     public enum CardField
     {
+        None,
         Timer,//计时
         Vitality,//活力
         Apothanasia,//延命
@@ -133,6 +140,13 @@ namespace TouhouMachineLearningSummary.GameEnum
         Energy,//能量
         Shield,//护盾
     }
+    //异变类型
+    public enum VariationType
+    {
+        None,
+        Reverse,
+    }
+
     public enum Camp
     {
         Neutral,
@@ -187,10 +201,13 @@ namespace TouhouMachineLearningSummary.GameEnum
     }
     public enum CardTag
     {
+        SpellCard,
+        Variation,
         Machine,
         Fairy,
         Object,
-        SpellCard
+        Tool,
+       
     }
     public enum Orientation
     {
