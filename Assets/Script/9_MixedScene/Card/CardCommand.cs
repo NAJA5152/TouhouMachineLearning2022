@@ -309,9 +309,11 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task Hurt(TriggerInfoModel triggerInfo)
         {
             await BulletCommand.InitBulletAsync(triggerInfo);
+            //抵消护盾
             //悬浮伤害数字
             //await Manager.CardPointManager.CaretPointAsync(triggerInfo.targetCard, Mathf.Abs(triggerInfo.point), triggerInfo.point > 0 ? CardPointType.red : CardPointType.green);
-            triggerInfo.targetCard.ChangePoint = Math.Max(triggerInfo.targetCard.ChangePoint - triggerInfo.point, 0);
+            //triggerInfo.targetCard.ChangePoint = Math.Max(triggerInfo.targetCard.ChangePoint - triggerInfo.point, 0);
+            triggerInfo.targetCard.ChangePoint = Math.Max(triggerInfo.targetCard.ChangePoint - triggerInfo.point, -triggerInfo.targetCard.BasePoint);
             await Task.Delay(1000);
         }
         //逆转
@@ -321,8 +323,6 @@ namespace TouhouMachineLearningSummary.Command
             int targetCardPoint = triggerInfo.targetCard.ShowPoint;
             _ = GameSystem.PointSystem.Set(new TriggerInfoModel(triggerInfo.triggerCard, triggerInfo.targetCard).SetPoint(triggerCardPoint));
             _ = GameSystem.PointSystem.Set(new TriggerInfoModel(triggerInfo.targetCard, triggerInfo.triggerCard).SetPoint(targetCardPoint));
-           
-            //triggerInfo.targetCard.ChangePoint = triggerCardPoint - triggerInfo.targetCard.BasePoint;
             await Task.Delay(1000);
         }
         public static async Task MoveToGrave(Card card, int Index = 0)

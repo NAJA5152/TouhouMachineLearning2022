@@ -143,12 +143,20 @@ namespace TouhouMachineLearningSummary.Model
             AbalityRegister(TriggerTime.When, TriggerType.Hurt)
             .AbilityAdd(async (triggerInfo) =>
             {
-                if (this[cardState: CardState.Congealbounds])
+                if (this[CardState.Congealbounds])
                 {
                     await GameSystem.StateSystem.ClearState(new TriggerInfoModel(triggerInfo.triggerCard, this));
                 }
                 else
+                else
                 {
+                    if (this[CardField.Shield] > 0)
+                    {
+                        //计算剩余盾量
+                       var shieldPoint= this[CardField.Shield] - triggerInfo.point;
+                        //计算剩余盾量
+                        triggerInfo.point = triggerInfo.point- this[CardField.Shield];
+                    }
                     await Command.CardCommand.Hurt(triggerInfo);
                 }
             })
