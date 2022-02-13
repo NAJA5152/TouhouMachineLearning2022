@@ -148,7 +148,6 @@ namespace TouhouMachineLearningSummary.Model
                     await GameSystem.StateSystem.ClearState(new TriggerInfoModel(triggerInfo.triggerCard, this));
                 }
                 else
-                else
                 {
                     if (this[CardField.Shield] > 0)
                     {
