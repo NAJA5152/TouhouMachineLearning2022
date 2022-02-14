@@ -1,7 +1,9 @@
-﻿using TouhouMachineLearningSummary.Command;
+﻿using Sirenix.OdinInspector;
+using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
+using TouhouMachineLearningSummary.Thread;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -71,9 +73,21 @@ namespace TouhouMachineLearningSummary.Manager
             Destroy(gameObject);
         }
         //弹出状态变动提示
-        public void ShowTips(string text, Color color)
+        [Button]
+        public async void ShowTips(string text, Color color)
         {
-            
+            cardTips.GetComponent<Text>().text = text;
+            cardTips.GetComponent<Text>().color = color;
+
+            await CustomThread.TimerAsync(0.2f, runAction: (process) => //在0.4秒内不断移动并降低透明度
+            {
+                cardTips.GetComponent<CanvasGroup>().alpha = process;
+                cardTips.transform.localPosition = new Vector3(0, 0, -1 - process * 30);
+            });
+            await CustomThread.TimerAsync(0.2f, runAction: (process) => //在0.4秒内不断移动并降低透明度
+            {
+                cardTips.GetComponent<CanvasGroup>().alpha = 1 - process;
+            });
         }
         //弹出伤害变动提示
         public void ShowTips(int point, Color color)
