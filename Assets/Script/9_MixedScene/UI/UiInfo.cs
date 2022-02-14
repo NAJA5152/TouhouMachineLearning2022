@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace TouhouMachineLearningSummary.Info.GameUI
+namespace TouhouMachineLearningSummary.Info
 {
     public class UiInfo : MonoBehaviour
     {

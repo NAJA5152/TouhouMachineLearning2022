@@ -73,7 +73,7 @@ namespace TouhouMachineLearningSummary.Command
                     {
                         if (command.StartsWith("rename"))
                         {
-                            await Command.GameUI.NoticeCommand.ShowAsync("请输入你的名字", NotifyBoardMode.Input, inputAction: async (name) =>
+                            await NoticeCommand.ShowAsync("请输入你的名字", NotifyBoardMode.Input, inputAction: async (name) =>
                             {
                                 await Info.AgainstInfo.onlineUserInfo.UpdateName(name);
                                 //await Info.AgainstInfo.onlineUserInfo.UpdateUserStateAsync(0, 1);

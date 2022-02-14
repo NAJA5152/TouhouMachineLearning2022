@@ -4,6 +4,8 @@ using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Thread;
 using TouhouMachineLearningSummary.GameEnum;
 using UnityEngine;
+using TouhouMachineLearningSummary.Info;
+
 namespace TouhouMachineLearningSummary.Command
 {
     public partial class BookCommand : MonoBehaviour
@@ -14,7 +16,7 @@ namespace TouhouMachineLearningSummary.Command
         /// <returns></returns>
         public static async Task InitAsync(bool isAleardyLogin)
         {
-            Info.GameUI.UiInfo.loginCanvas.SetActive(!isAleardyLogin);
+            UiInfo.loginCanvas.SetActive(!isAleardyLogin);
             Info.BookInfo.instance.coverModel.transform.position = new Vector3(0.5f, 0.08f, 0);
             Info.BookInfo.instance.coverModel.transform.eulerAngles = Vector3.zero;
             ActiveCompment();
@@ -28,7 +30,7 @@ namespace TouhouMachineLearningSummary.Command
         /// <returns></returns>
         public static async Task InitToOpenStateAsync()
         {
-            Info.GameUI.UiInfo.loginCanvas.SetActive(false);
+            UiInfo.loginCanvas.SetActive(false);
             await SetCoverStateAsync(true);
             ActiveCompment();
             Command.MenuStateCommand.ChangeToMainPage(MenuState.Single);

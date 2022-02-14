@@ -5,7 +5,9 @@ using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using UnityEngine;
 using UnityEngine.UI;
-namespace TouhouMachineLearningSummary.Command.GameUI
+using TouhouMachineLearningSummary.Info;
+
+namespace TouhouMachineLearningSummary.Command
 {
     public class NoticeCommand : MonoBehaviour
     {
@@ -14,8 +16,8 @@ namespace TouhouMachineLearningSummary.Command.GameUI
         static Func<Task> responseAction;
         static Func<string, Task> inputAction;
 
-        static Image image => Info.GameUI.UiInfo.Notice.transform.GetComponent<Image>();
-        static Transform noticeTransform => Info.GameUI.UiInfo.Notice.transform;
+        static Image image => UiInfo.Notice.transform.GetComponent<Image>();
+        static Transform noticeTransform => UiInfo.Notice.transform;
         static Text noticeText => noticeTransform.GetChild(1).GetComponent<Text>();
         static Transform okButton => noticeTransform.GetChild(2);
         static Transform cancelButton => noticeTransform.GetChild(3);
@@ -24,7 +26,7 @@ namespace TouhouMachineLearningSummary.Command.GameUI
         static bool isShowOver = true;
         public static async Task OkAsync()
         {
-            _ = Command.AudioCommand.PlayAsync(GameEnum.GameAudioType.UiButton);
+            _ = AudioCommand.PlayAsync(GameAudioType.UiButton);
             await CloseAsync();
             await Task.Delay(1000);
             if (okAction != null)
@@ -37,7 +39,7 @@ namespace TouhouMachineLearningSummary.Command.GameUI
 
         public static async Task CancaelAsync()
         {
-            _ = Command.AudioCommand.PlayAsync(GameEnum.GameAudioType.UiButton);
+            _ = AudioCommand.PlayAsync(GameAudioType.UiButton);
             await CloseAsync();
             await Task.Delay(1000);
             if (cancelAction != null)
@@ -56,7 +58,7 @@ namespace TouhouMachineLearningSummary.Command.GameUI
                 await Task.Delay(100);
             }
             //进入房间成功后
-            _ = Command.AudioCommand.PlayAsync(GameEnum.GameAudioType.UiButton);
+            _ = AudioCommand.PlayAsync(GameAudioType.UiButton);
             await CloseAsync();
             await Task.Delay(1000);
             if (cancelAction != null)
@@ -99,7 +101,7 @@ namespace TouhouMachineLearningSummary.Command.GameUI
             NoticeCommand.inputAction = inputAction;
             Color color = image.color;
             noticeText.text = text;
-            Info.GameUI.UiInfo.Notice.SetActive(true);
+            UiInfo.Notice.SetActive(true);
             okButton.gameObject.SetActive(false);
             cancelButton.gameObject.SetActive(false);
             inputlButton.gameObject.SetActive(false);
@@ -139,7 +141,7 @@ namespace TouhouMachineLearningSummary.Command.GameUI
                 noticeTransform.localScale = new Vector3(1, process, 1);
                 image.color = color.SetA(process);
             });
-            if (responseAction!=null)
+            if (responseAction != null)
             {
                 await responseAction();
             }
@@ -151,12 +153,12 @@ namespace TouhouMachineLearningSummary.Command.GameUI
         public static async Task CloseAsync()
         {
             Color color = image.color;
-            await CustomThread.TimerAsync(0.3f,runAction: process =>
-                 {
-                     noticeTransform.localScale = new Vector3(1, 1 - process, 1);
-                     image.color = color.SetA(1 - process);
-                 });
-            Info.GameUI.UiInfo.Notice.SetActive(false);
+            await CustomThread.TimerAsync(0.3f, runAction: process =>
+                  {
+                      noticeTransform.localScale = new Vector3(1, 1 - process, 1);
+                      image.color = color.SetA(1 - process);
+                  });
+            UiInfo.Notice.SetActive(false);
         }
     }
 }

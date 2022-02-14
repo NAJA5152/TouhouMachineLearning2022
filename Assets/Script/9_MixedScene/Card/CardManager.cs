@@ -4,17 +4,18 @@ using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace TouhouMachineLearningSummary.Manager
 {
     public class CardManager : MonoBehaviour
     {
-        public CardAbilityBoardManager cardAbilityBoardManager;
         int gap_step = 0;
         Card thisCard => GetComponent<Card>();
         GameObject gap => transform.GetChild(1).gameObject;
         Material gapMaterial => gap.GetComponent<Renderer>().material;
         Material cardMaterial => GetComponent<Renderer>().material;
+        public GameObject cardTips;
         private void OnMouseEnter()
         {
             if (!EventSystem.current.IsPointerOverGameObject())
@@ -37,7 +38,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             if (Input.GetMouseButtonUp(1) && thisCard.IsCanSee)
             {
-                cardAbilityBoardManager.LoadCardFromGameCard(gameObject);
+                CardAbilityBoardManager.Manager.LoadCardFromGameCard(gameObject);
             }
         }
         private void Update()
@@ -68,6 +69,16 @@ namespace TouhouMachineLearningSummary.Manager
             gap.SetActive(false);
             gap_step = 0;
             Destroy(gameObject);
+        }
+        //弹出状态变动提示
+        public void ShowTips(string text, Color color)
+        {
+            
+        }
+        //弹出伤害变动提示
+        public void ShowTips(int point, Color color)
+        {
+
         }
     }
 }

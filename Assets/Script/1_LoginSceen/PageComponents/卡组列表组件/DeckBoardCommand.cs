@@ -114,7 +114,7 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static void DeleteDeck()
         {
-            _ = Command.GameUI.NoticeCommand.ShowAsync("删除卡组", NotifyBoardMode.Ok_Cancel, okAction: async () =>
+            _ = NoticeCommand.ShowAsync("删除卡组", NotifyBoardMode.Ok_Cancel, okAction: async () =>
             {
                 if (Info.AgainstInfo.onlineUserInfo.Decks.Count > 1)
                 {
@@ -127,14 +127,14 @@ namespace TouhouMachineLearningSummary.Command
                 }
                 else
                 {
-                    await Command.GameUI.NoticeCommand.ShowAsync("请至少保留一个卡组", NotifyBoardMode.Ok);
+                    await NoticeCommand.ShowAsync("请至少保留一个卡组", NotifyBoardMode.Ok);
                 }
 
             });
         }
         public static void RenameDeck()
         {
-            _ = Command.GameUI.NoticeCommand.ShowAsync("重命名卡牌", NotifyBoardMode.Input, inputAction: async (text) =>
+            _ = NoticeCommand.ShowAsync("重命名卡牌", NotifyBoardMode.Input, inputAction: async (text) =>
             {
                 Debug.Log("重命名卡组为" + text);
                 Info.AgainstInfo.onlineUserInfo.UseDeck.DeckName = text;
@@ -219,7 +219,7 @@ namespace TouhouMachineLearningSummary.Command
                 sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
             }
 
-            _ = Command.GameUI.NoticeCommand.ShowAsync("少女排队中~", NotifyBoardMode.Cancel, cancelAction: async () =>
+            _ = NoticeCommand.ShowAsync("少女排队中~", NotifyBoardMode.Cancel, cancelAction: async () =>
             {
                 Command.BookCommand.SimulateFilpPage(false);//开始翻书
                 await Task.Delay(2000);

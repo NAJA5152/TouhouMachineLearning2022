@@ -30,10 +30,11 @@ namespace TouhouMachineLearningSummary.Manager
         public Text IntroductionText => transform.GetChild(0).GetChild(1).GetChild(4).GetChild(1).GetComponent<Text>();
         public RectTransform AbilityBackground => transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
         public RectTransform IntroductionBackground => transform.GetChild(0).GetChild(1).GetComponent<RectTransform>();
-
+        public static CardAbilityBoardManager Manager { get; set; }
+        private void Awake() => Manager = this;
         public void Show() => transform.GetChild(0).gameObject.SetActive(true);
         public void Close() => transform.GetChild(0).gameObject.SetActive(false);
-        
+
         public void LoadCardsIdsFromCardList(GameObject cardModel)
         {
             CurrentLoadType = LoadType.FromCardList;
@@ -61,7 +62,7 @@ namespace TouhouMachineLearningSummary.Manager
             switch (CurrentLoadType)
             {
                 case LoadType.FromLibrary:
-                    currentRank = Mathf.Max(0, currentRank-1);
+                    currentRank = Mathf.Max(0, currentRank - 1);
                     ChangeIntroduction(Info.CardCompnentInfo.LibraryFilterCardList[currentRank].cardID);
                     break;
                 case LoadType.FromCardList:
@@ -81,7 +82,7 @@ namespace TouhouMachineLearningSummary.Manager
             switch (CurrentLoadType)
             {
                 case LoadType.FromLibrary:
-                    currentRank = Mathf.Min(Info.CardCompnentInfo.LibraryFilterCardList.Count-1, currentRank + 1);
+                    currentRank = Mathf.Min(Info.CardCompnentInfo.LibraryFilterCardList.Count - 1, currentRank + 1);
                     ChangeIntroduction(Info.CardCompnentInfo.LibraryFilterCardList[currentRank].cardID);
                     break;
                 case LoadType.FromCardList:

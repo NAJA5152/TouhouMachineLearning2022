@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Threading.Tasks;
+using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
+using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.UI;
@@ -46,7 +48,7 @@ namespace TouhouMachineLearningSummary.Control
                 {
                     case (1)://如果当前状态为登录前，则关闭程序
                         {
-                            _ = Command.GameUI.NoticeCommand.ShowAsync("退出游戏？",
+                            _ = NoticeCommand.ShowAsync("退出游戏？",
                             okAction: async () =>
                             {
                                 Application.Quit();
@@ -55,7 +57,7 @@ namespace TouhouMachineLearningSummary.Control
                         }
                     case (2)://如果当前状态为第主级页面，则询问并退出登录
                         {
-                            _ = Command.GameUI.NoticeCommand.ShowAsync("退出登录",
+                            _ = NoticeCommand.ShowAsync("退出登录",
                             okAction: async () =>
                             {
                                 IsAleardyLogin = false;
@@ -63,7 +65,7 @@ namespace TouhouMachineLearningSummary.Control
                                 Command.MenuStateCommand.RebackStare();
                                 Command.MenuStateCommand.ChangeToMainPage(MenuState.Login);
                                 await Command.BookCommand.SetCoverStateAsync(false);
-                                Info.GameUI.UiInfo.loginCanvas.SetActive(true);
+                                UiInfo.loginCanvas.SetActive(true);
                             });
                             break;
                         }
@@ -72,7 +74,7 @@ namespace TouhouMachineLearningSummary.Control
                             //如果是组牌模式，则询问是否返回上一页，否则直接返回上一页
                             if (Command.MenuStateCommand.GetCurrentState() == MenuState.CardListChange)
                             {
-                                _ = Command.GameUI.NoticeCommand.ShowAsync("不保存卡组？",
+                                _ = NoticeCommand.ShowAsync("不保存卡组？",
                                 okAction: async () =>
                                 {
                                     Command.MenuStateCommand.RebackStare();
@@ -94,9 +96,9 @@ namespace TouhouMachineLearningSummary.Control
                 int result = await Command.NetCommand.RegisterAsync(Account.text, Password.text);
                 switch (result)
                 {
-                    case (1): await Command.GameUI.NoticeCommand.ShowAsync("注册成功", NotifyBoardMode.Ok); break;
-                    case (-1): await Command.GameUI.NoticeCommand.ShowAsync("账号已存在", NotifyBoardMode.Ok); break;
-                    default: await Command.GameUI.NoticeCommand.ShowAsync("注册发生异常", NotifyBoardMode.Ok); break;
+                    case (1): await NoticeCommand.ShowAsync("注册成功", NotifyBoardMode.Ok); break;
+                    case (-1): await NoticeCommand.ShowAsync("账号已存在", NotifyBoardMode.Ok); break;
+                    default: await NoticeCommand.ShowAsync("注册发生异常", NotifyBoardMode.Ok); break;
                 }
             }
             catch (Exception e) { Debug.LogException(e); }
@@ -121,7 +123,7 @@ namespace TouhouMachineLearningSummary.Control
                 }
                 else
                 {
-                    await Command.GameUI.NoticeCommand.ShowAsync("账号或密码错误，请重试", NotifyBoardMode.Ok);
+                    await NoticeCommand.ShowAsync("账号或密码错误，请重试", NotifyBoardMode.Ok);
                 }
             }
             catch (System.Exception e) { Debug.LogException(e); }
@@ -154,7 +156,7 @@ namespace TouhouMachineLearningSummary.Control
                         })
                   });
 
-            _ = Command.GameUI.NoticeCommand.ShowAsync("少女排队中~", NotifyBoardMode.Cancel, cancelAction: async () =>
+            _ = NoticeCommand.ShowAsync("少女排队中~", NotifyBoardMode.Cancel, cancelAction: async () =>
             {
                 Command.BookCommand.SimulateFilpPage(false);//开始翻书
                 await Task.Delay(2000);

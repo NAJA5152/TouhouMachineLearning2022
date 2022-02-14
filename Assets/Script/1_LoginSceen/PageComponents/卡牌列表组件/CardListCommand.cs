@@ -121,7 +121,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (Command.MenuStateCommand.GetCurrentState() == MenuState.CardListChange)
             {
-                _ = Command.GameUI.NoticeCommand.ShowAsync("重命名卡牌", NotifyBoardMode.Input, inputAction: async (text) =>
+                _ = NoticeCommand.ShowAsync("重命名卡牌", NotifyBoardMode.Input, inputAction: async (text) =>
                 {
                     Debug.Log("重命名卡组为" + text);
                     Info.CardCompnentInfo.tempDeck.DeckName = text;

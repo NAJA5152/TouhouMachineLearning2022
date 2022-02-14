@@ -1,4 +1,5 @@
-﻿using TouhouMachineLearningSummary.GameEnum;
+﻿using TouhouMachineLearningSummary.Command;
+using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
@@ -59,7 +60,7 @@ namespace TouhouMachineLearningSummary.Control
             }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                _ = Command.GameUI.NoticeCommand.ShowAsync("确认投降？", okAction: Command.StateCommand.Surrender);
+                _ = NoticeCommand.ShowAsync("确认投降？", okAction: Command.StateCommand.Surrender);
             }
         }
         private void MouseEvent()
@@ -78,13 +79,13 @@ namespace TouhouMachineLearningSummary.Control
                     {
                         //Debug.LogError("add" + playerFocusCard);
                         AgainstInfo.SelectUnits.Add(playerFocusCard);
-                        Command.GameUI.UiCommand.CreatFixedArrow(playerFocusCard);
+                        UiCommand.CreatFixedArrow(playerFocusCard);
                     }
                     else
                     {
                         //Debug.LogError("remove" + playerFocusCard);
                         AgainstInfo.SelectUnits.Remove(playerFocusCard);
-                        Command.GameUI.UiCommand.DestoryFixedArrow(playerFocusCard);
+                        UiCommand.DestoryFixedArrow(playerFocusCard);
                     }
                 }
                 if (AgainstInfo.IsWaitForSelectLocation)

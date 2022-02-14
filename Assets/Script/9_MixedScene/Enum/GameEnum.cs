@@ -207,7 +207,6 @@ namespace TouhouMachineLearningSummary.GameEnum
         Fairy,
         Object,
         Tool,
-       
     }
     public enum Orientation
     {

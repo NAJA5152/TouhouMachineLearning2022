@@ -1,7 +1,7 @@
 ﻿using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.Info;
 using UnityEngine;
-namespace TouhouMachineLearningSummary.Control.Dialogue
+namespace TouhouMachineLearningSummary.Control
 {
     /// <summary>
     /// 剧情演出控制器
@@ -11,22 +11,22 @@ namespace TouhouMachineLearningSummary.Control.Dialogue
         void Awake() => DialogueCommand.Load();
         public void ShowNextText()
         {
-            if (!Info.DialogueInfo.SelectMode)
+            if (!DialogueInfo.SelectMode)
             {
                 DialogueCommand.RunNextOperations();
             }
         }
         public void ShowLastText()
         {
-            Info.DialogueInfo.instance.selectUi.SetActive(false);
-            Info.DialogueInfo.CurrentPoint = Mathf.Max(0, Info.DialogueInfo.CurrentPoint - 2);
+            DialogueInfo.instance.selectUi.SetActive(false);
+            DialogueInfo.CurrentPoint = Mathf.Max(0, DialogueInfo.CurrentPoint - 2);
             DialogueCommand.RunNextOperations();
         }
         public void SetBranch(int index)
         {
-            Info.DialogueInfo.SelectBranch = index;
-            Info.DialogueInfo.instance.selectUi.SetActive(false);
-            Info.DialogueInfo.CurrentPoint++;
+            DialogueInfo.SelectBranch = index;
+            DialogueInfo.instance.selectUi.SetActive(false);
+            DialogueInfo.CurrentPoint++;
             DialogueCommand.RunNextOperations();
         }
 

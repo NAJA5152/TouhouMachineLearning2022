@@ -94,7 +94,7 @@ namespace TouhouMachineLearningSummary.Command
             try
             {
                 //await Task.Delay(500);
-                await GameUI.UiCommand.NoticeBoardShow("对战开始".Translation());
+                await UiCommand.NoticeBoardShow("对战开始".Translation());
 
                 //初始化我方领袖卡
                 Card MyLeaderCard = CardCommand.CreateCard(Info.AgainstInfo.userDeck.LeaderId);
@@ -126,7 +126,7 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task AgainstEnd(bool IsSurrender = false, bool IsWin = true)
         {
-            await GameUI.UiCommand.NoticeBoardShow($"对战终止\n{AgainstInfo.ShowScore.MyScore}:{AgainstInfo.ShowScore.OpScore}");
+            await UiCommand.NoticeBoardShow($"对战终止\n{AgainstInfo.ShowScore.MyScore}:{AgainstInfo.ShowScore.OpScore}");
             if (AgainstInfo.isShouldUploadSummaryOperation)
             {
                 await Command.NetCommand.AgainstFinish();
@@ -141,7 +141,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task RoundStart()
         {
             ReSetPassState();
-            await GameUI.UiCommand.NoticeBoardShow($"第{AgainstInfo.roundRank}小局开始");
+            await UiCommand.NoticeBoardShow($"第{AgainstInfo.roundRank}小局开始");
             //await GameSystem.SelectSystem.SelectProperty();
             //await Task.Delay(2000);
             switch (AgainstInfo.roundRank)
@@ -149,7 +149,7 @@ namespace TouhouMachineLearningSummary.Command
                 case (1):
                     {
                         Info.AgainstInfo.ExChangeableCardNum = 3;
-                        Command.GameUI.UiCommand.SetCardBoardTitle("剩余抽卡次数为".Translation() + Info.AgainstInfo.ExChangeableCardNum);
+                        UiCommand.SetCardBoardTitle("剩余抽卡次数为".Translation() + Info.AgainstInfo.ExChangeableCardNum);
                         // Info.GameUI.UiInfo.CardBoardTitle = "剩余抽卡次数为".Translation() + Info.AgainstInfo.ExChangeableCardNum;
                         for (int i = 0; i < 10; i++)
                         {
@@ -165,7 +165,7 @@ namespace TouhouMachineLearningSummary.Command
                 case (2):
                     {
                         Info.AgainstInfo.ExChangeableCardNum += 1;
-                        Command.GameUI.UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
+                        UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
                         //Info.GameUI.UiInfo.CardBoardTitle ="剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum ;
                         await CardCommand.DrawCard();
                         await CardCommand.DrawCard(false);
@@ -174,7 +174,7 @@ namespace TouhouMachineLearningSummary.Command
                 case (3):
                     {
                         Info.AgainstInfo.ExChangeableCardNum += 1;
-                        Command.GameUI.UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
+                        UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
                         //Info.GameUI.UiInfo.CardBoardTitle ="剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum ;
                         await CardCommand.DrawCard();
                         await CardCommand.DrawCard(false);
@@ -190,7 +190,7 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task RoundEnd()
         {
-            await GameUI.UiCommand.NoticeBoardShow($"第{AgainstInfo.roundRank}小局结束\n{AgainstInfo.TotalDownPoint}:{AgainstInfo.TotalUpPoint}\n{((AgainstInfo.TotalDownPoint > AgainstInfo.TotalUpPoint) ? "Win" : "Lose")}");
+            await UiCommand.NoticeBoardShow($"第{AgainstInfo.roundRank}小局结束\n{AgainstInfo.TotalDownPoint}:{AgainstInfo.TotalUpPoint}\n{((AgainstInfo.TotalDownPoint > AgainstInfo.TotalUpPoint) ? "Win" : "Lose")}");
             //await Task.Delay(2000);
             int result = 0;
             if (AgainstInfo.TotalPlayer1Point > AgainstInfo.TotalPlayer2Point)
@@ -209,7 +209,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task TurnStart()
         {
             Manager.AgainstSummaryManager.UploadTurn();
-            await GameUI.UiCommand.NoticeBoardShow((AgainstInfo.IsMyTurn ? "我方回合开始" : "对方回合开始").Translation());
+            await UiCommand.NoticeBoardShow((AgainstInfo.IsMyTurn ? "我方回合开始" : "对方回合开始").Translation());
             RowCommand.SetPlayCardMoveFree(AgainstInfo.IsMyTurn);
             await CustomThread.Delay(1000);
 
@@ -217,7 +217,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task TurnEnd()
         {
             RowCommand.SetPlayCardMoveFree(false);
-            await GameUI.UiCommand.NoticeBoardShow((AgainstInfo.IsMyTurn ? "我方回合结束" : "对方回合结束").Translation());
+            await UiCommand.NoticeBoardShow((AgainstInfo.IsMyTurn ? "我方回合结束" : "对方回合结束").Translation());
             await GameSystem.ProcessSystem.WhenTurnEnd();
             await CustomThread.Delay(1000);
             AgainstInfo.IsMyTurn = !AgainstInfo.IsMyTurn;
@@ -225,7 +225,7 @@ namespace TouhouMachineLearningSummary.Command
         ////////////////////////////////////////////////////玩家操作指令////////////////////////////////////////////////////////////////////////////////
         public static void SetCurrentPass()
         {
-            Info.GameUI.UiInfo.MyPass.SetActive(true);
+            UiInfo.MyPass.SetActive(true);
             switch (Info.AgainstInfo.IsMyTurn)
             {
                 case true: Info.AgainstInfo.isDownPass = true; break;
@@ -234,8 +234,8 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static void ReSetPassState()
         {
-            Info.GameUI.UiInfo.MyPass.SetActive(false);
-            Info.GameUI.UiInfo.OpPass.SetActive(false);
+            UiInfo.MyPass.SetActive(false);
+            UiInfo.OpPass.SetActive(false);
             Info.AgainstInfo.isUpPass = false;
             Info.AgainstInfo.isDownPass = false;
         }
@@ -483,7 +483,7 @@ namespace TouhouMachineLearningSummary.Command
             {
                 if (Info.AgainstInfo.IsMyTurn && !isAuto)
                 {
-                    GameUI.UiCommand.CreatFreeArrow();
+                    UiCommand.CreatFreeArrow();
                 }
                 int selectableNum = Math.Min(filterCards.Count, num);
                 while (AgainstInfo.SelectUnits.Count < selectableNum)
@@ -504,7 +504,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             NetCommand.AsyncInfo(NetAcyncType.SelectUnites);
             AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectUnite, triggerCard, filterCards, num);
-            GameUI.UiCommand.DestoryAllArrow();
+            UiCommand.DestoryAllArrow();
             await CustomThread.Delay(250);
             //Debug.Log("同步选择单位完毕");
             AgainstInfo.AllCardList.ForEach(card => card.IsGray = false);
@@ -516,7 +516,7 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.selectBoardCardRanks = new List<int>();
             AgainstInfo.IsSelectCardOver = false;
             AgainstInfo.cardBoardMode = mode;
-            GameUI.UiCommand.SetCardBoardShow();
+            UiCommand.SetCardBoardShow();
             //加载真实或虚拟的卡牌列表
             if (typeof(T) == typeof(Card))
             {
@@ -534,7 +534,7 @@ namespace TouhouMachineLearningSummary.Command
                     {
                         await Task.Delay(10);
                     }
-                    GameUI.UiCommand.SetCardBoardHide();
+                    UiCommand.SetCardBoardHide();
                     break;
                 case CardBoardMode.ExchangeCard:
                     {
@@ -557,7 +557,7 @@ namespace TouhouMachineLearningSummary.Command
                                     await CardCommand.ExchangeCard(CardLists[selectRank], IsPlayerExchange: !(isPlayer1Select ^ Info.AgainstInfo.IsPlayer1), isRoundStartExchange: true, WashInsertRank: AgainstInfo.washInsertRank);
                                     Info.AgainstInfo.ExChangeableCardNum--;
                                     Info.AgainstInfo.selectBoardCardRanks.Clear();
-                                    GameUI.UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
+                                    UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
                                 }
                                 else if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectExchangeOver)
                                 {
@@ -597,7 +597,7 @@ namespace TouhouMachineLearningSummary.Command
                                     await CardCommand.ExchangeCard(CardLists[selectRank], IsPlayerExchange: true, isRoundStartExchange: true, WashInsertRank: AgainstInfo.washInsertRank);
                                     Info.AgainstInfo.ExChangeableCardNum--;
                                     Info.AgainstInfo.selectBoardCardRanks.Clear();
-                                    GameUI.UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
+                                    UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
                                 }
                                 await Task.Delay(10);
                             }
@@ -613,7 +613,7 @@ namespace TouhouMachineLearningSummary.Command
                             NetCommand.AsyncInfo(NetAcyncType.RoundStartExchangeOver);
                         }
 
-                        GameUI.UiCommand.SetCardBoardHide();
+                        UiCommand.SetCardBoardHide();
                         //等待双方退出
                         await CustomThread.UnitllAcync(
                             () => AgainstInfo.isPlayer1RoundStartExchangeOver,
@@ -634,7 +634,7 @@ namespace TouhouMachineLearningSummary.Command
                     {
                         await Task.Delay(1);
                     }
-                    GameUI.UiCommand.SetCardBoardHide();
+                    UiCommand.SetCardBoardHide();
                     break;
                 default:
                     break;

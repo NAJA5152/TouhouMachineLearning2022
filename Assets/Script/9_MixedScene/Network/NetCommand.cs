@@ -39,7 +39,7 @@ namespace TouhouMachineLearningSummary.Command
                     PlayerInfo opponentInfo = ReceiveInfo[2].ToType<PlayerInfo>();
                     bool isPlayer1 = ReceiveInfo[3].ToType<bool>();
 
-                    _ = Command.GameUI.NoticeCommand.CloseAsync();//关闭ui
+                    _ = NoticeCommand.CloseAsync();//关闭ui
                     Command.BookCommand.SimulateFilpPage(false);//停止翻书
                     Command.MenuStateCommand.AddState(MenuState.ScenePage);//增加路由
                     Debug.Log("进入对战配置模式");
@@ -139,7 +139,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             catch (Exception e)
             {
-                await Command.GameUI.NoticeCommand.ShowAsync("无法链接到服务器,请点击重连\n" + e.Message,
+                await NoticeCommand.ShowAsync("无法链接到服务器,请点击重连\n" + e.Message,
                      NotifyBoardMode.Ok,
                      okAction: async () =>
                      {
