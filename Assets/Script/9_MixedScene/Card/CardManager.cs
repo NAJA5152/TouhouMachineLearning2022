@@ -1,4 +1,5 @@
 ﻿using Sirenix.OdinInspector;
+using System.Linq;
 using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
@@ -74,9 +75,18 @@ namespace TouhouMachineLearningSummary.Manager
         }
         //弹出状态变动提示
         [Button]
-        public async void ShowTips(string text, Color color)
+        public async void ShowTips<T>(T text, Color color)
         {
-            cardTips.GetComponent<Text>().text = text;
+            string showText = "";
+            if (typeof(T) == typeof(int))
+            {
+                showText = text.ToString();
+            }
+            else if (typeof(T) == typeof(string))
+            {
+                showText =string.Join("\n",text.ToString().ToCharArray());
+            }
+            cardTips.GetComponent<Text>().text = showText;
             cardTips.GetComponent<Text>().color = color;
 
             await CustomThread.TimerAsync(0.2f, runAction: (process) => //在0.4秒内不断移动并降低透明度
@@ -90,9 +100,10 @@ namespace TouhouMachineLearningSummary.Manager
             });
         }
         //弹出伤害变动提示
-        public void ShowTips(int point, Color color)
-        {
-
-        }
+        [Button]
+        public void ShowTipsPoint(int point, Color color) => ShowTips(point, color);
+        //弹出伤害变动提示
+        [Button]
+        public void ShowTipsString(string text, Color color) => ShowTips(text, color);
     }
 }
