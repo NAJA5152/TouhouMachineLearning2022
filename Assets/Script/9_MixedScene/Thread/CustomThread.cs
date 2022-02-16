@@ -16,14 +16,12 @@ namespace TouhouMachineLearningSummary.Thread
             while (true)
             {
                 TaskLoopManager.Throw();
-
                 if (cond())
                 {
                     runAction();
                     break;
                 }
                 await Task.Delay(10);
-
             }
         }
         /// <summary>

@@ -70,7 +70,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                     }
                     else
                     {
-                        bool isBreak= triggerInfo.point>this[CardField.Shield];
+                        bool isBreak = triggerInfo.point > this[CardField.Shield];
                         await Command.CardCommand.Hurt(triggerInfo);
                         if (!this[CardState.Docile])//如果不处于温顺状态
                         {
@@ -82,22 +82,22 @@ namespace TouhouMachineLearningSummary.CardSpace
                 .AbilityReplace();
 
             AbalityRegister(TriggerTime.When, TriggerType.StateAdd)
-             .AbilityAdd(async (triggerInfo) =>
-             {
-                 if (triggerInfo.targetState == CardState.Furor)
-                 {
-                     UnityEngine.Debug.Log("狂躁");
+                .AbilityAdd(async (triggerInfo) =>
+                {
+                    if (triggerInfo.targetState == CardState.Furor)
+                    {
+                        UnityEngine.Debug.Log("狂躁");
 
-                     //狂躁效果
-                 }
-                 if (triggerInfo.targetState == CardState.Docile)
-                 {
-                     //温顺效果
-                     UnityEngine.Debug.Log("温顺");
+                        //狂躁效果
+                    }
+                    if (triggerInfo.targetState == CardState.Docile)
+                    {
+                        //温顺效果
+                        UnityEngine.Debug.Log("温顺");
 
-                 }
-             }, Condition.Default)
-             .AbilityAppend();
+                    }
+                }, Condition.Default)
+                .AbilityAppend();
         }
     }
 }

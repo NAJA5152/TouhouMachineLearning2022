@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-namespace TouhouMachineLearningSummary.Control
+namespace TouhouMachineLearningSummary.Manager
 {
-    public class PointControl : MonoBehaviour
+    public class PointManager : MonoBehaviour
     {
         public int DownShowPoint = 0;
         public int UpShowPoint = 0;

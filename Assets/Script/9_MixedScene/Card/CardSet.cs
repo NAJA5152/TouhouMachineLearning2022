@@ -131,7 +131,11 @@ namespace TouhouMachineLearningSummary.Info
                 return new CardSet(SingleRowInfos, filterCardList);
             }
         }
-        //待补充
+        /// <summary>
+        /// 根据一些特征筛选卡牌
+        /// </summary>
+        /// <param name="tags"></param>
+        /// <returns></returns>
         public CardSet this[CardFeature cardFeature]
         {
             get

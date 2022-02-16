@@ -14,6 +14,7 @@ namespace TouhouMachineLearningSummary.Model
 
     public class Card : MonoBehaviour
     {
+        public CardManager ThisCardManager => GetComponent<CardManager>();
         public int CardID { get; set; }
 
         public int BasePoint { get; set; }
@@ -60,7 +61,7 @@ namespace TouhouMachineLearningSummary.Model
         public bool IsLocked { get; set; } = false;
         public bool IsFree { get; set; } = false;
         public bool IsCanSee { get; set; } = false;
-        public bool IsCardDead => ShowPoint == 0 && AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this);
+        public bool IsCardReadyToGrave => ShowPoint == 0 && AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this);
         public void SetCardSeeAble(bool isCanSee) => this.IsCanSee = isCanSee;
         public bool isMoveStepOver = true;
         public bool isPrepareToPlay = false;
@@ -152,9 +153,9 @@ namespace TouhouMachineLearningSummary.Model
                     if (this[CardField.Shield] > 0)
                     {
                         //计算剩余盾量
-                       var shieldPoint= this[CardField.Shield] - triggerInfo.point;
+                        var shieldPoint = this[CardField.Shield] - triggerInfo.point;
                         //计算剩余盾量
-                        triggerInfo.point = triggerInfo.point- this[CardField.Shield];
+                        triggerInfo.point = triggerInfo.point - this[CardField.Shield];
                     }
                     await Command.CardCommand.Hurt(triggerInfo);
                 }
@@ -184,16 +185,24 @@ namespace TouhouMachineLearningSummary.Model
             AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
             .AbilityAdd(async (triggerInfo) =>
             {
+
+
                 //我死啦
-                if (IsCardDead)
+                if (IsCardReadyToGrave)
                 {
-                    await GameSystem.TransSystem.DeadCard(triggerInfo);
+                    //延命
+                    if (cardFields[CardField.Apothanasia] > 0)
+                    {
+                        cardFields[CardField.Apothanasia]--;
+                        await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetTargetField(CardField.Apothanasia, -1));
+                    }
+                    else
+                    {
+                        //摧毁自身同时触发咒术
+                        await GameSystem.TransSystem.DeadCard(triggerInfo);
+                    }
                 }
-                //延命
-                if (false)
-                {
-                    //摧毁自身同时触发咒术
-                }
+
             })
            .AbilityAppend();
 
@@ -239,12 +248,15 @@ namespace TouhouMachineLearningSummary.Model
                 Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段设置，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},设置值{triggerInfo.point}");
                 this[triggerInfo.targetFiled] = triggerInfo.point;
                 Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
-
                 switch (triggerInfo.targetFiled)
                 {
                     case CardField.Timer: break;
                     case CardField.Vitality: break;
-                    case CardField.Apothanasia: break;
+                    case CardField.Apothanasia:
+                        {
+                            await ThisCardManager.ShowTips("续命", new Color(1, 0, 0)); 
+                            break;
+                        }
                     default: break;
                 }
             })
@@ -256,13 +268,17 @@ namespace TouhouMachineLearningSummary.Model
                 Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段变化，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},变化值{triggerInfo.point}");
                 this[triggerInfo.targetFiled] += triggerInfo.point;
                 Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
-                Command.EffectCommand.Bullet_Gain(triggerInfo);
-                await Command.AudioCommand.PlayAsync(GameAudioType.Biu);
+                //Command.EffectCommand.Bullet_Gain(triggerInfo);
+                //await Command.AudioCommand.PlayAsync(GameAudioType.Biu);
+                if (this[triggerInfo.targetFiled]<=0)
+                {
+                    cardFields.Remove(triggerInfo.targetFiled);
+                }
                 switch (triggerInfo.targetFiled)
                 {
                     case CardField.Timer: break;
                     case CardField.Vitality: break;
-                    case CardField.Apothanasia: break;
+                    case CardField.Apothanasia: await ThisCardManager.ShowTips("续命", new Color(1, 0, 0)); break;
                     default: break;
                 }
             })

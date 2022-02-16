@@ -14,10 +14,25 @@
         /// 我方回合
         /// </summary>
         OnMyTurn,
+        /// <summary>
+        /// 敌方回合
+        /// </summary>
         OnOpTurn,
+        /// <summary>
+        /// 封印
+        /// </summary>
         Seal,
+        /// <summary>
+        /// 未被封印
+        /// </summary>
         NotSeal,
+        /// <summary>
+        /// 死亡
+        /// </summary>
         Dead,
+        /// <summary>
+        /// 未死亡
+        /// </summary>
         NotDead
     }
 }
