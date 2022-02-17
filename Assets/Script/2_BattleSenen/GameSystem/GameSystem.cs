@@ -169,14 +169,30 @@ namespace TouhouMachineLearningSummary.GameSystem
     public class InfoSystem
     {
         /// <summary>
-        /// 获取对战内所有卡牌集合并可通过属性标签进行筛选
+        /// 获取对战内所有卡牌集合,并可通过各种特征标签进行筛选
         /// </summary>
         public static CardSet AgainstCardSet => AgainstInfo.cardSet;
+        /// <summary>
+        /// 获取对战时通过选择操作选择的卡牌列表
+        /// </summary>
         public static List<Card> SelectUnits => AgainstInfo.SelectUnits;
+        /// <summary>
+        /// 获取对战时通过选择操作选择的首个卡牌
+        /// </summary>
+        public static Card SelectUnit => AgainstInfo.SelectUnits.FirstOrDefault();
+        /// <summary>
+        /// 获取对战时通过选择的区域序号
+        /// </summary>
         public static int SelectRowRank => AgainstInfo.SelectRowRank;
+        /// <summary>
+        /// 获取对战时通过选择的区域序号
+        /// </summary>
+        public static int SelectLocation => AgainstInfo.SelectRank;
+        /// <summary>
+        /// 获取对战时选择的区域对应的卡牌列表
+        /// </summary>
         public static List<Card> SelectRowCardList => AgainstInfo.SelectRowCardList;
         public static List<int> SelectBoardCardRanks => AgainstInfo.selectBoardCardRanks;
-        public static int SelectLocation => AgainstInfo.SelectRank;
         public static int GetField(Card card, CardField cardField) => card[cardField];
         public static int GetTwoSideField(Card card, CardField cardField) => (card.LeftCard == null || card.LeftCard[CardState.Seal] ? 0 : card.LeftCard[cardField]) + (card.RightCard == null || card.RightCard[CardState.Seal] ? 0 : card.RightCard[cardField]);
     }
