@@ -97,9 +97,7 @@ namespace TouhouMachineLearningSummary.Info
         {
             get
             {
-                List<Card> filterCardList = CardList.Where(card =>
-                   card.cardStates.ContainsKey(cardState) && card.cardStates[cardState])
-                    .ToList();
+                List<Card> filterCardList = CardList.Where(card => card.cardStates.Contains(cardState)).ToList();
                 return new CardSet(SingleRowInfos, filterCardList);
             }
         }
@@ -108,9 +106,7 @@ namespace TouhouMachineLearningSummary.Info
         {
             get
             {
-                List<Card> filterCardList = CardList.Where(card =>
-                   card.cardFields.ContainsKey(cardField))
-                    .ToList();
+                List<Card> filterCardList = CardList.Where(card => card.cardFields.ContainsKey(cardField)).ToList();
                 return new CardSet(SingleRowInfos, filterCardList);
             }
         }

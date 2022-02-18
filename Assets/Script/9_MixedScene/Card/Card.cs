@@ -41,14 +41,51 @@ namespace TouhouMachineLearningSummary.Model
         public int this[CardField cardField]
         {
             get => cardFields.ContainsKey(cardField) ? cardFields[cardField] : 0;
-            set => cardFields[cardField] = value;
+            set
+            {
+                cardFields[cardField] = value;
+                if (value<=0)
+                {
+                    cardFields.Remove(cardField);
+                }
+            }
         }
+        //[ShowInInspector]
+        //public Dictionary<CardState, bool> cardStates = new Dictionary<CardState, bool>();
+        //public bool this[CardState cardState]
+        //{
+        //    get => cardStates.ContainsKey(cardState) ? cardStates[cardState] : false;
+        //    set
+        //    {
+        //        if (value)
+        //        {
+        //            cardStates[cardState] = true;
+        //        }
+        //        else
+        //        {
+        //            cardStates.Remove(cardState);
+        //        }
+        //    }
+        //}
         [ShowInInspector]
-        public Dictionary<CardState, bool> cardStates = new Dictionary<CardState, bool>();
+        public List<CardState> cardStates = new List<CardState>();
         public bool this[CardState cardState]
         {
-            get => cardStates.ContainsKey(cardState) ? cardStates[cardState] : false;
-            set => cardStates[cardState] = value;
+            get => cardStates.Contains(cardState);
+            set
+            {
+                if (value)
+                {
+                    if (!cardStates.Contains(cardState))
+                    {
+                        cardStates.Add(cardState);
+                    }
+                }
+                else
+                {
+                    cardStates.Remove(cardState);
+                }
+            }
         }
         public Territory belong => AgainstInfo.cardSet[Orientation.Down].CardList.Contains(this) ? Territory.My : Territory.Op;
         public Vector3 targetPosition;
@@ -254,7 +291,7 @@ namespace TouhouMachineLearningSummary.Model
                     case CardField.Vitality: break;
                     case CardField.Apothanasia:
                         {
-                            await ThisCardManager.ShowTips("续命", new Color(1, 0, 0)); 
+                            await ThisCardManager.ShowTips("续命", new Color(1, 0, 0));
                             break;
                         }
                     default: break;
@@ -268,12 +305,6 @@ namespace TouhouMachineLearningSummary.Model
                 Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段变化，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},变化值{triggerInfo.point}");
                 this[triggerInfo.targetFiled] += triggerInfo.point;
                 Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
-                //Command.EffectCommand.Bullet_Gain(triggerInfo);
-                //await Command.AudioCommand.PlayAsync(GameAudioType.Biu);
-                if (this[triggerInfo.targetFiled]<=0)
-                {
-                    cardFields.Remove(triggerInfo.targetFiled);
-                }
                 switch (triggerInfo.targetFiled)
                 {
                     case CardField.Timer: break;

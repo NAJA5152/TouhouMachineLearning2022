@@ -16,7 +16,7 @@ namespace TouhouMachineLearningSummary.Manager
     class CardAssemblyManager : MonoBehaviour
     {
         //是否使用本地卡牌版本，若为是则会卡顿
-        //static bool isUseLocalAssembly = true;
+        static bool isUseLocalAssembly = true;
         /// <summary>
         /// 已下载的历史配置文件
         /// </summary>
@@ -41,13 +41,13 @@ namespace TouhouMachineLearningSummary.Manager
         //[ShowInInspector]
         //public static List<CardModel> GetLastMultiCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Multi.json").ToObject<List<CardModel>>().Select(card => card.Init(false)).ToList() : lastMultiCardInfos;
         [ShowInInspector]
-        public static List<CardModel> GetcurrentSingleCardInfos =>  currenttSingleCardInfos;
+        public static List<CardModel> GetcurrentSingleCardInfos => currenttSingleCardInfos;
         [ShowInInspector]
         public static List<CardModel> GetcurrentMultiCardInfos => currentMultiCardInfos;
         [ShowInInspector]
-        public static List<CardModel> GetLastSingleCardInfos =>  lastSingleCardInfos;
+        public static List<CardModel> GetLastSingleCardInfos => lastSingleCardInfos;
         [ShowInInspector]
-        public static List<CardModel> GetLastMultiCardInfos =>  lastMultiCardInfos;
+        public static List<CardModel> GetLastMultiCardInfos => lastMultiCardInfos;
         /// <summary>
         /// 最新版本的配置文件
         /// </summary>
@@ -111,7 +111,7 @@ namespace TouhouMachineLearningSummary.Manager
 
             static async Task LoadOrDownloadConfig(string date)
             {
-                currentConfig= await Command.NetCommand.DownloadCardConfigsAsync(date);
+                currentConfig = await Command.NetCommand.DownloadCardConfigsAsync(date);
                 cardConfigs[currentConfig.Version] = currentConfig;
             }
         }
@@ -126,7 +126,7 @@ namespace TouhouMachineLearningSummary.Manager
             //}
             //else
             //{
-                
+
             //}
         }
         /// <summary>

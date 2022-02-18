@@ -81,7 +81,6 @@ namespace TouhouMachineLearningSummary.Manager
                     transform.GetChild(0).gameObject.SetActive(false);
                 }
             }
-
         }
         public void ChangeIntroduction<T>(T target)
         {
@@ -100,20 +99,79 @@ namespace TouhouMachineLearningSummary.Manager
                 Card card = (Card)(object)target;
                 cardName = card.CardName;
                 ability = card.CardIntroduction;
-                card.cardFields.ToList().ForEach(field =>
+                int Lines;
+                card.cardStates.ForEach(state =>
                 {
-                    switch (field.Key)
+                    switch (state)
                     {
-                        case CardField.Timer:
+                        case CardState.Seal:
                             break;
-                        case CardField.Vitality:
-                            Introduction += $"活力：增强两侧单位效果{field.Value}";
+                        case CardState.Invisibility:
                             break;
-                        case CardField.Apothanasia:
+                        case CardState.Pry:
+                            break;
+                        case CardState.Close:
+                            break;
+                        case CardState.Fate:
+                            break;
+                        case CardState.Lurk:
+                            break;
+                        case CardState.Secret:
+                            break;
+                        case CardState.Furor:
+                            break;
+                        case CardState.Docile:
+                            break;
+                        case CardState.Poisoning:
+                            break;
+                        case CardState.Rely:
+                            break;
+                        case CardState.Water:
+                            break;
+                        case CardState.Fire:
+                            break;
+                        case CardState.Wind:
+                            break;
+                        case CardState.Soil:
+                            break;
+                        case CardState.Hold:
+                            break;
+                        case CardState.Congealbounds:
                             break;
                         default:
                             break;
                     }
+                });
+                card.cardFields.ToList().ForEach(field =>
+                {
+                    string newIntroduction = "";
+                    switch (field.Key)
+                    {
+                        case CardField.Timer:
+                            newIntroduction = $"计时({field.Value})：计数为0时触发效果\n";
+                            Lines+=
+                            break;
+                        case CardField.Vitality:
+                            newIntroduction = $"活力({field.Value})：增强两侧单位效果\n";
+                            break;
+                        case CardField.Apothanasia:
+                            newIntroduction = $"延命({field.Value})：当单位点数为0时，回合结束时抵消一次进入墓地效果\n";
+                            break;
+                        case CardField.Chain:
+                            newIntroduction = $"连锁({field.Value})：当前回合打出卡牌的数量\n";
+                            break;
+                        case CardField.Energy:
+                            newIntroduction = $"能量({field.Value})：强化机械的触发效果，过多时触发\"超载\"效果\n";
+                            break;
+                        case CardField.Shield:
+                            newIntroduction = $"护盾({field.Value})：受到\"伤害\"类型效果时时抵消相应点数的伤害\n";
+                            break;
+                        default:
+                            break;
+                    }
+                    //算出单个介绍的长度+换行的长度
+                    Introduction += newIntroduction.Length / 13 + 1;
+                    newIntroduction += "\n";
                 });
                 IntroductionBackground.gameObject.SetActive(true);
                 IntroductionBackground.sizeDelta = new Vector2(300, ability.Length / 13 * 15 + 100);
