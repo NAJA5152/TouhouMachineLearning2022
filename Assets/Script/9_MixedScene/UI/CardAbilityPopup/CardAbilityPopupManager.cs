@@ -99,7 +99,7 @@ namespace TouhouMachineLearningSummary.Manager
                 Card card = (Card)(object)target;
                 cardName = card.CardName;
                 ability = card.CardIntroduction;
-                int Lines;
+                int lines=0;
                 card.cardStates.ForEach(state =>
                 {
                     switch (state)
@@ -148,33 +148,32 @@ namespace TouhouMachineLearningSummary.Manager
                     switch (field.Key)
                     {
                         case CardField.Timer:
-                            newIntroduction = $"计时({field.Value})：计数为0时触发效果\n";
-                            Lines+=
+                            newIntroduction = $"计时({field.Value})：计数为0时触发效果";
                             break;
                         case CardField.Vitality:
-                            newIntroduction = $"活力({field.Value})：增强两侧单位效果\n";
+                            newIntroduction = $"活力({field.Value})：增强两侧单位效果";
                             break;
                         case CardField.Apothanasia:
-                            newIntroduction = $"延命({field.Value})：当单位点数为0时，回合结束时抵消一次进入墓地效果\n";
+                            newIntroduction = $"延命({field.Value})：当单位点数为0时，回合结束时抵消一次进入墓地效果";
                             break;
                         case CardField.Chain:
-                            newIntroduction = $"连锁({field.Value})：当前回合打出卡牌的数量\n";
+                            newIntroduction = $"连锁({field.Value})：当前回合打出卡牌的数量";
                             break;
                         case CardField.Energy:
-                            newIntroduction = $"能量({field.Value})：强化机械的触发效果，过多时触发\"超载\"效果\n";
+                            newIntroduction = $"能量({field.Value})：强化机械的触发效果，过多时触发\"超载\"效果";
                             break;
                         case CardField.Shield:
-                            newIntroduction = $"护盾({field.Value})：受到\"伤害\"类型效果时时抵消相应点数的伤害\n";
+                            newIntroduction = $"护盾({field.Value})：受到\"伤害\"类型效果时时抵消相应点数的伤害";
                             break;
                         default:
                             break;
                     }
                     //算出单个介绍的长度+换行的长度
-                    Introduction += newIntroduction.Length / 13 + 1;
-                    newIntroduction += "\n";
+                    lines += newIntroduction.Length / 13 + 1;
+                    Introduction += newIntroduction + "\n";
                 });
                 IntroductionBackground.gameObject.SetActive(true);
-                IntroductionBackground.sizeDelta = new Vector2(300, ability.Length / 13 * 15 + 100);
+                IntroductionBackground.sizeDelta = new Vector2(300, lines* 15 + 100);
                 IntroductionText.text = Introduction;
             }
             Title.text = cardName;

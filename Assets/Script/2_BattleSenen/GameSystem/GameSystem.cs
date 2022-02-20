@@ -130,7 +130,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// <summary>
         /// 清空当前异变
         /// </summary>
-        public static async Task ClearVariation(VariationType variationType) => Info.AgainstInfo.VariationType= VariationType.None;
+        public static async Task ClearVariation(VariationType variationType) => Info.AgainstInfo.VariationType = VariationType.None;
     }
     /// <summary>
     /// 选择单位、区域、场景属性的相关机制
@@ -195,5 +195,12 @@ namespace TouhouMachineLearningSummary.GameSystem
         public static List<int> SelectBoardCardRanks => AgainstInfo.selectBoardCardRanks;
         public static int GetField(Card card, CardField cardField) => card[cardField];
         public static int GetTwoSideField(Card card, CardField cardField) => (card.LeftCard == null || card.LeftCard[CardState.Seal] ? 0 : card.LeftCard[cardField]) + (card.RightCard == null || card.RightCard[CardState.Seal] ? 0 : card.RightCard[cardField]);
+    }
+    /// <summary>
+    /// 会对UI层产生影响的立绘、属性选择、对话等
+    /// </summary>
+    public class UiSystem
+    {
+        public static async Task ShowFigure(Card card) =>await Manager.FigureManager.Instance.ShowFigureAsync(true,card.CardName);
     }
 }

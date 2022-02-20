@@ -16,6 +16,10 @@ public class testward : MonoBehaviour
     public GameObject model;
     int w => texture.width;
     int h => texture.height;
+
+    public float distanceX;
+    public float distanceY;
+    public float bias;
     // Start is called before the first frame update
     void Start()
     {
@@ -30,7 +34,8 @@ public class testward : MonoBehaviour
                 matrix[i, j] = heigh;
                 models[i, j] = Instantiate(model);
                 //Debug.Log("new");
-                models[i, j].transform.position = new Vector3(i,j,heigh);
+                //models[i, j].transform.position = new Vector3(i, heigh, j);
+                models[i,j].transform.position = new Vector3(i * distanceX + (j % 2 == 0 ? bias : 0), heigh, j * distanceY);
                 models[i, j].GetComponent<Renderer>().material.color = color;
             }
         }
@@ -45,21 +50,22 @@ public class testward : MonoBehaviour
                 Color color = texture.GetPixel(i, j);
                 var heigh = FakeHigh(color);
                 matrix[i, j] = heigh;
-                models[i, j].transform.position = new Vector3(i, j, heigh);
+                //models[i, j].transform.position = new Vector3(i, heigh, j );
+                models[i, j].transform.position = new Vector3(i * distanceX + (j % 2 == 0 ? bias : 0), heigh, j * distanceY);
                 models[i, j].GetComponent<Renderer>().material.color = color;
             }
         }
     }
     async void Update()
     {
-        for (int i = 0; i < w - 1; i++)
-        {
-            for (int j = 0; j < h - 1; j++)
-            {
-                Debug.DrawLine(new Vector3(i, matrix[i, j], j), new Vector3(i + 1, matrix[i + 1, j], j), Color.white);
-                Debug.DrawLine(new Vector3(i, matrix[i, j], j), new Vector3(i, matrix[i, j + 1], j + 1), Color.white);
-            }
-        }
+        //for (int i = 0; i < w - 1; i++)
+        //{
+        //    for (int j = 0; j < h - 1; j++)
+        //    {
+        //        Debug.DrawLine(new Vector3(i, matrix[i, j], j), new Vector3(i + 1, matrix[i + 1, j], j), Color.white);
+        //        Debug.DrawLine(new Vector3(i, matrix[i, j], j), new Vector3(i, matrix[i, j + 1], j + 1), Color.white);
+        //    }
+        //}
         //if (Input.GetMouseButtonDown(0))
         //{
         //    transform.GetChild(0).gameObject.SetActive(true);

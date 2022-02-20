@@ -14,11 +14,10 @@ namespace TouhouMachineLearningSummary.Manager
 {
     public class CardManager : MonoBehaviour
     {
-        int gap_step = 0;
         Card thisCard => GetComponent<Card>();
-        GameObject gap => transform.GetChild(1).gameObject;
-        Material gapMaterial => gap.GetComponent<Renderer>().material;
         Material cardMaterial => GetComponent<Renderer>().material;
+        public GameObject gap;
+        Material gapMaterial => gap.GetComponent<Renderer>().material;
         public GameObject cardTips;
         private void OnMouseEnter()
         {
@@ -45,50 +44,24 @@ namespace TouhouMachineLearningSummary.Manager
                 CardAbilityBoardManager.Manager.LoadCardFromGameCard(gameObject);
             }
         }
-        private void Update()
-        {
-            if (gap_step == 1)
-            {
-                gapMaterial.SetFloat("_gapWidth", Mathf.Lerp(gapMaterial.GetFloat("_gapWidth"), 1.5f, Time.deltaTime * 20));
-            }
-            else if (gap_step == 2)
-            {
-                gapMaterial.SetFloat("_gapWidth", Mathf.Lerp(gapMaterial.GetFloat("_gapWidth"), 10, Time.deltaTime * 2));
-                cardMaterial.SetFloat("_gapWidth", Mathf.Lerp(cardMaterial.GetFloat("_gapWidth"), 10, Time.deltaTime * 2));
-            }
-
-        }
+        [Button("除外")]
         public async Task CreatGapAsync()
         {
-            await CustomThread.TimerAsync(0.4f, runAction: (process) =>
-            {
-                gapMaterial.SetFloat("_gapWidth", 1.5f*process);
-            });
-            await Task.Delay(800);
-            await CustomThread.TimerAsync(0.4f, runAction: (process) =>
-            {
-                gapMaterial.SetFloat("_gapWidth", 10f * process);
-                cardMaterial.SetFloat("_gapWidth", 10f * process);
-            });
-            transform.GetChild(0).gameObject.SetActive(false);
-            await Task.Delay(800);
-            gap.SetActive(false);
-            Destroy(gameObject);
-        }
-        public void CreatGap()
-        {
             gap.SetActive(true);
-            gap_step = 1;
-        }
-        public void FoldGap()
-        {
+            await CustomThread.TimerAsync(0.8f, runAction: (process) =>
+            {
+                gapMaterial.SetFloat("_gapWidth", Mathf.Lerp(10f, 1.5f, process));
+            });
+            await Task.Delay(1200);
             transform.GetChild(0).gameObject.SetActive(false);
-            gap_step = 2;
-        }
-        public void DestoryGap()
-        {
+            await CustomThread.TimerAsync(0.6f, runAction: (process) =>
+            {
+                gapMaterial.SetFloat("_gapWidth", Mathf.Lerp(1.5f,10f,  process));
+                cardMaterial.SetFloat("_gapWidth", Mathf.Lerp(1.5f,10f,  process));
+
+            });
             gap.SetActive(false);
-            gap_step = 0;
+            Command.CardCommand.RemoveCard(thisCard);
             Destroy(gameObject);
         }
         //弹出点数或状态变动提示

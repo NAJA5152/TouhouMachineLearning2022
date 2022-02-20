@@ -133,15 +133,7 @@ namespace TouhouMachineLearningSummary.Command
             card.Init();
             return card;
         }
-        public static async Task BanishCard(Card card)
-        {
-            card.ThisCardManager.CreatGap();
-            await CustomThread.Delay(800);
-            card.ThisCardManager.FoldGap();
-            await CustomThread.Delay(800);
-            card.ThisCardManager.DestoryGap();
-            RemoveCard(card);
-        }
+        public static async Task BanishCard(Card card) => await card.ThisCardManager.CreatGapAsync();
         public static async Task SummonCard(Card targetCard)
         {
             List<Card> TargetRow = AgainstInfo

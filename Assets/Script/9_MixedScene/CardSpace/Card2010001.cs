@@ -20,6 +20,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
                    UnityEngine.Debug.LogError("²¿Êð");
                    await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
+                   await GameSystem.UiSystem.ShowFigure(this);
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.Before, TriggerType.Deploy)
