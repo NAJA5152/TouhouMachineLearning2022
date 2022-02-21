@@ -44,7 +44,7 @@ namespace TouhouMachineLearningSummary.Model
             set
             {
                 cardFields[cardField] = value;
-                if (value<=0)
+                if (value <= 0)
                 {
                     cardFields.Remove(cardField);
                 }
@@ -402,6 +402,18 @@ namespace TouhouMachineLearningSummary.Model
                 {
                     StateIconContent.GetChild(i).gameObject.SetActive(false);
                 }
+            }
+        }
+        [Button]
+        public void AddStateAndField()
+        {
+            for (int i = 1; i < 8; i++)
+            {
+                cardFields.Add((CardField)i,i);
+            }
+            for (int i = 1; i < 18; i++)
+            {
+                cardStates.Add((CardState)i);
             }
         }
     }

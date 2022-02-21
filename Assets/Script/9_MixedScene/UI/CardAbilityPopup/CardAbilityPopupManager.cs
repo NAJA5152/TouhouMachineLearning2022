@@ -115,12 +115,19 @@ namespace TouhouMachineLearningSummary.Manager
                     lineCount += newIntroduction.Length / 13 + 1;
                     Introduction += newIntroduction + "\n";
                 });
-                IntroductionBackground.gameObject.SetActive(true);
-                IntroductionBackground.sizeDelta = new Vector2(300, lineCount * 15 + 100);
-                IntroductionText.text = Introduction;
+                if (lineCount>0)
+                {
+                    IntroductionBackground.gameObject.SetActive(true);
+                    IntroductionBackground.sizeDelta = new Vector2(300, lineCount * 15 + 100);
+                    IntroductionText.text = Introduction;
+                }
+                else
+                {
+                    IntroductionBackground.gameObject.SetActive(false);
+                }
             }
             Title.text = cardName;
-            AbilityBackground.sizeDelta = new Vector2(300, ability.Length / 13 * 15 + 100);
+            AbilityBackground.sizeDelta = new Vector2(300, (ability.Length / 13+1) * 15 + 100);
             //修改文本为富文本
             AbilityText.text = ability;
         }
