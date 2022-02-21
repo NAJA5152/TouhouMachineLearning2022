@@ -1,80 +1,429 @@
 {
-  "对战开始": {
+  "Battle Start": {
+    "Tag": "Battle Start",
     "Ch": "对战开始",
     "Tc": "對戰開始",
     "En": "Battle Start",
     "geyu": "ads"
   },
-  "对战终止": {
+  "Battle End": {
+    "Tag": "Battle End",
     "Ch": "对战终止",
     "Tc": "對戰中止",
     "En": "Battle End",
     "geyu": "asdsaf"
   },
-  "剩余抽卡次数为": {
-    "Ch": "剩余抽卡次数为",
-    "Tc": "剩余抽卡次數為",
+  "": {
+    "Tag": "",
+    "Ch": "",
+    "Tc": "",
     "En": "",
     "geyu": ""
   },
-  "第一小局开始": {
+  "First Round Start": {
+    "Tag": "First Round Start",
+    "Ch": "第一小局开始",
+    "Tc": "第一小局開始",
+    "En": "First Round Start",
+    "geyu": ""
+  },
+  "Second Round Start": {
+    "Tag": "Second Round Start",
+    "Ch": "第一小局开始",
+    "Tc": "第二小局開始",
+    "En": "Second Round Start",
+    "geyu": ""
+  },
+  "Thrid Round Start": {
+    "Tag": "Thrid Round Start",
     "Ch": "第一小局开始",
     "Tc": "第三小局開始",
     "En": "Thrid Round Start",
     "geyu": ""
   },
-  "我方回合开始": {
+  "My Turn Start": {
+    "Tag": "My Turn Start",
     "Ch": "我方回合开始",
     "Tc": "我方回合開始",
     "En": "My Turn Start",
     "geyu": ""
   },
-  "我方回合结束": {
+  "My Turn End": {
+    "Tag": "My Turn End",
     "Ch": "我方回合结束",
     "Tc": "我方回合結束",
     "En": "My Turn End",
     "geyu": ""
   },
-  "对方回合开始": {
+  "Op Turn Start": {
+    "Tag": "Op Turn Start",
     "Ch": "对方回合开始",
     "Tc": "對方回合開始",
     "En": "Op Turn Start",
     "geyu": "新翻译"
   },
-  "对方回合结束": {
+  "Op Turn End": {
+    "Tag": "Op Turn End",
     "Ch": "对方回合结束",
     "Tc": "對方回合結束",
     "En": "Op Turn End",
     "geyu": ""
   },
-  "妖精": {
+  "Fairy": {
+    "Tag": "Fairy",
     "Ch": "妖精",
     "Tc": "",
     "En": "Fairy",
     "geyu": "ads"
   },
-  "机械": {
+  "Machine": {
+    "Tag": "Machine",
     "Ch": "机械",
     "Tc": "",
     "En": "Machine",
     "geyu": "asdsaf"
   },
-  "符卡": {
+  "SpellCard": {
+    "Tag": "SpellCard",
     "Ch": "符卡",
     "Tc": "",
     "En": "SpellCard",
     "geyu": ""
   },
-  "策略": {
+  "tactics": {
+    "Tag": "tactics",
     "Ch": "策略",
     "Tc": "",
     "En": "tactics",
     "geyu": ""
   },
-  "物体": {
+  "Object": {
+    "Tag": "Object",
     "Ch": "物体",
     "Tc": "",
     "En": "Object",
+    "geyu": ""
+  },
+  "Seal": {
+    "Tag": "Seal",
+    "Ch": "封印",
+    "Tc": "",
+    "En": "Seal",
+    "geyu": ""
+  },
+  "Invisibility": {
+    "Tag": "Invisibility",
+    "Ch": "隐身",
+    "Tc": "",
+    "En": "Invisibility",
+    "geyu": ""
+  },
+  "Pry": {
+    "Tag": "Pry",
+    "Ch": "窥探",
+    "Tc": "",
+    "En": "Pry",
+    "geyu": ""
+  },
+  "Close": {
+    "Tag": "Close",
+    "Ch": "封闭",
+    "Tc": "",
+    "En": "Close",
+    "geyu": ""
+  },
+  "Fate": {
+    "Tag": "Fate",
+    "Ch": "命运",
+    "Tc": "",
+    "En": "Fate",
+    "geyu": ""
+  },
+  "Lurk": {
+    "Tag": "Lurk",
+    "Ch": "间谍",
+    "Tc": "",
+    "En": "Lurk",
+    "geyu": ""
+  },
+  "Secret": {
+    "Tag": "Secret",
+    "Ch": "盖牌",
+    "Tc": "",
+    "En": "Secret",
+    "geyu": ""
+  },
+  "Furor": {
+    "Tag": "Furor",
+    "Ch": "狂暴",
+    "Tc": "",
+    "En": "Furor",
+    "geyu": ""
+  },
+  "Docile": {
+    "Tag": "Docile",
+    "Ch": "温顺",
+    "Tc": "",
+    "En": "Docile",
+    "geyu": ""
+  },
+  "Poisoning": {
+    "Tag": "Poisoning",
+    "Ch": "中毒",
+    "Tc": "",
+    "En": "Poisoning",
+    "geyu": ""
+  },
+  "Rely": {
+    "Tag": "Rely",
+    "Ch": "凭依",
+    "Tc": "",
+    "En": "Rely",
+    "geyu": ""
+  },
+  "Water": {
+    "Tag": "Water",
+    "Ch": "水",
+    "Tc": "",
+    "En": "Water",
+    "geyu": ""
+  },
+  "Fire": {
+    "Tag": "Fire",
+    "Ch": "火",
+    "Tc": "",
+    "En": "Fire",
+    "geyu": ""
+  },
+  "Wind": {
+    "Tag": "Wind",
+    "Ch": "风",
+    "Tc": "",
+    "En": "Wind",
+    "geyu": ""
+  },
+  "Soil": {
+    "Tag": "Soil",
+    "Ch": "土",
+    "Tc": "",
+    "En": "Soil",
+    "geyu": ""
+  },
+  "Hold": {
+    "Tag": "Hold",
+    "Ch": "驻守",
+    "Tc": "",
+    "En": "Hold",
+    "geyu": ""
+  },
+  "Congealbounds": {
+    "Tag": "Congealbounds",
+    "Ch": "结界",
+    "Tc": "",
+    "En": "Congealbounds",
+    "geyu": ""
+  },
+  "Timer": {
+    "Tag": "Timer",
+    "Ch": "计时",
+    "Tc": "",
+    "En": "Timer",
+    "geyu": ""
+  },
+  "Vitality": {
+    "Tag": "Vitality",
+    "Ch": "活力",
+    "Tc": "",
+    "En": "Vitality",
+    "geyu": ""
+  },
+  "Apothanasia": {
+    "Tag": "Apothanasia",
+    "Ch": "延命",
+    "Tc": "",
+    "En": "Apothanasia",
+    "geyu": ""
+  },
+  "Chain": {
+    "Tag": "Chain",
+    "Ch": "连锁",
+    "Tc": "",
+    "En": "Chain",
+    "geyu": ""
+  },
+  "Energy": {
+    "Tag": "Energy",
+    "Ch": "能量",
+    "Tc": "",
+    "En": "Energy",
+    "geyu": ""
+  },
+  "Shield": {
+    "Tag": "Shield",
+    "Ch": "护盾",
+    "Tc": "",
+    "En": "Shield",
+    "geyu": ""
+  },
+  "Seal_Introduction": {
+    "Tag": "Seal_Introduction",
+    "Ch": "封印：清除自身所有附加状态和附加值，并使自身特殊效果无法发动",
+    "Tc": "",
+    "En": "Seal",
+    "geyu": ""
+  },
+  "Invisibility_Introduction": {
+    "Tag": "Invisibility_Introduction",
+    "Ch": "隐身：无法被选择成为目标",
+    "Tc": "",
+    "En": "Invisibility",
+    "geyu": ""
+  },
+  "Pry_Introduction": {
+    "Tag": "Pry_Introduction",
+    "Ch": "窥探：向对手明示，下个我方会回合开始时自动取消该状态",
+    "Tc": "",
+    "En": "Pry",
+    "geyu": ""
+  },
+  "Close_Introduction": {
+    "Tag": "Close_Introduction",
+    "Ch": "封闭：无法打出",
+    "Tc": "",
+    "En": "Close",
+    "geyu": ""
+  },
+  "Fate_Introduction": {
+    "Tag": "Fate_Introduction",
+    "Ch": "命运：当处于随机选择的目标中时会被优先选择",
+    "Tc": "",
+    "En": "Fate",
+    "geyu": ""
+  },
+  "Lurk_Introduction": {
+    "Tag": "Lurk_Introduction",
+    "Ch": "间谍：",
+    "Tc": "",
+    "En": "Lurk",
+    "geyu": ""
+  },
+  "Secret_Introduction": {
+    "Tag": "Secret_Introduction",
+    "Ch": "盖牌：无法被选中，同时不计入点数计算，直至翻开",
+    "Tc": "",
+    "En": "Secret",
+    "geyu": ""
+  },
+  "Furor_Introduction": {
+    "Tag": "Furor_Introduction",
+    "Ch": "狂暴：无法再次触发",
+    "Tc": "",
+    "En": "Furor",
+    "geyu": ""
+  },
+  "Docile_Introduction": {
+    "Tag": "Docile_Introduction",
+    "Ch": "温顺",
+    "Tc": "",
+    "En": "Docile",
+    "geyu": ""
+  },
+  "Poisoning_Introduction": {
+    "Tag": "Poisoning_Introduction",
+    "Ch": "中毒：每回合自身受到一点伤害",
+    "Tc": "",
+    "En": "Poisoning",
+    "geyu": ""
+  },
+  "Rely_Introduction": {
+    "Tag": "Rely_Introduction",
+    "Ch": "凭依：指定技能被替换",
+    "Tc": "",
+    "En": "Rely",
+    "geyu": ""
+  },
+  "Water_Introduction": {
+    "Tag": "Water_Introduction",
+    "Ch": "水:",
+    "Tc": "",
+    "En": "Water",
+    "geyu": ""
+  },
+  "Fire_Introduction": {
+    "Tag": "Fire_Introduction",
+    "Ch": "火:",
+    "Tc": "",
+    "En": "Fire",
+    "geyu": ""
+  },
+  "Wind_Introduction": {
+    "Tag": "Wind_Introduction",
+    "Ch": "风:",
+    "Tc": "",
+    "En": "Wind",
+    "geyu": ""
+  },
+  "Soil_Introduction": {
+    "Tag": "Soil_Introduction",
+    "Ch": "土:",
+    "Tc": "",
+    "En": "Soil",
+    "geyu": ""
+  },
+  "Hold_Introduction": {
+    "Tag": "Hold_Introduction",
+    "Ch": "驻守:卡牌可留场到下一小局",
+    "Tc": "",
+    "En": "Hold",
+    "geyu": ""
+  },
+  "Congealbounds_Introduction": {
+    "Tag": "Congealbounds_Introduction",
+    "Ch": "结界:抵消一次伤害或置值导致的点数减少",
+    "Tc": "",
+    "En": "Congealbounds",
+    "geyu": ""
+  },
+  "Timer_Introduction": {
+    "Tag": "Timer_Introduction",
+    "Ch": "计时($Point$)：计数为0时触发效果",
+    "Tc": "",
+    "En": "Timer",
+    "geyu": ""
+  },
+  "Vitality_Introduction": {
+    "Tag": "Vitality_Introduction",
+    "Ch": "鼓舞({field.Value})：增强两侧单位\\\"活力\\\"类型效果",
+    "Tc": "",
+    "En": "Vitality",
+    "geyu": ""
+  },
+  "Apothanasia_Introduction": {
+    "Tag": "Apothanasia_Introduction",
+    "Ch": "延命({field.Value})：当单位点数为0时，回合结束时抵消一次进入墓地效果",
+    "Tc": "",
+    "En": "Apothanasia",
+    "geyu": ""
+  },
+  "Chain_Introduction": {
+    "Tag": "Chain_Introduction",
+    "Ch": "连锁({field.Value})：当前回合打出卡牌的数量",
+    "Tc": "",
+    "En": "Chain",
+    "geyu": ""
+  },
+  "Energy_Introduction": {
+    "Tag": "Energy_Introduction",
+    "Ch": "能量({field.Value})：强化机械的触发效果，过多时触发\\\"超载\\\"效果",
+    "Tc": "",
+    "En": "Energy",
+    "geyu": ""
+  },
+  "Shield_Introduction": {
+    "Tag": "Shield_Introduction",
+    "Ch": "护盾({field.Value})：受到\\\"伤害\\\"类型效果时时抵消相应点数的伤害",
+    "Tc": "",
+    "En": "Shield",
     "geyu": ""
   }
 }

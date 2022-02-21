@@ -310,7 +310,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "重新打出一张非金妖精单位"
+      "Ability-Ch": "将场上一个单位移入卡组，同时打出卡组中点数最低的铜色单位"
     },
     "describe": {
       "Describe-Ch": "好可怕，快溜"
@@ -735,7 +735,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "重新打出一张铜色单位"
+      "Ability-Ch": "选择场上一个铜色单位，将其重新打出"
     },
     "describe": {
       "Describe-Ch": ""
@@ -760,7 +760,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "把一个单位造成伤害使其点数为1"
+      "Ability-Ch": "对一个单位造成（当前点数-1）点的伤害"
     },
     "describe": {
       "Describe-Ch": "虽然看着跟正品一样，但其实只是砸起来很痛的锤子"
@@ -835,7 +835,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "为一个单位添加隐身状态"
+      "Ability-Ch": "为一个非金单位添加隐身状态"
     },
     "describe": {
       "Describe-Ch": ""
@@ -847,6 +847,31 @@
     "cardDeployTerritory": 0,
     "ramification": 0,
     "imageUrl": "闪避布",
+    "isFinish": true
+  },
+  {
+    "cardID": 5,
+    "level": "",
+    "series": "1",
+    "tag": "道具",
+    "point": 4,
+    "name": {
+      "Name-Ch": "水利发电机",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "容量：（3）\n我方回合开始：自身能量加一，并为两侧单位附加水状态\n超载：清空两侧单位护盾"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "imageUrl": "水利发电机",
     "isFinish": true
   }
 ]

@@ -24,10 +24,10 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
              .AbilityAdd(async (triggerInfo) =>
              {
-                 await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardField.Vitality].CardList, 2, false);
+                 await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardField.Inspire].CardList, 2, false);
                  GameSystem.InfoSystem.SelectUnits.ForEach(async unite =>
                  {
-                     await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, unite).SetTargetField(CardField.Vitality, unite[CardField.Vitality] * 2));
+                     await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, unite).SetTargetField(CardField.Inspire, unite[CardField.Inspire] * 2));
                  });
                  foreach (var unite in GameSystem.InfoSystem.SelectUnits)
                  {

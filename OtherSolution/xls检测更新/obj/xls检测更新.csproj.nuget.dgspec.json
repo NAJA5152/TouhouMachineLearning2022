@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\xls检测更新.csproj": {}
+    "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\xls检测更新.csproj": {}
   },
   "projects": {
-    "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\xls检测更新.csproj": {
+    "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\xls检测更新.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\xls检测更新.csproj",
+        "projectUniqueName": "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\xls检测更新.csproj",
         "projectName": "xls检测更新",
-        "projectPath": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\xls检测更新.csproj",
-        "packagesPath": "C:\\Users\\50606\\.nuget\\packages\\",
-        "outputPath": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\obj\\",
+        "projectPath": "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\xls检测更新.csproj",
+        "packagesPath": "C:\\Users\\wuyunge\\.nuget\\packages\\",
+        "outputPath": "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\xls检测更新\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\50606\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\wuyunge\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -49,7 +46,7 @@
             },
             "Spire.XLS": {
               "target": "Package",
-              "version": "[11.9.3, )"
+              "version": "[12.1.0, )"
             }
           },
           "imports": [

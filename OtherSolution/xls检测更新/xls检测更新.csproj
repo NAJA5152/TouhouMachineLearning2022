@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Spire.XLS" Version="11.9.3" />
+    <PackageReference Include="Spire.XLS" Version="12.1.0" />
   </ItemGroup>
 
   <ItemGroup>

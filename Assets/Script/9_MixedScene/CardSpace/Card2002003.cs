@@ -27,7 +27,7 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
                 .AbilityAdd(async (triggerInfo) =>
                 {
-                    await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this,this).SetTargetField(CardField.Vitality, 2));
+                    await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this,this).SetTargetField(CardField.Inspire, 2));
                     await GameSystem.TransSystem.SummonCard(
                         new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck].CardList
                         .Where(card => card.CardID == 2002001 || card.CardID == 2002002)
@@ -39,7 +39,7 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Summon)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, this).SetTargetField(CardField.Vitality, 2));
+                   await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, this).SetTargetField(CardField.Inspire, 2));
                }, Condition.Default)
                .AbilityAppend();
         }

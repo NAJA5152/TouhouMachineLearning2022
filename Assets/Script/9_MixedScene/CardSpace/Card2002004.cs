@@ -24,7 +24,7 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
              .AbilityAdd(async (triggerInfo) =>
              {
-                 for (int i = 0; i < 1 + GameSystem.InfoSystem.GetTwoSideField(this, CardField.Vitality) + 1; i++)
+                 for (int i = 0; i < 1 + GameSystem.InfoSystem.GetTwoSideField(this, CardField.Inspire) + 1; i++)
                  {
                      await GameSystem.SelectSystem.SelectUnite(this, AgainstInfo.cardSet[GameRegion.Battle].CardList, 1, false);
                      await GameSystem.StateSystem.ChangeState(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetTargetState(CardState.Seal));

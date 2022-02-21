@@ -134,17 +134,18 @@ namespace TouhouMachineLearningSummary.GameEnum
     {
         None,
         Timer,//计时
-        Vitality,//活力
+        Inspire,//鼓舞
         Apothanasia,//延命
         Chain,//连锁
         Energy,//能量
         Shield,//护盾
+        Forbidden,//禁足
     }
     //异变类型
     public enum VariationType
     {
         None,
-        Reverse,
+        Reverse,//逆转
     }
 
     public enum Camp

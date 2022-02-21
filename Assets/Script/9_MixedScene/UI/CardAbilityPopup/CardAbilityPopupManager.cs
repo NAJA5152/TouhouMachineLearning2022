@@ -99,81 +99,24 @@ namespace TouhouMachineLearningSummary.Manager
                 Card card = (Card)(object)target;
                 cardName = card.CardName;
                 ability = card.CardIntroduction;
-                int lines=0;
+                int lineCount = 0;
                 card.cardStates.ForEach(state =>
                 {
-                    switch (state)
-                    {
-                        case CardState.Seal:
-                            break;
-                        case CardState.Invisibility:
-                            break;
-                        case CardState.Pry:
-                            break;
-                        case CardState.Close:
-                            break;
-                        case CardState.Fate:
-                            break;
-                        case CardState.Lurk:
-                            break;
-                        case CardState.Secret:
-                            break;
-                        case CardState.Furor:
-                            break;
-                        case CardState.Docile:
-                            break;
-                        case CardState.Poisoning:
-                            break;
-                        case CardState.Rely:
-                            break;
-                        case CardState.Water:
-                            break;
-                        case CardState.Fire:
-                            break;
-                        case CardState.Wind:
-                            break;
-                        case CardState.Soil:
-                            break;
-                        case CardState.Hold:
-                            break;
-                        case CardState.Congealbounds:
-                            break;
-                        default:
-                            break;
-                    }
+                    string newIntroduction = (state.ToString() + "_Introduction").Translation();
+                    //算出单个状态介绍的长度+换行的长度
+                    lineCount += newIntroduction.Length / 13 + 1;
+                    Introduction += newIntroduction + "\n";
                 });
+                Debug.Log("状态栏行数"+lineCount);
                 card.cardFields.ToList().ForEach(field =>
                 {
-                    string newIntroduction = "";
-                    switch (field.Key)
-                    {
-                        case CardField.Timer:
-                            newIntroduction = $"计时({field.Value})：计数为0时触发效果";
-                            break;
-                        case CardField.Vitality:
-                            newIntroduction = $"活力({field.Value})：增强两侧单位效果";
-                            break;
-                        case CardField.Apothanasia:
-                            newIntroduction = $"延命({field.Value})：当单位点数为0时，回合结束时抵消一次进入墓地效果";
-                            break;
-                        case CardField.Chain:
-                            newIntroduction = $"连锁({field.Value})：当前回合打出卡牌的数量";
-                            break;
-                        case CardField.Energy:
-                            newIntroduction = $"能量({field.Value})：强化机械的触发效果，过多时触发\"超载\"效果";
-                            break;
-                        case CardField.Shield:
-                            newIntroduction = $"护盾({field.Value})：受到\"伤害\"类型效果时时抵消相应点数的伤害";
-                            break;
-                        default:
-                            break;
-                    }
-                    //算出单个介绍的长度+换行的长度
-                    lines += newIntroduction.Length / 13 + 1;
+                    string newIntroduction = (field.Key.ToString() + "_Introduction").Translation().Replace("$Point$", field.Value.ToString());
+                    //算出单个字段介绍的长度+换行的长度
+                    lineCount += newIntroduction.Length / 13 + 1;
                     Introduction += newIntroduction + "\n";
                 });
                 IntroductionBackground.gameObject.SetActive(true);
-                IntroductionBackground.sizeDelta = new Vector2(300, lines* 15 + 100);
+                IntroductionBackground.sizeDelta = new Vector2(300, lineCount * 15 + 100);
                 IntroductionText.text = Introduction;
             }
             Title.text = cardName;

@@ -25,8 +25,8 @@ namespace TouhouMachineLearningSummary.CardSpace
              .AbilityAdd(async (triggerInfo) =>
              {
                  await GameSystem.FieldSystem.ChangeField(
-                     new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][CardField.Vitality].CardList)
-                     .SetTargetField( CardField.Vitality,1)
+                     new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][CardField.Inspire].CardList)
+                     .SetTargetField( CardField.Inspire,1)
                      ); 
                  //foreach (var unite in AgainstInfo.cardSet[Orientation.My][CardField.Vitality].CardList)
                  //{

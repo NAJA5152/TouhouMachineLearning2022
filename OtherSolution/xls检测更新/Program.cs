@@ -91,7 +91,7 @@ namespace xls检测更新
                 }
                 textTranslate[gameText[i, 1].DisplayedText] = singleTextTranslate;
             }
-            //Console.WriteLine(JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
+            Console.WriteLine(JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
             File.WriteAllText(direPath + @"\Game-Text.json", JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
             Console.WriteLine("///////////////");
             //加载和储存游戏对话文本系统和各种翻译

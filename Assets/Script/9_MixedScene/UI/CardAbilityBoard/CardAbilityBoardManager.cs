@@ -121,7 +121,7 @@ namespace TouhouMachineLearningSummary.Manager
                     {
                         case CardField.Timer:
                             break;
-                        case CardField.Vitality:
+                        case CardField.Inspire:
                             Introduction += $"活力：增强两侧单位效果{field.Value}";
                             break;
                         case CardField.Apothanasia:

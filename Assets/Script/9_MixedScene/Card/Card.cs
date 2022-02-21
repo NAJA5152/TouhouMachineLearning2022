@@ -288,7 +288,7 @@ namespace TouhouMachineLearningSummary.Model
                 switch (triggerInfo.targetFiled)
                 {
                     case CardField.Timer: break;
-                    case CardField.Vitality: break;
+                    case CardField.Inspire: break;
                     case CardField.Apothanasia:
                         {
                             await ThisCardManager.ShowTips("续命", new Color(1, 0, 0));
@@ -308,7 +308,7 @@ namespace TouhouMachineLearningSummary.Model
                 switch (triggerInfo.targetFiled)
                 {
                     case CardField.Timer: break;
-                    case CardField.Vitality: break;
+                    case CardField.Inspire: break;
                     case CardField.Apothanasia: await ThisCardManager.ShowTips("续命", new Color(1, 0, 0)); break;
                     default: break;
                 }

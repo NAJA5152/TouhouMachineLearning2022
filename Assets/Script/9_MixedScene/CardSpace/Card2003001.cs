@@ -11,7 +11,7 @@ namespace TouhouMachineLearningSummary.CardSpace
     {
         public override void Init()
         {
-            this[CardField.Vitality] = 1;
+            this[CardField.Inspire] = 1;
 
             //初始化通用卡牌效果
             base.Init();
