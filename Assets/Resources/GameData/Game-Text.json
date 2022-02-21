@@ -265,6 +265,13 @@
     "En": "Shield",
     "geyu": ""
   },
+  "Forbidden": {
+    "Tag": "Forbidden",
+    "Ch": "禁足",
+    "Tc": "",
+    "En": "",
+    "geyu": ""
+  },
   "Seal_Introduction": {
     "Tag": "Seal_Introduction",
     "Ch": "封印：清除自身所有附加状态和附加值，并使自身特殊效果无法发动",
@@ -344,7 +351,7 @@
   },
   "Water_Introduction": {
     "Tag": "Water_Introduction",
-    "Ch": "水:",
+    "Ch": "水:可与其他元素状态发生反应\n治愈（水+水）：治愈单位\n中和（水+火）：清空卡牌状态\n泥泞（水+土）：使单位无法被移动\n扩散（水+风）：使单位两侧单位获得水状态",
     "Tc": "",
     "En": "Water",
     "geyu": ""
@@ -393,35 +400,35 @@
   },
   "Vitality_Introduction": {
     "Tag": "Vitality_Introduction",
-    "Ch": "鼓舞({field.Value})：增强两侧单位\\\"活力\\\"类型效果",
+    "Ch": "鼓舞($Point$)：增强两侧单位\\\"活力\\\"类型效果",
     "Tc": "",
     "En": "Vitality",
     "geyu": ""
   },
   "Apothanasia_Introduction": {
     "Tag": "Apothanasia_Introduction",
-    "Ch": "延命({field.Value})：当单位点数为0时，回合结束时抵消一次进入墓地效果",
+    "Ch": "延命($Point$)：当单位点数为0时，回合结束时抵消一次进入墓地效果",
     "Tc": "",
     "En": "Apothanasia",
     "geyu": ""
   },
   "Chain_Introduction": {
     "Tag": "Chain_Introduction",
-    "Ch": "连锁({field.Value})：当前回合打出卡牌的数量",
+    "Ch": "连锁($Point$)：当前回合打出卡牌的数量",
     "Tc": "",
     "En": "Chain",
     "geyu": ""
   },
   "Energy_Introduction": {
     "Tag": "Energy_Introduction",
-    "Ch": "能量({field.Value})：强化机械的触发效果，过多时触发\\\"超载\\\"效果",
+    "Ch": "能量($Point$)：强化机械的触发效果，过多时触发\\\"超载\\\"效果",
     "Tc": "",
     "En": "Energy",
     "geyu": ""
   },
   "Shield_Introduction": {
     "Tag": "Shield_Introduction",
-    "Ch": "护盾({field.Value})：受到\\\"伤害\\\"类型效果时时抵消相应点数的伤害",
+    "Ch": "护盾($Point$)：受到\\\"伤害\\\"类型效果时时抵消相应点数的伤害",
     "Tc": "",
     "En": "Shield",
     "geyu": ""
