@@ -256,13 +256,145 @@ namespace TouhouMachineLearningSummary.Model
             AbalityRegister(TriggerTime.When, TriggerType.StateAdd)
             .AbilityAdd(async (triggerInfo) =>
             {
-                this[triggerInfo.targetState] = true;
                 switch (triggerInfo.targetState)
                 {
                     case CardState.Lurk:; break;
                     case CardState.Seal: await Command.CardCommand.SealCard(this); break;
+                    case CardState.None:
+                        break;
+                    case CardState.Invisibility:
+                        break;
+                    case CardState.Pry:
+                        break;
+                    case CardState.Close:
+                        break;
+                    case CardState.Fate:
+                        break;
+                    case CardState.Secret:
+                        break;
+                    case CardState.Furor:
+                        break;
+                    case CardState.Docile:
+                        break;
+                    case CardState.Poisoning:
+                        break;
+                    case CardState.Rely:
+                        break;
+                    case CardState.Water:
+                        if (cardStates.Contains(CardState.Water))
+                        {
+                            cardStates.Remove(CardState.Water);
+                            await ThisCardManager.ShowTips("治愈", new Color(0, 1, 0));
+                        }
+                        else if (cardStates.Contains(CardState.Fire))
+                        {
+                            cardStates.Remove(CardState.Fire);
+                            await ThisCardManager.ShowTips("中和", new Color(0, 1, 0));
+                        }
+                        else if (cardStates.Contains(CardState.Wind))
+                        {
+                            cardStates.Remove(CardState.Wind);
+                            await ThisCardManager.ShowTips("扩散", new Color(0, 1, 0));
+
+                        }
+                        else if (cardStates.Contains(CardState.Soil))
+                        {
+                            cardStates.Remove(CardState.Soil);
+                            await ThisCardManager.ShowTips("泥泞", new Color(1, 1, 0));
+                        }
+                        else
+                        {
+                            cardStates.Add(CardState.Water);
+                        }
+                        return;
+                    case CardState.Fire:
+                        if (cardStates.Contains(CardState.Water))
+                        {
+                            cardStates.Remove(CardState.Water);
+                            await ThisCardManager.ShowTips("中和", new Color(0, 1, 0));
+                        }
+                        else if (cardStates.Contains(CardState.Fire))
+                        {
+                            cardStates.Remove(CardState.Fire);
+                            await ThisCardManager.ShowTips("烧灼", new Color(0, 1, 0));
+                        }
+                        else if (cardStates.Contains(CardState.Wind))
+                        {
+                            cardStates.Remove(CardState.Wind);
+                            await ThisCardManager.ShowTips("扩散", new Color(0, 1, 0));
+
+                        }
+                        else if (cardStates.Contains(CardState.Soil))
+                        {
+                            cardStates.Remove(CardState.Soil);
+                            await ThisCardManager.ShowTips("熔岩", new Color(1, 1, 0));
+                        }
+                        else
+                        {
+                            cardStates.Add(CardState.Fire);
+                        }
+                        return;
+                    case CardState.Wind:
+                        if (cardStates.Contains(CardState.Water))
+                        {
+                            cardStates.Remove(CardState.Water);
+                            await ThisCardManager.ShowTips("扩散", new Color(0, 1, 0));
+                        }
+                        else if (cardStates.Contains(CardState.Fire))
+                        {
+                            cardStates.Remove(CardState.Fire);
+                            await ThisCardManager.ShowTips("扩散", new Color(0, 1, 0));
+                        }
+                        else if (cardStates.Contains(CardState.Wind))
+                        {
+                            cardStates.Remove(CardState.Wind);
+                            await ThisCardManager.ShowTips("烈风", new Color(0, 1, 0));
+
+                        }
+                        else if (cardStates.Contains(CardState.Soil))
+                        {
+                            cardStates.Remove(CardState.Soil);
+                            await ThisCardManager.ShowTips("扩散", new Color(1, 1, 0));
+                        }
+                        else
+                        {
+                            cardStates.Add(CardState.Wind);
+                        }
+                        return;
+                    case CardState.Soil:
+                        if (cardStates.Contains(CardState.Water))
+                        {
+                            cardStates.Remove(CardState.Water);
+                            await ThisCardManager.ShowTips("泥泞", new Color(0, 1, 0));
+                        }
+                        else if (cardStates.Contains(CardState.Fire))
+                        {
+                            cardStates.Remove(CardState.Fire);
+                            await ThisCardManager.ShowTips("熔岩", new Color(0, 1, 0));
+                        }
+                        else if (cardStates.Contains(CardState.Wind))
+                        {
+                            cardStates.Remove(CardState.Wind);
+                            await ThisCardManager.ShowTips("扩散", new Color(0, 1, 0));
+
+                        }
+                        else if (cardStates.Contains(CardState.Soil))
+                        {
+                            cardStates.Remove(CardState.Soil);
+                            await ThisCardManager.ShowTips("固化", new Color(1, 1, 0));
+                        }
+                        else
+                        {
+                            cardStates.Add(CardState.Soil);
+                        }
+                        return;
+                    case CardState.Hold:
+                        break;
+                    case CardState.Congealbounds:
+                        break;
                     default: break;
                 }
+                this[triggerInfo.targetState] = true;
             })
            .AbilityAppend();
             //卡牌状态取消时效果
@@ -395,7 +527,7 @@ namespace TouhouMachineLearningSummary.Model
                 }
                 else if (i < cardStates.Count)
                 {
-                    StateIconContent.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>("FieldAndState\\" + cardFields.ToList()[i].Key.ToString()); ;
+                    StateIconContent.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>("FieldAndState\\" + cardStates[i].ToString()); ;
                     StateIconContent.GetChild(i).gameObject.SetActive(true);
                 }
                 else
@@ -409,12 +541,17 @@ namespace TouhouMachineLearningSummary.Model
         {
             for (int i = 1; i < 8; i++)
             {
-                cardFields.Add((CardField)i,i);
+                cardFields.Add((CardField)i, i);
             }
             for (int i = 1; i < 18; i++)
             {
                 cardStates.Add((CardState)i);
             }
         }
+
+        [Button] public void 水() => GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Water));
+        [Button] public void 火() => GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Fire));
+        [Button] public void 风() => GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Wind));
+        [Button] public void 土() => GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Soil));
     }
 }

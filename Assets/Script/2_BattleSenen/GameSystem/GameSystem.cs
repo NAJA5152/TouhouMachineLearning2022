@@ -86,7 +86,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         public static async Task SetState(TriggerInfoModel triggerInfo)
         {
             //筛选触发目标，对不包含该状态的卡牌才会激活状态
-            triggerInfo.targetCards = triggerInfo.targetCards.Where(card => card[triggerInfo.targetState]).ToList();
+            //triggerInfo.targetCards = triggerInfo.targetCards.Where(card => card[triggerInfo.targetState]).ToList();
             await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateAdd]);
         }
         public static async Task ClearState(TriggerInfoModel triggerInfo)

@@ -223,6 +223,13 @@
     "En": "Congealbounds",
     "geyu": ""
   },
+  "Forbidden": {
+    "Tag": "Forbidden",
+    "Ch": "禁足",
+    "Tc": "",
+    "En": "Forbidden",
+    "geyu": ""
+  },
   "Timer": {
     "Tag": "Timer",
     "Ch": "计时",
@@ -263,13 +270,6 @@
     "Ch": "护盾",
     "Tc": "",
     "En": "Shield",
-    "geyu": ""
-  },
-  "Forbidden": {
-    "Tag": "Forbidden",
-    "Ch": "禁足",
-    "Tc": "",
-    "En": "",
     "geyu": ""
   },
   "Seal_Introduction": {
@@ -351,37 +351,30 @@
   },
   "Water_Introduction": {
     "Tag": "Water_Introduction",
-    "Ch": "水:可与其他元素状态发生反应\n治愈（水+水）：治愈单位\n中和（水+火）：清空卡牌状态\n泥泞（水+土）：使单位无法被移动\n扩散（水+风）：使单位两侧单位获得水状态",
+    "Ch": "水:可与其他元素状态发生反应\n治愈（水+水）：治愈单位\n中和（水+火）：清空卡牌状态\n泥泞（水+土）：使单位无法被移动\n扩散（水+风）：使单位与两侧单位获得水状态",
     "Tc": "",
     "En": "Water",
     "geyu": ""
   },
   "Fire_Introduction": {
     "Tag": "Fire_Introduction",
-    "Ch": "火:",
+    "Ch": "火:可与其他元素状态发生反应\n治愈（水+水）：治愈单位\n中和（水+火）：清空卡牌状态\n泥泞（水+土）：使单位无法被移动\n扩散（水+风）：使单位两侧单位获得水状态",
     "Tc": "",
     "En": "Fire",
     "geyu": ""
   },
-  "Wind_Introduction": {
-    "Tag": "Wind_Introduction",
-    "Ch": "风:",
-    "Tc": "",
-    "En": "Wind",
-    "geyu": ""
-  },
   "Soil_Introduction": {
     "Tag": "Soil_Introduction",
-    "Ch": "土:",
+    "Ch": "土:可与其他元素状态发生反应",
     "Tc": "",
     "En": "Soil",
     "geyu": ""
   },
-  "Hold_Introduction": {
-    "Tag": "Hold_Introduction",
-    "Ch": "驻守:卡牌可留场到下一小局",
+  "Wind_Introduction": {
+    "Tag": "Wind_Introduction",
+    "Ch": "风:可与其他元素状态发生反应\n扩散（风+任意其他元素状态）：令该单位与两侧单位获得同样的元素状态\n烈风（风+风）：对同排所有单位造成一点伤害",
     "Tc": "",
-    "En": "Hold",
+    "En": "Wind",
     "geyu": ""
   },
   "Congealbounds_Introduction": {
@@ -389,6 +382,13 @@
     "Ch": "结界:抵消一次伤害或置值导致的点数减少",
     "Tc": "",
     "En": "Congealbounds",
+    "geyu": ""
+  },
+  "Forbidden_Introduction": {
+    "Tag": "Forbidden_Introduction",
+    "Ch": "禁足：抵消移动效果",
+    "Tc": "",
+    "En": "",
     "geyu": ""
   },
   "Timer_Introduction": {
