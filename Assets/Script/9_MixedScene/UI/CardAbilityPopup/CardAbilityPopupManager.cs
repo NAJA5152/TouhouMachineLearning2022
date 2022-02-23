@@ -104,15 +104,21 @@ namespace TouhouMachineLearningSummary.Manager
                 {
                     string newIntroduction = (state.ToString() + "_Introduction").Translation();
                     //算出单个状态介绍的长度+换行的长度
-                    lineCount += newIntroduction.Length / 13 + 1;
+                    newIntroduction.Split('\n').ToList().ForEach(singleRowText =>
+                    {
+                        lineCount += singleRowText.Length / 13 + 1;
+                    });
                     Introduction += newIntroduction + "\n";
                 });
-                Debug.Log("状态栏行数"+lineCount);
+                //Debug.Log("状态栏行数"+lineCount);
                 card.cardFields.ToList().ForEach(field =>
                 {
                     string newIntroduction = (field.Key.ToString() + "_Introduction").Translation().Replace("$Point$", field.Value.ToString());
                     //算出单个字段介绍的长度+换行的长度
-                    lineCount += newIntroduction.Length / 13 + 1;
+                    newIntroduction.Split('\n').ToList().ForEach(singleRowText =>
+                    {
+                        lineCount += singleRowText.Length / 13 + 1;
+                    });
                     Introduction += newIntroduction + "\n";
                 });
                 if (lineCount>0)

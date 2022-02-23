@@ -38,6 +38,10 @@ namespace TouhouMachineLearningSummary.GameEnum
         Discard,
         Dead,
         /// <summary>
+        /// ªÿ ÷
+        /// </summary>
+        Recycle,
+        /// <summary>
         /// ∏¥ªÓ
         /// </summary>
         Revive,
@@ -208,6 +212,7 @@ namespace TouhouMachineLearningSummary.GameEnum
         Fairy,
         Object,
         Tool,
+        Monster,
     }
     public enum Orientation
     {

@@ -52,7 +52,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         // 回手
         public static async Task RecycleCard(TriggerInfoModel triggerInfo)
         {
-
+            await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Reverse]);
         }
         // 复活
         public static async Task ReviveCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Revive]);
@@ -155,7 +155,10 @@ namespace TouhouMachineLearningSummary.GameSystem
         public static async Task SelectRegion(Card triggerCard, Territory territory = Territory.All, GameRegion regionType = GameRegion.Battle) => await Command.StateCommand.WaitForSelectRegion(triggerCard, territory, regionType);
 
     }
-    //由系统触发的状态机制
+    /// <summary>
+    /// 由系统触发的流程控制事件，不会由卡牌触发
+    /// </summary>
+
     public class ProcessSystem
     {
         public static async Task WhenTurnStart() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.TurnStart]);

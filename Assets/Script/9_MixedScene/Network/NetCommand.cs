@@ -159,7 +159,6 @@ namespace TouhouMachineLearningSummary.Command
             try
             {
                 Debug.Log("注册请求");
-
                 if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
                 return await TohHouHub.InvokeAsync<int>("Register", account, password);
             }
