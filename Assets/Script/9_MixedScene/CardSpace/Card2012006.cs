@@ -17,9 +17,16 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this,this));
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
+            AbalityRegister(TriggerTime.When, TriggerType.Deploy)
+             .AbilityAdd(async (triggerInfo) =>
+             {
+                 await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][CardRank.Silver][CardRank.Copper][CardFeature.Largest].CardList, 1, isAuto: true);
+                 await GameSystem.PointSystem.Reversal(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit));
+             }, Condition.Default)
+             .AbilityAppend();
         }
     }
 }

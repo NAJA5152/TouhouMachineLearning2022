@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Connections;
 using Microsoft.AspNetCore.SignalR.Client;
+using Microsoft.AspNetCore.SignalR.Protocol;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +11,6 @@ using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
-using WebSocketSharp;
 
 namespace TouhouMachineLearningSummary.Command
 {
@@ -17,7 +18,6 @@ namespace TouhouMachineLearningSummary.Command
     {
         static string ip => Info.AgainstInfo.isHostNetMode ? "localhost:495" : "106.15.38.165:495";
         static HubConnection TohHouHub { get; set; } = null;
-
         public static async Task Init()
         {
             try

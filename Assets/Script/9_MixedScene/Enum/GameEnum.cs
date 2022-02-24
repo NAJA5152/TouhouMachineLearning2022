@@ -113,9 +113,12 @@ namespace TouhouMachineLearningSummary.GameEnum
         TurnStart,
         TurnEnd
     }
+    /// <summary>
+    /// 卡牌附加状态类型
+    /// </summary>
     public enum CardState
     {
-        None,
+        None,//默认空状态
         Seal,//封印
         Invisibility,//隐身
         Pry,//窥探
@@ -132,20 +135,26 @@ namespace TouhouMachineLearningSummary.GameEnum
         Wind,//风
         Soil,//土
         Hold, //驻守
-        Congealbounds//结界
+        Congealbounds,//结界
+        Forbidden,//禁足
     }
+    /// <summary>
+    /// 卡牌附加值类型
+    /// </summary>
     public enum CardField
     {
-        None,
+        None,//默认空状态
         Timer,//计时
         Inspire,//鼓舞
         Apothanasia,//延命
         Chain,//连锁
         Energy,//能量
         Shield,//护盾
-        Forbidden,//禁足
+
     }
-    //异变类型
+    /// <summary>
+    /// 异变类型
+    /// </summary>
     public enum VariationType
     {
         None,
@@ -212,7 +221,7 @@ namespace TouhouMachineLearningSummary.GameEnum
         Fairy,
         Object,
         Tool,
-        Monster,
+        Yokai,
     }
     public enum Orientation
     {
