@@ -490,7 +490,7 @@ MonoBehaviour:
     cardDeployTerritory: 0
     cardTag: 
     imageUrl: "\u8D64\u86EE\u5947"
-  - icon: {fileID: 2800000, guid: d5aae73ee19017b4abc18a4fe435ea12, type: 3}
+  - icon: {fileID: 2800000, guid: ed325fcf83e4f3744b5be1566314089a, type: 3}
     cardID: 2012003
     level: 
     series: 1
@@ -502,7 +502,7 @@ MonoBehaviour:
     cardDeployTerritory: 0
     cardTag: 
     imageUrl: "\u4ECA\u6CC9\u5F71\u72FC"
-  - icon: {fileID: 2800000, guid: d5aae73ee19017b4abc18a4fe435ea12, type: 3}
+  - icon: {fileID: 2800000, guid: 8353090628a106d4fb04d1fa9424e3f4, type: 3}
     cardID: 2012004
     level: 
     series: 1
@@ -514,7 +514,7 @@ MonoBehaviour:
     cardDeployTerritory: 0
     cardTag: 
     imageUrl: "\u4E5D\u5341\u4E5D\u5F01\u5F01"
-  - icon: {fileID: 2800000, guid: d5aae73ee19017b4abc18a4fe435ea12, type: 3}
+  - icon: {fileID: 2800000, guid: 8bdaad282a25e674c99c764a23bce403, type: 3}
     cardID: 2012005
     level: 
     series: 1
@@ -526,7 +526,7 @@ MonoBehaviour:
     cardDeployTerritory: 0
     cardTag: 
     imageUrl: "\u4E5D\u5341\u4E5D\u516B\u6865"
-  - icon: {fileID: 2800000, guid: d5aae73ee19017b4abc18a4fe435ea12, type: 3}
+  - icon: {fileID: 2800000, guid: 3c93064f1e18d9c40bc551467d6d9714, type: 3}
     cardID: 2012006
     level: 
     series: 1
@@ -538,7 +538,7 @@ MonoBehaviour:
     cardDeployTerritory: 0
     cardTag: 
     imageUrl: "\u9006\u7B26\u300C\u5929\u4E0B\u7FFB\u8986\u300D"
-  - icon: {fileID: 2800000, guid: d5aae73ee19017b4abc18a4fe435ea12, type: 3}
+  - icon: {fileID: 2800000, guid: 43f4ee837c7dfc549bb4f0aae051263e, type: 3}
     cardID: 2012007
     level: 
     series: 1
@@ -550,7 +550,7 @@ MonoBehaviour:
     cardDeployTerritory: 0
     cardTag: 
     imageUrl: "\u8349\u6839\u5996\u602A\u7F51\u7EDC"
-  - icon: {fileID: 2800000, guid: d5aae73ee19017b4abc18a4fe435ea12, type: 3}
+  - icon: {fileID: 2800000, guid: 6d2735f1172f5724198c840d84a2de0e, type: 3}
     cardID: 2012008
     level: 
     series: 1
@@ -562,7 +562,7 @@ MonoBehaviour:
     cardDeployTerritory: 0
     cardTag: 
     imageUrl: "\u4E07\u5B9D\u69CC"
-  - icon: {fileID: 2800000, guid: d5aae73ee19017b4abc18a4fe435ea12, type: 3}
+  - icon: {fileID: 2800000, guid: 81be62bee532333478b076745d4cf1d1, type: 3}
     cardID: 2013001
     level: 
     series: 1
@@ -574,7 +574,7 @@ MonoBehaviour:
     cardDeployTerritory: 0
     cardTag: 
     imageUrl: "\u66FF\u8EAB\u5730\u85CF"
-  - icon: {fileID: 2800000, guid: d5aae73ee19017b4abc18a4fe435ea12, type: 3}
+  - icon: {fileID: 2800000, guid: 6b859c5f9eff0734397249b6d31c139f, type: 3}
     cardID: 2013002
     level: 
     series: 1
@@ -586,7 +586,7 @@ MonoBehaviour:
     cardDeployTerritory: 0
     cardTag: 
     imageUrl: "\u4E07\u5B9D\u69CC\uFF08\u4EFF\u5236\u54C1\uFF09"
-  - icon: {fileID: 2800000, guid: d5aae73ee19017b4abc18a4fe435ea12, type: 3}
+  - icon: {fileID: 2800000, guid: a19c1ed044512c3449008def62e3dfbb, type: 3}
     cardID: 2013003
     level: 
     series: 1
@@ -598,7 +598,7 @@ MonoBehaviour:
     cardDeployTerritory: 0
     cardTag: 
     imageUrl: "\u4EA1\u7075\u7684\u9001\u884C\u63D0\u706F"
-  - icon: {fileID: 2800000, guid: d5aae73ee19017b4abc18a4fe435ea12, type: 3}
+  - icon: {fileID: 2800000, guid: f90ac61167acb3445a23342e5a812e58, type: 3}
     cardID: 2013004
     level: 
     series: 1
@@ -610,7 +610,7 @@ MonoBehaviour:
     cardDeployTerritory: 0
     cardTag: 
     imageUrl: "\u9699\u95F4\u7684\u6298\u53E0\u4F1E"
-  - icon: {fileID: 2800000, guid: d5aae73ee19017b4abc18a4fe435ea12, type: 3}
+  - icon: {fileID: 2800000, guid: 95eb89f06547cbb48ad0a63f45f05cce, type: 3}
     cardID: 2013005
     level: 
     series: 1
@@ -622,3 +622,15 @@ MonoBehaviour:
     cardDeployTerritory: 0
     cardTag: 
     imageUrl: "\u95EA\u907F\u5E03"
+  - icon: {fileID: 2800000, guid: d5aae73ee19017b4abc18a4fe435ea12, type: 3}
+    cardID: 2013005
+    level: 
+    series: 1
+    point: 4
+    cardType: 0
+    cardRank: 3
+    cardCamp: 0
+    cardDeployRegion: 99
+    cardDeployTerritory: 0
+    cardTag: 
+    imageUrl: "\u6C34\u5229\u53D1\u7535\u673A"
