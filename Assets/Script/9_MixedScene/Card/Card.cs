@@ -50,23 +50,6 @@ namespace TouhouMachineLearningSummary.Model
                 }
             }
         }
-        //[ShowInInspector]
-        //public Dictionary<CardState, bool> cardStates = new Dictionary<CardState, bool>();
-        //public bool this[CardState cardState]
-        //{
-        //    get => cardStates.ContainsKey(cardState) ? cardStates[cardState] : false;
-        //    set
-        //    {
-        //        if (value)
-        //        {
-        //            cardStates[cardState] = true;
-        //        }
-        //        else
-        //        {
-        //            cardStates.Remove(cardState);
-        //        }
-        //    }
-        //}
         [ShowInInspector]
         public List<CardState> cardStates = new List<CardState>();
         public bool this[CardState cardState]

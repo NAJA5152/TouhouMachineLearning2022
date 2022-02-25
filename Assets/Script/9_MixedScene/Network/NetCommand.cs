@@ -139,12 +139,8 @@ namespace TouhouMachineLearningSummary.Command
             }
             catch (Exception e)
             {
-                await NoticeCommand.ShowAsync("无法链接到服务器,请点击重连\n" + e.Message,
-                     NotifyBoardMode.Ok,
-                     okAction: async () =>
-                     {
-                         await Init();
-                     });
+                await NoticeCommand.ShowAsync("无法链接到服务器,请点击重连\n" + e.Message,NotifyBoardMode.Ok,
+                     okAction: async () =>{await Init();});
             }
 
         }
@@ -152,7 +148,6 @@ namespace TouhouMachineLearningSummary.Command
         {
             Debug.Log("释放网络资源");
             await TohHouHub.StopAsync();
-            //AsyncConnect.Close();
         }
         public static async Task<int> RegisterAsync(string account, string password)
         {

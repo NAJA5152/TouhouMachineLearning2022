@@ -5,6 +5,9 @@ using TouhouMachineLearningSummary.Model;
 
 namespace TouhouMachineLearningSummary.CardSpace
 {
+    /// <summary>
+    /// 卡牌名称:三月精*日
+    /// </summary>
     public class Card2002001 : Card
     {
         public override void Init()

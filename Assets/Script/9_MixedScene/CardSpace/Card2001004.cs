@@ -5,6 +5,9 @@ using TouhouMachineLearningSummary.Model;
 
 namespace TouhouMachineLearningSummary.CardSpace
 {
+    /// <summary>
+    /// ¿¨ÅÆÃû³Æ:Ë¹Ëþ
+    /// </summary>
     public class Card2001004 : Card
     {
         public override void Init()

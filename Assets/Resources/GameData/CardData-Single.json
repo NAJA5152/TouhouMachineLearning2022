@@ -21,7 +21,6 @@
     "cardDeployRegion": 0,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "板烧琪露诺",
     "isFinish": true
   },
   {
@@ -46,7 +45,6 @@
     "cardDeployRegion": 2,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "大妖精",
     "isFinish": true
   },
   {
@@ -71,7 +69,6 @@
     "cardDeployRegion": 1,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "桑尼",
     "isFinish": true
   },
   {
@@ -96,7 +93,6 @@
     "cardDeployRegion": 2,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "露娜",
     "isFinish": true
   },
   {
@@ -121,7 +117,6 @@
     "cardDeployRegion": 0,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "斯塔",
     "isFinish": true
   },
   {
@@ -146,7 +141,6 @@
     "cardDeployRegion": 2,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "三月精-月",
     "isFinish": true
   },
   {
@@ -171,7 +165,6 @@
     "cardDeployRegion": 0,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "三月精-星",
     "isFinish": true
   },
   {
@@ -196,7 +189,6 @@
     "cardDeployRegion": 0,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "琪露诺",
     "isFinish": true
   },
   {
@@ -221,7 +213,6 @@
     "cardDeployRegion": 1,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "克劳恩皮丝",
     "isFinish": true
   },
   {
@@ -246,7 +237,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "鼓舞小妖精",
     "isFinish": true
   },
   {
@@ -271,7 +261,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "战略转移",
     "isFinish": true
   },
   {
@@ -296,7 +285,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "弱小妖精",
     "isFinish": true
   },
   {
@@ -321,7 +309,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "狂妄小妖精",
     "isFinish": true
   },
   {
@@ -346,7 +333,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "妖精的复生",
     "isFinish": true
   }
 ]

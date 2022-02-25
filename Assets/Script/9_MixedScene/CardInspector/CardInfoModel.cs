@@ -48,7 +48,6 @@ namespace TouhouMachineLearningSummary.Model
                 return this.name["Name-" + name];
             }
         }
-
         public string translateDescribe => describe["Describe-" + (describe.ContainsKey("Describe-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch")];
         public string translateAbility => ability["Ability-" + (ability.ContainsKey("Ability-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch")];
         public List<KeyValuePair<string, string>> a;
@@ -72,8 +71,8 @@ namespace TouhouMachineLearningSummary.Model
         public Territory cardDeployTerritory = Territory.My;
         [LabelText("卡片标签"), EnumToggleButtons]
         public string cardTag = "";
-        [HideInInspector]
-        public string imageUrl;
+
+        public Sprite GetCardSprite() => icon.ToSprite();
         public CardModel() { }
         /// <summary>
         /// 根据卡牌参数补充对应的卡牌id，卡牌插画等
@@ -81,22 +80,17 @@ namespace TouhouMachineLearningSummary.Model
         /// <param name="isSingle"></param>
         public CardModel Init(bool isSingle)
         {
-            a = name.ToList();
             if (isSingle)
             {
                 cardID = int.Parse($"1{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3, '0')}");
+                icon = Resources.Load<Texture2D>("CardTex\\Single\\" + cardID) ?? Resources.Load<Texture2D>("CardTex\\default");
             }
             else
             {
                 cardID = int.Parse($"2{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3, '0')}");
+                icon = Resources.Load<Texture2D>("CardTex\\Multiplayer\\" + cardID) ?? Resources.Load<Texture2D>("CardTex\\default");
             }
             Debug.Log(cardID);
-            icon = Resources.Load<Texture2D>("CardTex\\" + imageUrl);
-            if (icon == null)
-            {
-                icon = Resources.Load<Texture2D>("CardTex\\default");
-            }
-            //如果不存在该id对应脚本则自动创建
             return this;
         }
         [Button("打开脚本")]
@@ -106,6 +100,5 @@ namespace TouhouMachineLearningSummary.Model
             CardLibraryCommand.CreatScript(cardID);
             System.Diagnostics.Process.Start(targetPath);
         }
-        public Sprite GetCardSprite() => icon.ToSprite();
     }
 }

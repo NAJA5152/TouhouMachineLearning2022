@@ -171,7 +171,6 @@ namespace xls检测更新
             public int cardDeployRegion;
             public int cardDeployTerritory;
             public int ramification;
-            public string imageUrl;
             public bool isFinish;
 
             public CardModelInfo(Worksheet cards, int i)
@@ -193,7 +192,6 @@ namespace xls检测更新
                 }
                 cardDeployTerritory = cards[i, cards.GetIndex("Territory")].GetXlsData<string>().ToEnumIndex("我方", "敌方");
                 ramification = cards[i, cards.GetIndex("Ramification")].GetXlsData<string>().ToEnumIndex("正体", "衍生");
-                imageUrl = cards[i, cards.GetIndex("ImageUrl")].GetXlsData<string>();
                 foreach (var index in cards.GetIndexs("Name"))
                 {
                     string key = cards[1, index].DisplayedText;

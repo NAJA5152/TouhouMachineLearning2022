@@ -8,6 +8,9 @@ using static TouhouMachineLearningSummary.Info.AgainstInfo;
 
 namespace TouhouMachineLearningSummary.CardSpace
 {
+    /// <summary>
+    /// ¿¨ÅÆÃû³Æ:Õ½ÂÔ×ªÒÆ
+    /// </summary>
     public class Card2003002 : Card
     {
         public override void Init()

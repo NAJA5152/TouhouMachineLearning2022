@@ -21,7 +21,6 @@
     "cardDeployRegion": 0,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "板烧琪露诺",
     "isFinish": true
   },
   {
@@ -46,7 +45,6 @@
     "cardDeployRegion": 2,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "大妖精",
     "isFinish": true
   },
   {
@@ -71,7 +69,6 @@
     "cardDeployRegion": 1,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "桑尼",
     "isFinish": true
   },
   {
@@ -96,7 +93,6 @@
     "cardDeployRegion": 2,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "露娜",
     "isFinish": true
   },
   {
@@ -121,7 +117,6 @@
     "cardDeployRegion": 0,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "斯塔",
     "isFinish": true
   },
   {
@@ -146,7 +141,6 @@
     "cardDeployRegion": 1,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "三月精-日",
     "isFinish": true
   },
   {
@@ -171,7 +165,6 @@
     "cardDeployRegion": 2,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "三月精-月",
     "isFinish": true
   },
   {
@@ -196,7 +189,6 @@
     "cardDeployRegion": 0,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "三月精-星",
     "isFinish": true
   },
   {
@@ -221,7 +213,6 @@
     "cardDeployRegion": 0,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "琪露诺",
     "isFinish": true
   },
   {
@@ -246,7 +237,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "莉莉白",
     "isFinish": true
   },
   {
@@ -271,7 +261,6 @@
     "cardDeployRegion": 1,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "克劳恩皮丝",
     "isFinish": true
   },
   {
@@ -296,7 +285,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "鼓舞小妖精",
     "isFinish": true
   },
   {
@@ -321,7 +309,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "战略转移",
     "isFinish": true
   },
   {
@@ -346,7 +333,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "弱小妖精",
     "isFinish": true
   },
   {
@@ -371,7 +357,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "狂妄小妖精",
     "isFinish": true
   },
   {
@@ -396,7 +381,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "妖精的复生",
     "isFinish": true
   },
   {
@@ -421,7 +405,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "鬼人正邪",
     "isFinish": true
   },
   {
@@ -446,7 +429,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "少名针妙丸",
     "isFinish": true
   },
   {
@@ -471,7 +453,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "堀川雷鼓",
     "isFinish": true
   },
   {
@@ -496,7 +477,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "天空的逆城",
     "isFinish": true
   },
   {
@@ -521,7 +501,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "作弊的天邪鬼",
     "isFinish": true
   },
   {
@@ -546,7 +525,6 @@
     "cardDeployRegion": 0,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "若鹭姬",
     "isFinish": true
   },
   {
@@ -571,7 +549,6 @@
     "cardDeployRegion": 1,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "赤蛮奇",
     "isFinish": true
   },
   {
@@ -596,7 +573,6 @@
     "cardDeployRegion": 2,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "今泉影狼",
     "isFinish": true
   },
   {
@@ -621,7 +597,6 @@
     "cardDeployRegion": 0,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "九十九弁弁",
     "isFinish": true
   },
   {
@@ -646,7 +621,6 @@
     "cardDeployRegion": 0,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "九十九八桥",
     "isFinish": true
   },
   {
@@ -671,7 +645,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "逆符「天下翻覆」",
     "isFinish": true
   },
   {
@@ -696,7 +669,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "草根妖怪网络",
     "isFinish": true
   },
   {
@@ -721,7 +693,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "万宝槌",
     "isFinish": true
   },
   {
@@ -746,7 +717,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "替身地藏",
     "isFinish": true
   },
   {
@@ -771,7 +741,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "万宝槌（仿制品）",
     "isFinish": true
   },
   {
@@ -796,7 +765,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "亡灵的送行提灯",
     "isFinish": true
   },
   {
@@ -821,7 +789,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "隙间的折叠伞",
     "isFinish": true
   },
   {
@@ -846,7 +813,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "闪避布",
     "isFinish": true
   },
   {
@@ -871,7 +837,6 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
-    "imageUrl": "水利发电机",
     "isFinish": true
   }
 ]

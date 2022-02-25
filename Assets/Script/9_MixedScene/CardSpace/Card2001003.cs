@@ -3,6 +3,9 @@ using TouhouMachineLearningSummary.Model;
 
 namespace TouhouMachineLearningSummary.CardSpace
 {
+    /// <summary>
+    /// ¿¨ÅÆÃû³Æ:Â¶ÄÈ
+    /// </summary>
     public class Card2001003 : Card
     {
         public override void Init()

@@ -8,6 +8,9 @@ using UnityEngine;
 
 namespace TouhouMachineLearningSummary.CardSpace
 {
+    /// <summary>
+    /// ¿¨ÅÆÃû³Æ:°åÉÕç÷Â¶Åµ
+    /// </summary>
     public class Card2000001 : Card
     {
         public override void Init()

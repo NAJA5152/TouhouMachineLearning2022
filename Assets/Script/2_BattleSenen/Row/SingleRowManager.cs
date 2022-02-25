@@ -52,7 +52,7 @@ namespace TouhouMachineLearningSummary.Manager
                     TempCard.IsGray = true;
                     TempCard.SetCardSeeAble(true);
                     CardList.Insert(Location, TempCard);
-                    TempCard.Init();
+                    //TempCard.Init();
                 }
                 //改变临时卡牌的位置
                 if (TempCard != null && Location != CardList.IndexOf(TempCard))
