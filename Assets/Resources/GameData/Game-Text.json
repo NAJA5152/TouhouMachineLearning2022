@@ -1,13 +1,13 @@
 {
-  "Battle Start": {
-    "Tag": "Battle Start",
+  "BattleStart": {
+    "Tag": "BattleStart",
     "Ch": "对战开始",
     "Tc": "對戰開始",
     "En": "Battle Start",
     "geyu": "ads"
   },
-  "Battle End": {
-    "Tag": "Battle End",
+  "BattleEnd": {
+    "Tag": "BattleEnd",
     "Ch": "对战终止",
     "Tc": "對戰中止",
     "En": "Battle End",
@@ -20,50 +20,50 @@
     "En": "",
     "geyu": ""
   },
-  "First Round Start": {
-    "Tag": "First Round Start",
+  "FirstRoundStart": {
+    "Tag": "FirstRoundStart",
     "Ch": "第一小局开始",
     "Tc": "第一小局開始",
     "En": "First Round Start",
     "geyu": ""
   },
-  "Second Round Start": {
-    "Tag": "Second Round Start",
+  "SecondRoundStart": {
+    "Tag": "SecondRoundStart",
     "Ch": "第一小局开始",
     "Tc": "第二小局開始",
     "En": "Second Round Start",
     "geyu": ""
   },
-  "Thrid Round Start": {
-    "Tag": "Thrid Round Start",
+  "ThridRoundStart": {
+    "Tag": "ThridRoundStart",
     "Ch": "第一小局开始",
     "Tc": "第三小局開始",
     "En": "Thrid Round Start",
     "geyu": ""
   },
-  "My Turn Start": {
-    "Tag": "My Turn Start",
+  "MyTurnStart": {
+    "Tag": "MyTurnStart",
     "Ch": "我方回合开始",
     "Tc": "我方回合開始",
     "En": "My Turn Start",
     "geyu": ""
   },
-  "My Turn End": {
-    "Tag": "My Turn End",
+  "MyTurnEnd": {
+    "Tag": "MyTurnEnd",
     "Ch": "我方回合结束",
     "Tc": "我方回合結束",
     "En": "My Turn End",
     "geyu": ""
   },
-  "Op Turn Start": {
-    "Tag": "Op Turn Start",
+  "OpTurnStart": {
+    "Tag": "OpTurnStart",
     "Ch": "对方回合开始",
     "Tc": "對方回合開始",
     "En": "Op Turn Start",
     "geyu": "新翻译"
   },
-  "Op Turn End": {
-    "Tag": "Op Turn End",
+  "OpTurnEnd": {
+    "Tag": "OpTurnEnd",
     "Ch": "对方回合结束",
     "Tc": "對方回合結束",
     "En": "Op Turn End",
