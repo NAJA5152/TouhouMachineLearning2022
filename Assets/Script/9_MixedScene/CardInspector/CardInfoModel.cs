@@ -90,7 +90,7 @@ namespace TouhouMachineLearningSummary.Model
                 cardID = int.Parse($"2{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3, '0')}");
                 icon = Resources.Load<Texture2D>("CardTex\\Multiplayer\\" + cardID) ?? Resources.Load<Texture2D>("CardTex\\default");
             }
-            Debug.Log(cardID);
+            //Debug.Log(cardID);
             return this;
         }
         [Button("打开脚本")]
