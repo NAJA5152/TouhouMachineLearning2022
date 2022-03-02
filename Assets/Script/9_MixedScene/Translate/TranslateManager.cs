@@ -28,7 +28,7 @@ namespace TouhouMachineLearningSummary.Manager
                 }
                 return translationDict[language];
             }
-            return "无法检索到改key，请核对";
+            return "无法检索到Tag，请核对";
         }
     }
 }
