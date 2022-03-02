@@ -16,9 +16,7 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Play)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   UnityEngine.Debug.LogError("选择位置");
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   UnityEngine.Debug.LogError("部署");
                    await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
                    await GameSystem.UiSystem.ShowFigure(this);
                })
@@ -26,7 +24,6 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.Before, TriggerType.Deploy)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   UnityEngine.Debug.LogError("触发回合前效果");
                    List<Card> targetCards = GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Silver, CardRank.Copper].CardList;
                    targetCards.Remove(triggerInfo.triggerCard);
                    await GameSystem.SelectSystem.SelectUnite(this, targetCards, 1);

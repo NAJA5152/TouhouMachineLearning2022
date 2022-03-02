@@ -211,9 +211,9 @@ namespace TouhouMachineLearningSummary.Model
                 if (IsCardReadyToGrave)
                 {
                     //延命
-                    if (cardFields[CardField.Apothanasia] > 0)
+                    if (this[CardField.Apothanasia] > 0)
                     {
-                        cardFields[CardField.Apothanasia]--;
+                        this[CardField.Apothanasia]--;
                         await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetTargetField(CardField.Apothanasia, -1));
                     }
                     else
