@@ -306,7 +306,6 @@ namespace TouhouMachineLearningSummary.Command
             await BulletCommand.InitBulletAsync(triggerInfo);
             //抵消护盾
             //悬浮伤害数字
-            //await Manager.CardPointManager.CaretPointAsync(triggerInfo.targetCard, Mathf.Abs(triggerInfo.point), triggerInfo.point > 0 ? CardPointType.red : CardPointType.green);
             int actualChangePoint = Math.Min(triggerInfo.point, triggerInfo.targetCard.ShowPoint);
             await triggerInfo.targetCard.ThisCardManager.ShowTips("-" + actualChangePoint, Color.red, false);
             triggerInfo.targetCard.ChangePoint -= actualChangePoint;

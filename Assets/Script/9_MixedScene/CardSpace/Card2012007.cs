@@ -18,6 +18,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                {
                    await GameSystem.SelectSystem.SelectBoardCard(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck][CardTag.Yokai][CardRank.Silver,CardRank.Copper].CardList);
                    await GameSystem.TransSystem.PlayCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits));
+                   await GameSystem.TransSystem.MoveToGrave(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
         }
