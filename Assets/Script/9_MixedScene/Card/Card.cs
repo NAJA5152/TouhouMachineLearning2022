@@ -280,8 +280,10 @@ namespace TouhouMachineLearningSummary.Model
                     case CardState.Secret:
                         break;
                     case CardState.Furor:
+                        await ThisCardManager.ShowTips("狂躁", new Color(1, 0, 0));
                         break;
                     case CardState.Docile:
+                        await ThisCardManager.ShowTips("温顺", new Color(0, 1, 0));
                         break;
                     case CardState.Poisoning:
                         break;
@@ -409,6 +411,7 @@ namespace TouhouMachineLearningSummary.Model
             .AbilityAdd(async (triggerInfo) =>
             {
                 this[triggerInfo.targetState] = false;
+                //动画效果
                 switch (triggerInfo.targetState)
                 {
                     case CardState.Lurk:; break;

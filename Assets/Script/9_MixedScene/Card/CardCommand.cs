@@ -288,9 +288,12 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task Set(TriggerInfoModel triggerInfo)
         {
             await BulletCommand.InitBulletAsync(triggerInfo);
-            await Task.Delay(1000);
+            //await Task.Delay(1000);
+            int actualChangePoint = triggerInfo.point - triggerInfo.targetCard.ShowPoint;
+
+            await triggerInfo.targetCard.ThisCardManager.ShowTips((actualChangePoint>0?"+":"" )+ actualChangePoint, Color.gray, false);
             triggerInfo.targetCard.ChangePoint = triggerInfo.point - triggerInfo.targetCard.BasePoint;
-            await Task.Delay(1000);
+            //await Task.Delay(1000);
         }
         public static async Task Gain(TriggerInfoModel triggerInfo)
         {
