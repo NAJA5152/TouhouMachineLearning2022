@@ -34,6 +34,10 @@ namespace TouhouMachineLearningSummary.GameSystem
         public static async Task Destory(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Destory]);
         //逆转
         public static async Task Reversal(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Reverse]);
+        //增加
+        public static async Task Increase(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Increase]);
+        //减少
+        public static async Task Decrease(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Decrease]);
     }
     /// <summary>
     /// 转移卡牌位置、所属区域的相关机制

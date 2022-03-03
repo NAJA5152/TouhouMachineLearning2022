@@ -18,7 +18,7 @@ namespace TouhouMachineLearningSummary.Manager
 
         public float Range;
         public bool IsMyHandRegion;
-        bool IsSingle => region == GameRegion.Grave || region == GameRegion.Deck || region == GameRegion.Uesd;
+        bool IsSingle => region == GameRegion.Grave || region == GameRegion.Deck || region == GameRegion.Used;
         [ShowInInspector]
         //计算在全局卡组中对应的顺序
         //根据玩家扮演角色（1或者2）分配上方区域和下方区域
@@ -47,7 +47,7 @@ namespace TouhouMachineLearningSummary.Manager
                 //创建临时卡牌
                 if (TempCard == null && CanBeSelected && AgainstInfo.PlayerFocusRegion == this && TempCard==null)
                 {
-                    Card modelCard = AgainstInfo.cardSet[Orientation.My][GameRegion.Uesd].CardList[0];
+                    Card modelCard = AgainstInfo.cardSet[Orientation.My][GameRegion.Used].CardList[0];
                     TempCard = Command.CardCommand.CreateCard(modelCard.CardID);
                     TempCard.IsGray = true;
                     TempCard.SetCardSeeAble(true);

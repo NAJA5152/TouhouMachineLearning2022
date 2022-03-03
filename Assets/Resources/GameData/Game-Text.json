@@ -15,9 +15,9 @@
   },
   "Remaining": {
     "Tag": "Remaining",
-    "Ch": "剩余抽卡次数为",
-    "Tc": "剩余抽卡次數為",
-    "En": "Remaining number of card draws",
+    "Ch": "剩余抽卡次数为：",
+    "Tc": "剩余抽卡次數為：",
+    "En": "Remaining number of card draws:",
     "geyu": ""
   },
   "FirstRoundStart": {

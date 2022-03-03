@@ -94,6 +94,14 @@ namespace TouhouMachineLearningSummary.GameEnum
         /// 逆转
         /// </summary>
         Reverse,
+        /// <summary>
+        /// 点数增加，只有成功触发点数变化时才会触发
+        /// </summary>
+        Increase,
+        /// <summary>
+        /// 点数减少，只有成功触发点数变化时才会触发
+        /// </summary>
+        Decrease,
         ////////////////////////////////////////////////状态/////////////////////////////////////////
         StateAdd,
         StateClear,
@@ -177,7 +185,7 @@ namespace TouhouMachineLearningSummary.GameEnum
         Soil,
         Leader,
         Hand,
-        Uesd,
+        Used,
         Deck,
         Grave,
         Battle = 99,

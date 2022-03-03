@@ -29,21 +29,13 @@ namespace TouhouMachineLearningSummary.CardSpace
                    var targetShowPoint = triggerInfo.targetCard.ShowPoint;
                    await Command.CardCommand.Set(triggerInfo);
                    //如果原本点数大于设置点数
-                   if (targetShowPoint > triggerInfo.point)
-                   {
-                       if (!this[CardState.Docile])//如果不处于温顺状态
-                       {
-                           await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
-                           await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
-                       }
-                   }
                    if (targetShowPoint < triggerInfo.point)
                    {
-                       if (!this[CardState.Furor])//如果不处于温顺状态
-                       {
-                           await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
-                           await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
-                       }
+                       await GameSystem.PointSystem.Increase(triggerInfo);
+                   }
+                   if (targetShowPoint > triggerInfo.point)
+                   {
+                       await GameSystem.PointSystem.Decrease(triggerInfo);
                    }
                })
                .AbilityReplace();
@@ -52,10 +44,9 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await Command.CardCommand.Gain(triggerInfo);
-                   if (!this[CardState.Furor])//如果不处于温顺状态
+                   if (triggerInfo.point>0)//如果不处于温顺状态
                    {
-                       await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
-                       await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
+                       await GameSystem.PointSystem.Increase(triggerInfo);
                    }
                })
                .AbilityReplace();
@@ -87,7 +78,16 @@ namespace TouhouMachineLearningSummary.CardSpace
                     if (triggerInfo.targetState == CardState.Furor)
                     {
                         UnityEngine.Debug.Log("狂躁");
-
+                        if (!this[CardState.Docile])//如果不处于温顺状态
+                        {
+                            await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
+                            await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
+                        }
+                        if (!this[CardState.Furor])//如果不处于温顺状态
+                        {
+                            await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
+                            await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
+                        }
                         //狂躁效果
                     }
                     if (triggerInfo.targetState == CardState.Docile)

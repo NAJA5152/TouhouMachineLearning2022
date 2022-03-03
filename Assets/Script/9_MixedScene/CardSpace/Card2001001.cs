@@ -20,18 +20,14 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Play)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   UnityEngine.Debug.Log("开始选择坐标");
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   UnityEngine.Debug.Log("选择单位完毕");
                    await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   UnityEngine.Debug.Log("开始选择单位");
                    await GameSystem.SelectSystem.SelectUnite(this, AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardRank.Copper, CardRank.Silver][CardTag.Fairy].CardList, 1);
-                   UnityEngine.Debug.Log("选择单位完毕");
                    await GameSystem.PointSystem.Cure
                    (
                        new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits)

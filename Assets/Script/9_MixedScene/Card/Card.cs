@@ -154,11 +154,31 @@ namespace TouhouMachineLearningSummary.Model
             .AbilityAppend();
             //当设置点数时，修改变更点数值
             AbalityRegister(TriggerTime.When, TriggerType.Set)
-            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Set(triggerInfo); })
+            .AbilityAdd(async (triggerInfo) =>
+            {
+                var targetShowPoint = triggerInfo.targetCard.ShowPoint;
+                await Command.CardCommand.Set(triggerInfo);
+                //如果原本点数大于设置点数
+                if (targetShowPoint < triggerInfo.point)
+                {
+                    await GameSystem.PointSystem.Increase(triggerInfo);
+                }
+                if (targetShowPoint > triggerInfo.point)
+                {
+                    await GameSystem.PointSystem.Decrease(triggerInfo);
+                }
+            })
             .AbilityAppend();
             //当获得增益时获得点数增加
             AbalityRegister(TriggerTime.When, TriggerType.Gain)
-            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Gain(triggerInfo); })
+            .AbilityAdd(async (triggerInfo) =>
+            {
+                await Command.CardCommand.Gain(triggerInfo);
+                if (triggerInfo.point > 0)//如果不处于温顺状态
+                {
+                    await GameSystem.PointSystem.Increase(triggerInfo);
+                }
+            })
             .AbilityAppend();
             //默认受伤效果：当卡牌受到伤害时则会受到伤害，当卡牌死亡时，触发卡牌死亡机制
             AbalityRegister(TriggerTime.When, TriggerType.Hurt)
@@ -178,6 +198,10 @@ namespace TouhouMachineLearningSummary.Model
                         triggerInfo.point = triggerInfo.point - this[CardField.Shield];
                     }
                     await Command.CardCommand.Hurt(triggerInfo);
+                    if (triggerInfo.point>0)
+                    {
+                        await GameSystem.PointSystem.Decrease(triggerInfo);
+                    }
                 }
             })
             .AbilityAppend();
@@ -532,9 +556,9 @@ namespace TouhouMachineLearningSummary.Model
             }
         }
 
-        [Button] public void 水() => _=GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Water));
-        [Button] public void 火() => _=GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Fire));
-        [Button] public void 风() => _=GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Wind));
-        [Button] public void 土() => _=GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Soil));
+        [Button] public void 水() => _ = GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Water));
+        [Button] public void 火() => _ = GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Fire));
+        [Button] public void 风() => _ = GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Wind));
+        [Button] public void 土() => _ = GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Soil));
     }
 }

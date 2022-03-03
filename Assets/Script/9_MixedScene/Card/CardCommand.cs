@@ -253,7 +253,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             targetCard.SetCardSeeAble(true);
             RemoveCard(targetCard);
-            AgainstInfo.cardSet[Orientation.My][GameRegion.Uesd].Add(targetCard);
+            AgainstInfo.cardSet[Orientation.My][GameRegion.Used].Add(targetCard);
             AgainstInfo.playerPlayCard = null;
         }
         public static async Task DisCard(Card card)
@@ -273,7 +273,7 @@ namespace TouhouMachineLearningSummary.Command
 
             card.SetCardSeeAble(true);
             RemoveCard(card);
-            AgainstInfo.cardSet[Orientation.My][GameRegion.Uesd].Add(card);
+            AgainstInfo.cardSet[Orientation.My][GameRegion.Used].Add(card);
             await card.cardAbility[TriggerTime.When][TriggerType.Play][0](triggerInfo);
         }
 
