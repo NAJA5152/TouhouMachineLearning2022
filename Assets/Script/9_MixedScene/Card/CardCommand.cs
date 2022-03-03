@@ -105,10 +105,10 @@ namespace TouhouMachineLearningSummary.Command
 
             //Card card = NewCard.GetComponent<Card>();
             GameObject newCard = GameObject.Instantiate(Info.CardInfo.cardModel, new Vector3(0, 100, 0), Info.CardInfo.cardModel.transform.rotation);
+            newCard.SetActive(true);
             newCard.transform.SetParent(GameObject.FindGameObjectWithTag("Card").transform);
             newCard.name = "Card" + Info.CardInfo.CreatCardRank++;
             //Debug.Log("创建卡牌"+id);
-            newCard.AddComponent(Manager.CardAssemblyManager.GetCardScript(sampleCard.CardID));
             newCard.AddComponent(Manager.CardAssemblyManager.GetCardScript(sampleCard.CardID));
             Card card = newCard.GetComponent<Card>();
             var CardStandardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(sampleCard.CardID);
