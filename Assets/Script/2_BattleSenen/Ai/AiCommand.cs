@@ -46,14 +46,14 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task TempPlayOperation()
         {
             if ((Info.AgainstInfo.isDownPass && Info.AgainstInfo.TotalDownPoint < Info.AgainstInfo.TotalUpPoint) ||
-                Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList.Count == 0)
+                Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList.Count == 0)
             {
                 //设置pass标记位
                 AgainstInfo.isPlayerPass = true;
             }
             else
             {
-                Card targetCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Hand].CardList.Last();
+                Card targetCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Leader,GameRegion.Hand].CardList.Last();
                 Info.AgainstInfo.playerPlayCard = targetCard;
             }
         }

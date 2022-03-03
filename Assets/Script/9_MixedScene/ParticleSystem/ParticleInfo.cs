@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 namespace TouhouMachineLearningSummary.Info
 {
+    //废弃
     public class ParticleInfo : MonoBehaviour
     {
         public static ParticleInfo Instance;

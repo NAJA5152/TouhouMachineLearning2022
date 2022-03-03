@@ -2,11 +2,17 @@
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 //对卡组列表卡牌模型中进行相关操作
-public class UIEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,IPointerUpHandler
+public class UIEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,IPointerUpHandler,IPointerClickHandler
 {
     public UnityEvent onPointerEnter;
     public UnityEvent onPointerExit;
-    public UnityEvent onPointerUp;
+    public UnityEvent onPointerLeftUp;
+    public UnityEvent onPointerRightUp;
+
+    public void OnPointerClick(PointerEventData eventData)
+    {
+        onPointerLeftUp.Invoke();
+    }
 
 
     //public UnityEvent onClick;
@@ -15,10 +21,13 @@ public class UIEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     public void OnPointerUp(PointerEventData eventData)
     {
+        //if (eventData.button == PointerEventData.InputButton.Left && eventData.clickCount == 1)
+        //{
+        //    onPointerLeftUp.Invoke();
+        //}
         if (eventData.button == PointerEventData.InputButton.Right || (eventData.button == PointerEventData.InputButton.Left && eventData.clickCount == 2))
         {
-            onPointerUp.Invoke();
-            //Debug.Log("召唤面板" + eventData.clickCount + "-" + eventData.clickTime);
+            onPointerRightUp.Invoke();
         }
     }
 }

@@ -16,7 +16,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task PlayAsync(GameAudioType type)
         {
             var audioCLip = Info.AudioInfo.StaticClips[type];
-            AudioSource Source = Info.AudioInfo.Instance.gameObject.AddComponent<AudioSource>();
+            AudioSource Source = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioSource>();
             Source.clip = audioCLip;
             Source.Play();
             await Task.Delay((int)(audioCLip.length * 1000));

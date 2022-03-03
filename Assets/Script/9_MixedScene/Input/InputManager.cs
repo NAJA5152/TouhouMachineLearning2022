@@ -1,13 +1,12 @@
 ﻿using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
-using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 
-namespace TouhouMachineLearningSummary.Control
+namespace TouhouMachineLearningSummary.Manager
 {
-    public class InputControl : MonoBehaviour
+    public class InputManager : MonoBehaviour
     {
         public float height;
         Ray ray;
@@ -43,29 +42,29 @@ namespace TouhouMachineLearningSummary.Control
         private void KeyBoardEvent()
         {
 
-            if (Input.GetKey(KeyCode.Space) && Info.AgainstInfo.IsMyTurn)
+            if (Input.GetKey(KeyCode.Space) && AgainstInfo.IsMyTurn)
             {
                 PassPressTime += Time.deltaTime;
                 if (PassPressTime > 2)
                 {
-                    Command.NetCommand.AsyncInfo(NetAcyncType.Pass);
-                    Info.AgainstInfo.isPlayerPass = true;
+                    NetCommand.AsyncInfo(NetAcyncType.Pass);
+                    AgainstInfo.isPlayerPass = true;
                     //Command.GameUI.UiCommand.SetCurrentPass();
                     PassPressTime = 0;
                 }
             }
-            if (Input.GetKeyUp(KeyCode.Space) && Info.AgainstInfo.IsMyTurn)
+            if (Input.GetKeyUp(KeyCode.Space) && AgainstInfo.IsMyTurn)
             {
                 PassPressTime = 0;
             }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                _ = NoticeCommand.ShowAsync("确认投降？", okAction: Command.StateCommand.Surrender);
+                _ = NoticeCommand.ShowAsync("确认投降？", okAction: StateCommand.Surrender);
             }
         }
         private void MouseEvent()
         {
-            if (Input.GetMouseButtonDown(0) && Info.AgainstInfo.IsMyTurn)
+            if (Input.GetMouseButtonDown(0) && AgainstInfo.IsMyTurn)
             {
                 if (AgainstInfo.IsWaitForSelectRegion)
                 {

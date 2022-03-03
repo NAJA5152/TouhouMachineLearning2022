@@ -532,9 +532,9 @@ namespace TouhouMachineLearningSummary.Model
             }
         }
 
-        [Button] public void 水() => GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Water));
-        [Button] public void 火() => GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Fire));
-        [Button] public void 风() => GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Wind));
-        [Button] public void 土() => GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Soil));
+        [Button] public void 水() => _=GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Water));
+        [Button] public void 火() => _=GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Fire));
+        [Button] public void 风() => _=GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Wind));
+        [Button] public void 土() => _=GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Soil));
     }
 }

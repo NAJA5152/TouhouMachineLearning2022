@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using UnityEngine;
 /// <summary>
-/// 用户操作限时控制类
+/// 用户操作限时控制类,与硬币合并
 /// </summary>
 public class Timer : MonoBehaviour
 {
