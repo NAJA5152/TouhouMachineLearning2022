@@ -11,7 +11,7 @@ namespace TouhouMachineLearningSummary.CardSpace
     {
         public override void Init()
         {
-            //初始化通用卡牌效果
+            //初始化通用响应效果
             base.Init();
 
             AbalityRegister(TriggerTime.When, TriggerType.Play)
@@ -24,7 +24,7 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Increase)
                 .AbilityAdd(async (triggerInfo) =>
                 {
-                    if (!this[CardState.Furor])//如果不处于狂躁状态
+                    if (!this[CardState.Furor])
                     {
                         await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
                         await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
@@ -34,7 +34,7 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Decrease)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   if (!this[CardState.Docile])//如果不处于温顺状态
+                   if (!this[CardState.Docile])
                    {
                        await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
                        await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));

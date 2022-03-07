@@ -280,10 +280,10 @@ namespace TouhouMachineLearningSummary.Model
                     case CardState.Secret:
                         break;
                     case CardState.Furor:
-                        await ThisCardManager.ShowTips("狂躁", new Color(1, 0, 0));
+                        await ThisCardManager.ShowTips("狂躁", new Color(0.6f, 0.2f, 0));
                         break;
                     case CardState.Docile:
-                        await ThisCardManager.ShowTips("温顺", new Color(0, 1, 0));
+                        await ThisCardManager.ShowTips("温顺", new Color(0, 0, 0.5f));
                         break;
                     case CardState.Poisoning:
                         break;

@@ -330,14 +330,14 @@
   },
   "Furor_Introduction": {
     "Tag": "Furor_Introduction",
-    "Ch": "狂暴：无法再次触发",
+    "Ch": "狂暴：拥有此状态时无法再次触发狂暴效果\n当点数减少时该状态自动消失",
     "Tc": "",
     "En": "Furor",
     "geyu": ""
   },
   "Docile_Introduction": {
     "Tag": "Docile_Introduction",
-    "Ch": "温顺",
+    "Ch": "温顺：拥有此状态时无法再次触发温顺效果\n当点数增加时该状态自动消失",
     "Tc": "",
     "En": "Docile",
     "geyu": ""

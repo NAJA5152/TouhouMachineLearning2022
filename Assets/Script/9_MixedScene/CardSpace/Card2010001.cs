@@ -17,8 +17,8 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
                    await GameSystem.UiSystem.ShowFigure(this);
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.Before, TriggerType.Deploy)
@@ -34,7 +34,7 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   
+
                    await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, this).SetPoint(1));
                }, Condition.Default)
                .AbilityAppend();
@@ -43,11 +43,12 @@ namespace TouhouMachineLearningSummary.CardSpace
               {
                   UnityEngine.Debug.Log("Ôö¼Ó");
                   if (!this[CardState.Furor])
-                    {
+                  {
                       await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
                       await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
 
-                      await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this,this).SetPoint(1));
+                      await System.Threading.Tasks.Task.Delay(2200);
+                      await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, this).SetPoint(1));
 
                   }
               }, Condition.Default)
@@ -61,8 +62,9 @@ namespace TouhouMachineLearningSummary.CardSpace
                        await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
                        await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
 
-                       await GameSystem.PointSystem.Gain(new TriggerInfoModel(this, this).SetPoint(1));
 
+                       await System.Threading.Tasks.Task.Delay(2200);
+                       await GameSystem.PointSystem.Gain(new TriggerInfoModel(this, this).SetPoint(1));
                    }
                }, Condition.Default)
                 .AbilityAppend();
