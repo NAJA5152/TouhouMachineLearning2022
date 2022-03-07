@@ -96,7 +96,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         public static async Task ClearState(TriggerInfoModel triggerInfo)
         {
             //筛选触发目标，对包含该状态的卡牌才会清空状态
-            triggerInfo.targetCards = triggerInfo.targetCards.Where(card => !card[triggerInfo.targetState]).ToList();
+            triggerInfo.targetCards = triggerInfo.targetCards.Where(card => card[triggerInfo.targetState]).ToList();
             await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateClear]);
         }
         public static async Task ChangeState(TriggerInfoModel triggerInfo)
