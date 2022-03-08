@@ -51,7 +51,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             AgainstInfo.cardSet[GameRegion.Hand].SingleRowInfos.ForEach(singleRowInfo =>
             {
-                AgainstInfo.cardSet[singleRowInfo.RowRank] = AgainstInfo.cardSet[singleRowInfo.RowRank].OrderByDescending(card => card.cardRank).ThenBy(card => card.BasePoint).ThenBy(card => card.CardID).ToList();
+                AgainstInfo.cardSet[singleRowInfo.RowRank] = AgainstInfo.cardSet[singleRowInfo.RowRank].OrderByDescending(card => card.CardRank).ThenBy(card => card.BasePoint).ThenBy(card => card.CardID).ToList();
             });
         }
 
@@ -80,11 +80,11 @@ namespace TouhouMachineLearningSummary.Command
             card.Icon = CardStandardInfo.icon;
             card.CardDeployRegion = CardStandardInfo.cardDeployRegion;
             card.CardDeployTerritory = CardStandardInfo.cardDeployTerritory;
-            card.cardTag = CardStandardInfo.cardTag;
-            card.cardRank = CardStandardInfo.cardRank;
-            card.cardType = CardStandardInfo.cardType;
+            card.CardTag = CardStandardInfo.cardTag;
+            card.CardRank = CardStandardInfo.cardRank;
+            card.CardType = CardStandardInfo.cardType;
             card.GetComponent<Renderer>().material.SetTexture("_Front", card.Icon);
-            switch (card.cardRank)
+            switch (card.CardRank)
             {
                 case CardRank.Leader: card.GetComponent<Renderer>().material.SetColor("_side", new Color(0.43f, 0.6f, 1f)); break;
                 case CardRank.Gold: card.GetComponent<Renderer>().material.SetColor("_side", new Color(0.8f, 0.8f, 0f)); break;
@@ -118,11 +118,11 @@ namespace TouhouMachineLearningSummary.Command
             card.Icon = CardStandardInfo.icon;
             card.CardDeployRegion = CardStandardInfo.cardDeployRegion;
             card.CardDeployTerritory = CardStandardInfo.cardDeployTerritory;
-            card.cardTag = CardStandardInfo.cardTag;
-            card.cardRank = CardStandardInfo.cardRank;
-            card.cardType = CardStandardInfo.cardType;
+            card.CardTag = CardStandardInfo.cardTag;
+            card.CardRank = CardStandardInfo.cardRank;
+            card.CardType = CardStandardInfo.cardType;
             card.GetComponent<Renderer>().material.SetTexture("_Front", card.Icon);
-            switch (card.cardRank)
+            switch (card.CardRank)
             {
                 case CardRank.Leader: newCard.GetComponent<Renderer>().material.SetColor("_side", new Color(0.43f, 0.6f, 1f)); break;
                 case CardRank.Gold: newCard.GetComponent<Renderer>().material.SetColor("_side", new Color(0.8f, 0.8f, 0f)); break;
@@ -137,9 +137,9 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task SummonCard(Card targetCard)
         {
             List<Card> TargetRow = AgainstInfo
-                .cardSet[(GameRegion)targetCard.CardDeployRegion][targetCard.orientation]
+                .cardSet[(GameRegion)targetCard.CardDeployRegion][targetCard.Orientation]
                 .SingleRowInfos.First().CardList;
-            Debug.LogWarning("召唤卡牌于" + targetCard.orientation);
+            Debug.LogWarning("召唤卡牌于" + targetCard.Orientation);
             RemoveCard(targetCard);
             TargetRow.Add(targetCard);
             targetCard.IsCanSee = true;
@@ -153,11 +153,15 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task MoveCard(Card targetCard, Location location)
         {
 
-            List<Card> TargetRow = CardSet.GlobalCardList[location.X];
+            //List<Card> TargetRow = CardSet.GlobalCardList[location.X];
+            //RemoveCard(targetCard);
+            //int rank = location.Y >= 0 ? Math.Min(location.Y, TargetRow.Count) : Math.Max(0, TargetRow.Count + location.Y + 1);
+            //UnityEngine.Debug.Log("设置移动目标为" + location.X + "," + location.Y);
+            //TargetRow.Insert(rank, targetCard);
+
             RemoveCard(targetCard);
-            int rank = location.Y >= 0 ? Math.Min(location.Y, TargetRow.Count) : Math.Max(0, TargetRow.Count + location.Y + 1);
-            UnityEngine.Debug.Log("设置移动目标为" + location.X + "," + location.Y);
-            TargetRow.Insert(rank, targetCard);
+            SingleRowManager TargetRow = Info.AgainstInfo.cardSet.SingleRowInfos[location.X];
+            AgainstInfo.cardSet[TargetRow.orientation][TargetRow.region].Add(targetCard, location.Y);
             targetCard.isMoveStepOver = false;
             await Task.Delay(500);
             targetCard.isMoveStepOver = true;
@@ -241,6 +245,20 @@ namespace TouhouMachineLearningSummary.Command
             }
             await Task.Delay(500);
         }
+
+        public static async Task GenerateCard(Card targetCard, Location location)
+        {
+            _ = AudioCommand.PlayAsync(GameEnum.GameAudioType.DrawCard);
+            RowCommand.SetPlayCardMoveFree(false);
+            targetCard.SetCardSeeAble(true);
+
+            SingleRowManager TargetRow = Info.AgainstInfo.cardSet.SingleRowInfos[location.X];
+            AgainstInfo.cardSet[TargetRow.orientation][TargetRow.region].Add(targetCard, location.Y);
+            if (TargetRow.CardList.Count > 6)
+            {
+                await GameSystem.TransSystem.MoveToGrave(new TriggerInfoModel(targetCard, targetCard));
+            }
+        }
         public static async Task PlayCard(Card targetCard, bool IsAnsy = true)
         {
             await Task.Delay(0);//之后实装卡牌特效需要时间延迟配合
@@ -291,7 +309,7 @@ namespace TouhouMachineLearningSummary.Command
             //await Task.Delay(1000);
             int actualChangePoint = triggerInfo.point - triggerInfo.targetCard.ShowPoint;
 
-            await triggerInfo.targetCard.ThisCardManager.ShowTips((actualChangePoint>0?"+":"" )+ actualChangePoint, Color.gray, false);
+            await triggerInfo.targetCard.ThisCardManager.ShowTips((actualChangePoint > 0 ? "+" : "") + actualChangePoint, Color.gray, false);
             triggerInfo.targetCard.ChangePoint = triggerInfo.point - triggerInfo.targetCard.BasePoint;
             //await Task.Delay(1000);
         }

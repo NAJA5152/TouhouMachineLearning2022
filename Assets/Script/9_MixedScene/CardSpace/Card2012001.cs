@@ -40,7 +40,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                        await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
                    }
                }, Condition.Default)
-                .AbilityAppend();
+               .AbilityAppend();
         }
     }
 }

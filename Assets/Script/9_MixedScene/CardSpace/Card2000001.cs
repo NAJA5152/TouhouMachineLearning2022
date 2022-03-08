@@ -35,7 +35,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                    //    await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetLocation(Orientation.My, GameRegion.Wind, 0));
                    //    await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetLocation(Orientation.My, GameRegion.Soil, 0));
                    //}
-                   int targetCount = AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardTag.Fairy].count;
+                   int targetCount = AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][GameEnum.CardTag.Fairy].count;
                    Debug.Log("场上妖精数量为" + targetCount);
                    for (int i = 0; i < targetCount; i++)
                    {

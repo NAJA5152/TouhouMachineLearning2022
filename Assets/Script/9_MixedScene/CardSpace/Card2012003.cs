@@ -17,16 +17,19 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this,this));
+                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.Increase)
                .AbilityAdd(async (triggerInfo) =>
                {
                    if (!this[CardState.Furor])//如果不处于狂躁状态
-                    {
+                   {
                        await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
                        await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
+
+                       await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][CurrentRegion].CardList).SetPoint(1).SetMeanWhile());
+
                    }
                }, Condition.Default)
                .AbilityAppend();
@@ -37,6 +40,8 @@ namespace TouhouMachineLearningSummary.CardSpace
                    {
                        await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
                        await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
+
+                       await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetLocation(Orientation.My, NextBattleRegion, -1));
                    }
                }, Condition.Default)
                 .AbilityAppend();

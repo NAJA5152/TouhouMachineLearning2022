@@ -22,10 +22,10 @@ namespace TouhouMachineLearningSummary.CardSpace
                        Card targetCard = GameSystem.InfoSystem.SelectUnits.First();
                        switch (targetCard.CurrentRegion)
                        {
-                           case GameRegion.Water: await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, targetCard).SetLocation(targetCard.orientation, GameRegion.Fire, -1)); break;
-                           case GameRegion.Fire: await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, targetCard).SetLocation(targetCard.orientation, GameRegion.Water, 0)); break;
-                           case GameRegion.Wind: await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, targetCard).SetLocation(targetCard.orientation, GameRegion.Soil, 0)); break;
-                           case GameRegion.Soil: await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, targetCard).SetLocation(targetCard.orientation, GameRegion.Wind, -1)); break;
+                           case GameRegion.Water: await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, targetCard).SetLocation(targetCard.Orientation, GameRegion.Fire, -1)); break;
+                           case GameRegion.Fire: await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, targetCard).SetLocation(targetCard.Orientation, GameRegion.Water, 0)); break;
+                           case GameRegion.Wind: await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, targetCard).SetLocation(targetCard.Orientation, GameRegion.Soil, 0)); break;
+                           case GameRegion.Soil: await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, targetCard).SetLocation(targetCard.Orientation, GameRegion.Wind, -1)); break;
                            default: break;
                        }
                    }

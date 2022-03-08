@@ -32,6 +32,10 @@ namespace TouhouMachineLearningSummary.GameEnum
     public enum TriggerType
     {
         ////////////////////////////////////////////////ÒÆ¶¯/////////////////////////////////////////
+        /// <summary>
+        /// Éú³É
+        /// </summary>
+        Generate,
         Draw,
         Play,
         Deploy,

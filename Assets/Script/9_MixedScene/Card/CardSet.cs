@@ -21,13 +21,6 @@ namespace TouhouMachineLearningSummary.Info
 
         public List<Card> CardList { get => cardList ?? GlobalCardList.SelectMany(x => x).ToList(); set => cardList = value; }
 
-        ///// <summary>
-        ///// 得到触发牌之外的卡牌列表，用于广播触发事件的前后相关事件
-        ///// </summary>
-        ///// <param name="card"></param>
-        ///// <returns></returns>
-        //public List<Card> BroastCardList(Card card) => Info.AgainstInfo.cardSet[Orientation.All].CardList.Except(new List<Card> { card }).ToList();
-
         public CardSet()
         {
             GlobalCardList.Clear();
@@ -122,7 +115,7 @@ namespace TouhouMachineLearningSummary.Info
                 CardList = CardList ?? GlobalCardList.SelectMany(x => x).ToList();
                 List<Card> filterCardList = CardList.Where(card =>
                     tags.Any(tag =>
-                        card.cardTag.Contains(tag.ToString().Translation())))
+                        card.CardTag.Contains(tag.ToString().Translation())))
                     .ToList();
                 return new CardSet(SingleRowInfos, filterCardList);
             }
@@ -162,7 +155,7 @@ namespace TouhouMachineLearningSummary.Info
             get
             {
                 List<Card> filterCardList = CardList
-                    .Where(card => ranks.Any(rank => card.cardRank == rank))
+                    .Where(card => ranks.Any(rank => card.CardRank == rank))
                     .ToList();
                 return new CardSet(SingleRowInfos, filterCardList);
             }
@@ -173,7 +166,7 @@ namespace TouhouMachineLearningSummary.Info
             get
             {
                 List<Card> filterCardList = CardList
-                    .Where(card => card.cardType == type)
+                    .Where(card => card.CardType == type)
                     .ToList();
                 return new CardSet(SingleRowInfos, filterCardList);
             }
@@ -184,11 +177,16 @@ namespace TouhouMachineLearningSummary.Info
             {
                 Debug.LogWarning("选择区域异常，数量为" + SingleRowInfos.Count);
             }
-            if (rank == -1)
+            var targetRowInfo = SingleRowInfos.FirstOrDefault();
+            if (rank < 0)
             {
-                rank = SingleRowInfos[0].CardList.Count;
+                rank = Mathf.Max(0, targetRowInfo.CardList.Count + rank + 1);
             }
-            SingleRowInfos[0].CardList.Insert(rank, card);
+            else
+            {
+                rank = Mathf.Min(rank, targetRowInfo.CardList.Count);
+            }
+            targetRowInfo?.CardList.Insert(rank, card);
         }
         public void Remove(Card card)
         {
@@ -196,7 +194,7 @@ namespace TouhouMachineLearningSummary.Info
             {
                 Debug.LogWarning("选择区域异常，数量为" + SingleRowInfos.Count);
             }
-            SingleRowInfos[0].CardList.Remove(card);
+            SingleRowInfos.FirstOrDefault()?.CardList.Remove(card);
         }
     }
 }

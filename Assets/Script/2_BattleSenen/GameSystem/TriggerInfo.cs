@@ -13,6 +13,7 @@ namespace TouhouMachineLearningSummary.Model
         public List<Card> targetCards;
         public CardState targetState;
         public CardField targetFiled;
+        public int targetCardId;
         /// <summary>
         /// 判断多个卡牌目标是否同时触发效果
         /// </summary>
@@ -43,6 +44,7 @@ namespace TouhouMachineLearningSummary.Model
             triggerInfo.point = point;
             triggerInfo.targetState = targetState;
             triggerInfo.targetFiled = targetFiled;
+            triggerInfo.targetCardId=targetCardId;
             return triggerInfo;
         }
         //反序列化时使用
@@ -112,6 +114,16 @@ namespace TouhouMachineLearningSummary.Model
         {
             this.targetFiled = targetField;
             this.point = ponit;
+            return this;
+        }
+        /// <summary>
+        /// 设置目标ID
+        /// </summary>
+        /// <param name="targetState"></param>
+        /// <returns></returns>
+        public TriggerInfoModel SetTargetCardId(int cardId)
+        {
+            this.targetCardId = cardId;
             return this;
         }
     }

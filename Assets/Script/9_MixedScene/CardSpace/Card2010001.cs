@@ -24,50 +24,53 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.Before, TriggerType.Deploy)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   List<Card> targetCards = GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Silver, CardRank.Copper].CardList;
-                   targetCards.Remove(triggerInfo.triggerCard);
-                   await GameSystem.SelectSystem.SelectUnite(this, targetCards, 1);
-                   await GameSystem.PointSystem.Reversal(new TriggerInfoModel(triggerInfo.triggerCard, GameSystem.InfoSystem.SelectUnits));
-               }, Condition.Default)
-               .AbilityAppend();
-            //
-            AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-               .AbilityAdd(async (triggerInfo) =>
-               {
-
-                   await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, this).SetPoint(1));
-               }, Condition.Default)
-               .AbilityAppend();
-            AbalityRegister(TriggerTime.When, TriggerType.Increase)
-              .AbilityAdd(async (triggerInfo) =>
-              {
-                  UnityEngine.Debug.Log("增加");
-                  if (!this[CardState.Furor])
-                  {
-                      await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
-                      await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
-
-                      await System.Threading.Tasks.Task.Delay(2200);
-                      await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, this).SetPoint(1));
-
-                  }
-              }, Condition.Default)
-              .AbilityAppend();
-            AbalityRegister(TriggerTime.When, TriggerType.Decrease)
-               .AbilityAdd(async (triggerInfo) =>
-               {
-                   UnityEngine.Debug.Log("减少");
-                   if (!this[CardState.Docile])
+                   if (Info.AgainstInfo.IsMyTurn)
                    {
-                       await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
-                       await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
-
-
-                       await System.Threading.Tasks.Task.Delay(2200);
-                       await GameSystem.PointSystem.Gain(new TriggerInfoModel(this, this).SetPoint(1));
-                   }
+                       List<Card> targetCards = GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Silver, CardRank.Copper].CardList;
+                       targetCards.Remove(triggerInfo.triggerCard);
+                       await GameSystem.SelectSystem.SelectUnite(this, targetCards, 1);
+                       await GameSystem.PointSystem.Reversal(new TriggerInfoModel(triggerInfo.triggerCard, GameSystem.InfoSystem.SelectUnits))
+                   };
                }, Condition.Default)
-                .AbilityAppend();
+               .AbilityAppend();
+            
+            //AbalityRegister(TriggerTime.When, TriggerType.Deploy)
+            //   .AbilityAdd(async (triggerInfo) =>
+            //   {
+
+            //       await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, this).SetPoint(1));
+            //   }, Condition.Default)
+            //   .AbilityAppend();
+            //AbalityRegister(TriggerTime.When, TriggerType.Increase)
+            //  .AbilityAdd(async (triggerInfo) =>
+            //  {
+            //      UnityEngine.Debug.Log("增加");
+            //      if (!this[CardState.Furor])
+            //      {
+            //          await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
+            //          await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
+
+            //          await System.Threading.Tasks.Task.Delay(2200);
+            //          await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, this).SetPoint(1));
+
+            //      }
+            //  }, Condition.Default)
+            //  .AbilityAppend();
+            //AbalityRegister(TriggerTime.When, TriggerType.Decrease)
+            //   .AbilityAdd(async (triggerInfo) =>
+            //   {
+            //       UnityEngine.Debug.Log("减少");
+            //       if (!this[CardState.Docile])
+            //       {
+            //           await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
+            //           await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
+
+
+            //           await System.Threading.Tasks.Task.Delay(2200);
+            //           await GameSystem.PointSystem.Gain(new TriggerInfoModel(this, this).SetPoint(1));
+            //       }
+            //   }, Condition.Default)
+            //    .AbilityAppend();
         }
     }
 }

@@ -44,6 +44,13 @@ namespace TouhouMachineLearningSummary.GameSystem
     /// </summary>
     public class TransSystem
     {
+        /// <summary>
+        /// 生成，仅限单位牌，不会触发联锁效果，卡牌直接出现在对应区域
+        /// </summary>
+        /// <param name="triggerInfo"></param>
+        /// <returns></returns>
+        public static async Task GenerateCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[Command.CardCommand.CreateCard(triggerInfo.targetCardId)][TriggerType.Generate]);
+
         public static async Task DrawCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Draw]);
         public static async Task PlayCard(TriggerInfoModel triggerInfo, bool isAnsy = true)
         {
@@ -81,7 +88,9 @@ namespace TouhouMachineLearningSummary.GameSystem
         public static async Task SummonCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Summon]);
         // 放逐
         public static async Task BanishCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Banish]);
+        // 弃牌
         public static async Task DisCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Discard]);
+        //死亡
         public static async Task DeadCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Dead]);
 
     }
@@ -208,6 +217,6 @@ namespace TouhouMachineLearningSummary.GameSystem
     /// </summary>
     public class UiSystem
     {
-        public static async Task ShowFigure(Card card) =>await Manager.FigureManager.Instance.ShowFigureAsync(true,card.CardName);
+        public static async Task ShowFigure(Card card) => await Manager.FigureManager.Instance.ShowFigureAsync(true, card.CardName);
     }
 }

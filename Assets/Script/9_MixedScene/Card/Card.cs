@@ -28,12 +28,30 @@ namespace TouhouMachineLearningSummary.Model
         //卡牌默认可部署所属
         public Territory CardDeployTerritory { get; set; }
         [ShowInInspector]
-        public Orientation orientation => AgainstInfo.cardSet[Orientation.Down].CardList.Contains(this) ? Orientation.Down : Orientation.Up;
+        public Orientation Orientation => AgainstInfo.cardSet[Orientation.Down].CardList.Contains(this) ? Orientation.Down : Orientation.Up;
         //获取全局牌表区域
         public GameRegion CurrentRegion => AgainstInfo.cardSet.SingleRowInfos.First(row => row.CardList.Contains(this)).region;
-        public string cardTag { get; set; }
-        public CardRank cardRank { get; set; }
-        public CardType cardType { get; set; }
+        //按水->土->风->火->水的顺序获取下一个区域属性
+        public GameRegion LastBattleRegion => CurrentRegion switch
+        {
+            GameRegion.Water => GameRegion.Soil,
+            GameRegion.Fire => GameRegion.Water,
+            GameRegion.Wind => GameRegion.Fire,
+            GameRegion.Soil => GameRegion.Wind,
+            _ => CurrentRegion,
+        };
+        //按水->火->风->土->水的顺序获取下一个区域属性
+        public GameRegion NextBattleRegion => CurrentRegion switch
+        {
+            GameRegion.Water => GameRegion.Fire,
+            GameRegion.Fire => GameRegion.Wind,
+            GameRegion.Wind => GameRegion.Soil,
+            GameRegion.Soil => GameRegion.Water,
+            _ => CurrentRegion,
+        };
+        public string CardTag { get; set; }
+        public CardRank CardRank { get; set; }
+        public CardType CardType { get; set; }
 
 
         [ShowInInspector]
@@ -128,6 +146,10 @@ namespace TouhouMachineLearningSummary.Model
                     cardAbility[tirggerTime][triggerType] = new List<Func<TriggerInfoModel, Task>>();
                 }
             }
+            //当创造时从牌库中构建
+            AbalityRegister(TriggerTime.When, TriggerType.Generate)
+             .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.GenerateCard(triggerInfo.targetCard, triggerInfo.location); })
+             .AbilityAppend();
             //当弃牌时移动至墓地
             AbalityRegister(TriggerTime.When, TriggerType.Discard)
               .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.DisCard(triggerInfo.targetCard); })
@@ -198,7 +220,7 @@ namespace TouhouMachineLearningSummary.Model
                         triggerInfo.point = triggerInfo.point - this[CardField.Shield];
                     }
                     await Command.CardCommand.Hurt(triggerInfo);
-                    if (triggerInfo.point>0)
+                    if (triggerInfo.point > 0)
                     {
                         await GameSystem.PointSystem.Decrease(triggerInfo);
                     }
@@ -488,7 +510,7 @@ namespace TouhouMachineLearningSummary.Model
             material.SetFloat("_IsTemp", IsGray ? 0 : 1);
             transform.position = Vector3.Lerp(transform.position, targetPosition, MoveSpeed);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion, Time.deltaTime * 10);
-            PointText.text = cardType == CardType.Unite ? ShowPoint.ToString() : "";
+            PointText.text = CardType == CardType.Unite ? ShowPoint.ToString() : "";
         }
         public CardAbilityManeger AbalityRegister(TriggerTime time, TriggerType type) => new CardAbilityManeger(this, time, type);
         private void Update() => RefreshCardUi();
@@ -509,7 +531,7 @@ namespace TouhouMachineLearningSummary.Model
             {
                 PointText.color = Color.black;
             }
-            PointText.text = cardType == CardType.Unite ? ShowPoint.ToString() : "";
+            PointText.text = CardType == CardType.Unite ? ShowPoint.ToString() : "";
             //字段
             for (int i = 0; i < 4; i++)
             {
