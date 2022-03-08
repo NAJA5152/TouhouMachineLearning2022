@@ -232,7 +232,7 @@
   },
   "Forbidden": {
     "Tag": "Forbidden",
-    "Ch": "禁足",
+    "Ch": "固足",
     "Tc": "",
     "En": "Forbidden",
     "geyu": ""
@@ -316,14 +316,14 @@
   },
   "Lurk_Introduction": {
     "Tag": "Lurk_Introduction",
-    "Ch": "间谍：",
+    "Ch": "潜伏：部署于对方战场时标记",
     "Tc": "",
     "En": "Lurk",
     "geyu": ""
   },
   "Secret_Introduction": {
     "Tag": "Secret_Introduction",
-    "Ch": "盖牌：无法被选中，同时不计入点数计算，直至翻开",
+    "Ch": "隐秘：无法被选中，无法查看效果，同时不计入点数计算，状态消失时翻开",
     "Tc": "",
     "En": "Secret",
     "geyu": ""
@@ -384,6 +384,13 @@
     "En": "Wind",
     "geyu": ""
   },
+  "Hold_Introduction": {
+    "Tag": "Hold_Introduction",
+    "Ch": "驻守：小局结束时可留在场上，触发一次后自动取消改状态",
+    "Tc": "",
+    "En": "",
+    "geyu": ""
+  },
   "Congealbounds_Introduction": {
     "Tag": "Congealbounds_Introduction",
     "Ch": "结界:抵消一次伤害或置值导致的点数减少",
@@ -393,7 +400,7 @@
   },
   "Forbidden_Introduction": {
     "Tag": "Forbidden_Introduction",
-    "Ch": "禁足：抵消移动效果",
+    "Ch": "固足：无法被移动",
     "Tc": "",
     "En": "",
     "geyu": ""
