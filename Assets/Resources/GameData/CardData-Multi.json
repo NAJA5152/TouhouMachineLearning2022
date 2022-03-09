@@ -538,7 +538,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "暴躁：在敌方同排两侧生成一个头，每回合移动至同排最右侧并对左侧单位造成1点伤害\n温顺：在我方同排最右侧生成一个头，每回合对左侧单生成一点增益"
+      "Ability-Ch": "暴躁：在敌方同排最右侧生成一个头，每回合开始正序移动至最下一排最右侧并对左侧单位造成1点伤害\n温顺：在我方同排最右侧生成一个头，每回合开始对左侧单生成一点增益"
     },
     "describe": {
       "Describe-Ch": ""
@@ -813,6 +813,54 @@
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 6,
+    "level": "",
+    "series": "1",
+    "tag": "妖怪",
+    "point": 2,
+    "name": {
+      "Name-Ch": "狂暴之头",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "每回合开始正序移动至最下一排最右侧并对左侧单位造成1点伤害"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 1,
+    "ramification": 1,
+    "isFinish": true
+  },
+  {
+    "cardID": 7,
+    "level": "",
+    "series": "1",
+    "tag": "妖怪",
+    "point": 2,
+    "name": {
+      "Name-Ch": "温顺之头",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "在我方同排最右侧生成一个头，每回合开始对左侧单生成一点增益"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 1,
     "isFinish": true
   },
   {

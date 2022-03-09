@@ -22,12 +22,6 @@ namespace TouhouMachineLearningSummary.CardSpace
                })
                .AbilityAppend();
 
-            AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
-               .AbilityAdd(async (triggerInfo) =>
-               {
-                   await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this,this).SetLocation(Orientation.My, NextBattleRegion, -1));
-               })
-               .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.Increase)
                .AbilityAdd(async (triggerInfo) =>
                {
