@@ -36,7 +36,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (region == GameRegion.None)
             {
-                AgainstInfo.cardSet[GameRegion.Battle].SingleRowInfos.ForEach(row =>
+                AgainstInfo.cardSet[GameRegion.Battle].RowManagers.ForEach(row =>
                 {
                     row.CanBeSelected = false;
                     row.CardMaterial.SetColor("_GlossColor", Color.black);
@@ -44,7 +44,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             else
             {
-                AgainstInfo.cardSet[region][(Orientation)territory].SingleRowInfos.ForEach(row =>
+                AgainstInfo.cardSet[region][(Orientation)territory].RowManagers.ForEach(row =>
                 {
                     row.CanBeSelected = true;
                     row.CardMaterial.SetColor("_GlossColor", row.color);

@@ -70,7 +70,7 @@ namespace TouhouMachineLearningSummary.Model
         /// </summary>
         public TriggerInfoModel SetLocation(Orientation orientation, GameRegion regionType, int rank)
         {
-            int x = GameSystem.InfoSystem.AgainstCardSet[regionType][orientation].SingleRowInfos.First().RowRank;
+            int x = GameSystem.InfoSystem.AgainstCardSet[regionType][orientation].RowManagers.First().RowRank;
             int y = rank;
             location = new Location(x, y);
             return this;

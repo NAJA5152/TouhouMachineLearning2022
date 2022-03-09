@@ -18,14 +18,14 @@ namespace TouhouMachineLearningSummary.Manager
 
         public float Range;
         public bool IsMyHandRegion;
+        //只有一个卡牌位
         bool IsSingle => region == GameRegion.Grave || region == GameRegion.Deck || region == GameRegion.Used;
         [ShowInInspector]
         //计算在全局卡组中对应的顺序
         //根据玩家扮演角色（1或者2）分配上方区域和下方区域
         public int RowRank => (int)region + (AgainstInfo.IsPlayer1 ^ (orientation == Orientation.Down) ? 9 : 0);
-        private void Awake() => AgainstInfo.cardSet.SingleRowInfos.Add(this);
+        private void Awake() => AgainstInfo.cardSet.RowManagers.Add(this);
         public int Location => JudgeRank(this, AgainstInfo.FocusPoint);
-        //public int RowRank => CardSet.GlobalCardList.IndexOf(CardList);
         public Material CardMaterial => transform.GetComponent<Renderer>().material;
         //当前行管理其所管理的的卡牌列表
         public List<Card> CardList => AgainstInfo.cardSet[RowRank];

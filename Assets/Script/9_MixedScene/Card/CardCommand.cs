@@ -49,7 +49,7 @@ namespace TouhouMachineLearningSummary.Command
 
         public static void OrderHandCard()
         {
-            AgainstInfo.cardSet[GameRegion.Hand].SingleRowInfos.ForEach(singleRowInfo =>
+            AgainstInfo.cardSet[GameRegion.Hand].RowManagers.ForEach(singleRowInfo =>
             {
                 AgainstInfo.cardSet[singleRowInfo.RowRank] = AgainstInfo.cardSet[singleRowInfo.RowRank].OrderByDescending(card => card.CardRank).ThenBy(card => card.BasePoint).ThenBy(card => card.CardID).ToList();
             });
@@ -138,7 +138,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             List<Card> TargetRow = AgainstInfo
                 .cardSet[(GameRegion)targetCard.CardDeployRegion][targetCard.Orientation]
-                .SingleRowInfos.First().CardList;
+                .RowManagers.First().CardList;
             Debug.LogWarning("召唤卡牌于" + targetCard.Orientation);
             RemoveCard(targetCard);
             TargetRow.Add(targetCard);
@@ -160,7 +160,7 @@ namespace TouhouMachineLearningSummary.Command
             //TargetRow.Insert(rank, targetCard);
 
             RemoveCard(targetCard);
-            SingleRowManager TargetRow = Info.AgainstInfo.cardSet.SingleRowInfos[location.X];
+            SingleRowManager TargetRow = Info.AgainstInfo.cardSet.RowManagers[location.X];
             AgainstInfo.cardSet[TargetRow.orientation][TargetRow.region].Add(targetCard, location.Y);
             targetCard.isMoveStepOver = false;
             await Task.Delay(500);
@@ -252,7 +252,7 @@ namespace TouhouMachineLearningSummary.Command
             RowCommand.SetPlayCardMoveFree(false);
             targetCard.SetCardSeeAble(true);
 
-            SingleRowManager TargetRow = Info.AgainstInfo.cardSet.SingleRowInfos[location.X];
+            SingleRowManager TargetRow = Info.AgainstInfo.cardSet.RowManagers[location.X];
             AgainstInfo.cardSet[TargetRow.orientation][TargetRow.region].Add(targetCard, location.Y);
             if (TargetRow.CardList.Count > 6)
             {
@@ -345,7 +345,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             Orientation orientation = card.belong == Territory.My ? Orientation.Down : Orientation.Up;
             RemoveCard(card);
-            AgainstInfo.cardSet[orientation][GameRegion.Grave].SingleRowInfos[0].CardList.Insert(Index, card);
+            AgainstInfo.cardSet[orientation][GameRegion.Grave].RowManagers[0].CardList.Insert(Index, card);
             card.SetCardSeeAble(false);
             card.ChangePoint = 0;
             card.isMoveStepOver = false;

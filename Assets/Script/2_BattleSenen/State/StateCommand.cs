@@ -32,7 +32,7 @@ namespace TouhouMachineLearningSummary.Command
             foreach (var item in GameObject.FindGameObjectsWithTag("SingleInfo"))
             {
                 SingleRowManager singleRowInfo = item.GetComponent<SingleRowManager>();
-                AgainstInfo.cardSet.SingleRowInfos.Add(singleRowInfo);
+                AgainstInfo.cardSet.RowManagers.Add(singleRowInfo);
             }
             //CardSet.globalCardList = AgainstInfo.summary.targetJumpTurn.allCardList
             //    .Select(sampleCardList => sampleCardList.Select(CardCommand.CreateCard).ToList()).ToList();
@@ -85,7 +85,8 @@ namespace TouhouMachineLearningSummary.Command
             foreach (var item in GameObject.FindGameObjectsWithTag("SingleInfo"))
             {
                 SingleRowManager singleRowInfo = item.GetComponent<SingleRowManager>();
-                AgainstInfo.cardSet.SingleRowInfos.Add(singleRowInfo);
+                AgainstInfo.cardSet.RowManagers.Add(singleRowInfo);
+                AgainstInfo.cardSet.RowManagers = AgainstInfo.cardSet.RowManagers.OrderBy(row => row.RowRank).ToList();
             }
             RowCommand.SetRegionSelectable(region: GameRegion.None);
             await CustomThread.Delay(1500);
@@ -409,7 +410,7 @@ namespace TouhouMachineLearningSummary.Command
                 else if (AgainstInfo.IsAIControl)
                 {
                     await CustomThread.Delay(1000);
-                    AgainstInfo.SelectRowRank = AgainstInfo.cardSet.SingleRowInfos.Where(row => row.CanBeSelected).OrderBy(x => AiCommand.GetRandom()).FirstOrDefault().RowRank;
+                    AgainstInfo.SelectRowRank = AgainstInfo.cardSet.RowManagers.Where(row => row.CanBeSelected).OrderBy(x => AiCommand.GetRandom()).FirstOrDefault().RowRank;
                 }
                 await Task.Delay(1);
             }
@@ -444,7 +445,7 @@ namespace TouhouMachineLearningSummary.Command
                 else if (AgainstInfo.IsAIControl)
                 {
                     await CustomThread.Delay(1000);
-                    AgainstInfo.SelectRowRank = AgainstInfo.cardSet.SingleRowInfos.Where(row => row.CanBeSelected).OrderBy(x => AiCommand.GetRandom()).FirstOrDefault().RowRank;
+                    AgainstInfo.SelectRowRank = AgainstInfo.cardSet.RowManagers.Where(row => row.CanBeSelected).OrderBy(x => AiCommand.GetRandom()).FirstOrDefault().RowRank;
                     AgainstInfo.SelectRank = 0;//设置部署次序
                 }
                 await Task.Delay(10);

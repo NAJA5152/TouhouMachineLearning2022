@@ -30,7 +30,7 @@ namespace TouhouMachineLearningSummary.Model
         [ShowInInspector]
         public Orientation Orientation => AgainstInfo.cardSet[Orientation.Down].CardList.Contains(this) ? Orientation.Down : Orientation.Up;
         //获取全局牌表区域
-        public GameRegion CurrentRegion => AgainstInfo.cardSet.SingleRowInfos.First(row => row.CardList.Contains(this)).region;
+        public GameRegion CurrentRegion => AgainstInfo.cardSet.RowManagers.First(row => row.CardList.Contains(this)).region;
         //按水->土->风->火->水的顺序获取下一个区域属性
         public GameRegion LastBattleRegion => CurrentRegion switch
         {

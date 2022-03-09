@@ -33,44 +33,13 @@ namespace TouhouMachineLearningSummary.CardSpace
                    };
                }, Condition.Default)
                .AbilityAppend();
-            
-            //AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-            //   .AbilityAdd(async (triggerInfo) =>
-            //   {
 
-            //       await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, this).SetPoint(1));
-            //   }, Condition.Default)
-            //   .AbilityAppend();
-            //AbalityRegister(TriggerTime.When, TriggerType.Increase)
-            //  .AbilityAdd(async (triggerInfo) =>
-            //  {
-            //      UnityEngine.Debug.Log("Ôö¼Ó");
-            //      if (!this[CardState.Furor])
-            //      {
-            //          await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
-            //          await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
-
-            //          await System.Threading.Tasks.Task.Delay(2200);
-            //          await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, this).SetPoint(1));
-
-            //      }
-            //  }, Condition.Default)
-            //  .AbilityAppend();
-            //AbalityRegister(TriggerTime.When, TriggerType.Decrease)
-            //   .AbilityAdd(async (triggerInfo) =>
-            //   {
-            //       UnityEngine.Debug.Log("¼õÉÙ");
-            //       if (!this[CardState.Docile])
-            //       {
-            //           await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
-            //           await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
-
-
-            //           await System.Threading.Tasks.Task.Delay(2200);
-            //           await GameSystem.PointSystem.Gain(new TriggerInfoModel(this, this).SetPoint(1));
-            //       }
-            //   }, Condition.Default)
-            //    .AbilityAppend();
+            AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
+               .AbilityAdd(async (triggerInfo) =>
+               {
+                   await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, this).SetLocation(Orientation, NextBattleRegion, -1));
+               })
+               .AbilityAppend();
         }
     }
 }

@@ -1,23 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj": {}
+    "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj": {}
   },
   "projects": {
-    "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj": {
+    "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj",
+        "projectUniqueName": "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj",
-        "packagesPath": "C:\\Users\\50606\\.nuget\\packages\\",
-        "outputPath": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\obj\\",
+        "projectPath": "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj",
+        "packagesPath": "C:\\Users\\wuyunge\\.nuget\\packages\\",
+        "outputPath": "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\Server\\obj\\",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
-        ],
         "configFilePaths": [
-          "C:\\Users\\50606\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\wuyunge\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
