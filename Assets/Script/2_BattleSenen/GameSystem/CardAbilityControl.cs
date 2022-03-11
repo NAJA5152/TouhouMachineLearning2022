@@ -31,7 +31,6 @@ namespace TouhouMachineLearningSummary.Control
                     {
                         tasks.Add(Trigger(triggerInfo[card][TriggerTime.When]));
                     }
-
                     await Task.WhenAll(tasks.ToArray());
                 }
                 //如果以依次方式触发效果，则目标xx效果执行并等待所有连锁效果触发完成再触发下一个目标的xx效果，全部触发万抽后触发xx效果后的效果

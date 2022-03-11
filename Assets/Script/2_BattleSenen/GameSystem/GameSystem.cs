@@ -175,7 +175,7 @@ namespace TouhouMachineLearningSummary.GameSystem
     public class ProcessSystem
     {
         public static async Task WhenTurnStart() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.TurnStart]);
-        public static async Task WhenTurnEnd() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.TurnEnd]);
+        public static async Task WhenTurnEnd() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList)[TriggerTime.When][TriggerType.TurnEnd]);
         public static async Task WhenRoundStart() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.RoundStart]);
         public static async Task WhenRoundEnd() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.RoundEnd]);
     }

@@ -137,9 +137,9 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task SummonCard(Card targetCard)
         {
             List<Card> TargetRow = AgainstInfo
-                .cardSet[(GameRegion)targetCard.CardDeployRegion][targetCard.Orientation]
+                .cardSet[(GameRegion)targetCard.CardDeployRegion][targetCard.CurrentOrientation]
                 .RowManagers.First().CardList;
-            Debug.LogWarning("召唤卡牌于" + targetCard.Orientation);
+            Debug.LogWarning("召唤卡牌于" + targetCard.CurrentOrientation);
             RemoveCard(targetCard);
             TargetRow.Add(targetCard);
             targetCard.IsCanSee = true;

@@ -237,10 +237,25 @@ namespace TouhouMachineLearningSummary.GameEnum
     }
     public enum Orientation
     {
+        /// <summary>
+        /// 以当前回合方作为主视角的我方区域
+        /// </summary>
         My,
+        /// <summary>
+        /// 以当前回合方作为主视角的对方区域
+        /// </summary>
         Op,
+        /// <summary>
+        /// 双方区域
+        /// </summary>
         All,
+        /// <summary>
+        /// 以客户端视角方作为主视角的上方区域
+        /// </summary>
         Up,
+        /// <summary>
+        /// 以客户端视角方作为主视角的下方区域
+        /// </summary>
         Down,
     }
     public enum Territory { My, Op, All }

@@ -35,11 +35,12 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAppend();
 
             AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
-               .AbilityAdd(async (triggerInfo) =>
-               {
-                   await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, this).SetLocation(Orientation, NextBattleRegion, -1));
-               })
-               .AbilityAppend();
+             .AbilityAdd(async (triggerInfo) =>
+             {
+                 await GameSystem.TransSystem.GenerateCard(new TriggerInfoModel(this, targetCard: null).SetTargetCardId(2013006).SetLocation(CurrentOrientation, CurrentRegion, -1));
+                 await GameSystem.TransSystem.GenerateCard(new TriggerInfoModel(this, targetCard: null).SetTargetCardId(2013007).SetLocation(OppositeOrientation, CurrentRegion, -1));
+             }, Condition.Default)
+             .AbilityAppend();
         }
     }
 }

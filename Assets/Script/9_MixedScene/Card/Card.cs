@@ -28,7 +28,9 @@ namespace TouhouMachineLearningSummary.Model
         //卡牌默认可部署所属
         public Territory CardDeployTerritory { get; set; }
         [ShowInInspector]
-        public Orientation Orientation => AgainstInfo.cardSet[Orientation.Down].CardList.Contains(this) ? Orientation.Down : Orientation.Up;
+        //卡牌默认可部署所属
+        public Orientation CurrentOrientation => AgainstInfo.cardSet[Orientation.Down].CardList.Contains(this) ? Orientation.Down : Orientation.Up;
+        public Orientation OppositeOrientation => CurrentOrientation== Orientation.Down ? Orientation.Up : Orientation.Down ;
         //获取全局牌表区域
         public GameRegion CurrentRegion => AgainstInfo.cardSet.RowManagers.First(row => row.CardList.Contains(this)).region;
         //按水->土->风->火->水的顺序获取下一个区域属性
