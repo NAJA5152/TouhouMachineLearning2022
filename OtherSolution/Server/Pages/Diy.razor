@@ -76,7 +76,7 @@
 	RenderFragment avatarTemplate = @<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></Avatar>;
 	public RenderFragment coverTemplate(int uid)
 	{
-		return @<img width="200" alt="example" src=@DiyCommand.GetDiyCardsImageUrl(uid) />;
+		return @<img width="180" height="300" alt="example" src=@DiyCommand.GetDiyCardsImageUrl(uid) />;
 	}
 	List<DiyCardInfo> DiyCardsInfo = DiyCommand.GetDiyCardsInfo();
 }
