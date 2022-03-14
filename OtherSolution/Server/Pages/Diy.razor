@@ -86,12 +86,12 @@
 	<Row>
 	@for (int i = 0; i < DiyCardsInfo.Count; i++)
 	{
-	int num = 0;
+	int num = i;
 	var currentCard = DiyCardsInfo[num];
 		<AntDesign.Col >
 			<SpaceItem>
-				<Card Style="width:200px;" Bordered Cover="coverTemplate(num)"
-			Actions="@(new[] {actionEdit(()=>commitDrawerVisible = true),actionEllipsis(()=> detailPageVisible = true)})">
+				<Card Style="width:200px;height=300px" Bordered Cover="coverTemplate(num)"
+					Actions="@(new[] {actionEdit(()=>commitDrawerVisible = true),actionEllipsis(()=> detailPageVisible = true)})">
 					<CardMeta AvatarTemplate="@avatarTemplate" Title=@currentCard.cardName Description=@currentCard.describe />
 				</Card>
 			</SpaceItem>
