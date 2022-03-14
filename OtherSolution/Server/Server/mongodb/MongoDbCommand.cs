@@ -14,6 +14,7 @@ namespace Server
         static IMongoCollection<PlayerInfo>? PlayerInfoCollection { get; set; }
         static IMongoCollection<CardConfig>? CardConfigCollection { get; set; }
         static IMongoCollection<AgainstSummary>? SummaryCollection { get; set; }
+        public static IMongoCollection<DiyCardInfo> DiyCardCollection { get; set; }
         public static void Init()
         {
             Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
@@ -24,6 +25,7 @@ namespace Server
             PlayerInfoCollection = db.GetCollection<PlayerInfo>("PlayerInfo");
             CardConfigCollection = db.GetCollection<CardConfig>("CardConfig");
             SummaryCollection = db.GetCollection<AgainstSummary>("AgainstSummary");
+            DiyCardCollection= db.GetCollection<DiyCardInfo>("DiyCards");
         }
         //////////////////////////////////////////////////账号系统///////////////////////////////////////////////////////////////////
         public static int Register(string account, string password)

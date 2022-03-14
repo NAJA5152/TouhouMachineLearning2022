@@ -1,0 +1,103 @@
+﻿@page "/Diy"
+@using System.IO;
+@using Newtonsoft.Json;
+
+@*上传抽屉页面相关代码*@
+@code {
+	string newDiyCardName;
+	string newDiyCardDescribe;
+	bool diyDrawerVisible = false;
+	bool detailPageVisible = false;
+	void Open() => this.diyDrawerVisible = true;
+	void close() => this.diyDrawerVisible = false;
+}
+@code {
+	bool commitDrawerVisible = false;
+	void openCommitDrawer() => this.commitDrawerVisible = true;
+	void closeCommitDrawer() => this.commitDrawerVisible = false;
+	bool like = false;
+	bool dislike = false;
+
+	RenderFragment likeAction =>
+	@<span>
+		<Tooltip Title="@("Like")">
+			<Icon Type="like" Theme="@(like ? "fill" : "outline")" OnClick="SetLike" />
+		</Tooltip>
+		<span>@(like ? 1 : 0)</span>
+	</span>;
+
+	RenderFragment dislikeAction =>
+	@<span>
+		<Tooltip Title="@("Dislike")">
+			<Icon Type="dislike" Theme="@(dislike ? "fill" : "outline")" OnClick="SetDislike" />
+		</Tooltip>
+		<span>@(dislike ? 1 : 0)</span>
+	</span>;
+
+	RenderFragment dateTime =
+	@<Tooltip Title="@(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))">
+											<span>
+			@(MomentHelper.FromNow(DateTime.Now))
+											</span>
+	</Tooltip>;
+	async void onSubmit()
+	{
+
+	}
+	void SetLike()
+	{
+		like = true;
+		dislike = false;
+	}
+
+	void SetDislike()
+	{
+		like = false;
+		dislike = true;
+	}
+	RenderFragment GetEditor(Action onSubmit)
+	{
+		return@<div>
+		<TextArea MinRows="4" />
+		<br />
+		<br />
+		<br />
+		<Button OnClick="onSubmit " type="primary">
+			发表评论
+		</Button>
+	</div>;
+	}
+}
+
+@code {
+	RenderFragment actionSetting(Action clickAction) =>@<Icon Type="setting" OnClick="@clickAction" />;
+	RenderFragment actionEdit(Action clickAction) =>@<Icon Type="edit" OnClick="@clickAction" />;
+	RenderFragment actionEllipsis(Action clickAction) => @<Icon Type="ellipsis" OnClick="@clickAction" />;
+	RenderFragment avatarTemplate = @<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></Avatar>;
+	public RenderFragment coverTemplate(int uid)
+	{
+		return @<img width="200" alt="example" src=@DiyCommand.GetDiyCardsImageUrl(uid) />;
+	}
+	List<DiyCardInfo> DiyCardsInfo = DiyCommand.GetDiyCardsInfo();
+}
+<Button @onclick="() => Open()">上传设计</Button>
+<Divider Orientation="left">diy卡牌设计</Divider>
+<Space>
+	<Row>
+	@for (int i = 0; i < DiyCardsInfo.Count; i++)
+	{
+	int num = 0;
+	var currentCard = DiyCardsInfo[num];
+		<AntDesign.Col >
+			<SpaceItem>
+				<Card Style="width:200px;" Bordered Cover="coverTemplate(num)"
+			Actions="@(new[] {actionEdit(()=>commitDrawerVisible = true),actionEllipsis(()=> detailPageVisible = true)})">
+					<CardMeta AvatarTemplate="@avatarTemplate" Title=@currentCard.cardName Description=@currentCard.describe />
+				</Card>
+			</SpaceItem>
+		</AntDesign.Col>
+	}
+	</Row>
+</Space>
+
+

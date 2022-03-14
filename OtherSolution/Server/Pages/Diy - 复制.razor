@@ -1,0 +1,204 @@
+﻿@page "/Diy2"
+@using System.IO;
+@using Newtonsoft.Json;
+
+@code
+{
+	bool detailPageVisible = false;
+}
+
+    <div>
+        <Button @onclick="() => open()">上传设计</Button>
+        <Divider Orientation="left">diy卡牌设计</Divider>
+        <Layout>
+            <Sider>筛选条件</Sider>
+            <Layout>
+                <Content>
+                    <Row>
+                        @for (int i = 0; i < Info.DiyCardInfo.Count; i++)
+						{
+							int num = i;
+							var currentCard = Info.DiyCardInfo[num];
+							<SpaceItem>
+								<AntDesign.Col>
+									<SpaceItem>
+										<Card Style="width:300px;" Bordered Cover="coverTemplate(num)"
+									Actions="@(new[] {actionEdit(()=>commitDrawerVisible = true),actionEllipsis(()=> detailPageVisible = true)})">
+											<CardMeta AvatarTemplate="@avatarTemplate" Title=@currentCard.cardName Description=@currentCard.describe />
+										</Card>
+									</SpaceItem>
+								</AntDesign.Col>
+							</SpaceItem>
+						}
+					</Row>
+				</Content>
+				<Footer>Footer</Footer>
+			</Layout>
+		</Layout>
+
+	</div>
+@*//////////////卡牌上传存储和显示相关//////////////*@
+
+@code {
+	Random rand = new Random();
+	public async Task UpLoadImage(InputFileChangeEventArgs e)
+	{
+		await using FileStream fs = new FileStream("wwwroot/img/" + (rand.Next(65535) + ".png"), FileMode.Create);
+		await e.File.OpenReadStream().CopyToAsync(fs);
+	}
+	public List<RenderFragment> images => ImageCommand.GetDireImages();
+	public class ImageCommand
+	{
+		public static List<RenderFragment> GetDireImages()
+		{
+			string direPath = Directory.GetCurrentDirectory() + @"\wwwroot";
+			var dire = new DirectoryInfo(direPath);
+			return dire.GetFiles("*.png", SearchOption.AllDirectories).Select(file =>
+			{
+				string path = file.FullName;
+				//Console.WriteLine("file:\\," + file.FullName);
+				//RenderFragment coverTemplate = @<img alt = "example" src =@(@"\1.png")/>;
+				Console.WriteLine(file.FullName.Replace(direPath, ""));
+				RenderFragment coverTemplate =@<img alt = "example" src =@(file.FullName.Replace(direPath,""))/> ;
+				return coverTemplate;
+			}).ToList();
+		}
+	}
+}
+@*上传抽屉页面相关代码*@
+@code {
+	string newDiyCardName;
+	string newDiyCardDescribe;
+	bool diyDrawerVisible = false;
+	void open() => this.diyDrawerVisible = true;
+	void close() => this.diyDrawerVisible = false;
+}
+<div style="min-width:1000px">
+    <Drawer Width="300" Closable="true" Visible="diyDrawerVisible" Placement="right" Title=@("diy设计") OnClose="_ => close()">
+        <InputFile OnChange="UpLoadImage"/>
+        <Input Placeholder="名字" @bind-Value="@newDiyCardName" />
+        <Input Placeholder="描述" @bind-Value="@newDiyCardDescribe" />
+        <Button @onclick="() => {
+                              //Command.AddDiyCardInfos(newDiyCardName, newDiyCardDescribe,uploadImageData);
+                              //DiyCommand.GetDiyCardsInfo();
+                          }">
+            提交
+        </Button>
+        <div style="position:relative">
+            @*<img width="150px" height="210px" src=@("data:image/gif;base64,"+Convert.ToBase64String(uploadImageData)) style="position:absolute;left:15px;top:5px">*@
+        </div>
+        <br />
+        <SpaceItem></SpaceItem>
+    </Drawer>
+</div>
+
+<div style="z-index:5;min-width=100rem">
+    <Drawer Closable="true" Visible=@commitDrawerVisible Placement="right" Title='("卡片评论")' OnClose=@(()=>commitDrawerVisible=false)>
+        <Comment Actions="@(new []{likeAction,dislikeAction})"
+                 Author="格子"
+                 Avatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                 Content="太超模了，建议去除"
+                 Datetime="dateTime">
+        </Comment>
+
+        <Comment Avatar="@(@"https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png")">
+            <ContentTemplate>
+                @GetEditor(@onSubmit)
+            </ContentTemplate>
+        </Comment>
+    </Drawer>
+</div>
+
+@code {
+
+	bool commitDrawerVisible = false;
+	void openCommitDrawer() => this.commitDrawerVisible = true;
+	void closeCommitDrawer() => this.commitDrawerVisible = false;
+	bool like = false;
+	bool dislike = false;
+
+	RenderFragment likeAction =>
+	@<span>
+					<Tooltip Title="@("Like")">
+						<Icon Type="like" Theme="@(like ? "fill" : "outline")" OnClick="SetLike" />
+					</Tooltip>
+					<span>@(like ? 1 : 0)</span>
+	</span>;
+
+	RenderFragment dislikeAction =>
+	@<span>
+				<Tooltip Title="@("Dislike")">
+					<Icon Type="dislike" Theme="@(dislike ? "fill" : "outline")" OnClick="SetDislike" />
+				</Tooltip>
+				<span>@(dislike ? 1 : 0)</span>
+	</span>;
+	RenderFragment dateTime =
+	@<Tooltip Title="@(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))">
+				<span>
+			@(MomentHelper.FromNow(DateTime.Now))
+				</span>
+	</Tooltip>;
+	async void onSubmit()
+	{
+
+	}
+	void SetLike()
+	{
+		like = true;
+		dislike = false;
+	}
+
+	void SetDislike()
+	{
+		like = false;
+		dislike = true;
+	}
+	RenderFragment GetEditor(Action onSubmit)
+	{
+		return@<div>
+				<TextArea MinRows="4" />
+				<br />
+				<br />
+				<br />
+				<Button OnClick="onSubmit " type="primary">
+					发表评论
+				</Button>
+	</div>;
+	}
+}
+@code
+{
+	RenderFragment actionSetting(Action clickAction) =>@<Icon Type="setting" OnClick="@clickAction" />;
+	RenderFragment actionEdit(Action clickAction) =>@<Icon Type="edit" OnClick="@clickAction" />;
+	RenderFragment actionEllipsis(Action clickAction) => @<Icon Type="ellipsis" OnClick="@clickAction" />;
+	RenderFragment avatarTemplate = @<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></Avatar>;
+	public RenderFragment coverTemplate(int uid)
+	{
+		return @<img width="200" alt="example" src=@Info.DiyCardInfo.FirstOrDefault(x=>x.uid==uid)?.imageUrl />;
+	}
+}
+
+
+<Button Type="primary" OnClick="@(()=>{ detailPageVisible = true; })">
+    Open Modal
+</Button>
+<Modal Title="详细信息"
+       Visible="@detailPageVisible"
+       OnOk="()=> { detailPageVisible = false; }"
+       OnCancel="()=>{ }">
+    <h1>格子</h1>
+    <Layout>
+        <Sider Style="background-color:aliceblue">
+
+            <p>战力：</p>
+            <p>描述：</p>
+        </Sider>
+        <Layout>
+            <content Style="background-color:aliceblue">
+
+                <p>66</p>
+                <p>好耶</p>
+            </content>
+        </Layout>
+    </Layout>
+</Modal>

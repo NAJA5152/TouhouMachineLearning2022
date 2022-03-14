@@ -1,7 +1,7 @@
 using Server;
 using Server.Data;
 using System;
-
+//链接用户数据库
 MongoDbCommand.Init();
 Console.WriteLine("数据库已初始化");
 HoldListManager.Init();

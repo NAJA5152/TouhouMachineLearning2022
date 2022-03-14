@@ -514,6 +514,12 @@ namespace TouhouMachineLearningSummary.Model
             transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion, Time.deltaTime * 10);
             PointText.text = CardType == CardType.Unite ? ShowPoint.ToString() : "";
         }
+        /// <summary>
+        /// 注册一个能力
+        /// </summary>
+        /// <param name="time">触发时机</param>
+        /// <param name="type">触发方式</param>
+        /// <returns>一个触发效果的配置管理器</returns>
         public CardAbilityManeger AbalityRegister(TriggerTime time, TriggerType type) => new CardAbilityManeger(this, time, type);
         private void Update() => RefreshCardUi();
 
