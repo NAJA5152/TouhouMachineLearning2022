@@ -67,11 +67,11 @@
 	}
 	public void OrderByLike()
 	{
-		message.Info("按热度排序");
+		message.Info("按赞同度排序");
 	}
 	public void OrderByTime()
 	{
-		message.Info("按热度排序");
+		message.Info("按时间排序");
 	}
 	void OnChangeSize()
 	{
@@ -79,6 +79,7 @@
 		{
 			case(0): OrderByHot();break;
 			case(1): OrderByLike();break;
+			case(2): OrderByTime();break;
 		}
 	}
 }
@@ -97,6 +98,7 @@
 		File.WriteAllBytes($"wwwroot\\{path}" ,uploadImageData);
 		DiyCommand.AddDiyCardInfos(newDiyCardName, newDiyCardDescribe,path);
 		StateHasChanged();
+		await message.Success("上传完成");
 	}
 }
 @code {
@@ -136,37 +138,34 @@
 	</Row>
 </Space>
 
-<div style="min-width:1000px">
-	<Drawer Width="300" Closable="true" Visible="diyDrawerVisible" Placement="right" Title=@("Diy设计") OnClose="_ => close()">
-		<Image Style="width=150px ;height=210px" src=@("data:image/png;base64,"+Convert.ToBase64String(uploadImageData))></Image>
-		<InputFile OnChange="UpLoadImage"/>
-		<Input Placeholder="名字" @bind-Value="@newDiyCardName" />
-		<Input Placeholder="描述" @bind-Value="@newDiyCardDescribe" />
-		<Button @onclick="async () => {await SubmitCard();}">提交</Button>
-	</Drawer>
-</div>
+<Drawer Width="300" Closable="true" Visible="diyDrawerVisible" Placement="right" Title=@("Diy设计") OnClose="_ => close()">
+	<Image Style="width=150px ;height=210px" src=@("data:image/png;base64,"+Convert.ToBase64String(uploadImageData))></Image>
+	<InputFile OnChange="UpLoadImage"/>
+	<Input Placeholder="名字" @bind-Value="@newDiyCardName" />
+	<Input Placeholder="描述" @bind-Value="@newDiyCardDescribe" />
+	<Button @onclick="async () => {await SubmitCard();}">提交</Button>
+</Drawer>
 
-@*<div style="z-index:5;min-width=100rem">*@
-    <Drawer Width="520" Closable="true" Visible=@commitDrawerVisible Placement="right" Title='("卡片评论")' OnClose=@(()=>commitDrawerVisible=false)>
-        <Comment Actions="@(new []{likeAction,dislikeAction})"
-                 Author="格子"
-                 Avatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
-                 Content="太超模了，建议去除"
-                 Datetime="dateTime">
-        </Comment>
+<Drawer Width="520" Closable="true" Visible=@commitDrawerVisible Placement="right" Title='("卡片评论")' OnClose=@(()=>commitDrawerVisible=false)>
+    <Comment Actions="@(new []{likeAction,dislikeAction})"
+                Author="格子"
+                Avatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                Content="太超模了，建议去除"
+                Datetime="dateTime">
+    </Comment>
 
-        <Comment Avatar="@(@"https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png")">
-            <ContentTemplate>
-               <TextArea MinRows="4" />
-				<br />
-				<br />
-				<br />
-				<Button OnClick="onSubmit " type="primary">
-					发表评论
-				</Button>
-            </ContentTemplate>
-        </Comment>
-    </Drawer>
+    <Comment Avatar="@(@"https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png")">
+        <ContentTemplate>
+            <TextArea MinRows="4" />
+			<br />
+			<br />
+			<br />
+			<Button OnClick="onSubmit " type="primary">
+				发表评论
+			</Button>
+        </ContentTemplate>
+    </Comment>
+</Drawer>
 
 
 <Modal Title="详细信息"
