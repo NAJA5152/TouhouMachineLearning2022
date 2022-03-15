@@ -1,6 +1,7 @@
 ﻿@page "/Diy"
 @using System.IO;
 @using Newtonsoft.Json;
+@inject MessageService message
 
 @*上传抽屉页面相关代码*@
 @code {
@@ -11,6 +12,7 @@
 	void Open() => this.diyDrawerVisible = true;
 	void close() => this.diyDrawerVisible = false;
 }
+@*评论区相关代码*@
 @code {
 	bool commitDrawerVisible = false;
 	void openCommitDrawer() => this.commitDrawerVisible = true;
@@ -20,25 +22,25 @@
 
 	RenderFragment likeAction =>
 	@<span>
-		<Tooltip Title="@("Like")">
-			<Icon Type="like" Theme="@(like ? "fill" : "outline")" OnClick="SetLike" />
-		</Tooltip>
-		<span>@(like ? 1 : 0)</span>
+				<Tooltip Title="@("Like")">
+					<Icon Type="like" Theme="@(like ? "fill" : "outline")" OnClick="SetLike" />
+				</Tooltip>
+				<span>@(like ? 1 : 0)</span>
 	</span>;
 
 	RenderFragment dislikeAction =>
 	@<span>
-		<Tooltip Title="@("Dislike")">
-			<Icon Type="dislike" Theme="@(dislike ? "fill" : "outline")" OnClick="SetDislike" />
-		</Tooltip>
-		<span>@(dislike ? 1 : 0)</span>
+				<Tooltip Title="@("Dislike")">
+					<Icon Type="dislike" Theme="@(dislike ? "fill" : "outline")" OnClick="SetDislike" />
+				</Tooltip>
+				<span>@(dislike ? 1 : 0)</span>
 	</span>;
 
 	RenderFragment dateTime =
 	@<Tooltip Title="@(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))">
-											<span>
+													<span>
 			@(MomentHelper.FromNow(DateTime.Now))
-											</span>
+													</span>
 	</Tooltip>;
 	async void onSubmit()
 	{
@@ -55,20 +57,48 @@
 		like = false;
 		dislike = true;
 	}
-	RenderFragment GetEditor(Action onSubmit)
+}
+@*筛选区逻辑*@
+@code {
+	int OrderType = 0;
+	public void OrderByHot()
 	{
-		return@<div>
-		<TextArea MinRows="4" />
-		<br />
-		<br />
-		<br />
-		<Button OnClick="onSubmit " type="primary">
-			发表评论
-		</Button>
-	</div>;
+		message.Info("按热度排序");
+	}
+	public void OrderByLike()
+	{
+		message.Info("按热度排序");
+	}
+	public void OrderByTime()
+	{
+		message.Info("按热度排序");
+	}
+	void OnChangeSize()
+	{
+		switch(OrderType)
+		{
+			case(0): OrderByHot();break;
+			case(1): OrderByLike();break;
+		}
 	}
 }
-
+@*上传区逻辑*@
+@code {
+	byte[] uploadImageData=new byte[0];
+	public async Task UpLoadImage(InputFileChangeEventArgs e)
+	{
+		int fileLength=(int)e.File.Size;
+		uploadImageData = new byte[fileLength];
+		await e.File.OpenReadStream().ReadAsync(uploadImageData, 0, fileLength);
+	}
+	public async Task SubmitCard()
+	{
+		string path = $"{DateTime.Now.Millisecond}-{newDiyCardName}.png";
+		File.WriteAllBytes($"wwwroot\\{path}" ,uploadImageData);
+		DiyCommand.AddDiyCardInfos(newDiyCardName, newDiyCardDescribe,path);
+		StateHasChanged();
+	}
+}
 @code {
 	RenderFragment actionSetting(Action clickAction) =>@<Icon Type="setting" OnClick="@clickAction" />;
 	RenderFragment actionEdit(Action clickAction) =>@<Icon Type="edit" OnClick="@clickAction" />;
@@ -82,22 +112,81 @@
 }
 <Button @onclick="() => Open()">上传设计</Button>
 <Divider Orientation="left">diy卡牌设计</Divider>
+<RadioGroup @bind-Value="@OrderType" OnChange="OnChangeSize" TValue="int">
+    <Radio RadioButton Value=0>按人气</Radio>
+    <Radio RadioButton Value=1>按点赞</Radio>
+    <Radio RadioButton Value=2>按时间</Radio>
+</RadioGroup>
+<br><br/>
 <Space>
 	<Row>
 	@for (int i = 0; i < DiyCardsInfo.Count; i++)
-	{
-	int num = i;
-	var currentCard = DiyCardsInfo[num];
-		<AntDesign.Col >
-			<SpaceItem>
-				<Card Style="width:200px;height=300px" Bordered Cover="coverTemplate(num)"
-					Actions="@(new[] {actionEdit(()=>commitDrawerVisible = true),actionEllipsis(()=> detailPageVisible = true)})">
-					<CardMeta AvatarTemplate="@avatarTemplate" Title=@currentCard.cardName Description=@currentCard.describe />
-				</Card>
-			</SpaceItem>
-		</AntDesign.Col>
-	}
+		{
+			int num = i;
+			var currentCard = DiyCardsInfo[num];
+			<AntDesign.Col >
+				<SpaceItem>
+					<Card Style="width:200px;height=300px" Bordered Cover="coverTemplate(num)"
+				Actions="@(new[] {actionEdit(()=>commitDrawerVisible = true),actionEllipsis(()=> detailPageVisible = true)})">
+						<CardMeta AvatarTemplate="@avatarTemplate" Title=@currentCard.cardName Description=@currentCard.describe />
+					</Card>
+				</SpaceItem>
+			</AntDesign.Col>
+		}
 	</Row>
 </Space>
 
+<div style="min-width:1000px">
+	<Drawer Width="300" Closable="true" Visible="diyDrawerVisible" Placement="right" Title=@("Diy设计") OnClose="_ => close()">
+		<Image Style="width=150px ;height=210px" src=@("data:image/png;base64,"+Convert.ToBase64String(uploadImageData))></Image>
+		<InputFile OnChange="UpLoadImage"/>
+		<Input Placeholder="名字" @bind-Value="@newDiyCardName" />
+		<Input Placeholder="描述" @bind-Value="@newDiyCardDescribe" />
+		<Button @onclick="async () => {await SubmitCard();}">提交</Button>
+	</Drawer>
+</div>
+
+@*<div style="z-index:5;min-width=100rem">*@
+    <Drawer Width="520" Closable="true" Visible=@commitDrawerVisible Placement="right" Title='("卡片评论")' OnClose=@(()=>commitDrawerVisible=false)>
+        <Comment Actions="@(new []{likeAction,dislikeAction})"
+                 Author="格子"
+                 Avatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                 Content="太超模了，建议去除"
+                 Datetime="dateTime">
+        </Comment>
+
+        <Comment Avatar="@(@"https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png")">
+            <ContentTemplate>
+               <TextArea MinRows="4" />
+				<br />
+				<br />
+				<br />
+				<Button OnClick="onSubmit " type="primary">
+					发表评论
+				</Button>
+            </ContentTemplate>
+        </Comment>
+    </Drawer>
+
+
+<Modal Title="详细信息"
+       Visible="@detailPageVisible"
+       OnOk="()=> { detailPageVisible = false; }"
+       OnCancel="()=>{detailPageVisible = false; }">
+    <h1>格子</h1>
+    <Layout>
+        <Sider Style="background-color:aliceblue">
+
+            <p>战力：</p>
+            <p>描述：</p>
+        </Sider>
+        <Layout>
+            <content Style="background-color:aliceblue">
+
+                <p>66</p>
+                <p>好耶</p>
+            </content>
+        </Layout>
+    </Layout>
+</Modal>
 

@@ -1,8 +1,15 @@
 ﻿@inherits LayoutComponentBase
+@inject MessageService message
+
 @using MongoDB.Driver;
 
+@code {
+	bool isLogin = false;
+	string input_user = "";
+	string input_password = "";
+	string user = "";
+}
 <div class="page">
-	@*<div class="sidebar">*@
 	<div >
 		<NavMenu />
 	</div>
@@ -10,14 +17,14 @@
 	   <div class="top-row px">
 			@if (!isLogin)
 			{
-				<Input style="width:150px" placeholder="账号" @bind-Value="input_user" />
-				<Input style="width:150px" placeholder="密码" @bind-Value="input_password" />
-				<Button @onclick="_ => CheckUserInfo()">登录</Button>
+						<Input style="width:150px" placeholder="账号" @bind-Value="input_user" />
+						<Input style="width:150px" placeholder="密码" @bind-Value="input_password" />
+						<Button @onclick="_ => CheckUserInfo()">登录</Button>
 			}
 			else
 			{
-				<Button Type="link">欢迎你，陌生而可敬的 @user </Button>
-				<Button @onclick="_ => isLogin = false">登出</Button>
+						<Button Type="link">欢迎你，陌生而可敬的 @user </Button>
+						<Button @onclick="_ => Logout()">登出</Button>
 			}
 	</div>
 		<article class="content px-4">
@@ -26,38 +33,26 @@
 	</main>
 </div>
 
-@code{
+@code {
 	void CheckUserInfo()
 	{
-		MongoClient client = new MongoClient("mongodb://cynthia.ovyno.com:28020");
-		var db = client.GetDatabase("gwent");
-		var userCollection = db.GetCollection<User>("user");
-		//userCollection.AsQueryable().ForEach(user => Console.WriteLine(user.PlayerName));
-		Console.WriteLine("数据库初始化完成");
-		var targetUser = userCollection.AsQueryable().FirstOrDefault(user => user.UserName == input_user && user.PassWord == input_password);
-		if (targetUser != null)
+		var userInfo = MongoDbCommand.Login(input_user, input_password);
+		if (userInfo != null)
 		{
-			user = targetUser.UserName;
+			user = userInfo.Name;
 			isLogin = true;
+			message.Success("登陆成功");
 		}
 		else
 		{
-			Console.WriteLine("登陆失败");
+			message.Error("登陆失败");
 		}
 	}
-}
-@code {
-	bool isLogin = false;
-	string input_user = "";
-	string input_password = "";
-	string user = "";
-	//自己连支柱数据库校验账户信息
-	public class User
+	void Logout()
 	{
-		public string _id { get; set; }
-		public string PlayerName { get; set; }
-		public string UserName { get; set; }
-		public string PassWord { get; set; }
-		public object[] Decks { get; set; }
+		user = "";
+		isLogin = false;
+		message.Warning("退出登录状态");
+
 	}
 }
