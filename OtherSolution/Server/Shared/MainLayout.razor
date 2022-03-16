@@ -1,13 +1,13 @@
 ﻿@inherits LayoutComponentBase
 @inject MessageService message
-
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
 @using MongoDB.Driver;
 
 @code {
 	bool isLogin = false;
 	string input_user = "";
 	string input_password = "";
-	string user = "";
+	PlayerInfo? userInfo = null;
 }
 <div class="page">
 	<div >
@@ -17,14 +17,15 @@
 	   <div class="top-row px">
 			@if (!isLogin)
 			{
-						<Input style="width:150px" placeholder="账号" @bind-Value="input_user" />
-						<Input style="width:150px" placeholder="密码" @bind-Value="input_password" />
-						<Button @onclick="_ => CheckUserInfo()">登录</Button>
+				
+				<Input style="width:150px" placeholder="账号" @bind-Value="input_user" />
+				<Input style="width:150px" placeholder="密码" @bind-Value="input_password" />
+				<Button @onclick="_ => Login()">登录</Button>
 			}
 			else
 			{
-						<Button Type="link">欢迎你，陌生而可敬的 @user </Button>
-						<Button @onclick="_ => Logout()">登出</Button>
+				<Button Type="link">欢迎你，陌生而可敬的 @userInfo?.Name </Button>
+				<Button @onclick="_ => Logout()">登出</Button>
 			}
 	</div>
 		<article class="content px-4">
@@ -34,25 +35,49 @@
 </div>
 
 @code {
-	void CheckUserInfo()
+	protected override void OnAfterRender(bool firstRender)
 	{
-		var userInfo = MongoDbCommand.Login(input_user, input_password);
-		if (userInfo != null)
+		if(firstRender)
 		{
-			user = userInfo.Name;
-			isLogin = true;
-			message.Success("登陆成功");
-		}
-		else
-		{
-			message.Error("登陆失败");
+			CheckUserInfo();
 		}
 	}
-	void Logout()
+	async void CheckUserInfo()
 	{
-		user = "";
-		isLogin = false;
-		message.Warning("退出登录状态");
-
+		if(await localStorage.ContainKeyAsync("user"))
+		{
+			string user = await localStorage.GetItemAsync<string>("user");
+			string password = await localStorage.GetItemAsync<string>("password");
+			userInfo = MongoDbCommand.Login(input_user, input_password);
+			if(userInfo!=null)
+			{
+				isLogin = true;
+				StateHasChanged();
+				//await message.Success("欢迎回来"+userInfo.Name);
+			}
+		}
 	}
+    async void Login()
+    {
+        userInfo = MongoDbCommand.Login(input_user, input_password);
+        if (userInfo != null)
+        {
+            isLogin = true;
+			await localStorage.SetItemAsync("user",input_user);
+            await localStorage.SetItemAsync("password",input_password);
+            await message.Success("登陆成功");
+        }
+        else
+        {
+            await message.Error("登陆失败");
+        }
+    }
+    async void Logout()
+    {
+        userInfo =null;
+        isLogin = false;
+		await localStorage.RemoveItemAsync("user");
+        await localStorage.RemoveItemAsync("password");
+        await message.Warning("退出登录状态");
+    }
 }

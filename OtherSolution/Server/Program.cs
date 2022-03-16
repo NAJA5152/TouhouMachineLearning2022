@@ -1,3 +1,4 @@
+using Blazored.LocalStorage;
 using Server;
 using Server.Data;
 using System;
@@ -9,6 +10,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddAntDesign();
 builder.Services.AddServerSideBlazor();
+builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddSingleton<WeatherForecastService>();
 builder.Services.AddSignalR(hubOptions =>
 {
