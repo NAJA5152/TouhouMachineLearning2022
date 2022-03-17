@@ -181,11 +181,6 @@
 			</SelectOptions>
 		</SimpleSelect>
 	}
-		<Input Placeholder="战力" @bind-Value="@NewDiyCardPoint"><AddOnBefore>战力</AddOnBefore></Input>
-	@if(true)
-	{
-		
-	}
 	@if (UploadMode == "2" || UploadMode == "3")
 	{
 		<SimpleSelect Placeholder="类型" OnSelectedItemChanged="handleTypeChange">
@@ -194,7 +189,7 @@
 				<SimpleSelectOption Value="特殊卡" Label="特殊卡"></SimpleSelectOption>
 			</SelectOptions>
 		</SimpleSelect>
-		<Input Placeholder="战力" @bind-Value="@NewDiyCardPoint"></Input>
+		<Input AddOnBefore="战力" Placeholder="战力" @bind-Value="@NewDiyCardPoint"></Input>
 		<SimpleSelect Placeholder="阵营" OnSelectedItemChanged="handleFractionChange">
 			<SelectOptions>
 				<SimpleSelectOption Value="中立" Label="中立"></SimpleSelectOption>
