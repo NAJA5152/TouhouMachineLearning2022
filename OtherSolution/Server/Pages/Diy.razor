@@ -3,67 +3,8 @@
 @using Newtonsoft.Json;
 @inject MessageService message
 
-@*上传抽屉页面相关代码*@
-@code {
-	string newDiyCardName;
-	string newDiyCardDescribe;
-	bool diyDrawerVisible = false;
-	bool detailPageVisible = false;
-	void DiyDrawerOpen() => this.diyDrawerVisible = true;
-	void DiyDrawerClose() => this.diyDrawerVisible = false;
-	void DiyDrawerInit()
-	{
-		newDiyCardName = "";
-		newDiyCardDescribe = "";
-	}
-}
-@*评论区相关代码*@
-@code {
-	bool commitDrawerVisible = false;
-	void OpenCommitDrawer() => this.commitDrawerVisible = true;
-	void CloseCommitDrawer() => this.commitDrawerVisible = false;
-	bool like = false;
-	bool dislike = false;
+@*/////////////////////////////////////////////////////选项区/////////////////////////////////////////////////*@
 
-	RenderFragment likeAction =>
-	@<span>
-					<Tooltip Title="@("Like")">
-						<Icon Type="like" Theme="@(like ? "fill" : "outline")" OnClick="SetLike" />
-					</Tooltip>
-					<span>@(like ? 1 : 0)</span>
-	</span>;
-
-	RenderFragment dislikeAction =>
-	@<span>
-					<Tooltip Title="@("Dislike")">
-						<Icon Type="dislike" Theme="@(dislike ? "fill" : "outline")" OnClick="SetDislike" />
-					</Tooltip>
-					<span>@(dislike ? 1 : 0)</span>
-	</span>;
-
-	RenderFragment dateTime =
-	@<Tooltip Title="@(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))">
-														<span>
-			@(MomentHelper.FromNow(DateTime.Now))
-														</span>
-	</Tooltip>;
-	async void onSubmit()
-	{
-
-	}
-	void SetLike()
-	{
-		like = true;
-		dislike = false;
-	}
-
-	void SetDislike()
-	{
-		like = false;
-		dislike = true;
-	}
-}
-@*筛选区逻辑*@
 @code {
 	int OrderType = 0;
 	public void OrderByHot()
@@ -88,8 +29,111 @@
 		}
 	}
 }
-@*上传区逻辑*@
+
+<Button @onclick="() => DiyDrawerOpen()">上传设计</Button>
+<Divider Orientation="left">diy卡牌设计</Divider>
+<RadioGroup @bind-Value="@OrderType" OnChange="OnChangeSize" TValue="int">
+    <Radio RadioButton Value=0>按人气</Radio>
+    <Radio RadioButton Value=1>按点赞</Radio>
+    <Radio RadioButton Value=2>按时间</Radio>
+</RadioGroup>
+@*/////////////////////////////////////////////////////主体展示区/////////////////////////////////////////////////*@
 @code {
+	DiyCardInfo? ClickCard { get; set; }
+	List<DiyCardInfo> DiyCardsInfo = DiyCommand.GetDiyCardsInfo();
+}
+<br><br/>
+@for (int i = 0; i < DiyCardsInfo.Count; i++)
+{
+	int num = i;
+	var currentCard = DiyCardsInfo[num];
+						<Card Title="@currentCard.CardName">
+							<Body>
+								<Row>
+									<AntDesign.Col Span="4">
+										<Image Width="75px" Height="115px" Src=@currentCard.ImageUrl />
+									</AntDesign.Col>
+									<AntDesign.Col Span="20">
+										<Content>
+											<p>
+												<Tag>@currentCard.CardType</Tag>
+												<Tag>@currentCard.Rank</Tag>
+												<Tag>@currentCard.Camp</Tag>
+											</p>
+											<p>战力：<Tag>@currentCard.uid</Tag>，效果：@currentCard.Ability</p>
+
+											<Divider />
+
+											<span>
+												<Tooltip Title='@("Like")'>
+													<Icon Type="caret-up" OnClick="()=>currentCard.SetLike(MainLayout.userInfo?.UID)"
+                                    Style="color:#18A558;font-size:30px;cursor:pointer;" />
+												</Tooltip>
+												<span style="color:#18A558;font-size:20px;">@currentCard.LikeUidList.Count()</span>
+											</span>
+											<span>
+												<Tooltip Title='@("Dislike")'>
+													<Icon Type="caret-down" OnClick="()=>currentCard.SetDislike(MainLayout.userInfo?.UID)"
+                                    Style="color:red;font-size:30px;cursor:pointer;" />
+												</Tooltip>
+												<span style="color:red;font-size:20px;">@currentCard.DislikeUidList.Count()</span>
+											</span>
+											<Button OnClick="() => {detailPageVisible = true; ClickCard=currentCard;}">详细</Button>
+											<Button OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">评论</Button>
+										</Content>
+									</AntDesign.Col>
+								</Row>
+							</Body>
+						</Card>
+}
+<br><br/>
+<Pagination Style="text-align: center"; PageIndex="1" PageSize="20" Total="60" ></Pagination>
+<br><br/>
+
+@*/////////////////////////////////////////////////////上传区/////////////////////////////////////////////////*@
+@code {
+	string UploadMode{ get; set; }
+
+	string NewDiyCardName { get; set; }
+	int NewDiyCardPoint { get; set; }
+	string NewDiyCardTags { get; set; }
+	string NewDiyCardRank { get; set; }
+	string NewDiyCardCamp { get; set; }
+	string NewDiyCardDescribe { get; set; }
+	string NewDiyCardAbility { get; set; }
+
+	bool HasShowPermission;
+	bool HasUsePermission;
+
+	void UploadModeChange(string select)
+	{
+		UploadMode = select;
+		StateHasChanged();
+	} 
+	void handleTypeChange(string s)
+    {
+
+	}
+	void handleFractionChange(string s)
+	{
+
+	}
+	void handleGroupChange(string s)
+	{
+
+	}
+
+	bool diyDrawerVisible = false;
+	bool detailPageVisible = false;
+
+	void DiyDrawerOpen() => this.diyDrawerVisible = true;
+	void DiyDrawerClose() => this.diyDrawerVisible = false;
+	void DiyDrawerInit()
+	{
+		NewDiyCardName = "";
+		NewDiyCardDescribe = "";
+	}
+
 	byte[] uploadImageData = new byte[0];
 	public async Task UpLoadImage(InputFileChangeEventArgs e)
 	{
@@ -99,71 +143,128 @@
 	}
 	public async Task SubmitCard()
 	{
-		string path = $"{DateTime.Now.Millisecond}-{newDiyCardName}.png";
+		string path = $"{DateTime.Now.Millisecond}-{NewDiyCardName}.png";
 		File.WriteAllBytes($"wwwroot\\{path}", uploadImageData);
-		DiyCommand.AddDiyCardInfos(newDiyCardName, newDiyCardDescribe, path);
+		DiyCommand.AddDiyCardInfos(NewDiyCardName, NewDiyCardPoint, NewDiyCardRank, NewDiyCardCamp, NewDiyCardDescribe, NewDiyCardAbility, path);
 		DiyCardsInfo = DiyCommand.GetDiyCardsInfo();
 		await message.Success("上传完成");
 	}
 }
-@code {
-	RenderFragment actionSetting(Action clickAction) =>@<Icon Type="setting" OnClick="@clickAction" />;
-	RenderFragment actionEdit(Action clickAction) =>@<Icon Type="edit" OnClick="@clickAction" />;
-	RenderFragment actionEllipsis(Action clickAction) => @<Icon Type="ellipsis" OnClick="@clickAction" />;
-	RenderFragment avatarTemplate = @<Avatar src="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"></Avatar>;
-	public RenderFragment coverTemplate(int uid)
+
+<Drawer Width="450" Closable="true" Visible="diyDrawerVisible" Placement="right" Title=@("Diy设计") OnClose="_ => DiyDrawerClose()">
+
+	<SimpleSelect Placeholder="上传类型" OnSelectedItemChanged="UploadModeChange">
+        <SelectOptions>
+            <SimpleSelectOption Value="1" Label="纯卡画"></SimpleSelectOption>
+            <SimpleSelectOption Value="2" Label="纯效果"></SimpleSelectOption>
+            <SimpleSelectOption Value="3" Label="卡画&效果"></SimpleSelectOption>
+        </SelectOptions>
+    </SimpleSelect>
+	@if(UploadMode=="1"||UploadMode=="3")
 	{
-		return @<img width="180" height="300" alt="example" src=@DiyCommand.GetDiyCardsImageUrl(uid) />;
+		<Image Style="width=150px ;height=210px" src=@("data:image/png;base64,"+Convert.ToBase64String(uploadImageData))></Image>
+		<InputFile OnChange="UpLoadImage"/>
+		<Input Placeholder="名字" @bind-Value="@NewDiyCardName" />
+
+		<div>若是卡画作者或者获得了图片展示许可选则是，否则选否（图片将会模糊化处理）</div>
+		<SimpleSelect Placeholder="立绘展示许可" OnSelectedItemChanged="handleTypeChange">
+			<SelectOptions>
+				<SimpleSelectOption Value="1" Label="未许可"></SimpleSelectOption>
+				<SimpleSelectOption Value="2" Label="已许可"></SimpleSelectOption>
+			</SelectOptions>
+		</SimpleSelect>
+		<div>若为卡画作者，且允许制作组在游戏中使用该立绘，则选择授权，为避免版权纠纷，若是网图等请勿选择授权</div>
+		<SimpleSelect Placeholder="是否允许制作组使用该立绘" OnSelectedItemChanged="handleTypeChange">
+			<SelectOptions>
+				<SimpleSelectOption Value="1" Label="不授权"></SimpleSelectOption>
+				<SimpleSelectOption Value="2" Label="授权"></SimpleSelectOption>
+			</SelectOptions>
+		</SimpleSelect>
 	}
-	List<DiyCardInfo> DiyCardsInfo = DiyCommand.GetDiyCardsInfo();
-}
-<Button @onclick="() => DiyDrawerOpen()">上传设计</Button>
-<Divider Orientation="left">diy卡牌设计</Divider>
-<RadioGroup @bind-Value="@OrderType" OnChange="OnChangeSize" TValue="int">
-    <Radio RadioButton Value=0>按人气</Radio>
-    <Radio RadioButton Value=1>按点赞</Radio>
-    <Radio RadioButton Value=2>按时间</Radio>
-</RadioGroup>
-<br><br/>
-<Space>
-	<Row>
-	@for (int i = 0; i < DiyCardsInfo.Count; i++)
-		{
-			int num = i;
-			var currentCard = DiyCardsInfo[num];
-				<AntDesign.Col >
-					<SpaceItem>
-						<Card Style="width:200px;height=300px" Bordered Cover="coverTemplate(num)"
-							Actions="@(new[] 
-							{
-								actionEdit(()=>commitDrawerVisible = true),
-								actionEllipsis(()=> 
-									{
-										detailPageVisible = true;
-										ClickCard=currentCard;
-									})
-							})">
-							<CardMeta AvatarTemplate="@avatarTemplate" Title=@currentCard.cardName Description=@currentCard.describe />
-						</Card>
-					</SpaceItem>
-				</AntDesign.Col>
-		}
-	</Row>
-</Space>
-<br><br/>
-<Pagination Style="text-align: center"; PageIndex="1" PageSize="20" Total="60" ></Pagination>
-<br><br/>
-
-
-
-
-<Drawer Width="300" Closable="true" Visible="diyDrawerVisible" Placement="right" Title=@("Diy设计") OnClose="_ => DiyDrawerClose()">
-	<Image Style="width=150px ;height=210px" src=@("data:image/png;base64,"+Convert.ToBase64String(uploadImageData))></Image>
-	<InputFile OnChange="UpLoadImage"/>
-	<Input Placeholder="名字" @bind-Value="@newDiyCardName" />
-	<Input Placeholder="描述" @bind-Value="@newDiyCardDescribe" />
+		<Input Placeholder="战力" @bind-Value="@NewDiyCardPoint"><AddOnBefore>战力</AddOnBefore></Input>
+	@if(true)
+	{
+		
+	}
+	@if (UploadMode == "2" || UploadMode == "3")
+	{
+		<SimpleSelect Placeholder="类型" OnSelectedItemChanged="handleTypeChange">
+			<SelectOptions>
+				<SimpleSelectOption Value="单位卡" Label="单位卡"></SimpleSelectOption>
+				<SimpleSelectOption Value="特殊卡" Label="特殊卡"></SimpleSelectOption>
+			</SelectOptions>
+		</SimpleSelect>
+		<Input Placeholder="战力" @bind-Value="@NewDiyCardPoint"></Input>
+		<SimpleSelect Placeholder="阵营" OnSelectedItemChanged="handleFractionChange">
+			<SelectOptions>
+				<SimpleSelectOption Value="中立" Label="中立"></SimpleSelectOption>
+				<SimpleSelectOption Value="佛教" Label="佛教"></SimpleSelectOption>
+				<SimpleSelectOption Value="科技" Label="科技"></SimpleSelectOption>
+				<SimpleSelectOption Value="道教" Label="道教"></SimpleSelectOption>
+				<SimpleSelectOption Value="神道" Label="神道"></SimpleSelectOption>
+			</SelectOptions>
+		</SimpleSelect>
+		<SimpleSelect Placeholder="品质" OnSelectedItemChanged="handleGroupChange">
+			<SelectOptions>
+				<SimpleSelectOption Value="领袖" Label="领袖"></SimpleSelectOption>
+				<SimpleSelectOption Value="金色" Label="金色"></SimpleSelectOption>
+				<SimpleSelectOption Value="银色" Label="银色"></SimpleSelectOption>
+				<SimpleSelectOption Value="铜色" Label="铜色"></SimpleSelectOption>
+			</SelectOptions>
+		</SimpleSelect>
+		<TextArea MinRows="1" Placeholder="标签（用空格隔开）" @bind-Value="@NewDiyCardTags" />
+		<Input Placeholder="卡牌描述(可选)" @bind-Value="@NewDiyCardDescribe" />
+		<TextArea MinRows="4" Placeholder="卡牌能力" @bind-Value="@NewDiyCardAbility" />
+	}
 	<Button @onclick="async () => {await SubmitCard();}">提交</Button>
 </Drawer>
+@*/////////////////////////////////////////////////////评论区/////////////////////////////////////////////////*@
+
+@code {
+	bool commitDrawerVisible = false;
+	void OpenCommitDrawer() => this.commitDrawerVisible = true;
+	void CloseCommitDrawer() => this.commitDrawerVisible = false;
+	bool like = false;
+	bool dislike = false;
+
+	RenderFragment likeAction =>
+	@<span>
+								<Tooltip Title="@("Like")">
+									<Icon Type="like" Theme="@(like ? "fill" : "outline")" OnClick="SetLike" />
+								</Tooltip>
+								<span>@(like ? 1 : 0)</span>
+	</span>;
+
+	RenderFragment dislikeAction =>
+	@<span>
+								<Tooltip Title="@("Dislike")">
+									<Icon Type="dislike" Theme="@(dislike ? "fill" : "outline")" OnClick="SetDislike" />
+								</Tooltip>
+								<span>@(dislike ? 1 : 0)</span>
+	</span>;
+
+	RenderFragment dateTime =
+	@<Tooltip Title="@(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))">
+			<span>
+			@(MomentHelper.FromNow(DateTime.Now))
+			</span>
+	</Tooltip>;
+	async void onSubmit()
+	{
+
+	}
+	void SetLike()
+	{
+		like = true;
+		dislike = false;
+	}
+
+	void SetDislike()
+	{
+		like = false;
+		dislike = true;
+	}
+}
 
 <Drawer Width="520" Closable="true" Visible=@commitDrawerVisible Placement="right" Title='("卡片评论")' OnClose=@(()=>commitDrawerVisible=false)>
 	<Comment Actions="@(new []{likeAction,dislikeAction})"
@@ -185,15 +286,13 @@
 		</ContentTemplate>
 	</Comment>
 </Drawer>
+@*/////////////////////////////////////////////////////详情区/////////////////////////////////////////////////*@
 
-@code{
-	DiyCardInfo? ClickCard{ get;set; }
-}
 <Modal Title="详细信息"
        Visible="@detailPageVisible"
        OnOk="()=> { detailPageVisible = false; }"
        OnCancel="()=>{detailPageVisible = false; }">
-	<h1>@ClickCard.cardName</h1>
+	<h1>@ClickCard.CardName</h1>
 	<Layout>
 		<Sider Style="background-color:aliceblue">
 			<p>战力：</p>
@@ -202,15 +301,15 @@
 			<p>立绘为原创：</p>
 			<p>允许制作组使用该立绘：</p>
 			<p>上传人：</p>
-			
+
 
 		</Sider>
 		<Layout>
 			<content Style="background-color:aliceblue">
 
 				<p>66</p>
-				<p>@ClickCard.describe</p>
-				<p>随意整的</p>
+				<p>@ClickCard.Describe</p>
+				<p>@ClickCard.Ability</p>
 				<p>是</p>
 				<p>否</p>
 				<p>格子</p>

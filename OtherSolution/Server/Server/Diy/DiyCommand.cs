@@ -9,29 +9,32 @@ namespace Server
     public class DiyCommand
     {
         public static List<DiyCardInfo> GetDiyCardsInfo() => MongoDbCommand.DiyCardCollection.AsQueryable().ToList();
-        public static string GetDiyCardsImageUrl(int uid) => GetDiyCardsInfo().FirstOrDefault(x => x.uid == uid)?.imageUrl;
-        public static void AddDiyCardInfos(string name, string describe,string imageUrl)
+        public static void AddDiyCardInfos(string name,int point,string rank, string camp, string describe,string ability,string imageUrl)
         {
             int uid = GetDiyCardsInfo().Count();
             DiyCardInfo diyCard = new DiyCardInfo()
             {
                 uid = uid,
-                cardName = name,
-                describe = describe,
-                imageUrl = imageUrl,
-                commits = new List<DiyCardInfo.Commit>
-                        {
-                            new DiyCardInfo.Commit()
-                            {
-                                user="gezi",
-                                text="好烂"
-                            },
-                            new DiyCardInfo.Commit()
-                            {
-                                user="gezi",
-                                text="好烂"
-                            }
-                        }
+                CardName = name,
+                Point = point,
+                Rank = rank,
+                Camp = camp,
+                Ability = ability,
+                Describe = describe,
+                ImageUrl = imageUrl,
+                Commits = new List<DiyCardInfo.Commit>
+                {
+                    new DiyCardInfo.Commit()
+                    {
+                        User="gezi",
+                        Text="好烂"
+                    },
+                    new DiyCardInfo.Commit()
+                    {
+                        User="gezi",
+                        Text="好烂"
+                    }
+                }
             };
             MongoDbCommand.DiyCardCollection.InsertOne(diyCard);
         }
