@@ -7,8 +7,8 @@ public class DiyCardInfo
     public int uid;
     public string CardName { get; set; }
     public int Point { get; set; }
-    public int CardType { get; set; }
-    public List<String> Tag { get; set; }
+    public string CardType { get; set; }
+    public List<String> Tag { get; set; }=new List<string>();
     public string Rank { get; set; }
     public string Camp { get; set; }
     public string Describe { get; set; }
