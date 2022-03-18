@@ -2,6 +2,8 @@
 
 public class DiyInfo
 {
-    public PlayerInfo? userInfo = null;
+    DiyCardInfo diyCardInfo;
+   public static string user;
+   public  string user2;
 }
 

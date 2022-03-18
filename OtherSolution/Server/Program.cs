@@ -12,6 +12,7 @@ builder.Services.AddAntDesign();
 builder.Services.AddServerSideBlazor();
 builder.Services.AddBlazoredLocalStorage();
 builder.Services.AddSingleton<WeatherForecastService>();
+builder.Services.AddScoped<DiyInfo>();
 builder.Services.AddRazorPages();
 builder.Services.AddSignalR(hubOptions =>
 {

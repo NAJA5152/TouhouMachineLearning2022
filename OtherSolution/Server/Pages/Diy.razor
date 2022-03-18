@@ -2,22 +2,37 @@
 @using System.IO;
 @using Newtonsoft.Json;
 @inject MessageService message
+@inject Blazored.LocalStorage.ILocalStorageService localStorage
 
 @*/////////////////////////////////////////////////////选项区/////////////////////////////////////////////////*@
 
+	
+
+
+
+@*/////////////////////////////////////////////////////主体展示区/////////////////////////////////////////////////*@
 @code {
-	int OrderType = 0;
+	public int currentPage = 0;
+	public int pageMaxCount = 3;
+	DiyCardInfo? ClickCard { get; set; }
+	List<DiyCardInfo> DiyCardsInfo = DiyCommand.GetDiyCardsInfo();
+	List<DiyCardInfo> OrderDiyCardsInfo = DiyCommand.GetDiyCardsInfo();
+	List<DiyCardInfo> ShowDiyCardsInfo => OrderDiyCardsInfo.Skip(pageMaxCount*(currentPage-1)).Take(pageMaxCount).ToList();
+	public int OrderType = 0;
 	public void OrderByHot()
 	{
 		message.Info("按热度排序");
+		OrderDiyCardsInfo=DiyCommand.GetDiyCardsInfo().OrderBy(x=>x.CardName).ToList();
 	}
 	public void OrderByLike()
 	{
 		message.Info("按赞同度排序");
+		OrderDiyCardsInfo=DiyCommand.GetDiyCardsInfo().OrderBy(x=>x.Point).ToList();
 	}
 	public void OrderByTime()
 	{
 		message.Info("按时间排序");
+		OrderDiyCardsInfo=DiyCommand.GetDiyCardsInfo().OrderBy(x=>x.Camp).ToList();
 	}
 	void OnChangeSize()
 	{
@@ -27,26 +42,40 @@
 			case (1): OrderByLike(); break;
 			case (2): OrderByTime(); break;
 		}
+		StateHasChanged();
+	}
+	void OnPageChange(PaginationEventArgs args)
+	{
+		currentPage = args.Page;
+	}
+	async Task<int> GetUserUid()
+	{
+		if(await localStorage.ContainKeyAsync("uid"))
+		{
+			return await localStorage.GetItemAsync<int>("uid");
+		}
+		else
+		{
+			return 0;
+		}
 	}
 }
 
-<Button @onclick="() => DiyDrawerOpen()">上传设计</Button>
-<Divider Orientation="left">diy卡牌设计</Divider>
-<RadioGroup @bind-Value="@OrderType" OnChange="OnChangeSize" TValue="int">
-    <Radio RadioButton Value=0>按人气</Radio>
-    <Radio RadioButton Value=1>按点赞</Radio>
-    <Radio RadioButton Value=2>按时间</Radio>
-</RadioGroup>
-@*/////////////////////////////////////////////////////主体展示区/////////////////////////////////////////////////*@
-@code {
-	DiyCardInfo? ClickCard { get; set; }
-	List<DiyCardInfo> DiyCardsInfo = DiyCommand.GetDiyCardsInfo();
-}
-<br><br/>
-@for (int i = 0; i < DiyCardsInfo.Count; i++)
+<Button  @onclick="() => DiyDrawerOpen()">上传设计</Button>
+<Affix OffsetTop="80" Style="width:100;">
+		<div Style=" text-align:right;">
+		<RadioGroup @bind-Value="@OrderType" OnChange="OnChangeSize" TValue="int">
+			<Radio Style="display: block;height:30px;line-height:30px" RadioButton Value=0>按人气</Radio>
+			<Radio Style="display: block;height:30px;line-height:30px" RadioButton Value=1>按点赞</Radio>
+			<Radio Style="display: block;height:30px;line-height:30px" RadioButton Value=2>按时间</Radio>
+		</RadioGroup>
+		</div>
+</Affix>
+
+@for (int i = 0; i < ShowDiyCardsInfo.Count; i++)
 {
 	int num = i;
-	var currentCard = DiyCardsInfo[num];
+	var currentCard = ShowDiyCardsInfo[num];
 	<Card Title="@currentCard.CardName">
 		<Body>
 			<Row>
@@ -64,10 +93,10 @@
 							@for(int j=0;j<currentCard.Tag.Count;j++)
 							{
 								int tagRank = j;
-								<Tag>@currentCard.Tag[tagRank]</Tag>
+								<Tag PresetColor="@PresetColor.Orange">@currentCard.Tag[tagRank]</Tag>
 							}
 						</p>
-						<p>战力：<Tag>@currentCard.uid</Tag>，效果：@currentCard.Ability</p>
+						<p>战力：<Tag>@currentCard.Point</Tag>，效果：@currentCard.Ability</p>
 
 						<Divider />
 
@@ -87,6 +116,9 @@
 						</span>
 						<Button OnClick="() => {detailPageVisible = true; ClickCard=currentCard;}">详细</Button>
 						<Button OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">评论</Button>
+						<Button Color=Color.Red1 OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">举报</Button>
+						<Button Color=Color.Yellow1 OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">修改</Button>
+						
 					</Content>
 				</AntDesign.Col>
 			</Row>
@@ -94,7 +126,7 @@
 	</Card>
 }
 <br><br/>
-<Pagination Style="text-align: center"; PageIndex="1" PageSize="20" Total="60" ></Pagination>
+<Pagination Style="text-align: center"; PageIndex="1" Current="@currentPage" PageSize="@pageMaxCount" Total="DiyCardsInfo.Count" OnChange="OnPageChange" ></Pagination>
 <br><br/>
 
 @*/////////////////////////////////////////////////////上传区/////////////////////////////////////////////////*@
