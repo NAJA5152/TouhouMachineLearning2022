@@ -3,7 +3,7 @@
 public class DiyInfo
 {
     DiyCardInfo diyCardInfo;
-   public static string user;
-   public  string user2;
+    public string user2;
+    public PlayerInfo userInfo;
 }
 

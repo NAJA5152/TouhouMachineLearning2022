@@ -1,7 +1,8 @@
 ﻿@page "/"
 @inject DiyInfo info;
-<Input  Placeholder="战力" @bind-Value="@DiyInfo.user"></Input>
-<Input  Placeholder="战力" @bind-Value="@info.user2"></Input>
+@*<Input  Placeholder="战力" @bind-Value="@info?.userInfo?.UID"></Input>*@
+<Button>"@info?.userInfo?.UID"</Button>
+
 <PageTitle>Index</PageTitle>
 
 <h1>当前在线人数 @num </h1>

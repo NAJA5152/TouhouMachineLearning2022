@@ -2,20 +2,35 @@
 @using System.IO;
 @using Newtonsoft.Json;
 @inject MessageService message
+@inject DiyInfo diyInfo;
+
 @inject Blazored.LocalStorage.ILocalStorageService localStorage
 
 @*/////////////////////////////////////////////////////选项区/////////////////////////////////////////////////*@
+@code{
+	protected override void OnInitialized()
+	{
+		Task.Run(async () =>
+		{
+			while(true)
+			{
+				await InvokeAsync(StateHasChanged);
+				Console.WriteLine("refresh");
+				await Task.Delay(500);
+				OrderDiyCardsInfo = DiyCommand.GetDiyCardsInfo();
+			}
+		});
+	}
 
-	
-
+}
 
 
 @*/////////////////////////////////////////////////////主体展示区/////////////////////////////////////////////////*@
 @code {
 	public int currentPage = 0;
 	public int pageMaxCount = 3;
+	public bool CanChange(DiyCardInfo currentCard) => diyInfo.userInfo?.UID == currentCard.UpLoadUID;
 	DiyCardInfo? ClickCard { get; set; }
-	List<DiyCardInfo> DiyCardsInfo = DiyCommand.GetDiyCardsInfo();
 	List<DiyCardInfo> OrderDiyCardsInfo = DiyCommand.GetDiyCardsInfo();
 	List<DiyCardInfo> ShowDiyCardsInfo => OrderDiyCardsInfo.Skip(pageMaxCount*(currentPage-1)).Take(pageMaxCount).ToList();
 	public int OrderType = 0;
@@ -80,7 +95,7 @@
 		<Body>
 			<Row>
 				<AntDesign.Col Span="4">
-					<Image Width="75px" Height="115px" Src=@currentCard.ImageUrl />
+					<Image Width="200px" Height="300px" Src=@currentCard.ImageUrl />
 				</AntDesign.Col>
 				<AntDesign.Col Span="20">
 					<Content>
@@ -117,8 +132,10 @@
 						<Button OnClick="() => {detailPageVisible = true; ClickCard=currentCard;}">详细</Button>
 						<Button OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">评论</Button>
 						<Button Color=Color.Red1 OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">举报</Button>
-						<Button Color=Color.Yellow1 OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">修改</Button>
-						
+						@if( diyInfo.userInfo?.UID == currentCard.UpLoadUID)
+						{
+							<Button Color=Color.Yellow1 OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">修改</Button>
+						}
 					</Content>
 				</AntDesign.Col>
 			</Row>
@@ -126,7 +143,7 @@
 	</Card>
 }
 <br><br/>
-<Pagination Style="text-align: center"; PageIndex="1" Current="@currentPage" PageSize="@pageMaxCount" Total="DiyCardsInfo.Count" OnChange="OnPageChange" ></Pagination>
+<Pagination Style="text-align: center"; PageIndex="1" Current="@currentPage" PageSize="@pageMaxCount" Total="OrderDiyCardsInfo.Count" OnChange="OnPageChange" ></Pagination>
 <br><br/>
 
 @*/////////////////////////////////////////////////////上传区/////////////////////////////////////////////////*@
@@ -179,8 +196,8 @@
 	{
 		string path = $"{DateTime.Now.Millisecond}-{NewDiyCardName}.png";
 		File.WriteAllBytes($"wwwroot\\{path}", uploadImageData);
-		DiyCommand.AddDiyCardInfos(NewDiyCardName, NewDiyCardTags, NewDiyCardPoint, NewDiyCardRank, NewDiyCardCamp, NewDiyCardDescribe, NewDiyCardAbility, path);
-		DiyCardsInfo = DiyCommand.GetDiyCardsInfo();
+		DiyCommand.AddDiyCardInfos(diyInfo.userInfo.UID,diyInfo.userInfo.Name, NewDiyCardName, NewDiyCardTags, NewDiyCardPoint, NewDiyCardRank, NewDiyCardCamp, NewDiyCardDescribe, NewDiyCardAbility, path);
+		OrderDiyCardsInfo = DiyCommand.GetDiyCardsInfo();
 		await message.Success("上传完成");
 	}
 }
@@ -328,24 +345,22 @@
 	<h1>@ClickCard.CardName</h1>
 	<Layout>
 		<Sider Style="background-color:aliceblue">
-			<p>战力：</p>
-			<p>描述：</p>
+			
 			<p>备注：</p>
 			<p>立绘为原创：</p>
 			<p>允许制作组使用该立绘：</p>
 			<p>上传人：</p>
+			<p>上传时间：</p>
 
 
 		</Sider>
 		<Layout>
 			<content Style="background-color:aliceblue">
-
-				<p>66</p>
-				<p>@ClickCard.Describe</p>
 				<p>@ClickCard.Ability</p>
 				<p>是</p>
 				<p>否</p>
-				<p>格子</p>
+				<p>@ClickCard.UpLoadName （@ClickCard.UpLoadUID） </p>
+				<p>@ClickCard.UpLoadTime</p>
 			</content>
 		</Layout>
 	</Layout>

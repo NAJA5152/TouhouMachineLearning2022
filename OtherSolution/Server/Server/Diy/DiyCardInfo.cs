@@ -4,7 +4,10 @@
 public class DiyCardInfo
 {
     public ObjectId _id;
-    public int uid;
+    public string UpLoadUID { get; set; }
+    public string UpLoadName { get; set; }
+    public DateTime UpLoadTime { get; set; }
+
     public string CardName { get; set; }
     public int Point { get; set; }
     public string CardType { get; set; }

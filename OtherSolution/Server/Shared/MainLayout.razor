@@ -1,5 +1,6 @@
 ﻿@inherits LayoutComponentBase
 @inject MessageService message
+@inject DiyInfo diyInfo;
 @inject Blazored.LocalStorage.ILocalStorageService localStorage
 @using MongoDB.Driver;
 
@@ -40,6 +41,9 @@
 		if (firstRender)
 		{
 			CheckUserInfo();
+			StateHasChanged();
+			InvokeAsync(StateHasChanged);
+
 		}
 	}
 	async void CheckUserInfo()
@@ -51,9 +55,12 @@
 			userInfo = MongoDbCommand.Login(input_user, input_password);
 			if (userInfo != null)
 			{
+				
 				isLogin = true;
+				diyInfo.userInfo=userInfo;
 				StateHasChanged();
-				//await message.Success("欢迎回来"+userInfo.Name);
+				InvokeAsync(StateHasChanged);
+
 			}
 		}
 	}
@@ -63,23 +70,29 @@
 		if (userInfo != null)
 		{
 			isLogin = true;
+			diyInfo.userInfo=userInfo;
+
 			await localStorage.SetItemAsync("user", input_user);
 			await localStorage.SetItemAsync("password", input_password);
-			await localStorage.SetItemAsync("uid", userInfo.UID);
+			StateHasChanged();
 			await message.Success("登陆成功");
 		}
 		else
 		{
+			StateHasChanged();
 			await message.Error("登陆失败");
 		}
+		InvokeAsync(StateHasChanged);
+
 	}
 	async void Logout()
 	{
-		userInfo = null;
 		isLogin = false;
+		diyInfo.userInfo = null;
 		await localStorage.RemoveItemAsync("user");
 		await localStorage.RemoveItemAsync("password");
-		await localStorage.RemoveItemAsync("uid");
+		StateHasChanged();
+		InvokeAsync(StateHasChanged);
 		await message.Warning("退出登录状态");
 	}
 }
