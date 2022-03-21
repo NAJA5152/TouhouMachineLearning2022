@@ -3,6 +3,7 @@
     public enum GameAudioType
     {
         DrawCard,
+        CardSelect,//卡牌切换声音
         Biu,
         Page,
         UiButton,
