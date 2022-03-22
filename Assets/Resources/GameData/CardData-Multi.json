@@ -864,23 +864,239 @@
     "isFinish": true
   },
   {
-    "cardID": 5,
+    "cardID": 1,
     "level": "",
-    "series": "3",
-    "tag": "道具",
-    "point": 4,
+    "series": "10",
+    "tag": "妖怪 河童",
+    "point": 1,
     "name": {
-      "Name-Ch": "水利发电机",
+      "Name-Ch": "荷城河取",
+      "Name-En": "BBQ-qilunuo"
+    },
+    "ability": {
+      "Ability-Ch": "部署：复活一个带机械标签的单位"
+    },
+    "describe": {
+      "Describe-Ch": "这个修修还能用哦"
+    },
+    "cardType": 0,
+    "cardCamp": 4,
+    "cardRank": 0,
+    "cardDeployRegion": 0,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "",
+    "series": "10",
+    "tag": "机械",
+    "point": 1,
+    "name": {
+      "Name-Ch": "黄瓜加特林",
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "容量：（3）\n我方回合开始：自身能量加一，并为两侧单位附加水状态\n超载：清空两侧单位护盾"
+      "Ability-Ch": "部署：移除我方场上所有单位的能量，对对方场上点数最高的非金单位造成移除值等次数的1点伤害"
     },
     "describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
-    "cardCamp": 0,
+    "cardCamp": 4,
+    "cardRank": 1,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "",
+    "series": "10",
+    "tag": "符卡",
+    "point": 1,
+    "name": {
+      "Name-Ch": "压力测试法",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "选择一个机械单位，将其移动至对方同排，并根据其能量值对同排所有单位造成伤害"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 1,
+    "cardCamp": 4,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 2,
+    "level": "",
+    "series": "10",
+    "tag": "机械",
+    "point": 6,
+    "name": {
+      "Name-Ch": "充能箱",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "部署：选择两个单位，将其能量移动至己身"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 4,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "",
+    "series": "10",
+    "tag": "机械",
+    "point": 5,
+    "name": {
+      "Name-Ch": "水利发电机",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "容量：（3）\n我方回合开始：自身能量加一，并为两侧单位附加水状态\n超载：对自身和两侧造成2点伤害"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 4,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 2,
+    "level": "",
+    "series": "10",
+    "tag": "机械",
+    "point": 5,
+    "name": {
+      "Name-Ch": "储能电容器",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "容量：（8）\n我方回合开始：移除两侧单位能量值，加到自身身上\n超载：对全场所有单位造成1点伤害"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 4,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 3,
+    "level": "",
+    "series": "10",
+    "tag": "机械",
+    "point": 5,
+    "name": {
+      "Name-Ch": "护盾生成器",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "部署：移除左侧单位能量，随后选择场上一个非金单位对其产生等能量值的护盾"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 4,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 4,
+    "level": "",
+    "series": "10",
+    "tag": "机械",
+    "point": 5,
+    "name": {
+      "Name-Ch": "充能水炮",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "部署：移除左侧单位能量，随后选择场上一个非金单位对其产生等能量值的伤害"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 4,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 5,
+    "level": "",
+    "series": "10",
+    "tag": "妖怪 河童",
+    "point": 1,
+    "name": {
+      "Name-Ch": "河童修理工",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "部署：选择并治愈并重新触发一个铜色机械单位的部署效果"
+    },
+    "describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 4,
+    "cardRank": 3,
+    "cardDeployRegion": 0,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 6,
+    "level": "",
+    "series": "10",
+    "tag": "符卡",
+    "point": 5,
+    "name": {
+      "Name-Ch": "河童的天才维修法",
+      "Name-En": ""
+    },
+    "ability": {
+      "Ability-Ch": "部署：摧毁一个机械单位，然后从牌组中打出其同名单位"
+    },
+    "describe": {
+      "Describe-Ch": "品质保障，只换不修！"
+    },
+    "cardType": 0,
+    "cardCamp": 4,
     "cardRank": 3,
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
