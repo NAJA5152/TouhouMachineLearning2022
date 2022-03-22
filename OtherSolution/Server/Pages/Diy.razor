@@ -15,9 +15,8 @@
 			while(true)
 			{
 				await InvokeAsync(StateHasChanged);
-				Console.WriteLine("refresh");
+				//Console.WriteLine("refresh");
 				await Task.Delay(500);
-				OrderDiyCardsInfo = DiyCommand.GetDiyCardsInfo();
 			}
 		});
 	}
