@@ -14,27 +14,25 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
+                .AbilityAdd(async (triggerInfo) =>
+                {
+                    await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[CardTag.Machine][Orientation.My][GameRegion.Grave].CardList, 1);
+                    await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit).SetLocation(Orientation.Op, GameSystem.InfoSystem.SelectUnit.CurrentRegion, -1));
+
+                })
                .AbilityAdd(async (triggerInfo) =>
                {
-                   await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this,this));
+                   if (GameSystem.InfoSystem.SelectUnit != null)
+                   {
+                       int num = GameSystem.InfoSystem.SelectUnit[CardField.Energy];
+                       await GameSystem.PointSystem.Hurt(new TriggerInfoModel(GameSystem.InfoSystem.SelectUnit, GameSystem.InfoSystem.SelectUnit.belongCardList).SetPoint(num).SetMeanWhile());
+                   }
+               })
+               .AbilityAdd(async (triggerInfo) =>
+               {
+                   await GameSystem.TransSystem.MoveToGrave(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
-
-            //AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-            //   .AbilityAdd(async (triggerInfo) =>
-            //   {
-            //       await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[CardTag.Machine][Orientation.My][GameRegion.Grave].CardList,1);
-            //       await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit).SetLocation());
-
-            //   })
-            //   .AbilityAdd(async (triggerInfo) =>
-            //   {
-            //       await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[CardTag.Machine][Orientation.My][GameRegion.Grave].CardList, 1);
-            //       await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit).SetLocation());
-
-            //   })
-            //   .AbilityAppend();
         }
     }
 }
