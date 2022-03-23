@@ -13,6 +13,7 @@ namespace TouhouMachineLearningSummary.CardSpace
         {
             //初始化通用卡牌效果
             base.Init();
+
             AbalityRegister(TriggerTime.When, TriggerType.Play)
                .AbilityAdd(async (triggerInfo) =>
                {
@@ -20,6 +21,15 @@ namespace TouhouMachineLearningSummary.CardSpace
                    await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this,this));
                })
                .AbilityAppend();
+
+            AbalityRegister(TriggerTime.When, TriggerType.Deploy)
+               .AbilityAdd(async (triggerInfo) =>
+               {
+                   await GameSystem.SelectSystem.SelectBoardCard(this,GameSystem.InfoSystem.AgainstCardSet[CardTag.Machine][Orientation.My][GameRegion.Grave].CardList);
+                   await GameSystem.TransSystem.ReviveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectBoardCards));
+               })
+               .AbilityAppend();
         }
     }
 }
+

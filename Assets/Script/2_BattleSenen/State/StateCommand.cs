@@ -516,7 +516,7 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task WaitForSelectBoardCard<T>(Card triggerCard, List<T> cardIds, CardBoardMode mode = CardBoardMode.Select, int num = 1)
         {
-            AgainstInfo.selectBoardCardRanks = new List<int>();
+            AgainstInfo.SelectBoardCardRanks = new List<int>();
             AgainstInfo.IsSelectCardOver = false;
             AgainstInfo.cardBoardMode = mode;
             UiCommand.SetCardBoardShow();
@@ -533,7 +533,7 @@ namespace TouhouMachineLearningSummary.Command
             switch (mode)
             {
                 case CardBoardMode.Select:
-                    while (AgainstInfo.selectBoardCardRanks.Count < Mathf.Min(cardIds.Count, num) && !AgainstInfo.IsSelectCardOver)
+                    while (AgainstInfo.SelectBoardCardRanks.Count < Mathf.Min(cardIds.Count, num) && !AgainstInfo.IsSelectCardOver)
                     {
                         await Task.Delay(10);
                     }
@@ -551,15 +551,15 @@ namespace TouhouMachineLearningSummary.Command
                                 if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectBoardCard)
                                 {
                                     //如果是我方换牌，则记录，如果是对方换牌，直接生效
-                                    Info.AgainstInfo.selectBoardCardRanks = operation.SelectBoardCardRanks;
+                                    Info.AgainstInfo.SelectBoardCardRanks = operation.SelectBoardCardRanks;
                                     Info.AgainstInfo.washInsertRank = operation.WashInsertRank;
                                     bool isPlayer1Select = operation.IsPlayer1Select;
                                     List<Card> CardLists = AgainstInfo.cardSet[Orientation.Down][GameRegion.Hand].CardList;
-                                    int selectRank = AgainstInfo.selectBoardCardRanks[0];
+                                    int selectRank = AgainstInfo.SelectBoardCardRanks[0];
                                     //交换对象需要重新考究
                                     await CardCommand.ExchangeCard(CardLists[selectRank], IsPlayerExchange: !(isPlayer1Select ^ Info.AgainstInfo.IsPlayer1), isRoundStartExchange: true, WashInsertRank: AgainstInfo.washInsertRank);
                                     Info.AgainstInfo.ExChangeableCardNum--;
-                                    Info.AgainstInfo.selectBoardCardRanks.Clear();
+                                    Info.AgainstInfo.SelectBoardCardRanks.Clear();
                                     UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
                                 }
                                 else if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectExchangeOver)
@@ -592,14 +592,14 @@ namespace TouhouMachineLearningSummary.Command
                                 //通过对战记录换牌
 
                                 //有牌要被换
-                                if (Info.AgainstInfo.selectBoardCardRanks.Count > 0)
+                                if (Info.AgainstInfo.SelectBoardCardRanks.Count > 0)
                                 {
                                     List<Card> CardLists = AgainstInfo.cardSet[Orientation.Down][GameRegion.Hand].CardList;
-                                    int selectRank = AgainstInfo.selectBoardCardRanks[0];
+                                    int selectRank = AgainstInfo.SelectBoardCardRanks[0];
                                     AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectBoardCard, triggerCard, CardLists, 1, isPlayer1Select: Info.AgainstInfo.IsPlayer1);
                                     await CardCommand.ExchangeCard(CardLists[selectRank], IsPlayerExchange: true, isRoundStartExchange: true, WashInsertRank: AgainstInfo.washInsertRank);
                                     Info.AgainstInfo.ExChangeableCardNum--;
-                                    Info.AgainstInfo.selectBoardCardRanks.Clear();
+                                    Info.AgainstInfo.SelectBoardCardRanks.Clear();
                                     UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
                                 }
                                 await Task.Delay(10);
@@ -633,7 +633,7 @@ namespace TouhouMachineLearningSummary.Command
                         break;
                     }
                 case CardBoardMode.ShowOnly:
-                    while (AgainstInfo.selectBoardCardRanks.Count < Mathf.Min(cardIds.Count, num) && !AgainstInfo.IsSelectCardOver)
+                    while (AgainstInfo.SelectBoardCardRanks.Count < Mathf.Min(cardIds.Count, num) && !AgainstInfo.IsSelectCardOver)
                     {
                         await Task.Delay(1);
                     }

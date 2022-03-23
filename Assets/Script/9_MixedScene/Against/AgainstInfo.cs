@@ -101,9 +101,9 @@ namespace TouhouMachineLearningSummary.Info
         public static List<int> cardBoardIDList;
         public static List<Card> cardBoardList;
 
-        public static List<int> selectBoardCardRanks;
-        public static List<Card> selectActualCards => selectBoardCardRanks.Select(rank => cardBoardList[rank]).ToList();
-        public static List<int> selectVirualCardIds => selectBoardCardRanks.Select(rank => cardBoardIDList[rank]).ToList();
+        public static List<int> SelectBoardCardRanks { get; set; }
+        public static List<Card> SelectActualCards => SelectBoardCardRanks.Select(rank => cardBoardList[rank]).ToList();
+        public static List<int> SelectVirualCardIds => SelectBoardCardRanks.Select(rank => cardBoardIDList[rank]).ToList();
 
         public static int ExChangeableCardNum = 0;
         //判断是否1号玩家

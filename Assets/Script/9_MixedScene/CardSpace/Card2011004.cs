@@ -23,12 +23,15 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
               .AbilityAdd(async (triggerInfo) =>
               {
-                  List<Card> cardList = GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameEnum.CardTag.Tool].CardList;
-                  await GameSystem.SelectSystem.SelectBoardCard(this, cardList);
-                  if (GameSystem.InfoSystem.SelectBoardCardRanks.Count > 0)
-                  {
-                      await GameSystem.TransSystem.PlayCard(new TriggerInfoModel(this, cardList[GameSystem.InfoSystem.SelectBoardCardRanks[0]]));
-                  }
+                  //List<Card> cardList = GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameEnum.CardTag.Tool].CardList;
+                  //await GameSystem.SelectSystem.SelectBoardCard(this, cardList);
+                  //if (GameSystem.InfoSystem.SelectBoardCardRanks.Count > 0)
+                  //{
+                  //    await GameSystem.TransSystem.PlayCard(new TriggerInfoModel(this, cardList[GameSystem.InfoSystem.SelectBoardCardRanks[0]]));
+                  //}
+                  await GameSystem.SelectSystem.SelectBoardCard(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][CardTag.Tool].CardList);
+                  await GameSystem.TransSystem.PlayCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectBoardCards));
+
               }, Condition.Default)
               .AbilityAppend();
         }

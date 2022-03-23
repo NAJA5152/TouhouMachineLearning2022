@@ -20,6 +20,21 @@ namespace TouhouMachineLearningSummary.CardSpace
                    await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this,this));
                })
                .AbilityAppend();
+
+            //AbalityRegister(TriggerTime.When, TriggerType.Deploy)
+            //   .AbilityAdd(async (triggerInfo) =>
+            //   {
+            //       await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[CardTag.Machine][Orientation.My][GameRegion.Grave].CardList,1);
+            //       await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit).SetLocation());
+
+            //   })
+            //   .AbilityAdd(async (triggerInfo) =>
+            //   {
+            //       await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[CardTag.Machine][Orientation.My][GameRegion.Grave].CardList, 1);
+            //       await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit).SetLocation());
+
+            //   })
+            //   .AbilityAppend();
         }
     }
 }

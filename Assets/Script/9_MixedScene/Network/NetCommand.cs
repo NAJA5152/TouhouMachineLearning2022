@@ -127,7 +127,7 @@ namespace TouhouMachineLearningSummary.Command
                             }
                         case NetAcyncType.SelectBoardCard:
                             {
-                                AgainstInfo.selectBoardCardRanks = receiveInfo[0].ToType<List<int>>();
+                                AgainstInfo.SelectBoardCardRanks = receiveInfo[0].ToType<List<int>>();
                                 AgainstInfo.IsSelectCardOver = receiveInfo[1].ToType<bool>();
                                 break;
                             }
@@ -370,7 +370,7 @@ namespace TouhouMachineLearningSummary.Command
                         }
                     case NetAcyncType.SelectBoardCard:
                         Debug.Log("同步面板卡牌数据选择");
-                        await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { Info.AgainstInfo.selectBoardCardRanks, Info.AgainstInfo.IsSelectCardOver });
+                        await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { Info.AgainstInfo.SelectBoardCardRanks, Info.AgainstInfo.IsSelectCardOver });
                         break;
                     default:
                         {

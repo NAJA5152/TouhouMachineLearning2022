@@ -142,7 +142,7 @@ namespace TouhouMachineLearningSummary.Manager
                     case SelectOperationType.SelectBoardCard:
                         operation.TriggerCardID = triggerCard != null ? triggerCard.CardID : 0;
                         operation.IsPlayer1Select= isPlayer1Select;
-                        operation.SelectBoardCardRanks = AgainstInfo.selectBoardCardRanks;
+                        operation.SelectBoardCardRanks = AgainstInfo.SelectBoardCardRanks;
                         operation.WashInsertRank = AgainstInfo.washInsertRank;
                         break;
                     case SelectOperationType.SelectRegion:

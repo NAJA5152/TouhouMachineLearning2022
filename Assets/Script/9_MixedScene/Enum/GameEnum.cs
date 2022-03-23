@@ -36,10 +36,25 @@ namespace TouhouMachineLearningSummary.GameEnum
         /// 生成
         /// </summary>
         Generate,
+        /// <summary>
+        /// 抽取
+        /// </summary>
         Draw,
+        /// <summary>
+        /// 打出
+        /// </summary>
         Play,
+        /// <summary>
+        /// 部署
+        /// </summary>
         Deploy,
+        /// <summary>
+        /// 丢弃
+        /// </summary>
         Discard,
+        /// <summary>
+        /// 死亡
+        /// </summary>
         Dead,
         /// <summary>
         /// 回手
@@ -63,7 +78,7 @@ namespace TouhouMachineLearningSummary.GameEnum
         Summon,
         ////////////////////////////////////////////////点数/////////////////////////////////////////
         /// <summary>
-        /// 设置
+        /// 置值
         /// </summary>
         Set,
         /// <summary>

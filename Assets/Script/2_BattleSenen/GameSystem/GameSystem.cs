@@ -208,7 +208,23 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// 获取对战时选择的区域对应的卡牌列表
         /// </summary>
         public static List<Card> SelectRowCardList => AgainstInfo.SelectRowCardList;
-        public static List<int> SelectBoardCardRanks => AgainstInfo.selectBoardCardRanks;
+        //public static List<int> SelectBoardCardRanks => AgainstInfo.SelectBoardCardRanks;
+        /// <summary>
+        /// 当选择面版中的卡牌皆为对战中出现的实体目标时
+        /// 可从SelectBoardCards获得选择的单位实例对象
+        ///  注意：
+        /// 当面版卡牌皆为对战时不存在的虚构卡牌时
+        /// 可从SelectBoardCardIds获得选择的单位的卡牌id列表
+        /// </summary>
+        public static List<Card> SelectBoardCards => AgainstInfo.SelectActualCards;
+        /// <summary>
+        /// 当面版卡牌皆为对战时不存在的虚构卡牌时
+        /// 可从SelectBoardCardIds获得选择的单位的卡牌id列表
+        ///  注意：
+        /// 当选择面版中的卡牌皆为对战中出现的实体目标时
+        /// 可从SelectBoardCards获得选择的单位实例对象
+        /// </summary>
+        public static List<int> SelectBoardCardIds => AgainstInfo.SelectVirualCardIds;
         public static int GetField(Card card, CardField cardField) => card[cardField];
         public static int GetTwoSideField(Card card, CardField cardField) => (card.LeftCard == null || card.LeftCard[CardState.Seal] ? 0 : card.LeftCard[cardField]) + (card.RightCard == null || card.RightCard[CardState.Seal] ? 0 : card.RightCard[cardField]);
     }
