@@ -30,7 +30,7 @@ namespace TouhouMachineLearningSummary.Model
         [ShowInInspector]
         //卡牌默认可部署所属
         public Orientation CurrentOrientation => AgainstInfo.cardSet[Orientation.Down].CardList.Contains(this) ? Orientation.Down : Orientation.Up;
-        public Orientation OppositeOrientation => CurrentOrientation== Orientation.Down ? Orientation.Up : Orientation.Down ;
+        public Orientation OppositeOrientation => CurrentOrientation == Orientation.Down ? Orientation.Up : Orientation.Down;
         //获取全局牌表区域
         public GameRegion CurrentRegion => AgainstInfo.cardSet.RowManagers.First(row => row.CardList.Contains(this)).region;
         //按水->土->风->火->水的顺序获取下一个区域属性
@@ -111,6 +111,7 @@ namespace TouhouMachineLearningSummary.Model
         public Location Location => Command.RowCommand.GetLocation(this);
         public Card LeftCard => Location.Y > 0 ? belongCardList[Location.Y - 1] : null;
         public Card RightCard => Location.Y < belongCardList.Count - 1 ? belongCardList[Location.Y + 1] : null;
+        public List<Card> TwoSideCard => new List<Card>() { LeftCard, RightCard };
         public Text PointText => transform.GetChild(0).GetChild(0).GetComponent<Text>();
         public Transform FieldIconContent => transform.GetChild(0).GetChild(1);
         public Transform StateIconContent => transform.GetChild(0).GetChild(2);

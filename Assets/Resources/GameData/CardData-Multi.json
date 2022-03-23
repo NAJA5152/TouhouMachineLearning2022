@@ -916,7 +916,7 @@
     "level": "",
     "series": "10",
     "tag": "符卡",
-    "point": 1,
+    "point": 0,
     "name": {
       "Name-Ch": "压力测试法",
       "Name-En": ""
@@ -942,11 +942,11 @@
     "tag": "机械",
     "point": 6,
     "name": {
-      "Name-Ch": "充能箱",
+      "Name-Ch": "应急充能箱",
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "部署：选择两个单位，将其能量移动至己身"
+      "Ability-Ch": "部署：选择两个单位，将其能量集中至自身"
     },
     "describe": {
       "Describe-Ch": ""
@@ -970,7 +970,7 @@
       "Name-En": ""
     },
     "ability": {
-      "Ability-Ch": "容量：（3）\n我方回合开始：自身能量加一，并为两侧单位附加水状态\n超载：对自身和两侧造成2点伤害"
+      "Ability-Ch": "容量：（3）\n我方回合开始：自身能量加一，并为两侧单位附加水状态\n超载：对两侧造成2点伤害"
     },
     "describe": {
       "Describe-Ch": ""

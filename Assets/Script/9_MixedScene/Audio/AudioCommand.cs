@@ -19,6 +19,8 @@ namespace TouhouMachineLearningSummary.Command
             var audioCLip = Info.AudioInfo.StaticClips[type];
             AudioSource Source = Info.AudioInfo.audioScoure.AddComponent<AudioSource>();
             Source.clip = audioCLip;
+            Source.spatialBlend = 1;
+            Source.pitch = 1.3f;
             Source.Play();
             await Task.Delay((int)(audioCLip.length * 1000));
             GameObject.DestroyImmediate(Source);

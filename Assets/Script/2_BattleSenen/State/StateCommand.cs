@@ -64,7 +64,7 @@ namespace TouhouMachineLearningSummary.Command
                              //2012001,2012002,2012003,2012004,2012005,2012006,
                              //2013001,2013002,2013003,2013004,2013005,
                              2101001,
-                             2102001,2102002,
+                             2102001,2102002,2102001,2102001,2102001,2102001,2102001,
                              2103001,2103002,2103003,2103004,2103005,2103006
                              //2003001,2003002,2003003,2003004,2003005,
                              //2003001,2003002,2003003,2003004,2003005,
@@ -213,6 +213,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             Manager.AgainstSummaryManager.UploadTurn();
             await UiCommand.NoticeBoardShow((AgainstInfo.IsMyTurn ? "MyTurnStart" : "OpTurnStart").Translation());
+            await GameSystem.ProcessSystem.WhenTurnStart();
             RowCommand.SetPlayCardMoveFree(AgainstInfo.IsMyTurn);
             await CustomThread.Delay(1000);
 
