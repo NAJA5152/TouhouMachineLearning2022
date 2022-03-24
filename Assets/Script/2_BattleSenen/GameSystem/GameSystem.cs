@@ -5,6 +5,7 @@ using TouhouMachineLearningSummary.Control;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
+using UnityEngine;
 
 /// <summary>
 /// 高层api
@@ -234,5 +235,8 @@ namespace TouhouMachineLearningSummary.GameSystem
     public class UiSystem
     {
         public static async Task ShowFigure(Card card) => await Manager.FigureManager.Instance.ShowFigureAsync(true, card.CardName);
+        public static async Task ShowTips(Card card,string Text,Color color) => await card.ThisCardManager.ShowTips(Text, color);
+
+
     }
 }

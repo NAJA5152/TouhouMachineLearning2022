@@ -3,16 +3,21 @@
     "cardID": 1,
     "level": "0-0",
     "series": "",
-    "tag": "妖精",
     "point": 9,
-    "name": {
+    "Name": {
       "Name-Ch": "板烧琪露诺",
       "Name-En": "BBQ-qilunuo"
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "我方场上每存在一个妖精单位且自身点数大于1时便对对方场上造成一次1点伤害，衰退1"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": "夏天的冰之妖精才是最强的姿态"
     },
     "cardType": 0,
@@ -27,16 +32,21 @@
     "cardID": 1,
     "level": "0-0",
     "series": "",
-    "tag": "妖精",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "大妖精",
       "Name-En": "bigfairy"
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "治愈一个非金妖精单位并重新触发其部署效果"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -51,16 +61,21 @@
     "cardID": 2,
     "level": "0-0",
     "series": "",
-    "tag": "妖精",
     "point": 4,
-    "name": {
+    "Name": {
       "Name-Ch": "桑尼*缪克",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "摧毁场上所有点数最大的非金单位"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -75,16 +90,21 @@
     "cardID": 3,
     "level": "0-0",
     "series": "",
-    "tag": "妖精",
     "point": 1,
-    "name": {
+    "Name": {
       "Name-Ch": "露娜",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "对场上所有最高的单位造成一点伤害，重复x+1次，x为两侧单位的活力值总和"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -99,16 +119,21 @@
     "cardID": 4,
     "level": "0-0",
     "series": "",
-    "tag": "妖精",
     "point": 3,
-    "name": {
+    "Name": {
       "Name-Ch": "斯塔",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "对一行最左侧个单位造成x+1点伤害，并向右侧依此递减，x为两侧单位的活力值总和"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -123,16 +148,21 @@
     "cardID": 2,
     "level": "0-0",
     "series": "",
-    "tag": "妖精",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "三月精*月",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "召唤日，星，活力（{x}）"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -147,16 +177,21 @@
     "cardID": 3,
     "level": "0-0",
     "series": "",
-    "tag": "妖精",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "三月精*星",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "召唤日，月，活力（{x}）"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -171,16 +206,21 @@
     "cardID": 4,
     "level": "0-0",
     "series": "",
-    "tag": "妖精",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "琪露诺",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "锁定1+x个单位并给与2点伤害，x为两侧单位的活力值总和"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -195,16 +235,21 @@
     "cardID": 6,
     "level": "0-0",
     "series": "",
-    "tag": "妖精",
     "point": 6,
-    "name": {
+    "Name": {
       "Name-Ch": "美国小妖精",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "翻倍两个妖精单位的活力值"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -219,16 +264,21 @@
     "cardID": 1,
     "level": "0-0",
     "series": "",
-    "tag": "妖精",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "鼓舞小妖精",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "治愈一个妖精单位，活力2"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -243,16 +293,21 @@
     "cardID": 2,
     "level": "0-0",
     "series": "",
-    "tag": "策略",
     "point": 0,
-    "name": {
+    "Name": {
       "Name-Ch": "战略转移",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "策略",
+      "Tc": "",
+      "En": "tactics",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "重新打出一张非金妖精单位"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 1,
@@ -267,16 +322,21 @@
     "cardID": 3,
     "level": "0-0",
     "series": "",
-    "tag": "妖精",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "弱小妖精",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "从卡组中随机打出一张点数最低的妖精单位，活力（1）"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -291,16 +351,21 @@
     "cardID": 4,
     "level": "0-0",
     "series": "",
-    "tag": "妖精",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "狂妄小妖精",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "对对方随机一个点数最大的单位造成1点伤害，重复1+x次，x为两侧单位的活力值总和"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -315,16 +380,21 @@
     "cardID": 5,
     "level": "0-0",
     "series": "",
-    "tag": "物体",
     "point": 0,
-    "name": {
+    "Name": {
       "Name-Ch": "樱石",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "物体",
+      "Tc": "",
+      "En": "Object",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "复活一个铜色妖精单位"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 1,

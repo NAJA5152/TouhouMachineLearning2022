@@ -29,14 +29,15 @@ namespace TouhouMachineLearningSummary.CardSpace
                    if (this[CardField.Energy] < 3)
                    {
                        await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, this).SetTargetField(CardField.Energy, 1));
+                       await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this.TwoSideCard).SetTargetState(CardState.Water));
                    }
                    else
                    {
-                       await ThisCardManager.ShowTips("ГЌди", new Color(1, 0, 0));
+                       await GameSystem.UiSystem.ShowTips(this, "ГЌди", new Color(1, 0, 0));
                        await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, this.TwoSideCard).SetPoint(2).SetMeanWhile());
                        await GameSystem.PointSystem.Destory(new TriggerInfoModel(this, this));
                    }
-               }, Condition.Default)
+               }, Condition.Default, Condition.OnMyTurn)
                .AbilityAppend();
         }
     }

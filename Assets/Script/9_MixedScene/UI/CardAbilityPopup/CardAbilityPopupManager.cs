@@ -90,8 +90,8 @@ namespace TouhouMachineLearningSummary.Manager
             if (typeof(T) == typeof(int))
             {
                 var cardInfo = CardAssemblyManager.GetLastCardInfo((int)(object)target);
-                cardName = cardInfo.translateName;
-                ability = cardInfo.translateAbility;
+                cardName = cardInfo.TranslateName;
+                ability = cardInfo.TranslateAbility;
                 IntroductionBackground.gameObject.SetActive(false);
             }
             else

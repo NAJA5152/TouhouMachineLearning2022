@@ -111,6 +111,48 @@
     "En": "Object",
     "geyu": ""
   },
+  "Yokai": {
+    "Tag": "Yokai",
+    "Ch": "妖怪",
+    "Tc": "",
+    "En": "Yokai",
+    "geyu": ""
+  },
+  "Tool": {
+    "Tag": "Tool",
+    "Ch": "道具",
+    "Tc": "",
+    "En": "Tool",
+    "geyu": ""
+  },
+  "Variation": {
+    "Tag": "Variation",
+    "Ch": "异变",
+    "Tc": "",
+    "En": "Variation",
+    "geyu": ""
+  },
+  "Special ": {
+    "Tag": "Special ",
+    "Ch": "特殊",
+    "Tc": "",
+    "En": "Special ",
+    "geyu": ""
+  },
+  "Spell": {
+    "Tag": "Spell",
+    "Ch": "法术",
+    "Tc": "",
+    "En": "Spell",
+    "geyu": ""
+  },
+  "Sutra": {
+    "Tag": "Sutra",
+    "Ch": "佛经",
+    "Tc": "",
+    "En": "Sutra",
+    "geyu": ""
+  },
   "Seal": {
     "Tag": "Seal",
     "Ch": "封印",
@@ -283,105 +325,105 @@
     "Tag": "Seal_Introduction",
     "Ch": "封印：清除自身所有附加状态和附加值，并使自身特殊效果无法发动",
     "Tc": "",
-    "En": "Seal",
+    "En": "",
     "geyu": ""
   },
   "Invisibility_Introduction": {
     "Tag": "Invisibility_Introduction",
     "Ch": "隐身：无法被选择成为目标",
     "Tc": "",
-    "En": "Invisibility",
+    "En": "",
     "geyu": ""
   },
   "Pry_Introduction": {
     "Tag": "Pry_Introduction",
     "Ch": "窥探：向对手明示，下个我方会回合开始时自动取消该状态",
     "Tc": "",
-    "En": "Pry",
+    "En": "",
     "geyu": ""
   },
   "Close_Introduction": {
     "Tag": "Close_Introduction",
     "Ch": "封闭：无法打出",
     "Tc": "",
-    "En": "Close",
+    "En": "",
     "geyu": ""
   },
   "Fate_Introduction": {
     "Tag": "Fate_Introduction",
     "Ch": "命运：当处于随机选择的目标中时会被优先选择",
     "Tc": "",
-    "En": "Fate",
+    "En": "",
     "geyu": ""
   },
   "Lurk_Introduction": {
     "Tag": "Lurk_Introduction",
     "Ch": "潜伏：部署于对方战场时标记",
     "Tc": "",
-    "En": "Lurk",
+    "En": "",
     "geyu": ""
   },
   "Secret_Introduction": {
     "Tag": "Secret_Introduction",
     "Ch": "隐秘：无法被选中，无法查看效果，同时不计入点数计算，状态消失时翻开",
     "Tc": "",
-    "En": "Secret",
+    "En": "",
     "geyu": ""
   },
   "Furor_Introduction": {
     "Tag": "Furor_Introduction",
     "Ch": "狂暴：拥有此状态时无法再次触发狂暴效果\n当点数减少时该状态自动消失",
     "Tc": "",
-    "En": "Furor",
+    "En": "",
     "geyu": ""
   },
   "Docile_Introduction": {
     "Tag": "Docile_Introduction",
     "Ch": "温顺：拥有此状态时无法再次触发温顺效果\n当点数增加时该状态自动消失",
     "Tc": "",
-    "En": "Docile",
+    "En": "",
     "geyu": ""
   },
   "Poisoning_Introduction": {
     "Tag": "Poisoning_Introduction",
     "Ch": "中毒：每回合自身受到一点伤害",
     "Tc": "",
-    "En": "Poisoning",
+    "En": "",
     "geyu": ""
   },
   "Rely_Introduction": {
     "Tag": "Rely_Introduction",
     "Ch": "凭依：指定技能被替换",
     "Tc": "",
-    "En": "Rely",
+    "En": "",
     "geyu": ""
   },
   "Water_Introduction": {
     "Tag": "Water_Introduction",
     "Ch": "水:可与其他元素状态发生反应\n治愈（水+水）：治愈单位\n中和（水+火）：清空卡牌状态\n泥泞（水+土）：使单位无法被移动\n扩散（水+风）：使单位与两侧单位获得水状态",
     "Tc": "",
-    "En": "Water",
+    "En": "",
     "geyu": ""
   },
   "Fire_Introduction": {
     "Tag": "Fire_Introduction",
     "Ch": "火:可与其他元素状态发生反应\n治愈（水+水）：治愈单位\n中和（水+火）：清空卡牌状态\n泥泞（水+土）：使单位无法被移动\n扩散（水+风）：使单位两侧单位获得水状态",
     "Tc": "",
-    "En": "Fire",
+    "En": "",
     "geyu": ""
   },
   "Soil_Introduction": {
     "Tag": "Soil_Introduction",
     "Ch": "土:可与其他元素状态发生反应",
     "Tc": "",
-    "En": "Soil",
+    "En": "",
     "geyu": ""
   },
   "Wind_Introduction": {
     "Tag": "Wind_Introduction",
     "Ch": "风:可与其他元素状态发生反应\n扩散（风+任意其他元素状态）：令该单位与两侧单位获得同样的元素状态\n烈风（风+风）：对同排所有单位造成一点伤害",
     "Tc": "",
-    "En": "Wind",
+    "En": "",
     "geyu": ""
   },
   "Hold_Introduction": {
@@ -395,7 +437,7 @@
     "Tag": "Congealbounds_Introduction",
     "Ch": "结界:抵消一次伤害或置值导致的点数减少",
     "Tc": "",
-    "En": "Congealbounds",
+    "En": "",
     "geyu": ""
   },
   "Forbidden_Introduction": {
@@ -409,42 +451,42 @@
     "Tag": "Timer_Introduction",
     "Ch": "计时($Point$)：计数为0时触发效果",
     "Tc": "",
-    "En": "Timer",
+    "En": "",
     "geyu": ""
   },
   "Vitality_Introduction": {
     "Tag": "Vitality_Introduction",
     "Ch": "鼓舞($Point$)：增强两侧单位\\\"活力\\\"类型效果",
     "Tc": "",
-    "En": "Vitality",
+    "En": "",
     "geyu": ""
   },
   "Apothanasia_Introduction": {
     "Tag": "Apothanasia_Introduction",
     "Ch": "延命($Point$)：当单位点数为0时，回合结束时抵消一次进入墓地效果",
     "Tc": "",
-    "En": "Apothanasia",
+    "En": "",
     "geyu": ""
   },
   "Chain_Introduction": {
     "Tag": "Chain_Introduction",
     "Ch": "连锁($Point$)：当前回合打出卡牌的数量",
     "Tc": "",
-    "En": "Chain",
+    "En": "",
     "geyu": ""
   },
   "Energy_Introduction": {
     "Tag": "Energy_Introduction",
     "Ch": "能量($Point$)：强化机械的触发效果，过多时触发\\\"超载\\\"效果",
     "Tc": "",
-    "En": "Energy",
+    "En": "",
     "geyu": ""
   },
   "Shield_Introduction": {
     "Tag": "Shield_Introduction",
     "Ch": "护盾($Point$)：受到\\\"伤害\\\"类型效果时时抵消相应点数的伤害",
     "Tc": "",
-    "En": "Shield",
+    "En": "",
     "geyu": ""
   }
 }

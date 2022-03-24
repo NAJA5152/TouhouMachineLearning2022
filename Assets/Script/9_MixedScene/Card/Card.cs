@@ -115,14 +115,14 @@ namespace TouhouMachineLearningSummary.Model
         public Text PointText => transform.GetChild(0).GetChild(0).GetComponent<Text>();
         public Transform FieldIconContent => transform.GetChild(0).GetChild(1);
         public Transform StateIconContent => transform.GetChild(0).GetChild(2);
-        public string CardName => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).translateName;
+        public string CardName => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).TranslateName;
 
         [ShowInInspector]
         public string CardIntroduction
         {
             get
             {
-                string describe = Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).translateAbility;
+                string describe = Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).TranslateAbility;
                 typeof(CardField).GetEnumNames().ToList().ForEach(name =>
                 {
                     describe = describe.Replace($"${name}", this[(CardField)Enum.Parse(typeof(CardField), name)].ToString());

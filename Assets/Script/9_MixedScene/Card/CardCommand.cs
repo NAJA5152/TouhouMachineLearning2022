@@ -80,7 +80,7 @@ namespace TouhouMachineLearningSummary.Command
             card.Icon = CardStandardInfo.icon;
             card.CardDeployRegion = CardStandardInfo.cardDeployRegion;
             card.CardDeployTerritory = CardStandardInfo.cardDeployTerritory;
-            card.CardTags = CardStandardInfo.cardTag;
+            card.CardTags = CardStandardInfo.TranslateTags;
             card.CardRank = CardStandardInfo.cardRank;
             card.CardType = CardStandardInfo.cardType;
             card.GetComponent<Renderer>().material.SetTexture("_Front", card.Icon);
@@ -118,7 +118,7 @@ namespace TouhouMachineLearningSummary.Command
             card.Icon = CardStandardInfo.icon;
             card.CardDeployRegion = CardStandardInfo.cardDeployRegion;
             card.CardDeployTerritory = CardStandardInfo.cardDeployTerritory;
-            card.CardTags = CardStandardInfo.cardTag;
+            card.CardTags = CardStandardInfo.TranslateTags;
             card.CardRank = CardStandardInfo.cardRank;
             card.CardType = CardStandardInfo.cardType;
             card.GetComponent<Renderer>().material.SetTexture("_Front", card.Icon);

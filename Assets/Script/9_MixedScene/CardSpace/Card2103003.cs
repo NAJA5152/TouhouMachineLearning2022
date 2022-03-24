@@ -20,6 +20,17 @@ namespace TouhouMachineLearningSummary.CardSpace
                    await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this,this));
                })
                .AbilityAppend();
+
+            AbalityRegister(TriggerTime.When, TriggerType.Deploy)
+              .AbilityAdd(async (triggerInfo) =>
+              {
+                  int num = LeftCard[CardField.Energy];
+                  await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, LeftCard).SetTargetField(CardField.Energy, 0));
+
+                  await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Silver,CardRank.Copper].CardList, 1);
+                  await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetTargetField(CardField.Shield, num));
+              })
+              .AbilityAppend();
         }
     }
 }

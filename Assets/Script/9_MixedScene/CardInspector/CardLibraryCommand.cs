@@ -117,11 +117,11 @@ namespace TouhouMachineLearningSummary.Command
                     var multi = GetLibraryInfo().multiModeCards.FirstOrDefault(card => card.cardID == cardId);
                     if (single != null)
                     {
-                        cardName = single.name["Name-Ch"];
+                        cardName = single.Name["Name-Ch"];
                     }
                     if (multi != null)
                     {
-                        cardName = multi.name["Name-Ch"];
+                        cardName = multi.Name["Name-Ch"];
                     }
 
                     string ScriptText = File.ReadAllText(OriginPath, System.Text.Encoding.GetEncoding("GB2312")).Replace("Card0", "Card" + cardId).Replace("¿¨ÅÆÉú³ÉÄ£°å", cardName);

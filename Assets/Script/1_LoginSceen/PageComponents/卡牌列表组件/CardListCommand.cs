@@ -72,7 +72,7 @@ namespace TouhouMachineLearningSummary.Command
                 var info = CardAssemblyManager.lastMultiCardInfos.FirstOrDefault(cardInfo => cardInfo.cardID == cardID);
                 if (info != null)
                 {
-                    currentCardModel.transform.GetChild(0).GetComponent<Text>().text = info.translateName;
+                    currentCardModel.transform.GetChild(0).GetComponent<Text>().text = info.TranslateName;
                     Sprite cardTex = info.icon.ToSprite();
                     currentCardModel.transform.GetChild(1).GetChild(0).GetComponent<Image>().sprite = cardTex;
                     //设置数量

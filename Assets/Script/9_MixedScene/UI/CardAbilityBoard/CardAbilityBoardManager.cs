@@ -105,8 +105,8 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 var cardInfo = CardAssemblyManager.GetLastCardInfo((int)(object)target);
                 Icon.sprite = cardInfo.icon.ToSprite();
-                Name.text = cardInfo.translateName;
-                ability = cardInfo.translateAbility;
+                Name.text = cardInfo.TranslateName;
+                ability = cardInfo.TranslateAbility;
                 //IntroductionBackground.gameObject.SetActive(false);
             }
             else

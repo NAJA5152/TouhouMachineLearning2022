@@ -50,7 +50,7 @@ namespace TouhouMachineLearningSummary.CardInspector
                         tree.Add($"单人模式牌库/{levelLibrary.level}/{sectarianCardLibrary.sectarian}/{rankLibrary.rank}", rankLibrary);
                         foreach (var cardModel in rankLibrary.cardModelInfos)
                         {
-                            tree.Add($"单人模式牌库/{levelLibrary.level}/{sectarianCardLibrary.sectarian}/{rankLibrary.rank}/{cardModel.translateName}", cardModel);
+                            tree.Add($"单人模式牌库/{levelLibrary.level}/{sectarianCardLibrary.sectarian}/{rankLibrary.rank}/{cardModel.TranslateName}", cardModel);
                         }
                     }
                 }
@@ -67,7 +67,7 @@ namespace TouhouMachineLearningSummary.CardInspector
                         tree.Add($"多人模式牌库/{sectarianCardLibrary.sectarian}/{rankLibrary.rank}", rankLibrary);
                         foreach (var cardModel in rankLibrary.cardModelInfos)
                         {
-                            tree.Add($"多人模式牌库/{sectarianCardLibrary.sectarian}/{rankLibrary.rank}/{cardModel.translateName}", cardModel);
+                            tree.Add($"多人模式牌库/{sectarianCardLibrary.sectarian}/{rankLibrary.rank}/{cardModel.TranslateName}", cardModel);
                         }
                     }
                 }

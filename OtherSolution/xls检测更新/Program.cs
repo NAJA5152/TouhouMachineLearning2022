@@ -16,10 +16,12 @@ namespace xls检测更新
         static FileStream fs;
         static string direPath;
         static string filePath;
+        static Dictionary<string, Dictionary<string, string>> textTranslate = new Dictionary<string, Dictionary<string, string>>();
+        static List<string> supportLanguage = new List<string>();
         static void Main(string[] args)
         {
             Workbook workbook = new Workbook();
-            direPath = Directory.GetCurrentDirectory().Replace(@"\OtherSolution\xls检测更新\bin\Debug\net6.0", "")+ @"\Assets\Resources\GameData\";
+            direPath = Directory.GetCurrentDirectory().Replace(@"\OtherSolution\xls检测更新\bin\Debug\net6.0", "") + @"\Assets\Resources\GameData\";
             Console.WriteLine(Directory.GetCurrentDirectory());
 
             Console.WriteLine(direPath);
@@ -53,6 +55,28 @@ namespace xls检测更新
 
         private static void XlsToJson(Workbook workbook)
         {
+            //加载和储存游戏内文本的各种翻译
+            var gameText = workbook.Worksheets["Game-Text"];
+            int textColCount = gameText.Columns.Length;
+            int textRowCount = gameText.Rows.Length;
+            textTranslate = new Dictionary<string, Dictionary<string, string>>();
+            supportLanguage.Clear();
+            for (int rank = 2; rank <= textColCount; rank++)
+            {
+                supportLanguage.Add(gameText[1, rank].DisplayedText);
+            }
+            for (int i = 2; i <= textRowCount; i++)
+            {
+                Dictionary<string, string> singleTextTranslate = new Dictionary<string, string>();
+                for (int j = 1; j <= textColCount; j++)
+                {
+                    singleTextTranslate[gameText[1, j].DisplayedText] = gameText[i, j].DisplayedText;
+                }
+                textTranslate[gameText[i, 1].DisplayedText] = singleTextTranslate;
+            }
+            Console.WriteLine(JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
+            File.WriteAllText(direPath + @"\Game-Text.json", JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
+            Console.WriteLine("///////////////");
             //加载和储存单人模式表格
             var singleCards = workbook.Worksheets["CardData-Single"];
             int singleColCount = singleCards.Columns.Length;
@@ -77,23 +101,7 @@ namespace xls检测更新
             Console.WriteLine(JsonConvert.SerializeObject(MultiCardList, Formatting.Indented));
 
             File.WriteAllText(direPath + @"\CardData-Multi.json", JsonConvert.SerializeObject(MultiCardList.Where(cardInfo => cardInfo.isFinish).ToList(), Formatting.Indented));
-            //加载和储存游戏内文本的各种翻译
-            var gameText = workbook.Worksheets["Game-Text"];
-            int textColCount = gameText.Columns.Length;
-            int textRowCount = gameText.Rows.Length;
-            var textTranslate = new Dictionary<string, Dictionary<string, string>>();
-            for (int i = 2; i <= textRowCount; i++)
-            {
-                Dictionary<string, string> singleTextTranslate = new Dictionary<string, string>();
-                for (int j = 1; j <= textColCount; j++)
-                {
-                    singleTextTranslate[gameText[1, j].DisplayedText] = gameText[i, j].DisplayedText;
-                }
-                textTranslate[gameText[i, 1].DisplayedText] = singleTextTranslate;
-            }
-            Console.WriteLine(JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
-            File.WriteAllText(direPath + @"\Game-Text.json", JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
-            Console.WriteLine("///////////////");
+
             //加载和储存游戏对话文本系统和各种翻译
             DialogModel currentDialogModel = new DialogModel();
             List<DialogModel> dialogModels = new List<DialogModel>();
@@ -160,11 +168,11 @@ namespace xls检测更新
             public int cardID;
             public string level;//单人卡牌用关卡区分
             public string series;//多人卡牌用系列区分
-            public string tag;
             public int point;
-            public Dictionary<string, string> name = new Dictionary<string, string>();
-            public Dictionary<string, string> ability = new Dictionary<string, string>();
-            public Dictionary<string, string> describe = new Dictionary<string, string>();
+            public Dictionary<string, string> Name = new Dictionary<string, string>();
+            public Dictionary<string, string> CardTags = new Dictionary<string, string>();
+            public Dictionary<string, string> Ability = new Dictionary<string, string>();
+            public Dictionary<string, string> Describe = new Dictionary<string, string>();
             public int cardType;
             public int cardCamp;
             public int cardRank;
@@ -177,16 +185,15 @@ namespace xls检测更新
             {
 
                 cardID = cards[i, cards.GetIndex("Id")].GetXlsData<int>();
-                level = cards.GetIndex("Level") != 0 ? cards[i, cards.GetIndex("Level")].GetXlsData<string>() : "";
+                level = cards.GetIndex("Level") != 0 ? cards[i, cards.GetIndex("Level")].GetXlsData<string>() : "多人";
                 series = cards.GetIndex("Series") != 0 ? cards[i, cards.GetIndex("Series")].GetXlsData<string>() : "";
-                tag = cards[i, cards.GetIndex("Tag")].GetXlsData<string>();
                 point = cards[i, cards.GetIndex("Point")].GetXlsData<int>();
                 isFinish = cards[i, cards.GetIndex("Finish")].GetXlsData<int>() == 1;
                 cardType = cards[i, cards.GetIndex("Type")].GetXlsData<string>().ToEnumIndex("单位", "特殊");
                 cardCamp = cards[i, cards.GetIndex("Camp")].GetXlsData<string>().ToEnumIndex("中立", "道教", "神道教", "佛教", "科学");
                 cardRank = cards[i, cards.GetIndex("Rank")].GetXlsData<string>().ToEnumIndex("领袖", "金", "银", "铜"); ;
                 cardDeployRegion = cards[i, cards.GetIndex("Region")].GetXlsData<string>().ToEnumIndex("水", "火", "风", "土", "任意");
-                if (cardDeployRegion==4)
+                if (cardDeployRegion == 4)
                 {
                     cardDeployRegion = 99;
                 }
@@ -196,19 +203,46 @@ namespace xls检测更新
                 {
                     string key = cards[1, index].DisplayedText;
                     string value = cards[i, index].DisplayedText;
-                    name[key] = value;
+                    Name[key] = value;
                 }
+                //根据当前语言填充各种翻译的标签
+
+                var ChineseTags = cards[i, cards.GetIndex("Tag")].GetXlsData<string>()?.Split(" ").ToList();
+                if (ChineseTags != null)
+                {
+                    for (int rank = 0; rank < ChineseTags.Count; rank++)
+                    {
+                        var targetTagTranslate = textTranslate.ToList().FirstOrDefault(x => x.Value["Ch"] == ChineseTags[rank]).Value;
+                        if (targetTagTranslate != null)
+                        {
+                            supportLanguage.ForEach(language =>
+                            {
+                                if (!CardTags.ContainsKey(language))
+                                {
+                                    CardTags[language] = "";
+                                }
+                                CardTags[language] = CardTags[language] + targetTagTranslate[language] + (rank == ChineseTags.Count - 1 ? "" : " ");
+                            });
+                        }
+                    }
+                }
+                else
+                {
+                    //Console.WriteLine("无法查找到标签"+i+"-" + cards[i, cards.GetIndex("Tag")].DisplayedText);
+                }
+
+
                 foreach (var index in cards.GetIndexs("Ability"))
                 {
                     string key = cards[1, index].DisplayedText;
                     string value = cards[i, index].DisplayedText;
-                    ability[key] = value;
+                    Ability[key] = value;
                 }
                 foreach (var index in cards.GetIndexs("Describe"))
                 {
                     string key = cards[1, index].DisplayedText;
                     string value = cards[i, index].DisplayedText;
-                    describe[key] = value;
+                    Describe[key] = value;
                 }
             }
         }

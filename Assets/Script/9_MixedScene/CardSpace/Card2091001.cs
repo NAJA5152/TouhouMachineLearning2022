@@ -5,9 +5,9 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// 卡牌名称:河童修理工
+    /// 卡牌名称:毛玉王
     /// </summary>
-    public class Card2103005 : Card
+    public class Card2091001 : Card
     {
         public override void Init()
         {
@@ -20,15 +20,6 @@ namespace TouhouMachineLearningSummary.CardSpace
                    await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this,this));
                })
                .AbilityAppend();
-
-            AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-            .AbilityAdd(async (triggerInfo) =>
-            {
-                await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Copper][CardTag.Machine].CardList, 1);
-                await GameSystem.PointSystem.Cure(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits));
-                await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits));
-            })
-            .AbilityAppend();
         }
     }
 }

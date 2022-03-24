@@ -1,18 +1,23 @@
 [
   {
     "cardID": 1,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "妖精",
     "point": 9,
-    "name": {
+    "Name": {
       "Name-Ch": "板烧琪露诺",
       "Name-En": "BBQ-qilunuo"
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "我方场上每存在一个妖精单位且自身点数大于1时便对对方场上造成一次1点伤害，衰退1"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": "夏天的冰之妖精才是最强的姿态"
     },
     "cardType": 0,
@@ -25,18 +30,23 @@
   },
   {
     "cardID": 1,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "妖精",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "大妖精",
       "Name-En": "bigfairy"
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "部署:治愈一个非金妖精单位并重新触发其部署效果"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": "再，一起努力一下吧！"
     },
     "cardType": 0,
@@ -49,18 +59,23 @@
   },
   {
     "cardID": 2,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "妖精",
     "point": 4,
-    "name": {
+    "Name": {
       "Name-Ch": "桑尼*缪克",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "部署:摧毁场上所有点数最大的非金单位"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": "所有挡在我面前的都燃为灰烬吧！"
     },
     "cardType": 0,
@@ -73,18 +88,23 @@
   },
   {
     "cardID": 3,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "妖精",
     "point": 1,
-    "name": {
+    "Name": {
       "Name-Ch": "露娜",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "部署:对场上所有最高的单位造成一点伤害，重复x+1次(x为两侧单位的活力值总和)"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -97,18 +117,23 @@
   },
   {
     "cardID": 4,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "妖精",
     "point": 3,
-    "name": {
+    "Name": {
       "Name-Ch": "斯塔",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "部署:对一行最左侧个单位造成x+1点伤害，并向右侧依此递减(x为两侧单位的活力值总和)"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -121,18 +146,23 @@
   },
   {
     "cardID": 1,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "妖精",
     "point": 3,
-    "name": {
+    "Name": {
       "Name-Ch": "三月精*日",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "部署:设置自身活力为2,\n并召唤三月精*月，三月精*星\n被召唤时:设置自身活力为2"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -145,18 +175,23 @@
   },
   {
     "cardID": 2,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "妖精",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "三月精*月",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "部署:设置自身活力为2,\n并召唤三月精*日，三月精*星\n被召唤时:设置自身活力为2"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -169,18 +204,23 @@
   },
   {
     "cardID": 3,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "妖精",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "三月精*星",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "部署:设置自身活力为2,\n并召唤三月精*星，三月精*星\n被召唤时:设置自身活力为2"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -193,18 +233,23 @@
   },
   {
     "cardID": 4,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "妖精",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "琪露诺",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "部署，活力（x）:锁定1+x个单位并给与2点伤害，x为两侧单位的活力值总和"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": "冻结吧！"
     },
     "cardType": 0,
@@ -217,18 +262,23 @@
   },
   {
     "cardID": 5,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "妖精",
     "point": 6,
-    "name": {
+    "Name": {
       "Name-Ch": "莉莉白",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "部署:增加场上所有妖精牌1点鼓舞"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": "春天来了哦！"
     },
     "cardType": 0,
@@ -241,18 +291,23 @@
   },
   {
     "cardID": 6,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "妖精",
     "point": 6,
-    "name": {
+    "Name": {
       "Name-Ch": "美国小妖精",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "部署:选择两个妖精单位并翻倍其鼓舞值"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": "陷入疯狂，激发你的活力吧！"
     },
     "cardType": 0,
@@ -265,18 +320,23 @@
   },
   {
     "cardID": 1,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "妖精",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "鼓舞小妖精",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "部署:获得1点鼓舞，选择并治愈一个妖精单位"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -289,18 +349,23 @@
   },
   {
     "cardID": 2,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "策略",
     "point": 0,
-    "name": {
+    "Name": {
       "Name-Ch": "战略转移",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "策略",
+      "Tc": "",
+      "En": "tactics",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "将场上一个铜色单位移入卡组，同时打出卡组中点数最低的铜色单位"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": "好可怕，快溜"
     },
     "cardType": 1,
@@ -313,18 +378,23 @@
   },
   {
     "cardID": 3,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "妖精",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "弱小妖精",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "从卡组中随机打出一张点数最低的妖精单位，活力（$Vitality）"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -337,18 +407,23 @@
   },
   {
     "cardID": 4,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "妖精",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "狂妄小妖精",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖精",
+      "Tc": "",
+      "En": "Fairy",
+      "geyu": "ads"
+    },
+    "Ability": {
       "Ability-Ch": "对对方随机一个点数最大的单位造成1点伤害，重复1+x次，x为两侧单位的活力值总和"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -361,18 +436,23 @@
   },
   {
     "cardID": 5,
-    "level": "",
+    "level": "多人",
     "series": "0",
-    "tag": "物体",
     "point": 0,
-    "name": {
+    "Name": {
       "Name-Ch": "樱石",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "物体",
+      "Tc": "",
+      "En": "Object",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "复活一个铜色妖精单位"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 1,
@@ -385,18 +465,23 @@
   },
   {
     "cardID": 1,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "妖怪",
     "point": 3,
-    "name": {
+    "Name": {
       "Name-Ch": "鬼人正邪",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖怪",
+      "Tc": "",
+      "En": "Yokai",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "每当己方打出并部署一个单位时，在其部署效果生效前，选择我方场上一个非金单位与其点数互换"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -409,18 +494,23 @@
   },
   {
     "cardID": 1,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "妖怪",
     "point": 3,
-    "name": {
+    "Name": {
       "Name-Ch": "少名针妙丸",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖怪",
+      "Tc": "",
+      "En": "Yokai",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "部署：摧毁一个点数大于自身3倍的非金单位"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -433,18 +523,23 @@
   },
   {
     "cardID": 2,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "妖怪",
     "point": 8,
-    "name": {
+    "Name": {
       "Name-Ch": "堀川雷鼓",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖怪",
+      "Tc": "",
+      "En": "Yokai",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "部署：使与自身点数相同的所有非金单位与自身点数减半（向下取整），重复三次"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -457,18 +552,23 @@
   },
   {
     "cardID": 3,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "异变",
     "point": 0,
-    "name": {
+    "Name": {
       "Name-Ch": "天空的逆城",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "异变",
+      "Tc": "",
+      "En": "Variation",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "回合开始：场上所有单位阶级循环一轮"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 1,
@@ -481,18 +581,23 @@
   },
   {
     "cardID": 4,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "妖怪",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "作弊的天邪鬼",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖怪",
+      "Tc": "",
+      "En": "Yokai",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "部署：检索牌组中一张道具卡并打出"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -505,18 +610,23 @@
   },
   {
     "cardID": 1,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "妖怪",
     "point": 4,
-    "name": {
+    "Name": {
       "Name-Ch": "若鹭姬",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖怪",
+      "Tc": "",
+      "En": "Yokai",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "暴躁：两侧单位受到伤害\n温顺：两侧单位受到增益"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -529,18 +639,23 @@
   },
   {
     "cardID": 2,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "妖怪",
     "point": 4,
-    "name": {
+    "Name": {
       "Name-Ch": "赤蛮奇",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖怪",
+      "Tc": "",
+      "En": "Yokai",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "暴躁：在敌方同排最右侧生成一个头，每回合开始正序移动至最下一排最右侧并对左侧单位造成1点伤害\n温顺：在我方同排最右侧生成一个头，每回合开始对左侧单生成一点增益"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -553,18 +668,23 @@
   },
   {
     "cardID": 3,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "妖怪",
     "point": 4,
-    "name": {
+    "Name": {
       "Name-Ch": "今泉影狼",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖怪",
+      "Tc": "",
+      "En": "Yokai",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "暴躁：对对方同排所有目标获得一点伤害\n温顺：按正顺序移动至下一排"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -577,18 +697,23 @@
   },
   {
     "cardID": 4,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "妖怪",
     "point": 5,
-    "name": {
+    "Name": {
       "Name-Ch": "九十九弁弁「高山流水」",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖怪",
+      "Tc": "",
+      "En": "Yokai",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "暴躁：令场上所有高于自身点数的单位点数受到一点伤害\n温顺：令所有低于自身点数的单位点数加一"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -601,18 +726,23 @@
   },
   {
     "cardID": 5,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "妖怪",
     "point": 5,
-    "name": {
+    "Name": {
       "Name-Ch": "九十九八桥",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖怪",
+      "Tc": "",
+      "En": "Yokai",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "暴躁：清除所有单位的温顺状态\n温顺：清除所有单位的暴躁状态"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -625,21 +755,26 @@
   },
   {
     "cardID": 6,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "符卡",
     "point": 5,
-    "name": {
+    "Name": {
       "Name-Ch": "逆符「天下翻覆」",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "符卡",
+      "Tc": "",
+      "En": "SpellCard",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "部署：逆转自身与场上点数最大的非金单位的点数"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": "此乃以下克上的奥义！"
     },
-    "cardType": 0,
+    "cardType": 1,
     "cardCamp": 0,
     "cardRank": 2,
     "cardDeployRegion": 99,
@@ -649,21 +784,26 @@
   },
   {
     "cardID": 7,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "特殊",
     "point": 0,
-    "name": {
+    "Name": {
       "Name-Ch": "草根妖怪网络",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "特殊",
+      "Tc": "",
+      "En": "Special ",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "召唤一个草根妖怪"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": "姐妹们，来帮忙！"
     },
-    "cardType": 0,
+    "cardType": 1,
     "cardCamp": 0,
     "cardRank": 2,
     "cardDeployRegion": 99,
@@ -673,18 +813,23 @@
   },
   {
     "cardID": 8,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "道具",
     "point": 0,
-    "name": {
+    "Name": {
       "Name-Ch": "万宝槌",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "道具",
+      "Tc": "",
+      "En": "Tool",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "对同排所有单位产生2点增益"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -697,18 +842,23 @@
   },
   {
     "cardID": 1,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "道具",
     "point": 0,
-    "name": {
+    "Name": {
       "Name-Ch": "替身地藏",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "道具",
+      "Tc": "",
+      "En": "Tool",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "选择场上一个铜色单位，将其重新打出"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 1,
@@ -721,18 +871,23 @@
   },
   {
     "cardID": 2,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "道具",
     "point": 0,
-    "name": {
+    "Name": {
       "Name-Ch": "万宝槌（仿制品）",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "道具",
+      "Tc": "",
+      "En": "Tool",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "对一个单位造成（当前点数-1）点的伤害"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": "虽然看着跟正品一样，但其实只是砸起来很痛的锤子"
     },
     "cardType": 1,
@@ -745,18 +900,23 @@
   },
   {
     "cardID": 3,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "道具",
     "point": 0,
-    "name": {
+    "Name": {
       "Name-Ch": "亡灵的送行提灯",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "道具",
+      "Tc": "",
+      "En": "Tool",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "赋予一个单位延命1"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 1,
@@ -769,18 +929,23 @@
   },
   {
     "cardID": 4,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "道具",
     "point": 0,
-    "name": {
+    "Name": {
       "Name-Ch": "隙间的折叠伞",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "道具",
+      "Tc": "",
+      "En": "Tool",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "将一个单位移动至横向的另一排"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 1,
@@ -793,18 +958,23 @@
   },
   {
     "cardID": 5,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "道具",
     "point": 0,
-    "name": {
+    "Name": {
       "Name-Ch": "闪避布",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "道具",
+      "Tc": "",
+      "En": "Tool",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "为一个非金单位添加隐身状态"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 1,
@@ -817,18 +987,23 @@
   },
   {
     "cardID": 6,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "妖怪",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "狂暴之头",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖怪",
+      "Tc": "",
+      "En": "Yokai",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "每回合开始正序移动至最下一排最右侧并对左侧单位造成1点伤害"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -841,18 +1016,23 @@
   },
   {
     "cardID": 7,
-    "level": "",
+    "level": "多人",
     "series": "1",
-    "tag": "妖怪",
     "point": 2,
-    "name": {
+    "Name": {
       "Name-Ch": "温顺之头",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖怪",
+      "Tc": "",
+      "En": "Yokai",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "在我方同排最右侧生成一个头，每回合开始对左侧单生成一点增益"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -865,18 +1045,95 @@
   },
   {
     "cardID": 1,
-    "level": "",
+    "level": "多人",
+    "series": "9",
+    "point": 8,
+    "Name": {
+      "Name-Ch": "毛玉王",
+      "Name-En": ""
+    },
+    "CardTags": {},
+    "Ability": {
+      "Ability-Ch": "无"
+    },
+    "Describe": {
+      "Describe-Ch": "拥有王者之气的巨型毛玉，比少见的大毛玉还要大一点"
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 1,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "多人",
+    "series": "9",
+    "point": 7,
+    "Name": {
+      "Name-Ch": "大毛玉",
+      "Name-En": ""
+    },
+    "CardTags": {},
+    "Ability": {
+      "Ability-Ch": "无"
+    },
+    "Describe": {
+      "Describe-Ch": "少见的大型毛玉，并普通的毛玉要大一点"
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "多人",
+    "series": "9",
+    "point": 6,
+    "Name": {
+      "Name-Ch": "毛玉",
+      "Name-En": ""
+    },
+    "CardTags": {},
+    "Ability": {
+      "Ability-Ch": "无"
+    },
+    "Describe": {
+      "Describe-Ch": "常见的毛玉球，没有什么特别的"
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "多人",
     "series": "10",
-    "tag": "妖怪 河童",
     "point": 1,
-    "name": {
+    "Name": {
       "Name-Ch": "荷城河取",
       "Name-En": "BBQ-qilunuo"
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖怪 ",
+      "Tc": " ",
+      "En": "Yokai ",
+      "geyu": " "
+    },
+    "Ability": {
       "Ability-Ch": "部署：复活一个带机械标签的单位"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": "这个修修还能用哦"
     },
     "cardType": 0,
@@ -889,18 +1146,23 @@
   },
   {
     "cardID": 1,
-    "level": "",
+    "level": "多人",
     "series": "10",
-    "tag": "机械",
     "point": 1,
-    "name": {
+    "Name": {
       "Name-Ch": "黄瓜加特林",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "机械",
+      "Tc": "",
+      "En": "Machine",
+      "geyu": "asdsaf"
+    },
+    "Ability": {
       "Ability-Ch": "部署：移除我方场上所有单位的能量，对对方场上点数最高的非金单位造成移除值等次数的1点伤害"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -913,18 +1175,23 @@
   },
   {
     "cardID": 1,
-    "level": "",
+    "level": "多人",
     "series": "10",
-    "tag": "符卡",
     "point": 0,
-    "name": {
+    "Name": {
       "Name-Ch": "压力测试法",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "符卡",
+      "Tc": "",
+      "En": "SpellCard",
+      "geyu": ""
+    },
+    "Ability": {
       "Ability-Ch": "选择一个机械单位，将其移动至对方同排，并根据其能量值对同排所有单位造成伤害"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 1,
@@ -937,18 +1204,23 @@
   },
   {
     "cardID": 2,
-    "level": "",
+    "level": "多人",
     "series": "10",
-    "tag": "机械",
     "point": 6,
-    "name": {
+    "Name": {
       "Name-Ch": "应急充能箱",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "机械",
+      "Tc": "",
+      "En": "Machine",
+      "geyu": "asdsaf"
+    },
+    "Ability": {
       "Ability-Ch": "部署：选择两个单位，将其能量集中至自身"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -961,18 +1233,23 @@
   },
   {
     "cardID": 1,
-    "level": "",
+    "level": "多人",
     "series": "10",
-    "tag": "机械",
     "point": 5,
-    "name": {
+    "Name": {
       "Name-Ch": "水利发电机",
       "Name-En": ""
     },
-    "ability": {
-      "Ability-Ch": "容量：（3）\n我方回合开始：自身能量加一，并为两侧单位附加水状态\n超载：对两侧造成2点伤害"
+    "CardTags": {
+      "Ch": "机械",
+      "Tc": "",
+      "En": "Machine",
+      "geyu": "asdsaf"
     },
-    "describe": {
+    "Ability": {
+      "Ability-Ch": "容量：（3）\n我方回合结束：自身能量加一，并为两侧单位附加水状态，能量值超出容量后触发超载效果\n超载：对两侧单位造成2点伤害并摧毁自身"
+    },
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -985,18 +1262,23 @@
   },
   {
     "cardID": 2,
-    "level": "",
+    "level": "多人",
     "series": "10",
-    "tag": "机械",
     "point": 5,
-    "name": {
+    "Name": {
       "Name-Ch": "储能电容器",
       "Name-En": ""
     },
-    "ability": {
-      "Ability-Ch": "容量：（8）\n我方回合开始：移除两侧单位能量值，加到自身身上\n超载：对全场所有单位造成1点伤害"
+    "CardTags": {
+      "Ch": "机械",
+      "Tc": "",
+      "En": "Machine",
+      "geyu": "asdsaf"
     },
-    "describe": {
+    "Ability": {
+      "Ability-Ch": "容量：（8）\n我方回合结束：移除两侧单位能量值，加到自身身上，能量值超出容量后触发超载效果\n超载：对全场所有单位造成1点伤害并摧毁自身"
+    },
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -1009,18 +1291,23 @@
   },
   {
     "cardID": 3,
-    "level": "",
+    "level": "多人",
     "series": "10",
-    "tag": "机械",
     "point": 5,
-    "name": {
+    "Name": {
       "Name-Ch": "护盾生成器",
       "Name-En": ""
     },
-    "ability": {
-      "Ability-Ch": "部署：移除左侧单位能量，随后选择场上一个非金单位对其产生等能量值的护盾"
+    "CardTags": {
+      "Ch": "机械",
+      "Tc": "",
+      "En": "Machine",
+      "geyu": "asdsaf"
     },
-    "describe": {
+    "Ability": {
+      "Ability-Ch": "部署：移除左侧单位能量，随后选择我方场上一个非金单位对其产生等能量值的护盾"
+    },
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -1033,18 +1320,23 @@
   },
   {
     "cardID": 4,
-    "level": "",
+    "level": "多人",
     "series": "10",
-    "tag": "机械",
     "point": 5,
-    "name": {
+    "Name": {
       "Name-Ch": "充能水炮",
       "Name-En": ""
     },
-    "ability": {
-      "Ability-Ch": "部署：移除左侧单位能量，随后选择场上一个非金单位对其产生等能量值的伤害"
+    "CardTags": {
+      "Ch": "机械",
+      "Tc": "",
+      "En": "Machine",
+      "geyu": "asdsaf"
     },
-    "describe": {
+    "Ability": {
+      "Ability-Ch": "部署：移除左侧单位能量，随后选择对方场上一个非金单位对其产生等能量值的伤害"
+    },
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -1057,18 +1349,23 @@
   },
   {
     "cardID": 5,
-    "level": "",
+    "level": "多人",
     "series": "10",
-    "tag": "妖怪 河童",
     "point": 1,
-    "name": {
+    "Name": {
       "Name-Ch": "河童修理工",
       "Name-En": ""
     },
-    "ability": {
+    "CardTags": {
+      "Ch": "妖怪 ",
+      "Tc": " ",
+      "En": "Yokai ",
+      "geyu": " "
+    },
+    "Ability": {
       "Ability-Ch": "部署：选择并治愈并重新触发一个铜色机械单位的部署效果"
     },
-    "describe": {
+    "Describe": {
       "Describe-Ch": ""
     },
     "cardType": 0,
@@ -1081,18 +1378,23 @@
   },
   {
     "cardID": 6,
-    "level": "",
+    "level": "多人",
     "series": "10",
-    "tag": "符卡",
     "point": 5,
-    "name": {
+    "Name": {
       "Name-Ch": "河童的天才维修法",
       "Name-En": ""
     },
-    "ability": {
-      "Ability-Ch": "部署：摧毁一个机械单位，然后从牌组中打出其同名单位"
+    "CardTags": {
+      "Ch": "妖怪 符卡 机械",
+      "Tc": "  ",
+      "En": "Yokai SpellCard Machine",
+      "geyu": "  asdsaf"
     },
-    "describe": {
+    "Ability": {
+      "Ability-Ch": "部署：选择并摧毁我方场上一个机械单位，随后从牌组中打出其同名单位"
+    },
+    "Describe": {
       "Describe-Ch": "品质保障，只换不修！"
     },
     "cardType": 0,

@@ -52,7 +52,7 @@ namespace TouhouMachineLearningSummary.Command
                 newCardModel.transform.localScale = Info.CardCompnentInfo.cardLibraryCardModel.transform.localScale;
                 Sprite cardTex = info.icon.ToSprite();
                 newCardModel.GetComponent<Image>().sprite = cardTex;
-                newCardModel.transform.GetChild(1).GetComponent<Text>().text = info.translateName;
+                newCardModel.transform.GetChild(1).GetComponent<Text>().text = info.TranslateName;
                 newCardModel.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Text>().text = "X" + (cardNum > 9 ? "9+" : cardNum + "");
                 newCardModel.GetComponent<Image>().color = new Color(1, 1, 1, cardNum == 0 ? 0.2f : 1);
                 newCardModel.SetActive(true);

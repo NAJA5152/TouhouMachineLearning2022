@@ -24,7 +24,6 @@ namespace TouhouMachineLearningSummary.Manager
         {
             abilitys.Add(ability);
             conditions.Add(new AbilityCondition(condition));
-            //Debug.LogWarning(conditions);
             return this;
         }
         class AbilityCondition

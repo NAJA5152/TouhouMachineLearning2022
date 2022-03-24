@@ -27,30 +27,23 @@ namespace TouhouMachineLearningSummary.Model
         [VerticalGroup("Split/Meta")]
         [LabelText("所属系列")]
         public string series;
-        [VerticalGroup("Split/Meta")]
-        [LabelText("名字")]
-        [ShowInInspector]
-        [Sirenix.Serialization.OdinSerialize]
-        public Dictionary<string, string> name = new Dictionary<string, string>();
+        public Dictionary<string, string> Name { get; set; } = new Dictionary<string, string>();
+        public Dictionary<string, string> CardTags { get; set; } = new Dictionary<string, string>();
+        public Dictionary<string, string> Describe { get; set; } = new Dictionary<string, string>();
+        public Dictionary<string, string> Ability { get; set; } = new Dictionary<string, string>();
 
-        [ShowInInspector]
-        [LabelText("卡片介绍")]
-        public Dictionary<string, string> describe = new Dictionary<string, string>();
-        [ShowInInspector]
-        [LabelText("卡牌效果")]
-        public Dictionary<string, string> ability = new Dictionary<string, string>();
-        //public string translateName => name["Name-" + (name.ContainsKey("Name-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch")];
-        public string translateName
-        {
-            get
-            {
-                string name = (this.name.ContainsKey("Name-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch");
-                return this.name["Name-" + name];
-            }
-        }
-        public string translateDescribe => describe["Describe-" + (describe.ContainsKey("Describe-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch")];
-        public string translateAbility => ability["Ability-" + (ability.ContainsKey("Ability-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch")];
-        public List<KeyValuePair<string, string>> a;
+        [ShowInInspector, VerticalGroup("Split/Meta"), LabelText("名字")]
+        public string TranslateName => Name["Name-" + (Name.ContainsKey("Name-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch")];
+
+        [ShowInInspector, VerticalGroup("Split/Meta"), LabelText("标签")]
+        public string TranslateTags => CardTags[(CardTags.ContainsKey(TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch")];
+
+        [ShowInInspector, VerticalGroup("Split/Meta"), LabelText("介绍")]
+        public string TranslateDescribe => Describe["Describe-" + (Describe.ContainsKey("Describe-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch")];
+
+        [ShowInInspector, VerticalGroup("Split/Meta"), LabelText("效果")]
+        public string TranslateAbility => Ability["Ability-" + (Ability.ContainsKey("Ability-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch")];
+
         [VerticalGroup("Split/Meta")]
         [LabelText("点数")]
         public int point;
@@ -69,8 +62,7 @@ namespace TouhouMachineLearningSummary.Model
         [VerticalGroup("Split/Meta")]
         [LabelText("部署所属"), EnumToggleButtons]
         public Territory cardDeployTerritory = Territory.My;
-        [LabelText("卡片标签"), EnumToggleButtons]
-        public string cardTag = "";
+
 
         public Sprite GetCardSprite() => icon.ToSprite();
         public CardModel() { }

@@ -25,12 +25,12 @@ namespace TouhouMachineLearningSummary.Command
             UiInfo.NoticeBoard.GetComponent<Image>().color = AgainstInfo.IsMyTurn ? new Color(0.2f, 0.5f, 1, 0.5f) : new Color(1, 0.2f, 0.2f, 0.5f);
             UiInfo.NoticeBoard.transform.localScale = new Vector3(1, 0, 1);
             UiInfo.NoticeBoard.SetActive(true);
-            await CustomThread.TimerAsync(0.5f, runAction: process =>
+            await CustomThread.TimerAsync(0.3f, runAction: process =>
             {
                 UiInfo.NoticeBoard.transform.localScale = new Vector3(1, process * process, 1);
             });
-            await Task.Delay(1000);
-            await CustomThread.TimerAsync(0.5f, runAction: process =>
+            await Task.Delay(500);
+            await CustomThread.TimerAsync(0.3f, runAction: process =>
             {
                 UiInfo.NoticeBoard.transform.localScale = new Vector3(1, 1 - process * process, 1);
             });

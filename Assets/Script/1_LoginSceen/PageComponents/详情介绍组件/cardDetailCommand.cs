@@ -17,9 +17,9 @@ namespace TouhouMachineLearningSummary.Command
             {
                 var cardInfo = Manager.CardAssemblyManager.GetLastCardInfo(cardID);
                 Info.CardCompnentInfo.targetCardTexture.GetComponent<Image>().sprite =cardInfo.GetCardSprite();
-                Info.CardCompnentInfo.targetCardName.GetComponent<Text>().text = cardInfo.translateName;
-                Info.CardCompnentInfo.targetCardTag.GetComponent<Text>().text = cardInfo.cardTag;
-                Info.CardCompnentInfo.targetCardAbility.GetComponent<Text>().text = cardInfo.translateAbility;
+                Info.CardCompnentInfo.targetCardName.GetComponent<Text>().text = cardInfo.TranslateName;
+                Info.CardCompnentInfo.targetCardTag.GetComponent<Text>().text = cardInfo.TranslateTags;
+                Info.CardCompnentInfo.targetCardAbility.GetComponent<Text>().text = cardInfo.TranslateAbility;
             }
         }
         internal static void ChangeFocusCamp()
