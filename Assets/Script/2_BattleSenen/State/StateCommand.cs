@@ -64,9 +64,9 @@ namespace TouhouMachineLearningSummary.Command
                              //2012001,2012002,2012003,2012004,2012005,2012006,
                              //2013001,2013002,2013003,2013004,2013005,
                              2101001,
-                             2102001,2102002,2102001,2102001,2102001,2102001,2102001,
+                             2102001,2102002,2102001,2102001,
                              2103001,2103002,2103003,2103004,2103005,2103006
-                             //2003001,2003002,2003003,2003004,2003005,
+                             ////2003001,2003002,2003003,2003004,2003005,
                              //2003001,2003002,2003003,2003004,2003005,
                          })
                     });
@@ -151,7 +151,7 @@ namespace TouhouMachineLearningSummary.Command
             {
                 case (1):
                     {
-                        Info.AgainstInfo.ExChangeableCardNum = 0;
+                        Info.AgainstInfo.ExChangeableCardNum = 3;
                         UiCommand.SetCardBoardTitle("Remaining".Translation() + Info.AgainstInfo.ExChangeableCardNum);
                         // Info.GameUI.UiInfo.CardBoardTitle = "剩余抽卡次数为".Translation() + Info.AgainstInfo.ExChangeableCardNum;
                         for (int i = 0; i < 10; i++)
