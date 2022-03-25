@@ -1,7 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
-using TouhouMachineLearningSummary.Command.CardLibrary;
+using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
@@ -25,11 +25,11 @@ namespace TouhouMachineLearningSummary.Info
 
             [HorizontalGroup("Button", 120, LabelWidth = 70)]
             [Button("载入卡牌数据从表格")]
-            public void Load() => CardLibraryCommand.LoadFromJson();
+            public void Load() => CardInspectorCommand.LoadFromJson();
 
             [HorizontalGroup("Button", 120, LabelWidth = 70)]
             [Button("清空卡牌数据")]
-            public void Clear() => CardLibraryCommand.ClearCardData();
+            public void Clear() => CardInspectorCommand.ClearCardData();
 
             //[HorizontalGroup("Button", 120, LabelWidth = 70)]
             //[Button("保存卡牌数据到表格")]
@@ -108,7 +108,7 @@ namespace TouhouMachineLearningSummary.Info
                     public SectarianCardLibrary(List<CardModel> CardsModels, Camp sectarian)
                     {
                         this.sectarian = sectarian;
-                        icon = CardLibraryCommand.GetLibraryInfo().sectarianIcons[sectarian];
+                        icon = CardInspectorCommand.GetLibraryInfo().sectarianIcons[sectarian];
                         cardModelInfos = CardsModels.Where(card => card.cardCamp == sectarian).ToList();
                     }
                     public partial class RankLibrary
@@ -122,7 +122,7 @@ namespace TouhouMachineLearningSummary.Info
                         public RankLibrary(List<CardModel> cardsModels, CardRank rank)
                         {
                             this.rank = rank;
-                            icon = CardLibraryCommand.GetLibraryInfo().rankIcons[rank];
+                            icon = CardInspectorCommand.GetLibraryInfo().rankIcons[rank];
                             cardModelInfos = cardsModels.Where(cards => cards.cardRank == rank).ToList();
                         }
                     }

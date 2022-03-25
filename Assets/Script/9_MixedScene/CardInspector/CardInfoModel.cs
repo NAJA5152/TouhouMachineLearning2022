@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using TouhouMachineLearningSummary.Command.CardLibrary;
+using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Manager;
@@ -89,7 +89,7 @@ namespace TouhouMachineLearningSummary.Model
         public void OpenCardScript()
         {
             string targetPath = Application.dataPath + $@"\Script\9_MixedScene\CardSpace\Card{cardID}.cs";
-            CardLibraryCommand.CreatScript(cardID);
+            CardInspectorCommand.CreatScript(cardID);
             System.Diagnostics.Process.Start(targetPath);
         }
     }

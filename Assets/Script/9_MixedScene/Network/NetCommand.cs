@@ -91,7 +91,6 @@ namespace TouhouMachineLearningSummary.Command
                         case NetAcyncType.Pass:
                             {
                                 Info.AgainstInfo.isPlayerPass = true;
-                                //Command GameUI.UiCommand.SetCurrentPass();
                                 break;
                             }
                         case NetAcyncType.Surrender:

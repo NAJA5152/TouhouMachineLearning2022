@@ -17,8 +17,8 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectBoardCard(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck][GameEnum.CardTag.Yokai][CardRank.Silver, CardRank.Copper].CardList);
-                   await GameSystem.TransSystem.PlayCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits));
-                   await GameSystem.TransSystem.MoveToGrave(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.PlayCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits));
+                   await GameSystem.TransferSystem.MoveToGrave(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
         }

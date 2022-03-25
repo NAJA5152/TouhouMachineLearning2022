@@ -36,7 +36,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             //CardSet.globalCardList = AgainstInfo.summary.targetJumpTurn.allCardList
             //    .Select(sampleCardList => sampleCardList.Select(CardCommand.CreateCard).ToList()).ToList();
-            CardSet.GlobalCardList = targetJumpTurn.AllCardList.SelectList(sampleCardList => sampleCardList.SelectList(CardCommand.CreateCard));
+            CardSet.GlobalCardList = targetJumpTurn.AllCardList.SelectList(sampleCardList => sampleCardList.SelectList(CardCommand.GenerateCard));
             AgainstInfo.cardSet[GameRegion.Leader, GameRegion.Battle].CardList.ForEach(card => card.IsCanSee = true);
             AgainstInfo.cardSet[GameRegion.Hand][AgainstInfo.isReplayMode ? Orientation.All : Orientation.My].CardList.ForEach(card => card.IsCanSee = true);
             AgainstInfo.isJumpMode = false;
@@ -100,24 +100,24 @@ namespace TouhouMachineLearningSummary.Command
                 //await Task.Delay(500);
                 await UiCommand.NoticeBoardShow("BattleStart".Translation());
                 //初始化我方领袖卡
-                Card MyLeaderCard = CardCommand.CreateCard(Info.AgainstInfo.userDeck.LeaderId);
+                Card MyLeaderCard = CardCommand.GenerateCard(Info.AgainstInfo.userDeck.LeaderId);
                 AgainstInfo.cardSet[Orientation.Down][GameRegion.Leader].Add(MyLeaderCard);
                 MyLeaderCard.SetCardSeeAble(true);
                 //初始化敌方领袖卡
-                Card OpLeaderCard = CardCommand.CreateCard(Info.AgainstInfo.opponentDeck.LeaderId);
+                Card OpLeaderCard = CardCommand.GenerateCard(Info.AgainstInfo.opponentDeck.LeaderId);
                 AgainstInfo.cardSet[Orientation.Up][GameRegion.Leader].Add(OpLeaderCard);
                 OpLeaderCard.SetCardSeeAble(true);
                 //Debug.LogError("初始双方化牌组");
                 //初始双方化牌组
                 for (int i = 0; i < Info.AgainstInfo.userDeck.CardIds.Count; i++)
                 {
-                    Card NewCard = CardCommand.CreateCard(Info.AgainstInfo.userDeck.CardIds[i]);
+                    Card NewCard = CardCommand.GenerateCard(Info.AgainstInfo.userDeck.CardIds[i]);
                     CardSet cardSet = AgainstInfo.cardSet[Orientation.Down][GameRegion.Deck];
                     cardSet.Add(NewCard);
                 }
                 for (int i = 0; i < Info.AgainstInfo.opponentDeck.CardIds.Count; i++)
                 {
-                    Card NewCard = CardCommand.CreateCard(Info.AgainstInfo.opponentDeck.CardIds[i]);
+                    Card NewCard = CardCommand.GenerateCard(Info.AgainstInfo.opponentDeck.CardIds[i]);
                     AgainstInfo.cardSet[Orientation.Up][GameRegion.Deck].Add(NewCard);
                 }
                 await CustomThread.Delay(000);
@@ -325,7 +325,7 @@ namespace TouhouMachineLearningSummary.Command
                     //Debug.Log("当前打出了牌");
                     await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.PlayCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList, AgainstInfo.playerPlayCard);
                     //假如是我的回合，则广播操作给对方，否则只接收操作不广播
-                    await GameSystem.TransSystem.PlayCard(new TriggerInfoModel(null, AgainstInfo.playerPlayCard), AgainstInfo.IsMyTurn);
+                    await GameSystem.TransferSystem.PlayCard(new TriggerInfoModel(null, AgainstInfo.playerPlayCard), AgainstInfo.IsMyTurn);
                     //Debug.Log("打出效果执行完毕");
 
                     break;
@@ -334,7 +334,7 @@ namespace TouhouMachineLearningSummary.Command
                 if (Info.AgainstInfo.playerDisCard != null)
                 {
                     await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.DisCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList, AgainstInfo.playerDisCard);
-                    await GameSystem.TransSystem.DisCard(new TriggerInfoModel(null, AgainstInfo.playerDisCard));
+                    await GameSystem.TransferSystem.DisCard(new TriggerInfoModel(null, AgainstInfo.playerDisCard));
                     break;
                 }
                 if (AgainstInfo.isCurrectPass)//如果当前pass则结束回合

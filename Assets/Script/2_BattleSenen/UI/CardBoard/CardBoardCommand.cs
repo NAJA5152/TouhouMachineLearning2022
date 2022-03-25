@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using TouhouMachineLearningSummary.Control.GameUI;
+using TouhouMachineLearningSummary.Control;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;

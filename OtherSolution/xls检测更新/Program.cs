@@ -20,6 +20,7 @@ namespace xls检测更新
         static List<string> supportLanguage = new List<string>();
         static void Main(string[] args)
         {
+            List<string> list = new List<string>() { null};
             Workbook workbook = new Workbook();
             direPath = Directory.GetCurrentDirectory().Replace(@"\OtherSolution\xls检测更新\bin\Debug\net6.0", "") + @"\Assets\Resources\GameData\";
             Console.WriteLine(Directory.GetCurrentDirectory());

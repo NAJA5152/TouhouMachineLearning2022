@@ -43,14 +43,14 @@ namespace TouhouMachineLearningSummary.GameSystem
     /// <summary>
     /// 转移卡牌位置、所属区域的相关机制
     /// </summary>
-    public class TransSystem
+    public class TransferSystem
     {
         /// <summary>
         /// 生成，仅限单位牌，不会触发联锁效果，卡牌直接出现在对应区域
         /// </summary>
         /// <param name="triggerInfo"></param>
         /// <returns></returns>
-        public static async Task GenerateCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[Command.CardCommand.CreateCard(triggerInfo.targetCardId)][TriggerType.Generate]);
+        public static async Task GenerateCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[Command.CardCommand.GenerateCard(triggerInfo.targetCardId)][TriggerType.Generate]);
 
         public static async Task DrawCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Draw]);
         public static async Task PlayCard(TriggerInfoModel triggerInfo, bool isAnsy = true)
@@ -226,7 +226,13 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// 可从SelectBoardCards获得选择的单位实例对象
         /// </summary>
         public static List<int> SelectBoardCardIds => AgainstInfo.SelectVirualCardIds;
+        /// <summary>
+        /// 获得目标卡牌字段值
+        /// </summary>
         public static int GetField(Card card, CardField cardField) => card[cardField];
+        /// <summary>
+        /// 获得目标两侧卡牌字段值之和
+        /// </summary>
         public static int GetTwoSideField(Card card, CardField cardField) => (card.LeftCard == null || card.LeftCard[CardState.Seal] ? 0 : card.LeftCard[cardField]) + (card.RightCard == null || card.RightCard[CardState.Seal] ? 0 : card.RightCard[cardField]);
     }
     /// <summary>
@@ -234,9 +240,22 @@ namespace TouhouMachineLearningSummary.GameSystem
     /// </summary>
     public class UiSystem
     {
+        /// <summary>
+        /// 显示立绘(领袖)
+        /// </summary>
         public static async Task ShowFigure(Card card) => await Manager.FigureManager.Instance.ShowFigureAsync(true, card.CardName);
+        /// <summary>
+        /// 在卡牌上显示文字
+        /// </summary>
         public static async Task ShowTips(Card card,string Text,Color color) => await card.ThisCardManager.ShowTips(Text, color);
-
+        /// <summary>
+        ///  在卡牌上显示图标
+        /// </summary>
+        public static async Task ShowIcon(Card card,string Text,Color color) => await card.ThisCardManager.ShowTips(Text, color);
+        /// <summary>
+        ///  在卡牌上显示破碎图标
+        /// </summary>
+        public static async Task ShowIconBreak(Card card,string Text,Color color) => await card.ThisCardManager.ShowTips(Text, color);
 
     }
 }

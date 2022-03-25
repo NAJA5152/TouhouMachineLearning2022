@@ -1,6 +1,6 @@
 ﻿using TouhouMachineLearningSummary.Model;
 using UnityEngine;
-namespace TouhouMachineLearningSummary.Manager.GameUI
+namespace TouhouMachineLearningSummary.Manager
 {
     public class ArrowManager : MonoBehaviour
     {

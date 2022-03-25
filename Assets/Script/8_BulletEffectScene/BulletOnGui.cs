@@ -59,9 +59,9 @@ namespace TouhouMachineLearningSummary.Test
             if (GUI.Button(new Rect(25, 180, 250, 30), "’ŸªΩø®∆¨"))
             {
                 var cards1 = Info.AgainstInfo.cardSet[Orientation.Down][GameRegion.Deck].CardList.Take(3);
-                _ = GameSystem.TransSystem.SummonCard(new TriggerInfoModel(null, cards1.ToList()));
+                _ = GameSystem.TransferSystem.SummonCard(new TriggerInfoModel(null, cards1.ToList()));
                 var cards2 = Info.AgainstInfo.cardSet[Orientation.Up][GameRegion.Deck].CardList.Take(3);
-                _ = GameSystem.TransSystem.SummonCard(new TriggerInfoModel(null, cards2.ToList()));
+                _ = GameSystem.TransferSystem.SummonCard(new TriggerInfoModel(null, cards2.ToList()));
             }
         }
 

@@ -21,7 +21,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
@@ -38,7 +38,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                        AgainstInfo.SelectRowRank = AgainstInfo.SelectUnits[0].Location.X;
                        AgainstInfo.SelectRank = AgainstInfo.SelectUnits[0].Location.Y;
                    }
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits));
+                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits));
                }, Condition.Default)
                .AbilityAppend();
         }

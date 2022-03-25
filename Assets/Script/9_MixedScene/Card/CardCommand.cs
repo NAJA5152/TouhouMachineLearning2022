@@ -56,7 +56,7 @@ namespace TouhouMachineLearningSummary.Command
         }
 
         public static void RemoveCard(Card card) => card.belongCardList.Remove(card);
-        public static Card CreateCard(int id)
+        public static Card GenerateCard(int id)
         {
             GameObject newCard = GameObject.Instantiate(Info.CardInfo.cardModel, new Vector3(0, 100, 0), Info.CardInfo.cardModel.transform.rotation);
             newCard.transform.SetParent(GameObject.FindGameObjectWithTag("Card").transform);
@@ -100,7 +100,7 @@ namespace TouhouMachineLearningSummary.Command
         /// </summary>
         /// <param name="sampleCard"></param>
         /// <returns></returns>
-        public static Card CreateCard(SampleCardModel sampleCard)
+        public static Card GenerateCard(SampleCardModel sampleCard)
         {
 
             //Card card = NewCard.GetComponent<Card>();
@@ -152,13 +152,6 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task MoveCard(Card targetCard, Location location)
         {
-
-            //List<Card> TargetRow = CardSet.GlobalCardList[location.X];
-            //RemoveCard(targetCard);
-            //int rank = location.Y >= 0 ? Math.Min(location.Y, TargetRow.Count) : Math.Max(0, TargetRow.Count + location.Y + 1);
-            //UnityEngine.Debug.Log("设置移动目标为" + location.X + "," + location.Y);
-            //TargetRow.Insert(rank, targetCard);
-
             RemoveCard(targetCard);
             SingleRowManager TargetRow = Info.AgainstInfo.cardSet.RowManagers[location.X];
             AgainstInfo.cardSet[TargetRow.orientation][TargetRow.region].Add(targetCard, location.Y);
@@ -256,7 +249,7 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.cardSet[TargetRow.orientation][TargetRow.region].Add(targetCard, location.Y);
             if (TargetRow.CardList.Count > 6)
             {
-                await GameSystem.TransSystem.MoveToGrave(new TriggerInfoModel(targetCard, targetCard));
+                await GameSystem.TransferSystem.MoveToGrave(new TriggerInfoModel(targetCard, targetCard));
             }
         }
         public static async Task PlayCard(Card targetCard, bool IsAnsy = true)

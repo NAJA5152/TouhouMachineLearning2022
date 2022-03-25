@@ -17,21 +17,21 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
 
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-           .AbilityAdd(async (triggerInfo) =>
-           {
-               await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Copper][CardTag.Machine].CardList, 1);
-               await GameSystem.PointSystem.Destory(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit));
+               .AbilityAdd(async (triggerInfo) =>
+               {
+                   await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Copper][CardTag.Machine].CardList, 1);
+                   await GameSystem.PointSystem.Destory(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit));
 
-               var targetCard = GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck].CardList
-                       .Where(card => card.CardID == GameSystem.InfoSystem.SelectUnit.CardID).ToList().FirstOrDefault();
-               await GameSystem.TransSystem.SummonCard(new TriggerInfoModel(this, targetCard));
-           })
-           .AbilityAppend();
+                   var targetCard = GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck].CardList
+                           .Where(card => card.CardID == GameSystem.InfoSystem.SelectUnit.CardID).ToList().FirstOrDefault();
+                   await GameSystem.TransferSystem.SummonCard(new TriggerInfoModel(this, targetCard));
+               })
+               .AbilityAppend();
         }
     }
 }

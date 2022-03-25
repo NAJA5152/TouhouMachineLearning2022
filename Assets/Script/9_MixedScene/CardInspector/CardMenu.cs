@@ -3,7 +3,7 @@ using Sirenix.OdinInspector.Editor;
 using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using System.Linq;
-using TouhouMachineLearningSummary.Command.CardLibrary;
+using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.Info.CardInspector;
 using TouhouMachineLearningSummary.Model;
 using UnityEditor;
@@ -24,19 +24,19 @@ namespace TouhouMachineLearningSummary.CardInspector
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(700, 700);
             if (!initialized)
             {
-                CardLibraryCommand.LoadFromJson();
+                CardInspectorCommand.LoadFromJson();
                 initialized=true;
             }
         }
         public static void UpdateInspector() => instance?.ForceMenuTreeRebuild();
         protected override OdinMenuTree BuildMenuTree()
         {
-            CardLibraryInfo cardLibraryInfo = CardLibraryCommand.GetLibraryInfo();
+            CardLibraryInfo cardLibraryInfo = CardInspectorCommand.GetLibraryInfo();
             var tree = new OdinMenuTree(true);
             tree.DefaultMenuStyle.Height = 60;
             tree.DefaultMenuStyle.IconSize = 48.00f;
             tree.Config.DrawSearchToolbar = true;
-            CardLibraryCommand.Init();
+            CardInspectorCommand.Init();
 
             tree.Add("单人模式牌库", cardLibraryInfo);
             foreach (var levelLibrary in cardLibraryInfo.levelLibries.Where(library => library.isSingleMode))

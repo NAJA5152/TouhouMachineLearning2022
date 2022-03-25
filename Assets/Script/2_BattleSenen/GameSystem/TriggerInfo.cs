@@ -44,7 +44,7 @@ namespace TouhouMachineLearningSummary.Model
             triggerInfo.point = point;
             triggerInfo.targetState = targetState;
             triggerInfo.targetFiled = targetFiled;
-            triggerInfo.targetCardId=targetCardId;
+            triggerInfo.targetCardId = targetCardId;
             return triggerInfo;
         }
         //反序列化时使用
@@ -55,7 +55,11 @@ namespace TouhouMachineLearningSummary.Model
         public TriggerInfoModel(Card triggerCard, Card targetCard)
         {
             this.triggerCard = triggerCard;
-            this.targetCards = new List<Card>() { targetCard }; ;
+            this.targetCards = new List<Card>();
+            if (targetCard != null)
+            {
+                targetCards.Add(targetCard);
+            }
         }
         /// <summary>
         /// 创建一个卡牌触发信息模板，并设置触发者（某卡牌,若是由系统触发则填null）、触发对象(多个)
@@ -78,7 +82,7 @@ namespace TouhouMachineLearningSummary.Model
         /// <summary>
         /// 设置触发点数信息
         /// </summary>
-        public TriggerInfoModel SetPoint(int point) 
+        public TriggerInfoModel SetPoint(int point)
         {
             this.point = point;
             return this;
@@ -110,7 +114,7 @@ namespace TouhouMachineLearningSummary.Model
         /// <summary>
         ///设置目标字段和目标值
         /// </summary>
-        public TriggerInfoModel SetTargetField(CardField targetField,int ponit)
+        public TriggerInfoModel SetTargetField(CardField targetField, int ponit)
         {
             this.targetFiled = targetField;
             this.point = ponit;

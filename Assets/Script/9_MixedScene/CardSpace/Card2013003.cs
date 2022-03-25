@@ -18,7 +18,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                {
                    await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Silver][CardRank.Copper][CardType.Unite].CardList, 1);
                    await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetTargetField( CardField.Apothanasia,1));
-                   await GameSystem.TransSystem.MoveToGrave(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.MoveToGrave(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
         }

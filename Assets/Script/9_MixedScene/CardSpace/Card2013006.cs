@@ -17,13 +17,13 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this,this));
+                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this,this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
               .AbilityAdd(async (triggerInfo) =>
               {
-                  await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, this).SetLocation(OppositeOrientation, NextBattleRegion, -1));
+                  await GameSystem.TransferSystem.MoveCard(new TriggerInfoModel(this, this).SetLocation(OppositeOrientation, NextBattleRegion, -1));
                   await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, this.LeftCard).SetPoint(1));
               }, Condition.Default)
               .AbilityAppend();

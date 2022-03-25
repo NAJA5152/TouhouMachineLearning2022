@@ -1,11 +1,11 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Thread;
-using TouhouMachineLearningSummary.Manager.GameUI;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.UI;
 using TouhouMachineLearningSummary.Info;
+using TouhouMachineLearningSummary.Manager;
 
 namespace TouhouMachineLearningSummary.Command
 {

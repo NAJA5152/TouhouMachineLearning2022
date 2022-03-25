@@ -22,7 +22,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                        Card targetCard = GameSystem.InfoSystem.SelectUnit;
                        await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, targetCard).SetPoint(targetCard.ShowPoint - 1));
                    }
-                   await GameSystem.TransSystem.MoveToGrave(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.MoveToGrave(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
         }

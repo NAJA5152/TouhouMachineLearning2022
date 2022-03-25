@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>8.0</LangVersion>
+    <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -53,9 +53,6 @@
     <UnityVersion>2020.3.24f1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Analyzer Include="D:\vs2022\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
-  </ItemGroup>
-  <ItemGroup>
     <Compile Include="Assets\Script\9_MixedScene\UI\UIEvent.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\CardAbilityPopup\CardAbilityPopupManager.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡牌列表组件\CardListCommand.cs" />
@@ -87,10 +84,9 @@
     <Compile Include="Assets\Script\9_MixedScene\Dialogue\DialogueControl.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\Book\BookTagControl.cs" />
     <Compile Include="Assets\Script\9_MixedScene\ParticleSystem\SceneEffectInfo.cs" />
-    <Compile Include="Assets\Script\testward.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\CardAbilityManeger.cs" />
     <Compile Include="Assets\Script\2_BattleSenen\UI\CardBoard\BoardCardControl.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\CardInspector\CardLibraryCommand.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardInspector\CardInspectorCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Network\NetCommand.cs" />
     <Compile Include="Assets\Script\8_BulletEffectScene\BulletOnGui.cs" />
     <Compile Include="Assets\Script\2_BattleSenen\UI\CardBoard\CardBoardCommand.cs" />
@@ -123,7 +119,6 @@
     <Compile Include="Assets\Script\9_MixedScene\Scene\DontDestory.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Translate\TranslateManager.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\UiCommand.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\Test\leimi.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡组阵营选择界面\CampSelectControl.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\Book\BookCompmentType.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Test\test.cs" />
@@ -149,7 +144,6 @@
     <Compile Include="Assets\Script\9_MixedScene\UI\NotifyBoard\NoticeControl.cs" />
     <Compile Include="Assets\Script\2_BattleSenen\UI\Point\PointManager.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Card\Condition.cs" />
-    <Compile Include="Assets\Script\9_MixedScene\Test\TestAssemblyVersious.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\Book\BookInfo.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageState\MenuStateControl.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\LoginCanves\UserLoginControl.cs" />

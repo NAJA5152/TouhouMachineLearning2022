@@ -17,7 +17,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this,this));
+                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this,this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.Increase)
@@ -28,7 +28,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                        await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
                        await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
 
-                       await GameSystem.TransSystem.GenerateCard(new TriggerInfoModel(this, targetCard: null).SetTargetCardId(2013006).SetLocation( CurrentOrientation, CurrentRegion,-1));
+                       await GameSystem.TransferSystem.GenerateCard(new TriggerInfoModel(this, targetCard: null).SetTargetCardId(2013006).SetLocation( CurrentOrientation, CurrentRegion,-1));
                    }
                }, Condition.Default)
                .AbilityAppend();
@@ -40,7 +40,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                        await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, this).SetTargetState(CardState.Furor));
                        await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Docile));
 
-                       await GameSystem.TransSystem.GenerateCard(new TriggerInfoModel(this, targetCard: null).SetTargetCardId(2013007).SetLocation(CurrentOrientation, CurrentRegion, -1));
+                       await GameSystem.TransferSystem.GenerateCard(new TriggerInfoModel(this, targetCard: null).SetTargetCardId(2013007).SetLocation(CurrentOrientation, CurrentRegion, -1));
 
                    }
                }, Condition.Default)

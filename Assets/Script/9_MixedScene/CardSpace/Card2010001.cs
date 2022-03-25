@@ -18,7 +18,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
                    await GameSystem.UiSystem.ShowFigure(this);
-                   await GameSystem.TransSystem.DeployCard(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.Before, TriggerType.Deploy)
@@ -37,8 +37,8 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
              .AbilityAdd(async (triggerInfo) =>
              {
-                 await GameSystem.TransSystem.GenerateCard(new TriggerInfoModel(this, targetCard: null).SetTargetCardId(2013006).SetLocation(CurrentOrientation, CurrentRegion, -1));
-                 await GameSystem.TransSystem.GenerateCard(new TriggerInfoModel(this, targetCard: null).SetTargetCardId(2013007).SetLocation(OppositeOrientation, CurrentRegion, -1));
+                 await GameSystem.TransferSystem.GenerateCard(new TriggerInfoModel(this, targetCard: null).SetTargetCardId(2013006).SetLocation(CurrentOrientation, CurrentRegion, -1));
+                 await GameSystem.TransferSystem.GenerateCard(new TriggerInfoModel(this, targetCard: null).SetTargetCardId(2013007).SetLocation(OppositeOrientation, CurrentRegion, -1));
              }, Condition.Default)
              .AbilityAppend();
         }
