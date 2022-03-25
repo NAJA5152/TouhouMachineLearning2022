@@ -1052,9 +1052,14 @@
       "Name-Ch": "毛玉王",
       "Name-En": ""
     },
-    "CardTags": {},
+    "CardTags": {
+      "Ch": "野兽",
+      "Tc": "",
+      "En": "Monster",
+      "geyu": ""
+    },
     "Ability": {
-      "Ability-Ch": "无"
+      "Ability-Ch": "拥有王者之气的巨型毛玉，比少见的大毛玉还要大一点\n除此外并没有什么特殊的效果"
     },
     "Describe": {
       "Describe-Ch": "拥有王者之气的巨型毛玉，比少见的大毛玉还要大一点"
@@ -1076,9 +1081,14 @@
       "Name-Ch": "大毛玉",
       "Name-En": ""
     },
-    "CardTags": {},
+    "CardTags": {
+      "Ch": "野兽",
+      "Tc": "",
+      "En": "Monster",
+      "geyu": ""
+    },
     "Ability": {
-      "Ability-Ch": "无"
+      "Ability-Ch": "少见的大型毛玉，比普通的毛玉要大一点\n除此外并没有什么特殊的效果"
     },
     "Describe": {
       "Describe-Ch": "少见的大型毛玉，并普通的毛玉要大一点"
@@ -1100,9 +1110,14 @@
       "Name-Ch": "毛玉",
       "Name-En": ""
     },
-    "CardTags": {},
+    "CardTags": {
+      "Ch": "野兽",
+      "Tc": "",
+      "En": "Monster",
+      "geyu": ""
+    },
     "Ability": {
-      "Ability-Ch": "无"
+      "Ability-Ch": "普通的毛玉球，十分常见\n除此外并没有什么特殊的效果"
     },
     "Describe": {
       "Describe-Ch": "常见的毛玉球，没有什么特别的"

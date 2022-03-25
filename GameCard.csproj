@@ -22,7 +22,7 @@
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
     <OutputPath>Temp\Bin\Debug\</OutputPath>
-    <DefineConstants>DEBUG;TRACE;UNITY_2020_3_0;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;ODIN_INSPECTOR;ODIN_INSPECTOR_3;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER</DefineConstants>
+    <DefineConstants>DEBUG;TRACE;UNITY_2020_3_0;UNITY_2020_3;UNITY_2020;UNITY_5_3_OR_NEWER;UNITY_5_4_OR_NEWER;UNITY_5_5_OR_NEWER;UNITY_5_6_OR_NEWER;UNITY_2017_1_OR_NEWER;UNITY_2017_2_OR_NEWER;UNITY_2017_3_OR_NEWER;UNITY_2017_4_OR_NEWER;UNITY_2018_1_OR_NEWER;UNITY_2018_2_OR_NEWER;UNITY_2018_3_OR_NEWER;UNITY_2018_4_OR_NEWER;UNITY_2019_1_OR_NEWER;UNITY_2019_2_OR_NEWER;UNITY_2019_3_OR_NEWER;UNITY_2019_4_OR_NEWER;UNITY_2020_1_OR_NEWER;UNITY_2020_2_OR_NEWER;UNITY_2020_3_OR_NEWER;PLATFORM_ARCH_64;UNITY_64;UNITY_INCLUDE_TESTS;USE_SEARCH_ENGINE_API;SCENE_TEMPLATE_MODULE;ENABLE_AR;ENABLE_AUDIO;ENABLE_CACHING;ENABLE_CLOTH;ENABLE_EVENT_QUEUE;ENABLE_MICROPHONE;ENABLE_MULTIPLE_DISPLAYS;ENABLE_PHYSICS;ENABLE_TEXTURE_STREAMING;ENABLE_VIRTUALTEXTURING;ENABLE_UNET;ENABLE_LZMA;ENABLE_UNITYEVENTS;ENABLE_VR;ENABLE_WEBCAM;ENABLE_UNITYWEBREQUEST;ENABLE_WWW;ENABLE_CLOUD_SERVICES;ENABLE_CLOUD_SERVICES_COLLAB;ENABLE_CLOUD_SERVICES_COLLAB_SOFTLOCKS;ENABLE_CLOUD_SERVICES_ADS;ENABLE_CLOUD_SERVICES_USE_WEBREQUEST;ENABLE_CLOUD_SERVICES_CRASH_REPORTING;ENABLE_CLOUD_SERVICES_PURCHASING;ENABLE_CLOUD_SERVICES_ANALYTICS;ENABLE_CLOUD_SERVICES_UNET;ENABLE_CLOUD_SERVICES_BUILD;ENABLE_CLOUD_LICENSE;ENABLE_EDITOR_HUB_LICENSE;ENABLE_WEBSOCKET_CLIENT;ENABLE_DIRECTOR_AUDIO;ENABLE_DIRECTOR_TEXTURE;ENABLE_MANAGED_JOBS;ENABLE_MANAGED_TRANSFORM_JOBS;ENABLE_MANAGED_ANIMATION_JOBS;ENABLE_MANAGED_AUDIO_JOBS;INCLUDE_DYNAMIC_GI;ENABLE_MONO_BDWGC;ENABLE_SCRIPTING_GC_WBARRIERS;PLATFORM_SUPPORTS_MONO;RENDER_SOFTWARE_CURSOR;ENABLE_VIDEO;PLATFORM_STANDALONE;PLATFORM_STANDALONE_WIN;UNITY_STANDALONE_WIN;UNITY_STANDALONE;ENABLE_RUNTIME_GI;ENABLE_MOVIES;ENABLE_NETWORK;ENABLE_CRUNCH_TEXTURE_COMPRESSION;ENABLE_OUT_OF_PROCESS_CRASH_HANDLER;ENABLE_CLUSTER_SYNC;ENABLE_CLUSTERINPUT;PLATFORM_UPDATES_TIME_OUTSIDE_OF_PLAYER_LOOP;GFXDEVICE_WAITFOREVENT_MESSAGEPUMP;ENABLE_WEBSOCKET_HOST;ENABLE_MONO;NET_STANDARD_2_0;ENABLE_PROFILER;UNITY_ASSERTIONS;UNITY_EDITOR;UNITY_EDITOR_64;UNITY_EDITOR_WIN;ENABLE_UNITY_COLLECTIONS_CHECKS;ENABLE_BURST_AOT;UNITY_TEAM_LICENSE;ENABLE_CUSTOM_RENDER_TEXTURE;ENABLE_DIRECTOR;ENABLE_LOCALIZATION;ENABLE_SPRITES;ENABLE_TERRAIN;ENABLE_TILEMAP;ENABLE_TIMELINE;ENABLE_LEGACY_INPUT_MANAGER;ODIN_INSPECTOR;ODIN_INSPECTOR_3;CSHARP_7_OR_LATER;CSHARP_7_3_OR_NEWER;DEVELOPMENT_BUILD</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
@@ -53,25 +53,70 @@
     <UnityVersion>2020.3.0f1c1</UnityVersion>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2013004.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2001002.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1003003.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2002006.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1002004.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2013007.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1003002.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1002002.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2002004.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2012005.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2003003.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1003005.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2013003.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2013001.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card0.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1001001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2013006.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2010001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2012007.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1002003.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2011002.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2002005.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2013005.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2012001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1003004.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1000001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1001004.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2012006.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2003005.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1002006.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2012004.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2012008.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2003002.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1001002.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2002003.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2001003.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2001004.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1001003.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2002001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2011001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2012003.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card1003001.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2003004.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2012002.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2011003.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2002002.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2011004.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2001001.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2003001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2013002.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2000001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2100001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2101001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2102001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2102002.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2103001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2103002.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2103003.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2103004.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2103005.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2103006.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2091001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2093001.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\CardSpace\Card2092001.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Script\9_MixedScene\CardSpace\GameCard.asmdef" />
@@ -345,9 +390,6 @@
     <Reference Include="Microsoft.AspNetCore.SignalR.Common">
       <HintPath>Assets\Assemblies\SignalR\Microsoft.AspNetCore.SignalR.Common.dll</HintPath>
     </Reference>
-    <Reference Include="NugetForUnity">
-      <HintPath>Assets\NuGet\Editor\NugetForUnity.dll</HintPath>
-    </Reference>
     <Reference Include="Sirenix.Utilities.Editor">
       <HintPath>Assets\Assemblies\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll</HintPath>
     </Reference>
@@ -399,17 +441,11 @@
     <Reference Include="System.Numerics.Vectors">
       <HintPath>Assets\Assemblies\SignalR\System.Numerics.Vectors.dll</HintPath>
     </Reference>
-    <Reference Include="NetworkCommsDotNet">
-      <HintPath>Assets\Assemblies\NetworkCommsDotNet.dll</HintPath>
-    </Reference>
     <Reference Include="Sirenix.Utilities">
       <HintPath>Assets\Assemblies\Sirenix\Assemblies\Sirenix.Utilities.dll</HintPath>
     </Reference>
     <Reference Include="System.Diagnostics.DiagnosticSource">
       <HintPath>Assets\Assemblies\SignalR\System.Diagnostics.DiagnosticSource.dll</HintPath>
-    </Reference>
-    <Reference Include="websocket-sharp">
-      <HintPath>Assets\Assemblies\websocket-sharp.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNetCore.SignalR.Protocols.Json">
       <HintPath>Assets\Assemblies\SignalR\Microsoft.AspNetCore.SignalR.Protocols.Json.dll</HintPath>

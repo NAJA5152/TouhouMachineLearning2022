@@ -153,6 +153,13 @@
     "En": "Sutra",
     "geyu": ""
   },
+  "Monster": {
+    "Tag": "Monster",
+    "Ch": "野兽",
+    "Tc": "",
+    "En": "Monster",
+    "geyu": ""
+  },
   "Seal": {
     "Tag": "Seal",
     "Ch": "封印",
