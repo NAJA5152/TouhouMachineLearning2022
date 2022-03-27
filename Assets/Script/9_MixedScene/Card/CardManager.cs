@@ -19,6 +19,7 @@ namespace TouhouMachineLearningSummary.Manager
         public GameObject gap;
         Material gapMaterial => gap.GetComponent<Renderer>().material;
         public GameObject cardTips;
+        public GameObject cardIcon;
         private void OnMouseEnter()
         {
             if (!EventSystem.current.IsPointerOverGameObject())
@@ -86,6 +87,100 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 cardTips.GetComponent<CanvasGroup>().alpha = 1 - process;
                 cardTips.transform.localPosition = new Vector3(0, 0, -1 - (1 - process) * 30);
+            });
+        }
+        //弹出状态图标附加提示
+        [Button]
+        public async Task ShowStateIcon( CardState cardState)
+        {
+            cardIcon.GetComponent<Image>().material.SetTexture("_Icon", Command.UiCommand.GetCardStateTexture(cardState));
+            cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1);
+            cardIcon.GetComponent<Image>().material.SetFloat("_Bias", 0);
+
+            await CustomThread.TimerAsync(0.2f, runAction: (process) =>
+            {
+                cardIcon.GetComponent<CanvasGroup>().alpha = process;
+                cardIcon.transform.localPosition = new Vector3(0, 0, -1 - process * 30);
+            });
+            await Task.Delay(800);
+            await CustomThread.TimerAsync(0.4f, runAction: (process) =>
+            {
+                cardIcon.GetComponent<CanvasGroup>().alpha = 1 - process;
+                cardIcon.transform.localPosition = new Vector3(0, 0, -1 - (1 - process) * 30);
+            });
+        }
+        //弹出状态图标清除提示
+        [Button]
+        public async Task ShowStateIconBreak(CardState cardState)
+        {
+            cardIcon.GetComponent<Image>().material.SetTexture("_Icon", Command.UiCommand.GetCardStateTexture(cardState));
+            cardIcon.GetComponent<Image>().material.SetFloat("_Bias", 0);
+            cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1);
+
+            await CustomThread.TimerAsync(0.2f, runAction: (process) =>
+            {
+                cardIcon.GetComponent<CanvasGroup>().alpha = process;
+                cardIcon.transform.localPosition = new Vector3(0, 0, -1 - process * 30);
+            });
+            await Task.Delay(200);
+            await CustomThread.TimerAsync(0.1f, runAction: (process) =>
+            {
+                cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1 - process * 1.5f);
+                Debug.Log(cardIcon.GetComponent<Image>().material.GetFloat("_BreakStrength"));
+                cardIcon.GetComponent<Image>().material.SetFloat("_Bias", process / 5);
+            });
+            await Task.Delay(200);
+            await CustomThread.TimerAsync(0.4f, runAction: (process) =>
+            {
+                cardIcon.GetComponent<CanvasGroup>().alpha = 1 - process;
+                cardIcon.transform.localPosition = new Vector3(0, 0, -1 - (1 - process) * 30);
+            });
+        }
+        //弹出字段图标附加提示
+        [Button]
+        public async Task ShowFieldIcon(CardField cardField)
+        {
+            cardIcon.GetComponent<Image>().material.SetTexture("_Icon", Command.UiCommand.GetCardFieldTexture(cardField));
+            cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1);
+            cardIcon.GetComponent<Image>().material.SetFloat("_Bias", 0);
+
+            await CustomThread.TimerAsync(0.2f, runAction: (process) =>
+            {
+                cardIcon.GetComponent<CanvasGroup>().alpha = process;
+                cardIcon.transform.localPosition = new Vector3(0, 0, -1 - process * 30);
+            });
+            await Task.Delay(800);
+            await CustomThread.TimerAsync(0.4f, runAction: (process) =>
+            {
+                cardIcon.GetComponent<CanvasGroup>().alpha = 1 - process;
+                cardIcon.transform.localPosition = new Vector3(0, 0, -1 - (1 - process) * 30);
+            });
+        }
+        //弹出字段图标清除提示
+        [Button]
+        public async Task ShowFieldIconBreak(CardField cardField)
+        {
+            cardIcon.GetComponent<Image>().material.SetTexture("_Icon", Command.UiCommand.GetCardFieldTexture(cardField));
+            cardIcon.GetComponent<Image>().material.SetFloat("_Bias", 0);
+            cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1);
+
+            await CustomThread.TimerAsync(0.2f, runAction: (process) =>
+            {
+                cardIcon.GetComponent<CanvasGroup>().alpha = process;
+                cardIcon.transform.localPosition = new Vector3(0, 0, -1 - process * 30);
+            });
+            await Task.Delay(200);
+            await CustomThread.TimerAsync(0.1f, runAction: (process) =>
+            {
+                cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1-process*1.5f);
+                Debug.Log(cardIcon.GetComponent<Image>().material.GetFloat("_BreakStrength"));
+                cardIcon.GetComponent<Image>().material.SetFloat("_Bias", process/5);
+            });
+            await Task.Delay(200);
+            await CustomThread.TimerAsync(0.4f, runAction: (process) =>
+            {
+                cardIcon.GetComponent<CanvasGroup>().alpha = 1 - process;
+                cardIcon.transform.localPosition = new Vector3(0, 0, -1 - (1 - process) * 30);
             });
         }
         [Button]

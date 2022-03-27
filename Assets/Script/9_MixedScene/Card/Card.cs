@@ -288,6 +288,7 @@ namespace TouhouMachineLearningSummary.Model
             AbalityRegister(TriggerTime.When, TriggerType.StateAdd)
             .AbilityAdd(async (triggerInfo) =>
             {
+                await ThisCardManager.ShowStateIcon(triggerInfo.targetState);
                 switch (triggerInfo.targetState)
                 {
                     case CardState.Lurk:; break;
@@ -435,6 +436,7 @@ namespace TouhouMachineLearningSummary.Model
             AbalityRegister(TriggerTime.When, TriggerType.StateClear)
             .AbilityAdd(async (triggerInfo) =>
             {
+                await ThisCardManager.ShowStateIconBreak(triggerInfo.targetState);
                 this[triggerInfo.targetState] = false;
                 //动画效果
                 switch (triggerInfo.targetState)
@@ -449,6 +451,15 @@ namespace TouhouMachineLearningSummary.Model
             AbalityRegister(TriggerTime.When, TriggerType.FieldSet)
             .AbilityAdd(async (triggerInfo) =>
             {
+                if (triggerInfo.point >= this[triggerInfo.targetFiled])
+                {
+                    await ThisCardManager.ShowFieldIcon(triggerInfo.targetFiled);
+                }
+                else
+                {
+                    await ThisCardManager.ShowFieldIconBreak(triggerInfo.targetFiled);
+                }
+
                 Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段设置，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},设置值{triggerInfo.point}");
                 this[triggerInfo.targetFiled] = triggerInfo.point;
                 Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
@@ -469,6 +480,15 @@ namespace TouhouMachineLearningSummary.Model
             AbalityRegister(TriggerTime.When, TriggerType.FieldChange)
             .AbilityAdd(async (triggerInfo) =>
             {
+                if (triggerInfo.point>=0)
+                {
+                    await ThisCardManager.ShowFieldIcon(triggerInfo.targetFiled);
+                }
+                else
+                {
+                    await ThisCardManager.ShowFieldIconBreak(triggerInfo.targetFiled);
+                }
+
                 Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段变化，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},变化值{triggerInfo.point}");
                 this[triggerInfo.targetFiled] += triggerInfo.point;
                 Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
@@ -550,7 +570,7 @@ namespace TouhouMachineLearningSummary.Model
                 }
                 else if (i < cardFields.Count)
                 {
-                    FieldIconContent.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>("FieldAndState\\" + cardFields.ToList()[i].Key.ToString());
+                    FieldIconContent.GetChild(i).GetComponent<Image>().sprite = Command.UiCommand.GetCardFieldSprite(cardFields.ToList()[i].Key);
                     FieldIconContent.GetChild(i).GetChild(0).GetComponent<Text>().text = cardFields.ToList()[i].Value.ToString();
                     FieldIconContent.GetChild(i).gameObject.SetActive(true);
                 }
@@ -568,7 +588,7 @@ namespace TouhouMachineLearningSummary.Model
                 }
                 else if (i < cardStates.Count)
                 {
-                    StateIconContent.GetChild(i).GetComponent<Image>().sprite = Resources.Load<Sprite>("FieldAndState\\" + cardStates[i].ToString()); ;
+                    StateIconContent.GetChild(i).GetComponent<Image>().sprite = Command.UiCommand.GetCardStateSprite(cardStates[i]);
                     StateIconContent.GetChild(i).gameObject.SetActive(true);
                 }
                 else

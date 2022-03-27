@@ -29,7 +29,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                    if (this[CardField.Energy] < 3)
                    {
                        await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, this).SetTargetField(CardField.Energy, 1));
-                       await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this.TwoSideCard).SetTargetState(CardState.Water));
+                       await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this.TwoSideCard).SetTargetState(CardState.Water).SetMeanWhile());
                    }
                    else
                    {
