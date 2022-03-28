@@ -114,7 +114,7 @@ namespace TouhouMachineLearningSummary.Model
         {
             get
             {
-                var targetList = new List<Card>() { LeftCard, RightCard };
+                var targetList = new List<Card>();
                 if (LeftCard != null) targetList.Add(LeftCard);
                 if (RightCard != null) targetList.Add(RightCard);
                 return targetList;

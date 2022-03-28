@@ -23,12 +23,12 @@ namespace TouhouMachineLearningSummary.CardSpace
                })
                .AbilityAppend();
 
-            AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
+            AbalityRegister(TriggerTime.Before, TriggerType.TurnEnd)
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, this).SetTargetField(CardField.Energy, 1));
                    await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this.TwoSideCard).SetTargetState(CardState.Water).SetMeanWhile());
-                   if (this[CardField.Energy] > 3)
+                   if (this[CardField.Energy] > 1)
                    {
                        await GameSystem.UiSystem.ShowTips(this, "ГЌди", new Color(1, 0, 0));
                        await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, this.TwoSideCard).SetPoint(2).SetMeanWhile());

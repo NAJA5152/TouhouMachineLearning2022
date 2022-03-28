@@ -23,7 +23,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                })
                .AbilityAppend();
 
-            AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
+            AbalityRegister(TriggerTime.Before, TriggerType.TurnEnd)
               .AbilityAdd(async (triggerInfo) =>
               {
 
