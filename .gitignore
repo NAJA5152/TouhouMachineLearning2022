@@ -19,3 +19,5 @@ OtherSolution/Server/.vs/*
 OtherSolution/xls检测更新/bin/*
 OtherSolution/xls检测更新/.vs/*
 UserSettings/EditorUserSettings.asset
+ProjectSettings/ProjectVersion.txt
+ProjectSettings/PackageManagerSettings.asset

@@ -251,11 +251,19 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// <summary>
         ///  在卡牌上显示图标
         /// </summary>
-        public static async Task ShowIcon(Card card,string Text,Color color) => await card.ThisCardManager.ShowTips(Text, color);
+        public static async Task ShowIcon(Card card, CardField cardField) => await card.ThisCardManager.ShowFieldIcon(cardField);
+        /// <summary>
+        ///  在卡牌上显示图标
+        /// </summary>
+        public static async Task ShowIcon(Card card, CardState cardState) => await card.ThisCardManager.ShowStateIcon(cardState);
         /// <summary>
         ///  在卡牌上显示破碎图标
         /// </summary>
-        public static async Task ShowIconBreak(Card card,string Text,Color color) => await card.ThisCardManager.ShowTips(Text, color);
+        public static async Task ShowIconBreak(Card card, CardField cardField) => await card.ThisCardManager.ShowFieldIconBreak(cardField);
+        /// <summary>
+        ///  在卡牌上显示破碎图标
+        /// </summary>
+        public static async Task ShowIconBreak(Card card, CardState cardState) => await card.ThisCardManager.ShowStateIconBreak(cardState);
 
     }
 }

@@ -111,7 +111,17 @@ namespace TouhouMachineLearningSummary.Model
         public Location Location => Command.RowCommand.GetLocation(this);
         public Card LeftCard => Location.Y > 0 ? belongCardList[Location.Y - 1] : null;
         public Card RightCard => Location.Y < belongCardList.Count - 1 ? belongCardList[Location.Y + 1] : null;
-        public List<Card> TwoSideCard => new List<Card>() { LeftCard, RightCard };
+        public List<Card> TwoSideCard
+        {
+            get
+            {
+                var targetList = new List<Card>() { LeftCard, RightCard };
+                if (LeftCard != null) targetList.Add(LeftCard);
+                if (RightCard != null) targetList.Add(RightCard);
+                return targetList;
+            }
+        }
+
         public Text PointText => transform.GetChild(0).GetChild(0).GetComponent<Text>();
         public Transform FieldIconContent => transform.GetChild(0).GetChild(1);
         public Transform StateIconContent => transform.GetChild(0).GetChild(2);
@@ -199,7 +209,7 @@ namespace TouhouMachineLearningSummary.Model
             .AbilityAdd(async (triggerInfo) =>
             {
                 await Command.CardCommand.Gain(triggerInfo);
-                if (triggerInfo.point > 0)//如果不处于温顺状态
+                if (triggerInfo.point > 0)//如果不处于死亡状态
                 {
                     await GameSystem.PointSystem.Increase(triggerInfo);
                 }
@@ -219,8 +229,13 @@ namespace TouhouMachineLearningSummary.Model
                     {
                         //计算剩余盾量
                         var shieldPoint = this[CardField.Shield] - triggerInfo.point;
-                        //计算剩余盾量
+                        //计算剩余伤害
                         triggerInfo.point = triggerInfo.point - this[CardField.Shield];
+
+                        //调整护盾值
+                        await GameSystem.FieldSystem.SetField(new TriggerInfoModel(triggerInfo.triggerCard, this).SetPoint(shieldPoint));
+
+
                     }
                     await Command.CardCommand.Hurt(triggerInfo);
                     if (triggerInfo.point > 0)
@@ -240,267 +255,280 @@ namespace TouhouMachineLearningSummary.Model
            .AbilityAppend();
             //当被摧毁时以自身点数对自己造成伤害
             AbalityRegister(TriggerTime.When, TriggerType.Destory)
-            .AbilityAdd(async (triggerInfo) =>
-            {
-                triggerInfo.point = ShowPoint;
-                await Command.CardCommand.Hurt(triggerInfo);
-            })
-           .AbilityAppend();
+                .AbilityAdd(async (triggerInfo) =>
+                {
+                    triggerInfo.point = ShowPoint;
+                    await GameSystem.PointSystem.Hurt(triggerInfo);
+                })
+               .AbilityAppend();
             //当点数逆转时触发
             AbalityRegister(TriggerTime.When, TriggerType.Reverse)
-            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Reversal(triggerInfo); })
-           .AbilityAppend();
+                .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Reversal(triggerInfo); })
+               .AbilityAppend();
             //登记卡牌回合状态变化时效果
             AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
-            .AbilityAdd(async (triggerInfo) =>
-            {
-
-
-                //我死啦
-                if (IsCardReadyToGrave)
+                .AbilityAdd(async (triggerInfo) =>
                 {
-                    //延命
-                    if (this[CardField.Apothanasia] > 0)
+                    //我死啦
+                    if (IsCardReadyToGrave)
                     {
-                        this[CardField.Apothanasia]--;
-                        await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetTargetField(CardField.Apothanasia, -1));
+                        //延命
+                        if (this[CardField.Apothanasia] > 0)
+                        {
+                            this[CardField.Apothanasia]--;
+                            await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetTargetField(CardField.Apothanasia, -1));
+                        }
+                        else
+                        {
+                            //摧毁自身同时触发咒术
+                            await GameSystem.TransferSystem.DeadCard(triggerInfo);
+                        }
+                    }
+                })
+               .AbilityAppend();
+
+            AbalityRegister(TriggerTime.When, TriggerType.RoundEnd)
+                .AbilityAdd(async (triggerInfo) =>
+                {
+                    if (AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this))
+                    {
+                        await Command.CardCommand.MoveToGrave(this);
+                    }
+                })
+               .AbilityAppend();
+            //卡牌状态附加时效果
+            AbalityRegister(TriggerTime.When, TriggerType.StateAdd)
+                .AbilityAdd(async (triggerInfo) =>
+                {
+                    await GameSystem.UiSystem.ShowIcon(this, triggerInfo.targetState);
+                    switch (triggerInfo.targetState)
+                    {
+                        case CardState.Lurk:; break;
+                        case CardState.Seal: await Command.CardCommand.SealCard(this); break;
+                        case CardState.None:
+                            break;
+                        case CardState.Invisibility:
+                            break;
+                        case CardState.Pry:
+                            break;
+                        case CardState.Close:
+                            break;
+                        case CardState.Fate:
+                            break;
+                        case CardState.Secret:
+                            break;
+                        case CardState.Furor:
+                            await GameSystem.UiSystem.ShowTips(this, "狂躁", new Color(0.6f, 0.2f, 0));
+                            break;
+                        case CardState.Docile:
+                            await GameSystem.UiSystem.ShowTips(this, "温顺", new Color(0, 0, 0.5f));
+                            break;
+                        case CardState.Poisoning:
+                            break;
+                        case CardState.Rely:
+                            break;
+                        case CardState.Water:
+                            if (cardStates.Contains(CardState.Water))
+                            {
+                                cardStates.Remove(CardState.Water);
+                                await GameSystem.UiSystem.ShowTips(this, "治愈", new Color(0, 1, 0));
+                            }
+                            else if (cardStates.Contains(CardState.Fire))
+                            {
+                                cardStates.Remove(CardState.Fire);
+                                await GameSystem.UiSystem.ShowTips(this, "中和", new Color(0, 1, 0));
+                            }
+                            else if (cardStates.Contains(CardState.Wind))
+                            {
+                                cardStates.Remove(CardState.Wind);
+                                await GameSystem.UiSystem.ShowTips(this, "扩散", new Color(0, 1, 0));
+
+                            }
+                            else if (cardStates.Contains(CardState.Soil))
+                            {
+                                cardStates.Remove(CardState.Soil);
+                                await GameSystem.UiSystem.ShowTips(this, "泥泞", new Color(1, 1, 0));
+                            }
+                            else
+                            {
+                                cardStates.Add(CardState.Water);
+                            }
+                            return;
+                        case CardState.Fire:
+                            if (cardStates.Contains(CardState.Water))
+                            {
+                                cardStates.Remove(CardState.Water);
+                                await GameSystem.UiSystem.ShowTips(this, "中和", new Color(0, 1, 0));
+                            }
+                            else if (cardStates.Contains(CardState.Fire))
+                            {
+                                cardStates.Remove(CardState.Fire);
+                                await GameSystem.UiSystem.ShowTips(this, "烧灼", new Color(0, 1, 0));
+                            }
+                            else if (cardStates.Contains(CardState.Wind))
+                            {
+                                cardStates.Remove(CardState.Wind);
+                                await GameSystem.UiSystem.ShowTips(this, "扩散", new Color(0, 1, 0));
+
+                            }
+                            else if (cardStates.Contains(CardState.Soil))
+                            {
+                                cardStates.Remove(CardState.Soil);
+                                await GameSystem.UiSystem.ShowTips(this, "熔岩", new Color(1, 1, 0));
+                            }
+                            else
+                            {
+                                cardStates.Add(CardState.Fire);
+                            }
+                            return;
+                        case CardState.Wind:
+                            if (cardStates.Contains(CardState.Water))
+                            {
+                                cardStates.Remove(CardState.Water);
+                                await GameSystem.UiSystem.ShowTips(this, "扩散", new Color(0, 1, 0));
+                            }
+                            else if (cardStates.Contains(CardState.Fire))
+                            {
+                                cardStates.Remove(CardState.Fire);
+                                await GameSystem.UiSystem.ShowTips(this, "扩散", new Color(0, 1, 0));
+                            }
+                            else if (cardStates.Contains(CardState.Wind))
+                            {
+                                cardStates.Remove(CardState.Wind);
+                                await GameSystem.UiSystem.ShowTips(this, "烈风", new Color(0, 1, 0));
+
+                            }
+                            else if (cardStates.Contains(CardState.Soil))
+                            {
+                                cardStates.Remove(CardState.Soil);
+                                await GameSystem.UiSystem.ShowTips(this, "扩散", new Color(1, 1, 0));
+                            }
+                            else
+                            {
+                                cardStates.Add(CardState.Wind);
+                            }
+                            return;
+                        case CardState.Soil:
+                            if (cardStates.Contains(CardState.Water))
+                            {
+                                cardStates.Remove(CardState.Water);
+                                await GameSystem.UiSystem.ShowTips(this, "泥泞", new Color(0, 1, 0));
+                            }
+                            else if (cardStates.Contains(CardState.Fire))
+                            {
+                                cardStates.Remove(CardState.Fire);
+                                await GameSystem.UiSystem.ShowTips(this, "熔岩", new Color(0, 1, 0));
+                            }
+                            else if (cardStates.Contains(CardState.Wind))
+                            {
+                                cardStates.Remove(CardState.Wind);
+                                await GameSystem.UiSystem.ShowTips(this, "扩散", new Color(0, 1, 0));
+
+                            }
+                            else if (cardStates.Contains(CardState.Soil))
+                            {
+                                cardStates.Remove(CardState.Soil);
+                                await GameSystem.UiSystem.ShowTips(this, "固化", new Color(1, 1, 0));
+                            }
+                            else
+                            {
+                                cardStates.Add(CardState.Soil);
+                            }
+                            return;
+                        case CardState.Hold:
+                            break;
+                        case CardState.Congealbounds:
+                            break;
+                        default: break;
+                    }
+                    this[triggerInfo.targetState] = true;
+                })
+               .AbilityAppend();
+            //卡牌状态取消时效果
+            AbalityRegister(TriggerTime.When, TriggerType.StateClear)
+                .AbilityAdd(async (triggerInfo) =>
+                {
+                    await GameSystem.UiSystem.ShowIconBreak(this, triggerInfo.targetState);
+                    this[triggerInfo.targetState] = false;
+                    //动画效果
+                    switch (triggerInfo.targetState)
+                    {
+                        case CardState.Lurk:; break;
+                        case CardState.Seal: await Command.CardCommand.UnSealCard(this); break;
+                        default: break;
+                    }
+                })
+               .AbilityAppend();
+            //卡牌字段设置时效果
+            AbalityRegister(TriggerTime.When, TriggerType.FieldSet)
+                .AbilityAdd(async (triggerInfo) =>
+                {
+                    if (triggerInfo.point > this[triggerInfo.targetFiled])
+                    {
+                        await GameSystem.UiSystem.ShowIcon(this, triggerInfo.targetFiled);
+                    }
+                    else if (triggerInfo.point < this[triggerInfo.targetFiled])
+                    {
+                        await GameSystem.UiSystem.ShowIconBreak(this, triggerInfo.targetFiled);
                     }
                     else
                     {
-                        //摧毁自身同时触发咒术
-                        await GameSystem.TransferSystem.DeadCard(triggerInfo);
+                        return;
                     }
-                }
 
-            })
-           .AbilityAppend();
-
-            AbalityRegister(TriggerTime.When, TriggerType.RoundEnd)
-            .AbilityAdd(async (triggerInfo) =>
-            {
-                if (AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this))
-                {
-                    await Command.CardCommand.MoveToGrave(this);
-                }
-            })
-           .AbilityAppend();
-            //卡牌状态附加时效果
-            AbalityRegister(TriggerTime.When, TriggerType.StateAdd)
-            .AbilityAdd(async (triggerInfo) =>
-            {
-                await ThisCardManager.ShowStateIcon(triggerInfo.targetState);
-                switch (triggerInfo.targetState)
-                {
-                    case CardState.Lurk:; break;
-                    case CardState.Seal: await Command.CardCommand.SealCard(this); break;
-                    case CardState.None:
-                        break;
-                    case CardState.Invisibility:
-                        break;
-                    case CardState.Pry:
-                        break;
-                    case CardState.Close:
-                        break;
-                    case CardState.Fate:
-                        break;
-                    case CardState.Secret:
-                        break;
-                    case CardState.Furor:
-                        await ThisCardManager.ShowTips("狂躁", new Color(0.6f, 0.2f, 0));
-                        break;
-                    case CardState.Docile:
-                        await ThisCardManager.ShowTips("温顺", new Color(0, 0, 0.5f));
-                        break;
-                    case CardState.Poisoning:
-                        break;
-                    case CardState.Rely:
-                        break;
-                    case CardState.Water:
-                        if (cardStates.Contains(CardState.Water))
+                    Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段设置，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},设置值{triggerInfo.point}");
+                    this[triggerInfo.targetFiled] = triggerInfo.point;
+                    Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
+                    //移除掉为0的字段
+                    if (this[triggerInfo.targetFiled] > 0)
+                    {
+                        switch (triggerInfo.targetFiled)
                         {
-                            cardStates.Remove(CardState.Water);
-                            await ThisCardManager.ShowTips("治愈", new Color(0, 1, 0));
+                            case CardField.Timer: break;
+                            case CardField.Inspire: break;
+                            case CardField.Apothanasia:
+                                {
+                                    await GameSystem.UiSystem.ShowTips(this, "续命", new Color(1, 0, 0));
+                                    break;
+                                }
+                            default: break;
                         }
-                        else if (cardStates.Contains(CardState.Fire))
-                        {
-                            cardStates.Remove(CardState.Fire);
-                            await ThisCardManager.ShowTips("中和", new Color(0, 1, 0));
-                        }
-                        else if (cardStates.Contains(CardState.Wind))
-                        {
-                            cardStates.Remove(CardState.Wind);
-                            await ThisCardManager.ShowTips("扩散", new Color(0, 1, 0));
-
-                        }
-                        else if (cardStates.Contains(CardState.Soil))
-                        {
-                            cardStates.Remove(CardState.Soil);
-                            await ThisCardManager.ShowTips("泥泞", new Color(1, 1, 0));
-                        }
-                        else
-                        {
-                            cardStates.Add(CardState.Water);
-                        }
-                        return;
-                    case CardState.Fire:
-                        if (cardStates.Contains(CardState.Water))
-                        {
-                            cardStates.Remove(CardState.Water);
-                            await ThisCardManager.ShowTips("中和", new Color(0, 1, 0));
-                        }
-                        else if (cardStates.Contains(CardState.Fire))
-                        {
-                            cardStates.Remove(CardState.Fire);
-                            await ThisCardManager.ShowTips("烧灼", new Color(0, 1, 0));
-                        }
-                        else if (cardStates.Contains(CardState.Wind))
-                        {
-                            cardStates.Remove(CardState.Wind);
-                            await ThisCardManager.ShowTips("扩散", new Color(0, 1, 0));
-
-                        }
-                        else if (cardStates.Contains(CardState.Soil))
-                        {
-                            cardStates.Remove(CardState.Soil);
-                            await ThisCardManager.ShowTips("熔岩", new Color(1, 1, 0));
-                        }
-                        else
-                        {
-                            cardStates.Add(CardState.Fire);
-                        }
-                        return;
-                    case CardState.Wind:
-                        if (cardStates.Contains(CardState.Water))
-                        {
-                            cardStates.Remove(CardState.Water);
-                            await ThisCardManager.ShowTips("扩散", new Color(0, 1, 0));
-                        }
-                        else if (cardStates.Contains(CardState.Fire))
-                        {
-                            cardStates.Remove(CardState.Fire);
-                            await ThisCardManager.ShowTips("扩散", new Color(0, 1, 0));
-                        }
-                        else if (cardStates.Contains(CardState.Wind))
-                        {
-                            cardStates.Remove(CardState.Wind);
-                            await ThisCardManager.ShowTips("烈风", new Color(0, 1, 0));
-
-                        }
-                        else if (cardStates.Contains(CardState.Soil))
-                        {
-                            cardStates.Remove(CardState.Soil);
-                            await ThisCardManager.ShowTips("扩散", new Color(1, 1, 0));
-                        }
-                        else
-                        {
-                            cardStates.Add(CardState.Wind);
-                        }
-                        return;
-                    case CardState.Soil:
-                        if (cardStates.Contains(CardState.Water))
-                        {
-                            cardStates.Remove(CardState.Water);
-                            await ThisCardManager.ShowTips("泥泞", new Color(0, 1, 0));
-                        }
-                        else if (cardStates.Contains(CardState.Fire))
-                        {
-                            cardStates.Remove(CardState.Fire);
-                            await ThisCardManager.ShowTips("熔岩", new Color(0, 1, 0));
-                        }
-                        else if (cardStates.Contains(CardState.Wind))
-                        {
-                            cardStates.Remove(CardState.Wind);
-                            await ThisCardManager.ShowTips("扩散", new Color(0, 1, 0));
-
-                        }
-                        else if (cardStates.Contains(CardState.Soil))
-                        {
-                            cardStates.Remove(CardState.Soil);
-                            await ThisCardManager.ShowTips("固化", new Color(1, 1, 0));
-                        }
-                        else
-                        {
-                            cardStates.Add(CardState.Soil);
-                        }
-                        return;
-                    case CardState.Hold:
-                        break;
-                    case CardState.Congealbounds:
-                        break;
-                    default: break;
-                }
-                this[triggerInfo.targetState] = true;
-            })
-           .AbilityAppend();
-            //卡牌状态取消时效果
-            AbalityRegister(TriggerTime.When, TriggerType.StateClear)
-            .AbilityAdd(async (triggerInfo) =>
-            {
-                await ThisCardManager.ShowStateIconBreak(triggerInfo.targetState);
-                this[triggerInfo.targetState] = false;
-                //动画效果
-                switch (triggerInfo.targetState)
-                {
-                    case CardState.Lurk:; break;
-                    case CardState.Seal: await Command.CardCommand.UnSealCard(this); break;
-                    default: break;
-                }
-            })
-           .AbilityAppend();
-            //卡牌字段设置时效果
-            AbalityRegister(TriggerTime.When, TriggerType.FieldSet)
-            .AbilityAdd(async (triggerInfo) =>
-            {
-                if (triggerInfo.point >= this[triggerInfo.targetFiled])
-                {
-                    await ThisCardManager.ShowFieldIcon(triggerInfo.targetFiled);
-                }
-                else
-                {
-                    await ThisCardManager.ShowFieldIconBreak(triggerInfo.targetFiled);
-                }
-
-                Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段设置，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},设置值{triggerInfo.point}");
-                this[triggerInfo.targetFiled] = triggerInfo.point;
-                Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
-                switch (triggerInfo.targetFiled)
-                {
-                    case CardField.Timer: break;
-                    case CardField.Inspire: break;
-                    case CardField.Apothanasia:
-                        {
-                            await ThisCardManager.ShowTips("续命", new Color(1, 0, 0));
-                            break;
-                        }
-                    default: break;
-                }
-            })
-           .AbilityAppend();
+                    }
+                    else
+                    {
+                        this.cardFields.Remove(triggerInfo.targetFiled);
+                    }
+                })
+               .AbilityAppend();
             //卡牌字段改变时效果
             AbalityRegister(TriggerTime.When, TriggerType.FieldChange)
-            .AbilityAdd(async (triggerInfo) =>
-            {
-                if (triggerInfo.point>=0)
+                .AbilityAdd(async (triggerInfo) =>
                 {
-                    await ThisCardManager.ShowFieldIcon(triggerInfo.targetFiled);
-                }
-                else
-                {
-                    await ThisCardManager.ShowFieldIconBreak(triggerInfo.targetFiled);
-                }
+                    if (triggerInfo.point > 0)
+                    {
+                        await GameSystem.UiSystem.ShowIcon(this, triggerInfo.targetFiled);
+                    }
+                    else if (triggerInfo.point < 0)
+                    {
+                        await GameSystem.UiSystem.ShowIconBreak(this, triggerInfo.targetFiled);
+                    }
+                    else
+                    {
+                        return;
+                    }
 
-                Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段变化，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},变化值{triggerInfo.point}");
-                this[triggerInfo.targetFiled] += triggerInfo.point;
-                Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
-                switch (triggerInfo.targetFiled)
-                {
-                    case CardField.Timer: break;
-                    case CardField.Inspire: break;
-                    case CardField.Apothanasia: await ThisCardManager.ShowTips("续命", new Color(1, 0, 0)); break;
-                    default: break;
-                }
-            })
-           .AbilityAppend();
+                    Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段变化，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},变化值{triggerInfo.point}");
+                    this[triggerInfo.targetFiled] += triggerInfo.point;
+                    Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
+                    switch (triggerInfo.targetFiled)
+                    {
+                        case CardField.Timer: break;
+                        case CardField.Inspire: break;
+                        case CardField.Apothanasia: await ThisCardManager.ShowTips("续命", new Color(1, 0, 0)); break;
+                        default: break;
+                    }
+                })
+               .AbilityAppend();
         }
         public void SetMoveTarget(Vector3 TargetPosition, Vector3 TargetEulers)
         {
@@ -542,61 +570,66 @@ namespace TouhouMachineLearningSummary.Model
         /// <param name="type">触发方式</param>
         /// <returns>一个触发效果的配置管理器</returns>
         public CardAbilityManeger AbalityRegister(TriggerTime time, TriggerType type) => new CardAbilityManeger(this, time, type);
-        private void Update() => RefreshCardUi();
-
-        public void RefreshCardUi()
+        private void Update()
         {
+            RefreshCardUi();
 
-            //数字
-            if (ChangePoint > 0)
+            void RefreshCardUi()
             {
-                PointText.color = Color.green;
-            }
-            else if (ChangePoint < 0)
-            {
-                PointText.color = Color.red;
-            }
-            else
-            {
-                PointText.color = Color.black;
-            }
-            PointText.text = CardType == CardType.Unite ? ShowPoint.ToString() : "";
-            //字段
-            for (int i = 0; i < 4; i++)
-            {
-                if (cardFields.Count > 4 && i == 3)
+
+                //数字
+                if (ChangePoint > 0)
                 {
-                    //icon是省略号
+                    PointText.color = Color.green;
                 }
-                else if (i < cardFields.Count)
+                else if (ChangePoint < 0)
                 {
-                    FieldIconContent.GetChild(i).GetComponent<Image>().sprite = Command.UiCommand.GetCardFieldSprite(cardFields.ToList()[i].Key);
-                    FieldIconContent.GetChild(i).GetChild(0).GetComponent<Text>().text = cardFields.ToList()[i].Value.ToString();
-                    FieldIconContent.GetChild(i).gameObject.SetActive(true);
+                    PointText.color = Color.red;
                 }
                 else
                 {
-                    FieldIconContent.GetChild(i).gameObject.SetActive(false);
+                    PointText.color = Color.black;
                 }
-            }
-            //状态
-            for (int i = 0; i < 3; i++)
-            {
-                if (cardStates.Count > 3 && i == 2)
+                PointText.text = CardType == CardType.Unite ? ShowPoint.ToString() : "";
+                //字段
+                for (int i = 0; i < 4; i++)
                 {
-                    //icon是省略号
+                    if (cardFields.Count > 4 && i == 3)
+                    {
+                        //icon是省略号
+                    }
+                    else if (i < cardFields.Count)
+                    {
+                        FieldIconContent.GetChild(i).GetComponent<Image>().sprite = Command.UiCommand.GetCardFieldSprite(cardFields.ToList()[i].Key);
+                        FieldIconContent.GetChild(i).GetChild(0).GetComponent<Text>().text = cardFields.ToList()[i].Value.ToString();
+                        FieldIconContent.GetChild(i).gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        FieldIconContent.GetChild(i).gameObject.SetActive(false);
+                    }
                 }
-                else if (i < cardStates.Count)
+                //状态
+                for (int i = 0; i < 3; i++)
                 {
-                    StateIconContent.GetChild(i).GetComponent<Image>().sprite = Command.UiCommand.GetCardStateSprite(cardStates[i]);
-                    StateIconContent.GetChild(i).gameObject.SetActive(true);
-                }
-                else
-                {
-                    StateIconContent.GetChild(i).gameObject.SetActive(false);
+                    if (cardStates.Count > 3 && i == 2)
+                    {
+                        //icon是省略号
+                    }
+                    else if (i < cardStates.Count)
+                    {
+                        StateIconContent.GetChild(i).GetComponent<Image>().sprite = Command.UiCommand.GetCardStateSprite(cardStates[i]);
+                        StateIconContent.GetChild(i).gameObject.SetActive(true);
+                    }
+                    else
+                    {
+                        StateIconContent.GetChild(i).gameObject.SetActive(false);
+                    }
                 }
             }
         }
+
+
         [Button]
         public void AddStateAndField()
         {
