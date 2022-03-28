@@ -113,8 +113,8 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 Card card = (Card)(object)target;
                 Icon.sprite = card.Icon.ToSprite();
-                Name.text = card.CardName;
-                ability = card.CardIntroduction;
+                Name.text = card.CardTranslateName;
+                ability = card.CardTranslateAbility;
                 card.cardFields.ToList().ForEach(field =>
                 {
                     switch (field.Key)

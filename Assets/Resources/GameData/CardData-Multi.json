@@ -1146,10 +1146,10 @@
       "geyu": " "
     },
     "Ability": {
-      "Ability-Ch": "部署：复活一个带机械标签的单位"
+      "Ability-Ch": "部署：复活两个带机械标签的单位"
     },
     "Describe": {
-      "Describe-Ch": "这个修修还能用哦"
+      "Describe-Ch": "修一送一啦"
     },
     "cardType": 0,
     "cardCamp": 4,
@@ -1163,7 +1163,7 @@
     "cardID": 1,
     "level": "多人",
     "series": "10",
-    "point": 1,
+    "point": 4,
     "Name": {
       "Name-Ch": "黄瓜加特林",
       "Name-En": ""
@@ -1176,6 +1176,35 @@
     },
     "Ability": {
       "Ability-Ch": "部署：移除我方场上所有单位的能量，对对方场上点数最高的非金单位造成移除值等次数的1点伤害"
+    },
+    "Describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 4,
+    "cardRank": 1,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 2,
+    "level": "多人",
+    "series": "10",
+    "point": 5,
+    "Name": {
+      "Name-Ch": "手摇发电机",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "机械",
+      "Tc": "",
+      "En": "Machine",
+      "geyu": "asdsaf"
+    },
+    "Ability": {
+      "Ability-Ch": "位于场上时，我方每部署一张单位，该牌获得一点能量"
     },
     "Describe": {
       "Describe-Ch": ""
@@ -1308,7 +1337,7 @@
     "cardID": 3,
     "level": "多人",
     "series": "10",
-    "point": 5,
+    "point": 4,
     "Name": {
       "Name-Ch": "护盾生成器",
       "Name-En": ""
@@ -1337,7 +1366,7 @@
     "cardID": 4,
     "level": "多人",
     "series": "10",
-    "point": 5,
+    "point": 3,
     "Name": {
       "Name-Ch": "充能水炮",
       "Name-En": ""
@@ -1401,13 +1430,13 @@
       "Name-En": ""
     },
     "CardTags": {
-      "Ch": "妖怪 符卡 机械",
-      "Tc": "  ",
-      "En": "Yokai SpellCard Machine",
-      "geyu": "  asdsaf"
+      "Ch": "妖怪 ",
+      "Tc": " ",
+      "En": "Yokai ",
+      "geyu": " "
     },
     "Ability": {
-      "Ability-Ch": "部署：选择并摧毁我方场上一个机械单位，随后从牌组中打出其同名单位"
+      "Ability-Ch": "部署：选择并将我方场上一个机械单位直接移入墓地（不视为伤害和死亡），随后从牌组中打出其同名单位"
     },
     "Describe": {
       "Describe-Ch": "品质保障，只换不修！"

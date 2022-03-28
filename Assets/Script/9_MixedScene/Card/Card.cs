@@ -5,7 +5,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
-using TouhouMachineLearningSummary.Manager;
 using UnityEngine;
 using UnityEngine.UI;
 namespace TouhouMachineLearningSummary.Model
@@ -14,7 +13,7 @@ namespace TouhouMachineLearningSummary.Model
 
     public class Card : MonoBehaviour
     {
-        public CardManager ThisCardManager => GetComponent<CardManager>();
+        public Manager.CardManager ThisCardManager => GetComponent<Manager.CardManager>();
         public int CardID { get; set; }
 
         public int BasePoint { get; set; }
@@ -125,21 +124,10 @@ namespace TouhouMachineLearningSummary.Model
         public Text PointText => transform.GetChild(0).GetChild(0).GetComponent<Text>();
         public Transform FieldIconContent => transform.GetChild(0).GetChild(1);
         public Transform StateIconContent => transform.GetChild(0).GetChild(2);
-        public string CardName => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).TranslateName;
+        public string CardTranslateName => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).TranslateName;
 
         [ShowInInspector]
-        public string CardIntroduction
-        {
-            get
-            {
-                string describe = Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).TranslateAbility;
-                typeof(CardField).GetEnumNames().ToList().ForEach(name =>
-                {
-                    describe = describe.Replace($"${name}", this[(CardField)Enum.Parse(typeof(CardField), name)].ToString());
-                });
-                return describe;
-            }
-        }
+        public string CardTranslateAbility => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).TranslateAbility;
 
         public Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<TriggerInfoModel, Task>>>> cardAbility = new Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<TriggerInfoModel, Task>>>>();
 
@@ -149,6 +137,8 @@ namespace TouhouMachineLearningSummary.Model
         /// </summary>
         public virtual void Init()
         {
+            ///////////////////////////////////////////////////////初始化////////////////////////////////////////////////////////////////////////
+
             IsInit = true;
             //初始化卡牌效果并填充空效果
             foreach (TriggerTime tirggerTime in Enum.GetValues(typeof(TriggerTime)))
@@ -159,6 +149,7 @@ namespace TouhouMachineLearningSummary.Model
                     cardAbility[tirggerTime][triggerType] = new List<Func<TriggerInfoModel, Task>>();
                 }
             }
+            //////////////////////////////////////////////////编写默认被动效果///////////////////////////////////////////////////////////////////
             //当创造时从牌库中构建
             AbalityRegister(TriggerTime.When, TriggerType.Generate)
              .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.GenerateCard(triggerInfo.targetCard, triggerInfo.location); })
@@ -569,7 +560,7 @@ namespace TouhouMachineLearningSummary.Model
         /// <param name="time">触发时机</param>
         /// <param name="type">触发方式</param>
         /// <returns>一个触发效果的配置管理器</returns>
-        public CardAbilityManeger AbalityRegister(TriggerTime time, TriggerType type) => new CardAbilityManeger(this, time, type);
+        public Manager.CardAbilityManeger AbalityRegister(TriggerTime time, TriggerType type) => new Manager.CardAbilityManeger(this, time, type);
         private void Update()
         {
             RefreshCardUi();
