@@ -257,7 +257,7 @@ namespace TouhouMachineLearningSummary.Model
                 .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Reversal(triggerInfo); })
                .AbilityAppend();
             //登记卡牌回合状态变化时效果
-            AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
+            AbalityRegister(TriggerTime.After, TriggerType.TurnEnd)
                 .AbilityAdd(async (triggerInfo) =>
                 {
                     //我死啦
