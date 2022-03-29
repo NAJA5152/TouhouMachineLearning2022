@@ -29,7 +29,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 
                  await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Battle][CardRank.Silver, CardRank.Copper].CardList, 1);
                  await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetPoint(num));
-             })
+             }, Condition.Default)
              .AbilityAppend();
         }
     }

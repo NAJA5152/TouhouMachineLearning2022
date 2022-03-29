@@ -27,7 +27,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                    await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardField.Energy].CardList, 2);
                    await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, this).SetTargetField(CardField.Energy, GameSystem.InfoSystem.SelectUnits.Sum(card => card[CardField.Energy])));
                    await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetTargetField(CardField.Energy, 0));
-               })
+               }, Condition.Default)
                .AbilityAppend();
         }
     }

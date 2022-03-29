@@ -23,7 +23,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                })
                .AbilityAppend();
 
-            AbalityRegister(TriggerTime.Before, TriggerType.TurnEnd)
+            AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, this).SetTargetField(CardField.Energy, 1));

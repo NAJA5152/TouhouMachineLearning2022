@@ -1204,7 +1204,65 @@
       "geyu": "asdsaf"
     },
     "Ability": {
-      "Ability-Ch": "位于场上时，我方每部署一张单位，该牌获得一点能量"
+      "Ability-Ch": "位于场上时，我方每部署一张单位，在其部署效果生效前，该牌能量点数+1"
+    },
+    "Describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 4,
+    "cardRank": 1,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 3,
+    "level": "多人",
+    "series": "10",
+    "point": 3,
+    "Name": {
+      "Name-Ch": "尼斯湖水怪",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "机械",
+      "Tc": "",
+      "En": "Machine",
+      "geyu": "asdsaf"
+    },
+    "Ability": {
+      "Ability-Ch": "我方回合结束：移除两侧单位能量值，对对方点数最大的单位造成等量伤害"
+    },
+    "Describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 4,
+    "cardRank": 1,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 4,
+    "level": "多人",
+    "series": "10",
+    "point": 2,
+    "Name": {
+      "Name-Ch": "急速充能器",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "机械",
+      "Tc": "",
+      "En": "Machine",
+      "geyu": "asdsaf"
+    },
+    "Ability": {
+      "Ability-Ch": "部署：获得倒计时（2）\n我方回合开始时，倒计时-1，倒计时归0时\n将卡牌两侧的\"水利发电机\"或\"储能电容器\"单位的能量点数增加到容量上限，然后重置倒计时为2"
     },
     "Describe": {
       "Describe-Ch": ""
@@ -1223,13 +1281,13 @@
     "series": "10",
     "point": 0,
     "Name": {
-      "Name-Ch": "压力测试法",
+      "Name-Ch": "压力测试",
       "Name-En": ""
     },
     "CardTags": {
-      "Ch": "符卡",
+      "Ch": "策略",
       "Tc": "",
-      "En": "SpellCard",
+      "En": "tactics",
       "geyu": ""
     },
     "Ability": {
@@ -1252,7 +1310,7 @@
     "series": "10",
     "point": 6,
     "Name": {
-      "Name-Ch": "应急充能箱",
+      "Name-Ch": "临时储存器",
       "Name-En": ""
     },
     "CardTags": {
@@ -1276,6 +1334,64 @@
     "isFinish": true
   },
   {
+    "cardID": 3,
+    "level": "多人",
+    "series": "10",
+    "point": 0,
+    "Name": {
+      "Name-Ch": "捆绑销售",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "策略",
+      "Tc": "",
+      "En": "tactics",
+      "geyu": ""
+    },
+    "Ability": {
+      "Ability-Ch": "部署：移除左侧单位能量，从卡组中打出一张最上方点数相同的非金单位"
+    },
+    "Describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 1,
+    "cardCamp": 4,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 4,
+    "level": "多人",
+    "series": "10",
+    "point": 0,
+    "Name": {
+      "Name-Ch": "废物利用",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "策略",
+      "Tc": "",
+      "En": "tactics",
+      "geyu": ""
+    },
+    "Ability": {
+      "Ability-Ch": "将墓地中三个机械单位回收到卡组中"
+    },
+    "Describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 1,
+    "cardCamp": 4,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
     "cardID": 5,
     "level": "多人",
     "series": "10",
@@ -1291,15 +1407,44 @@
       "geyu": "asdsaf"
     },
     "Ability": {
-      "Ability-Ch": "我方回合结束：移除两侧单位能量值，对自身造成等量增益"
+      "Ability-Ch": "我方回合结束：移除两侧单位能量值，对自身产生等量增益"
     },
     "Describe": {
       "Describe-Ch": "没错，只要一直充能，他就能越来越大。。。不不，才不是个气球呢"
     },
     "cardType": 0,
     "cardCamp": 4,
-    "cardRank": 3,
+    "cardRank": 2,
     "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 6,
+    "level": "多人",
+    "series": "10",
+    "point": 1,
+    "Name": {
+      "Name-Ch": "山童",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "妖怪 ",
+      "Tc": " ",
+      "En": "Yokai ",
+      "geyu": " "
+    },
+    "Ability": {
+      "Ability-Ch": "部署：选择一个属性区域，对该牌所有单位赋予土元素状态"
+    },
+    "Describe": {
+      "Describe-Ch": ""
+    },
+    "cardType": 0,
+    "cardCamp": 4,
+    "cardRank": 2,
+    "cardDeployRegion": 3,
     "cardDeployTerritory": 0,
     "ramification": 0,
     "isFinish": true

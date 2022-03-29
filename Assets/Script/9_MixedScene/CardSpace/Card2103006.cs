@@ -30,7 +30,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                    var targetCard = GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck].CardList
                            .Where(card => card.CardID == GameSystem.InfoSystem.SelectUnit.CardID).ToList().FirstOrDefault();
                    await GameSystem.TransferSystem.SummonCard(new TriggerInfoModel(this, targetCard));
-               })
+               }, Condition.Default)
                .AbilityAppend();
         }
     }

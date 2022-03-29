@@ -31,7 +31,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                    {
                        await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Battle][CardRank.Silver][CardRank.Copper][CardFeature.Largest].CardList.FirstOrDefault()));
                    }
-               })
+               }, Condition.Default)
                .AbilityAppend();
         }
     }

@@ -5,9 +5,9 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// 卡牌名称:河童修理工
+    /// 卡牌名称:尼斯湖水怪
     /// </summary>
-    public class Card2103005 : Card
+    public class Card2101003 : Card
     {
         public override void Init()
         {
@@ -21,14 +21,16 @@ namespace TouhouMachineLearningSummary.CardSpace
                })
                .AbilityAppend();
 
-            AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-            .AbilityAdd(async (triggerInfo) =>
-            {
-                await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Copper][CardTag.Machine].CardList, 1);
-                await GameSystem.PointSystem.Cure(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits));
-                await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits));
-            }, Condition.Default)
-            .AbilityAppend();
+            AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
+              .AbilityAdd(async (triggerInfo) =>
+              {
+
+                  int energyPoint = TwoSideCard.Sum(card => card[CardField.Energy]);
+                  await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, TwoSideCard).SetTargetField(CardField.Energy, 0));
+
+                  await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][ Orientation.Op][CardFeature.Largest].CardList).SetPoint(energyPoint));
+              }, Condition.Default, Condition.OnMyTurn)
+              .AbilityAppend();
         }
     }
 }
