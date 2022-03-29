@@ -17,10 +17,11 @@ namespace TouhouMachineLearningSummary.CardSpace
                 .AbilityAdd(async (triggerInfo) =>
                 {
                     await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardTag.Machine].CardList, 1);
-                    if (GameSystem.InfoSystem.SelectUnit!=null)
-                    {
-                        await GameSystem.TransferSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit).SetLocation(Orientation.Op, GameSystem.InfoSystem.SelectUnit.CurrentRegion, -1));
-                    }
+                    await GameSystem.TransferSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit).SetLocation(Orientation.Op, GameSystem.InfoSystem.SelectUnit.CurrentRegion, -1));
+
+                    ////if (GameSystem.InfoSystem.SelectUnit!=null)
+                    ////{
+                    ////}
                 })
                .AbilityAdd(async (triggerInfo) =>
                {

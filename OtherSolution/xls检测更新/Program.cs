@@ -18,8 +18,22 @@ namespace xls检测更新
         static string filePath;
         static Dictionary<string, Dictionary<string, string>> textTranslate = new Dictionary<string, Dictionary<string, string>>();
         static List<string> supportLanguage = new List<string>();
+       static bool a = true;
+       static bool b = true;
+       static bool c = true;
+       static bool r1 => !(a && b && c);
+       static bool r2 => (!a || !b || !c);
         static void Main(string[] args)
         {
+            Console.WriteLine(r1);
+            Console.WriteLine(r2);
+            a = false;
+            Console.WriteLine(r1);
+            Console.WriteLine(r2);
+            b = false;
+            Console.WriteLine(r1);
+            Console.WriteLine(r2);
+
             List<string> list = new List<string>() { null};
             Workbook workbook = new Workbook();
             direPath = Directory.GetCurrentDirectory().Replace(@"\OtherSolution\xls检测更新\bin\Debug\net6.0", "") + @"\Assets\Resources\GameData\";

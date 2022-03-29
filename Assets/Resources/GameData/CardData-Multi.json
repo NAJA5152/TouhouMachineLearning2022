@@ -1276,6 +1276,35 @@
     "isFinish": true
   },
   {
+    "cardID": 5,
+    "level": "多人",
+    "series": "10",
+    "point": 5,
+    "Name": {
+      "Name-Ch": "非想天则",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "机械",
+      "Tc": "",
+      "En": "Machine",
+      "geyu": "asdsaf"
+    },
+    "Ability": {
+      "Ability-Ch": "我方回合结束：移除两侧单位能量值，对自身造成等量增益"
+    },
+    "Describe": {
+      "Describe-Ch": "没错，只要一直充能，他就能越来越大。。。不不，才不是个气球呢"
+    },
+    "cardType": 0,
+    "cardCamp": 4,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
     "cardID": 1,
     "level": "多人",
     "series": "10",
@@ -1424,16 +1453,16 @@
     "cardID": 6,
     "level": "多人",
     "series": "10",
-    "point": 5,
+    "point": 0,
     "Name": {
       "Name-Ch": "河童的天才维修法",
       "Name-En": ""
     },
     "CardTags": {
-      "Ch": "妖怪 ",
-      "Tc": " ",
-      "En": "Yokai ",
-      "geyu": " "
+      "Ch": "策略",
+      "Tc": "",
+      "En": "tactics",
+      "geyu": ""
     },
     "Ability": {
       "Ability-Ch": "部署：选择并将我方场上一个机械单位直接移入墓地（不视为伤害和死亡），随后从牌组中打出其同名单位"
@@ -1441,7 +1470,7 @@
     "Describe": {
       "Describe-Ch": "品质保障，只换不修！"
     },
-    "cardType": 0,
+    "cardType": 1,
     "cardCamp": 4,
     "cardRank": 3,
     "cardDeployRegion": 99,
