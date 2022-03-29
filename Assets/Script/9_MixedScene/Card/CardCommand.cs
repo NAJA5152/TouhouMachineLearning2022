@@ -339,6 +339,10 @@ namespace TouhouMachineLearningSummary.Command
             Orientation orientation = card.belong == Territory.My ? Orientation.Down : Orientation.Up;
             RemoveCard(card);
             AgainstInfo.cardSet[orientation][GameRegion.Grave].RowManagers[0].CardList.Insert(Index, card);
+
+            //重置卡牌状态
+            card.cardFields.Clear();
+            card.cardStates.Clear();
             card.SetCardSeeAble(false);
             card.ChangePoint = 0;
             card.isMoveStepOver = false;

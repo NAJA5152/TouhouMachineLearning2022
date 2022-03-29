@@ -34,7 +34,7 @@ namespace TouhouMachineLearningSummary.Command
                 GameObject NewCard = Object.Instantiate(UiInfo.CardModel);
 
                 NewCard.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = Cards[i].CardTranslateAbility;
-                NewCard.transform.GetChild(1).GetComponent<Text>().text = Cards[i].ShowPoint.ToString();
+                NewCard.transform.GetChild(1).GetComponent<Text>().text = Cards[i].ShowPoint==0?"" : Cards[i].ShowPoint.ToString();
                 NewCard.name = CardStandardInfo.TranslateName;
 
                 ////修改文本为富文本
@@ -61,7 +61,7 @@ namespace TouhouMachineLearningSummary.Command
                 var CardStandardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(CardIds[i]);
                 GameObject NewCard = Object.Instantiate(UiInfo.CardModel);
                 NewCard.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = CardStandardInfo.TranslateAbility;
-
+                NewCard.transform.GetChild(1).GetComponent<Text>().text = CardStandardInfo.point == 0 ? "" : CardStandardInfo.point.ToString();
                 //string Title = card.CardName;
                 //string Text = card.CardIntroduction;
                 //string Effect = "";

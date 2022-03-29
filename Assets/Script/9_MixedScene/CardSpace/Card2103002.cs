@@ -29,7 +29,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 
                   int energyPoint = TwoSideCard.Sum(card => card[CardField.Energy]);
                   await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, this).SetTargetField(CardField.Energy, energyPoint));
-                  await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, TwoSideCard).SetTargetField(CardField.Energy, 0));
+                  await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, TwoSideCard).SetTargetField(CardField.Energy, 0));
                   if (this[CardField.Energy] > 8)
                   {
                       await GameSystem.UiSystem.ShowTips(this, "ГЌди", new Color(1, 0, 0));

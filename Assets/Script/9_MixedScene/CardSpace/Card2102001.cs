@@ -18,16 +18,13 @@ namespace TouhouMachineLearningSummary.CardSpace
                 {
                     await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardTag.Machine].CardList, 1);
                     await GameSystem.TransferSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit).SetLocation(Orientation.Op, GameSystem.InfoSystem.SelectUnit.CurrentRegion, -1));
-
-                    ////if (GameSystem.InfoSystem.SelectUnit!=null)
-                    ////{
-                    ////}
                 })
                .AbilityAdd(async (triggerInfo) =>
                {
                    if (GameSystem.InfoSystem.SelectUnit != null)
                    {
                        int num = GameSystem.InfoSystem.SelectUnit[CardField.Energy];
+                       await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit).SetTargetField(CardField.Energy, 0));
                        await GameSystem.PointSystem.Hurt(new TriggerInfoModel(GameSystem.InfoSystem.SelectUnit, GameSystem.InfoSystem.SelectUnit.belongCardList).SetPoint(num).SetMeanWhile());
                    }
                })
