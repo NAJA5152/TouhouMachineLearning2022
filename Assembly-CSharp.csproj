@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
-    <LangVersion>latest</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -52,6 +52,9 @@
     <UnityBuildTarget>StandaloneWindows64:19</UnityBuildTarget>
     <UnityVersion>2020.3.24f1</UnityVersion>
   </PropertyGroup>
+  <ItemGroup>
+    <Analyzer Include="D:\vs2022\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamRemoteplay\RemotePlaySessionID_t.cs" />
     <Compile Include="Assets\Assemblies\Steamworks.NET\types\SteamNetworking\SNetListenSocket_t.cs" />
@@ -169,18 +172,23 @@
   <ItemGroup>
     <None Include="Assets\Assemblies\SignalR\Microsoft.Extensions.Primitives.dll" />
     <None Include="Assets\Assemblies\SignalR\System.Memory.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.Extensions.Configuration.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Overlay.shader" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.AspNetCore.SignalR.Common.dll" />
     <None Include="Assets\Assemblies\SignalR\System.Text.Encodings.Web.dll" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.Extensions.DependencyInjection.dll" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.Extensions.Logging.Abstractions.dll" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.Extensions.Options.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap.shader" />
     <None Include="Assets\Assemblies\RestSharp.dll" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\NoEmitAndNoEditor\Sirenix.Serialization.dll" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\link.xml" />
     <None Include="Assets\mcs.rsp" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.AspNetCore.SignalR.Protocols.Json.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Mobile.cginc" />
     <None Include="Assets\Assemblies\x86_64\steam_api64.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF SSD.shader" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\Sirenix.Serialization.Config.xml" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\Sirenix.Serialization.Config.dll" />
     <None Include="Assets\Assemblies\I18N.CJK.dll" />
@@ -189,6 +197,7 @@
     <None Include="Assets\Assemblies\SignalR\Microsoft.Extensions.Configuration.Abstractions.dll" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.AspNetCore.Http.Connections.Common.dll" />
     <None Include="Assets\Assemblies\ConsoleTables.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\Assemblies\Network.dll" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\NoEditor\Sirenix.Serialization.dll" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.Extensions.DependencyInjection.Abstractions.dll" />
@@ -198,34 +207,49 @@
     <None Include="Assets\Assemblies\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.xml" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\Sirenix.OdinInspector.Attributes.dll" />
     <None Include="Assets\Assemblies\SignalR\System.Threading.Tasks.Extensions.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.AspNetCore.Connections.Abstractions.dll" />
+    <None Include="Assets\TextMesh Pro\Sprites\EmojiOne Attribution.txt" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\Sirenix.Utilities.xml" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\Sirenix.Utilities.dll" />
     <None Include="Assets\Assemblies\SignalR\System.ComponentModel.Annotations.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Custom-Atlas.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF.shader" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile SSD.shader" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Leading Characters.txt" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Properties.cginc" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.AspNetCore.Http.Features.dll" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\NoEditor\Sirenix.Utilities.dll" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.Extensions.Configuration.Binder.dll" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.Extensions.Features.dll" />
     <None Include="Assets\Assemblies\Steamworks.NET\redist\steam_appid.txt" />
     <None Include="Assets\csc.rsp" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMPro_Surface.cginc" />
     <None Include="Assets\Assemblies\Sirenix\Readme.txt" />
     <None Include="Assets\Assemblies\SignalR\System.IO.Pipelines.dll" />
     <None Include="Assets\Assemblies\SignalR\System.Runtime.CompilerServices.Unsafe.dll" />
     <None Include="Assets\Assemblies\InTheHand.Net.Personal.dll" />
     <None Include="Assets\Assemblies\x86\steam_api.dll" />
+    <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\Sirenix.Utilities.Editor.xml" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.AspNetCore.SignalR.Client.Core.dll" />
     <None Include="Assets\Assemblies\SignalR\System.Text.Json.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF Overlay.shader" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.AspNetCore.Http.Connections.Client.dll" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\NoEmitAndNoEditor\Sirenix.Utilities.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Bitmap-Mobile.shader" />
+    <None Include="Assets\TextMesh Pro\Fonts\LiberationSans - OFL.txt" />
     <None Include="Assets\Assemblies\I18N.dll" />
     <None Include="Assets\Assemblies\SignalR\System.Buffers.dll" />
     <None Include="Assets\Assemblies\SignalR\System.Diagnostics.DiagnosticSource.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile.shader" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.Bcl.AsyncInterfaces.dll" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\Sirenix.Serialization.dll" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\Sirenix.Serialization.xml" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.AspNetCore.SignalR.Client.dll" />
+    <None Include="Assets\TextMesh Pro\Shaders\TMP_Sprite.shader" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">

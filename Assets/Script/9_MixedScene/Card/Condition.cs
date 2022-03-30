@@ -1,7 +1,7 @@
 ﻿namespace TouhouMachineLearningSummary.GameEnum
 {
     /// <summary>
-    /// 触发的条件
+    /// 用于判断该卡牌效果片段是否触发的条件
     /// </summary>
     public enum Condition
     {

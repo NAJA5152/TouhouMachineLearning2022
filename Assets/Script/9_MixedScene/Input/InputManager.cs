@@ -49,7 +49,6 @@ namespace TouhouMachineLearningSummary.Manager
                 {
                     NetCommand.AsyncInfo(NetAcyncType.Pass);
                     AgainstInfo.isPlayerPass = true;
-                    //Command.GameUI.UiCommand.SetCurrentPass();
                     PassPressTime = 0;
                 }
             }
@@ -76,13 +75,11 @@ namespace TouhouMachineLearningSummary.Manager
                     Card playerFocusCard = AgainstInfo.playerFocusCard;
                     if (!AgainstInfo.SelectUnits.Contains(playerFocusCard))
                     {
-                        //Debug.LogError("add" + playerFocusCard);
                         AgainstInfo.SelectUnits.Add(playerFocusCard);
                         UiCommand.CreatFixedArrow(playerFocusCard);
                     }
                     else
                     {
-                        //Debug.LogError("remove" + playerFocusCard);
                         AgainstInfo.SelectUnits.Remove(playerFocusCard);
                         UiCommand.DestoryFixedArrow(playerFocusCard);
                     }

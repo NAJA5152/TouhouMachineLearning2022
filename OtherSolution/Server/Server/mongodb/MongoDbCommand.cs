@@ -25,7 +25,7 @@ namespace Server
             PlayerInfoCollection = db.GetCollection<PlayerInfo>("PlayerInfo");
             CardConfigCollection = db.GetCollection<CardConfig>("CardConfig");
             SummaryCollection = db.GetCollection<AgainstSummary>("AgainstSummary");
-            DiyCardCollection= db.GetCollection<DiyCardInfo>("DiyCards");
+            DiyCardCollection = db.GetCollection<DiyCardInfo>("DiyCards");
         }
         //////////////////////////////////////////////////账号系统///////////////////////////////////////////////////////////////////
         public static int Register(string account, string password)
@@ -67,7 +67,7 @@ namespace Server
                 userInfo = PlayerInfoCollection.Find(CheckUserExistQuery).FirstOrDefault();
                 if (userInfo.Password == password.GetSaltHash(userInfo.UID))
                 {
-                    
+
                 }
                 else
                 {
