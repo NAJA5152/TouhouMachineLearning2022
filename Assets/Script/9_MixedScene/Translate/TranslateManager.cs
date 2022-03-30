@@ -57,11 +57,12 @@ namespace TouhouMachineLearningSummary.Manager
                     //加入到关键词列表
                     keyWordInfos.Add(new KeyWordModel()
                     {
-                        tag = keyWord,
+                        tag = pair["Tag"],
+                        keyWord = keyWord,
                         startIndex = index,
                         endIndex = index + keyWord.Length,
                         introduction = introduction
-                    });
+                    }); ;
                     index = index + keyWord.Length;
                 }
             });

@@ -3,7 +3,8 @@
     class KeyWordModel
     {
        public string tag;
-       public int startIndex;
+       public string keyWord;
+        public int startIndex;
        public int endIndex;
        public string introduction;
     }

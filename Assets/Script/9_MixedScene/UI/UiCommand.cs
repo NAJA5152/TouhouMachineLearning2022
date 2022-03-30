@@ -10,7 +10,7 @@ using TouhouMachineLearningSummary.GameEnum;
 
 namespace TouhouMachineLearningSummary.Command
 {
-    public class UiCommand : MonoBehaviour
+    public class UiCommand 
     {
         //////////////////////////////////////////////////////////状态与字段UI//////////////////////////////////////////////////////////////
         public static Sprite GetCardStateSprite(CardState cardState) => Resources.Load<Sprite>("FieldAndState\\" + cardState.ToString());
@@ -47,7 +47,7 @@ namespace TouhouMachineLearningSummary.Command
         //////////////////////////////////////////////////////////箭头//////////////////////////////////////////////////////////////
         public static void CreatFreeArrow()
         {
-            GameObject newArrow = Instantiate(UiInfo.Arrow);
+            GameObject newArrow =GameObject.Instantiate(UiInfo.Arrow);
             newArrow.name = "Arrow-null";
             newArrow.GetComponent<ArrowManager>().InitArrow(AgainstInfo.ArrowStartCard, UiInfo.ArrowEndPoint);
             AgainstInfo.ArrowList.Add(newArrow);
@@ -56,11 +56,11 @@ namespace TouhouMachineLearningSummary.Command
         {
             GameObject targetArrow = AgainstInfo.ArrowList.First(arrow => arrow.GetComponent<ArrowManager>().targetCard == null);
             AgainstInfo.ArrowList.Remove(targetArrow);
-            Destroy(targetArrow);
+            GameObject.Destroy(targetArrow);
         }
         public static void CreatFixedArrow(Card card)
         {
-            GameObject newArrow = Instantiate(UiInfo.Arrow);
+            GameObject newArrow = GameObject.Instantiate(UiInfo.Arrow);
             newArrow.name = "Arrow-" + card.name;
             newArrow.GetComponent<ArrowManager>().InitArrow(AgainstInfo.ArrowStartCard, AgainstInfo.playerFocusCard);
             AgainstInfo.ArrowList.Add(newArrow);
@@ -69,11 +69,11 @@ namespace TouhouMachineLearningSummary.Command
         {
             GameObject targetArrow = AgainstInfo.ArrowList.First(arrow => arrow.GetComponent<ArrowManager>().targetCard == card);
             AgainstInfo.ArrowList.Remove(targetArrow);
-            Destroy(targetArrow);
+            GameObject.Destroy(targetArrow);
         }
         public static void DestoryAllArrow()
         {
-            AgainstInfo.ArrowList.ForEach(Destroy);
+            AgainstInfo.ArrowList.ForEach(GameObject.Destroy);
             AgainstInfo.ArrowList.Clear();
         }
     }

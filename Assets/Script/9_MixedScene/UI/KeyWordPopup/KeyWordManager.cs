@@ -1,32 +1,41 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
+using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.EventSystems;
-
-public partial class KeyWordManager : MonoBehaviour, IPointerClickHandler
+namespace TouhouMachineLearningSummary.Manager
 {
-    public TextMeshProUGUI text;
-
-    public RefreshText(string text)
+    public partial class KeyWordManager : MonoBehaviour, IPointerClickHandler
     {
+        static KeyWordManager manager;
+        void Awake() => manager = this;
 
-        //判断一个有标签的单词是否有字段
-        string HasIntroduction(string text)
+        public TextMeshProUGUI textMesh;
+        static List<KeyWordModel> words = new List<KeyWordModel>();
+
+        public static void RefreshText(string text)
         {
-            
+            words = TranslateManager.CheckKeyWord(text);
+
+            words.Select(x => x.tag).Distinct().ToList().ForEach(tag =>
+            {
+                text = text.Replace(tag, $"<u>{tag}</u>");
+            });
+            manager.textMesh.text = text;
+        }
+        public void OnPointerClick(PointerEventData eventData)
+        {
+            Vector3 pos = new Vector3(eventData.position.x, eventData.position.y, 0);
+            int linkIndex = TMP_TextUtilities.FindNearestCharacter(textMesh, pos, null, true);
+            if (linkIndex > -1)
+            {
+                TMP_CharacterInfo info = textMesh.textInfo.characterInfo[linkIndex];
+                Debug.Log("点击了" + info.character);
+            }
         }
 
     }
-    public void OnPointerClick(PointerEventData eventData)
-    {
-        Vector3 pos = new Vector3(eventData.position.x, eventData.position.y, 0);
-        int linkIndex = TMP_TextUtilities.FindNearestCharacter(text, pos, null, true);
-        if (linkIndex > -1)
-        {
-            TMP_CharacterInfo info = text.textInfo.characterInfo[linkIndex];
-            Debug.Log("点击了" + info.character);
-        }
-    }
-
 }
+
