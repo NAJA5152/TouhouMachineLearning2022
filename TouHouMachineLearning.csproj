@@ -8,8 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>
-    </RootNamespace>
+    <RootNamespace></RootNamespace>
     <ProjectGuid>{C59B79D0-2714-1C68-356F-AE308C1C32C2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -27,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -36,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -57,7 +56,6 @@
     <Analyzer Include="D:\vs2022\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Script\9_MixedScene\UI\KeyWordPopup\KeyWordModel.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\UIEvent.cs" />
     <Compile Include="Assets\Script\9_MixedScene\UI\CardAbilityPopup\CardAbilityPopupManager.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageComponents\卡牌列表组件\CardListCommand.cs" />
@@ -142,6 +140,7 @@
     <Compile Include="Assets\Script\9_MixedScene\Dialogue\DialogueInfo.cs" />
     <Compile Include="Assets\Script\2_BattleSenen\State\StateControl.cs" />
     <Compile Include="Assets\Script\2_BattleSenen\State\StateCommand.cs" />
+    <Compile Include="Assets\Script\9_MixedScene\UI\KeyWordPopup\KeyWordModel.cs" />
     <Compile Include="Assets\Script\2_BattleSenen\Ai\AiCommand.cs" />
     <Compile Include="Assets\Script\9_MixedScene\CardInspector\CardMenu.cs" />
     <Compile Include="Assets\Script\2_BattleSenen\UI\Arrow\ArrowManager.cs" />
@@ -895,6 +894,12 @@
     <Reference Include="UnityEngine.UI">
       <HintPath>Library\ScriptAssemblies\UnityEngine.UI.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Live2D.csproj">
+      <Project>{34AA1B34-88B5-120E-60AC-A4A78A443313}</Project>
+      <Name>Live2D</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

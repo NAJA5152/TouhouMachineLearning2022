@@ -26,6 +26,8 @@ namespace TouhouMachineLearningSummary.Model
         public BattleRegion CardDeployRegion { get; set; }
         //卡牌默认可部署所属
         public Territory CardDeployTerritory { get; set; }
+        //卡牌当前可部署所属
+        public Territory CardCurrentTerritory => AgainstInfo.cardSet[Orientation.Down].CardList.Contains(this) ? Territory.My : Territory.Op;
         [ShowInInspector]
         //卡牌默认可部署所属
         public Orientation CurrentOrientation => AgainstInfo.cardSet[Orientation.Down].CardList.Contains(this) ? Orientation.Down : Orientation.Up;
@@ -89,7 +91,7 @@ namespace TouhouMachineLearningSummary.Model
                 }
             }
         }
-        public Territory belong => AgainstInfo.cardSet[Orientation.Down].CardList.Contains(this) ? Territory.My : Territory.Op;
+        
         public Vector3 targetPosition;
         public Quaternion targetQuaternion;
 

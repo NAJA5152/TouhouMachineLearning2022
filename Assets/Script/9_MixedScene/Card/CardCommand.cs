@@ -334,11 +334,29 @@ namespace TouhouMachineLearningSummary.Command
             _ = GameSystem.PointSystem.Set(new TriggerInfoModel(triggerInfo.targetCard, triggerInfo.triggerCard).SetPoint(targetCardPoint));
             await Task.Delay(1000);
         }
-        public static async Task MoveToGrave(Card card, int Index = 0)
+        public static async Task MoveToDeck(Card card, int Index = 0,bool isRandom=false)
         {
-            Orientation orientation = card.belong == Territory.My ? Orientation.Down : Orientation.Up;
+            if (card == null) return;
+            await Task.Delay(500);
             RemoveCard(card);
-            AgainstInfo.cardSet[orientation][GameRegion.Grave].RowManagers[0].CardList.Insert(Index, card);
+            AgainstInfo.cardSet[card.CurrentOrientation][GameRegion.Deck].RowManagers[0].CardList.Insert(Index, card);
+
+            //重置卡牌状态
+            card.cardFields.Clear();
+            card.cardStates.Clear();
+            card.SetCardSeeAble(false);
+            card.ChangePoint = 0;
+            card.isMoveStepOver = false;
+            await Task.Delay(100);
+            card.isMoveStepOver = true;
+            await AudioCommand.PlayAsync(GameAudioType.DrawCard);
+        }
+        public static async Task MoveToGrave(Card card)
+        {
+            if (card == null) return;
+            await Task.Delay(500);
+            RemoveCard(card);
+            AgainstInfo.cardSet[card.CurrentOrientation][GameRegion.Grave].RowManagers[0].CardList.Insert(0, card);
 
             //重置卡牌状态
             card.cardFields.Clear();

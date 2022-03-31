@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,6 @@ namespace TouhouMachineLearningSummary.Manager
 
         public TextMeshProUGUI textMesh;
         static List<KeyWordModel> words = new List<KeyWordModel>();
-
         public static void RefreshText(string text)
         {
             words = TranslateManager.CheckKeyWord(text);

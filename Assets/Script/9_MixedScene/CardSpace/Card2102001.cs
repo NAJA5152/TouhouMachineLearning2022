@@ -30,7 +30,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                })
                .AbilityAdd(async (triggerInfo) =>
                {
-                   await GameSystem.TransferSystem.MoveToGrave(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.MoveToGrave(this);
                })
                .AbilityAppend();
         }

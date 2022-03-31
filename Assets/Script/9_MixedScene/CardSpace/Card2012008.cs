@@ -18,7 +18,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                {
                    await GameSystem.SelectSystem.SelectRegion(this);
                    await GameSystem.PointSystem.Gain(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectRowCardList).SetPoint(2).SetMeanWhile());
-                   await GameSystem.TransferSystem.MoveToGrave(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.MoveToGrave(this);
                })
                .AbilityAppend();
         }

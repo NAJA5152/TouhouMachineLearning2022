@@ -17,7 +17,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.VariationSystem.SetVariation(VariationType.Reverse);
-                   await GameSystem.TransferSystem.MoveToGrave(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.MoveToGrave(this);
                })
                .AbilityAppend();
         }

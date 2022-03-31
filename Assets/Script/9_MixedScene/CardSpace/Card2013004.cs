@@ -29,7 +29,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                            default: break;
                        }
                    }
-                   await GameSystem.TransferSystem.MoveToGrave(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.MoveToGrave(this);
                })
                .AbilityAppend();
         }
