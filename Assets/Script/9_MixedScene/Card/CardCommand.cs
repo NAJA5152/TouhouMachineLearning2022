@@ -241,7 +241,7 @@ namespace TouhouMachineLearningSummary.Command
 
         public static async Task GenerateCard(Card targetCard, Location location)
         {
-            _ = AudioCommand.PlayAsync(GameEnum.GameAudioType.DrawCard);
+            _ = AudioCommand.PlayAsync(GameAudioType.DrawCard);
             RowCommand.SetPlayCardMoveFree(false);
             targetCard.SetCardSeeAble(true);
 
@@ -249,13 +249,13 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.cardSet[TargetRow.orientation][TargetRow.region].Add(targetCard, location.Y);
             if (TargetRow.CardList.Count > 6)
             {
-                await GameSystem.TransferSystem.MoveToGrave(new TriggerInfoModel(targetCard, targetCard));
+                await GameSystem.TransferSystem.MoveToGrave(targetCard);
             }
         }
         public static async Task PlayCard(Card targetCard, bool IsAnsy = true)
         {
             await Task.Delay(0);//之后实装卡牌特效需要时间延迟配合
-            _ = AudioCommand.PlayAsync(GameEnum.GameAudioType.DrawCard);
+            _ = AudioCommand.PlayAsync(GameAudioType.DrawCard);
             RowCommand.SetPlayCardMoveFree(false);
             targetCard.isPrepareToPlay = false;
             if (IsAnsy)
