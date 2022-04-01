@@ -338,8 +338,9 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (card == null) return;
             await Task.Delay(500);
+            Orientation targetOrientation = card.CurrentOrientation;
             RemoveCard(card);
-            AgainstInfo.cardSet[card.CurrentOrientation][GameRegion.Deck].RowManagers[0].CardList.Insert(Index, card);
+            AgainstInfo.cardSet[targetOrientation][GameRegion.Deck].RowManagers[0].CardList.Insert(Index, card);
 
             //重置卡牌状态
             card.cardFields.Clear();
@@ -355,8 +356,9 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (card == null) return;
             await Task.Delay(500);
+            Orientation targetOrientation = card.CurrentOrientation;
             RemoveCard(card);
-            AgainstInfo.cardSet[card.CurrentOrientation][GameRegion.Grave].RowManagers[0].CardList.Insert(0, card);
+            AgainstInfo.cardSet[targetOrientation][GameRegion.Grave].RowManagers[0].CardList.Insert(0, card);
 
             //重置卡牌状态
             card.cardFields.Clear();
