@@ -53,7 +53,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             CurrentGameCard = cardModel.GetComponent<Card>();
             CurrentLoadType = LoadType.FromCard;
-            currentRank = CurrentGameCard.belongCardList.IndexOf(CurrentGameCard);
+            currentRank = CurrentGameCard.BelongCardList.IndexOf(CurrentGameCard);
             ChangeIntroduction(CurrentGameCard);
             Show();
         }
@@ -71,7 +71,7 @@ namespace TouhouMachineLearningSummary.Manager
                     break;
                 case LoadType.FromCard:
                     currentRank = Mathf.Max(0, currentRank - 1);
-                    ChangeIntroduction(CurrentGameCard.belongCardList[currentRank]);
+                    ChangeIntroduction(CurrentGameCard.BelongCardList[currentRank]);
                     break;
                 default:
                     break;
@@ -90,8 +90,8 @@ namespace TouhouMachineLearningSummary.Manager
                     ChangeIntroduction(Info.CardCompnentInfo.distinctCardIds[currentRank]);
                     break;
                 case LoadType.FromCard:
-                    currentRank = Mathf.Min(CurrentGameCard.belongCardList.Count - 1, currentRank + 1);
-                    ChangeIntroduction(CurrentGameCard.belongCardList[currentRank]);
+                    currentRank = Mathf.Min(CurrentGameCard.BelongCardList.Count - 1, currentRank + 1);
+                    ChangeIntroduction(CurrentGameCard.BelongCardList[currentRank]);
                     break;
                 default:
                     break;

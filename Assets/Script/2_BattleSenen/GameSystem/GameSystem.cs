@@ -225,16 +225,15 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// <summary>
         /// 获取对战时通过选择的区域序号
         /// </summary>
-        public static int SelectRowRank => AgainstInfo.SelectRowRank;
+        public static int SelectRegionRank => AgainstInfo.SelectRowRank;
+        /// <summary>
+        /// 获取对战时选择的区域对应的卡牌列表
+        /// </summary>
+        public static List<Card> SelectRegionCardList => AgainstInfo.SelectRowCardList;
         /// <summary>
         /// 获取对战时通过选择的区域序号
         /// </summary>
         public static int SelectLocation => AgainstInfo.SelectRank;
-        /// <summary>
-        /// 获取对战时选择的区域对应的卡牌列表
-        /// </summary>
-        public static List<Card> SelectRowCardList => AgainstInfo.SelectRowCardList;
-        //public static List<int> SelectBoardCardRanks => AgainstInfo.SelectBoardCardRanks;
         /// <summary>
         /// 当选择面版中的卡牌皆为对战中出现的实体目标时
         /// 可从SelectBoardCards获得选择的单位实例对象

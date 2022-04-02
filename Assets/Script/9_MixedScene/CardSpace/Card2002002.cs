@@ -39,11 +39,11 @@ namespace TouhouMachineLearningSummary.CardSpace
              .AbilityAppend();
             //被召唤时效果
             AbalityRegister(TriggerTime.When, TriggerType.Summon)
-                   .AbilityAdd(async (triggerInfo) =>
-                   {
-                       await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, this).SetTargetField(CardField.Inspire, 2));
-                   }, Condition.Default)
-                   .AbilityAppend();
+                .AbilityAdd(async (triggerInfo) =>
+                {
+                    await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, this).SetTargetField(CardField.Inspire, 2));
+                }, Condition.Default)
+                .AbilityAppend();
         }
     }
 }

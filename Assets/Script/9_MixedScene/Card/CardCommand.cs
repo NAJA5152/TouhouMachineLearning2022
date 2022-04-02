@@ -55,7 +55,7 @@ namespace TouhouMachineLearningSummary.Command
             });
         }
 
-        public static void RemoveCard(Card card) => card.belongCardList.Remove(card);
+        public static void RemoveCard(Card card) => card.BelongCardList.Remove(card);
         public static Card GenerateCard(int id)
         {
             GameObject newCard = GameObject.Instantiate(Info.CardInfo.cardModel, new Vector3(0, 100, 0), Info.CardInfo.cardModel.transform.rotation);

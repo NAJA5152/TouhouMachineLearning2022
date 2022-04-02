@@ -27,22 +27,15 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   //await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle].CardList, 2);
-                   //for (int i = 0; i < 5; i++)
-                   //{
-                   //    await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetLocation(Orientation.My, GameRegion.Water, 0));
-                   //    await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetLocation(Orientation.My, GameRegion.Fire, 0));
-                   //    await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetLocation(Orientation.My, GameRegion.Wind, 0));
-                   //    await GameSystem.TransSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetLocation(Orientation.My, GameRegion.Soil, 0));
-                   //}
-                   int targetCount = AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][GameEnum.CardTag.Fairy].count;
+                   int targetCount = AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardTag.Fairy].CardList.Count;
                    Debug.Log("场上妖精数量为" + targetCount);
-                   for (int i = 0; i < targetCount; i++)
+                   for (int i = 0; i < AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardTag.Fairy].CardList.Count; i++)
                    {
+
+                       await GameSystem.SelectSystem.SelectUnite(this, AgainstInfo.cardSet[Orientation.Op][GameRegion.Battle][CardRank.Silver, CardRank.Copper].CardList, 1, isAuto: true);
+                       await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, AgainstInfo.SelectUnits).SetPoint(1));
                        if (BasePoint > 1)
                        {
-                           await GameSystem.SelectSystem.SelectUnite(this, AgainstInfo.cardSet[Orientation.Op][GameRegion.Battle][CardRank.Silver, CardRank.Copper].CardList, 1, isAuto: true);
-                           await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, AgainstInfo.SelectUnits).SetPoint(1));
                            await GameSystem.PointSystem.Weak(new TriggerInfoModel(this, this).SetPoint(1));
                        }
                    }

@@ -26,8 +26,7 @@ namespace TouhouMachineLearningSummary.CardSpace
               {
 
                   int energyPoint = TwoSideCard.Sum(card => card[CardField.Energy]);
-                  await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, TwoSideCard).SetTargetField(CardField.Energy, 0));
-
+                  await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, TwoSideCard).SetTargetField(CardField.Energy, 0));
                   await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][ Orientation.Op][CardFeature.LargestUnites].CardList).SetPoint(energyPoint));
               }, Condition.Default, Condition.OnMyTurn)
               .AbilityAppend();

@@ -20,11 +20,11 @@ namespace TouhouMachineLearningSummary.Info
         public List<SingleRowManager> RowManagers { get; set; } = new List<SingleRowManager>();
         [ShowInInspector]
         private List<Card> cardList = null;
-        public int count => CardList.Count;
         /// <summary>
         /// 全局数据集通过各种筛选后剩下的卡牌集合
         /// </summary>
         public List<Card> CardList { get => cardList ?? GlobalCardList.SelectMany(x => x).ToList(); set => cardList = value; }
+        public List<Card> GetSameIdCard(int cardId,int num) => CardList.Where(card => card.CardID == cardId).Take(num).ToList();
 
         public CardSet()
         {

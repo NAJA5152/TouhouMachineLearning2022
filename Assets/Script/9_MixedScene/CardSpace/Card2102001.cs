@@ -5,7 +5,7 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// 卡牌名称:压力测试法
+    /// 卡牌名称:手摇发电机
     /// </summary>
     public class Card2102001 : Card
     {
@@ -14,25 +14,18 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-                .AbilityAdd(async (triggerInfo) =>
-                {
-                    await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardTag.Machine].CardList, 1);
-                    await GameSystem.TransferSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit).SetLocation(Orientation.Op, GameSystem.InfoSystem.SelectUnit.CurrentRegion, -1));
-                })
                .AbilityAdd(async (triggerInfo) =>
                {
-                   if (GameSystem.InfoSystem.SelectUnit != null)
-                   {
-                       int num = GameSystem.InfoSystem.SelectUnit[CardField.Energy];
-                       await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit).SetTargetField(CardField.Energy, 0));
-                       await GameSystem.PointSystem.Hurt(new TriggerInfoModel(GameSystem.InfoSystem.SelectUnit, GameSystem.InfoSystem.SelectUnit.belongCardList).SetPoint(num).SetMeanWhile());
-                   }
-               })
-               .AbilityAdd(async (triggerInfo) =>
-               {
-                   await GameSystem.TransferSystem.MoveToGrave(this);
+                   await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
+                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
                })
                .AbilityAppend();
+            AbalityRegister(TriggerTime.Before, TriggerType.Deploy)
+              .AbilityAdd(async (triggerInfo) =>
+              {
+                  await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, this).SetTargetField(CardField.Energy, 1));
+              }, Condition.Default, Condition.OnMyTurn)
+              .AbilityAppend();
         }
     }
 }

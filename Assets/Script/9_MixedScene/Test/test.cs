@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Manager;
@@ -13,6 +14,18 @@ namespace TouhouMachineLearningSummary.Test
 {
     public class test : MonoBehaviour
     {
+        [Button("测试")]
+        public void A() => _ = B();
+        [Button("测试")]
+        public async Task B()
+        {
+            Debug.Log("1");
+            await Task.Delay(1000);
+            Debug.Log("2");
+            await Task.Delay(3000);
+            Debug.Log("3");
+        }
+
         [ShowInInspector]
         public CardSet cardSet => AgainstInfo.cardSet;
         [ShowInInspector]
