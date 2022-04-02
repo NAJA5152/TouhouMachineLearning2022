@@ -12,6 +12,7 @@ Temp/*
 *.cache
 .vs/TouhouMachineLearning2021/v16/.suo
 *.log
+/*.csproj
 *.csproj
 *.cache
 Packages/*
