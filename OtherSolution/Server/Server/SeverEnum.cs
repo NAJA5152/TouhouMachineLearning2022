@@ -12,10 +12,13 @@ public enum NetAcyncType
     Init,
     FocusCard,
     PlayCard,
-    FocusRegion,
-    FocusLocation,
+    SelectRegion,
     SelectUnites,
+    SelectLocation,
+    SelectProperty,
+    SelectBoardCard,
     ExchangeCard,
+    RoundStartExchangeOver,
     Pass,
     Surrender
 }

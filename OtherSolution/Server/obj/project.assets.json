@@ -3073,12 +3073,11 @@
       ]
     },
     "runtime.native.System.IO.Compression/4.3.0": {
-      "sha512": "INBPonS5QPEgn7naufQFXJEp3zX6L4bwHgJ/ZH78aBTpeNfQMtf7C6VrAFhlq2xxWBveIOWyFzQjJ8XzHMhdOQ==",
+      "sha512": "b+V9JC/Ii3sR659flBeaBJww111425tgjcDS1k+hqV4sGh9FALRDBvJnDtQ895gAzpPTUOFDHdqaZ2Et7BpZMg==",
       "type": "package",
       "path": "runtime.native.system.io.compression/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/netstandard1.0/_._",
@@ -7001,12 +7000,11 @@
       ]
     },
     "System.Threading.ThreadPool/4.3.0": {
-      "sha512": "k/+g4b7vjdd4aix83sTgC9VG6oXYKAktSfNIJUNGxPEj7ryEOfzHHhfnmsZvjxawwcD9HyWXKCXmPjX8U4zeSw==",
+      "sha512": "SrCOmTvvOOCmJT4BBxdZcwhz6XEMsjBGZvGSVorOxdCznaUNeVotEjDfXGIZ8gcGo00qgPbTV6puHDgcFYl6Iw==",
       "type": "package",
       "path": "system.threading.threadpool/4.3.0",
       "files": [
         ".nupkg.metadata",
-        ".signature.p7s",
         "ThirdPartyNotices.txt",
         "dotnet_library_license.txt",
         "lib/MonoAndroid10/_._",
@@ -7249,19 +7247,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\wuyunge\\.nuget\\packages\\": {}
+    "C:\\Users\\50606\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj",
+      "projectUniqueName": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj",
       "projectName": "Server",
-      "projectPath": "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj",
-      "packagesPath": "C:\\Users\\wuyunge\\.nuget\\packages\\",
-      "outputPath": "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\Server\\obj\\",
+      "projectPath": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj",
+      "packagesPath": "C:\\Users\\50606\\.nuget\\packages\\",
+      "outputPath": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\wuyunge\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\50606\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

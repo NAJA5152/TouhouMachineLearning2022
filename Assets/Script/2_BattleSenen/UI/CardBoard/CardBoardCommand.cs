@@ -42,7 +42,7 @@ namespace TouhouMachineLearningSummary.Command
                 //Info.GameUI.UiInfo.IntroductionText.text = Text;
                 //Info.GameUI.UiInfo.IntroductionEffect.text = Effect;
 
-                NewCard.GetComponent<BoardCardControl>().Rank = i;
+                NewCard.GetComponent<SelectCardManager>().Rank = i;
                 NewCard.transform.SetParent(UiInfo.Content);
                 Texture2D texture = CardStandardInfo.icon;
                 NewCard.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
@@ -72,7 +72,7 @@ namespace TouhouMachineLearningSummary.Command
                 //Info.GameUI.UiInfo.IntroductionText.text = Text;
                 //Info.GameUI.UiInfo.IntroductionEffect.text = Effect;
 
-                NewCard.GetComponent<BoardCardControl>().Rank = i;
+                NewCard.GetComponent<SelectCardManager>().Rank = i;
                 NewCard.transform.SetParent(UiInfo.Content);
                 Texture2D texture = CardStandardInfo.icon;
                 NewCard.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);

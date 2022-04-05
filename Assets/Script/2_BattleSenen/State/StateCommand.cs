@@ -521,7 +521,7 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.SelectBoardCardRanks = new List<int>();
             AgainstInfo.IsSelectCardOver = false;
             AgainstInfo.cardBoardMode = mode;
-            UiCommand.SetCardBoardShow();
+            UiCommand.SetCardBoardOpen(mode);
             //加载真实或虚拟的卡牌列表
             if (typeof(T) == typeof(Card))
             {
@@ -539,7 +539,7 @@ namespace TouhouMachineLearningSummary.Command
                     {
                         await Task.Delay(10);
                     }
-                    UiCommand.SetCardBoardHide();
+                    UiCommand.SetCardBoardClose();
                     break;
                 case CardBoardMode.ExchangeCard:
                     {
@@ -618,7 +618,7 @@ namespace TouhouMachineLearningSummary.Command
                             NetCommand.AsyncInfo(NetAcyncType.RoundStartExchangeOver);
                         }
 
-                        UiCommand.SetCardBoardHide();
+                        UiCommand.SetCardBoardClose();
                         //等待双方退出
                         await CustomThread.UnitllAcync(
                             () => AgainstInfo.isPlayer1RoundStartExchangeOver,
@@ -639,12 +639,12 @@ namespace TouhouMachineLearningSummary.Command
                     {
                         await Task.Delay(1);
                     }
-                    UiCommand.SetCardBoardHide();
+                    UiCommand.SetCardBoardClose();
                     break;
                 default:
                     break;
             }
-            AgainstInfo.cardBoardMode = CardBoardMode.None;
+            AgainstInfo.cardBoardMode = CardBoardMode.Default;
         }
     }
 }

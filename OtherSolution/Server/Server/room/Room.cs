@@ -57,7 +57,7 @@ namespace Server
         }
         public void AsyncInfo(NetAcyncType netAcyncType, bool isPlayer1, object[] command)
         {
-            Console.WriteLine("同步消息");
+            Console.WriteLine("同步消息"+ netAcyncType.ToString());
             (isPlayer1 ? P2 : P1).SendAsync("Async", netAcyncType,command);
         }
     }

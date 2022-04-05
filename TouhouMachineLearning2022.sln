@@ -1,8 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.1.31911.260
-MinimumVisualStudioVersion = 10.0.40219.1
+# Visual Studio 15
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{FF739CD1-80E0-687F-FFB8-C0F14B0C90E9}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GameCard", "GameCard.csproj", "{CA517AF5-44AD-1DCF-3502-4ACC49C766AC}"
@@ -70,8 +68,5 @@ Global
 		{E2119A8F-5013-4D19-7879-5BC1E8B656F5} = {1621AFB3-4842-4247-AF43-376105175E5C}
 		{1F698780-9633-18EA-105E-4A502421ABC8} = {1621AFB3-4842-4247-AF43-376105175E5C}
 		{F43A768E-1679-C852-EF7F-C47F457BAD4E} = {1621AFB3-4842-4247-AF43-376105175E5C}
-	EndGlobalSection
-	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {19CF241C-B77B-414C-B8FC-AAE640DECA97}
 	EndGlobalSection
 EndGlobal

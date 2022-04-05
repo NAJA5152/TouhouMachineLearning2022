@@ -10,7 +10,7 @@ using TouhouMachineLearningSummary.GameEnum;
 
 namespace TouhouMachineLearningSummary.Command
 {
-    public class UiCommand 
+    public class UiCommand
     {
         //////////////////////////////////////////////////////////状态与字段UI//////////////////////////////////////////////////////////////
         public static Sprite GetCardStateSprite(CardState cardState) => Resources.Load<Sprite>("FieldAndState\\" + cardState.ToString());
@@ -19,11 +19,58 @@ namespace TouhouMachineLearningSummary.Command
         public static Texture2D GetCardFieldTexture(CardField cardField) => Resources.Load<Texture2D>("FieldAndState\\" + cardField.ToString());
 
         //////////////////////////////////////////////////////////对战中游戏卡牌面板//////////////////////////////////////////////////////////////
-        public static void SetCardBoardShow() => UiInfo.CardBoard.SetActive(true);
-        public static void SetCardBoardHide() => UiInfo.CardBoard.SetActive(false);
+
+        static Text UiText => UiInfo.CardBoard.transform.GetChild(0).GetChild(1).GetComponent<Text>();
+        static GameObject HideButton => UiInfo.CardBoard.transform.GetChild(1).GetChild(0).gameObject;
+        static GameObject JumpButton => UiInfo.CardBoard.transform.GetChild(1).GetChild(1).gameObject;
+        static GameObject ShowButton => UiInfo.CardBoard.transform.GetChild(1).GetChild(2).gameObject;
+        static GameObject CloseButton => UiInfo.CardBoard.transform.GetChild(1).GetChild(3).gameObject;
+        static GameObject BackImage => UiInfo.CardBoard.transform.GetChild(0).gameObject;
+        public static void SetCardBoardTitle(string Title) => UiText.text = Title;
+
+        public static void SetCardBoardOpen(CardBoardMode mode)
+        {
+            UiInfo.CardBoard.SetActive(true);
+            HideButton.SetActive(false);
+            JumpButton.SetActive(false);
+            ShowButton.SetActive(false);
+            CloseButton.SetActive(false);
+            switch (mode)
+            {
+                case CardBoardMode.Default:
+                    CloseButton.SetActive(true);
+                    break;
+                case CardBoardMode.Select:
+                    HideButton.SetActive(true);
+                    JumpButton.SetActive(true);
+                    break;
+                case CardBoardMode.ExchangeCard:
+                    HideButton.SetActive(true);
+                    JumpButton.SetActive(true);
+                    break;
+                case CardBoardMode.ShowOnly:
+                    break;
+            }
+        }
+
+        public static void SetCardBoardClose() => UiInfo.CardBoard.SetActive(false);
+        public static void SetCardBoardHide()
+        {
+            BackImage.SetActive(false);
+            HideButton.SetActive(false);
+            JumpButton.SetActive(false);
+            ShowButton.SetActive(true);
+            CloseButton.SetActive(false);
+        }
+        public static void SetCardBoardShow(CardBoardMode mode)
+        {
+            BackImage.SetActive(true);
+            HideButton.SetActive(true);
+            JumpButton.SetActive(true);
+            ShowButton.SetActive(false);
+        }
         public static void CardBoardReload() => CardBoardCommand.CreatBoardCardActual();
-        public void CardBoardClose() => AgainstInfo.IsSelectCardOver = true;
-        public static void SetCardBoardTitle(string Title) => UiInfo.CardBoard.transform.GetChild(1).GetComponent<Text>().text = Title;
+        public static void CardBoardSelectOver() => AgainstInfo.IsSelectCardOver = true;
         //////////////////////////////////////////////////////////回合阶段提示UI//////////////////////////////////////////////////////////////
         public static async Task NoticeBoardShow(string Title)
         {
@@ -47,7 +94,7 @@ namespace TouhouMachineLearningSummary.Command
         //////////////////////////////////////////////////////////箭头//////////////////////////////////////////////////////////////
         public static void CreatFreeArrow()
         {
-            GameObject newArrow =GameObject.Instantiate(UiInfo.Arrow);
+            GameObject newArrow = GameObject.Instantiate(UiInfo.Arrow);
             newArrow.name = "Arrow-null";
             newArrow.GetComponent<ArrowManager>().InitArrow(AgainstInfo.ArrowStartCard, UiInfo.ArrowEndPoint);
             AgainstInfo.ArrowList.Add(newArrow);

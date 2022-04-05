@@ -138,8 +138,8 @@ namespace TouhouMachineLearningSummary.Command
             }
             catch (Exception e)
             {
-                await NoticeCommand.ShowAsync("无法链接到服务器,请点击重连\n" + e.Message,NotifyBoardMode.Ok,
-                     okAction: async () =>{await Init();});
+                await NoticeCommand.ShowAsync("无法链接到服务器,请点击重连\n" + e.Message, NotifyBoardMode.Ok,
+                     okAction: async () => { await Init(); });
             }
 
         }
@@ -347,18 +347,18 @@ namespace TouhouMachineLearningSummary.Command
                         }
                     case NetAcyncType.RoundStartExchangeOver:
                         Debug.Log("触发回合开始换牌完成信息");
-                        await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1);
+                        await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { });
                         break;
                     case NetAcyncType.Pass:
                         {
                             Debug.Log("pass");
-                            await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1);
+                            await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { });
                             break;
                         }
                     case NetAcyncType.Surrender:
                         {
                             Debug.Log("投降");
-                            await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1);
+                            await TohHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { });
                             break;
                         }
                     case NetAcyncType.SelectProperty:

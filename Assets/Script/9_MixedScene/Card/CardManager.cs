@@ -37,13 +37,65 @@ namespace TouhouMachineLearningSummary.Manager
                 NetCommand.AsyncInfo(NetAcyncType.FocusCard);
             }
         }
-        private void OnMouseDown() => CardCommand.OnMouseDown(thisCard);
-        private void OnMouseUp() => CardCommand.OnMouseUp(thisCard);
+        private void OnMouseDown()
+        {
+            if (thisCard.isPrepareToPlay)
+            {
+                AgainstInfo.playerPrePlayCard = thisCard;
+            }
+        }
+
+        private void OnMouseUp()
+        {
+            if (AgainstInfo.playerPrePlayCard != null)
+            {
+                if (AgainstInfo.PlayerFocusRegion != null && AgainstInfo.PlayerFocusRegion.name == "下方_墓地")
+                {
+                    Info.AgainstInfo.playerDisCard = Info.AgainstInfo.playerPrePlayCard;
+                }
+                //将卡牌放回（不做处理）
+                else if (Info.AgainstInfo.PlayerFocusRegion != null && (AgainstInfo.PlayerFocusRegion.name == "下方_领袖" || AgainstInfo.PlayerFocusRegion.name == "下方_手牌"))
+                {
+                }
+                else
+                {
+                    Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.playerPrePlayCard;
+                }
+                Info.AgainstInfo.playerPrePlayCard = null;
+            }
+        }
         private void OnMouseOver()
         {
+            //鼠标悬浮于卡牌上右键时可加载对应卡牌效果
             if (Input.GetMouseButtonUp(1) && thisCard.IsCanSee)
             {
                 CardAbilityBoardManager.Manager.LoadCardFromGameCard(gameObject);
+            }
+            //鼠标悬浮于卡牌上左键时可换出卡牌面板
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (thisCard.CurrentRegion == GameRegion.Grave)
+                {
+                    UiCommand.SetCardBoardOpen(CardBoardMode.Default);
+                    UiCommand.SetCardBoardTitle(thisCard.CurrentOrientation == Orientation.Up ? "敌方墓地" : "我方墓地");
+                    CardBoardCommand.LoadBoardCardList(
+                        GameSystem.InfoSystem.AgainstCardSet[thisCard.CurrentOrientation][thisCard.CurrentRegion]
+                        .CardList
+                        );
+                }
+                if (thisCard.CurrentRegion == GameRegion.Deck && thisCard.CurrentOrientation == Orientation.Down)
+                {
+                    UiCommand.SetCardBoardOpen(CardBoardMode.Default);
+                    UiCommand.SetCardBoardTitle("我方卡组");
+                    CardBoardCommand.LoadBoardCardList(
+                        GameSystem.InfoSystem.AgainstCardSet[thisCard.CurrentOrientation][thisCard.CurrentRegion]
+                        .CardList
+                        //为了debug暂时以真实顺序排序
+                        //.OrderBy(card => card.CardRank)
+                        //.ThenBy(card => card.ShowPoint)
+                        .ToList()
+                        );
+                }
             }
         }
         [Button("除外")]
@@ -58,8 +110,8 @@ namespace TouhouMachineLearningSummary.Manager
             transform.GetChild(0).gameObject.SetActive(false);
             await CustomThread.TimerAsync(0.6f, runAction: (process) =>
             {
-                gapMaterial.SetFloat("_gapWidth", Mathf.Lerp(1.5f,10f,  process));
-                cardMaterial.SetFloat("_gapWidth", Mathf.Lerp(1.5f,10f,  process));
+                gapMaterial.SetFloat("_gapWidth", Mathf.Lerp(1.5f, 10f, process));
+                cardMaterial.SetFloat("_gapWidth", Mathf.Lerp(1.5f, 10f, process));
 
             });
             gap.SetActive(false);
@@ -91,7 +143,7 @@ namespace TouhouMachineLearningSummary.Manager
         }
         //弹出状态图标附加提示
         [Button]
-        public async Task ShowStateIcon( CardState cardState)
+        public async Task ShowStateIcon(CardState cardState)
         {
             cardIcon.GetComponent<Image>().material.SetTexture("_Icon", Command.UiCommand.GetCardStateTexture(cardState));
             cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1);
@@ -172,9 +224,9 @@ namespace TouhouMachineLearningSummary.Manager
             await Task.Delay(200);
             await CustomThread.TimerAsync(0.1f, runAction: (process) =>
             {
-                cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1-process*1.5f);
+                cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1 - process * 1.5f);
                 Debug.Log(cardIcon.GetComponent<Image>().material.GetFloat("_BreakStrength"));
-                cardIcon.GetComponent<Image>().material.SetFloat("_Bias", process/5);
+                cardIcon.GetComponent<Image>().material.SetFloat("_Bias", process / 5);
             });
             await Task.Delay(200);
             await CustomThread.TimerAsync(0.4f, runAction: (process) =>

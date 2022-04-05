@@ -17,36 +17,6 @@ namespace TouhouMachineLearningSummary.Command
     //具体实现，还需进一步简化
     public static class CardCommand
     {
-        internal static void OnMouseDown(Card thisCard)
-        {
-            if (thisCard.isPrepareToPlay)
-            {
-                AgainstInfo.playerPrePlayCard = thisCard;
-            }
-        }
-        public static void OnMouseUp(Card thisCard)
-        {
-            if (AgainstInfo.playerPrePlayCard != null)
-            {
-                if (AgainstInfo.PlayerFocusRegion != null && AgainstInfo.PlayerFocusRegion.name == "下方_墓地")
-                {
-                    Info.AgainstInfo.playerDisCard = Info.AgainstInfo.playerPrePlayCard;
-                }
-                //将卡牌放回
-                else if (Info.AgainstInfo.PlayerFocusRegion != null && (AgainstInfo.PlayerFocusRegion.name == "下方_领袖" || AgainstInfo.PlayerFocusRegion.name == "下方_手牌"))
-                {
-                }
-                else
-                {
-                    Info.AgainstInfo.playerPlayCard = Info.AgainstInfo.playerPrePlayCard;
-                }
-                Info.AgainstInfo.playerPrePlayCard = null;
-
-            }
-        }
-
-
-
         public static void OrderHandCard()
         {
             AgainstInfo.cardSet[GameRegion.Hand].RowManagers.ForEach(singleRowInfo =>

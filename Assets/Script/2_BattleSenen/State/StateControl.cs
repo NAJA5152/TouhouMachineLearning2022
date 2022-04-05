@@ -23,7 +23,9 @@ namespace TouhouMachineLearningSummary.Control
                     if (!AgainstInfo.isJumpMode || StateCommand.AgainstStateInit())
                     {
                         await StateCommand.RoundStart();
+                        Debug.LogWarning("开始换牌");
                         await StateCommand.WaitForPlayerExchange();
+                        Debug.LogWarning("结束换牌");
                         //await StateCommand.WaitForSelectProperty();
                     }
                     while (true)
