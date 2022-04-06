@@ -141,7 +141,17 @@ namespace TouhouMachineLearningSummary.Command
                 await NoticeCommand.ShowAsync("无法链接到服务器,请点击重连\n" + e.Message, NotifyBoardMode.Ok,
                      okAction: async () => { await Init(); });
             }
-
+        }
+        public static async Task CheckHubState()
+        {
+            if (TohHouHub == null)
+            {
+                await Init();
+            }
+            if (TohHouHub.State == HubConnectionState.Disconnected)
+            {
+                await TohHouHub.StartAsync();
+            }
         }
         public static async void Dispose()
         {
@@ -153,7 +163,7 @@ namespace TouhouMachineLearningSummary.Command
             try
             {
                 Debug.Log("注册请求");
-                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                await CheckHubState();
                 return await TohHouHub.InvokeAsync<int>("Register", account, password);
             }
             catch (Exception e) { Debug.LogException(e); }
@@ -164,7 +174,7 @@ namespace TouhouMachineLearningSummary.Command
             try
             {
                 Debug.Log("登陆请求");
-                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                await CheckHubState();
                 Info.AgainstInfo.onlineUserInfo = await TohHouHub.InvokeAsync<PlayerInfo>("Login", account, password);
                 Debug.Log(Info.AgainstInfo.onlineUserInfo.ToJson());
             }
@@ -174,49 +184,49 @@ namespace TouhouMachineLearningSummary.Command
         ///////////////////////////////////////对战记录///////////////////////////////////////////////////////////////////////
         public static async Task UpdateTurnOperationAsync(AgainstSummaryManager.TurnOperation turnOperation)
         {
-            if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            await CheckHubState();
             await TohHouHub.SendAsync("UpdateTurnOperation", Info.AgainstInfo.RoomID, turnOperation);
         }
         public static async Task UpdateTurnPlayerOperationAsync(AgainstSummaryManager.TurnOperation.PlayerOperation playerOperation)
         {
-            if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            await CheckHubState();
             await TohHouHub.SendAsync("UpdatePlayerOperation", Info.AgainstInfo.RoomID, playerOperation);
         }
         public static async Task UpdateTurnSelectOperationAsync(AgainstSummaryManager.TurnOperation.SelectOperation selectOperation)
         {
-            if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            await CheckHubState();
             await TohHouHub.SendAsync("UpdateSelectOperation", Info.AgainstInfo.RoomID, selectOperation);
         }
         public static async Task UploadStartPointAsync()
         {
-            if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            await CheckHubState();
             await TohHouHub.SendAsync("UploadStartPoint", Info.AgainstInfo.RoomID, AgainstInfo.TurnRelativePoint);
         }
         public static async Task UploadEndPointAsync()
         {
-            if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            await CheckHubState();
             await TohHouHub.SendAsync("UploadEndPoint", Info.AgainstInfo.RoomID, AgainstInfo.TurnRelativePoint);
         }
         public static async Task UploadSurrenderAsync(int surrenddrState)
         {
-            if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            await CheckHubState();
             await TohHouHub.SendAsync("UploadSurrender", Info.AgainstInfo.RoomID, surrenddrState);
         }
         public static async Task<List<AgainstSummaryManager>> DownloadOwnerAgentSummaryAsync(string playerAccount, int skipCount, int takeCount)
         {
-            if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            await CheckHubState();
             return await TohHouHub.InvokeAsync<List<AgainstSummaryManager>>("DownloadOwnerAgentSummary", playerAccount, skipCount, takeCount);
         }
         public static async Task<List<AgainstSummaryManager>> DownloadAllAgentSummaryAsync(int skipCount, int takeCount)
         {
-            if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            await CheckHubState();
             return await TohHouHub.InvokeAsync<List<AgainstSummaryManager>>("DownloadAllAgentSummary", skipCount, takeCount);
         }
         ///////////////////////////////////////卡牌配置///////////////////////////////////////////////////////////////////////
 
         internal static async Task<string> GetCardConfigsVersionAsync()
         {
-            if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            await CheckHubState();
             return await TohHouHub.InvokeAsync<string>("GetCardConfigsVersion");
         }
 
@@ -225,7 +235,7 @@ namespace TouhouMachineLearningSummary.Command
             try
             {
                 Debug.Log("上传卡牌配置");
-                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                await CheckHubState();
                 string result = await TohHouHub.InvokeAsync<string>("UploadCardConfigs", cardConfig);
                 Debug.Log("新卡牌配置上传结果: " + result);
             }
@@ -240,7 +250,7 @@ namespace TouhouMachineLearningSummary.Command
             try
             {
                 Debug.Log("下载卡牌配置");
-                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                await CheckHubState();
                 return await TohHouHub.InvokeAsync<CardConfig>("DownloadCardConfigs", date);
             }
             catch (Exception e) { Debug.LogException(e); }
@@ -252,7 +262,7 @@ namespace TouhouMachineLearningSummary.Command
             try
             {
                 Log.Show("更新");
-                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                await CheckHubState();
                 return await TohHouHub.InvokeAsync<bool>("UpdateInfo", updateType, AgainstInfo.onlineUserInfo.Account, AgainstInfo.onlineUserInfo.Password, updateValue);
             }
             catch (Exception e) { Debug.LogException(e); }
@@ -260,13 +270,13 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task ChatAsync(string name, string text, string target = "")
         {
-            if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            await CheckHubState();
             await TohHouHub.SendAsync("Chat", name, text, target);
         }
         ///////////////////////////////////////////////////房间操作////////////////////////////////////////////////////////////////
         public static async Task JoinHoldOnList(AgainstModeType modeType, PlayerInfo userInfo, PlayerInfo virtualOpponentInfo)
         {
-            if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            await CheckHubState();
             try
             {
                 Debug.Log($"发送数据 我方牌组数：{userInfo.UseDeck.CardIds.Count} 敌方牌组数{virtualOpponentInfo?.UseDeck.CardIds.Count}");
@@ -276,18 +286,18 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task<bool> LeaveHoldOnList(AgainstModeType modeType, string account)
         {
-            if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            await CheckHubState();
             return await TohHouHub.InvokeAsync<bool>("Leave", modeType, account);
         }
         public static async Task<bool> AgainstFinish()
         {
-            if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            await CheckHubState();
             return await TohHouHub.InvokeAsync<bool>("AgainstFinish", Info.AgainstInfo.RoomID, AgainstInfo.onlineUserInfo.Account, AgainstInfo.PlayerScore.P1Score, AgainstInfo.PlayerScore.P2Score);
         }
         //判断是否存在正在对战中的房间
         internal static async Task CheckRoomAsync(string text1, string text2)
         {
-            if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+            await CheckHubState();
             int roomId = await TohHouHub.InvokeAsync<int>("CheckRoom");
             if (true)
             {
@@ -299,7 +309,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (Info.AgainstInfo.IsPVP && (Info.AgainstInfo.IsMyTurn || AcyncType == NetAcyncType.FocusCard || AcyncType == NetAcyncType.ExchangeCard || AcyncType == NetAcyncType.RoundStartExchangeOver))
             {
-                if (TohHouHub.State == HubConnectionState.Disconnected) { await TohHouHub.StartAsync(); }
+                await CheckHubState();
                 switch (AcyncType)
                 {
                     case NetAcyncType.FocusCard:

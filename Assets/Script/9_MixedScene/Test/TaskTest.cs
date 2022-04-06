@@ -17,8 +17,7 @@ public class TaskTest : MonoBehaviour
         async Task Test1()
         {
             Debug.Log("Hello, World!");
-            List<string> list = null;
-            Debug.Log(list.Count);
+            throw new Exception();
         }
     }
     // Update is called once per frame

@@ -96,37 +96,31 @@ namespace TouhouMachineLearningSummary.Command
             await CustomThread.Delay(1500);
             Manager.LoadingManager.manager?.CloseAsync();
             //Debug.LogError("初始双方信息");
-            try
+
+            //await Task.Delay(500);
+            await UiCommand.NoticeBoardShow("BattleStart".Translation());
+            //初始化我方领袖卡
+            Card MyLeaderCard = CardCommand.GenerateCard(Info.AgainstInfo.userDeck.LeaderId);
+            AgainstInfo.cardSet[Orientation.Down][GameRegion.Leader].Add(MyLeaderCard);
+            MyLeaderCard.SetCardSeeAble(true);
+            //初始化敌方领袖卡
+            Card OpLeaderCard = CardCommand.GenerateCard(Info.AgainstInfo.opponentDeck.LeaderId);
+            AgainstInfo.cardSet[Orientation.Up][GameRegion.Leader].Add(OpLeaderCard);
+            OpLeaderCard.SetCardSeeAble(true);
+            //Debug.LogError("初始双方化牌组");
+            //初始双方化牌组
+            for (int i = 0; i < Info.AgainstInfo.userDeck.CardIds.Count; i++)
             {
-                //await Task.Delay(500);
-                await UiCommand.NoticeBoardShow("BattleStart".Translation());
-                //初始化我方领袖卡
-                Card MyLeaderCard = CardCommand.GenerateCard(Info.AgainstInfo.userDeck.LeaderId);
-                AgainstInfo.cardSet[Orientation.Down][GameRegion.Leader].Add(MyLeaderCard);
-                MyLeaderCard.SetCardSeeAble(true);
-                //初始化敌方领袖卡
-                Card OpLeaderCard = CardCommand.GenerateCard(Info.AgainstInfo.opponentDeck.LeaderId);
-                AgainstInfo.cardSet[Orientation.Up][GameRegion.Leader].Add(OpLeaderCard);
-                OpLeaderCard.SetCardSeeAble(true);
-                //Debug.LogError("初始双方化牌组");
-                //初始双方化牌组
-                for (int i = 0; i < Info.AgainstInfo.userDeck.CardIds.Count; i++)
-                {
-                    Card NewCard = CardCommand.GenerateCard(Info.AgainstInfo.userDeck.CardIds[i]);
-                    CardSet cardSet = AgainstInfo.cardSet[Orientation.Down][GameRegion.Deck];
-                    cardSet.Add(NewCard);
-                }
-                for (int i = 0; i < Info.AgainstInfo.opponentDeck.CardIds.Count; i++)
-                {
-                    Card NewCard = CardCommand.GenerateCard(Info.AgainstInfo.opponentDeck.CardIds[i]);
-                    AgainstInfo.cardSet[Orientation.Up][GameRegion.Deck].Add(NewCard);
-                }
-                await CustomThread.Delay(000);
+                Card NewCard = CardCommand.GenerateCard(Info.AgainstInfo.userDeck.CardIds[i]);
+                CardSet cardSet = AgainstInfo.cardSet[Orientation.Down][GameRegion.Deck];
+                cardSet.Add(NewCard);
             }
-            catch (Exception e)
+            for (int i = 0; i < Info.AgainstInfo.opponentDeck.CardIds.Count; i++)
             {
-                Debug.LogError(e);
+                Card NewCard = CardCommand.GenerateCard(Info.AgainstInfo.opponentDeck.CardIds[i]);
+                AgainstInfo.cardSet[Orientation.Up][GameRegion.Deck].Add(NewCard);
             }
+            await CustomThread.Delay(000);
         }
         public static async Task AgainstEnd(bool IsSurrender = false, bool IsWin = true)
         {
