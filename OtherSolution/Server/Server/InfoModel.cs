@@ -42,6 +42,8 @@ namespace Server
         public int Level { get; set; }
         public int Rank { get; set; }
         public float WinRate { get; set; }
+        public DateTime LastLoginTime { get; set; }
+
         public Dictionary<string, int> Resource { get; set; }
         //决定游戏进程
         public UserState OnlineUserState { get; set; } = new UserState();

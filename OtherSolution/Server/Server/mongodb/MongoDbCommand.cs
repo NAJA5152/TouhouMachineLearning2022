@@ -67,7 +67,7 @@ namespace Server
                 userInfo = PlayerInfoCollection.Find(CheckUserExistQuery).FirstOrDefault();
                 if (userInfo.Password == password.GetSaltHash(userInfo.UID))
                 {
-
+                    UpdateInfo(account, password, (x => x.LastLoginTime), DateTime.Now);
                 }
                 else
                 {

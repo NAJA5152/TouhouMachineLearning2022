@@ -93,7 +93,7 @@ namespace TouhouMachineLearningSummary.Control
         {
             try
             {
-                int result = await Command.NetCommand.RegisterAsync(Account.text, Password.text);
+                int result = await NetCommand.RegisterAsync(Account.text, Password.text);
                 switch (result)
                 {
                     case (1): await NoticeCommand.ShowAsync("注册成功", NotifyBoardMode.Ok); break;
@@ -108,7 +108,7 @@ namespace TouhouMachineLearningSummary.Control
         {
             try
             {
-                bool isSuccessLogin = await Command.NetCommand.LoginAsync(Account.text, Password.text);
+                bool isSuccessLogin = await NetCommand.LoginAsync(Account.text, Password.text);
                 if (isSuccessLogin)
                 {
                     PlayerInfo.UserState onlineUserState = Info.AgainstInfo.onlineUserInfo.OnlineUserState;
@@ -118,8 +118,8 @@ namespace TouhouMachineLearningSummary.Control
                         await Info.AgainstInfo.onlineUserInfo.UpdateUserStateAsync(0, 1);
                     }
                     Manager.UserInfoManager.Refresh();
-                    await Command.BookCommand.InitToOpenStateAsync();
-                    _ = Command.NetCommand.CheckRoomAsync(Account.text, Password.text);
+                    await BookCommand.InitToOpenStateAsync();
+                    _ = NetCommand.CheckRoomAsync(Account.text, Password.text);
                 }
                 else
                 {
@@ -130,15 +130,15 @@ namespace TouhouMachineLearningSummary.Control
         }
         public async Task TestReplayAsync()
         {
-            var summarys = await Command.NetCommand.DownloadOwnerAgentSummaryAsync(Info.AgainstInfo.onlineUserInfo.Account, 0, 20);
+            var summarys = await NetCommand.DownloadOwnerAgentSummaryAsync(Info.AgainstInfo.onlineUserInfo.Account, 0, 20);
             Manager.AgainstManager.ReplayStart(summarys.Last());
         }
         public async Task TestBattleAsync()
         {
 
             await Manager.CameraViewManager.MoveToViewAsync(2);
-            Command.MenuStateCommand.AddState(MenuState.WaitForBattle);
-            Command.BookCommand.SimulateFilpPage(true);//开始翻书
+            MenuStateCommand.AddState(MenuState.WaitForBattle);
+            BookCommand.SimulateFilpPage(true);//开始翻书
 
             AgainstModeType targetAgainstMode = AgainstModeType.Story;
             PlayerInfo sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
@@ -158,19 +158,19 @@ namespace TouhouMachineLearningSummary.Control
 
             _ = NoticeCommand.ShowAsync("少女排队中~", NotifyBoardMode.Cancel, cancelAction: async () =>
             {
-                Command.BookCommand.SimulateFilpPage(false);//开始翻书
+                BookCommand.SimulateFilpPage(false);//开始翻书
                 await Task.Delay(2000);
                 await Manager.CameraViewManager.MoveToViewAsync(1);
-                Command.MenuStateCommand.RebackStare();
-                await Command.NetCommand.LeaveHoldOnList(AgainstModeType.Story, sampleUserInfo.Account);
+                MenuStateCommand.RebackStare();
+                await NetCommand.LeaveHoldOnList(AgainstModeType.Story, sampleUserInfo.Account);
             });
             //配置对战模式
             Manager.AgainstManager.Init();
             Manager.AgainstManager.SetAgainstMode(targetAgainstMode);
             //开始排队
-            await Command.NetCommand.JoinHoldOnList(targetAgainstMode, sampleUserInfo, virtualOpponentInfo);
+            await NetCommand.JoinHoldOnList(targetAgainstMode, sampleUserInfo, virtualOpponentInfo);
         }
-        public void UserServerSelect() => Info.AgainstInfo.isHostNetMode = !Info.AgainstInfo.isHostNetMode;
+        public void UserServerSelect() => AgainstInfo.isHostNetMode = !Info.AgainstInfo.isHostNetMode;
         private void OnApplicationQuit() => Command.NetCommand.Dispose();
         private void OnGUI()
         {

@@ -33,6 +33,7 @@ public class TouHouHub : Hub
             case UpdateType.Deck: return MongoDbCommand.UpdateInfo(account, password, (x => x.Decks), updateValue.To<List<CardDeck>>());
             case UpdateType.UseDeckNum: return MongoDbCommand.UpdateInfo(account, password, (x => x.UseDeckNum), updateValue.To<int>());
             case UpdateType.UserState: return MongoDbCommand.UpdateInfo(account, password, (x => x.OnlineUserState), updateValue.To<UserState>());
+            case UpdateType.LastLoginTime:return MongoDbCommand.UpdateInfo(account, password, (x => x.LastLoginTime), updateValue.To<DateTime>());
             default: return false;
         }
     }

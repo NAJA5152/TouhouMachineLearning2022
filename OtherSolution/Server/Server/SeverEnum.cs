@@ -28,6 +28,7 @@ public enum UpdateType
     Deck,
     UseDeckNum,
     UserState,
+    LastLoginTime,
 }
 public enum PlayerOperationType
 {
