@@ -15,7 +15,7 @@ namespace TouhouMachineLearningSummary.Other
         [MenuItem("Tools/打开服务端", false, 1)]
         static void StartServer() => Process.Start(@"OtherSolution\Server\bin\Debug\net6.0\Server.exe");
         [MenuItem("Tools/打开游戏客户端", false, 2)]
-        static void StartClient() => Process.Start(@"Pc\TouhouMachineLearning2022.exe");
+        static void StartClient() => Process.Start(@"Pc\TouhouMachineLearning.exe");
         [MenuItem("Tools/打开数据表格", false, 51)]
         static void OpenXls() => Process.Start(@"Assets\Resources\GameData\GameData.xlsx");
         [MenuItem("Tools/打开表格数据实时同步工具", false, 52)]
