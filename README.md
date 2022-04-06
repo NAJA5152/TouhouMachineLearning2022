@@ -9,6 +9,8 @@
 + 服务端项目：.NET6
 + 客户端项目：Unity 2020最新版 (64-bit)（不要使用2021和2022，会有dll版本冲突）
 ##### 注意事项：项目需要自己安装最新版odin插件包，上传到github会被版权警告
+## 游戏界面
+
 ## 框架介绍
 + [游戏代码与框架介绍](https://github.com/red-gezi/TouhouMachineLearning-2021/tree/master/Assets/Script)
 #### 卡牌框架整体设计![程序框架.png](/img/程序框架.png)
