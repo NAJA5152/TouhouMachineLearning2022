@@ -74,6 +74,7 @@ namespace xls检测更新
                 }
                 textTranslate[gameText[i, 1].DisplayedText] = singleTextTranslate;
             }
+            textTranslate.Remove("");
             Console.WriteLine(JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
             File.WriteAllText(direPath + @"\Game-Text.json", JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
             Console.WriteLine("///////////////");

@@ -69,13 +69,6 @@
     "En": "Op Turn End",
     "geyu": ""
   },
-  "": {
-    "Tag": "",
-    "Ch": "",
-    "Tc": "",
-    "En": "",
-    "geyu": ""
-  },
   "Fairy": {
     "Tag": "Fairy",
     "Ch": "妖精",
@@ -328,6 +321,48 @@
     "En": "Shield",
     "geyu": ""
   },
+  "TurnStart": {
+    "Tag": "TurnStart",
+    "Ch": "回合开始",
+    "Tc": "",
+    "En": "",
+    "geyu": ""
+  },
+  "TurnEnd": {
+    "Tag": "TurnEnd",
+    "Ch": "回合结束",
+    "Tc": "",
+    "En": "",
+    "geyu": ""
+  },
+  "RoundStart": {
+    "Tag": "RoundStart",
+    "Ch": "小局开始",
+    "Tc": "",
+    "En": "",
+    "geyu": ""
+  },
+  "RoundEnd": {
+    "Tag": "RoundEnd",
+    "Ch": "小局结束",
+    "Tc": "",
+    "En": "",
+    "geyu": ""
+  },
+  "Deploy": {
+    "Tag": "Deploy",
+    "Ch": "部署",
+    "Tc": "",
+    "En": "",
+    "geyu": ""
+  },
+  "Weak": {
+    "Tag": "Weak",
+    "Ch": "衰退",
+    "Tc": "",
+    "En": "",
+    "geyu": ""
+  },
   "Seal_Introduction": {
     "Tag": "Seal_Introduction",
     "Ch": "封印：清除自身所有附加状态和附加值，并使自身特殊效果无法发动",
@@ -456,42 +491,56 @@
   },
   "Timer_Introduction": {
     "Tag": "Timer_Introduction",
-    "Ch": "计时($Point$)：计数为0时触发效果",
+    "Ch": "计时：计数为0时触发效果",
     "Tc": "",
     "En": "",
     "geyu": ""
   },
   "Vitality_Introduction": {
     "Tag": "Vitality_Introduction",
-    "Ch": "鼓舞($Point$)：增强两侧单位\\\"活力\\\"类型效果",
+    "Ch": "鼓舞：增强两侧单位\\\"活力\\\"类型效果",
     "Tc": "",
     "En": "",
     "geyu": ""
   },
   "Apothanasia_Introduction": {
     "Tag": "Apothanasia_Introduction",
-    "Ch": "延命($Point$)：当单位点数为0时，回合结束时抵消一次进入墓地效果",
+    "Ch": "延命：当单位点数为0时，回合结束时抵消一次进入墓地效果",
     "Tc": "",
     "En": "",
     "geyu": ""
   },
   "Chain_Introduction": {
     "Tag": "Chain_Introduction",
-    "Ch": "连锁($Point$)：当前回合打出卡牌的数量",
+    "Ch": "连锁：当前回合打出卡牌的数量",
     "Tc": "",
     "En": "",
     "geyu": ""
   },
   "Energy_Introduction": {
     "Tag": "Energy_Introduction",
-    "Ch": "能量($Point$)：强化机械的触发效果，过多时触发\\\"超载\\\"效果",
+    "Ch": "能量：强化机械的触发效果，过多时触发\\\"超载\\\"效果",
     "Tc": "",
     "En": "",
     "geyu": ""
   },
   "Shield_Introduction": {
     "Tag": "Shield_Introduction",
-    "Ch": "护盾($Point$)：受到\\\"伤害\\\"类型效果时时抵消相应点数的伤害",
+    "Ch": "护盾：受到\\\"伤害\\\"类型效果时时抵消相应点数的伤害",
+    "Tc": "",
+    "En": "",
+    "geyu": ""
+  },
+  "Deploy_Introduction": {
+    "Tag": "Deploy_Introduction",
+    "Ch": "部署：单位从出牌区移动到战场时触发，但若在部署效果生效前被打死或封印则无法触发部署效果",
+    "Tc": "",
+    "En": "",
+    "geyu": ""
+  },
+  "Weak_Introduction": {
+    "Tag": "Weak_Introduction",
+    "Ch": "衰退:触发效果时，自身基础点数减少1点，至多减少至1",
     "Tc": "",
     "En": "",
     "geyu": ""

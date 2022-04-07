@@ -77,6 +77,8 @@ namespace TouhouMachineLearningSummary.Model
         public string Password { get; set; }
         public int Level { get; set; }
         public int Rank { get; set; }
+        public DateTime LastLoginTime { get; set; }
+
         public class UserState
         {
             public int Step { get; set; }

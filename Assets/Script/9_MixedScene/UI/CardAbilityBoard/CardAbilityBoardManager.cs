@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Model;
@@ -26,7 +27,7 @@ namespace TouhouMachineLearningSummary.Manager
         public Image Icon => transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Image>();
         public Text Name => transform.GetChild(0).GetChild(1).GetChild(2).GetChild(1).GetComponent<Text>();
         public Text Tag => transform.GetChild(0).GetChild(1).GetChild(1).GetChild(1).GetComponent<Text>();
-        public Text AbilityText => transform.GetChild(0).GetChild(1).GetChild(3).GetChild(1).GetComponent<Text>();
+        public TextMeshProUGUI AbilityText => transform.GetChild(0).GetChild(1).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>();
         public Text IntroductionText => transform.GetChild(0).GetChild(1).GetChild(4).GetChild(1).GetComponent<Text>();
         public RectTransform AbilityBackground => transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
         public RectTransform IntroductionBackground => transform.GetChild(0).GetChild(1).GetComponent<RectTransform>();
@@ -99,7 +100,9 @@ namespace TouhouMachineLearningSummary.Manager
         }
         public void ChangeIntroduction<T>(T target)
         {
+            //对当前能力的说明
             string ability = "";
+            //对当前状态和字段的说明
             string Introduction = "";
             if (typeof(T) == typeof(int))
             {
@@ -115,6 +118,7 @@ namespace TouhouMachineLearningSummary.Manager
                 Icon.sprite = card.Icon.ToSprite();
                 Name.text = card.CardTranslateName;
                 ability = card.CardTranslateAbility;
+                ability=KeyWordManager.ReplaceAbilityKeyWord(ability);
                 card.cardFields.ToList().ForEach(field =>
                 {
                     switch (field.Key)

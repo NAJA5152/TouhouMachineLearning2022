@@ -15,15 +15,14 @@ namespace TouhouMachineLearningSummary.Manager
 
         public TextMeshProUGUI textMesh;
         static List<KeyWordModel> words = new List<KeyWordModel>();
-        public static void RefreshText(string text)
+        public static string ReplaceAbilityKeyWord(string text)
         {
             words = TranslateManager.CheckKeyWord(text);
-
-            words.Select(x => x.tag).Distinct().ToList().ForEach(tag =>
+            words.Select(x => x.keyWord).Distinct().ToList().ForEach(keyWord =>
             {
-                text = text.Replace(tag, $"<u>{tag}</u>");
+                text = text.Replace(keyWord, $"<u>{keyWord}</u>");
             });
-            manager.textMesh.text = text;
+            return text;
         }
         public void OnPointerClick(PointerEventData eventData)
         {

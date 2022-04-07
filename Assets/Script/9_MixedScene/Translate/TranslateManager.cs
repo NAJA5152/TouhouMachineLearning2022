@@ -41,7 +41,6 @@ namespace TouhouMachineLearningSummary.Manager
             }
 
             List<KeyWordModel> keyWordInfos = new List<KeyWordModel>();
-
             translateData.Values.ForEach(pair =>
             {
                 string keyWord = pair[currentLanguage];
@@ -62,7 +61,7 @@ namespace TouhouMachineLearningSummary.Manager
                         startIndex = index,
                         endIndex = index + keyWord.Length,
                         introduction = introduction
-                    }); ;
+                    }); 
                     index = index + keyWord.Length;
                 }
             });
