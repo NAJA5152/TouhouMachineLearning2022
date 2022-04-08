@@ -117,30 +117,30 @@ namespace TouhouMachineLearningSummary.Manager
                 Card card = (Card)(object)target;
                 Icon.sprite = card.Icon.ToSprite();
                 Name.text = card.CardTranslateName;
+                IntroductionText.text = card.TranslateDescribe;
                 ability = card.CardTranslateAbility;
                 ability=KeyWordManager.ReplaceAbilityKeyWord(ability);
-                card.cardFields.ToList().ForEach(field =>
-                {
-                    switch (field.Key)
-                    {
-                        case CardField.Timer:
-                            break;
-                        case CardField.Inspire:
-                            Introduction += $"活力：增强两侧单位效果{field.Value}";
-                            break;
-                        case CardField.Apothanasia:
-                            break;
-                        default:
-                            break;
-                    }
-                });
+                AbilityText.text = ability;
+                //card.cardFields.ToList().ForEach(field =>
+                //{
+                //    switch (field.Key)
+                //    {
+                //        case CardField.Timer:
+                //            break;
+                //        case CardField.Inspire:
+                //            Introduction += $"活力：增强两侧单位效果{field.Value}";
+                //            break;
+                //        case CardField.Apothanasia:
+                //            break;
+                //        default:
+                //            break;
+                //    }
+                //});
                 //IntroductionBackground.gameObject.SetActive(true);
                 //IntroductionBackground.sizeDelta = new Vector2(300, ability.Length / 13 * 15 + 100);
-                IntroductionText.text = Introduction;
             }
             //AbilityBackground.sizeDelta = new Vector2(300, ability.Length / 13 * 15 + 100);
             //修改文本为富文本
-            AbilityText.text = ability;
         }
     }
 }

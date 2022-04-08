@@ -32,7 +32,7 @@ namespace TouhouMachineLearningSummary.Control
                     Manager.AgainstSummaryManager.UploadStartPoint();
                     await StateCommand.WaitForPlayerOperation();
                     Manager.AgainstSummaryManager.UploadEndPoint();
-                    if (Info.AgainstInfo.isBoothPass) { break; }
+                    if (AgainstInfo.isBoothPass) { break; }
                     await StateCommand.TurnEnd();
                 }
                 await StateCommand.RoundEnd();

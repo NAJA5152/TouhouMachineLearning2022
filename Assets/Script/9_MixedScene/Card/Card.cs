@@ -126,10 +126,14 @@ namespace TouhouMachineLearningSummary.Model
         public Text PointText => transform.GetChild(0).GetChild(0).GetComponent<Text>();
         public Transform FieldIconContent => transform.GetChild(0).GetChild(1);
         public Transform StateIconContent => transform.GetChild(0).GetChild(2);
+        [ShowInInspector]
         public string CardTranslateName => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).TranslateName;
-
         [ShowInInspector]
         public string CardTranslateAbility => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).TranslateAbility;
+        [ShowInInspector]
+        public string TranslateDescribe => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).TranslateDescribe;
+
+
 
         public Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<TriggerInfoModel, Task>>>> cardAbility = new Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<TriggerInfoModel, Task>>>>();
 
@@ -294,6 +298,7 @@ namespace TouhouMachineLearningSummary.Model
                 .AbilityAdd(async (triggerInfo) =>
                 {
                     await GameSystem.UiSystem.ShowIcon(this, triggerInfo.targetState);
+                    await Command.AudioCommand.PlayAsync(GameAudioType.UiButton);
                     switch (triggerInfo.targetState)
                     {
                         case CardState.Lurk:; break;
