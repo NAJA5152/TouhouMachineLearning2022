@@ -48,7 +48,7 @@ namespace TouhouMachineLearningSummary.Command
                 NewCard.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
                 UiInfo.ShowCardLIstOnBoard.Add(NewCard);
             }
-            UiInfo.Content.GetComponent<RectTransform>().sizeDelta = new Vector2(Cards.Count * 325 + 200, 800);
+            UiInfo.Content.GetComponent<RectTransform>().sizeDelta = new Vector2(Cards.Count * 325 + 200, UiInfo.Content.GetComponent<RectTransform>().sizeDelta.y);
         }
         //生成对局不存在的卡牌
         private static void CreatBoardCardVitual()
@@ -78,7 +78,7 @@ namespace TouhouMachineLearningSummary.Command
                 NewCard.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
                 UiInfo.ShowCardLIstOnBoard.Add(NewCard);
             }
-            UiInfo.Content.GetComponent<RectTransform>().sizeDelta = new Vector2(CardIds.Count * 325 + 200, 800);
+            UiInfo.Content.GetComponent<RectTransform>().sizeDelta = new Vector2(CardIds.Count * 325 + 200, UiInfo.Content.GetComponent<RectTransform>().sizeDelta.y);
         }
     }
 }

@@ -39,7 +39,7 @@ namespace TouhouMachineLearningSummary.Manager
         }
         private void OnMouseDown()
         {
-            if (thisCard.isPrepareToPlay)
+            if (thisCard.isPrepareToPlay && !EventSystem.current.IsPointerOverGameObject())
             {
                 AgainstInfo.playerPrePlayCard = thisCard;
             }
@@ -47,7 +47,7 @@ namespace TouhouMachineLearningSummary.Manager
 
         private void OnMouseUp()
         {
-            if (AgainstInfo.playerPrePlayCard != null)
+            if (AgainstInfo.playerPrePlayCard != null && !EventSystem.current.IsPointerOverGameObject())
             {
                 if (AgainstInfo.PlayerFocusRegion != null && AgainstInfo.PlayerFocusRegion.name == "下方_墓地")
                 {

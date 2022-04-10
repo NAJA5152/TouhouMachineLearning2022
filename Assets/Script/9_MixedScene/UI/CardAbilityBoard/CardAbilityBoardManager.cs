@@ -15,24 +15,17 @@ namespace TouhouMachineLearningSummary.Manager
         //需求功能
         //切换上下一张卡牌
         //显示当前卡牌的各种信息
-        enum LoadType
-        {
-            FromLibrary,
-            FromCardList,
-            FromCard,
-        }
+        enum LoadType{FromLibrary,FromCardList,FromCard,}
+        private void Awake() => Manager = this;
         int currentRank { get; set; } = 0;
         Card CurrentGameCard { get; set; }
         LoadType CurrentLoadType { get; set; }
-        public Image Icon => transform.GetChild(0).GetChild(1).GetChild(0).GetComponent<Image>();
-        public Text Name => transform.GetChild(0).GetChild(1).GetChild(2).GetChild(1).GetComponent<Text>();
-        public Text Tag => transform.GetChild(0).GetChild(1).GetChild(1).GetChild(1).GetComponent<Text>();
-        public TextMeshProUGUI AbilityText => transform.GetChild(0).GetChild(1).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>();
-        public Text IntroductionText => transform.GetChild(0).GetChild(1).GetChild(4).GetChild(1).GetComponent<Text>();
-        public RectTransform AbilityBackground => transform.GetChild(0).GetChild(0).GetComponent<RectTransform>();
-        public RectTransform IntroductionBackground => transform.GetChild(0).GetChild(1).GetComponent<RectTransform>();
         public static CardAbilityBoardManager Manager { get; set; }
-        private void Awake() => Manager = this;
+        public Image Texture => transform.GetChild(0).GetChild(1).GetComponent<Image>();
+        public TextMeshProUGUI TagText => transform.GetChild(0).GetChild(2).GetChild(1).GetComponent<TextMeshProUGUI>();
+        public TextMeshProUGUI Name => transform.GetChild(0).GetChild(3).GetChild(1).GetComponent<TextMeshProUGUI>();
+        public TextMeshProUGUI AbilityText => transform.GetChild(0).GetChild(4).GetChild(1).GetComponent<TextMeshProUGUI>();
+        public TextMeshProUGUI DescribeText => transform.GetChild(0).GetChild(5).GetChild(1).GetComponent<TextMeshProUGUI>();
         public void Show() => transform.GetChild(0).gameObject.SetActive(true);
         public void Close() => transform.GetChild(0).gameObject.SetActive(false);
 
@@ -107,20 +100,25 @@ namespace TouhouMachineLearningSummary.Manager
             if (typeof(T) == typeof(int))
             {
                 var cardInfo = CardAssemblyManager.GetLastCardInfo((int)(object)target);
-                Icon.sprite = cardInfo.icon.ToSprite();
+                Texture.sprite = cardInfo.icon.ToSprite();
                 Name.text = cardInfo.TranslateName;
-                ability = cardInfo.TranslateAbility;
+                DescribeText.text = cardInfo.TranslateDescribe;
+                //ability = cardInfo.CardTranslateAbility;
+                //ability = KeyWordManager.ReplaceAbilityKeyWord(ability);
+                //AbilityText.text = ability;
+                //TagText.text = cardInfo.CardTags;
                 //IntroductionBackground.gameObject.SetActive(false);
             }
             else
             {
                 Card card = (Card)(object)target;
-                Icon.sprite = card.Icon.ToSprite();
+                Texture.sprite = card.Icon.ToSprite();
                 Name.text = card.CardTranslateName;
-                IntroductionText.text = card.TranslateDescribe;
+                DescribeText.text = card.TranslateDescribe;
                 ability = card.CardTranslateAbility;
                 ability=KeyWordManager.ReplaceAbilityKeyWord(ability);
                 AbilityText.text = ability;
+                TagText.text = card.CardTags; 
                 //card.cardFields.ToList().ForEach(field =>
                 //{
                 //    switch (field.Key)

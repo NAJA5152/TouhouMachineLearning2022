@@ -153,6 +153,90 @@
     "En": "Monster",
     "geyu": ""
   },
+  "Fairy_Introduction": {
+    "Tag": "Fairy_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Tc": "",
+    "En": "The type label of the card",
+    "geyu": ""
+  },
+  "Machine_Introduction": {
+    "Tag": "Machine_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Tc": "",
+    "En": "The type label of the card",
+    "geyu": ""
+  },
+  "SpellCard_Introduction": {
+    "Tag": "SpellCard_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Tc": "",
+    "En": "The type label of the card",
+    "geyu": ""
+  },
+  "tactics_Introduction": {
+    "Tag": "tactics_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Tc": "",
+    "En": "The type label of the card",
+    "geyu": ""
+  },
+  "Object_Introduction": {
+    "Tag": "Object_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Tc": "",
+    "En": "The type label of the card",
+    "geyu": ""
+  },
+  "Yokai_Introduction": {
+    "Tag": "Yokai_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Tc": "",
+    "En": "The type label of the card",
+    "geyu": ""
+  },
+  "Tool_Introduction": {
+    "Tag": "Tool_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Tc": "",
+    "En": "The type label of the card",
+    "geyu": ""
+  },
+  "Variation_Introduction": {
+    "Tag": "Variation_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Tc": "",
+    "En": "The type label of the card",
+    "geyu": ""
+  },
+  "Special_Introduction": {
+    "Tag": "Special_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Tc": "",
+    "En": "The type label of the card",
+    "geyu": ""
+  },
+  "Spell_Introduction": {
+    "Tag": "Spell_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Tc": "",
+    "En": "The type label of the card",
+    "geyu": ""
+  },
+  "Sutra_Introduction": {
+    "Tag": "Sutra_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Tc": "",
+    "En": "The type label of the card",
+    "geyu": ""
+  },
+  "Monster_Introduction": {
+    "Tag": "Monster_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Tc": "",
+    "En": "The type label of the card",
+    "geyu": ""
+  },
   "Seal": {
     "Tag": "Seal",
     "Ch": "封印",
@@ -325,42 +409,42 @@
     "Tag": "TurnStart",
     "Ch": "回合开始",
     "Tc": "",
-    "En": "",
+    "En": "TurnStart",
     "geyu": ""
   },
   "TurnEnd": {
     "Tag": "TurnEnd",
     "Ch": "回合结束",
     "Tc": "",
-    "En": "",
+    "En": "TurnEnd",
     "geyu": ""
   },
   "RoundStart": {
     "Tag": "RoundStart",
     "Ch": "小局开始",
     "Tc": "",
-    "En": "",
+    "En": "RoundStart",
     "geyu": ""
   },
   "RoundEnd": {
     "Tag": "RoundEnd",
     "Ch": "小局结束",
     "Tc": "",
-    "En": "",
+    "En": "RoundEnd",
     "geyu": ""
   },
   "Deploy": {
     "Tag": "Deploy",
     "Ch": "部署",
     "Tc": "",
-    "En": "",
+    "En": "Deploy",
     "geyu": ""
   },
   "Weak": {
     "Tag": "Weak",
     "Ch": "衰退",
     "Tc": "",
-    "En": "",
+    "En": "Weak",
     "geyu": ""
   },
   "Seal_Introduction": {
@@ -498,7 +582,7 @@
   },
   "Vitality_Introduction": {
     "Tag": "Vitality_Introduction",
-    "Ch": "鼓舞：增强两侧单位\\\"活力\\\"类型效果",
+    "Ch": "鼓舞：增强两侧单位\"活力\"类型效果",
     "Tc": "",
     "En": "",
     "geyu": ""
@@ -519,14 +603,14 @@
   },
   "Energy_Introduction": {
     "Tag": "Energy_Introduction",
-    "Ch": "能量：强化机械的触发效果，过多时触发\\\"超载\\\"效果",
+    "Ch": "能量：强化机械的触发效果，过多时触发\"超载\"效果",
     "Tc": "",
     "En": "",
     "geyu": ""
   },
   "Shield_Introduction": {
     "Tag": "Shield_Introduction",
-    "Ch": "护盾：受到\\\"伤害\\\"类型效果时时抵消相应点数的伤害",
+    "Ch": "护盾：受到\"伤害\"类型效果时时抵消相应点数的伤害",
     "Tc": "",
     "En": "",
     "geyu": ""

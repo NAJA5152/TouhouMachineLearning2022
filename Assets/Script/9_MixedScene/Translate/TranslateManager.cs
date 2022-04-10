@@ -43,7 +43,7 @@ namespace TouhouMachineLearningSummary.Manager
             List<KeyWordModel> keyWordInfos = new List<KeyWordModel>();
             translateData.Values.ForEach(pair =>
             {
-                string keyWord = pair[currentLanguage];
+                string keyWord = pair[currentLanguage]==""? pair["Ch"]: pair[currentLanguage];
                 int index = 0;
                 while ((index = text.IndexOf(keyWord, index)) != -1)
                 {
