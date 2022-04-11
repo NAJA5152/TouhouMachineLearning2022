@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TouhouMachineLearningSummary.Control;
+using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
@@ -18,27 +18,27 @@ namespace TouhouMachineLearningSummary.GameSystem
     public class PointSystem
     {
         //设置
-        public static async Task Set(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Set]);
+        public static async Task Set(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Set]);
         //增益
-        public static async Task Gain(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Gain]);
+        public static async Task Gain(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Gain]);
         //伤害
-        public static async Task Hurt(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Hurt]);
+        public static async Task Hurt(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Hurt]);
         //治愈
-        public static async Task Cure(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Cure]);
+        public static async Task Cure(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Cure]);
         //重置
-        public static async Task Reset(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Reset]);
+        public static async Task Reset(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Reset]);
         //强化
-        public static async Task Strengthen(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Strengthen]);
+        public static async Task Strengthen(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Strengthen]);
         //削弱
-        public static async Task Weak(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Weak]);
+        public static async Task Weak(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Weak]);
         //摧毁
-        public static async Task Destory(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Destory]);
+        public static async Task Destory(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Destory]);
         //逆转
-        public static async Task Reversal(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Reverse]);
+        public static async Task Reversal(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Reverse]);
         //增加
-        public static async Task Increase(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Increase]);
+        public static async Task Increase(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Increase]);
         //减少
-        public static async Task Decrease(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Decrease]);
+        public static async Task Decrease(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Decrease]);
     }
     /// <summary>
     /// 转移卡牌位置、所属区域的相关机制，共有战场区，手牌区，使用区，墓地区，牌组区 共五个区域
@@ -50,20 +50,20 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// </summary>
         /// <param name="triggerInfo"></param>
         /// <returns></returns>
-        public static async Task GenerateCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[Command.CardCommand.GenerateCard(triggerInfo.targetCardId)][TriggerType.Generate]);
+        public static async Task GenerateCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[CardCommand.GenerateCard(triggerInfo.targetCardId)][TriggerType.Generate]);
         /// <summary>
         /// 在战场区各个区域间移动卡牌(触发移动效果)
         /// </summary>
-        public static async Task MoveCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Move]);
+        public static async Task MoveCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Move]);
 
         /// <summary>
         /// 从卡组区移动至手牌区(不触发移动效果)
         /// </summary>
-        public static async Task DrawCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Draw]);
+        public static async Task DrawCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Draw]);
         /// <summary>
         /// 回手，从战场区移动至手牌区（不触发移动效果)
         /// </summary>
-        public static async Task RecycleCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Reverse]);
+        public static async Task RecycleCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Reverse]);
 
         /// <summary>
         /// 打出，从手牌区\战场区打出至使用区(不触发移动效果)
@@ -73,13 +73,13 @@ namespace TouhouMachineLearningSummary.GameSystem
             if (triggerInfo.targetCard != null)
             {
                 await Command.CardCommand.PlayCard(triggerInfo.targetCard, isAnsy);
-                await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Play]);
+                await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Play]);
             }
         }
         /// <summary>
         /// 复活，从墓地区移动至战场区(不触发移动效果)
         /// </summary>
-        public static async Task ReviveCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Revive]);
+        public static async Task ReviveCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Revive]);
         /// <summary>
         /// 部署，从使用区移动至战场区(不触发移动效果)
         /// </summary>
@@ -90,26 +90,26 @@ namespace TouhouMachineLearningSummary.GameSystem
             {
                 await Command.CardCommand.DeployCard(triggerInfo.targetCard);
             }
-            await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Deploy]);
+            await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Deploy]);
         }
         /// <summary>
         /// 召唤，从牌组区移动至战场区(不触发移动效果)
         /// </summary>
-        public static async Task SummonCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Summon]);
+        public static async Task SummonCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Summon]);
        
         /// <summary>
         /// 弃牌，从手牌区移动至墓地(不触发移动效果)
         /// </summary>
-        public static async Task DisCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Discard]);
+        public static async Task DisCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Discard]);
         /// <summary>
         /// 死亡，从战场区移动至墓地(不触发移动效果)
         /// </summary>
-        public static async Task DeadCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Dead]);
+        public static async Task DeadCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Dead]);
 
         /// <summary>
         /// 间隙，从对局区移除至场外(不触发移动效果)
         /// </summary>
-        public static async Task BanishCard(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.Banish]);
+        public static async Task BanishCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Banish]);
 
         /// <summary>
         ///  直接移动至卡组(不触发连锁效果)
@@ -126,13 +126,13 @@ namespace TouhouMachineLearningSummary.GameSystem
         {
             //筛选触发目标，对不包含该状态的卡牌才会激活状态
             //triggerInfo.targetCards = triggerInfo.targetCards.Where(card => card[triggerInfo.targetState]).ToList();
-            await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateAdd]);
+            await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.StateAdd]);
         }
         public static async Task ClearState(TriggerInfoModel triggerInfo)
         {
             //筛选触发目标，对包含该状态的卡牌才会清空状态
             triggerInfo.targetCards = triggerInfo.targetCards.Where(card => card[triggerInfo.targetState]).ToList();
-            await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateClear]);
+            await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.StateClear]);
         }
         public static async Task ChangeState(TriggerInfoModel triggerInfo)
         {
@@ -140,10 +140,10 @@ namespace TouhouMachineLearningSummary.GameSystem
             List<Card> stateUnActivateCardList = triggerInfo.targetCards.Where(card => !card[triggerInfo.targetState]).ToList();
             //设置所有状态未激活的为激活状态
             triggerInfo.targetCards = stateUnActivateCardList;
-            await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateAdd]);
+            await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.StateAdd]);
             //设置所有状态激活的为未激活状态
             triggerInfo.targetCards = stateActivateCardList;
-            await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.StateClear]);
+            await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.StateClear]);
         }
     }
     public class FieldSystem
@@ -151,11 +151,11 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// <summary>
         /// 直接设置字段值,不触发增加或减少衍生效果
         /// </summary>
-        public static async Task SetField(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.FieldSet]);
+        public static async Task SetField(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.FieldSet]);
         /// <summary>
         /// 设置字段值改变量，若为正数则触发字段增加衍生效果，若为正数则触发字段减少衍生效果
         /// </summary>
-        public static async Task ChangeField(TriggerInfoModel triggerInfo) => await CardAbilityControl.TriggerBroadcast(triggerInfo[TriggerType.FieldChange]);
+        public static async Task ChangeField(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.FieldChange]);
     }
     /// <summary>
     /// 异变系统
@@ -200,10 +200,10 @@ namespace TouhouMachineLearningSummary.GameSystem
 
     public class ProcessSystem
     {
-        public static async Task WhenTurnStart() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.TurnStart]);
-        public static async Task WhenTurnEnd() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList)[TriggerTime.When][TriggerType.TurnEnd]);
-        public static async Task WhenRoundStart() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.RoundStart]);
-        public static async Task WhenRoundEnd() => await CardAbilityControl.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.RoundEnd]);
+        public static async Task WhenTurnStart() => await GameSystemCommand.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.TurnStart]);
+        public static async Task WhenTurnEnd() => await GameSystemCommand.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList)[TriggerTime.When][TriggerType.TurnEnd]);
+        public static async Task WhenRoundStart() => await GameSystemCommand.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.RoundStart]);
+        public static async Task WhenRoundEnd() => await GameSystemCommand.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.RoundEnd]);
     }
     /// <summary>
     /// 获取游戏内对战信息的高层api接口

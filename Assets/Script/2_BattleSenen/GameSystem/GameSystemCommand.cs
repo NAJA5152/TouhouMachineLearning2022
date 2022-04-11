@@ -6,9 +6,9 @@ using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
-namespace TouhouMachineLearningSummary.Control
+namespace TouhouMachineLearningSummary.Command
 {
-    public class CardAbilityControl : MonoBehaviour
+    public class GameSystemCommand
     {
         //触发xx效果时，先对目标卡牌以外的卡牌触发在xx效果前对应效果，然后对所有目标同时触发xx效果，最后对目标卡牌以外的卡牌触发在xx效果后对应效果
         public static async Task TriggerBroadcast(TriggerInfoModel triggerInfo)
@@ -55,8 +55,6 @@ namespace TouhouMachineLearningSummary.Control
             {
                 Debug.LogWarning("无生效目标");
             }
-
-
             // 触发卡牌的指定效果
             static async Task Trigger(TriggerInfoModel triggerInfo)
             {
@@ -66,6 +64,5 @@ namespace TouhouMachineLearningSummary.Control
                 }
             }
         }
-
     }
 }

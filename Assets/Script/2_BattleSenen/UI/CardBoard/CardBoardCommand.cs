@@ -32,23 +32,18 @@ namespace TouhouMachineLearningSummary.Command
             {
                 var CardStandardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(Cards[i].CardID);
                 GameObject NewCard = Object.Instantiate(UiInfo.CardModel);
-
-                NewCard.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = Cards[i].CardTranslateAbility;
-                NewCard.transform.GetChild(1).GetComponent<Text>().text = Cards[i].ShowPoint==0?"" : Cards[i].ShowPoint.ToString();
+                NewCard.SetActive(true);
+                NewCard.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = Cards[i].CardTranslateAbility;
+                NewCard.transform.GetChild(2).GetComponent<Text>().text = Cards[i].ShowPoint==0?"" : Cards[i].ShowPoint.ToString();
                 NewCard.name = CardStandardInfo.TranslateName;
-
-                ////修改文本为富文本
-                //Info.GameUI.UiInfo.IntroductionTitle.text = Title;
-                //Info.GameUI.UiInfo.IntroductionText.text = Text;
-                //Info.GameUI.UiInfo.IntroductionEffect.text = Effect;
 
                 NewCard.GetComponent<SelectCardManager>().Rank = i;
                 NewCard.transform.SetParent(UiInfo.Content);
                 Texture2D texture = CardStandardInfo.icon;
-                NewCard.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+                NewCard.transform.GetChild(0).GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
                 UiInfo.ShowCardLIstOnBoard.Add(NewCard);
             }
-            UiInfo.Content.GetComponent<RectTransform>().sizeDelta = new Vector2(Cards.Count * 325 + 200, UiInfo.Content.GetComponent<RectTransform>().sizeDelta.y);
+            UiInfo.Content.GetComponent<RectTransform>().sizeDelta = new Vector2(Cards.Count * 275 + 000, UiInfo.Content.GetComponent<RectTransform>().sizeDelta.y);
         }
         //生成对局不存在的卡牌
         private static void CreatBoardCardVitual()
@@ -60,8 +55,9 @@ namespace TouhouMachineLearningSummary.Command
             {
                 var CardStandardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(CardIds[i]);
                 GameObject NewCard = Object.Instantiate(UiInfo.CardModel);
-                NewCard.transform.GetChild(0).GetChild(0).GetComponent<Text>().text = CardStandardInfo.TranslateAbility;
-                NewCard.transform.GetChild(1).GetComponent<Text>().text = CardStandardInfo.point == 0 ? "" : CardStandardInfo.point.ToString();
+                NewCard.SetActive(true);
+                NewCard.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = CardStandardInfo.TranslateAbility;
+                NewCard.transform.GetChild(2).GetComponent<Text>().text = CardStandardInfo.point == 0 ? "" : CardStandardInfo.point.ToString();
                 //string Title = card.CardName;
                 //string Text = card.CardIntroduction;
                 //string Effect = "";
@@ -75,7 +71,7 @@ namespace TouhouMachineLearningSummary.Command
                 NewCard.GetComponent<SelectCardManager>().Rank = i;
                 NewCard.transform.SetParent(UiInfo.Content);
                 Texture2D texture = CardStandardInfo.icon;
-                NewCard.GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
+                NewCard.transform.GetChild(0).GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
                 UiInfo.ShowCardLIstOnBoard.Add(NewCard);
             }
             UiInfo.Content.GetComponent<RectTransform>().sizeDelta = new Vector2(CardIds.Count * 325 + 200, UiInfo.Content.GetComponent<RectTransform>().sizeDelta.y);
