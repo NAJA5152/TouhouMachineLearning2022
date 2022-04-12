@@ -1,3 +1,4 @@
+*.csproj
 Library/*
 Log/*
 PC/*
@@ -23,7 +24,7 @@ UserSettings/EditorUserSettings.asset
 ProjectSettings/ProjectVersion.txt
 ProjectSettings/PackageManagerSettings.asset
 .consulo/
-*.csproj
+
 *.unityproj
 *.sln
 *.suo
