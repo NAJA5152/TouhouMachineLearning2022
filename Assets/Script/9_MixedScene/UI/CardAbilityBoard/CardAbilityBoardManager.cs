@@ -119,21 +119,6 @@ namespace TouhouMachineLearningSummary.Manager
                 ability=KeyWordManager.ReplaceAbilityKeyWord(ability);
                 AbilityText.text = ability;
                 TagText.text = card.CardTags; 
-                //card.cardFields.ToList().ForEach(field =>
-                //{
-                //    switch (field.Key)
-                //    {
-                //        case CardField.Timer:
-                //            break;
-                //        case CardField.Inspire:
-                //            Introduction += $"活力：增强两侧单位效果{field.Value}";
-                //            break;
-                //        case CardField.Apothanasia:
-                //            break;
-                //        default:
-                //            break;
-                //    }
-                //});
                 //IntroductionBackground.gameObject.SetActive(true);
                 //IntroductionBackground.sizeDelta = new Vector2(300, ability.Length / 13 * 15 + 100);
             }

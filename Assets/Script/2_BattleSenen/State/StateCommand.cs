@@ -596,8 +596,8 @@ namespace TouhouMachineLearningSummary.Command
                                     int selectRank = AgainstInfo.SelectBoardCardRanks[0];
                                     AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectBoardCard, triggerCard, CardLists, 1, isPlayer1Select: Info.AgainstInfo.IsPlayer1);
                                     await CardCommand.ExchangeCard(CardLists[selectRank], IsPlayerExchange: true, isRoundStartExchange: true, WashInsertRank: AgainstInfo.washInsertRank);
-                                    Info.AgainstInfo.ExChangeableCardNum--;
-                                    Info.AgainstInfo.SelectBoardCardRanks.Clear();
+                                    AgainstInfo.ExChangeableCardNum--;
+                                    AgainstInfo.SelectBoardCardRanks.Clear();
                                     UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
                                 }
                                 await Task.Delay(10);

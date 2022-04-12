@@ -11,7 +11,7 @@ public class UIEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     public void OnPointerClick(PointerEventData eventData)
     {
-        onPointerLeftUp.Invoke();
+        //onPointerLeftUp.Invoke();
     }
 
 
@@ -21,10 +21,12 @@ public class UIEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     public void OnPointerUp(PointerEventData eventData)
     {
-        //if (eventData.button == PointerEventData.InputButton.Left && eventData.clickCount == 1)
-        //{
-        //    onPointerLeftUp.Invoke();
-        //}
+        //如果左键单击，视为鼠标左键点击
+        if (eventData.button == PointerEventData.InputButton.Left && eventData.clickCount == 1)
+        {
+            onPointerLeftUp.Invoke();
+        }
+        //如果右键单击或鼠标左键双击，视为鼠标右键点击
         if (eventData.button == PointerEventData.InputButton.Right || (eventData.button == PointerEventData.InputButton.Left && eventData.clickCount == 2))
         {
             onPointerRightUp.Invoke();

@@ -32,8 +32,8 @@ app.UseRouting();
 app.MapBlazorHub();
 app.MapFallbackToPage("/_Host");
 app.MapHub<TouHouHub>("/TouHouHub");
-app.Urls.Add("http://localhost:495");
-app.Urls.Add("https://localhost:49514");
+app.Urls.Add("http://*:495");
+app.Urls.Add("https://*:49514");
 Console.WriteLine("已载入回应中心");
 Console.WriteLine("服务端已启动");
 Task.Run(() =>

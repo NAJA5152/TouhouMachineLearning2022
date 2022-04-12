@@ -11,15 +11,14 @@
 @code{
 	protected override void OnInitialized()
 	{
-		Task.Run(async () =>
-		{
-			while(true)
-			{
-				await InvokeAsync(StateHasChanged);
-				Console.WriteLine("refresh");
-				await Task.Delay(500);
-			}
-		});
+		//Task.Run(async () =>
+		//{
+		//	while(true)
+		//	{
+		//		await InvokeAsync(StateHasChanged);
+		//		await Task.Delay(500);
+		//	}
+		//});
 	}
 
 }
