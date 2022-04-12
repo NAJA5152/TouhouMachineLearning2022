@@ -22,3 +22,16 @@ OtherSolution/xls检测更新/.vs/*
 UserSettings/EditorUserSettings.asset
 ProjectSettings/ProjectVersion.txt
 ProjectSettings/PackageManagerSettings.asset
+.consulo/
+*.csproj
+*.unityproj
+*.sln
+*.suo
+*.tmp
+*.user
+*.userprefs
+*.pidb
+*.booproj
+*.svd
+*.pdb
+*.opendb
