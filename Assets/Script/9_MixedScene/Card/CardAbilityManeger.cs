@@ -42,6 +42,7 @@ namespace TouhouMachineLearningSummary.Manager
                 isAbilityActive &= JudgeAbilityActive(card, Condition.Dead, card.ShowPoint == 0);
                 isAbilityActive &= JudgeAbilityActive(card, Condition.NotSeal, !card[GameEnum.CardState.Seal]);
                 isAbilityActive &= JudgeAbilityActive(card, Condition.OnBattle, Info.AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(card));
+                isAbilityActive &= JudgeAbilityActive(card, Condition.OnHand, Info.AgainstInfo.cardSet[GameRegion.Hand].CardList.Contains(card));
                 isAbilityActive &= JudgeAbilityActive(card, Condition.OnMyTurn, Info.AgainstInfo.cardSet[Orientation.My].CardList.Contains(card));
                 isAbilityActive &= JudgeAbilityActive(card, Condition.OnOpTurn, Info.AgainstInfo.cardSet[Orientation.Op].CardList.Contains(card));
                 return isAbilityActive;

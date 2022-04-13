@@ -217,10 +217,10 @@ namespace TouhouMachineLearningSummary.Command
 
             SingleRowManager TargetRow = Info.AgainstInfo.cardSet.RowManagers[location.X];
             AgainstInfo.cardSet[TargetRow.orientation][TargetRow.region].Add(targetCard, location.Y);
-            if (TargetRow.CardList.Count > 6)
-            {
-                await GameSystem.TransferSystem.MoveToGrave(targetCard);
-            }
+            //if (TargetRow.CardList.Count > 6)
+            //{
+            //    await GameSystem.TransferSystem.MoveToGrave(targetCard);
+            //}
         }
         public static async Task PlayCard(Card targetCard, bool IsAnsy = true)
         {
@@ -304,7 +304,7 @@ namespace TouhouMachineLearningSummary.Command
             _ = GameSystem.PointSystem.Set(new TriggerInfoModel(triggerInfo.targetCard, triggerInfo.triggerCard).SetPoint(targetCardPoint));
             await Task.Delay(1000);
         }
-        public static async Task MoveToDeck(Card card, int Index = 0,bool isRandom=false)
+        public static async Task MoveToDeck(Card card, int Index = 0, bool isRandom = false)
         {
             if (card == null) return;
             await Task.Delay(500);
@@ -316,6 +316,23 @@ namespace TouhouMachineLearningSummary.Command
             card.cardFields.Clear();
             card.cardStates.Clear();
             card.SetCardSeeAble(false);
+            card.ChangePoint = 0;
+            card.isMoveStepOver = false;
+            await Task.Delay(100);
+            card.isMoveStepOver = true;
+            await AudioCommand.PlayAsync(GameAudioType.DrawCard);
+        }
+
+        public static async Task MoveToOpHand(Card card)
+        {
+            if (card == null) return;
+            await Task.Delay(500);
+            Orientation targetOrientation = card.OppositeOrientation;
+            RemoveCard(card);
+            AgainstInfo.cardSet[targetOrientation][GameRegion.Hand].RowManagers[0].CardList.Insert(0, card);
+            OrderHandCard();
+            //重置卡牌状态
+            card.SetCardSeeAble(targetOrientation== Orientation.Down);
             card.ChangePoint = 0;
             card.isMoveStepOver = false;
             await Task.Delay(100);

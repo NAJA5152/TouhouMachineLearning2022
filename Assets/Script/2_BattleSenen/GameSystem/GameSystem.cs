@@ -116,6 +116,10 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// </summary>
         public static async Task MoveToDeck(Card targetCard, int index=0,bool isRandom=true) => await Command.CardCommand.MoveToDeck(targetCard, index, isRandom);
         /// <summary>
+        /// 直接移动至对方手牌(不触发连锁效果)
+        /// </summary>
+        public static async Task MoveToOpHand(Card targetCard) => await Command.CardCommand.MoveToOpHand(targetCard);
+        /// <summary>
         /// 直接移动至墓地(不触发连锁效果)
         /// </summary>
         public static async Task MoveToGrave(Card targetCard) => await Command.CardCommand.MoveToGrave(targetCard);

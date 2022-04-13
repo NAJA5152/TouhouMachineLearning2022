@@ -10,6 +10,7 @@
         /// </summary>
         Default,
         OnBattle,
+        OnHand,
         /// <summary>
         /// 我方回合
         /// </summary>

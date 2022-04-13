@@ -1118,6 +1118,68 @@
   {
     "cardID": 1,
     "level": "多人",
+    "series": "8",
+    "point": 3,
+    "Name": {
+      "Name-Ch": "反狱王",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "妖怪",
+      "Tc": "",
+      "En": "Yokai",
+      "geyu": ""
+    },
+    "Ability": {
+      "Ability-Ch": "部署：在我方手牌中生成一张旧地狱怨灵",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 1,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 2,
+    "level": "多人",
+    "series": "8",
+    "point": 5,
+    "Name": {
+      "Name-Ch": "旧地狱怨灵",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "妖怪",
+      "Tc": "",
+      "En": "Yokai",
+      "geyu": ""
+    },
+    "Ability": {
+      "Ability-Ch": "我方回合结束时:若自身位于手牌，则移动至对方手牌\n当我方pass时 召唤至场上\n部署、召唤:丢弃我方手牌中最右侧的卡牌",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "寄宿在强者身上的怨灵，榨干宿主后便会脱离",
+      "Describe-En": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 1,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 1,
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "多人",
     "series": "9",
     "point": 8,
     "Name": {
