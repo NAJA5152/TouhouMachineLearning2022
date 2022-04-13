@@ -46,7 +46,6 @@ namespace TouhouMachineLearningSummary.Other
             var result = await VersionsHub.InvokeAsync<bool>("UpdateServer", File.ReadAllBytes(@"OtherSolution\Server\bin\Debug\net6.0\Server.dll"));
             UnityEngine.Debug.LogWarning("上传结果" + result);
             await VersionsHub.StopAsync();
-
         }
         [MenuItem("Tools/打包素材", priority = 151)]
         static void BuildAssetBundles() => BuildPipeline.BuildAssetBundles(Application.streamingAssetsPath, BuildAssetBundleOptions.UncompressedAssetBundle, BuildTarget.StandaloneWindows64);
