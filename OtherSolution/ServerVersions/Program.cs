@@ -8,7 +8,7 @@ builder.Services.AddSignalR(hubOptions =>
 var app = builder.Build();
 app.MapGet("/", () => "Hello World!");
 app.MapHub<VersionsHub>("/VersionsHub");
-app.Urls.Add("http://localhost:233");
+app.Urls.Add("http://*:233");
 VersionsHub.Init();
 app.Run();
 

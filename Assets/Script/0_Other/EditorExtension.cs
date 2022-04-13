@@ -41,6 +41,7 @@ namespace TouhouMachineLearningSummary.Other
         static async void UpdateServer()
         {
             var VersionsHub = new HubConnectionBuilder().WithUrl($"http://106.15.38.165:233/VersionsHub").Build();
+            //VersionsHub = new HubConnectionBuilder().WithUrl($"http://127.0.0.1:233/VersionsHub").Build();
             await VersionsHub.StartAsync();
             var result = await VersionsHub.InvokeAsync<bool>("UpdateServer", File.ReadAllBytes(@"OtherSolution\Server\bin\Debug\net6.0\Server.dll"));
             UnityEngine.Debug.LogWarning("上传结果" + result);

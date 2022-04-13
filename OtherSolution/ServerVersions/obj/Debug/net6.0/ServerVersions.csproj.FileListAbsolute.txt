@@ -19,3 +19,8 @@ D:\vs2022-Project\TouhouMachineLearning2022\OtherSolution\ServerVersions\obj\Deb
 D:\vs2022-Project\TouhouMachineLearning2022\OtherSolution\ServerVersions\obj\Debug\net6.0\ref\ServerVersions.dll
 D:\vs2022-Project\TouhouMachineLearning2022\OtherSolution\ServerVersions\obj\Debug\net6.0\ServerVersions.pdb
 D:\vs2022-Project\TouhouMachineLearning2022\OtherSolution\ServerVersions\obj\Debug\net6.0\ServerVersions.genruntimeconfig.cache
+D:\vs2022-Project\TouhouMachineLearning2022\OtherSolution\ServerVersions\bin\Debug\net6.0\Server\Server.runtimeconfig.json
+D:\vs2022-Project\TouhouMachineLearning2022\OtherSolution\ServerVersions\bin\Debug\net6.0\Server\appsettings.Development.json
+D:\vs2022-Project\TouhouMachineLearning2022\OtherSolution\ServerVersions\bin\Debug\net6.0\Server\appsettings.json
+D:\vs2022-Project\TouhouMachineLearning2022\OtherSolution\ServerVersions\bin\Debug\net6.0\Server\Server.deps.json
+D:\vs2022-Project\TouhouMachineLearning2022\OtherSolution\ServerVersions\bin\Debug\net6.0\Server\Server.staticwebassets.runtime.json

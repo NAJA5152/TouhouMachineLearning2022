@@ -5,28 +5,34 @@ using System.Diagnostics;
 public class VersionsHub : Hub
 {
     static Process progress = null;
-    public bool UpdateServer(byte[] datas)
-    {
-        try
-        {
-            CloseServer();
-            File.WriteAllBytes("/root/gezi/Server/Server.dll", datas);
-            Console.WriteLine("进行版本更新,当前服务器更新时间为" + new FileInfo("/root/gezi/Server/Server.dll").LastWriteTime);
-            StartServer();
-            return true;
-        }
-        catch (Exception e)
-        {
-            Console.WriteLine(e.Message);
-            return false;
-        }
-
-    }
     public static void Init()
     {
         Console.WriteLine("启动版本控制器");
-        progress = Process.Start("dotnet","/root/gezi/Server/Server.dll");
+        progress = Process.Start("dotnet", "Server/Server.dll");
     }
     public void StartServer() => progress = Process.Start("dotnet", "Server/Server.dll");
-    public void CloseServer() => progress.Close();
+    public void CloseServer()
+    {
+        progress.Kill();
+    }
+
+    public bool UpdateServer(byte[] datas)
+    {
+        Console.WriteLine("收到更新信息");
+        CloseServer();
+        File.WriteAllBytes("Server/Server.dll", datas);
+        Console.WriteLine("进行版本更新,当前服务器更新时间为" + new FileInfo("Server/Server.dll").LastWriteTime);
+        StartServer();
+        return true;
+    }
 }
+
+//try
+//{
+
+//}
+//catch (Exception e)
+//{
+//    Console.WriteLine(e.Message);
+//    return false;
+//}
