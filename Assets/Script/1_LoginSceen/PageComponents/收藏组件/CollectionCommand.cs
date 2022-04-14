@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TouhouMachineLearningSummary.Manager;
+using TouhouMachineLearningSummary.Command;
 using UnityEngine;
-namespace TouhouMachineLearningSummary.Command
+namespace TouhouMachineLearningSummary.Manager
 {
-    public class CollectionCommand : MonoBehaviour
+    public class CollectionManager : MonoBehaviour
     {
         public GameObject againstSummaryComponent;
         public GameObject againstSummaryItem;
@@ -15,8 +15,8 @@ namespace TouhouMachineLearningSummary.Command
         public GameObject musicComponent;
         public GameObject cgComponent;
 
-        static List<GameObject> CreatItem { get; set; }=new List<GameObject>();
-        public static CollectionCommand Manager { get; set; }
+        static List<GameObject> CreatItem { get; set; } = new List<GameObject>();
+        public static CollectionManager Manager { get; set; }
         void Awake() => Manager = this;
         public static void Init()
         {
@@ -32,7 +32,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             Init();
             Manager.againstSummaryComponent.SetActive(true);
-            var summarys = await Command.NetCommand.DownloadOwnerAgentSummaryAsync(Info.AgainstInfo.onlineUserInfo.Account, 0, 20);
+            var summarys = await NetCommand.DownloadOwnerAgentSummaryAsync(Info.AgainstInfo.onlineUserInfo.Account, 0, 20);
             summarys.ForEach(summary =>
             {
                 var item = Instantiate(Manager.againstSummaryItem, Manager.againstSummaryItem.transform.parent);

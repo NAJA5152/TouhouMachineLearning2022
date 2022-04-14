@@ -2,6 +2,7 @@
 using System.Linq;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
+using TouhouMachineLearningSummary.Manager;
 using UnityEngine;
 namespace TouhouMachineLearningSummary.Command
 {
@@ -98,7 +99,7 @@ namespace TouhouMachineLearningSummary.Command
                     Command.BookCommand.ActiveCompment(BookCompmentType.Shrine);
                     break;
                 case MenuState.Collect:
-                    Command.CollectionCommand.Init();
+                    CollectionManager.Init();
                     Command.BookCommand.ActiveCompment(BookCompmentType.Collect);
                     break;
                 case MenuState.Config:

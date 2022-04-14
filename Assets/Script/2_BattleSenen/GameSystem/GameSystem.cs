@@ -54,7 +54,13 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// <summary>
         /// 在战场区各个区域间移动卡牌(触发移动效果)
         /// </summary>
-        public static async Task MoveCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Move]);
+        public static async Task MoveCard(TriggerInfoModel triggerInfo)
+        {
+            if (!triggerInfo.targetCard[CardState.Forbidden]&& GameSystem.InfoSystem.AgainstCardSet[triggerInfo.location.X].Count<6)
+            {
+                await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Move]);
+            }
+        }
 
         /// <summary>
         /// 从卡组区移动至手牌区(不触发移动效果)
