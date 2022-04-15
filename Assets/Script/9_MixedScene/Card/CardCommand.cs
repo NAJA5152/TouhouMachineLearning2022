@@ -217,12 +217,6 @@ namespace TouhouMachineLearningSummary.Command
 
             SingleRowManager TargetRow = Info.AgainstInfo.cardSet.RowManagers[location.X];
             AgainstInfo.cardSet[TargetRow.orientation][TargetRow.region].Add(targetCard, location.Y);
-<<<<<<< Updated upstream
-            //if (TargetRow.CardList.Count > 6)
-            //{
-            //    await GameSystem.TransferSystem.MoveToGrave(targetCard);
-            //}
-=======
             if (TargetRow.CardList.Count > 6&& (
                 TargetRow.region== GameRegion.Water||
                 TargetRow.region== GameRegion.Fire||
@@ -232,7 +226,6 @@ namespace TouhouMachineLearningSummary.Command
             {
                 await GameSystem.TransferSystem.MoveToGrave(targetCard);
             }
->>>>>>> Stashed changes
         }
         public static async Task PlayCard(Card targetCard, bool IsAnsy = true)
         {
