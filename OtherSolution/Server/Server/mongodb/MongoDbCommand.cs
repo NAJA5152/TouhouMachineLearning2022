@@ -20,7 +20,6 @@ namespace Server
             Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
             Console.WriteLine("链接数据库");
             client = new MongoClient("mongodb://106.15.38.165:28020");
-            //client = new MongoClient("mongodb://172.16.15.141:27017");
             db = client.GetDatabase("Gezi");
             PlayerInfoCollection = db.GetCollection<PlayerInfo>("PlayerInfo");
             CardConfigCollection = db.GetCollection<CardConfig>("CardConfig");
