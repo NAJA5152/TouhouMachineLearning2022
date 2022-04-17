@@ -1,7 +1,10 @@
-﻿using Sirenix.OdinInspector;
+﻿using Microsoft.AspNetCore.SignalR.Client;
+using Sirenix.OdinInspector;
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Net.Http;
+using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.Info;
@@ -14,18 +17,6 @@ namespace TouhouMachineLearningSummary.Test
 {
     public class test : MonoBehaviour
     {
-        [Button("测试")]
-        public void A() => _ = B();
-        [Button("测试")]
-        public async Task B()
-        {
-            Debug.Log("1");
-            await Task.Delay(1000);
-            Debug.Log("2");
-            await Task.Delay(3000);
-            Debug.Log("3");
-        }
-
         [ShowInInspector]
         public CardSet cardSet => AgainstInfo.cardSet;
         [ShowInInspector]
@@ -35,12 +26,27 @@ namespace TouhouMachineLearningSummary.Test
         public string text;
         [Button("截图")]
         public void CaptureScreen(string name) => ScreenCapture.CaptureScreenshot(@"Assets/Art/Scene/" + name + ".png");
-        [Button("上传记录")]
-        public void test0()
+
+        static string ip => !Info.AgainstInfo.isHostNetMode ? "localhost:495" : "server.natappfree.cc:37048";
+        [Button("测试网络启动")]
+        public async void Click()
+        {
+            Debug.Log("手动点击触发");
+            var Hub = new HubConnectionBuilder()
+                .WithUrl($"http://106.15.38.165:495/TouHouHub")
+                .Build();
+            await Hub.StartAsync();
+            Debug.Log(await Hub.InvokeAsync<string>("GetCardConfigsVersion"));
+        }
+        public async void Start()
         {
 
-            AgainstInfo.summary.Explort();
-            AgainstInfo.summary.Show();
+            //Debug.Log("由unity触发");
+            //var Hub = new HubConnectionBuilder()
+            //    .WithUrl($"http://106.15.38.165:495/TouHouHub")
+            //    .Build();
+            //await Hub.StartAsync();
+            //Debug.Log(await Hub.InvokeAsync<string>("GetCardConfigsVersion"));
         }
         [Button("下载拥有记录")]
         public void test1()
@@ -48,6 +54,7 @@ namespace TouhouMachineLearningSummary.Test
             var result = Command.NetCommand.DownloadOwnerAgentSummaryAsync("0", 0, 100);
             Debug.Log(result.ToJson());
         }
+
         [Button("下载所有记录")]
         public void test2()
         {

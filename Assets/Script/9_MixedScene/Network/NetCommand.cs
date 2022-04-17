@@ -23,6 +23,8 @@ namespace TouhouMachineLearningSummary.Command
             try
             {
                 TohHouHub = new HubConnectionBuilder().WithUrl($"http://{ip}/TouHouHub").Build();
+                await TohHouHub.StartAsync();
+
                 TohHouHub.On<string>("ChatReceive", message =>
                 {
                     var receive = message.ToObject<(string name, string text, string targetUser)>();
@@ -43,8 +45,8 @@ namespace TouhouMachineLearningSummary.Command
                     Command.BookCommand.SimulateFilpPage(false);//停止翻书
                     Command.MenuStateCommand.AddState(MenuState.ScenePage);//增加路由
                     Debug.Log("进入对战配置模式");
-                    //Manager.LoadingManager.manager?.OpenAsync();
-                    _ = AgainstManager.OnlineStart(isPlayer1, playerInfo, opponentInfo);
+                //Manager.LoadingManager.manager?.OpenAsync();
+                _ = AgainstManager.OnlineStart(isPlayer1, playerInfo, opponentInfo);
                 });
                 TohHouHub.On<NetAcyncType, object[]>("Async", (type, receiveInfo) =>
                 {
@@ -226,7 +228,7 @@ namespace TouhouMachineLearningSummary.Command
 
         internal static async Task<string> GetCardConfigsVersionAsync()
         {
-            await CheckHubState();
+            //await CheckHubState();
             return await TohHouHub.InvokeAsync<string>("GetCardConfigsVersion");
         }
 

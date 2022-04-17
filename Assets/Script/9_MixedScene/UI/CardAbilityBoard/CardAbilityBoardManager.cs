@@ -103,11 +103,10 @@ namespace TouhouMachineLearningSummary.Manager
                 Texture.sprite = cardInfo.icon.ToSprite();
                 Name.text = cardInfo.TranslateName;
                 DescribeText.text = cardInfo.TranslateDescribe;
-                //ability = cardInfo.CardTranslateAbility;
-                //ability = KeyWordManager.ReplaceAbilityKeyWord(ability);
-                //AbilityText.text = ability;
-                //TagText.text = cardInfo.CardTags;
-                //IntroductionBackground.gameObject.SetActive(false);
+                ability = cardInfo.TranslateAbility;
+                ability = KeyWordManager.ReplaceAbilityKeyWord(ability);
+                AbilityText.text = ability;
+                TagText.text = cardInfo.TranslateTags;
             }
             else
             {
@@ -118,7 +117,7 @@ namespace TouhouMachineLearningSummary.Manager
                 ability = card.CardTranslateAbility;
                 ability=KeyWordManager.ReplaceAbilityKeyWord(ability);
                 AbilityText.text = ability;
-                TagText.text = card.CardTags; 
+                TagText.text = card.TranslateTags; 
                 //IntroductionBackground.gameObject.SetActive(true);
                 //IntroductionBackground.sizeDelta = new Vector2(300, ability.Length / 13 * 15 + 100);
             }

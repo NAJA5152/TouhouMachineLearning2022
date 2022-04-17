@@ -24,7 +24,6 @@ namespace TouhouMachineLearningSummary.Command
         }
         internal static void ChangeFocusCamp()
         {
-            Debug.LogError("已注释");
             var campInfo = Info.CampInfo.GetCampInfo(Info.CardCompnentInfo.focusCamp);
             Info.CardCompnentInfo.targetCardTexture.GetComponent<Image>().sprite = Sprite.Create(campInfo.campTex, new Rect(0, 0, campInfo.campTex.width, campInfo.campTex.height), Vector2.zero);
             Info.CardCompnentInfo.targetCardName.GetComponent<Text>().text = campInfo.campName;

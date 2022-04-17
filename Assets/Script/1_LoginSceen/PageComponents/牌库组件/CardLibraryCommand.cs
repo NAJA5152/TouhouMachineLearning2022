@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using TMPro;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.Manager;
 using UnityEngine;
@@ -54,6 +55,7 @@ namespace TouhouMachineLearningSummary.Command
                 newCardModel.GetComponent<Image>().sprite = cardTex;
                 newCardModel.transform.GetChild(1).GetComponent<Text>().text = info.TranslateName;
                 newCardModel.transform.GetChild(2).GetChild(0).GetChild(0).GetComponent<Text>().text = "X" + (cardNum > 9 ? "9+" : cardNum + "");
+                newCardModel.transform.GetChild(3).GetComponent<TextMeshProUGUI>().text = info.point==0?"": info.point.ToString();
                 newCardModel.GetComponent<Image>().color = new Color(1, 1, 1, cardNum == 0 ? 0.2f : 1);
                 newCardModel.SetActive(true);
             }

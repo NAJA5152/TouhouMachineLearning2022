@@ -52,7 +52,7 @@ namespace TouhouMachineLearningSummary.Model
             GameRegion.Soil => GameRegion.Water,
             _ => CurrentRegion,
         };
-        public string CardTags { get; set; }
+        public string TranslateTags { get; set; }
         public CardRank CardRank { get; set; }
         public CardType CardType { get; set; }
 

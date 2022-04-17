@@ -120,7 +120,7 @@ namespace TouhouMachineLearningSummary.Info
                 CardList = CardList ?? GlobalCardList.SelectMany(x => x).ToList();
                 List<Card> filterCardList = CardList.Where(card =>
                     tags.Any(tag =>
-                        card.CardTags.Contains(tag.ToString().Translation())))
+                        card.TranslateTags.Contains(tag.ToString().Translation())))
                     .ToList();
                 return new CardSet(RowManagers, filterCardList);
             }
