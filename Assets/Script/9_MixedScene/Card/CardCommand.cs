@@ -141,7 +141,7 @@ namespace TouhouMachineLearningSummary.Command
                 AgainstInfo.SelectRowCardList.Insert(AgainstInfo.SelectRank, targetCard);
             }
             targetCard.isMoveStepOver = false;
-            await Task.Delay(5000);
+            await Task.Delay(500);
             targetCard.isMoveStepOver = true;
             _ = AudioCommand.PlayAsync(GameAudioType.Deploy);
         }
