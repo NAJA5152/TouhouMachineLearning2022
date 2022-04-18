@@ -133,13 +133,15 @@ namespace TouhouMachineLearningSummary.Command
 
 
 
-        public static async Task DeployCard(Card targetCard)
+        public static async Task DeployCard(Card targetCard, bool reTrigger)
         {
-            RemoveCard(targetCard);
-            AgainstInfo.SelectRowCardList.Insert(AgainstInfo.SelectRank, targetCard);
-            //targetCard.moveSpeed = 0.1f;
+            if (!reTrigger)
+            {
+                RemoveCard(targetCard);
+                AgainstInfo.SelectRowCardList.Insert(AgainstInfo.SelectRank, targetCard);
+            }
             targetCard.isMoveStepOver = false;
-            await Task.Delay(1000);
+            await Task.Delay(5000);
             targetCard.isMoveStepOver = true;
             _ = AudioCommand.PlayAsync(GameAudioType.Deploy);
         }

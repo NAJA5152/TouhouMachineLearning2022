@@ -88,13 +88,14 @@ namespace TouhouMachineLearningSummary.GameSystem
         public static async Task ReviveCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Revive]);
         /// <summary>
         /// 部署，从使用区移动至战场区(不触发移动效果)
+        /// 若为重新触发则不改变位置直接触发部署效果
         /// </summary>
-        public static async Task DeployCard(TriggerInfoModel triggerInfo)
+        public static async Task DeployCard(TriggerInfoModel triggerInfo,bool ReTrigger=false)
         {
             //部署效果特殊处理，先执行部署行为再触发部署效果
             if (triggerInfo.targetCards.Any() && AgainstInfo.SelectRowRank != -1)
             {
-                await Command.CardCommand.DeployCard(triggerInfo.targetCard);
+                await Command.CardCommand.DeployCard(triggerInfo.targetCard, ReTrigger );
             }
             await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Deploy]);
         }

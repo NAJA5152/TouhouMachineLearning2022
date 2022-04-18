@@ -33,7 +33,7 @@ namespace TouhouMachineLearningSummary.Test
         {
             Debug.Log("手动点击触发");
             var Hub = new HubConnectionBuilder()
-                .WithUrl($"http://106.15.38.165:495/TouHouHub")
+                .WithUrl($"https://gezi.ovyno.com/TouHouHub")
                 .Build();
             await Hub.StartAsync();
             Debug.Log(await Hub.InvokeAsync<string>("GetCardConfigsVersion"));
