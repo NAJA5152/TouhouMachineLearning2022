@@ -7,9 +7,7 @@ using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Manager;
-//using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
-using TouhouMachineLearningSummary.Thread;
 using UnityEngine;
 
 namespace TouhouMachineLearningSummary.Command
@@ -35,6 +33,8 @@ namespace TouhouMachineLearningSummary.Command
             //Debug.Log("创建卡牌"+id);
 
 
+            //若编辑器下则直接加载本地GameCard的dll卡牌脚本
+            //否则从数据库下载卡牌脚本
 #if UNITY_EDITOR
             Type componentType = Assembly.Load(File.ReadAllBytes(@"Library\ScriptAssemblies\GameCard.dll")).GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
             newCard.AddComponent(componentType);
@@ -43,8 +43,8 @@ namespace TouhouMachineLearningSummary.Command
                newCard.AddComponent(Manager.CardAssemblyManager.GetCardScript(id));
 #endif
 
+            var CardStandardInfo = CardAssemblyManager.GetCurrentCardInfos(id);
             Card card = newCard.GetComponent<Card>();
-            var CardStandardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(id);
             card.CardID = CardStandardInfo.cardID;
             card.BasePoint = CardStandardInfo.point;
             card.Icon = CardStandardInfo.icon;
@@ -77,11 +77,11 @@ namespace TouhouMachineLearningSummary.Command
             GameObject newCard = GameObject.Instantiate(Info.CardInfo.cardModel, new Vector3(0, 100, 0), Info.CardInfo.cardModel.transform.rotation);
             newCard.SetActive(true);
             newCard.transform.SetParent(GameObject.FindGameObjectWithTag("Card").transform);
-            newCard.name = "Card" + Info.CardInfo.CreatCardRank++;
+            newCard.name = "Card" + CardInfo.CreatCardRank++;
             //Debug.Log("创建卡牌"+id);
-            newCard.AddComponent(Manager.CardAssemblyManager.GetCardScript(sampleCard.CardID));
+            newCard.AddComponent(CardAssemblyManager.GetCardScript(sampleCard.CardID));
             Card card = newCard.GetComponent<Card>();
-            var CardStandardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(sampleCard.CardID);
+            var CardStandardInfo = CardAssemblyManager.GetCurrentCardInfos(sampleCard.CardID);
             ///然后根据sampleCard设置具体参数，先暂时设为默认
             card.CardID = CardStandardInfo.cardID;
             card.BasePoint = CardStandardInfo.point;

@@ -77,6 +77,7 @@ namespace TouhouMachineLearningSummary.Manager
             //如果已存在啧直接使用
             //如果不存在则从服务器拉取最新版本
             var data = await GetCardConfigsVersionAsync();
+            //为""则获取最新版本的卡牌数据
             if (date == "")
             {
                 var targetConfig = cardConfigs.Values.ToList().FirstOrDefault(config => config.UpdataTime.ToString() == data);
@@ -90,9 +91,10 @@ namespace TouhouMachineLearningSummary.Manager
                     await LoadOrDownloadConfig(date);
                 }
                 lastAssembly = Assembly.Load(currentConfig.AssemblyFileData);
-                lastSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(true));
-                lastMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(false));
+                lastSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(isSingle: true));
+                lastMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(isSingle: false));
             }
+            //否则获取指定日期的卡牌数据
             else
             {
                 if (cardConfigs.Keys.Contains(date))
@@ -108,7 +110,7 @@ namespace TouhouMachineLearningSummary.Manager
             currenttSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(true));
             currentMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(false));
             Debug.Log("下载完成");
-
+            //下载指定版本数据
             static async Task LoadOrDownloadConfig(string date)
             {
                 currentConfig = await Command.NetCommand.DownloadCardConfigsAsync(date);
@@ -116,19 +118,12 @@ namespace TouhouMachineLearningSummary.Manager
             }
         }
         public static async Task<string> GetCardConfigsVersionAsync() => await Command.NetCommand.GetCardConfigsVersionAsync();
-        public static Type GetCardScript(int id)
-        {
-            return currentAssembly.GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
-            //if (isUseLocalAssembly)
-            //{
-            //    var file = new DirectoryInfo(@"Library\ScriptAssemblies").GetFiles("GameCard*.dll").FirstOrDefault();
-            //    return Assembly.Load(File.ReadAllBytes(file.FullName)).GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
-            //}
-            //else
-            //{
-
-            //}
-        }
+        /// <summary>
+        /// 从加载的dll获得指定id的卡牌脚本
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public static Type GetCardScript(int id) => currentAssembly.GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
         /// <summary>
         /// 获取当前加载版本的卡牌信息，用于在对局内回放指定版本的牌库，卡组信息
         /// </summary>
