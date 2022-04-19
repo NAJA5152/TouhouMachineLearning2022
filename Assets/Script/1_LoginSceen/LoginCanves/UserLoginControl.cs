@@ -23,7 +23,7 @@ namespace TouhouMachineLearningSummary.Control
         async void Start()
         {
             Manager.TaskLoopManager.Init();
-            Manager.ConfigManager.InitConfig();
+            //Manager.ConfigManager.InitConfig();
             await Manager.CameraViewManager.MoveToViewAsync(0, true);
             //初始化场景物体状态，如果已登录，则进入到指定页，否则进入初始场景
             await Command.BookCommand.InitAsync(IsAleardyLogin);

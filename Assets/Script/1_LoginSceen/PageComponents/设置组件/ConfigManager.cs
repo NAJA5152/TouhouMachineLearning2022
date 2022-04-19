@@ -28,6 +28,7 @@ namespace TouhouMachineLearningSummary.Manager
                 configInfo.Heigh = Screen.height;
                 configInfo.ScreenMode = Screen.fullScreenMode;
                 configInfo.UseLanguage = "Ch";
+                Debug.LogError(Directory.GetCurrentDirectory());
                 File.WriteAllText("GameConfig.ini", configInfo.ToJson());
             }
             else
@@ -41,6 +42,18 @@ namespace TouhouMachineLearningSummary.Manager
         public TextMeshProUGUI LanguageText;
         public TextMeshProUGUI CodeText;
 
+        public void SetScreenMode(int select)
+        {
+
+            Screen.fullScreenMode = select switch
+            {
+                1=> FullScreenMode.FullScreenWindow,
+                2=> FullScreenMode.MaximizedWindow,
+                3=> FullScreenMode.Windowed,
+                4=> FullScreenMode.ExclusiveFullScreen,
+                _ => throw new System.NotImplementedException(),
+            };
+        }
         //储存文件值等于控件值
         public void Apply()
         {
