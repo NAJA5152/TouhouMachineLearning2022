@@ -17,7 +17,7 @@ namespace TouhouMachineLearningSummary.Manager
         public float Volume { get; set; }
         public bool H_Mode { get; set; }
         //
-        public void InitConfig()
+        public static void InitConfig()
         {
             //判断有无本地配置文件
             //若无则创建默认配置文件
@@ -34,6 +34,7 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 configInfo = File.ReadAllText("GameConfig.ini").ToObject<ConfigInfoModel>();
                 Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.ScreenMode, 60);
+                TranslateManager.currentLanguage = configInfo.UseLanguage;
             }
         }
         public TextMeshProUGUI ResolutionText;
@@ -50,7 +51,9 @@ namespace TouhouMachineLearningSummary.Manager
             configInfo.UseLanguage = LanguageText.text;
             configInfo.H_Mode = H_Mode;
             File.WriteAllText("GameConfig.ini", configInfo.ToJson());
+            //根据参数设置应用程序
             Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.ScreenMode, 60);
+            TranslateManager.currentLanguage = configInfo.UseLanguage;
         }
         //控件值等于储存文件值
         public void Reback()
