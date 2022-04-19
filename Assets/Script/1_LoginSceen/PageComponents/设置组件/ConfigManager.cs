@@ -10,7 +10,7 @@ namespace TouhouMachineLearningSummary.Manager
 {
     public partial class ConfigManager : MonoBehaviour
     {
-        static ConfigInfoModel configInfo;
+        static ConfigInfoModel configInfo=new ConfigInfoModel();
        
         //1 全屏 2 无边框 3窗口
         public FullScreenMode ScreenMode { get; set; }
@@ -22,7 +22,7 @@ namespace TouhouMachineLearningSummary.Manager
             //判断有无本地配置文件
             //若无则创建默认配置文件
             //若有则控件值等于储存文件值
-            if (File.Exists("GameConfig.ini"))
+            if (!File.Exists("GameConfig.ini"))
             {
                 configInfo.Width = Screen.width;
                 configInfo.Heigh = Screen.height;
