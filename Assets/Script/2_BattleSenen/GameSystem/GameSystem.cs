@@ -164,7 +164,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// </summary>
         public static async Task SetField(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.FieldSet]);
         /// <summary>
-        /// 设置字段值改变量，若为正数则触发字段增加衍生效果，若为正数则触发字段减少衍生效果
+        /// 设置字段值改变量，若为正数则触发"字段增加"衍生效果，若为负数则触发"字段减少"衍生效果
         /// </summary>
         public static async Task ChangeField(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.FieldChange]);
     }
@@ -208,7 +208,6 @@ namespace TouhouMachineLearningSummary.GameSystem
     /// <summary>
     /// 由系统触发的流程控制事件，不会由卡牌触发
     /// </summary>
-
     public class ProcessSystem
     {
         public static async Task WhenTurnStart() => await GameSystemCommand.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.TurnStart]);

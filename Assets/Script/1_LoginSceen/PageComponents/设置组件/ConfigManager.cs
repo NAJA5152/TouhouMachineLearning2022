@@ -15,14 +15,14 @@ namespace TouhouMachineLearningSummary.Manager
         public FullScreenMode ScreenMode { get; set; }
         public float Volume { get; set; }
         public bool H_Mode { get; set; }
-        private void SaveConfig() => File.WriteAllText("GameConfig.ini", configInfo.ToJson());
+        private static void SaveConfig() => File.WriteAllText(Application.streamingAssetsPath+"/GameConfig.ini", configInfo.ToJson());
 
         public static void InitConfig()
         {
             //判断有无本地配置文件
             //若无则创建默认配置文件
             //若有则控件值等于储存文件值
-            if (!File.Exists("GameConfig.ini"))
+            if (!File.Exists(Application.streamingAssetsPath + "/GameConfig.ini"))
             {
                 configInfo.Width = Screen.width;
                 configInfo.Heigh = Screen.height;
@@ -34,7 +34,7 @@ namespace TouhouMachineLearningSummary.Manager
             }
             else
             {
-                configInfo = File.ReadAllText("GameConfig.ini").ToObject<ConfigInfoModel>();
+                configInfo = File.ReadAllText(Application.streamingAssetsPath + "/GameConfig.ini").ToObject<ConfigInfoModel>();
                 Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.ScreenMode, 60);
                 TranslateManager.currentLanguage = configInfo.UseLanguage;
             }
@@ -51,8 +51,9 @@ namespace TouhouMachineLearningSummary.Manager
         }
         public void SetScreenMode(int index)
         {
+            Debug.LogError(index);
             configInfo.IsFullScreen = (index == 1);
-            Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.IsFullScreen);
+            Screen.fullScreen = configInfo.IsFullScreen;
             SaveConfig();
             //Screen.fullScreenMode = select switch
             //{
@@ -69,7 +70,18 @@ namespace TouhouMachineLearningSummary.Manager
             TranslateManager.currentLanguage = configInfo.UseLanguage;
             SaveConfig();
         }
-
+        public void SetVolume(int index)
+        {
+            configInfo.UseLanguage = LanguageText.text;
+            TranslateManager.currentLanguage = configInfo.UseLanguage;
+            SaveConfig();
+        }
+        public void SetH_Mode(int index)
+        {
+            configInfo.UseLanguage = LanguageText.text;
+            TranslateManager.currentLanguage = configInfo.UseLanguage;
+            SaveConfig();
+        }
 
         //储存文件值等于控件值
         public void Apply()

@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Linq.Expressions;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Command;
-using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
@@ -23,13 +21,13 @@ namespace TouhouMachineLearningSummary.Control
         async void Start()
         {
             Manager.TaskLoopManager.Init();
-            //Manager.ConfigManager.InitConfig();
+            Manager.ConfigManager.InitConfig();
             await Manager.CameraViewManager.MoveToViewAsync(0, true);
             //初始化场景物体状态，如果已登录，则进入到指定页，否则进入初始场景
-            await Command.BookCommand.InitAsync(IsAleardyLogin);
+            await BookCommand.InitAsync(IsAleardyLogin);
             if (!IsAleardyLogin)
             {
-                await Command.NetCommand.Init();
+                await NetCommand.Init();
                 UserLogin();//自动登录
                 await Task.Delay(1000);
                 //await TestReplayAsync();
@@ -41,11 +39,11 @@ namespace TouhouMachineLearningSummary.Control
             //临时，显示当前的ui路径
             if (Input.GetKeyDown(KeyCode.S))
             {
-                Command.MenuStateCommand.ShowStare();
+                MenuStateCommand.ShowStare();
             }
             if (Input.GetKeyDown(KeyCode.Escape))
             {
-                switch (Command.MenuStateCommand.GetCurrentStateRank())
+                switch (MenuStateCommand.GetCurrentStateRank())
                 {
                     case (1)://如果当前状态为登录前，则关闭程序
                         {
@@ -63,9 +61,9 @@ namespace TouhouMachineLearningSummary.Control
                             {
                                 IsAleardyLogin = false;
                                 await Manager.CameraViewManager.MoveToViewAsync(0);
-                                Command.MenuStateCommand.RebackStare();
-                                Command.MenuStateCommand.ChangeToMainPage(MenuState.Login);
-                                await Command.BookCommand.SetCoverStateAsync(false);
+                                MenuStateCommand.RebackStare();
+                                MenuStateCommand.ChangeToMainPage(MenuState.Login);
+                                await BookCommand.SetCoverStateAsync(false);
                                 UiInfo.loginCanvas.SetActive(true);
                             });
                             break;
@@ -73,17 +71,17 @@ namespace TouhouMachineLearningSummary.Control
                     default://如果当前状态为多级页面，则返回上级（个别页面需要询问）
                         {
                             //如果是组牌模式，则询问是否返回上一页，否则直接返回上一页
-                            if (Command.MenuStateCommand.GetCurrentState() == MenuState.CardListChange)
+                            if (MenuStateCommand.GetCurrentState() == MenuState.CardListChange)
                             {
                                 _ = NoticeCommand.ShowAsync("不保存卡组？",
                                 okAction: async () =>
                                 {
-                                    Command.MenuStateCommand.RebackStare();
+                                    MenuStateCommand.RebackStare();
                                 });
                             }
                             else
                             {
-                                Command.MenuStateCommand.RebackStare();
+                                MenuStateCommand.RebackStare();
                             }
                             break;
                         }
@@ -112,11 +110,11 @@ namespace TouhouMachineLearningSummary.Control
                 bool isSuccessLogin = await NetCommand.LoginAsync(Account.text, Password.text);
                 if (isSuccessLogin)
                 {
-                    PlayerInfo.UserState onlineUserState = Info.AgainstInfo.onlineUserInfo.OnlineUserState;
+                    PlayerInfo.UserState onlineUserState = AgainstInfo.onlineUserInfo.OnlineUserState;
                     if (onlineUserState.Step == 0 && onlineUserState.Rank == 0)
                     {
-                        Command.DialogueCommand.Play("0-0");
-                        await Info.AgainstInfo.onlineUserInfo.UpdateUserStateAsync(0, 1);
+                        DialogueCommand.Play("0-0");
+                        await AgainstInfo.onlineUserInfo.UpdateUserStateAsync(0, 1);
                     }
                     Manager.UserInfoManager.Refresh();
                     await BookCommand.InitToOpenStateAsync();
@@ -127,11 +125,11 @@ namespace TouhouMachineLearningSummary.Control
                     await NoticeCommand.ShowAsync("账号或密码错误，请重试", NotifyBoardMode.Ok);
                 }
             }
-            catch (System.Exception e) { Debug.LogException(e); }
+            catch (Exception e) { Debug.LogException(e); }
         }
         public async Task TestReplayAsync()
         {
-            var summarys = await NetCommand.DownloadOwnerAgentSummaryAsync(Info.AgainstInfo.onlineUserInfo.Account, 0, 20);
+            var summarys = await NetCommand.DownloadOwnerAgentSummaryAsync(AgainstInfo.onlineUserInfo.Account, 0, 20);
             Manager.AgainstManager.ReplayStart(summarys.Last());
         }
         public async Task TestBattleAsync()
@@ -172,7 +170,7 @@ namespace TouhouMachineLearningSummary.Control
             await NetCommand.JoinHoldOnList(targetAgainstMode, sampleUserInfo, virtualOpponentInfo);
         }
         public void UserServerSelect() => AgainstInfo.isHostNetMode = !Info.AgainstInfo.isHostNetMode;
-        private void OnApplicationQuit() => Command.NetCommand.Dispose();
+        private void OnApplicationQuit() => NetCommand.Dispose();
         private void OnGUI()
         {
             if (GUI.Button(new Rect(0, 0, 100, 50), "回放测试"))
