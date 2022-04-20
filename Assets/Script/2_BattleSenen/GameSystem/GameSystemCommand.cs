@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
@@ -39,6 +40,7 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     foreach (var card in triggerInfo.targetCards)
                     {
+                        Debug.LogWarning($"当前执行 {triggerInfo.triggerType}:{triggerInfo.targetCards.IndexOf(card)+1} {triggerInfo.targetCards.Count}");
                         await Trigger(triggerInfo[card][TriggerTime.When]);
                     }
                 }

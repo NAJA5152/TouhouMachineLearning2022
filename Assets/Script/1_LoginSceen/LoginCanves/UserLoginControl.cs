@@ -28,7 +28,7 @@ namespace TouhouMachineLearningSummary.Control
             if (!IsAleardyLogin)
             {
                 await NetCommand.Init();
-                UserLogin();//自动登录
+                //UserLogin();//自动登录
                 await Task.Delay(1000);
                 //await TestReplayAsync();
                 //await TestBattleAsync();

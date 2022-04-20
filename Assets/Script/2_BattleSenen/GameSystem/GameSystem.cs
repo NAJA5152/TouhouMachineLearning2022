@@ -72,6 +72,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         public static async Task RecycleCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Reverse]);
 
         /// <summary>
+        /// 只支持单个牌被打出
         /// 打出，从手牌区\战场区打出至使用区(不触发移动效果)
         /// </summary>
         public static async Task PlayCard(TriggerInfoModel triggerInfo, bool isAnsy = true)
@@ -79,7 +80,7 @@ namespace TouhouMachineLearningSummary.GameSystem
             if (triggerInfo.targetCard != null)
             {
                 await Command.CardCommand.PlayCard(triggerInfo.targetCard, isAnsy);
-                await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Play]);
+                await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Play][triggerInfo.targetCard]);
             }
         }
         /// <summary>

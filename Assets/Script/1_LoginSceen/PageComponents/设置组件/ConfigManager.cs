@@ -51,18 +51,9 @@ namespace TouhouMachineLearningSummary.Manager
         }
         public void SetScreenMode(int index)
         {
-            Debug.LogError(index);
-            configInfo.IsFullScreen = (index == 1);
-            Screen.fullScreen = configInfo.IsFullScreen;
+            configInfo.IsFullScreen = (index == 0);
+            Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.IsFullScreen);
             SaveConfig();
-            //Screen.fullScreenMode = select switch
-            //{
-            //    1=> FullScreenMode.FullScreenWindow,
-            //    2=> FullScreenMode.MaximizedWindow,
-            //    3=> FullScreenMode.Windowed,
-            //    4=> FullScreenMode.ExclusiveFullScreen,
-            //    _ => throw new System.NotImplementedException(),
-            //};
         }
         public void SetLanguage(int index)
         {
@@ -96,13 +87,6 @@ namespace TouhouMachineLearningSummary.Manager
             ////根据参数设置应用程序
             //Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.IsFullScreen);
             //TranslateManager.currentLanguage = configInfo.UseLanguage;
-        }
-        //控件值等于储存文件值
-        public void Reback()
-        {
-            //configInfo = File.ReadAllText("GameConfig.ini").ToObject<ConfigInfoModel>();
-            //ResolutionText.text = $"{configInfo.Width}*{configInfo.Heigh}";
-            //LanguageText.text = configInfo.UseLanguage;
         }
         public void SendCode()
         {
