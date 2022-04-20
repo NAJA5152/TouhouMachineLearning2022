@@ -5504,7 +5504,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &231724262
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12171,7 +12171,20 @@ MonoBehaviour:
       m_Image: {fileID: 21300000, guid: b79ca081a3127bc4e88bfd9812caf813, type: 3}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491794}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.ConfigManager,
+          TouHouMachineLearning
+        m_MethodName: SetLanguage
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &491882652
 MonoBehaviour:
@@ -15035,11 +15048,7 @@ MonoBehaviour:
     m_Options:
     - m_Text: "\u5168\u5C4F"
       m_Image: {fileID: 0}
-    - m_Text: "\u6700\u5927\u5316"
-      m_Image: {fileID: 0}
     - m_Text: "\u7A97\u53E3"
-      m_Image: {fileID: 0}
-    - m_Text: "\u72EC\u5360\u6A21\u5F0F"
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
@@ -25219,7 +25228,20 @@ MonoBehaviour:
       m_Image: {fileID: 0}
   m_OnValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491794}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.ConfigManager,
+          TouHouMachineLearning
+        m_MethodName: SetResolution
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_AlphaFadeSpeed: 0.15
 --- !u!114 &997662527
 MonoBehaviour:
@@ -30274,7 +30296,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1204440909
 RectTransform:
   m_ObjectHideFlags: 0
