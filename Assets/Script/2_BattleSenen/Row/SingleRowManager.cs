@@ -47,7 +47,7 @@ namespace TouhouMachineLearningSummary.Manager
                 //创建临时卡牌
                 if (TempCard == null && CanBeSelected && AgainstInfo.PlayerFocusRegion == this && TempCard==null)
                 {
-                    Card modelCard = AgainstInfo.cardSet[Orientation.My][GameRegion.Used].CardList[0];
+                    Card modelCard = AgainstInfo.cardSet[Orientation.My][GameRegion.Used].CardList.LastOrDefault();
                     TempCard = Command.CardCommand.GenerateCard(modelCard.CardID);
                     TempCard.IsGray = true;
                     TempCard.SetCardSeeAble(true);
