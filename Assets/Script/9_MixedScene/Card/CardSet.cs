@@ -134,24 +134,24 @@ namespace TouhouMachineLearningSummary.Info
         {
             get
             {
-                List<Card> filterCardList = CardList;
+                var filterCardList = CardList.Where(card => card.ShowPoint != 0);
                 if (filterCardList.Any())
                 {
                     switch (cardFeature)
                     {
                         case CardFeature.LargestUnites:
-                            int largestPoint = CardList.Where(card => card.ShowPoint != 0).Max(card => card.ShowPoint);
-                            filterCardList = CardList.Where(card => card.ShowPoint == largestPoint).ToList();
+                            int largestPoint = CardList.Max(card => card.ShowPoint);
+                            filterCardList = CardList.Where(card => card.ShowPoint == largestPoint);
                             break;
                         case CardFeature.LowestUnites:
-                            int lowestPoint = CardList.Where(card => card.ShowPoint!=0).Min(card => card.ShowPoint);
-                            filterCardList = CardList.Where(card => card.ShowPoint == lowestPoint).ToList();
+                            int lowestPoint = CardList.Min(card => card.ShowPoint);
+                            filterCardList = CardList.Where(card => card.ShowPoint == lowestPoint);
                             break;
                         default:
                             break;
                     }
                 }
-                return new CardSet(RowManagers, filterCardList);
+                return new CardSet(RowManagers, filterCardList.ToList());
             }
         }
         //按卡牌阶级筛选

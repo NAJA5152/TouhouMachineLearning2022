@@ -7,6 +7,7 @@ using System.Net.Http;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
+using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
@@ -28,15 +29,35 @@ namespace TouhouMachineLearningSummary.Test
         public void CaptureScreen(string name) => ScreenCapture.CaptureScreenshot(@"Assets/Art/Scene/" + name + ".png");
 
         static string ip => !Info.AgainstInfo.isHostNetMode ? "localhost:495" : "server.natappfree.cc:37048";
+        class CardAbility
+        {
+            public int cardID;
+            public object[] voice=new object[] {1};
+            public List<(int, object[])> ability=new List<(int, object[])>();
+        }
         [Button("测试网络启动")]
         public async void Click()
         {
-            Debug.Log("手动点击触发");
-            var Hub = new HubConnectionBuilder()
-                .WithUrl($"https://gezi.ovyno.com/TouHouHub")
-                .Build();
-            await Hub.StartAsync();
-            Debug.Log(await Hub.InvokeAsync<string>("GetCardConfigsVersion"));
+            List < CardAbility > abilities = new List < CardAbility >();
+
+            for (int i = 0; i < 10; i++)
+            {
+                CardAbility cardAbility = new CardAbility();
+                cardAbility.cardID = i;
+                cardAbility.ability.Add(new(33, new object[] { GameEnum.Territory.My, GameEnum.BattleRegion.Fire }));
+                cardAbility.ability.Add(new(45, new object[] { new TriggerInfoModel(null, targetCard: null) }));
+                cardAbility.ability.Add(new(00, new object[] { }));
+                cardAbility.ability.Add(new(22, new object[] { new TriggerInfoModel(null, targetCard: null) , Orientation.My , CardRank.Copper, CardTag.Fairy , CardFeature.LowestUnites ,1,true}));
+                cardAbility.ability.Add(new(18, new object[] { new TriggerInfoModel(null, targetCard: null) }));
+                abilities.Add(cardAbility);
+            }
+            Debug.Log(abilities.ToJson());
+            //Debug.Log("手动点击触发");
+            //var Hub = new HubConnectionBuilder()
+            //    .WithUrl($"https://gezi.ovyno.com/TouHouHub")
+            //    .Build();
+            //await Hub.StartAsync();
+            //Debug.Log(await Hub.InvokeAsync<string>("GetCardConfigsVersion"));
         }
         public async void Start()
         {
