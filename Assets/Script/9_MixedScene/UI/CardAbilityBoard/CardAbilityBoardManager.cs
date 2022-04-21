@@ -112,9 +112,9 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 Card card = (Card)(object)target;
                 Texture.sprite = card.Icon.ToSprite();
-                Name.text = card.CardTranslateName;
+                Name.text = card.TranslateName;
                 DescribeText.text = card.TranslateDescribe;
-                ability = card.CardTranslateAbility;
+                ability = card.TranslateAbility;
                 ability=KeyWordManager.ReplaceAbilityKeyWord(ability);
                 AbilityText.text = ability;
                 TagText.text = card.TranslateTags; 

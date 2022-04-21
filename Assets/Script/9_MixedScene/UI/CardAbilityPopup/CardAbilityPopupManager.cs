@@ -97,8 +97,8 @@ namespace TouhouMachineLearningSummary.Manager
             else
             {
                 Card card = (Card)(object)target;
-                cardName = card.CardTranslateName;
-                ability = card.CardTranslateAbility;
+                cardName = card.TranslateName;
+                ability = card.TranslateAbility;
                 int lineCount = 0;
                 card.cardStates.ForEach(state =>
                 {

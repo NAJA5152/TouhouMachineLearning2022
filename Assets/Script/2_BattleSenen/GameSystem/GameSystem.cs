@@ -278,7 +278,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// <summary>
         /// 显示立绘(领袖)
         /// </summary>
-        public static async Task ShowFigure(Card card) => await Manager.FigureManager.Instance.ShowFigureAsync(true, card.CardTranslateName);
+        public static async Task ShowFigure(Card card) => await Manager.FigureManager.Instance.ShowFigureAsync(true, card.TranslateName);
         /// <summary>
         /// 在卡牌上显示文字
         /// </summary>

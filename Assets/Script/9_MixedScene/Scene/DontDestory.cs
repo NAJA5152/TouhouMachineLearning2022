@@ -3,7 +3,20 @@ namespace TouhouMachineLearningSummary.Other
 {
     public class DontDestory : MonoBehaviour
     {
-        void Awake() => DontDestroyOnLoad(this);
+        static bool IsInit { get; set; }=false;
+        void Awake()
+        {
+            if (IsInit)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                DontDestroyOnLoad(this);
+                IsInit = true;
+            }
+        }
+
         private void OnApplicationQuit() => Manager.TaskLoopManager.cancel.Cancel();
     }
 }

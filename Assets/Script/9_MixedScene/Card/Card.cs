@@ -127,9 +127,9 @@ namespace TouhouMachineLearningSummary.Model
         public Transform FieldIconContent => transform.GetChild(0).GetChild(1);
         public Transform StateIconContent => transform.GetChild(0).GetChild(2);
         [ShowInInspector]
-        public string CardTranslateName => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).TranslateName;
+        public string TranslateName => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).TranslateName;
         [ShowInInspector]
-        public string CardTranslateAbility => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).TranslateAbility;
+        public string TranslateAbility => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).TranslateAbility;
         [ShowInInspector]
         public string TranslateDescribe => Manager.CardAssemblyManager.GetCurrentCardInfos(CardID).TranslateDescribe;
 
