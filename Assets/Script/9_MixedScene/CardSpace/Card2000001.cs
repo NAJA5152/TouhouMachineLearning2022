@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
@@ -27,16 +28,20 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   int targetCount = AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardTag.Fairy].CardList.Count;
+                   int targetCount = AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardTag.Fairy].CardList.Count-1;
                    Debug.Log("场上妖精数量为" + targetCount);
                    for (int i = 0; i < AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardTag.Fairy].CardList.Count; i++)
                    {
 
-                       await GameSystem.SelectSystem.SelectUnite(this, AgainstInfo.cardSet[Orientation.Op][GameRegion.Battle][CardRank.Silver, CardRank.Copper].CardList, 1, isAuto: true);
-                       await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, AgainstInfo.SelectUnits).SetPoint(1));
-                       if (BasePoint > 1)
+                       List<Card> cardlist = AgainstInfo.cardSet[Orientation.Op][GameRegion.Battle][CardRank.Silver, CardRank.Copper].CardList.Where(Card => Card.ShowPoint > 0).ToList();
+                       if (cardlist.Any())
                        {
-                           await GameSystem.PointSystem.Weak(new TriggerInfoModel(this, this).SetPoint(1));
+                           await GameSystem.SelectSystem.SelectUnite(this, cardlist, 1, isAuto: true);
+                           await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, AgainstInfo.SelectUnits).SetPoint(1));
+                           if (BasePoint > 1)
+                           {
+                               await GameSystem.PointSystem.Weak(new TriggerInfoModel(this, this).SetPoint(1));
+                           }
                        }
                    }
                }, Condition.Default)

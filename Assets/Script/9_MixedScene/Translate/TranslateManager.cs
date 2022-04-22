@@ -48,11 +48,13 @@ namespace TouhouMachineLearningSummary.Manager
                 while ((index = text.IndexOf(keyWord, index)) != -1)
                 {
                     //获取该关键词的说明
-                    string introduction = "";
-                    if (translateData.ContainsKey(pair["Tag"] + "_Introduction"))
-                    {
-                        introduction = translateData[pair["Tag"] + "_Introduction"][currentLanguage];
-                    }
+                    //string introduction="";
+                    //if (translateData.ContainsKey(pair["Tag"] + "_Introduction"))
+                    //{
+                    //    introduction = translateData[pair["Tag"] + "_Introduction"][currentLanguage];
+                    //}
+                    string introduction = pair[currentLanguage+ "_Introduction"] == "" ? pair["Ch_Introduction"] : pair[currentLanguage + "_Introduction"];
+                   
                     //加入到关键词列表
                     keyWordInfos.Add(new KeyWordModel()
                     {

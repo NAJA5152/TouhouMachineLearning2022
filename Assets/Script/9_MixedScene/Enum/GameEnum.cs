@@ -141,7 +141,7 @@ namespace TouhouMachineLearningSummary.GameEnum
         TurnEnd
     }
     /// <summary>
-    /// 卡牌附加状态类型
+    /// 卡牌附加状态类型   ！！！！不要改变顺序，有新的再后面追加，服务端和翻译表格需要同步更新！！！！
     /// </summary>
     public enum CardState
     {
@@ -166,9 +166,9 @@ namespace TouhouMachineLearningSummary.GameEnum
         Forbidden,//禁足
     }
     /// <summary>
-    /// 卡牌附加值类型
+    /// 卡牌附加值类型     ！！！！不要改变顺序，有新的再后面追加，服务端和翻译表格需要同步更新！！！！
     /// </summary>
-    public enum CardField
+    public enum CardField 
     {
         None,//默认空状态
         Timer,//计时
@@ -177,7 +177,6 @@ namespace TouhouMachineLearningSummary.GameEnum
         Chain,//连锁
         Energy,//能量
         Shield,//护盾
-
     }
     /// <summary>
     /// 异变类型

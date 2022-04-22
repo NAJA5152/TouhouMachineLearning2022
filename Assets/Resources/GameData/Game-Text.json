@@ -2,81 +2,91 @@
   "BattleStart": {
     "Tag": "BattleStart",
     "Ch": "对战开始",
-    "Ch_Introduction": "",
+    "Ch_Introduction": "无",
     "Tc": "對戰開始",
     "En": "Battle Start",
+    "En_Introduction": "",
     "geyu": "ads"
   },
   "BattleEnd": {
     "Tag": "BattleEnd",
     "Ch": "对战终止",
-    "Ch_Introduction": "",
+    "Ch_Introduction": "无",
     "Tc": "對戰中止",
     "En": "Battle End",
+    "En_Introduction": "",
     "geyu": "asdsaf"
   },
   "Remaining": {
     "Tag": "Remaining",
     "Ch": "剩余抽卡次数为：",
-    "Ch_Introduction": "",
+    "Ch_Introduction": "无",
     "Tc": "剩余抽卡次數為：",
     "En": "Remaining number of card draws:",
+    "En_Introduction": "",
     "geyu": ""
   },
   "FirstRoundStart": {
     "Tag": "FirstRoundStart",
     "Ch": "第一小局开始",
-    "Ch_Introduction": "",
+    "Ch_Introduction": "无",
     "Tc": "第一小局開始",
     "En": "First Round Start",
+    "En_Introduction": "",
     "geyu": ""
   },
   "SecondRoundStart": {
     "Tag": "SecondRoundStart",
     "Ch": "第一小局开始",
-    "Ch_Introduction": "",
+    "Ch_Introduction": "无",
     "Tc": "第二小局開始",
     "En": "Second Round Start",
+    "En_Introduction": "",
     "geyu": ""
   },
   "ThridRoundStart": {
     "Tag": "ThridRoundStart",
     "Ch": "第一小局开始",
-    "Ch_Introduction": "",
+    "Ch_Introduction": "无",
     "Tc": "第三小局開始",
     "En": "Thrid Round Start",
+    "En_Introduction": "",
     "geyu": ""
   },
   "MyTurnStart": {
     "Tag": "MyTurnStart",
     "Ch": "我方回合开始",
-    "Ch_Introduction": "",
+    "Ch_Introduction": "无",
     "Tc": "我方回合開始",
     "En": "My Turn Start",
+    "En_Introduction": "",
     "geyu": ""
   },
   "MyTurnEnd": {
     "Tag": "MyTurnEnd",
     "Ch": "我方回合结束",
-    "Ch_Introduction": "",
+    "Ch_Introduction": "无",
     "Tc": "我方回合結束",
     "En": "My Turn End",
+    "En_Introduction": "",
     "geyu": ""
   },
   "OpTurnStart": {
     "Tag": "OpTurnStart",
     "Ch": "对方回合开始",
-    "Ch_Introduction": "",
+    "Ch_Introduction": "无",
     "Tc": "對方回合開始",
     "En": "Op Turn Start",
+    "En_Introduction": "",
     "geyu": "新翻译"
   },
   "OpTurnEnd": {
     "Tag": "OpTurnEnd",
     "Ch": "对方回合结束",
-    "Ch_Introduction": "",
+    "Ch_Introduction": "无",
     "Tc": "對方回合結束",
     "En": "Op Turn End",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Fairy": {
@@ -85,6 +95,7 @@
     "Ch_Introduction": "卡牌的类型标签",
     "Tc": "",
     "En": "Fairy",
+    "En_Introduction": "The type label of the card",
     "geyu": "ads"
   },
   "Machine": {
@@ -93,6 +104,7 @@
     "Ch_Introduction": "卡牌的类型标签",
     "Tc": "",
     "En": "Machine",
+    "En_Introduction": "The type label of the card",
     "geyu": "asdsaf"
   },
   "SpellCard": {
@@ -101,6 +113,7 @@
     "Ch_Introduction": "卡牌的类型标签",
     "Tc": "",
     "En": "SpellCard",
+    "En_Introduction": "The type label of the card",
     "geyu": ""
   },
   "tactics": {
@@ -109,6 +122,7 @@
     "Ch_Introduction": "卡牌的类型标签",
     "Tc": "",
     "En": "tactics",
+    "En_Introduction": "The type label of the card",
     "geyu": ""
   },
   "Object": {
@@ -117,6 +131,7 @@
     "Ch_Introduction": "卡牌的类型标签",
     "Tc": "",
     "En": "Object",
+    "En_Introduction": "The type label of the card",
     "geyu": ""
   },
   "Yokai": {
@@ -125,6 +140,7 @@
     "Ch_Introduction": "卡牌的类型标签",
     "Tc": "",
     "En": "Yokai",
+    "En_Introduction": "The type label of the card",
     "geyu": ""
   },
   "Tool": {
@@ -133,6 +149,7 @@
     "Ch_Introduction": "卡牌的类型标签",
     "Tc": "",
     "En": "Tool",
+    "En_Introduction": "The type label of the card",
     "geyu": ""
   },
   "Variation": {
@@ -141,6 +158,7 @@
     "Ch_Introduction": "卡牌的类型标签",
     "Tc": "",
     "En": "Variation",
+    "En_Introduction": "The type label of the card",
     "geyu": ""
   },
   "Special ": {
@@ -149,6 +167,7 @@
     "Ch_Introduction": "卡牌的类型标签",
     "Tc": "",
     "En": "Special ",
+    "En_Introduction": "The type label of the card",
     "geyu": ""
   },
   "Spell": {
@@ -157,6 +176,7 @@
     "Ch_Introduction": "卡牌的类型标签",
     "Tc": "",
     "En": "Spell",
+    "En_Introduction": "The type label of the card",
     "geyu": ""
   },
   "Sutra": {
@@ -165,6 +185,7 @@
     "Ch_Introduction": "卡牌的类型标签",
     "Tc": "",
     "En": "Sutra",
+    "En_Introduction": "The type label of the card",
     "geyu": ""
   },
   "Monster": {
@@ -173,102 +194,7 @@
     "Ch_Introduction": "卡牌的类型标签",
     "Tc": "",
     "En": "Monster",
-    "geyu": ""
-  },
-  "Fairy_Introduction": {
-    "Tag": "Fairy_Introduction",
-    "Ch": "卡牌的类型标签",
-    "Ch_Introduction": "",
-    "Tc": "",
-    "En": "The type label of the card",
-    "geyu": ""
-  },
-  "Machine_Introduction": {
-    "Tag": "Machine_Introduction",
-    "Ch": "卡牌的类型标签",
-    "Ch_Introduction": "",
-    "Tc": "",
-    "En": "The type label of the card",
-    "geyu": ""
-  },
-  "SpellCard_Introduction": {
-    "Tag": "SpellCard_Introduction",
-    "Ch": "卡牌的类型标签",
-    "Ch_Introduction": "",
-    "Tc": "",
-    "En": "The type label of the card",
-    "geyu": ""
-  },
-  "tactics_Introduction": {
-    "Tag": "tactics_Introduction",
-    "Ch": "卡牌的类型标签",
-    "Ch_Introduction": "",
-    "Tc": "",
-    "En": "The type label of the card",
-    "geyu": ""
-  },
-  "Object_Introduction": {
-    "Tag": "Object_Introduction",
-    "Ch": "卡牌的类型标签",
-    "Ch_Introduction": "",
-    "Tc": "",
-    "En": "The type label of the card",
-    "geyu": ""
-  },
-  "Yokai_Introduction": {
-    "Tag": "Yokai_Introduction",
-    "Ch": "卡牌的类型标签",
-    "Ch_Introduction": "",
-    "Tc": "",
-    "En": "The type label of the card",
-    "geyu": ""
-  },
-  "Tool_Introduction": {
-    "Tag": "Tool_Introduction",
-    "Ch": "卡牌的类型标签",
-    "Ch_Introduction": "",
-    "Tc": "",
-    "En": "The type label of the card",
-    "geyu": ""
-  },
-  "Variation_Introduction": {
-    "Tag": "Variation_Introduction",
-    "Ch": "卡牌的类型标签",
-    "Ch_Introduction": "",
-    "Tc": "",
-    "En": "The type label of the card",
-    "geyu": ""
-  },
-  "Special_Introduction": {
-    "Tag": "Special_Introduction",
-    "Ch": "卡牌的类型标签",
-    "Ch_Introduction": "",
-    "Tc": "",
-    "En": "The type label of the card",
-    "geyu": ""
-  },
-  "Spell_Introduction": {
-    "Tag": "Spell_Introduction",
-    "Ch": "卡牌的类型标签",
-    "Ch_Introduction": "",
-    "Tc": "",
-    "En": "The type label of the card",
-    "geyu": ""
-  },
-  "Sutra_Introduction": {
-    "Tag": "Sutra_Introduction",
-    "Ch": "卡牌的类型标签",
-    "Ch_Introduction": "",
-    "Tc": "",
-    "En": "The type label of the card",
-    "geyu": ""
-  },
-  "Monster_Introduction": {
-    "Tag": "Monster_Introduction",
-    "Ch": "卡牌的类型标签",
-    "Ch_Introduction": "",
-    "Tc": "",
-    "En": "The type label of the card",
+    "En_Introduction": "The type label of the card",
     "geyu": ""
   },
   "Seal": {
@@ -277,6 +203,7 @@
     "Ch_Introduction": "封印：清除自身所有附加状态和附加值，并使自身特殊效果无法发动",
     "Tc": "",
     "En": "Seal",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Invisibility": {
@@ -285,6 +212,7 @@
     "Ch_Introduction": "隐身：无法被选择成为目标",
     "Tc": "",
     "En": "Invisibility",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Pry": {
@@ -293,6 +221,7 @@
     "Ch_Introduction": "窥探：向对手明示，下个我方会回合开始时自动取消该状态",
     "Tc": "",
     "En": "Pry",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Close": {
@@ -301,6 +230,7 @@
     "Ch_Introduction": "封闭：无法打出",
     "Tc": "",
     "En": "Close",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Fate": {
@@ -309,6 +239,7 @@
     "Ch_Introduction": "命运：当处于随机选择的目标中时会被优先选择",
     "Tc": "",
     "En": "Fate",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Lurk": {
@@ -317,6 +248,7 @@
     "Ch_Introduction": "潜伏：部署于对方战场时标记",
     "Tc": "",
     "En": "Lurk",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Secret": {
@@ -325,6 +257,7 @@
     "Ch_Introduction": "隐秘：无法被选中，无法查看效果，同时不计入点数计算，状态消失时翻开",
     "Tc": "",
     "En": "Secret",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Furor": {
@@ -333,6 +266,7 @@
     "Ch_Introduction": "狂暴：拥有此状态时无法再次触发狂暴效果\n当点数减少时该状态自动消失",
     "Tc": "",
     "En": "Furor",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Docile": {
@@ -341,6 +275,7 @@
     "Ch_Introduction": "温顺：拥有此状态时无法再次触发温顺效果\n当点数增加时该状态自动消失",
     "Tc": "",
     "En": "Docile",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Poisoning": {
@@ -349,6 +284,7 @@
     "Ch_Introduction": "中毒：每回合自身受到一点伤害",
     "Tc": "",
     "En": "Poisoning",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Rely": {
@@ -357,6 +293,7 @@
     "Ch_Introduction": "凭依：指定技能被替换",
     "Tc": "",
     "En": "Rely",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Water": {
@@ -365,6 +302,7 @@
     "Ch_Introduction": "水:可与其他元素状态发生反应\n治愈（水+水）：治愈单位\n中和（水+火）：清空卡牌状态\n泥泞（水+土）：使单位无法被移动\n扩散（水+风）：使单位与两侧单位获得水状态",
     "Tc": "",
     "En": "Water",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Fire": {
@@ -373,6 +311,7 @@
     "Ch_Introduction": "火:可与其他元素状态发生反应\n治愈（水+水）：治愈单位\n中和（水+火）：清空卡牌状态\n泥泞（水+土）：使单位无法被移动\n扩散（水+风）：使单位两侧单位获得水状态",
     "Tc": "",
     "En": "Fire",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Wind": {
@@ -381,6 +320,7 @@
     "Ch_Introduction": "土:可与其他元素状态发生反应",
     "Tc": "",
     "En": "Wind",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Soil": {
@@ -389,6 +329,7 @@
     "Ch_Introduction": "风:可与其他元素状态发生反应\n扩散（风+任意其他元素状态）：令该单位与两侧单位获得同样的元素状态\n烈风（风+风）：对同排所有单位造成一点伤害",
     "Tc": "",
     "En": "Soil",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Hold": {
@@ -397,6 +338,7 @@
     "Ch_Introduction": "驻守：小局结束时可留在场上，触发一次后自动取消改状态",
     "Tc": "",
     "En": "Hold",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Congealbounds": {
@@ -405,6 +347,7 @@
     "Ch_Introduction": "结界:抵消一次伤害或置值导致的点数减少",
     "Tc": "",
     "En": "Congealbounds",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Forbidden": {
@@ -413,6 +356,7 @@
     "Ch_Introduction": "固足：无法被移动",
     "Tc": "",
     "En": "Forbidden",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Timer": {
@@ -421,14 +365,16 @@
     "Ch_Introduction": "计时：计数为0时触发效果",
     "Tc": "",
     "En": "Timer",
+    "En_Introduction": "",
     "geyu": ""
   },
-  "Vitality": {
-    "Tag": "Vitality",
-    "Ch": "活力",
+  "Inspire": {
+    "Tag": "Inspire",
+    "Ch": "鼓舞",
     "Ch_Introduction": "鼓舞：增强两侧单位\"活力\"类型效果",
     "Tc": "",
-    "En": "Vitality",
+    "En": "Inspire",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Apothanasia": {
@@ -437,6 +383,7 @@
     "Ch_Introduction": "延命：当单位点数为0时，回合结束时抵消一次进入墓地效果",
     "Tc": "",
     "En": "Apothanasia",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Chain": {
@@ -445,6 +392,7 @@
     "Ch_Introduction": "连锁：当前回合打出卡牌的数量",
     "Tc": "",
     "En": "Chain",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Energy": {
@@ -453,6 +401,7 @@
     "Ch_Introduction": "能量：强化机械的触发效果，过多时触发\"超载\"效果",
     "Tc": "",
     "En": "Energy",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Shield": {
@@ -461,38 +410,43 @@
     "Ch_Introduction": "护盾：受到\"伤害\"类型效果时时抵消相应点数的伤害",
     "Tc": "",
     "En": "Shield",
+    "En_Introduction": "",
     "geyu": ""
   },
   "TurnStart": {
     "Tag": "TurnStart",
     "Ch": "回合开始",
-    "Ch_Introduction": "",
+    "Ch_Introduction": "无",
     "Tc": "",
     "En": "TurnStart",
+    "En_Introduction": "",
     "geyu": ""
   },
   "TurnEnd": {
     "Tag": "TurnEnd",
     "Ch": "回合结束",
-    "Ch_Introduction": "",
+    "Ch_Introduction": "无",
     "Tc": "",
     "En": "TurnEnd",
+    "En_Introduction": "",
     "geyu": ""
   },
   "RoundStart": {
     "Tag": "RoundStart",
     "Ch": "小局开始",
-    "Ch_Introduction": "",
+    "Ch_Introduction": "无",
     "Tc": "",
     "En": "RoundStart",
+    "En_Introduction": "",
     "geyu": ""
   },
   "RoundEnd": {
     "Tag": "RoundEnd",
     "Ch": "小局结束",
-    "Ch_Introduction": "",
+    "Ch_Introduction": "无",
     "Tc": "",
     "En": "RoundEnd",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Deploy": {
@@ -501,14 +455,124 @@
     "Ch_Introduction": "部署：单位从出牌区移动到战场时触发，但若在部署效果生效前被打死或封印则无法触发部署效果",
     "Tc": "",
     "En": "Deploy",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Weak": {
     "Tag": "Weak",
-    "Ch": "衰退",
-    "Ch_Introduction": "衰退:触发效果时，自身基础点数减少1点，至多减少至1",
+    "Ch": "力竭",
+    "Ch_Introduction": "力竭:触发效果时，自身基础点数减少1点，至多减少至1",
     "Tc": "",
     "En": "Weak",
+    "En_Introduction": "",
+    "geyu": ""
+  },
+  "Fairy_Introduction": {
+    "Tag": "Fairy_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Ch_Introduction": "",
+    "Tc": "",
+    "En": "The type label of the card",
+    "En_Introduction": "",
+    "geyu": ""
+  },
+  "Machine_Introduction": {
+    "Tag": "Machine_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Ch_Introduction": "",
+    "Tc": "",
+    "En": "The type label of the card",
+    "En_Introduction": "",
+    "geyu": ""
+  },
+  "SpellCard_Introduction": {
+    "Tag": "SpellCard_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Ch_Introduction": "",
+    "Tc": "",
+    "En": "The type label of the card",
+    "En_Introduction": "",
+    "geyu": ""
+  },
+  "tactics_Introduction": {
+    "Tag": "tactics_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Ch_Introduction": "",
+    "Tc": "",
+    "En": "The type label of the card",
+    "En_Introduction": "",
+    "geyu": ""
+  },
+  "Object_Introduction": {
+    "Tag": "Object_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Ch_Introduction": "",
+    "Tc": "",
+    "En": "The type label of the card",
+    "En_Introduction": "",
+    "geyu": ""
+  },
+  "Yokai_Introduction": {
+    "Tag": "Yokai_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Ch_Introduction": "",
+    "Tc": "",
+    "En": "The type label of the card",
+    "En_Introduction": "",
+    "geyu": ""
+  },
+  "Tool_Introduction": {
+    "Tag": "Tool_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Ch_Introduction": "",
+    "Tc": "",
+    "En": "The type label of the card",
+    "En_Introduction": "",
+    "geyu": ""
+  },
+  "Variation_Introduction": {
+    "Tag": "Variation_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Ch_Introduction": "",
+    "Tc": "",
+    "En": "The type label of the card",
+    "En_Introduction": "",
+    "geyu": ""
+  },
+  "Special_Introduction": {
+    "Tag": "Special_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Ch_Introduction": "",
+    "Tc": "",
+    "En": "The type label of the card",
+    "En_Introduction": "",
+    "geyu": ""
+  },
+  "Spell_Introduction": {
+    "Tag": "Spell_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Ch_Introduction": "",
+    "Tc": "",
+    "En": "The type label of the card",
+    "En_Introduction": "",
+    "geyu": ""
+  },
+  "Sutra_Introduction": {
+    "Tag": "Sutra_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Ch_Introduction": "",
+    "Tc": "",
+    "En": "The type label of the card",
+    "En_Introduction": "",
+    "geyu": ""
+  },
+  "Monster_Introduction": {
+    "Tag": "Monster_Introduction",
+    "Ch": "卡牌的类型标签",
+    "Ch_Introduction": "",
+    "Tc": "",
+    "En": "The type label of the card",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Seal_Introduction": {
@@ -517,6 +581,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Invisibility_Introduction": {
@@ -525,6 +590,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Pry_Introduction": {
@@ -533,6 +599,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Close_Introduction": {
@@ -541,6 +608,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Fate_Introduction": {
@@ -549,6 +617,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Lurk_Introduction": {
@@ -557,6 +626,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Secret_Introduction": {
@@ -565,6 +635,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Furor_Introduction": {
@@ -573,6 +644,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Docile_Introduction": {
@@ -581,6 +653,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Poisoning_Introduction": {
@@ -589,6 +662,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Rely_Introduction": {
@@ -597,6 +671,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Water_Introduction": {
@@ -605,6 +680,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Fire_Introduction": {
@@ -613,6 +689,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Soil_Introduction": {
@@ -621,6 +698,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Wind_Introduction": {
@@ -629,6 +707,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Hold_Introduction": {
@@ -637,6 +716,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Congealbounds_Introduction": {
@@ -645,6 +725,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Forbidden_Introduction": {
@@ -653,6 +734,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Timer_Introduction": {
@@ -661,6 +743,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Vitality_Introduction": {
@@ -669,6 +752,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Apothanasia_Introduction": {
@@ -677,6 +761,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Chain_Introduction": {
@@ -685,6 +770,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Energy_Introduction": {
@@ -693,6 +779,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Shield_Introduction": {
@@ -701,6 +788,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Deploy_Introduction": {
@@ -709,6 +797,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   },
   "Weak_Introduction": {
@@ -717,6 +806,7 @@
     "Ch_Introduction": "",
     "Tc": "",
     "En": "",
+    "En_Introduction": "",
     "geyu": ""
   }
 }
