@@ -13,7 +13,13 @@ namespace TouhouMachineLearningSummary.Manager
     {
         public static string currentLanguage = "Ch";
         static Dictionary<string, Dictionary<string, string>> translateData;
-        public static string Translation(this string text)
+        /// <summary>
+        /// 返回关键字的翻译或者效果说明翻译
+        /// </summary>
+        /// <param name="text"></param>
+        /// <param name="IsGetIntroduction"></param>
+        /// <returns></returns>
+        public static string Translation(this string text,bool IsGetIntroduction=false)
         {
             if (translateData == null)
             {
@@ -22,13 +28,13 @@ namespace TouhouMachineLearningSummary.Manager
             if (translateData.ContainsKey(text))
             {
                 var translationDict = translateData[text];
-                string language = currentLanguage;
-                //假如当前词语没有对应翻译则默认使用中文
-                if (!translationDict.ContainsKey(currentLanguage))
+                string tag = currentLanguage + (IsGetIntroduction ? "_Introduction" : "");
+                //假如当前词语没有对应语言的翻译或者翻译为空则默认使用中文
+                if (!translationDict.ContainsKey(tag) ||(translationDict[tag] ==""))
                 {
-                    language = "Ch";
+                    tag = "Ch" + (IsGetIntroduction ? "_Introduction" : "");
                 }
-                return translationDict[language];
+                return translationDict[tag];
             }
             return "无法检索到Tag，请核对";
         }

@@ -362,7 +362,7 @@
   "Timer": {
     "Tag": "Timer",
     "Ch": "计时",
-    "Ch_Introduction": "计时：计数为0时触发效果",
+    "Ch_Introduction": "计时($Point$)：计数为0时触发效果",
     "Tc": "",
     "En": "Timer",
     "En_Introduction": "",
@@ -371,7 +371,7 @@
   "Inspire": {
     "Tag": "Inspire",
     "Ch": "鼓舞",
-    "Ch_Introduction": "鼓舞：增强两侧单位\"活力\"类型效果",
+    "Ch_Introduction": "鼓舞($Point$)：增强两侧单位\"活力\"类型效果",
     "Tc": "",
     "En": "Inspire",
     "En_Introduction": "",
@@ -380,7 +380,7 @@
   "Apothanasia": {
     "Tag": "Apothanasia",
     "Ch": "延命",
-    "Ch_Introduction": "延命：当单位点数为0时，回合结束时抵消一次进入墓地效果",
+    "Ch_Introduction": "延命($Point$)：当单位点数为0时，回合结束时抵消一次进入墓地效果",
     "Tc": "",
     "En": "Apothanasia",
     "En_Introduction": "",
@@ -389,7 +389,7 @@
   "Chain": {
     "Tag": "Chain",
     "Ch": "连锁",
-    "Ch_Introduction": "连锁：当前回合打出卡牌的数量",
+    "Ch_Introduction": "连锁($Point$)：当前回合打出卡牌的数量",
     "Tc": "",
     "En": "Chain",
     "En_Introduction": "",
@@ -398,7 +398,7 @@
   "Energy": {
     "Tag": "Energy",
     "Ch": "能量",
-    "Ch_Introduction": "能量：强化机械的触发效果，过多时触发\"超载\"效果",
+    "Ch_Introduction": "能量($Point$)：强化机械的触发效果，过多时触发\"超载\"效果",
     "Tc": "",
     "En": "Energy",
     "En_Introduction": "",
@@ -407,7 +407,7 @@
   "Shield": {
     "Tag": "Shield",
     "Ch": "护盾",
-    "Ch_Introduction": "护盾：受到\"伤害\"类型效果时时抵消相应点数的伤害",
+    "Ch_Introduction": "护盾($Point$)：受到\"伤害\"类型效果时时抵消相应点数的伤害",
     "Tc": "",
     "En": "Shield",
     "En_Introduction": "",

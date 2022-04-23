@@ -19,6 +19,7 @@ namespace TouhouMachineLearningSummary.Info
         public GameObject _cardDeckNameModel;
         public GameObject _cardDeckContent;
         public GameObject _cardDeckCardModel;
+        public GameObject _cardLeaderImageModel;
 
         public GameObject _changeButton;
         public GameObject _okButton;
@@ -27,6 +28,8 @@ namespace TouhouMachineLearningSummary.Info
         public static GameObject cardDeckNameModel;
         public static GameObject cardDeckContent;
         public static GameObject cardDeckCardModel;
+        public static GameObject cardLeaderImageModel;
+
 
         public static GameObject changeButton;
         public static GameObject okButton;
@@ -104,7 +107,7 @@ namespace TouhouMachineLearningSummary.Info
             cardDeckNameModel = _cardDeckNameModel;
             cardDeckContent = _cardDeckContent;
             cardDeckCardModel = _cardDeckCardModel;
-
+            cardLeaderImageModel = _cardLeaderImageModel;
             //牌库组件
             cardLibraryContent = _cardLibraryContent;
             cardLibraryCardModel = _cardLibraryCardModel;

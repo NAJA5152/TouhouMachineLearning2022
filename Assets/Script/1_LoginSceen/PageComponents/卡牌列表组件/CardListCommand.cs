@@ -33,12 +33,7 @@ namespace TouhouMachineLearningSummary.Command
             Log.Show("配置卡组名");
             if (isInitOptions)
             {
-                //初始化领袖栏
-                //Dropdown dropdown = cardDeckNameModel.GetComponent<Dropdown>();
-                //dropdown.ClearOptions();
-                //dropdown.AddOptions(Info.AgainstInfo.UserInfo.decks.Select(deck => deck.DeckName).ToList());
-                //dropdown.value = Info.AgainstInfo.UserInfo.useDeckNum;
-                var cardTexture = Manager.CardAssemblyManager.GetLastCardInfo(Info.CardCompnentInfo.tempDeck.LeaderId).icon;
+                //初始化领袖栏?可以舍去？
                 Info.CardCompnentInfo.deckCardModels.ForEach(model =>
                 {
                     if (model != null)
@@ -47,8 +42,9 @@ namespace TouhouMachineLearningSummary.Command
                     }
                 });
                 Info.CardCompnentInfo.deckCardModels.Clear();
-                //cardDeckNameModel.transform.GetChild(0).GetComponent<Image>().mainTexture. material.SetTexture("_Detail", cardTexture)  ;
             }
+            var cardTexture = Manager.CardAssemblyManager.GetLastCardInfo(Info.CardCompnentInfo.tempDeck.LeaderId).icon;
+            Info.CardCompnentInfo.cardLeaderImageModel.GetComponent<Image>().material.mainTexture = cardTexture;
             Log.Show("配置领袖");
             int deskCardNumber = Info.CardCompnentInfo.distinctCardIds.Count();
             int deskModelNumber = Info.CardCompnentInfo.deckCardModels.Count;

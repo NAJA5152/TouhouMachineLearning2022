@@ -113,7 +113,7 @@ namespace TouhouMachineLearningSummary.Manager
                 //Debug.Log("状态栏行数"+lineCount);
                 card.cardFields.ToList().ForEach(field =>
                 {
-                    string newIntroduction = (field.Key.ToString() + "_Introduction").Translation().Replace("$Point$", field.Value.ToString());
+                    string newIntroduction = (field.Key.ToString()).Translation( IsGetIntroduction:true).Replace("$Point$", field.Value.ToString());
                     //算出单个字段介绍的长度+换行的长度
                     newIntroduction.Split('\n').ToList().ForEach(singleRowText =>
                     {

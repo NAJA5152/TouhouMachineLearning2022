@@ -14,8 +14,6 @@ namespace TouhouMachineLearningSummary.CardSpace
     {
         public override void Init()
         {
-            this[CardField.Inspire] = 1;
-
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
@@ -29,6 +27,7 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
              .AbilityAdd(async (triggerInfo) =>
              {
+                 await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, this).SetTargetField( CardField.Inspire,1));
                  await GameSystem.SelectSystem.SelectUnite(this, AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardRank.Copper].CardList, 1);
                  await GameSystem.PointSystem.Cure(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits));
              }, Condition.Default)
