@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using TMPro;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.Model;
@@ -15,7 +16,7 @@ namespace TouhouMachineLearningSummary.Manager
         public FullScreenMode ScreenMode { get; set; }
         public float Volume { get; set; }
         public bool H_Mode { get; set; }
-        private static void SaveConfig() => File.WriteAllText(Application.streamingAssetsPath+"/GameConfig.ini", configInfo.ToJson());
+        private static void SaveConfig() => File.WriteAllText(Application.streamingAssetsPath + "/GameConfig.ini", configInfo.ToJson());
 
         public static void InitConfig()
         {
@@ -92,5 +93,45 @@ namespace TouhouMachineLearningSummary.Manager
         {
 
         }
+    }
+    public class testward : MonoBehaviour
+    {
+        [SerializeField]
+        public Dictionary<Color, int> colorMap = new Dictionary<Color, int>();
+        public Texture2D texture;
+        float[,] matrix;
+        GameObject[,] models;
+        public GameObject[] model;
+        int w => texture.width;
+        int h => texture.height;
+        // Start is called before the first frame update
+        void Start()
+        {
+            matrix = new float[w, h];
+            models = new GameObject[w, h];
+            for (int i = 0; i < w; i++)
+            {
+                for (int j = 0; j < h; j++)
+                {
+                    Color color = texture.GetPixel(i, j);
+                    var heigh = FakeHigh(color);
+                    matrix[i, j] = heigh;
+                    models[i, j] = Instantiate(model.OrderBy(x=>Random.Range(0,1f)).FirstOrDefault());
+                    models[i, j].transform.position = new Vector3(i, j, heigh);
+                    models[i, j].GetComponent<Renderer>().material.color = color;
+                }
+            }
+        }
+        public float FakeHigh(Color color)
+        {
+            return colorMap.Any() ? colorMap.ToList().Sum(map =>
+            {
+                var distance = Vector3.Distance(ToVector3(map.Key), ToVector3(color));
+                float weight = (Mathf.Sqrt(3) - distance) / Mathf.Sqrt(3);
+                return map.Value * weight;
+            }) : 0;
+        }
+        public Vector3 ToVector3(Color color) => new Vector3(color.r, color.g, color.b);
+
     }
 }
