@@ -12,11 +12,8 @@ namespace TouhouMachineLearningSummary.Manager
     public partial class ConfigManager : MonoBehaviour
     {
         static ConfigInfoModel configInfo = new ConfigInfoModel();
-        //1 全屏 2 无边框 3窗口
-        public FullScreenMode ScreenMode { get; set; }
-        public float Volume { get; set; }
-        public bool H_Mode { get; set; }
-        private static void SaveConfig() => File.WriteAllText(Application.streamingAssetsPath + "/GameConfig.ini", configInfo.ToJson());
+        private static void SaveConfig() => File.WriteAllText(Application.streamingAssetsPath+"/GameConfig.ini", configInfo.ToJson());
+
 
         public static void InitConfig()
         {
@@ -35,8 +32,9 @@ namespace TouhouMachineLearningSummary.Manager
             }
             else
             {
+                Directory.CreateDirectory(Application.streamingAssetsPath);
                 configInfo = File.ReadAllText(Application.streamingAssetsPath + "/GameConfig.ini").ToObject<ConfigInfoModel>();
-                Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.ScreenMode, 60);
+                Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.IsFullScreen, 60);
                 TranslateManager.currentLanguage = configInfo.UseLanguage;
             }
         }
@@ -47,12 +45,16 @@ namespace TouhouMachineLearningSummary.Manager
         {
             configInfo.Width = int.Parse(ResolutionText.text.Split("*")[0]);
             configInfo.Heigh = int.Parse(ResolutionText.text.Split("*")[1]);
+            Debug.Log(configInfo.Width + "_" + configInfo.Heigh + "_" + configInfo.IsFullScreen);
             Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.IsFullScreen);
             SaveConfig();
         }
         public void SetScreenMode(int index)
         {
             configInfo.IsFullScreen = (index == 0);
+            configInfo.Width = int.Parse(ResolutionText.text.Split("*")[0]);
+            configInfo.Heigh = int.Parse(ResolutionText.text.Split("*")[1]);
+            Debug.Log(configInfo.Width + "_" + configInfo.Heigh + "_" + configInfo.IsFullScreen);
             Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.IsFullScreen);
             SaveConfig();
         }
@@ -73,21 +75,6 @@ namespace TouhouMachineLearningSummary.Manager
             configInfo.UseLanguage = LanguageText.text;
             TranslateManager.currentLanguage = configInfo.UseLanguage;
             SaveConfig();
-        }
-
-        //储存文件值等于控件值
-        public void Apply()
-        {
-            //configInfo.Width = int.Parse(ResolutionText.text.Split("*")[0]);
-            //configInfo.Heigh = int.Parse(ResolutionText.text.Split("*")[1]);
-            //configInfo.ScreenMode = ScreenMode;
-            //configInfo.Volume = Volume;
-            //configInfo.UseLanguage = LanguageText.text;
-            //configInfo.H_Mode = H_Mode;
-            //File.WriteAllText("GameConfig.ini", configInfo.ToJson());
-            ////根据参数设置应用程序
-            //Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.IsFullScreen);
-            //TranslateManager.currentLanguage = configInfo.UseLanguage;
         }
         public void SendCode()
         {
@@ -116,7 +103,7 @@ namespace TouhouMachineLearningSummary.Manager
                     Color color = texture.GetPixel(i, j);
                     var heigh = FakeHigh(color);
                     matrix[i, j] = heigh;
-                    models[i, j] = Instantiate(model.OrderBy(x=>Random.Range(0,1f)).FirstOrDefault());
+                    models[i, j] = Instantiate(model.OrderBy(x => Random.Range(0, 1f)).FirstOrDefault());
                     models[i, j].transform.position = new Vector3(i, j, heigh);
                     models[i, j].GetComponent<Renderer>().material.color = color;
                 }
