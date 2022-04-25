@@ -226,14 +226,7 @@ namespace TouhouMachineLearningSummary.Command
         public static void SetCurrentPass()
         {
             UiInfo.MyPass.SetActive(true);
-            if (AgainstInfo.IsMyTurn)
-            {
-                AgainstInfo.isDownPass = true;
-            }
-            else
-            {
-                AgainstInfo.isUpPass = true;
-            }
+            (AgainstInfo.IsMyTurn ? ref AgainstInfo.isDownPass : ref AgainstInfo.isUpPass) = true;
         }
         public static void ReSetPassState()
         {
@@ -318,7 +311,7 @@ namespace TouhouMachineLearningSummary.Command
                         }
                         else
                         {
-
+                            
                         }
                     }
                 }
