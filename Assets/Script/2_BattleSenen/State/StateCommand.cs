@@ -226,10 +226,13 @@ namespace TouhouMachineLearningSummary.Command
         public static void SetCurrentPass()
         {
             UiInfo.MyPass.SetActive(true);
-            switch (Info.AgainstInfo.IsMyTurn)
+            if (AgainstInfo.IsMyTurn)
             {
-                case true: Info.AgainstInfo.isDownPass = true; break;
-                case false: Info.AgainstInfo.isUpPass = true; break;
+                AgainstInfo.isDownPass = true;
+            }
+            else
+            {
+                AgainstInfo.isUpPass = true;
             }
         }
         public static void ReSetPassState()
@@ -307,7 +310,11 @@ namespace TouhouMachineLearningSummary.Command
                         //如果是我的回合则等待玩家操作，否则等待网络同步对方操作
                         if (AgainstInfo.IsMyTurn)
                         {
-
+                            //如果无牌则自动pass
+                            if (!AgainstInfo.cardSet[Orientation.My][GameRegion.Leader,GameRegion.Hand].CardList.Any())
+                            {
+                                SetCurrentPass();
+                            }
                         }
                         else
                         {
