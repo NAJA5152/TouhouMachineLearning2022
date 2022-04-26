@@ -222,7 +222,8 @@ namespace TouhouMachineLearningSummary.GameEnum
     public enum CardFeature
     {
         LargestUnites,
-        LowestUnites
+        LowestUnites,
+        NotZero,
     }
     public enum CardRank
     {

@@ -147,6 +147,9 @@ namespace TouhouMachineLearningSummary.Info
                             int lowestPoint = filterCardList.Min(card => card.ShowPoint);
                             filterCardList = filterCardList.Where(card => card.ShowPoint == lowestPoint);
                             break;
+                        case CardFeature.NotZero:
+                            //已经排除了非0单位，可以空
+                            break;
                         default:
                             break;
                     }

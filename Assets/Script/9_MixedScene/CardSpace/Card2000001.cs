@@ -33,7 +33,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                    for (int i = 0; i < AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardTag.Fairy].CardList.Count; i++)
                    {
 
-                       List<Card> cardlist = AgainstInfo.cardSet[Orientation.Op][GameRegion.Battle].CardList.Where(Card => Card.ShowPoint > 0).ToList();
+                       List<Card> cardlist = AgainstInfo.cardSet[Orientation.Op][GameRegion.Battle][CardFeature.LargestUnites].CardList.ToList();
                        if (cardlist.Any())
                        {
                            await GameSystem.SelectSystem.SelectUnite(this, cardlist, 1, isAuto: true);
