@@ -1,0 +1,15 @@
+ManifestFileVersion: 0
+CRC: 2573507266
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: res.gezi
+      Dependencies: {}
+    Info_1:
+      Name: scene1.gezi
+      Dependencies:
+        Dependency_0: res.gezi
+    Info_2:
+      Name: scene2.gezi
+      Dependencies:
+        Dependency_0: res.gezi

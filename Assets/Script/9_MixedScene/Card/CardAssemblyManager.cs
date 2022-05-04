@@ -32,14 +32,6 @@ namespace TouhouMachineLearningSummary.Manager
         static List<CardModel> currentMultiCardInfos;
         //获取当前引用卡牌数据的日期
         public static string GetCurrentConfigDate => currentConfig.Version;
-        //[ShowInInspector]
-        //public static List<CardModel> GetcurrentSingleCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Single.json").ToObject<List<CardModel>>().Select(card => card.Init(true)).ToList() : currenttSingleCardInfos;
-        //[ShowInInspector]
-        //public static List<CardModel> GetcurrentMultiCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Multi.json").ToObject<List<CardModel>>().Select(card => card.Init(false)).ToList() : currentMultiCardInfos;
-        //[ShowInInspector]
-        //public static List<CardModel> GetLastSingleCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Single.json").ToObject<List<CardModel>>().Select(card => card.Init(true)).ToList() : lastSingleCardInfos;
-        //[ShowInInspector]
-        //public static List<CardModel> GetLastMultiCardInfos => isUseLocalAssembly ? File.ReadAllText(@"Assets\Resources\GameData\CardData-Multi.json").ToObject<List<CardModel>>().Select(card => card.Init(false)).ToList() : lastMultiCardInfos;
         [ShowInInspector]
         public static List<CardModel> GetcurrentSingleCardInfos => currenttSingleCardInfos;
         [ShowInInspector]

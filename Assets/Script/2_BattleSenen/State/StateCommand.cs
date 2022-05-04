@@ -133,7 +133,7 @@ namespace TouhouMachineLearningSummary.Command
             await Task.Delay(2000);
             //Debug.Log("释放线程资源");
             TaskLoopManager.cancel.Cancel();
-            SceneManager.LoadScene(0);
+            SceneManager.LoadScene("1_LoginScene");
             await Manager.CameraViewManager.MoveToViewAsync(2);
 
         }

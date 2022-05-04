@@ -14,6 +14,7 @@ namespace TouhouMachineLearningSummary.CardSpace
     {
         public override void Init()
         {
+            
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)

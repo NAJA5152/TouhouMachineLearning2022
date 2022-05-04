@@ -12,7 +12,14 @@ namespace TouhouMachineLearningSummary.Manager
     public partial class ConfigManager : MonoBehaviour
     {
         static ConfigInfoModel configInfo = new ConfigInfoModel();
-        private static void SaveConfig() => File.WriteAllText(Application.streamingAssetsPath+"/GameConfig.ini", configInfo.ToJson());
+        static string ConfigFileSavePath =>
+#if UNITY_ANDROID //安卓
+                Application.persistentDataPath;
+#else
+                Directory.GetCurrentDirectory();
+#endif
+
+        private static void SaveConfig() => File.WriteAllText(ConfigFileSavePath + "/GameConfig.ini", configInfo.ToJson());
 
 
         public static void InitConfig()
@@ -20,20 +27,22 @@ namespace TouhouMachineLearningSummary.Manager
             //判断有无本地配置文件
             //若无则创建默认配置文件
             //若有则控件值等于储存文件值
-            if (!File.Exists(Application.streamingAssetsPath + "/GameConfig.ini"))
+
+            if (!File.Exists(ConfigFileSavePath + "/GameConfig.ini"))
             {
-                configInfo.Width = Screen.width;
-                configInfo.Heigh = Screen.height;
+                Debug.LogError("生成默认配置文件");
+                configInfo.Width = Screen.currentResolution.width;
+                configInfo.Heigh = Screen.currentResolution.height;
                 //configInfo.ScreenMode = Screen.fullScreenMode;
                 configInfo.IsFullScreen = Screen.fullScreen;
                 configInfo.UseLanguage = TranslateManager.currentLanguage;
-                Debug.LogError(Directory.GetCurrentDirectory());
+                Directory.CreateDirectory(ConfigFileSavePath);
                 SaveConfig();
             }
             else
             {
-                Directory.CreateDirectory(Application.streamingAssetsPath);
-                configInfo = File.ReadAllText(Application.streamingAssetsPath + "/GameConfig.ini").ToObject<ConfigInfoModel>();
+                Debug.LogError("加载已有配置文件");
+                configInfo = File.ReadAllText(ConfigFileSavePath + "/GameConfig.ini").ToObject<ConfigInfoModel>();
                 Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.IsFullScreen, 60);
                 TranslateManager.currentLanguage = configInfo.UseLanguage;
             }
@@ -80,45 +89,5 @@ namespace TouhouMachineLearningSummary.Manager
         {
 
         }
-    }
-    public class testward : MonoBehaviour
-    {
-        [SerializeField]
-        public Dictionary<Color, int> colorMap = new Dictionary<Color, int>();
-        public Texture2D texture;
-        float[,] matrix;
-        GameObject[,] models;
-        public GameObject[] model;
-        int w => texture.width;
-        int h => texture.height;
-        // Start is called before the first frame update
-        void Start()
-        {
-            matrix = new float[w, h];
-            models = new GameObject[w, h];
-            for (int i = 0; i < w; i++)
-            {
-                for (int j = 0; j < h; j++)
-                {
-                    Color color = texture.GetPixel(i, j);
-                    var heigh = FakeHigh(color);
-                    matrix[i, j] = heigh;
-                    models[i, j] = Instantiate(model.OrderBy(x => Random.Range(0, 1f)).FirstOrDefault());
-                    models[i, j].transform.position = new Vector3(i, j, heigh);
-                    models[i, j].GetComponent<Renderer>().material.color = color;
-                }
-            }
-        }
-        public float FakeHigh(Color color)
-        {
-            return colorMap.Any() ? colorMap.ToList().Sum(map =>
-            {
-                var distance = Vector3.Distance(ToVector3(map.Key), ToVector3(color));
-                float weight = (Mathf.Sqrt(3) - distance) / Mathf.Sqrt(3);
-                return map.Value * weight;
-            }) : 0;
-        }
-        public Vector3 ToVector3(Color color) => new Vector3(color.r, color.g, color.b);
-
     }
 }

@@ -136,7 +136,6 @@ namespace TouhouMachineLearningSummary.Command
                             break;
                     }
                 });
-                await Manager.CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
             }
             catch (Exception e)
             {

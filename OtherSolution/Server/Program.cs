@@ -19,7 +19,6 @@ builder.Services.AddSignalR(hubOptions =>
     hubOptions.EnableDetailedErrors = true;
     hubOptions.MaximumReceiveMessageSize = null;
 }).AddNewtonsoftJsonProtocol();
-
 var app = builder.Build();
 if (!app.Environment.IsDevelopment())
 {

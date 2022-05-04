@@ -2,6 +2,8 @@
 using Server;
 using MongoDB.Bson;
 using Microsoft.AspNetCore.SignalR;
+using System.Threading.Channels;
+
 public class TouHouHub : Hub
 {
     public override Task OnConnectedAsync()
@@ -23,7 +25,7 @@ public class TouHouHub : Hub
     public void Leave(AgainstModeType againstMode, string account) => HoldListManager.Remove(againstMode, account);
     //////////////////////////////////////////////房间////////////////////////////////////////////////////////////////////
     public void Async(NetAcyncType netAcyncType, string roomId, bool isPlayer1, object[] data) => RoomManager.GetRoom(roomId)?.AsyncInfo(netAcyncType, isPlayer1, data);
-    public bool AgainstFinish(string roomId, string account,int P1Score,int P2Score) => RoomManager.DisponseRoom(roomId, account, P1Score, P2Score);
+    public bool AgainstFinish(string roomId, string account, int P1Score, int P2Score) => RoomManager.DisponseRoom(roomId, account, P1Score, P2Score);
     //////////////////////////////////////////////用户信息更新操作////////////////////////////////////////////////////////////////////
     public bool UpdateInfo(UpdateType updateType, string account, string password, object updateValue)
     {
@@ -33,7 +35,7 @@ public class TouHouHub : Hub
             case UpdateType.Deck: return MongoDbCommand.UpdateInfo(account, password, (x => x.Decks), updateValue.To<List<CardDeck>>());
             case UpdateType.UseDeckNum: return MongoDbCommand.UpdateInfo(account, password, (x => x.UseDeckNum), updateValue.To<int>());
             case UpdateType.UserState: return MongoDbCommand.UpdateInfo(account, password, (x => x.OnlineUserState), updateValue.To<UserState>());
-            case UpdateType.LastLoginTime:return MongoDbCommand.UpdateInfo(account, password, (x => x.LastLoginTime), updateValue.To<DateTime>());
+            case UpdateType.LastLoginTime: return MongoDbCommand.UpdateInfo(account, password, (x => x.LastLoginTime), updateValue.To<DateTime>());
             default: return false;
         }
     }
@@ -55,6 +57,15 @@ public class TouHouHub : Hub
     public string UploadCardConfigs(CardConfig cardConfig) => MongoDbCommand.InsertOrUpdateCardConfig(cardConfig);
     //下载卡牌配置信息
     public CardConfig DownloadCardConfigs(string date) => MongoDbCommand.GetCardConfig(date);
+    //////////////////////////////////////////////上传AB包////////////////////////////////////////////////////////////////////
+    public bool UploadAssetBundles(string path, byte[] fileData)
+    {
+        Directory.CreateDirectory(new FileInfo(path).DirectoryName);
+        Console.WriteLine("接收到"+path+"——开始写入，长度为"+fileData.Length);
+        File.WriteAllBytes(path, fileData);
+        return true;
+    }
+
     //////////////////////////////////////////////聊天////////////////////////////////////////////////////////////////////
     public void Chat(string name, string message, string target)
     {

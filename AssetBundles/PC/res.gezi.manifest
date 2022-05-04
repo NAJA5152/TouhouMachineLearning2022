@@ -1,0 +1,210 @@
+ManifestFileVersion: 0
+CRC: 414439750
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 12d0283548fd330381ac2c50e5586afe
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 37477cd2c66354e03087dd6c645d64fe
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 479218ad243cfb04eabef643d1a61df0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 23449c37c76c84b4ab05445f817bc7a9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 139800fdc9713ed4bbadeb0786748453, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 223
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+- Class: 328
+  Script: {instanceID: 0}
+- Class: 329
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Sirenix.Serialization
+  ClassName: Sirenix.Serialization.SerializationData
+- AssemblyName: TouHouMachineLearning
+  ClassName: TouhouMachineLearningSummary.Model.CardModel
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.FontData
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+Assets:
+- Assets/Resources/Sound/Biu.mp3
+- Assets/Resources/CardTex/Multiplayer/2001001.png
+- Assets/Resources/CardTex/Multiplayer/2002004.png
+- "Assets/Resources/Sound/\u539F\u97F3\u6548/\u7B26\u5361.mp3"
+- Assets/Resources/Bullet/GainParticle.prefab
+- Assets/Resources/Sound/ChangeSuccess.wav
+- Assets/Resources/CardTex/Multiplayer/2011003.png
+- Assets/Resources/CardTex/Multiplayer/2001003.png
+- Assets/Resources/Sound/Shop2.ogg
+- Assets/Resources/FieldAndState/Wind.png
+- Assets/Resources/FieldAndState/Energy.png
+- "Assets/Resources/Sound/\u539F\u97F3\u6548/\u4E2D.mp3"
+- Assets/Resources/CardTex/Multiplayer/2103003.png
+- Assets/Resources/CardTex/Multiplayer/2011004.png
+- Assets/Resources/BillingMode.json
+- Assets/Resources/CardTex/Multiplayer/2001002.png
+- Assets/Resources/CardTex/Multiplayer/2103001.png
+- Assets/Resources/CardTex/Multiplayer/2003002.png
+- "Assets/Resources/Sound/\u62BD \u5361.mp3"
+- Assets/Resources/Sound/Laser.mp3
+- Assets/Resources/CardTex/Multiplayer/2101003.png
+- Assets/Resources/Sound/DrawCard.ogg
+- Assets/Resources/CardTex/Multiplayer/2012006.png
+- Assets/Resources/CardTex/Multiplayer/2013005.png
+- Assets/Resources/CardTex/Multiplayer/2013006.png
+- Assets/Resources/CardTex/Multiplayer/2011002.png
+- Assets/Resources/FieldAndState/Furor.png
+- Assets/Resources/CardTex/Multiplayer/2013007.png
+- Assets/Resources/CardTex/Multiplayer/2102004.png
+- Assets/Resources/CardTex/Multiplayer/2013003.png
+- Assets/Resources/Bullet/Card.prefab
+- Assets/Resources/CardTex/Multiplayer/2012005.png
+- Assets/Resources/FieldAndState/Shield.png
+- Assets/Resources/CardTex/Multiplayer/2013001.png
+- "Assets/Resources/Sound/\u70B9\u51FB.wav"
+- Assets/Resources/CardTex/Multiplayer/2012004.png
+- Assets/Resources/Sound/ChangeFailed.wav
+- Assets/Resources/CardTex/Multiplayer/2003005.png
+- Assets/Resources/GameData/CardData-Multi.json
+- Assets/Resources/CardTex/Multiplayer/2103006.png
+- Assets/Resources/GameData/CardData-Single.json
+- Assets/Resources/FieldAndState/Water.png
+- Assets/Resources/CardTex/Multiplayer/2012008.png
+- Assets/Resources/Bullet/HurtParticle.prefab
+- Assets/Resources/Sound/Gun.ogg
+- "Assets/Resources/Sound/\u4FDD\u5B58.wav"
+- "Assets/Resources/Chara/\u65E9\u82D7.png"
+- Assets/Resources/CardTex/Multiplayer/2101002.png
+- Assets/Resources/Sound/UiButton.mp3
+- Assets/Resources/GameData/Story.json
+- Assets/Resources/FieldAndState/Inspire.png
+- Assets/Resources/CardTex/Multiplayer/2012007.png
+- Assets/Resources/Bullet/Heal.prefab
+- Assets/Resources/[Q`LJB@(%FBQQYW1{`4K__E.png
+- Assets/Resources/CardTex/Multiplayer/2002003.png
+- Assets/Resources/CardTex/Multiplayer/2003004.png
+- Assets/Resources/CardTex/Multiplayer/2091001.png
+- Assets/Resources/Sound/Page.mp3
+- Assets/Resources/Sound/Deploy.mp3
+- Assets/Resources/Bullet/SmallBullet.prefab
+- "Assets/Resources/Sound/\u70B9\u51FB.mp3"
+- Assets/Resources/CardTex/Multiplayer/2011001.png
+- Assets/Resources/Sound/Up1.ogg
+- Assets/Resources/CardTex/Multiplayer/2103002.png
+- Assets/Resources/CardTex/Multiplayer/2100001.png
+- Assets/Resources/CardTex/Multiplayer/2001004.png
+- Assets/Resources/Particle/Materials/Ring_3_tex.mat
+- Assets/Resources/Sound/Deploy1.mp3
+- Assets/Resources/CardTex/Multiplayer/2013004.png
+- Assets/Resources/CardTex/Multiplayer/2102005.png
+- Assets/Resources/CardTex/Multiplayer/2103005.png
+- Assets/Resources/CardTex/Multiplayer/2102006.png
+- "Assets/Resources/Sound/\u539F\u97F3\u6548/\u5012\u8BA1\u65F6.mp3"
+- Assets/Resources/FieldAndState/Fire.png
+- Assets/Resources/CardTex/Multiplayer/2092001.png
+- "Assets/Resources/Particle/Materials/\u51B2\u51FB\u6CE2.mat"
+- Assets/Resources/CardTex/Multiplayer/2002001.png
+- Assets/Resources/Sound/Sword.ogg
+- Assets/Resources/Bullet/Bomb.prefab
+- Assets/Resources/Particle/Ring_3_tex.png
+- Assets/Resources/GameData/SaveData.asset
+- Assets/Resources/Anim/StaetSign.anim
+- "Assets/Resources/Chara/\u7075\u68A6.png"
+- Assets/Resources/CardTex/Multiplayer/2101001.png
+- Assets/Resources/CardTex/Multiplayer/2102001.png
+- Assets/Resources/CardTex/default.png
+- Assets/Resources/Sound/Water1.ogg
+- "Assets/Resources/Sound/\u539F\u97F3\u6548/\u5200\u58F0.mp3"
+- Assets/Resources/Sound/Thunder8.ogg
+- Assets/Resources/CardTex/Multiplayer/2002006.png
+- Assets/Resources/CardTex/Multiplayer/2013002.png
+- Assets/Resources/CardTex/Multiplayer/2002002.png
+- Assets/Resources/Bullet/Butterfly.prefab
+- Assets/Resources/CardTex/Multiplayer/2101004.png
+- Assets/Resources/FieldAndState/model.psd
+- Assets/Resources/CardTex/Multiplayer/2103004.png
+- Assets/Resources/CardTex/Multiplayer/2081001.png
+- Assets/Resources/FieldAndState/Soil.Png
+- Assets/Resources/Particle/]904$I8W4B~(5DD}4U`JQAL.png
+- Assets/Resources/CardTex/Multiplayer/2012003.png
+- Assets/Resources/Sound/DrawCard1.wav
+- Assets/Resources/FieldAndState/Docile.png
+- Assets/Resources/Bullet/BigBall.prefab
+- Assets/Resources/CardTex/Multiplayer/2012001.png
+- Assets/Resources/CardTex/Multiplayer/2012002.png
+- Assets/Resources/CardTex/Multiplayer/2102002.png
+- Assets/Resources/Bullet/MiBullet.prefab
+- Assets/Resources/CardTex/Multiplayer/2000001.png
+- Assets/Resources/Sound/CardSelect.ogg
+- Assets/Resources/CardTex/Multiplayer/2003003.png
+- Assets/Resources/CardTex/Multiplayer/2093001.png
+- Assets/Resources/GameData/Game-Text.json
+- Assets/Resources/Particle/xing.png
+- "Assets/Resources/Particle/\u51B2\u51FB\u6CE2.png"
+- "Assets/Resources/Sound/\u539F\u97F3\u6548/\u9AD8.mp3"
+- "Assets/Resources/Bullet/\u5C01\u5370.prefab"
+- "Assets/Resources/Sound/\u539F\u97F3\u6548/\u76F8\u673A.mp3"
+- Assets/Resources/CardTex/Multiplayer/2002005.png
+- Assets/Resources/Sound/Starlight.ogg
+- Assets/Resources/Sound/Bullet.ogg
+- Assets/Resources/CardTex/Multiplayer/2003001.png
+- Assets/Resources/CardTex/Multiplayer/2081002.png
+- Assets/Resources/CardTex/Multiplayer/2010001.png
+- Assets/Resources/CardTex/Multiplayer/2102003.png
+Dependencies: []
