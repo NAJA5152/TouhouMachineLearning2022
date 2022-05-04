@@ -18,6 +18,7 @@ builder.Services.AddSignalR(hubOptions =>
 {
     hubOptions.EnableDetailedErrors = true;
     hubOptions.MaximumReceiveMessageSize = null;
+    hubOptions.ClientTimeoutInterval = new TimeSpan(0, 5, 0);
 }).AddNewtonsoftJsonProtocol();
 var app = builder.Build();
 if (!app.Environment.IsDevelopment())
@@ -41,7 +42,7 @@ Task.Run(() =>
     {
         Console.ReadLine();
         //RoomManager.Rooms.ForEach(room => Console.WriteLine(room.Summary.ToJson()));
-        RoomManager.Rooms.FirstOrDefault()?.Summary.UploadAgentSummary(0,0);
+        RoomManager.Rooms.FirstOrDefault()?.Summary.UploadAgentSummary(0, 0);
         Console.WriteLine("ÉÏ´«Íê±Ï");
     }
 });
