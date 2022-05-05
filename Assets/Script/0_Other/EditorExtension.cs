@@ -25,7 +25,7 @@ namespace TouhouMachineLearningSummary.Other
         static void OpenXls() => Process.Start(@"Assets\Resources\GameData\GameData.xlsx");
         [MenuItem("Tools/打开表格数据实时同步工具", false, 52)]
         static void UpdateXls() => Process.Start(@"OtherSolution\xls检测更新\bin\Debug\net6.0\xls检测更新.exe");
-        [MenuItem("Tools/发布当前卡牌版本", false, 101)]
+        [MenuItem("Public/发布当前卡牌版本", false, 101)]
         static void UpdateCardSpace()
         {
             var gameCardAssembly = new DirectoryInfo(@"Library\ScriptAssemblies").GetFiles("GameCard*.dll").FirstOrDefault();
@@ -41,7 +41,7 @@ namespace TouhouMachineLearningSummary.Other
                 UnityEngine.Debug.LogError("检索不到卡牌dll文件");
             }
         }
-        [MenuItem("Tools/发布当前服务器版本", false, 102)]
+        [MenuItem("Public/发布当前服务器版本", false, 102)]
         static async void UpdateServer()
         {
             var VersionsHub = new HubConnectionBuilder().WithUrl($"http://106.15.38.165:233/VersionsHub").Build();
@@ -51,11 +51,11 @@ namespace TouhouMachineLearningSummary.Other
             UnityEngine.Debug.LogWarning("上传结果" + result);
             await VersionsHub.StopAsync();
         }
-        [MenuItem("Tools/发布游戏热更资源文件", priority = 103)]
+        [MenuItem("Public/发布游戏热更资源文件", priority = 103)]
         static async void BuildAssetBundles()
         {
             //打标签
-            new DirectoryInfo(@"Assets\Resources")
+            new DirectoryInfo(@"Assets\GameResources")
                 .GetFiles("*.*", SearchOption.AllDirectories)
                 .Where(file => file.Extension != ".meta")
                 .ToList()
@@ -63,8 +63,7 @@ namespace TouhouMachineLearningSummary.Other
                 {
                     string path = file.FullName.Replace(Directory.GetCurrentDirectory() + @"\", "");
                     UnityEngine.Debug.Log(path);
-                    AssetImporter importer = AssetImporter.GetAtPath(path);
-                    importer.assetBundleName = "res.gezi";
+                    AssetImporter.GetAtPath(path).assetBundleName = "GameResources.gezi";
                 });
             UnityEngine.Debug.LogWarning("标签修改完毕，开始打包");
             string PcOutputPath = Directory.GetCurrentDirectory() + @"\AssetBundles\PC";
@@ -133,20 +132,11 @@ namespace TouhouMachineLearningSummary.Other
         }
 
         [MenuItem("Scene/载入热更场景", priority = 151)]
-        static void LoadHotfixedScene()
-        {
-            Process.Start(@"Assets\Scenes\0_HotfixedScene.unity");
-        }
+        static void LoadHotfixedScene() => Process.Start(@"Assets\Scenes\0_HotfixedScene.unity");
         [MenuItem("Scene/载入登录场景", priority = 152)]
-        static void LoadLoginScene()
-        {
-            Process.Start(@"Assets\Scenes\1_LoginScene.unity");
-        }
+        static void LoadLoginScene() => Process.Start(@"Assets\Scenes\1_LoginScene.unity");
         [MenuItem("Scene/载入对战场景", priority = 153)]
-        static void LoaBattleScene()
-        {
-            Process.Start(@"Assets\Scenes\2_BattleScene.unity");
-        }
+        static void LoaBattleScene() => Process.Start(@"Assets\Scenes\2_BattleScene.unity");
     }
 }
 #endif

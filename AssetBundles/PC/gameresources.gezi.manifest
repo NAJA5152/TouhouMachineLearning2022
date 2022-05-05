@@ -1,0 +1,561 @@
+ManifestFileVersion: 0
+CRC: 439247876
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2ec9ab7b7b5be92d9efb2d866f0131b7
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 2d1dbb62b40ba790d0088f313563c470
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 23
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 33
+  Script: {instanceID: 0}
+- Class: 43
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+- Class: 54
+  Script: {instanceID: 0}
+- Class: 64
+  Script: {instanceID: 0}
+- Class: 65
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 83
+  Script: {instanceID: 0}
+- Class: 84
+  Script: {instanceID: 0}
+- Class: 108
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 5f7201a12d95ffc409449d95f23cf332, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 307a736764ebbce44b54d72f8467b6fd, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 479218ad243cfb04eabef643d1a61df0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: bf2edee5c58d82540a51f03df9d42094, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 23449c37c76c84b4ab05445f817bc7a9, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 572910c10080c0945a0ef731ccedc739, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: de640fe3d0db1804a85f9fc8f5cadab6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 139800fdc9713ed4bbadeb0786748453, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+- Class: 156
+  Script: {instanceID: 0}
+- Class: 198
+  Script: {instanceID: 0}
+- Class: 199
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 222
+  Script: {instanceID: 0}
+- Class: 223
+  Script: {instanceID: 0}
+- Class: 224
+  Script: {instanceID: 0}
+- Class: 328
+  Script: {instanceID: 0}
+- Class: 329
+  Script: {instanceID: 0}
+- Class: 1953259897
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Sirenix.Serialization
+  ClassName: Sirenix.Serialization.SerializationData
+- AssemblyName: TouHouMachineLearning
+  ClassName: TouhouMachineLearningSummary.Model.CardModel
+- AssemblyName: Unity.RenderPipelines.Universal.Runtime
+  ClassName: UnityEngine.Rendering.Universal.PostProcessData/ShaderResources
+- AssemblyName: Unity.RenderPipelines.Universal.Runtime
+  ClassName: UnityEngine.Rendering.Universal.PostProcessData/TextureResources
+- AssemblyName: Unity.RenderPipelines.Universal.Runtime
+  ClassName: UnityEngine.Rendering.Universal.ScriptableRendererData/DebugShaderResources
+- AssemblyName: Unity.RenderPipelines.Universal.Runtime
+  ClassName: UnityEngine.Rendering.Universal.StencilStateData
+- AssemblyName: Unity.RenderPipelines.Universal.Runtime
+  ClassName: UnityEngine.Rendering.Universal.UniversalRendererData/ShaderResources
+- AssemblyName: Unity.RenderPipelines.Universal.Runtime
+  ClassName: UnityEngine.Rendering.Universal.XRSystemData/ShaderResources
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.FaceInfo_Legacy
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.FontAssetCreationSettings
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.KerningTable
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_Character
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_FontFeatureTable
+- AssemblyName: Unity.TextMeshPro
+  ClassName: TMPro.TMP_FontWeightPair
+- AssemblyName: UnityEngine.CoreModule
+  ClassName: UnityEngine.Events.PersistentCallGroup
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.FaceInfo
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.Glyph
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.GlyphMetrics
+- AssemblyName: UnityEngine.TextCoreFontEngineModule
+  ClassName: UnityEngine.TextCore.GlyphRect
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.FontData
+- AssemblyName: UnityEngine.UI
+  ClassName: UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
+Assets:
+- Assets/GameResources/Shader/Use/cardBack.shadergraph
+- "Assets/GameResources/\u5730\u5F62/6K(M[OI[S]I_%6HH2U2C_HN.png"
+- "Assets/GameResources/Texture/\u51B0\u51BB.png"
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u94C1\u5939\u548C\u5730\u9762/\u94C1\u5939_\u5730\u9762_Metallic.png"
+- Assets/GameResources/bullet/laser.mat
+- Assets/GameResources/ttf/HYZhuanShuF.ttf
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE5/\u68A6\u8FEA\u89E3\u67902_Emissive.png"
+- Assets/GameResources/Sound/Laser.mp3
+- Assets/GameResources/Texture/Materials/music_frame.mat
+- Assets/GameResources/Shader/Scroll.mat
+- Assets/GameResources/FieldAndState/Furor.png
+- Assets/GameResources/Material/Arrow.mat
+- Assets/GameResources/CardTex/Multiplayer/2002001.png
+- Assets/GameResources/Sound/DrawCard.ogg
+- "Assets/GameResources/Material/\u4E3B\u754C\u9762/Book.mat"
+- "Assets/GameResources/\u786C\u5E01/\u6C34.png"
+- "Assets/GameResources/\u7ACB\u7ED8/\u9B3C\u4EBA\u6B63\u90AA.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u71C3\u70E7\u4E66.mat"
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u6742\u7269\u8D34\u56FE/\u6742\u7269_Base_Color.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE3/\u761F\u75AB\u4E66_Normal_OpenGL.png"
+- "Assets/GameResources/Shader/Use/\u5168\u606F\u6295\u5F71.mat"
+- Assets/GameResources/Shader/Use/Page.mat
+- Assets/GameResources/CardTex/default.png
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u683C\u5B50\u4E66.obj"
+- "Assets/GameResources/\u786C\u5E01/\u6307\u9488.psd"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE2/\u9F99\u76AE\u4E66_Normal_OpenGL.png"
+- Assets/GameResources/FieldAndState/Docile.png
+- "Assets/GameResources/\u5730\u5F62/NewLayer.terrainlayer"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE4/\u71C3\u70E7\u4E66_Base_Color.png"
+- Assets/GameResources/BattleScene/Unlit_Temp.mat
+- "Assets/GameResources/Texture/\u4E66\u9875\u7EB9\u7406.png"
+- Assets/GameResources/Sound/Shop2.ogg
+- "Assets/GameResources/Texture/\u7075\u68A6\u5361\u80CC/ambientOcclusion.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE1/\u68A6\u7684\u89E3\u6790_Height.png"
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u6742\u7269\u8D34\u56FE/\u6742\u7269_Metallic.png"
+- "Assets/GameResources/BattleScene/\u6C38\u8FDC\u4EAD/\u9634\u5F71.png"
+- Assets/GameResources/Material/default.mat
+- Assets/GameResources/LinePipe/UniversalRenderPipelineAsset.asset
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE2/\u9F99\u76AE\u4E66_Roughness.png"
+- Assets/GameResources/Shader/Materials/_NIQHS)_]LF77JSA8B1165G.mat
+- Assets/GameResources/Shader/sub/uvSpilt.shadersubgraph
+- Assets/GameResources/Shader/New Shader Graph.shadergraph
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u94C1\u5939\u548C\u5730\u9762/\u94C1\u5939_\u5730\u9762_Roughness.png"
+- Assets/GameResources/CardTex/Multiplayer/2103003.png
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE3/\u761F\u75AB\u4E66_Roughness.png"
+- Assets/GameResources/LinePipe/UniversalRenderPipelineAsset_Renderer.asset
+- "Assets/GameResources/ttf/\u841D\u8389\u4F53.ttc"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/New Material 1.mat"
+- "Assets/GameResources/UITexture/\u7075\u68A6.png"
+- Assets/GameResources/CardTex/Multiplayer/2002002.png
+- Assets/GameResources/Shader/IconBreak.shadergraph
+- "Assets/GameResources/BattleScene/\u6C38\u8FDC\u4EAD/\u989C\u8272.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE5/\u68A6\u8FEA\u89E3\u67902_Roughness.png"
+- Assets/GameResources/FieldAndState/Inspire.png
+- "Assets/GameResources/\u786C\u5E01/\u9635\u8425.psd"
+- Assets/GameResources/Texture/music_frame.png
+- Assets/GameResources/UITexture/K5UXYI@WGP(PQT@CP(CEQZT.png
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u68A6\u7684\u89E3\u6790.mat"
+- Assets/GameResources/New Terrain.asset
+- Assets/GameResources/Material/Region.mat
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE1/\u68A6\u7684\u89E3\u6790_Normal_OpenGL.png"
+- "Assets/GameResources/UITexture/\u5377\u8F74.png"
+- Assets/GameResources/CardTex/Multiplayer/2003002.png
+- Assets/GameResources/CardTex/Multiplayer/2012003.png
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u80CC\u9762/New_Graph_basecolor.png"
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_metallic.png"
+- Assets/GameResources/FieldAndState/Energy.png
+- Assets/GameResources/CardTex/Multiplayer/2000001.png
+- Assets/GameResources/Shader/UIBackageGround.mat
+- Assets/GameResources/Sound/UiButton.mp3
+- "Assets/GameResources/Texture/\u5CA9\u77F3/stone - normal.png"
+- Assets/GameResources/FieldAndState/Wind.png
+- "Assets/GameResources/UITexture/\u7BAD\u5934.png"
+- Assets/GameResources/BattleScene/default.mat
+- "Assets/GameResources/Sound/\u70B9\u51FB.wav"
+- "Assets/GameResources/Sound/\u70B9\u51FB.mp3"
+- Assets/GameResources/Material/Shader Graphs_test.mat
+- Assets/GameResources/CardTex/Multiplayer/2011003.png
+- Assets/GameResources/CardTex/Multiplayer/2003001.png
+- "Assets/GameResources/BattleScene/\u6C38\u8FDC\u4EAD/\u6C38\u8FDC\u4EAD\u724C\u684C.mat"
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/card.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE4/\u71C3\u70E7\u4E66_Emissive.png"
+- Assets/GameResources/CardTex/Multiplayer/2102006.png
+- Assets/GameResources/CardTex/Multiplayer/2103002.png
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE4/\u71C3\u70E7\u4E66_Height.png"
+- Assets/GameResources/BillingMode.json
+- "Assets/GameResources/Shader/\u504F\u79FB.png"
+- Assets/GameResources/Shader/_NIQHS)_]LF77JSA8B1165G.png
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_normal.png"
+- "Assets/GameResources/Sound/\u539F\u97F3\u6548/\u9AD8.mp3"
+- Assets/GameResources/FieldAndState/Fire.png
+- "Assets/GameResources/Shader/\u5B66\u4E60\u6CD5\u7EBF.shadergraph"
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u65B0\u5EFA\u6587\u4EF6\u5939/\u67F1\u5B50_Normal_OpenGL.png"
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u94C1\u5939\u548C\u5730\u9762/\u94C1\u5939_\u5730\u9762_Base_Color.png"
+- "Assets/GameResources/\u9F7F\u8F6E.png"
+- "Assets/GameResources/Icon/\u94DC.png"
+- Assets/GameResources/Shader/Page.shadergraph
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u94C1\u5939\u548C\u5730\u9762/\u94C1\u5939_\u5730\u9762.mat"
+- "Assets/GameResources/Texture/\u4E66/Materials/\u4E66\u9875.mat"
+- "Assets/GameResources/UITexture/\u724C\u5E93\u5361\u724C\u8FB9\u6846.png"
+- "Assets/GameResources/BattleScene/\u795E\u793E4.0.fbx"
+- "Assets/GameResources/UITexture/\u5929\u5B50.png"
+- Assets/GameResources/Material/CardLibraryTexture.mat
+- Assets/GameResources/CardTex/Multiplayer/2103006.png
+- "Assets/GameResources/Shader/\u6D4B\u8BD5.shadergraph"
+- Assets/GameResources/GameData/Story.json
+- Assets/GameResources/UITexture/LHE74AT9X0VH9EEUUBZE0`Q.png
+- Assets/GameResources/CardTex/Multiplayer/2003003.png
+- Assets/GameResources/ttf/HYTianYuFengXingTi.ttf
+- "Assets/GameResources/Material/\u4E3B\u754C\u9762/\u5361\u724C\u9762\u677F.mat"
+- "Assets/GameResources/Texture/\u4E66/\u5927\u5730\u56FE.psd"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE4/\u71C3\u70E7\u4E66_Normal.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE2/\u9F99\u76AE\u4E66_Base_Color.png"
+- "Assets/GameResources/Texture/\u7075\u68A6\u5361\u80CC/height.png"
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_ambientOcclusion.png"
+- "Assets/GameResources/Texture/\u7075\u68A6\u5361\u80CC/baseColor.png"
+- Assets/GameResources/Shader/LeaderPhoto.mat
+- Assets/GameResources/Sound/Water1.ogg
+- "Assets/GameResources/Texture/\u5361\u9762/New_Graph_basecolor.png"
+- "Assets/GameResources/Material/\u4E3B\u754C\u9762/LibraryCard.mat"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE3/\u761F\u75AB\u4E66_Height.png"
+- "Assets/GameResources/Chara/\u7075\u68A6.png"
+- "Assets/GameResources/Texture/\u9B54\u7406\u6C99\u5361\u80CC.png"
+- "Assets/GameResources/Shader/Use/\u8774\u8776.shadergraph"
+- "Assets/GameResources/UITexture/Materials/\u7075\u68A6.mat"
+- "Assets/GameResources/\u4E3B\u4F53.png"
+- Assets/GameResources/GameData/CardData-Multi.json
+- Assets/GameResources/U$7WQP2XH[K4}YD%C5[~3VT.png
+- Assets/GameResources/Texture/ezgif.com-gif-to-mp4.mp4
+- "Assets/GameResources/Sound/\u62BD \u5361.mp3"
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u80CC\u9762/New_Graph_roughness.png"
+- "Assets/GameResources/Texture/\u83DC\u5355\u573A\u666F/\u4E66\u9875\u7EB9\u7406.png"
+- "Assets/GameResources/Particle/Materials/\u51B2\u51FB\u6CE2.mat"
+- "Assets/GameResources/Texture/\u83DC\u5355\u573A\u666F/(BBW8DC~6G$7[7EFC%G5511.png"
+- "Assets/GameResources/UITexture/\u8774\u8776.psd"
+- Assets/GameResources/bullet/laser.shadergraph
+- Assets/GameResources/CardTex/Multiplayer/2002003.png
+- Assets/GameResources/Particle/Ring_3_tex.png
+- Assets/GameResources/CardTex/Multiplayer/2013001.png
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u65B0\u5EFA\u6587\u4EF6\u5939/\u67F1\u5B50_Base_Color.png"
+- Assets/GameResources/CardTex/Multiplayer/2013003.png
+- Assets/GameResources/CardTex/Multiplayer/2093001.png
+- "Assets/GameResources/Icon/\u5361\u7EC4.png"
+- Assets/GameResources/GameData/Game-Text.json
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u94C1\u5939\u548C\u5730\u9762/\u94C1\u5939_\u5730\u9762_Normal_OpenGL.png"
+- Assets/GameResources/Bullet 1/MiBullet.prefab
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE4/\u71C3\u70E7\u4E66_Roughness.png"
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_basecolor.png"
+- "Assets/GameResources/Shader/Use/\u62A4\u76FE.shadergraph"
+- Assets/GameResources/Texture/mihayo.png
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE5/\u68A6\u8FEA\u89E3\u67902_Base_Color.png"
+- Assets/GameResources/FieldAndState/Soil.Png
+- "Assets/GameResources/BattleScene/\u9E1F\u5C45.mat"
+- Assets/GameResources/CardTex/Multiplayer/2102001.png
+- Assets/GameResources/CardTex/Multiplayer/2011001.png
+- "Assets/GameResources/Shader/furry - \u526F\u672C (6).mat"
+- "Assets/GameResources/\u6A21\u578B\u6D4B\u8BD5/New Render Texture.renderTexture"
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u65B0\u5EFA\u6587\u4EF6\u5939/\u5899\u58C1_Normal_OpenGL.png"
+- "Assets/GameResources/Texture/\u5CA9\u77F3/stone - height.png"
+- Assets/GameResources/Texture/Region.png
+- Assets/GameResources/Bullet 1/Bomb.prefab
+- "Assets/GameResources/Shader/furry - \u526F\u672C (4).mat"
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u80CC\u9762/New_Graph_normal.png"
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u6742\u7269\u8D34\u56FE/\u6742\u7269_Emissive.png"
+- "Assets/GameResources/Sound/\u539F\u97F3\u6548/\u76F8\u673A.mp3"
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u80CC\u9762/New_Graph_metallic.png"
+- Assets/GameResources/BattleScene/sheshe.fbx
+- Assets/GameResources/bullet/white.png
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/hetong.fbx"
+- "Assets/GameResources/\u6807\u51C6\u6846.png"
+- "Assets/GameResources/\u786C\u5E01/\u571F.png"
+- "Assets/GameResources/BattleScene/\u6C38\u8FDC\u4EAD/\u6708\u4EBA\u684C.obj"
+- Assets/GameResources/CardTex/Multiplayer/2012004.png
+- "Assets/GameResources/Texture/\u5CA9\u77F3/stone - roughness.png"
+- "Assets/GameResources/Material/\u5BF9\u8BDD\u7CFB\u7EDF/\u6587\u672C\u6846.mat"
+- Assets/GameResources/Sound/Starlight.ogg
+- Assets/GameResources/FieldAndState/Shield.png
+- "Assets/GameResources/Icon/\u4F5B.png"
+- Assets/GameResources/Fire.png
+- "Assets/GameResources/UITexture/\u5934\u50CF\u6846.png"
+- "Assets/GameResources/Chara/\u65E9\u82D7.png"
+- Assets/GameResources/Shader/ce9e83400bab181da98ae97481dc24bf.png
+- Assets/GameResources/Shader/the.shadergraph
+- "Assets/GameResources/Shader/\u95EA\u73B0.shadergraph"
+- "Assets/GameResources/Sound/\u539F\u97F3\u6548/\u7B26\u5361.mp3"
+- Assets/GameResources/Icon/1Y]SO~}QMK45R79)JK_Z{9R.png
+- Assets/GameResources/Sound/Deploy.mp3
+- Assets/GameResources/CardTex/Multiplayer/2003005.png
+- "Assets/GameResources/UITexture/\u6807\u9898.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE1/\u68A6\u7684\u89E3\u6790_Normal.png"
+- "Assets/GameResources/Shader/furry - \u526F\u672C.mat"
+- "Assets/GameResources/Texture/\u5361\u9762/New_Graph_normal.png"
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u6742\u7269\u8D34\u56FE/\u6742\u7269.mat"
+- Assets/GameResources/Sound/ChangeFailed.wav
+- Assets/GameResources/Sound/Up1.ogg
+- "Assets/GameResources/BattleScene/\u6C38\u8FDC\u4EAD/\u7C97\u7CD9\u5EA6.png"
+- Assets/GameResources/Shader/92717d4bcd40e592abd4a3ad1146a39d.png
+- Assets/GameResources/CardTex/Multiplayer/2002005.png
+- Assets/GameResources/CardTex/Multiplayer/2081002.png
+- "Assets/GameResources/Shader/\u95EA\u73B0.mat"
+- Assets/GameResources/Shader/Use/UiScaler.mat
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE1/\u68A6\u7684\u89E3\u6790_Base_Color.png"
+- "Assets/GameResources/\u6A21\u578B\u6D4B\u8BD5/Materials/New Render Texture.mat"
+- Assets/GameResources/CardTex/Multiplayer/2001004.png
+- "Assets/GameResources/UITexture/\u84DD\u70B9.psd"
+- "Assets/GameResources/Bullet 1/\u5C01\u5370.prefab"
+- Assets/GameResources/GameData/CardData-Single.json
+- Assets/GameResources/CardTex/Multiplayer/2013006.png
+- Assets/GameResources/Shader/Use/PageTurning.mat
+- Assets/GameResources/Shader/Use/Book.shadergraph
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE4/\u71C3\u70E7\u4E66_Normal_OpenGL.png"
+- "Assets/GameResources/Texture/\u95F4\u9699/gap.png"
+- Assets/GameResources/CardTex/Multiplayer/2102002.png
+- Assets/GameResources/Sound/Thunder8.ogg
+- Assets/GameResources/Sound/ChangeSuccess.wav
+- Assets/GameResources/Shader/65M%PEM(NCB(34LM~VRYR6U.png
+- "Assets/GameResources/Texture/\u5CA9\u77F3/stone - baseColor.png"
+- "Assets/GameResources/Icon/\u591A.png"
+- Assets/GameResources/UITexture/A$`GG`AVGRZXG3E2E)3A[HT.png
+- Assets/GameResources/Bullet 1/GainParticle.prefab
+- "Assets/GameResources/UITexture/\u6A59.png"
+- Assets/GameResources/Particle/Materials/Ring_3_tex.mat
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u6742\u7269\u8D34\u56FE/\u6742\u7269_Roughness.png"
+- "Assets/GameResources/Texture/\u4E66/\u683C\u81F4\u5F55.png"
+- "Assets/GameResources/Texture/\u7075\u68A6\u5361\u80CC/normal.png"
+- Assets/GameResources/Scene/1.png
+- Assets/GameResources/Shader/Use/UiScaler.shadergraph
+- Assets/GameResources/CardTex/Multiplayer/2081001.png
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u80CC\u9762/New_Graph_ambientOcclusion.png"
+- Assets/GameResources/Shader/IconBreak.mat
+- Assets/GameResources/Shader/Loading.mat
+- Assets/GameResources/Bullet 1/HurtParticle.prefab
+- Assets/GameResources/CardTex/Multiplayer/2102004.png
+- Assets/GameResources/CardTex/Multiplayer/2012002.png
+- Assets/GameResources/Sound/CardSelect.ogg
+- "Assets/GameResources/UITexture/\u9F7F\u8F6E2.psd"
+- Assets/GameResources/CardTex/Multiplayer/2100001.png
+- Assets/GameResources/Bullet 1/Card.prefab
+- Assets/GameResources/Icon/Z5G`$I(_%6(A0R52(L}]]BJ.png
+- "Assets/GameResources/Texture/\u7075\u68A6\u5361\u80CC/metallic.png"
+- Assets/GameResources/Particle/]904$I8W4B~(5DD}4U`JQAL.png
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE3/\u761F\u75AB\u4E66_Metallic.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE1/\u68A6\u7684\u89E3\u6790_Mixed_AO.png"
+- "Assets/GameResources/Texture/\u83DC\u5355\u573A\u666F/9`12$S[)(`KDHX7XIKTQXF3.png"
+- Assets/GameResources/Shader/furry.shadergraph
+- "Assets/GameResources/Sound/\u539F\u97F3\u6548/\u5200\u58F0.mp3"
+- "Assets/GameResources/Texture/\u5CA9\u77F3/stone - ambientOcclusion.png"
+- Assets/GameResources/CardTex/Multiplayer/2012008.png
+- Assets/GameResources/Material/Page.mat
+- Assets/GameResources/Bullet 1/SmallBullet.prefab
+- Assets/GameResources/Sound/Page.mp3
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE3/\u761F\u75AB\u4E66_Mixed_AO.png"
+- "Assets/GameResources/\u5730\u5F62/NewLayer 3.terrainlayer"
+- Assets/GameResources/Material/Card.mat
+- Assets/GameResources/CardTex/Multiplayer/2012007.png
+- "Assets/GameResources/Texture/\u4E66/Materials/\u5C01\u9762.mat"
+- "Assets/GameResources/Icon/\u795E.png"
+- Assets/GameResources/2C6(QEI[5VEHX{H[X$}{4GF.png
+- Assets/GameResources/Material/cardPoint.mat
+- "Assets/GameResources/Sound/\u539F\u97F3\u6548/\u5012\u8BA1\u65F6.mp3"
+- "Assets/GameResources/Texture/\u5CA9\u77F3/stone - metallic.png"
+- Assets/GameResources/CardTex/Multiplayer/2103004.png
+- "Assets/GameResources/Texture/\u5CA9\u77F3/stone - emissive.png"
+- Assets/GameResources/[Q`LJB@(%FBQQYW1{`4K__E.png
+- "Assets/GameResources/BattleScene/\u4E66\u684C.fbx"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE2/\u9F99\u76AE\u4E66_Height.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE3/\u761F\u75AB\u4E66_Normal.png"
+- Assets/GameResources/CardTex/Multiplayer/2101003.png
+- "Assets/GameResources/Texture/\u95F4\u9699/gap-shape.png"
+- "Assets/GameResources/\u7AD6\u5F62ui.psd"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE5/\u68A6\u8FEA\u89E3\u67902_Height.png"
+- "Assets/GameResources/Shader/Use/\u5168\u606F\u6295\u5F71.shadergraph"
+- Assets/GameResources/CardTex/Multiplayer/2012005.png
+- "Assets/GameResources/Texture/\u5E7B\u60F3\u4E61\u5168\u5730\u56FE.png"
+- Assets/GameResources/Material/cardBack.mat
+- "Assets/GameResources/Shader/\u5B57\u4F53\u6D88\u878D.shadergraph"
+- "Assets/GameResources/\u786C\u5E01/\u98CE.png"
+- "Assets/GameResources/Icon/\u9886.png"
+- Assets/GameResources/Shader/Use/Card.shadergraph
+- Assets/GameResources/Texture/@2EKXNY{5XV)}@LY5$Z7JM1.png
+- Assets/GameResources/CardTex/Multiplayer/2001003.png
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE2/\u9F99\u76AE\u4E66_Metallic.png"
+- Assets/GameResources/CardTex/Multiplayer/2092001.png
+- Assets/GameResources/ttf/HYTianYuFengXingTi.asset
+- "Assets/GameResources/BattleScene/\u6C38\u8FDC\u4EAD/\u6CD5\u7EBF.png"
+- "Assets/GameResources/Texture/\u4E66/\u4E66\u9875.png"
+- Assets/GameResources/CardTex/Multiplayer/2013007.png
+- "Assets/GameResources/Texture/\u6495\u5361.png"
+- Assets/GameResources/Shader/test.shadergraph
+- Assets/GameResources/Shader/furry.mat
+- Assets/GameResources/FieldAndState/Water.png
+- Assets/GameResources/CardTex/Multiplayer/2101001.png
+- Assets/GameResources/CardTex/Multiplayer/2010001.png
+- Assets/GameResources/Particle/xing.png
+- Assets/GameResources/CardTex/Multiplayer/2012006.png
+- "Assets/GameResources/ttf/\u841D\u8389\u4F53 SDF.asset"
+- Assets/GameResources/Shader/Scroll.shadergraph
+- Assets/GameResources/CardTex/Multiplayer/2001001.png
+- "Assets/GameResources/Shader/furry - \u526F\u672C (5).mat"
+- "Assets/GameResources/Shader/furry - \u526F\u672C (3).mat"
+- "Assets/GameResources/UITexture/\u80CC\u666F.psd"
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u80CC\u9762/New_Graph_height.png"
+- Assets/GameResources/Texture/Arrow.png
+- Assets/GameResources/Shader/Use/gap.shadergraph
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_opacity.png"
+- "Assets/GameResources/Texture/\u83DC\u5355\u573A\u666F/UCZJH$F5U)B}Y_V~XX[@_$3.png"
+- Assets/GameResources/CardTex/Multiplayer/2002006.png
+- "Assets/GameResources/Texture/\u4E66/\u4E66\u9875 2.png"
+- Assets/GameResources/GameData/SaveData.asset
+- "Assets/GameResources/UITexture/\u9F7F\u8F6E.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE2/\u9F99\u76AE\u4E66_Normal.png"
+- "Assets/GameResources/Icon/\u91D1.png"
+- Assets/GameResources/CardTex/Multiplayer/2102005.png
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE2/\u9F99\u76AE\u4E66_Mixed_AO.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE1/\u68A6\u7684\u89E3\u6790_Metallic.png"
+- Assets/GameResources/CardTex/Multiplayer/2011004.png
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE5/\u68A6\u8FEA\u89E3\u67902_Normal.png"
+- Assets/GameResources/Shader/(YN]}2J_}G(U0EGMM{7}X(L.png
+- Assets/GameResources/Texture/Materials/C$[E0HYV[~T7@WI[T`GG466.mat
+- Assets/GameResources/Sound/Bullet.ogg
+- "Assets/GameResources/\u5730\u5F62/NewLayer 4.terrainlayer"
+- Assets/GameResources/Shader/Use/New Shader Sub Graph.shadersubgraph
+- "Assets/GameResources/UITexture/\u7AD6\u5F62ui 1.psd"
+- "Assets/GameResources/Texture/Materials/\u51B0\u51BB.mat"
+- "Assets/GameResources/Sound/\u539F\u97F3\u6548/\u4E2D.mp3"
+- Assets/GameResources/Shader/Shield.shadergraph
+- "Assets/GameResources/UITexture/\u795E\u793E.png"
+- Assets/GameResources/Shader/blur.shadergraph
+- Assets/GameResources/CardTex/Multiplayer/2101002.png
+- "Assets/GameResources/\u7075\u68A6.gif"
+- "Assets/GameResources/UITexture/Materials/\u8FB9\u6846.mat"
+- Assets/GameResources/Shader/Qcode.shadergraph
+- Assets/GameResources/Shader/Use/Page_shader.shadergraph
+- Assets/GameResources/CardTex/Multiplayer/2091001.png
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u684C\u9762.fbx"
+- "Assets/GameResources/Texture/\u4E66/\u82B1\u7EB9.psd"
+- Assets/GameResources/Shader/Shield.mat
+- Assets/GameResources/CardTex/Multiplayer/2011002.png
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE5/\u68A6\u8FEA\u89E3\u67902_Normal_OpenGL.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE5/\u68A6\u8FEA\u89E3\u67902_Mixed_AO.png"
+- "Assets/GameResources/Particle/\u51B2\u51FB\u6CE2.png"
+- Assets/GameResources/Anim/StaetSign.anim
+- Assets/GameResources/FieldAndState/model.psd
+- Assets/GameResources/9PY8{4ROGW1F(0X2_GU3ZHL.png
+- "Assets/GameResources/BattleScene/\u6C38\u8FDC\u4EAD/\u51F9\u51F8.png"
+- "Assets/GameResources/Shader/\u7F1D\u9699.png"
+- Assets/GameResources/CardTex/Multiplayer/2001002.png
+- Assets/GameResources/Material/blur.mat
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u80CC\u9762/New_Graph_opacity.png"
+- "Assets/GameResources/Texture/\u5361\u724C\u8FB9\u6846.png"
+- Assets/GameResources/Shader/Use/LibraryCard.shadergraph
+- Assets/GameResources/CardTex/Multiplayer/2013004.png
+- "Assets/GameResources/\u5730\u5F62/65S48OEOHVRS[DJO`AP~YPT.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE5/\u68A6\u8FEA\u89E3\u67902_Metallic.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE4/\u71C3\u70E7\u4E66_Mixed_AO.png"
+- Assets/GameResources/Bullet 1/Heal.prefab
+- Assets/GameResources/Sound/DrawCard1.wav
+- Assets/GameResources/Sound/Biu.mp3
+- "Assets/GameResources/Texture/\u5CA9\u77F3/Materials/stone - ambientOcclusion.mat"
+- "Assets/GameResources/Icon/\u79D1.png"
+- "Assets/GameResources/Texture/\u5361\u9762/]`RLNEI%H7KIFX)3D`%I3KL.png"
+- "Assets/GameResources/Shader/Use/\u8774\u8776.mat"
+- Assets/GameResources/CardTex/Multiplayer/2012001.png
+- "Assets/GameResources/Sound/\u4FDD\u5B58.wav"
+- "Assets/GameResources/Texture/\u7075\u68A6.mp4"
+- Assets/GameResources/Material/TheWorld.mat
+- Assets/GameResources/Shader/UIBackageGround.shadergraph
+- "Assets/GameResources/\u5730\u5F62/NewLayer 2.terrainlayer"
+- Assets/GameResources/CardTex/Multiplayer/2103001.png
+- "Assets/GameResources/Icon/\u4E2D.png"
+- "Assets/GameResources/Icon/\u5355.png"
+- Assets/GameResources/UITexture/Materials/LightFront.mat
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u65B0\u5EFA\u6587\u4EF6\u5939/\u67F1\u5B50_Metallic.png"
+- "Assets/GameResources/UITexture/\u6A21\u5F0F\u9009\u62E9.png"
+- "Assets/GameResources/\u5730\u5F62/NewLayer 1.terrainlayer"
+- "Assets/GameResources/Shader/\u65E0\u5149sader.shadergraph"
+- "Assets/GameResources/Icon/\u94F6.png"
+- "Assets/GameResources/Texture/\u4E66/\u6807\u7B7E.png"
+- Assets/GameResources/CardTex/Multiplayer/2013005.png
+- Assets/GameResources/Sound/Sword.ogg
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/New Material.mat"
+- Assets/GameResources/Shader/LeaderPhoto.shadergraph
+- "Assets/GameResources/UITexture/\u5C11\u5973\u7948\u7977\u4E2D.png"
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u80CC\u9762/\u65B0\u5EFA\u6750\u8D28.mat"
+- Assets/GameResources/CardTex/Multiplayer/2103005.png
+- Assets/GameResources/Shader/Use/PageTurning.shadergraph
+- "Assets/GameResources/Shader/\u95EA\u5361.mat"
+- Assets/GameResources/Bullet 1/BigBall.prefab
+- "Assets/GameResources/Icon/\u9053.png"
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u6742\u7269\u8D34\u56FE/\u6742\u7269_Normal_OpenGL.png"
+- "Assets/GameResources/Shader/Use/\u70DB\u706B.shadergraph"
+- Assets/GameResources/CardTex/Multiplayer/2013002.png
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE1/\u68A6\u7684\u89E3\u6790_Roughness.png"
+- Assets/GameResources/CardTex/Multiplayer/2002004.png
+- Assets/GameResources/Sound/Gun.ogg
+- "Assets/GameResources/Texture/\u5361\u9762/7I}MX1YBD9IX8V~I0%HEBT7.png"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE4/\u71C3\u70E7\u4E66_Metallic.png"
+- "Assets/GameResources/Shader/Use/\u70DB\u706B.mat"
+- "Assets/GameResources/BattleScene/\u683C\u5B50\u4E66/\u8D34\u56FE3/\u761F\u75AB\u4E66_Base_Color.png"
+- "Assets/GameResources/Scene/\u535A\u4E3D\u795E\u793E.png"
+- Assets/GameResources/Sound/Deploy1.mp3
+- Assets/GameResources/CardTex/Multiplayer/2003004.png
+- Assets/GameResources/Material/gap.mat
+- "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u65B0\u5EFA\u6587\u4EF6\u5939/New
+  Material.mat"
+- Assets/GameResources/CardTex/Multiplayer/2101004.png
+- "Assets/GameResources/Shader/furry - \u526F\u672C (2).mat"
+- Assets/GameResources/Shader/0C7ACAA97C9B50622272BDD699917923.jpg
+- "Assets/GameResources/Texture/\u5CA9\u77F3/Materials/stone - baseColor.mat"
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_height.png"
+- Assets/GameResources/scene.renderTexture
+- Assets/GameResources/Bullet 1/Butterfly.prefab
+- Assets/GameResources/Shader/qiege.shadergraph
+- "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_roughness.png"
+- Assets/GameResources/Shader/Loading.shadergraph
+- Assets/GameResources/Icon/2BN39VO]SXZRYK1L`M(73JM.png
+- "Assets/GameResources/\u786C\u5E01/\u4E3B\u4F53.psd"
+- "Assets/GameResources/Shader/\u65E0\u5149.mat"
+- "Assets/GameResources/\u6A21\u578B\u6D4B\u8BD5/New Material.mat"
+- Assets/GameResources/Shader/Use/Region.shadergraph
+- "Assets/GameResources/\u786C\u5E01/\u706B.png"
+- Assets/GameResources/CardTex/Multiplayer/2102003.png
+Dependencies:
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/res.gezi

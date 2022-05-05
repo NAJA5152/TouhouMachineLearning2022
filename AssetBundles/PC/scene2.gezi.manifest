@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 3995196035
+CRC: 2183846377
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 2f82530d828c261ce6b3eacc1e1a3a0d
+    Hash: 45edcf4afdda38450013114e4a5fb920
   TypeTreeHash:
     serializedVersion: 2
-    Hash: ddc6490e3b918288f55e8ed7aba6585f
+    Hash: 5b8f9ff6482fd0b487b13432e9476075
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -31,15 +31,11 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 65
   Script: {instanceID: 0}
-- Class: 74
-  Script: {instanceID: 0}
 - Class: 81
   Script: {instanceID: 0}
 - Class: 82
   Script: {instanceID: 0}
 - Class: 83
-  Script: {instanceID: 0}
-- Class: 91
   Script: {instanceID: 0}
 - Class: 95
   Script: {instanceID: 0}
@@ -55,6 +51,18 @@ ClassTypes:
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 9b7290947a311ac4c928611320f58959, type: 3}
 - Class: 114
@@ -82,8 +90,6 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: d199490a83bb2b844b9695cbf13b01ef, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 479218ad243cfb04eabef643d1a61df0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
@@ -93,8 +99,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 66f335fb1ffd8684294ad653bf1c7564, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 433c3172ac8c68b4c8020a7a2fd00d0d, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 31a19414c41e5ae4aae2af33fee712f6, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 855b632047a3ddc40a7ee564cbe5e7d2, type: 3}
 - Class: 114
@@ -118,8 +122,6 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 97c23e3b12dc18c42a140437e53d3951, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: cdfbdbb87d3286943a057f7791b43141, type: 3}
@@ -129,8 +131,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: 362982146bd8d5d43a43cca53950fc7a, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: ec605d2bee04ecf418d200fcfbff1810, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
 - Class: 114
@@ -150,8 +150,6 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 11885b3d5d95c4e41b49bd3bebd0ee32, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-- Class: 114
   Script: {fileID: 11500000, guid: d3fa44535dbb65f4290701632bca5b40, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: d051f36dd22fe3a409b2f768e076b50d, type: 3}
@@ -161,8 +159,6 @@ ClassTypes:
   Script: {fileID: 11500000, guid: e7bf36dbf13f02348b4be414d00e55a2, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 474bcb49853aa07438625e644c072ee6, type: 3}
-- Class: 114
-  Script: {fileID: 11500000, guid: 1aa08ab6e0800fa44ae55d278d1423e3, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: fb60a22f311433c4c962b888d1393f88, type: 3}
 - Class: 114
@@ -215,4 +211,5 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Scenes/2_BattleScene.unity
 Dependencies:
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/res.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/gameresources.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/res.gezi

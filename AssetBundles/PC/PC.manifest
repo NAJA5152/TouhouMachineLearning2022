@@ -1,15 +1,27 @@
 ManifestFileVersion: 0
-CRC: 4191190899
+CRC: 1646934459
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: res.gezi
-      Dependencies: {}
+      Name: sceneasset
+      Dependencies:
+        Dependency_0: res.gezi
+        Dependency_1: gameresources.gezi
     Info_1:
+      Name: res.gezi
+      Dependencies:
+        Dependency_0: gameresources.gezi
+    Info_2:
+      Name: scene2.gezi
+      Dependencies:
+        Dependency_0: res.gezi
+        Dependency_1: gameresources.gezi
+    Info_3:
       Name: scene1.gezi
       Dependencies:
         Dependency_0: res.gezi
-    Info_2:
-      Name: scene2.gezi
+        Dependency_1: gameresources.gezi
+    Info_4:
+      Name: gameresources.gezi
       Dependencies:
         Dependency_0: res.gezi
