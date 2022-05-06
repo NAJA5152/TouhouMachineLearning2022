@@ -22,7 +22,7 @@ namespace TouhouMachineLearningSummary.Command
             Scene1AB = await LoadAssetBundle(Application.streamingAssetsPath + "/AssetBundles/scene1resource.gezi");
             Debug.LogWarning("场景1资源加载完毕");
             Debug.LogWarning("场景1加载完毕");
-            foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/").GetFiles().Where(file => file.Name.Contains("scene1")))
+            foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/").GetFiles().Where(file => file.Name.Contains("scene1")&& !file.Name.Contains("meta")))
             {
                 await LoadAssetBundle(file.FullName);
                 Debug.LogWarning($"{file.FullName}加载完毕");
@@ -30,7 +30,7 @@ namespace TouhouMachineLearningSummary.Command
 
             completedAction?.Invoke();
 
-            foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/").GetFiles().Where(file => file.Name.Contains("scene2")))
+            foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/").GetFiles().Where(file => file.Name.Contains("scene2") && !file.Name.Contains("meta")))
             {
                 await LoadAssetBundle(file.FullName);
                 Debug.LogWarning($"{file.FullName}加载完毕");
