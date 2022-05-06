@@ -13,10 +13,10 @@ namespace TouhouMachineLearningSummary.Command
     public class UiCommand
     {
         //////////////////////////////////////////////////////////状态与字段UI//////////////////////////////////////////////////////////////
-        public static Sprite GetCardStateSprite(CardState cardState) => Resources.Load<Sprite>("FieldAndState\\" + cardState.ToString());
-        public static Sprite GetCardFieldSprite(CardField cardField) => Resources.Load<Sprite>("FieldAndState\\" + cardField.ToString());
-        public static Texture2D GetCardStateTexture(CardState cardState) => Resources.Load<Texture2D>("FieldAndState\\" + cardState.ToString());
-        public static Texture2D GetCardFieldTexture(CardField cardField) => Resources.Load<Texture2D>("FieldAndState\\" + cardField.ToString());
+        public static Sprite GetCardStateSprite(CardState cardState) => AssetBundleCommand.Load<Sprite>("FieldAndState\\" + cardState.ToString());
+        public static Sprite GetCardFieldSprite(CardField cardField) => AssetBundleCommand.Load<Sprite>("FieldAndState\\" + cardField.ToString());
+        public static Texture2D GetCardStateTexture(CardState cardState) => AssetBundleCommand.Load<Texture2D>("FieldAndState\\" + cardState.ToString());
+        public static Texture2D GetCardFieldTexture(CardField cardField) => AssetBundleCommand.Load<Texture2D>("FieldAndState\\" + cardField.ToString());
 
         //////////////////////////////////////////////////////////对战中游戏卡牌面板//////////////////////////////////////////////////////////////
 

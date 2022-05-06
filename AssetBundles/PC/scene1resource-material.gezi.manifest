@@ -1,0 +1,43 @@
+ManifestFileVersion: 0
+CRC: 4071838399
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ae914b5f19ba1e4cd8324e9ceb2402dc
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: a1b8ae978d101eec5d12a49988ba7adf
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/GameResources/Scene1Resource/Material/TheWorld.mat
+- Assets/GameResources/Scene1Resource/Material/Shader Graphs_test.mat
+- "Assets/GameResources/Scene1Resource/Material/\u4E3B\u754C\u9762/\u5361\u724C\u9762\u677F.mat"
+- Assets/GameResources/Scene1Resource/Material/cardPoint.mat
+- Assets/GameResources/Scene1Resource/Material/blur.mat
+- Assets/GameResources/Scene1Resource/Material/Region.mat
+- Assets/GameResources/Scene1Resource/Material/Arrow.mat
+- "Assets/GameResources/Scene1Resource/Material/\u4E3B\u754C\u9762/LibraryCard.mat"
+- Assets/GameResources/Scene1Resource/Material/gap.mat
+- "Assets/GameResources/Scene1Resource/Material/\u4E3B\u754C\u9762/Book.mat"
+- "Assets/GameResources/Scene1Resource/Material/\u5BF9\u8BDD\u7CFB\u7EDF/\u6587\u672C\u6846.mat"
+- Assets/GameResources/Scene1Resource/Material/Page.mat
+- Assets/GameResources/Scene1Resource/Material/default.mat
+- Assets/GameResources/Scene1Resource/Material/CardLibraryTexture.mat
+- Assets/GameResources/Scene1Resource/Material/cardBack.mat
+- Assets/GameResources/Scene1Resource/Material/Card.mat
+Dependencies:
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/res.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-loginscene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-shader.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-texture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-uitexture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene2resource-battlescene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene2resource-bullet.gezi

@@ -33,7 +33,6 @@ namespace TouhouMachineLearningSummary.Manager
                 Debug.LogError("生成默认配置文件");
                 configInfo.Width = Screen.currentResolution.width;
                 configInfo.Heigh = Screen.currentResolution.height;
-                //configInfo.ScreenMode = Screen.fullScreenMode;
                 configInfo.IsFullScreen = Screen.fullScreen;
                 configInfo.UseLanguage = TranslateManager.currentLanguage;
                 Directory.CreateDirectory(ConfigFileSavePath);
@@ -43,7 +42,7 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 Debug.LogError("加载已有配置文件");
                 configInfo = File.ReadAllText(ConfigFileSavePath + "/GameConfig.ini").ToObject<ConfigInfoModel>();
-                Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.IsFullScreen, 60);
+                //Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.IsFullScreen, 60);
                 TranslateManager.currentLanguage = configInfo.UseLanguage;
             }
         }

@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 20686198
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f5d724de903cc42cd2a875f6bb9c96d5
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: af1d3f6ea4be49a39e4533f583bd7df3
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 49
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 23449c37c76c84b4ab05445f817bc7a9, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: Sirenix.Serialization
+  ClassName: Sirenix.Serialization.SerializationData
+- AssemblyName: TouHouMachineLearning
+  ClassName: TouhouMachineLearningSummary.Model.CardModel
+Assets:
+- Assets/GameResources/Scene2Resource/GameData/CardData-Multi.json
+- Assets/GameResources/Scene2Resource/GameData/CardData-Single.json
+- Assets/GameResources/Scene2Resource/GameData/Game-Text.json
+- Assets/GameResources/Scene2Resource/GameData/SaveData.asset
+- Assets/GameResources/Scene2Resource/GameData/Story.json
+Dependencies:
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/res.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-icon.gezi

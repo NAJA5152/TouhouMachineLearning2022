@@ -298,7 +298,7 @@ namespace TouhouMachineLearningSummary.Model
                 .AbilityAdd(async (triggerInfo) =>
                 {
                     await GameSystem.UiSystem.ShowIcon(this, triggerInfo.targetState);
-                    await Command.AudioCommand.PlayAsync(GameAudioType.UiButton);
+                    await Command.SoundEffectCommand.PlayAsync(AgainstSoundEffectType.CardSelect);
                     switch (triggerInfo.targetState)
                     {
                         case CardState.Lurk:; break;

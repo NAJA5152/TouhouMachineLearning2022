@@ -1,27 +1,135 @@
 ManifestFileVersion: 0
-CRC: 1646934459
+CRC: 3005305841
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: sceneasset
-      Dependencies:
-        Dependency_0: res.gezi
-        Dependency_1: gameresources.gezi
-    Info_1:
       Name: res.gezi
       Dependencies:
-        Dependency_0: gameresources.gezi
-    Info_2:
+        Dependency_0: scene1resource-icon.gezi
+        Dependency_1: scene1resource-material.gezi
+        Dependency_2: scene1resource-shader.gezi
+        Dependency_3: scene1resource-texture.gezi
+        Dependency_4: scene2resource-bullet.gezi
+    Info_1:
       Name: scene2.gezi
       Dependencies:
         Dependency_0: res.gezi
-        Dependency_1: gameresources.gezi
-    Info_3:
+        Dependency_1: scene1resource-charactar.gezi
+        Dependency_2: scene1resource-material.gezi
+        Dependency_3: scene1resource-shader.gezi
+        Dependency_4: scene1resource-texture.gezi
+        Dependency_5: scene1resource-ttf.gezi
+        Dependency_6: scene1resource-uitexture.gezi
+        Dependency_7: scene2resource-battlescene.gezi
+        Dependency_8: scene2resource-coin.gezi
+        Dependency_9: scene2resource-prefabs.gezi
+        Dependency_10: scene2resource-terrain.gezi
+    Info_2:
       Name: scene1.gezi
       Dependencies:
         Dependency_0: res.gezi
-        Dependency_1: gameresources.gezi
+        Dependency_1: scene1resource-icon.gezi
+        Dependency_2: scene1resource-loginscene.gezi
+        Dependency_3: scene1resource-material.gezi
+        Dependency_4: scene1resource-scene.gezi
+        Dependency_5: scene1resource-shader.gezi
+        Dependency_6: scene1resource-texture.gezi
+        Dependency_7: scene1resource-ttf.gezi
+        Dependency_8: scene1resource-uitexture.gezi
+        Dependency_9: scene2resource-coin.gezi
+    Info_3:
+      Name: scene1resource-charactar.gezi
+      Dependencies: {}
     Info_4:
-      Name: gameresources.gezi
+      Name: scene1resource-icon.gezi
+      Dependencies: {}
+    Info_5:
+      Name: scene1resource-loginscene.gezi
+      Dependencies: {}
+    Info_6:
+      Name: scene1resource-material.gezi
       Dependencies:
         Dependency_0: res.gezi
+        Dependency_1: scene1resource-loginscene.gezi
+        Dependency_2: scene1resource-shader.gezi
+        Dependency_3: scene1resource-texture.gezi
+        Dependency_4: scene1resource-uitexture.gezi
+        Dependency_5: scene2resource-battlescene.gezi
+        Dependency_6: scene2resource-bullet.gezi
+    Info_7:
+      Name: scene1resource-scene.gezi
+      Dependencies: {}
+    Info_8:
+      Name: scene1resource-shader.gezi
+      Dependencies:
+        Dependency_0: res.gezi
+        Dependency_1: scene1resource-icon.gezi
+        Dependency_2: scene1resource-loginscene.gezi
+        Dependency_3: scene1resource-texture.gezi
+        Dependency_4: scene1resource-uitexture.gezi
+        Dependency_5: scene2resource-bullet.gezi
+    Info_9:
+      Name: scene1resource-texture.gezi
+      Dependencies: {}
+    Info_10:
+      Name: scene1resource-ttf.gezi
+      Dependencies: {}
+    Info_11:
+      Name: scene1resource-uisoundefect.gezi
+      Dependencies: {}
+    Info_12:
+      Name: scene1resource-uitexture.gezi
+      Dependencies:
+        Dependency_0: scene2resource-bullet.gezi
+    Info_13:
+      Name: scene2resource-againstsoundefect.gezi
+      Dependencies: {}
+    Info_14:
+      Name: scene2resource-battlescene.gezi
+      Dependencies:
+        Dependency_0: scene1resource-texture.gezi
+    Info_15:
+      Name: scene2resource-bullet.gezi
+      Dependencies:
+        Dependency_0: scene1resource-texture.gezi
+    Info_16:
+      Name: scene2resource-bullet 1.gezi
+      Dependencies:
+        Dependency_0: scene1resource-material.gezi
+        Dependency_1: scene1resource-shader.gezi
+        Dependency_2: scene1resource-texture.gezi
+        Dependency_3: scene2resource-bullet.gezi
+    Info_17:
+      Name: scene2resource-cardtex.gezi
+      Dependencies: {}
+    Info_18:
+      Name: scene2resource-coin.gezi
+      Dependencies: {}
+    Info_19:
+      Name: scene2resource-fieldandstate.gezi
+      Dependencies: {}
+    Info_20:
+      Name: scene2resource-gamedata.gezi
+      Dependencies:
+        Dependency_0: res.gezi
+        Dependency_1: scene1resource-icon.gezi
+    Info_21:
+      Name: scene2resource-particle.gezi
+      Dependencies:
+        Dependency_0: res.gezi
+    Info_22:
+      Name: scene2resource-prefabs.gezi
+      Dependencies:
+        Dependency_0: res.gezi
+        Dependency_1: scene1resource-material.gezi
+        Dependency_2: scene1resource-texture.gezi
+        Dependency_3: scene1resource-ttf.gezi
+    Info_23:
+      Name: scene2resource-terrain.gezi
+      Dependencies:
+        Dependency_0: "scene2resource-\u5730\u5F62.gezi"
+    Info_24:
+      Name: "scene2resource-\u5730\u5F62.gezi"
+      Dependencies:
+        Dependency_0: scene1resource-shader.gezi
+        Dependency_1: scene1resource-texture.gezi

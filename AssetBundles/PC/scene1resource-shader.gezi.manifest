@@ -1,0 +1,91 @@
+ManifestFileVersion: 0
+CRC: 1471978112
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 5072ab5db629a3f61d0108558ea3d759
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: a1b8ae978d101eec5d12a49988ba7adf
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/GameResources/Scene1Resource/Shader/Use/cardBack.shadergraph
+- "Assets/GameResources/Scene1Resource/Shader/Use/\u8774\u8776.mat"
+- Assets/GameResources/Scene1Resource/Shader/IconBreak.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/UIBackageGround.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/(YN]}2J_}G(U0EGMM{7}X(L.png
+- Assets/GameResources/Scene1Resource/Shader/65M%PEM(NCB(34LM~VRYR6U.png
+- "Assets/GameResources/Scene1Resource/Shader/furry - \u526F\u672C (6).mat"
+- "Assets/GameResources/Scene1Resource/Shader/furry - \u526F\u672C (4).mat"
+- Assets/GameResources/Scene1Resource/Shader/Use/New Shader Sub Graph.shadersubgraph
+- "Assets/GameResources/Scene1Resource/Shader/\u65E0\u5149sader.shadergraph"
+- Assets/GameResources/Scene1Resource/Shader/Scroll.mat
+- Assets/GameResources/Scene1Resource/Shader/Shield.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/LeaderPhoto.mat
+- Assets/GameResources/Scene1Resource/Shader/LeaderPhoto.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/blur.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/Use/UiScaler.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/Use/Page_shader.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/Qcode.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/the.shadergraph
+- "Assets/GameResources/Scene1Resource/Shader/Use/\u5168\u606F\u6295\u5F71.shadergraph"
+- Assets/GameResources/Scene1Resource/Shader/ce9e83400bab181da98ae97481dc24bf.png
+- Assets/GameResources/Scene1Resource/Shader/UIBackageGround.mat
+- "Assets/GameResources/Scene1Resource/Shader/Use/\u8774\u8776.shadergraph"
+- "Assets/GameResources/Scene1Resource/Shader/\u95EA\u5361.mat"
+- Assets/GameResources/Scene1Resource/Shader/IconBreak.mat
+- "Assets/GameResources/Scene1Resource/Shader/\u5B57\u4F53\u6D88\u878D.shadergraph"
+- "Assets/GameResources/Scene1Resource/Shader/\u95EA\u73B0.shadergraph"
+- Assets/GameResources/Scene1Resource/Shader/Loading.mat
+- Assets/GameResources/Scene1Resource/Shader/Shield.mat
+- Assets/GameResources/Scene1Resource/Shader/Use/Card.shadergraph
+- "Assets/GameResources/Scene1Resource/Shader/Use/\u5168\u606F\u6295\u5F71.mat"
+- "Assets/GameResources/Scene1Resource/Shader/furry - \u526F\u672C.mat"
+- Assets/GameResources/Scene1Resource/Shader/Use/PageTurning.shadergraph
+- "Assets/GameResources/Scene1Resource/Shader/Use/\u70DB\u706B.shadergraph"
+- Assets/GameResources/Scene1Resource/Shader/Use/Page.mat
+- "Assets/GameResources/Scene1Resource/Shader/\u7F1D\u9699.png"
+- Assets/GameResources/Scene1Resource/Shader/test.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/furry.mat
+- Assets/GameResources/Scene1Resource/Shader/92717d4bcd40e592abd4a3ad1146a39d.png
+- "Assets/GameResources/Scene1Resource/Shader/Use/\u70DB\u706B.mat"
+- "Assets/GameResources/Scene1Resource/Shader/\u504F\u79FB.png"
+- Assets/GameResources/Scene1Resource/Shader/_NIQHS)_]LF77JSA8B1165G.png
+- Assets/GameResources/Scene1Resource/Shader/Use/LibraryCard.shadergraph
+- "Assets/GameResources/Scene1Resource/Shader/\u5B66\u4E60\u6CD5\u7EBF.shadergraph"
+- "Assets/GameResources/Scene1Resource/Shader/furry - \u526F\u672C (5).mat"
+- "Assets/GameResources/Scene1Resource/Shader/\u95EA\u73B0.mat"
+- Assets/GameResources/Scene1Resource/Shader/Use/UiScaler.mat
+- Assets/GameResources/Scene1Resource/Shader/furry.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/Scroll.shadergraph
+- "Assets/GameResources/Scene1Resource/Shader/furry - \u526F\u672C (3).mat"
+- Assets/GameResources/Scene1Resource/Shader/Use/gap.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/Page.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/0C7ACAA97C9B50622272BDD699917923.jpg
+- "Assets/GameResources/Scene1Resource/Shader/furry - \u526F\u672C (2).mat"
+- Assets/GameResources/Scene1Resource/Shader/Use/PageTurning.mat
+- Assets/GameResources/Scene1Resource/Shader/Materials/_NIQHS)_]LF77JSA8B1165G.mat
+- Assets/GameResources/Scene1Resource/Shader/sub/uvSpilt.shadersubgraph
+- Assets/GameResources/Scene1Resource/Shader/Loading.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/qiege.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/Use/Book.shadergraph
+- Assets/GameResources/Scene1Resource/Shader/New Shader Graph.shadergraph
+- "Assets/GameResources/Scene1Resource/Shader/\u65E0\u5149.mat"
+- "Assets/GameResources/Scene1Resource/Shader/Use/\u62A4\u76FE.shadergraph"
+- Assets/GameResources/Scene1Resource/Shader/Use/Region.shadergraph
+- "Assets/GameResources/Scene1Resource/Shader/\u6D4B\u8BD5.shadergraph"
+Dependencies:
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/res.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-icon.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-loginscene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-texture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-uitexture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene2resource-bullet.gezi

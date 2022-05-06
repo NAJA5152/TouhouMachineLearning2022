@@ -1,0 +1,29 @@
+ManifestFileVersion: 0
+CRC: 2943450734
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 08c477542644da4586b466beb8f2a217
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1565cf67db937607d472027849a1cef2
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- "Assets/GameResources/Scene2Resource/Particle/\u51B2\u51FB\u6CE2.png"
+- Assets/GameResources/Scene2Resource/Particle/xing.png
+- Assets/GameResources/Scene2Resource/Particle/]904$I8W4B~(5DD}4U`JQAL.png
+- Assets/GameResources/Scene2Resource/Particle/Materials/Ring_3_tex.mat
+- "Assets/GameResources/Scene2Resource/Particle/Materials/\u51B2\u51FB\u6CE2.mat"
+- Assets/GameResources/Scene2Resource/Particle/Ring_3_tex.png
+Dependencies:
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/res.gezi

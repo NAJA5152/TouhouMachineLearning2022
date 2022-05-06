@@ -21,7 +21,8 @@ namespace TouhouMachineLearningSummary.Command
             if (danmuInfo != null)
             {
                 BulletTrackManager trackManager = null;
-                GameObject newBullet = GameObject.Instantiate(Resources.Load<GameObject>("Bullet/" + danmuInfo.bulletType.ToString()));
+                //子弹，场景2
+                GameObject newBullet = GameObject.Instantiate(AssetBundleCommand.Load<GameObject>("Bullet/" + danmuInfo.bulletType.ToString()));
                 if (danmuInfo.color != BulletColor.Default)
                 {
                     newBullet.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_Color", danmuInfo.bulletColor);

@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4090788008
+CRC: 4129924978
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: a5c1f4117d37d581c18c9a4361b76a02
+    Hash: ce0dd4941a751fffad73e68d18d7424e
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 25bf7303d9e26a88c6aadb7714192fe4
+    Hash: c246f6a0c49d84b249546c0ba0d28b56
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -213,5 +213,13 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Scenes/1_LoginScene.unity
 Dependencies:
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/gameresources.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/res.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-icon.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-loginscene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-material.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-scene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-shader.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-texture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-ttf.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-uitexture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene2resource-coin.gezi

@@ -118,7 +118,7 @@ namespace TouhouMachineLearningSummary.Command
             await Task.Delay(1000);
             targetCard.isMoveStepOver = true;
             //targetCard.moveSpeed = 0.1f;
-            await AudioCommand.PlayAsync(GameAudioType.DrawCard);
+            await SoundEffectCommand.PlayAsync(AgainstSoundEffectType.DrawCard);
         }
         public static async Task MoveCard(Card targetCard, Location location)
         {
@@ -128,7 +128,7 @@ namespace TouhouMachineLearningSummary.Command
             targetCard.isMoveStepOver = false;
             await Task.Delay(500);
             targetCard.isMoveStepOver = true;
-            _ = AudioCommand.PlayAsync(GameAudioType.DrawCard);
+            _ = SoundEffectCommand.PlayAsync(AgainstSoundEffectType.DrawCard);
         }
 
 
@@ -143,7 +143,7 @@ namespace TouhouMachineLearningSummary.Command
             targetCard.isMoveStepOver = false;
             await Task.Delay(500);
             targetCard.isMoveStepOver = true;
-            _ = AudioCommand.PlayAsync(GameAudioType.Deploy);
+            _ = SoundEffectCommand.PlayAsync(AgainstSoundEffectType.Deploy);
         }
         /// <summary>
         /// 洗牌
@@ -170,7 +170,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task DrawCard(bool isPlayerDraw = true, bool ActiveBlackList = false, bool isOrder = true)
         {
             //Debug.Log("抽卡");
-            _ = AudioCommand.PlayAsync(GameAudioType.DrawCard);
+            _ = SoundEffectCommand.PlayAsync(AgainstSoundEffectType.DrawCard);
             Card TargetCard = AgainstInfo.cardSet[isPlayerDraw ? Orientation.Down : Orientation.Up][GameRegion.Deck].CardList.FirstOrDefault();
             if (TargetCard == null)
             {
@@ -213,7 +213,7 @@ namespace TouhouMachineLearningSummary.Command
 
         public static async Task GenerateCard(Card targetCard, Location location)
         {
-            _ = AudioCommand.PlayAsync(GameAudioType.DrawCard);
+            _ = SoundEffectCommand.PlayAsync(AgainstSoundEffectType.DrawCard);
             RowCommand.SetPlayCardMoveFree(false);
             targetCard.SetCardSeeAble(true);
 
@@ -232,7 +232,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task PlayCard(Card targetCard, bool IsAnsy = true)
         {
             await Task.Delay(0);//之后实装卡牌特效需要时间延迟配合
-            _ = AudioCommand.PlayAsync(GameAudioType.DrawCard);
+            _ = SoundEffectCommand.PlayAsync(AgainstSoundEffectType.DrawCard);
             RowCommand.SetPlayCardMoveFree(false);
             targetCard.isPrepareToPlay = false;
             if (IsAnsy)
@@ -257,7 +257,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task ReviveCard(TriggerInfoModel triggerInfo)
         {
             Card card = triggerInfo.targetCard;
-            await AudioCommand.PlayAsync(GameAudioType.DrawCard);
+            await SoundEffectCommand.PlayAsync(AgainstSoundEffectType.DrawCard);
 
             card.SetCardSeeAble(true);
             RemoveCard(card);
@@ -327,7 +327,7 @@ namespace TouhouMachineLearningSummary.Command
             card.isMoveStepOver = false;
             await Task.Delay(100);
             card.isMoveStepOver = true;
-            await AudioCommand.PlayAsync(GameAudioType.DrawCard);
+            await SoundEffectCommand.PlayAsync(AgainstSoundEffectType.DrawCard);
         }
 
         public static async Task MoveToOpHand(Card card)
@@ -344,7 +344,7 @@ namespace TouhouMachineLearningSummary.Command
             card.isMoveStepOver = false;
             await Task.Delay(100);
             card.isMoveStepOver = true;
-            await AudioCommand.PlayAsync(GameAudioType.DrawCard);
+            await SoundEffectCommand.PlayAsync(AgainstSoundEffectType.DrawCard);
         }
         public static async Task MoveToGrave(Card card)
         {
@@ -362,7 +362,7 @@ namespace TouhouMachineLearningSummary.Command
             card.isMoveStepOver = false;
             await Task.Delay(100);
             card.isMoveStepOver = true;
-            await AudioCommand.PlayAsync(GameAudioType.DrawCard);
+            await SoundEffectCommand.PlayAsync(AgainstSoundEffectType.DrawCard);
         }
     }
 }

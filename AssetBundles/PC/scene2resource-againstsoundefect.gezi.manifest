@@ -1,0 +1,31 @@
+ManifestFileVersion: 0
+CRC: 443171728
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: db4a56d6008a1d013713cc4678a99f43
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9a2ca7bdbd1871f7131daf57de908e0c
+HashAppended: 0
+ClassTypes:
+- Class: 83
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/GameResources/Scene2Resource/AgainstSoundEfect/Thunder8.ogg
+- Assets/GameResources/Scene2Resource/AgainstSoundEfect/Laser.mp3
+- Assets/GameResources/Scene2Resource/AgainstSoundEfect/CardSelect.ogg
+- Assets/GameResources/Scene2Resource/AgainstSoundEfect/ChangeFailed.wav
+- Assets/GameResources/Scene2Resource/AgainstSoundEfect/Up1.ogg
+- Assets/GameResources/Scene2Resource/AgainstSoundEfect/Bullet.ogg
+- Assets/GameResources/Scene2Resource/AgainstSoundEfect/Gun.ogg
+- "Assets/GameResources/Scene2Resource/AgainstSoundEfect/\u62BD \u5361.mp3"
+- Assets/GameResources/Scene2Resource/AgainstSoundEfect/Deploy1.mp3
+- Assets/GameResources/Scene2Resource/AgainstSoundEfect/Sword.ogg
+- Assets/GameResources/Scene2Resource/AgainstSoundEfect/DrawCard.ogg
+- Assets/GameResources/Scene2Resource/AgainstSoundEfect/Water1.ogg
+- Assets/GameResources/Scene2Resource/AgainstSoundEfect/DrawCard1.wav
+- Assets/GameResources/Scene2Resource/AgainstSoundEfect/Biu.mp3
+- Assets/GameResources/Scene2Resource/AgainstSoundEfect/Deploy.mp3
+Dependencies: []

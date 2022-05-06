@@ -26,7 +26,7 @@ namespace TouhouMachineLearningSummary.Command
         static bool isShowOver = true;
         public static async Task OkAsync()
         {
-            _ = AudioCommand.PlayAsync(GameAudioType.UiButton);
+            _ = SoundEffectCommand.PlayAsync(UISoundEffectType.UiButton);
             await CloseAsync();
             await Task.Delay(1000);
             if (okAction != null)
@@ -39,7 +39,7 @@ namespace TouhouMachineLearningSummary.Command
 
         public static async Task CancaelAsync()
         {
-            _ = AudioCommand.PlayAsync(GameAudioType.UiButton);
+            _ = SoundEffectCommand.PlayAsync(UISoundEffectType.UiButton);
             await CloseAsync();
             await Task.Delay(1000);
             if (cancelAction != null)
@@ -58,7 +58,7 @@ namespace TouhouMachineLearningSummary.Command
                 await Task.Delay(100);
             }
             //进入房间成功后
-            _ = AudioCommand.PlayAsync(GameAudioType.UiButton);
+            _ = SoundEffectCommand.PlayAsync(UISoundEffectType.UiButton);
             await CloseAsync();
             await Task.Delay(1000);
             if (cancelAction != null)

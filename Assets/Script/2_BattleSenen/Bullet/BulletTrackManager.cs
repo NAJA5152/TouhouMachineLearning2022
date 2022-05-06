@@ -47,7 +47,7 @@ namespace TouhouMachineLearningSummary.Manager
                              transform.localScale = timer * Vector3.one;
                          });
                         tempPos = transform.position;
-                        _ = Command.AudioCommand.PlayAsync(GameEnum.GameAudioType.Laser);
+                        _ = Command.SoundEffectCommand.PlayAsync(AgainstSoundEffectType.Laser);
                         await CustomThread.TimerAsync(1f, (timer) =>
                         {
                             transform.position = Vector3.Lerp(tempPos, endPosition, timer);
@@ -69,7 +69,7 @@ namespace TouhouMachineLearningSummary.Manager
                         transform.localScale = timer * Vector3.one;
                     });
                     tempPos = transform.position;
-                    _ = Command.AudioCommand.PlayAsync(GameEnum.GameAudioType.Laser);
+                    _ = Command.SoundEffectCommand.PlayAsync(AgainstSoundEffectType.Laser);
                     await CustomThread.TimerAsync(1f, (timer) =>
                     {
                         transform.position = Vector3.Lerp(tempPos, endPosition, timer * 2);

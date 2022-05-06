@@ -45,7 +45,7 @@ namespace TouhouMachineLearningSummary.Command
         //根据最后的状态
         public static void RefreshCurrentState()
         {
-            _ = Command.AudioCommand.PlayAsync(GameEnum.GameAudioType.Page);
+            _ = Command.SoundEffectCommand.PlayAsync(UISoundEffectType.Page);
             MenuState menuState = GetCurrentState();
             switch (menuState)
             {

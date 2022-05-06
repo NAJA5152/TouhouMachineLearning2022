@@ -55,16 +55,24 @@ namespace TouhouMachineLearningSummary.Other
         static async void BuildAssetBundles()
         {
             //打标签
-            new DirectoryInfo(@"Assets\GameResources")
-                .GetFiles("*.*", SearchOption.AllDirectories)
-                .Where(file => file.Extension != ".meta")
-                .ToList()
-                .ForEach(file =>
+            new DirectoryInfo(@"Assets\GameResources").GetDirectories()
+                .ForEach(dire =>
                 {
-                    string path = file.FullName.Replace(Directory.GetCurrentDirectory() + @"\", "");
-                    UnityEngine.Debug.Log(path);
-                    AssetImporter.GetAtPath(path).assetBundleName = "GameResources.gezi";
+                    dire.GetDirectories().ForEach(childDire =>
+                    {
+                        childDire.GetFiles("*.*", SearchOption.AllDirectories)
+                            .Where(file => file.Extension != ".meta")
+                            .ToList()
+                            .ForEach(file =>
+                            {
+                                string path = file.FullName.Replace(Directory.GetCurrentDirectory() + @"\", "");
+                                AssetImporter.GetAtPath(path).assetBundleName = $"{dire.Name}-{childDire.Name}.gezi";
+                                //AssetImporter.GetAtPath(path).assetBundleName = $"{dire.Name}.gezi";
+                            });
+                    });
+
                 });
+
             UnityEngine.Debug.LogWarning("标签修改完毕，开始打包");
             string PcOutputPath = Directory.GetCurrentDirectory() + @"\AssetBundles\PC";
             string AndroidOutputPath = Directory.GetCurrentDirectory() + @"\AssetBundles\Android";
@@ -85,7 +93,16 @@ namespace TouhouMachineLearningSummary.Other
 
             //获取网络md5文件，判断需要上传的文件
             WebClient webClient = new WebClient();
-            string OnlieMD5FiIeDatas = webClient.DownloadString(@"http://106.15.38.165:7777/PC/MD5.json");
+            string OnlieMD5FiIeDatas = "{}";
+            try
+            {
+                OnlieMD5FiIeDatas = webClient.DownloadString(@"http://106.15.38.165:7777/PC/MD5.json");
+            }
+            catch
+            {
+                UnityEngine.Debug.LogError("网络断无MD5.json文件");
+            }
+
             webClient.Dispose();
 
             var onlineMD5Dict = OnlieMD5FiIeDatas.ToObject<Dictionary<string, byte[]>>();

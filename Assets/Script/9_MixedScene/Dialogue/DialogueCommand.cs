@@ -17,7 +17,7 @@ namespace TouhouMachineLearningSummary.Command
     public class DialogueCommand
     {
         //public static void Load() => Info.DialogueInfo.DialogueModels = File.ReadAllText(@"Assets\Resources\GameData\Story.json").ToObject<List<DialogueModel>>();
-        public static void Load() => Info.DialogueInfo.DialogueModels = Resources.Load<TextAsset>("GameData/Story").text .ToObject<List<DialogueModel>>();
+        public static void Load() => Info.DialogueInfo.DialogueModels = AssetBundleCommand.Load<TextAsset>("GameData/Story").text .ToObject<List<DialogueModel>>();
         public static void Play(string tag)
         {
             Info.DialogueInfo.CurrentPoint = 0;
@@ -98,14 +98,14 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     if (currentOperations.Position == "左侧")
                     {
-                        Info.DialogueInfo.instance.left.GetComponent<Image>().sprite = Resources.Load<Texture2D>("Chara\\" + currentOperations.Chara).ToSprite();
+                        Info.DialogueInfo.instance.left.GetComponent<Image>().sprite = AssetBundleCommand.Load<Texture2D>("Charactar\\" + currentOperations.Chara).ToSprite();
                         Info.DialogueInfo.instance.left.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                         Info.DialogueInfo.instance.right.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f, 1);
 
                     }
                     else if (currentOperations.Position == "右侧")
                     {
-                        Info.DialogueInfo.instance.right.GetComponent<Image>().sprite = Resources.Load<Texture2D>("Chara\\" + currentOperations.Chara).ToSprite();
+                        Info.DialogueInfo.instance.right.GetComponent<Image>().sprite = AssetBundleCommand.Load<Texture2D>("Charactar\\" + currentOperations.Chara).ToSprite();
                         Info.DialogueInfo.instance.left.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f, 1);
                         Info.DialogueInfo.instance.right.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                     }

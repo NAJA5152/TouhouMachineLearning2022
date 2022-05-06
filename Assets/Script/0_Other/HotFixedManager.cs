@@ -22,7 +22,7 @@ public class HotFixedManager : MonoBehaviour
         textMeshProUGUI.text = "初始化网络";
         _ = NetCommand.Init();
         textMeshProUGUI.text = "下载卡牌数据";
-        _= CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
+        _ = CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
         textMeshProUGUI.text = "校验资源包";
         _ = CheckAssetBundles();
     }
@@ -34,6 +34,7 @@ public class HotFixedManager : MonoBehaviour
         Directory.CreateDirectory(DownLoadPath);
         //加载MD5文件
         WebClient webClient = new WebClient();
+        webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler((sender, e) => Debug.LogWarning($"{e.BytesReceived / 1024 / 1024}/{e.TotalBytesToReceive / 1024 / 1024} MB. {e.ProgressPercentage} %"));
         string OnlieMD5FiIeDatas = webClient.DownloadString(@"http://106.15.38.165:7777/PC/MD5.json");
         var Md5Dict = OnlieMD5FiIeDatas.ToObject<Dictionary<string, byte[]>>();
         //校验本地文件
@@ -65,22 +66,26 @@ public class HotFixedManager : MonoBehaviour
             {
                 textMeshProUGUI.text = MD5FiIeData.Key + "有新版本，开始重新下载";
                 string savePath = localFile.FullName;
-                byte[] saveData = webClient.DownloadData(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}");
-                
+                //byte[] saveData = webClient.DownloadData(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}");
+
+
+
+
                 if (MD5FiIeData.Key.EndsWith(".dll")) //如果dll，则需要重启游戏进行载入
                 {
                     Debug.LogWarning("需要重启");
                     textMeshProUGUI.text = MD5FiIeData.Key + "更新代码资源";
                     isNeedRestartApplication = true;
-                    Debug.LogWarning(savePath+":"+ saveData.Length);
+                    //Debug.LogWarning(savePath + ":" + saveData.Length);
 #if !UNITY_EDITOR
-                   
-                    File.WriteAllBytes(savePath, saveData);
+                    //File.WriteAllBytes(savePath, saveData);
+                    await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}"), savePath);
 #endif
                 }
                 else
                 {
-                    File.WriteAllBytes(savePath, saveData);
+                    await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}"), savePath);
+                    //File.WriteAllBytes(savePath, saveData);
                 }
                 Debug.LogWarning(MD5FiIeData.Key + "下载完成");
                 textMeshProUGUI.text = MD5FiIeData.Key + "下载完成";
@@ -91,8 +96,8 @@ public class HotFixedManager : MonoBehaviour
         //如果改动了dll，需要重启
         if (isNeedRestartApplication) { Application.Quit(); }
         //加载AB包，并从中加载场景
-        Debug.LogWarning( "开始初始化AB包");
-        textMeshProUGUI.text ="开始加载资源包";
+        Debug.LogWarning("开始初始化AB包");
+        textMeshProUGUI.text = "开始加载资源包";
         AssetBundleCommand.Init(() =>
         {
             Debug.LogWarning("初始化完毕，加载场景。。。");

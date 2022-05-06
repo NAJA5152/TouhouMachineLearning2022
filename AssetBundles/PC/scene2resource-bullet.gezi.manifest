@@ -1,0 +1,24 @@
+ManifestFileVersion: 0
+CRC: 2149972559
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 9a270a571c6ffb474c3d737adb3bf172
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: a1b8ae978d101eec5d12a49988ba7adf
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/GameResources/Scene2Resource/bullet/laser.mat
+- Assets/GameResources/Scene2Resource/bullet/laser.shadergraph
+- Assets/GameResources/Scene2Resource/bullet/white.png
+Dependencies:
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-texture.gezi

@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2183846377
+CRC: 1178919132
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 45edcf4afdda38450013114e4a5fb920
+    Hash: 3339633308e96fb725fd8e0664dbb306
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 5b8f9ff6482fd0b487b13432e9476075
+    Hash: 13ea76c16f48ef0a8229ed77a3d2a258
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -211,5 +211,14 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Scenes/2_BattleScene.unity
 Dependencies:
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/gameresources.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/res.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-charactar.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-material.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-shader.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-texture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-ttf.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-uitexture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene2resource-battlescene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene2resource-coin.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene2resource-prefabs.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene2resource-terrain.gezi
