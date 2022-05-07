@@ -9,6 +9,7 @@ using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace TouhouMachineLearningSummary.Control
@@ -184,6 +185,10 @@ namespace TouhouMachineLearningSummary.Control
             if (GUI.Button(new Rect(0, 100, 100, 50), "对战测试"))
             {
                 TestBattleAsync();
+            }
+            if (GUI.Button(new Rect(0, 0, 100, 50), "资源重载"))
+            {
+                SceneManager.LoadScene(0);
             }
         }
     }

@@ -88,7 +88,7 @@ public class HotFixedManager : MonoBehaviour
                     //await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}"), savePath);
                     Debug.LogWarning("代码覆盖完毕，等待重启");
 #if !UNITY_EDITOR
-                    await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}"), savePath);
+                   // await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}"), savePath);
 #endif
                 }
                 else
