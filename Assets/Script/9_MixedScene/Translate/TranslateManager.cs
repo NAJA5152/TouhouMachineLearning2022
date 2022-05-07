@@ -23,7 +23,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             if (translateData == null)
             {
-                translateData = AssetBundleCommand.Load<TextAsset>("GameData/Game-Text").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
+                translateData = AssetBundleCommand.Load<TextAsset>("GameData", "Game-Text").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
             }
             if (translateData.ContainsKey(text))
             {

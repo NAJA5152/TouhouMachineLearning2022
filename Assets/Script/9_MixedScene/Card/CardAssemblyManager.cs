@@ -53,7 +53,7 @@ namespace TouhouMachineLearningSummary.Manager
         public static List<CardModel> lastSingleCardInfos;
         [ShowInInspector]
         public static List<CardModel> lastMultiCardInfos;
-
+        //设置
         public static async Task SetCurrentAssembly(string date)
         {
             //识别日期编号

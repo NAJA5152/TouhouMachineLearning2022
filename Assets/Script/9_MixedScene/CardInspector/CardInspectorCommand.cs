@@ -18,7 +18,7 @@ namespace TouhouMachineLearningSummary.Command
 
     public static class CardInspectorCommand
     {
-        public static CardLibraryInfo GetLibraryInfo() => AssetBundleCommand.Load<CardLibraryInfo>("GameData\\SaveData");
+        public static CardLibraryInfo GetLibraryInfo() => AssetBundleCommand.Load<CardLibraryInfo>("GameData", "SaveData");
         //初始化每个牌库的每个关卡所包含的卡牌
         public static void Init()
         {

@@ -75,12 +75,12 @@ namespace TouhouMachineLearningSummary.Model
             if (isSingle)
             {
                 cardID = int.Parse($"1{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3, '0')}");
-                icon = AssetBundleCommand.Load<Texture2D>("CardTex\\Single\\" + cardID) ?? AssetBundleCommand.Load<Texture2D>("CardTex\\default");
+                icon = AssetBundleCommand.Load<Texture2D>("CardTex",cardID.ToString()) ?? AssetBundleCommand.Load<Texture2D>("CardTex","default");
             }
             else
             {
                 cardID = int.Parse($"2{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3, '0')}");
-                icon = AssetBundleCommand.Load<Texture2D>("CardTex\\Multiplayer\\" + cardID) ?? AssetBundleCommand.Load<Texture2D>("CardTex\\default");
+                icon = AssetBundleCommand.Load<Texture2D>("CardTex", cardID.ToString()) ?? AssetBundleCommand.Load<Texture2D>("CardTex", "default");
             }
             //Debug.Log(cardID);
             return this;

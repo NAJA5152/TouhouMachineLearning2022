@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 4071838399
+CRC: 662230954
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ae914b5f19ba1e4cd8324e9ceb2402dc
+    Hash: 3546cb3311492565e9e36bb782edbf4a
   TypeTreeHash:
     serializedVersion: 2
     Hash: a1b8ae978d101eec5d12a49988ba7adf
@@ -34,7 +34,6 @@ Assets:
 - Assets/GameResources/Scene1Resource/Material/cardBack.mat
 - Assets/GameResources/Scene1Resource/Material/Card.mat
 Dependencies:
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/res.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-loginscene.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-shader.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-texture.gezi

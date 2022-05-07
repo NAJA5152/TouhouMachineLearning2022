@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2943450734
+CRC: 1928729817
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 08c477542644da4586b466beb8f2a217
+    Hash: 417ada9ae8e671a4fc63a23fbe126d4c
   TypeTreeHash:
     serializedVersion: 2
     Hash: 1565cf67db937607d472027849a1cef2
@@ -25,5 +25,4 @@ Assets:
 - Assets/GameResources/Scene2Resource/Particle/Materials/Ring_3_tex.mat
 - "Assets/GameResources/Scene2Resource/Particle/Materials/\u51B2\u51FB\u6CE2.mat"
 - Assets/GameResources/Scene2Resource/Particle/Ring_3_tex.png
-Dependencies:
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/res.gezi
+Dependencies: []

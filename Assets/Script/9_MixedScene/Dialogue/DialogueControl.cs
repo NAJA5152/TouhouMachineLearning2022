@@ -8,7 +8,6 @@ namespace TouhouMachineLearningSummary.Control
     /// </summary>
     public class DialogueControl : MonoBehaviour
     {
-        void Awake() => DialogueCommand.Load();
         public void ShowNextText()
         {
             if (!DialogueInfo.SelectMode)

@@ -17,7 +17,7 @@ namespace TouhouMachineLearningSummary.Command
     public class DialogueCommand
     {
         //public static void Load() => Info.DialogueInfo.DialogueModels = File.ReadAllText(@"Assets\Resources\GameData\Story.json").ToObject<List<DialogueModel>>();
-        public static void Load() => Info.DialogueInfo.DialogueModels = AssetBundleCommand.Load<TextAsset>("GameData/Story").text .ToObject<List<DialogueModel>>();
+        public static void Load() => Info.DialogueInfo.DialogueModels = AssetBundleCommand.Load<TextAsset>("GameData","Story").text .ToObject<List<DialogueModel>>();
         public static void Play(string tag)
         {
             Info.DialogueInfo.CurrentPoint = 0;

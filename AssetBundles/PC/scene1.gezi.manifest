@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 4129924978
+CRC: 3696572499
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ce0dd4941a751fffad73e68d18d7424e
+    Hash: 550bdecffee547ba49dbb34f841ec269
   TypeTreeHash:
     serializedVersion: 2
-    Hash: c246f6a0c49d84b249546c0ba0d28b56
+    Hash: 0d5c18b196862b3104b02c2e9c38707b
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -52,13 +52,13 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 9085046f02f69544eb97fd06b6048fe2, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
 - Class: 114
@@ -213,7 +213,6 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Scenes/1_LoginScene.unity
 Dependencies:
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/res.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-icon.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-loginscene.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-material.gezi

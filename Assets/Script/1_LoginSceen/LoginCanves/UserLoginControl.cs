@@ -1,10 +1,12 @@
-﻿using System;
+﻿using Sirenix.OdinInspector;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
+using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,18 +17,21 @@ namespace TouhouMachineLearningSummary.Control
     {
         public Text Account;
         public Text Password;
-
         bool IsAleardyLogin { get; set; } = false;
         public static bool IsEnterRoom { get; set; } = false;
         async void Start()
         {
-            Manager.TaskLoopManager.Init();
-            await Manager.CameraViewManager.MoveToViewAsync(0, true);
+            await AssetBundleCommand.Init();
+            
+            _ = CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
+            DialogueCommand.Load();
+            TaskLoopManager.Init();
+            await CameraViewManager.MoveToViewAsync(0, true);
             //初始化场景物体状态，如果已登录，则进入到指定页，否则进入初始场景
             await BookCommand.InitAsync(IsAleardyLogin);
             if (!IsAleardyLogin)
             {
-               
+
                 //UserLogin();//自动登录
                 await Task.Delay(1000);
                 //await TestReplayAsync();

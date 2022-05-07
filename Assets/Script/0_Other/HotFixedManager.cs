@@ -12,20 +12,21 @@ using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine.UI;
+using System.Threading;
 
 public class HotFixedManager : MonoBehaviour
 {
     public TextMeshProUGUI loadText;
     public TextMeshProUGUI processText;
+    public TextMeshProUGUI versiousText;
     public Slider slider;
     string DownLoadPath { get; set; } = "";
     async void Start()
     {
+        versiousText.text = "v1";
         ConfigManager.InitConfig();
         loadText.text = "初始化网络";
         _ = NetCommand.Init();
-        loadText.text = "下载卡牌数据";
-        _ = CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
         loadText.text = "校验资源包";
         _ = CheckAssetBundles();
     }
@@ -84,15 +85,15 @@ public class HotFixedManager : MonoBehaviour
                     loadText.text = MD5FiIeData.Key + "更新代码资源";
                     isNeedRestartApplication = true;
                     //Debug.LogWarning(savePath + ":" + saveData.Length);
+                    //await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}"), savePath);
+                    Debug.LogWarning("代码覆盖完毕，等待重启");
 #if !UNITY_EDITOR
-                    //File.WriteAllBytes(savePath, saveData);
                     await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}"), savePath);
 #endif
                 }
                 else
                 {
                     await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}"), savePath);
-                    //File.WriteAllBytes(savePath, saveData);
                 }
                 Debug.LogWarning(MD5FiIeData.Key + "下载完成");
                 loadText.text = MD5FiIeData.Key + "下载完成";
@@ -105,7 +106,7 @@ public class HotFixedManager : MonoBehaviour
         //加载AB包，并从中加载场景
         Debug.LogWarning("开始初始化AB包");
         loadText.text = "开始加载资源包";
-        AssetBundleCommand.Init(() =>
+        _=AssetBundleCommand.Init(() =>
         {
             Debug.LogWarning("初始化完毕，加载场景。。。");
             SceneManager.LoadScene("1_LoginScene");

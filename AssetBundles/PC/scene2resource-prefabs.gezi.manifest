@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 175747867
+CRC: 831905146
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5469a5784dd52f88d1e56cfd6c3c2fc8
+    Hash: dfe2431e811933012d2f3920bec6294c
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 3ade6a0d35b458b13c964305806e2e5b
+    Hash: 328cb8491d97130c1e72af5dc8e06742
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -36,13 +36,13 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
+  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
 - Class: 114
-  Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
 - Class: 114
   Script: {fileID: 11500000, guid: 9b7290947a311ac4c928611320f58959, type: 3}
 - Class: 114
@@ -108,7 +108,5 @@ Assets:
 - Assets/GameResources/Scene2Resource/Prefabs/arrow 1.fbx
 - Assets/GameResources/Scene2Resource/Prefabs/Arrow.prefab
 Dependencies:
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/res.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-material.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-texture.gezi
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-ttf.gezi

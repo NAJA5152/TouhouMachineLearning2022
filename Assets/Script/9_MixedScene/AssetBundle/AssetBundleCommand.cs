@@ -11,64 +11,73 @@ namespace TouhouMachineLearningSummary.Command
     class AssetBundleCommand
     {
         static bool AlreadyInit { get; set; } = false;
-        static AssetBundle Scene1AB { get; set; }
-        static AssetBundle Scene2AB { get; set; }
-        List<AssetBundle> AssetBundles { get;}
-        public static async void Init(Action completedAction)
+        static Dictionary<string, List<UnityEngine.Object>> assets = new();
+        public static async Task Init(Action completedAction = null)
         {
             if (AlreadyInit) { return; }
             AlreadyInit = true;
-
-            Scene1AB = await LoadAssetBundle(Application.streamingAssetsPath + "/AssetBundles/scene1resource.gezi");
-            Debug.LogWarning("场景1资源加载完毕");
-            Debug.LogWarning("场景1加载完毕");
-            foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/").GetFiles().Where(file => file.Name.Contains("scene1")&& !file.Name.Contains("meta")))
+            Directory.CreateDirectory(Application.streamingAssetsPath + "/AssetBundles/");
+            foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/")
+                .GetFiles()
+                .Where(file => file.Name.Contains("scene1") && !file.Name.Contains("meta")))
             {
                 await LoadAssetBundle(file.FullName);
                 Debug.LogWarning($"{file.FullName}加载完毕");
             }
 
+            
             completedAction?.Invoke();
 
-            foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/").GetFiles().Where(file => file.Name.Contains("scene2") && !file.Name.Contains("meta")))
+            foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/")
+                .GetFiles()
+                .Where(file => file.Name.Contains("scene2") && !file.Name.Contains("meta")))
             {
-                await LoadAssetBundle(file.FullName);
+                _ = LoadAssetBundle(file.FullName);
                 Debug.LogWarning($"{file.FullName}加载完毕");
             }
-            //Scene2AB = await LoadAssetBundle(Application.streamingAssetsPath + "/AssetBundles/scene2resource.gezi");
-            //Debug.LogWarning("场景2资源加载完毕");
-            //_ = LoadAssetBundle(Application.streamingAssetsPath + "/AssetBundles/scene2.gezi");
-            //Debug.LogWarning("场景2加载完毕");
 
+            foreach (var ab in AssetBundle.GetAllLoadedAssetBundles())
+            {
+                assets[ab.name] = ab.LoadAllAssets().ToList();
+            }
             Debug.LogWarning("资源加载完毕");
 
             async Task<AssetBundle> LoadAssetBundle(string path)
             {
                 var ABLoadRequir = AssetBundle.LoadFromFileAsync(path);
-                while (!ABLoadRequir.isDone)
-                {
-                    await Task.Delay(10);
-                }
+                while (!ABLoadRequir.isDone) { await Task.Delay(50); }
                 return ABLoadRequir.assetBundle;
             }
         }
-        /// <summary>
-        /// 从指定AB包中加载素材，1是登陆场景，2是对战场景
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="path">加载路径</param>
-        /// <param name="AssetBundlesID">1是登陆场景，2是对战场景</param>
-        /// <returns></returns>
         public static T Load<T>(string path) where T : UnityEngine.Object
         {
-            foreach (var ab in AssetBundle.GetAllLoadedAssetBundles())
+            return default;
+        }
+        /// <summary>
+        /// 从带有tag名的AB包中加载素材
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="tag"></param>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public static T Load<T>(string tag, string fileName) where T : UnityEngine.Object
+        {
+            var targetAssets = assets.FirstOrDefault(asset => asset.Key.Contains(tag.ToLower())).Value;
+            if (targetAssets != null)
             {
-                if (ab.Contains(path))
-                {
-                    return ab.LoadAsset(path, typeof(T)) as T;
-                }
+                var targetAsset = targetAssets.FirstOrDefault(asset => asset.name == fileName);
+                return targetAsset as T;
             }
             return null;
+            //foreach (var ab in AssetBundle.GetAllLoadedAssetBundles())
+            //{
+            //    var a = ab.GetAllAssetNames();
+            //    if (ab.Contains(path))
+            //    {
+            //        return ab.LoadAsset(path, typeof(T)) as T;
+            //    }
+            //}
+            //return null;
         }
     }
 }

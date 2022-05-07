@@ -7,7 +7,6 @@ namespace TouhouMachineLearningSummary.Control
     public class StateControl : MonoBehaviour
     {
         async void Start() => await CreatAgainstProcess();
-
         public static async Task CreatAgainstProcess()
         {
             Manager.TaskLoopManager.Init();

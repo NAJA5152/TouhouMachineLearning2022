@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1471978112
+CRC: 631608947
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 5072ab5db629a3f61d0108558ea3d759
+    Hash: bd0af6f14e8d5f8d7157a4bceb6686a1
   TypeTreeHash:
     serializedVersion: 2
     Hash: a1b8ae978d101eec5d12a49988ba7adf
@@ -83,7 +83,6 @@ Assets:
 - Assets/GameResources/Scene1Resource/Shader/Use/Region.shadergraph
 - "Assets/GameResources/Scene1Resource/Shader/\u6D4B\u8BD5.shadergraph"
 Dependencies:
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/res.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-icon.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-loginscene.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-texture.gezi
