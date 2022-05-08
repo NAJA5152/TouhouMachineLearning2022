@@ -22,12 +22,11 @@ namespace TouhouMachineLearningSummary.Control
         public static bool IsEnterRoom { get; set; } = false;
         async void Start()
         {
+            await CameraViewManager.MoveToViewAsync(0, true);
             await AssetBundleCommand.Init();
-            
             _ = CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
             DialogueCommand.Load();
             TaskLoopManager.Init();
-            await CameraViewManager.MoveToViewAsync(0, true);
             //初始化场景物体状态，如果已登录，则进入到指定页，否则进入初始场景
             await BookCommand.InitAsync(IsAleardyLogin);
             if (!IsAleardyLogin)
@@ -186,8 +185,10 @@ namespace TouhouMachineLearningSummary.Control
             {
                 TestBattleAsync();
             }
-            if (GUI.Button(new Rect(0, 0, 100, 50), "资源重载"))
+            if (GUI.Button(new Rect(0, 200, 100, 50), "资源重载"))
             {
+                
+                AssetBundleCommand.AlreadyInit = false;
                 SceneManager.LoadScene(0);
             }
         }

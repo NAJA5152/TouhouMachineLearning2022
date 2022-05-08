@@ -5,31 +5,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TouhouMachineLearningSummary.Command
 {
     class AssetBundleCommand
     {
-        static bool AlreadyInit { get; set; } = false;
+        public static bool AlreadyInit { get; set; } = false;
         static Dictionary<string, List<UnityEngine.Object>> assets = new();
-        public static async Task Init(Action completedAction = null)
+        public static async Task Init()
         {
             if (AlreadyInit) { return; }
             AlreadyInit = true;
             Directory.CreateDirectory(Application.streamingAssetsPath + "/AssetBundles/");
-            foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/")
-                .GetFiles()
+            foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/").GetFiles()
                 .Where(file => file.Name.Contains("scene1") && !file.Name.Contains("meta")))
             {
                 await LoadAssetBundle(file.FullName);
                 Debug.LogWarning($"{file.FullName}加载完毕");
             }
 
-            
-            completedAction?.Invoke();
-
-            foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/")
-                .GetFiles()
+            foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/").GetFiles()
                 .Where(file => file.Name.Contains("scene2") && !file.Name.Contains("meta")))
             {
                 _ = LoadAssetBundle(file.FullName);

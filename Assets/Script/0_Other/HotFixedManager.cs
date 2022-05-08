@@ -83,12 +83,12 @@ public class HotFixedManager : MonoBehaviour
                 {
                     Debug.LogWarning("需要重启");
                     loadText.text = MD5FiIeData.Key + "更新代码资源";
-                    isNeedRestartApplication = true;
+                    //isNeedRestartApplication = true;
                     //Debug.LogWarning(savePath + ":" + saveData.Length);
-                    //await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}"), savePath);
+                    await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}"), savePath);
                     Debug.LogWarning("代码覆盖完毕，等待重启");
 #if !UNITY_EDITOR
-                   // await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}"), savePath);
+                    await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}"), savePath);
 #endif
                 }
                 else
@@ -106,10 +106,8 @@ public class HotFixedManager : MonoBehaviour
         //加载AB包，并从中加载场景
         Debug.LogWarning("开始初始化AB包");
         loadText.text = "开始加载资源包";
-        _=AssetBundleCommand.Init(() =>
-        {
-            Debug.LogWarning("初始化完毕，加载场景。。。");
-            SceneManager.LoadScene("1_LoginScene");
-        });
+        await AssetBundleCommand.Init();
+        Debug.LogWarning("初始化完毕，加载场景。。。");
+        SceneManager.LoadScene("1_LoginScene");
     }
 }
