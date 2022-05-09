@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
+using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
 using TouhouMachineLearningSummary.Test;
 using UnityEngine;
@@ -17,16 +18,17 @@ namespace TouhouMachineLearningSummary.Command
     public class DialogueCommand
     {
         //public static void Load() => Info.DialogueInfo.DialogueModels = File.ReadAllText(@"Assets\Resources\GameData\Story.json").ToObject<List<DialogueModel>>();
-        public static void Load() => Info.DialogueInfo.DialogueModels = AssetBundleCommand.Load<TextAsset>("GameData","Story").text .ToObject<List<DialogueModel>>();
-        public static void Play(string tag)
+        public static void Load() => Info.DialogueInfo.DialogueModels = AssetBundleCommand.Load<TextAsset>("GameData", "Story").text.ToObject<List<DialogueModel>>();
+        public static async void Play(string stageTag, int stageRank)
         {
             Info.DialogueInfo.CurrentPoint = 0;
             Info.DialogueInfo.instance.dialogueCanvas.SetActive(true);
             Debug.LogError("对话组件开启");
-            Info.DialogueInfo.currnetDialogueModel = Info.DialogueInfo.DialogueModels.FirstOrDefault(model => model.Tag == tag);
+            Info.DialogueInfo.currnetDialogueModel = Info.DialogueInfo.DialogueModels.FirstOrDefault(model => model.Tag == $"{stageTag}-{stageRank}");
             if (Info.DialogueInfo.currnetDialogueModel != null)
             {
                 RunNextOperations();
+                await UnlockAsync(stageTag, stageRank);
             }
             else
             {
@@ -37,6 +39,19 @@ namespace TouhouMachineLearningSummary.Command
         {
             Info.DialogueInfo.instance.dialogueCanvas.SetActive(false);
             Debug.LogError("对话组件关闭");
+        }
+        /// <summary>
+        /// 传入播放剧情参数，若当前剧情与玩家节点相等则解锁下个阶段剧情
+        /// </summary>
+        /// <param name="stageTag"></param>
+        /// <param name="stageRank"></param>
+        /// <returns></returns>
+        public static async Task UnlockAsync(string stageTag, int stageRank)
+        {
+            if (AgainstInfo.onlineUserInfo.GetStage(stageTag) == stageRank)
+            {
+                await AgainstInfo.onlineUserInfo.UpdateUserStateAsync(stageTag, stageRank + 1);
+            }
         }
         public static async void RunNextOperations()
         {

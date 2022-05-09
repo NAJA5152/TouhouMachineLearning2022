@@ -117,8 +117,8 @@ namespace TouhouMachineLearningSummary.Control
                     var stage = AgainstInfo.onlineUserInfo.Stage;
                     if (AgainstInfo.onlineUserInfo.GetStage("0")==0)
                     {
-                        DialogueCommand.Play("0-0");
-                        await AgainstInfo.onlineUserInfo.UpdateUserStateAsync(0, 1);
+                        DialogueCommand.Play("0",0);
+                        await AgainstInfo.onlineUserInfo.UpdateUserStateAsync("0", 1);
                     }
                     Manager.UserInfoManager.Refresh();
                     await BookCommand.InitToOpenStateAsync();

@@ -130,11 +130,10 @@ namespace TouhouMachineLearningSummary.Model
             return await Command.NetCommand.UpdateInfoAsync(UpdateType.Name, name);
         }
 
-        public async Task<bool> UpdateUserStateAsync(int step, int rank)
+        public async Task<bool> UpdateUserStateAsync(string stageTag, int stageRank)
         {
-            OnlineUserState.Step = step;
-            OnlineUserState.Rank = rank;
-            return await Command.NetCommand.UpdateInfoAsync(UpdateType.Stage, OnlineUserState);
+            Stage[stageTag] = stageRank;
+            return await Command.NetCommand.UpdateInfoAsync(UpdateType.Stage, Stage);
         }
         public async Task<bool> UpdateDecksAsync()
         {
