@@ -45,8 +45,9 @@ namespace Server
         public DateTime LastLoginTime { get; set; }
 
         public Dictionary<string, int> Resource { get; set; }
-        //决定游戏进程
-        public UserState OnlineUserState { get; set; } = new UserState();
+        //决定关卡进程
+        public Dictionary<string, int> Stage { get; set; } = new();
+
         public Dictionary<string, int> CardLibrary { get; set; }
         public int UseDeckNum { get; set; }
         public List<CardDeck> Decks { get; set; }
@@ -71,10 +72,8 @@ namespace Server
             Level = 0;
             Rank = 0;
             UseDeckNum = 0;
-            Resource = new Dictionary<string, int>();
-            OnlineUserState = new UserState();
-            Resource.Add("faith", 0);
-            Resource.Add("recharge", 0);
+            Stage = new Dictionary<string, int>() { { "0", 1 } };
+            Resource = new Dictionary<string, int>() { { "faith", 0 },{ "recharge", 0 } };
             return this;
         }
     }

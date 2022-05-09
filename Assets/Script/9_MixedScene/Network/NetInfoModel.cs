@@ -79,13 +79,14 @@ namespace TouhouMachineLearningSummary.Model
         public int Rank { get; set; }
         public DateTime LastLoginTime { get; set; }
 
-        public class UserState
-        {
-            public int Step { get; set; }
-            public int Rank { get; set; }
-        }
-        public UserState OnlineUserState { get; set; } = new UserState();
-
+        //public class UserState
+        //{
+        //    public int Step { get; set; }
+        //    public int Rank { get; set; }
+        //}
+        //public UserState OnlineUserState { get; set; } = new UserState();
+        public Dictionary<string, int> Stage { get; set; }=new();
+        public int GetStage(string StageName) => !Stage.ContainsKey(StageName)?-1: Stage[StageName];
         public Dictionary<string, int> Resource { get; set; } = new Dictionary<string, int>();
         //决定游戏进程
         [ShowInInspector]
@@ -109,9 +110,6 @@ namespace TouhouMachineLearningSummary.Model
             Level = 0;
             Rank = 0;
             UseDeckNum = 0;
-            Resource = new Dictionary<string, int>();
-            Resource.Add("faith", 0);
-            Resource.Add("recharge", 0);
         }
         /// <summary>
         /// 返回脱敏后的简易用户信息
@@ -136,7 +134,7 @@ namespace TouhouMachineLearningSummary.Model
         {
             OnlineUserState.Step = step;
             OnlineUserState.Rank = rank;
-            return await Command.NetCommand.UpdateInfoAsync(UpdateType.UserState, OnlineUserState);
+            return await Command.NetCommand.UpdateInfoAsync(UpdateType.Stage, OnlineUserState);
         }
         public async Task<bool> UpdateDecksAsync()
         {

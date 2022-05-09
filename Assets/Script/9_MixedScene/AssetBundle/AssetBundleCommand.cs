@@ -22,15 +22,15 @@ namespace TouhouMachineLearningSummary.Command
                 .Where(file => file.Name.Contains("scene1") && !file.Name.Contains("meta")))
             {
                 await LoadAssetBundle(file.FullName);
-                Debug.LogWarning($"{file.FullName}加载完毕");
             }
+            Debug.LogWarning($"场景1资源加载完毕");
 
             foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/").GetFiles()
                 .Where(file => file.Name.Contains("scene2") && !file.Name.Contains("meta")))
             {
                 _ = LoadAssetBundle(file.FullName);
-                Debug.LogWarning($"{file.FullName}加载完毕");
             }
+            Debug.LogWarning($"场景2资源加载完毕");
 
             foreach (var ab in AssetBundle.GetAllLoadedAssetBundles())
             {

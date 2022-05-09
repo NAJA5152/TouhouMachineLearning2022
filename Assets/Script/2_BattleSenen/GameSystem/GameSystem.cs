@@ -56,7 +56,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// </summary>
         public static async Task MoveCard(TriggerInfoModel triggerInfo)
         {
-            if (!triggerInfo.targetCard[CardState.Forbidden]&& GameSystem.InfoSystem.AgainstCardSet[triggerInfo.location.X].Count<6)
+            if (!triggerInfo.targetCard[CardState.Forbidden] && GameSystem.InfoSystem.AgainstCardSet[triggerInfo.location.X].Count < 6)
             {
                 await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Move]);
             }
@@ -91,12 +91,12 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// 部署，从使用区移动至战场区(不触发移动效果)
         /// 若为重新触发则不改变位置直接触发部署效果
         /// </summary>
-        public static async Task DeployCard(TriggerInfoModel triggerInfo,bool ReTrigger=false)
+        public static async Task DeployCard(TriggerInfoModel triggerInfo, bool ReTrigger = false)
         {
             //部署效果特殊处理，先执行部署行为再触发部署效果
             if (triggerInfo.targetCards.Any() && AgainstInfo.SelectRowRank != -1)
             {
-                await Command.CardCommand.DeployCard(triggerInfo.targetCard, ReTrigger );
+                await Command.CardCommand.DeployCard(triggerInfo.targetCard, ReTrigger);
             }
             await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Deploy]);
         }
@@ -104,7 +104,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// 召唤，从牌组区移动至战场区(不触发移动效果)
         /// </summary>
         public static async Task SummonCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Summon]);
-       
+
         /// <summary>
         /// 弃牌，从手牌区移动至墓地(不触发移动效果)
         /// </summary>
@@ -122,7 +122,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// <summary>
         ///  直接移动至卡组(不触发连锁效果)
         /// </summary>
-        public static async Task MoveToDeck(Card targetCard, int index=0,bool isRandom=true) => await Command.CardCommand.MoveToDeck(targetCard, index, isRandom);
+        public static async Task MoveToDeck(Card targetCard, int index = 0, bool isRandom = true) => await Command.CardCommand.MoveToDeck(targetCard, index, isRandom);
         /// <summary>
         /// 直接移动至对方手牌(不触发连锁效果)
         /// </summary>
@@ -282,7 +282,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// <summary>
         /// 在卡牌上显示文字
         /// </summary>
-        public static async Task ShowTips(Card card,string Text,Color color) => await card.ThisCardManager.ShowTips(Text, color);
+        public static async Task ShowTips(Card card, string Text, Color color) => await card.ThisCardManager.ShowTips(Text, color);
         /// <summary>
         ///  在卡牌上显示图标
         /// </summary>
@@ -299,6 +299,9 @@ namespace TouhouMachineLearningSummary.GameSystem
         ///  在卡牌上显示破碎图标
         /// </summary>
         public static async Task ShowIconBreak(Card card, CardState cardState) => await card.ThisCardManager.ShowStateIconBreak(cardState);
-
+        /// <summary>
+        /// 在卡牌上显示对话框
+        /// </summary>
+        public static async Task ShowDialog(Card card, string Text) => await Task.Delay(0);
     }
 }

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 955794788
+CRC: 3277772803
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: aee8e7fd25cbc493eb1af32bc66740b0
+    Hash: 3d03a32aba883c59c6ad1051efeb7890
   TypeTreeHash:
     serializedVersion: 2
     Hash: d8ea4c085910022a1486a82b0b71a37e
@@ -30,9 +30,11 @@ Assets:
 - Assets/GameResources/Scene1Resource/Texture/Materials/music_frame.mat
 - "Assets/GameResources/Scene1Resource/Texture/\u5CA9\u77F3/stone - baseColor.png"
 - Assets/GameResources/Scene1Resource/Texture/music_frame.png
+- "Assets/GameResources/Scene1Resource/Texture/Materials/\u51B0\u51BB 1.mat"
 - Assets/GameResources/Scene1Resource/Texture/Materials/C$[E0HYV[~T7@WI[T`GG466.mat
 - "Assets/GameResources/Scene1Resource/Texture/\u5CA9\u77F3/stone - height.png"
 - Assets/GameResources/Scene1Resource/Texture/Region.png
+- "Assets/GameResources/Scene1Resource/Texture/\u83DC\u5355\u573A\u666F/UCZJH$F5U)B}Y_V~XX[@_$3.png"
 - "Assets/GameResources/Scene1Resource/Texture/\u5CA9\u77F3/stone - metallic.png"
 - "Assets/GameResources/Scene1Resource/Texture/\u4E09\u6708\u5361\u724C/\u80CC\u9762/New_Graph_normal.png"
 - "Assets/GameResources/Scene1Resource/Texture/Materials/\u51B0\u51BB.mat"
@@ -80,10 +82,10 @@ Assets:
 - "Assets/GameResources/Scene1Resource/Texture/\u5CA9\u77F3/Materials/stone - baseColor.mat"
 - "Assets/GameResources/Scene1Resource/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_opacity.png"
 - "Assets/GameResources/Scene1Resource/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_height.png"
-- "Assets/GameResources/Scene1Resource/Texture/\u83DC\u5355\u573A\u666F/UCZJH$F5U)B}Y_V~XX[@_$3.png"
 - "Assets/GameResources/Scene1Resource/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_roughness.png"
 - "Assets/GameResources/Scene1Resource/Texture/\u5CA9\u77F3/Materials/stone - ambientOcclusion.mat"
 - "Assets/GameResources/Scene1Resource/Texture/\u4E66/\u4E66\u9875 2.png"
+- "Assets/GameResources/Scene1Resource/Texture/Materials/\u51B0\u51BB 2.mat"
 - "Assets/GameResources/Scene1Resource/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_basecolor.png"
 - "Assets/GameResources/Scene1Resource/Texture/\u5361\u9762/]`RLNEI%H7KIFX)3D`%I3KL.png"
 Dependencies: []

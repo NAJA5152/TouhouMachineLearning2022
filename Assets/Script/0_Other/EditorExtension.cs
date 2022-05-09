@@ -22,15 +22,15 @@ namespace TouhouMachineLearningSummary.Other
         [MenuItem("Tools/打开游戏客户端", false, 2)]
         static void StartClient() => Process.Start(@"Pc\TouhouMachineLearning.exe");
         [MenuItem("Tools/打开数据表格", false, 51)]
-        static void OpenXls() => Process.Start(@"Assets\Resources\GameData\GameData.xlsx");
+        static void OpenXls() => Process.Start(@"Assets\GameResources\Scene1Resource\GameData\GameData.xlsx");
         [MenuItem("Tools/打开表格数据实时同步工具", false, 52)]
         static void UpdateXls() => Process.Start(@"OtherSolution\xls检测更新\bin\Debug\net6.0\xls检测更新.exe");
         [MenuItem("Public/发布当前卡牌版本", false, 101)]
         static void UpdateCardSpace()
         {
             var gameCardAssembly = new DirectoryInfo(@"Library\ScriptAssemblies").GetFiles("GameCard*.dll").FirstOrDefault();
-            var singleCardFile = new FileInfo(@"Assets\Resources\GameData\CardData-Single.json");
-            var multiCardFile = new FileInfo(@"Assets\Resources\GameData\CardData-Multi.json");
+            var singleCardFile = new FileInfo(@"Assets\GameResources\Scene1Resource\GameData\CardData-Single.json");
+            var multiCardFile = new FileInfo(@"Assets\GameResources\Scene1Resource\GameData\CardData-Multi.json");
             if (gameCardAssembly != null && singleCardFile != null && multiCardFile != null)
             {
                 CardConfig cardConfig = new CardConfig(DateTime.Today.ToString("yyy_MM_dd"), gameCardAssembly, singleCardFile, multiCardFile);
@@ -122,7 +122,7 @@ namespace TouhouMachineLearningSummary.Other
                 }
                 else
                 {
-                    UnityEngine.Debug.LogWarning(item.Key + "无更改，无需上传");
+                    //UnityEngine.Debug.LogWarning(item.Key + "无更改，无需上传");
                 }
             }
             await touhouHub.InvokeAsync<bool>("UploadAssetBundles", @$"AssetBundles/PC/MD5.json", File.ReadAllBytes(@$"AssetBundles/PC/MD5.json"));

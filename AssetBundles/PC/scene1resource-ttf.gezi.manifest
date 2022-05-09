@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2940410712
+CRC: 3555580248
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 08de741d93fc21d2f92e4986393669f1
+    Hash: 8a612a1ebfe0bf423d84d7c9acb3dea2
   TypeTreeHash:
     serializedVersion: 2
-    Hash: 8acecc61fa1ea02fa7aba22de71088f3
+    Hash: e13787671dc5479918d412382ef15893
 HashAppended: 0
 ClassTypes:
 - Class: 21
@@ -18,6 +18,8 @@ ClassTypes:
 - Class: 114
   Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
 - Class: 115
+  Script: {instanceID: 0}
+- Class: 128
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers:
 - AssemblyName: Unity.TextMeshPro
@@ -43,4 +45,5 @@ SerializeReferenceClassIdentifiers:
 Assets:
 - Assets/GameResources/Scene1Resource/ttf/HYTianYuFengXingTi.asset
 - "Assets/GameResources/Scene1Resource/ttf/\u841D\u8389\u4F53 SDF.asset"
+- "Assets/Plugins/TextMesh Pro/Resources/Fonts & Materials/\u841D\u8389\u4F53.ttc"
 Dependencies: []

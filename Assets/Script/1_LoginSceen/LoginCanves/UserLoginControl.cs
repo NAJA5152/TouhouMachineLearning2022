@@ -114,8 +114,8 @@ namespace TouhouMachineLearningSummary.Control
                 bool isSuccessLogin = await NetCommand.LoginAsync(Account.text, Password.text);
                 if (isSuccessLogin)
                 {
-                    PlayerInfo.UserState onlineUserState = AgainstInfo.onlineUserInfo.OnlineUserState;
-                    if (onlineUserState.Step == 0 && onlineUserState.Rank == 0)
+                    var stage = AgainstInfo.onlineUserInfo.Stage;
+                    if (AgainstInfo.onlineUserInfo.GetStage("0")==0)
                     {
                         DialogueCommand.Play("0-0");
                         await AgainstInfo.onlineUserInfo.UpdateUserStateAsync(0, 1);

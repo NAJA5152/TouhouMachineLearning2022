@@ -22,12 +22,13 @@ public enum NetAcyncType
     Pass,
     Surrender
 }
+//需要在客户端同步更新
 public enum UpdateType
 {
     Name,
-    Deck,
+    Decks,
     UseDeckNum,
-    UserState,
+    Stage,
     LastLoginTime,
 }
 public enum PlayerOperationType

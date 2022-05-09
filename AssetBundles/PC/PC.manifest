@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 1120404042
+CRC: 2724185982
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -101,6 +101,7 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: scene1resource-material.gezi
         Dependency_1: scene1resource-texture.gezi
+        Dependency_2: scene1resource-ttf.gezi
     Info_20:
       Name: scene2resource-terrain.gezi
       Dependencies:
@@ -113,3 +114,6 @@ AssetBundleManifest:
       Name: scene1resource-gamedata.gezi
       Dependencies:
         Dependency_0: scene1resource-icon.gezi
+    Info_23:
+      Name: scene1resource-test.gezi
+      Dependencies: {}

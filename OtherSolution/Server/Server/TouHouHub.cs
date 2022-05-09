@@ -32,9 +32,9 @@ public class TouHouHub : Hub
         switch (updateType)
         {
             case UpdateType.Name: return MongoDbCommand.UpdateInfo(account, password, (x => x.Name), updateValue.To<string>());
-            case UpdateType.Deck: return MongoDbCommand.UpdateInfo(account, password, (x => x.Decks), updateValue.To<List<CardDeck>>());
+            case UpdateType.Decks: return MongoDbCommand.UpdateInfo(account, password, (x => x.Decks), updateValue.To<List<CardDeck>>());
             case UpdateType.UseDeckNum: return MongoDbCommand.UpdateInfo(account, password, (x => x.UseDeckNum), updateValue.To<int>());
-            case UpdateType.UserState: return MongoDbCommand.UpdateInfo(account, password, (x => x.OnlineUserState), updateValue.To<UserState>());
+            case UpdateType.Stage: return MongoDbCommand.UpdateInfo(account, password, (x => x.Stage), updateValue.To<Dictionary<string,int>>());
             case UpdateType.LastLoginTime: return MongoDbCommand.UpdateInfo(account, password, (x => x.LastLoginTime), updateValue.To<DateTime>());
             default: return false;
         }

@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 831905146
+CRC: 3221441627
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: dfe2431e811933012d2f3920bec6294c
+    Hash: 1ffff8d91a04024365a12fe8eb43ae4d
   TypeTreeHash:
     serializedVersion: 2
     Hash: 328cb8491d97130c1e72af5dc8e06742
@@ -110,3 +110,4 @@ Assets:
 Dependencies:
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-material.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-texture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene1resource-ttf.gezi
