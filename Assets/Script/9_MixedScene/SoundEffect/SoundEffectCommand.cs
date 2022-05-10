@@ -13,13 +13,13 @@ namespace TouhouMachineLearningSummary.Command
             {
                 //音效，场景1
                 //Info.SoundEffectInfo.UISoundEfects[(UISoundEffectType)i] = Resources.Load<AudioClip>("Sound/" + ((UISoundEffectType)i).ToString());
-                Info.SoundEffectInfo.UISoundEfects[(UISoundEffectType)i] = AssetBundleCommand.Load<AudioClip>("UiSoundEfect/" + ((UISoundEffectType)i).ToString());
+                Info.SoundEffectInfo.UISoundEfects[(UISoundEffectType)i] = AssetBundleCommand.Load<AudioClip>("UiSoundEfect" , ((UISoundEffectType)i).ToString());
             }
             for (int i = 0; i < Enum.GetValues(typeof(AgainstSoundEffectType)).Length; i++)
             {
                 //音效，场景2
                 //Info.SoundEffectInfo.AgainstSoundEfects[(AgainstSoundEffectType)i] = Resources.Load<AudioClip>("Sound/" + ((AgainstSoundEffectType)i).ToString());
-                Info.SoundEffectInfo.UISoundEfects[(UISoundEffectType)i] = AssetBundleCommand.Load<AudioClip>("AgainstSoundEfect/" + ((UISoundEffectType)i).ToString());
+                Info.SoundEffectInfo.UISoundEfects[(UISoundEffectType)i] = AssetBundleCommand.Load<AudioClip>("AgainstSoundEfect", ((UISoundEffectType)i).ToString());
 
             }
         }

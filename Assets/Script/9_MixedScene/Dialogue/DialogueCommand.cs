@@ -113,14 +113,14 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     if (currentOperations.Position == "左侧")
                     {
-                        Info.DialogueInfo.instance.left.GetComponent<Image>().sprite = AssetBundleCommand.Load<Texture2D>("Charactar\\" + currentOperations.Chara).ToSprite();
+                        Info.DialogueInfo.instance.left.GetComponent<Image>().sprite = AssetBundleCommand.Load<Texture2D>("Charactar" , currentOperations.Chara).ToSprite();
                         Info.DialogueInfo.instance.left.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                         Info.DialogueInfo.instance.right.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f, 1);
 
                     }
                     else if (currentOperations.Position == "右侧")
                     {
-                        Info.DialogueInfo.instance.right.GetComponent<Image>().sprite = AssetBundleCommand.Load<Texture2D>("Charactar\\" + currentOperations.Chara).ToSprite();
+                        Info.DialogueInfo.instance.right.GetComponent<Image>().sprite = AssetBundleCommand.Load<Texture2D>("Charactar", currentOperations.Chara).ToSprite();
                         Info.DialogueInfo.instance.left.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f, 1);
                         Info.DialogueInfo.instance.right.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                     }

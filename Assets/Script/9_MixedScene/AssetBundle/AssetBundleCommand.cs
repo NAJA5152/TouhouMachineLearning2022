@@ -45,10 +45,10 @@ namespace TouhouMachineLearningSummary.Command
                 return ABLoadRequir.assetBundle;
             }
         }
-        public static T Load<T>(string path) where T : UnityEngine.Object
-        {
-            return default;
-        }
+        //public static T Load<T>(string path) where T : UnityEngine.Object
+        //{
+        //    return default;
+        //}
         /// <summary>
         /// 从带有tag名的AB包中加载素材
         /// </summary>
@@ -65,15 +65,6 @@ namespace TouhouMachineLearningSummary.Command
                 return targetAsset as T;
             }
             return null;
-            //foreach (var ab in AssetBundle.GetAllLoadedAssetBundles())
-            //{
-            //    var a = ab.GetAllAssetNames();
-            //    if (ab.Contains(path))
-            //    {
-            //        return ab.LoadAsset(path, typeof(T)) as T;
-            //    }
-            //}
-            //return null;
         }
     }
 }

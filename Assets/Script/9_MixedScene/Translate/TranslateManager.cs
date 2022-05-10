@@ -19,7 +19,7 @@ namespace TouhouMachineLearningSummary.Manager
         /// <param name="text"></param>
         /// <param name="IsGetIntroduction"></param>
         /// <returns></returns>
-        public static string Translation(this string text,bool IsGetIntroduction=false)
+        public static string Translation(this string text, bool IsGetIntroduction = false)
         {
             if (translateData == null)
             {
@@ -30,7 +30,7 @@ namespace TouhouMachineLearningSummary.Manager
                 var translationDict = translateData[text];
                 string tag = currentLanguage + (IsGetIntroduction ? "_Introduction" : "");
                 //假如当前词语没有对应语言的翻译或者翻译为空则默认使用中文
-                if (!translationDict.ContainsKey(tag) ||(translationDict[tag] ==""))
+                if (!translationDict.ContainsKey(tag) || (translationDict[tag] == ""))
                 {
                     tag = "Ch" + (IsGetIntroduction ? "_Introduction" : "");
                 }
@@ -43,24 +43,19 @@ namespace TouhouMachineLearningSummary.Manager
         {
             if (translateData == null)
             {
-                translateData = AssetBundleCommand.Load<TextAsset>("GameData/Game-Text").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
+                translateData = AssetBundleCommand.Load<TextAsset>("GameData", "Game-Text").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
             }
 
             List<KeyWordModel> keyWordInfos = new List<KeyWordModel>();
             translateData.Values.ForEach(pair =>
             {
-                string keyWord = pair[currentLanguage]==""? pair["Ch"]: pair[currentLanguage];
+                string keyWord = pair[currentLanguage] == "" ? pair["Ch"] : pair[currentLanguage];
                 int index = 0;
                 while ((index = text.IndexOf(keyWord, index)) != -1)
                 {
                     //获取该关键词的说明
-                    //string introduction="";
-                    //if (translateData.ContainsKey(pair["Tag"] + "_Introduction"))
-                    //{
-                    //    introduction = translateData[pair["Tag"] + "_Introduction"][currentLanguage];
-                    //}
-                    string introduction = pair[currentLanguage+ "_Introduction"] == "" ? pair["Ch_Introduction"] : pair[currentLanguage + "_Introduction"];
-                   
+                    string introduction = pair[currentLanguage + "_Introduction"] == "" ? pair["Ch_Introduction"] : pair[currentLanguage + "_Introduction"];
+
                     //加入到关键词列表
                     keyWordInfos.Add(new KeyWordModel()
                     {
@@ -69,12 +64,11 @@ namespace TouhouMachineLearningSummary.Manager
                         startIndex = index,
                         endIndex = index + keyWord.Length,
                         introduction = introduction
-                    }); 
+                    });
                     index = index + keyWord.Length;
                 }
             });
             return keyWordInfos;
         }
-
     }
 }
