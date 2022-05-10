@@ -228,11 +228,8 @@ namespace TouhouMachineLearningSummary.Model
                         var shieldPoint = this[CardField.Shield] - triggerInfo.point;
                         //计算剩余伤害
                         triggerInfo.point = triggerInfo.point - this[CardField.Shield];
-
                         //调整护盾值
                         await GameSystem.FieldSystem.SetField(new TriggerInfoModel(triggerInfo.triggerCard, this).SetPoint(shieldPoint));
-
-
                     }
                     await Command.CardCommand.Hurt(triggerInfo);
                     if (triggerInfo.point > 0)
@@ -283,7 +280,6 @@ namespace TouhouMachineLearningSummary.Model
                     }
                 })
                .AbilityAppend();
-
             AbalityRegister(TriggerTime.When, TriggerType.RoundEnd)
                 .AbilityAdd(async (triggerInfo) =>
                 {
@@ -473,7 +469,6 @@ namespace TouhouMachineLearningSummary.Model
                     {
                         return;
                     }
-
                     Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段设置，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},设置值{triggerInfo.point}");
                     this[triggerInfo.targetFiled] = triggerInfo.point;
                     Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");

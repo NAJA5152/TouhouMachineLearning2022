@@ -121,7 +121,7 @@ namespace TouhouMachineLearningSummary.Model
             sampleInfo.Level = Level;
             sampleInfo.Rank = Rank;
             sampleInfo.UseDeckNum = UseDeckNum;
-            return sampleInfo;
+            return sampleInfo; 
         }
         public async Task<bool> UpdateName(string name)
         {
