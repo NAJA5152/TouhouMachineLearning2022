@@ -18,7 +18,7 @@ namespace TouhouMachineLearningSummary.Command
         public void SelectStage(string tag)
         {
             int rank = Info.AgainstInfo.onlineUserInfo.GetStage(tag);
-
+            //控制页面显示
 
         }
     }

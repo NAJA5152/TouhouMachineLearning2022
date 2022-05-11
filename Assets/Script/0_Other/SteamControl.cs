@@ -6,7 +6,6 @@ namespace Assets.Scripts.Steamworks.NET
 {
     public class SteamControl : MonoBehaviour
     {
-
         // Use this for initialization
         void Start()
         {

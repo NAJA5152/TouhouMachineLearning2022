@@ -11,8 +11,8 @@ public class MapLineManager : MonoBehaviour
     public GameObject controlPoint2;
     public GameObject controlPoint3;
     public GameObject endPoint;
-    public List<Vector3> pots = new List<Vector3>();
     LineRenderer lineRenderer => GetComponent<LineRenderer>();
+
     [Button("更新线条")]
     // Start is called before the first frame update
     void SetPoint()
@@ -30,24 +30,36 @@ public class MapLineManager : MonoBehaviour
 
         lineRenderer.positionCount = targetPoint.Count;
         lineRenderer.SetPositions(targetPoint.ToArray());
+
+        Vector3 GetCurvePoint(List<Vector3> inputPoints, float process)
+        {
+            if (inputPoints.Count > 1)
+            {
+                var inputTempPoints = Enumerable.Range(0, inputPoints.Count - 1)
+                      .Select(i => Vector3.Lerp(inputPoints[i], inputPoints[i + 1], process))
+                      .ToList();
+                return GetCurvePoint(inputTempPoints, process);
+            }
+            else
+            {
+                return inputPoints.First();
+            }
+        }
     }
-    public Vector3 GetCurvePoint(List<Vector3> inputPoints, float process)
+    [Button("重置线条")]
+    void ResetPoint()
     {
-        if (inputPoints.Count > 1)
-        {
-            var inputTempPoints = Enumerable.Range(0, inputPoints.Count - 1)
-                  .Select(i => Vector3.Lerp(inputPoints[i], inputPoints[i + 1], process))
-                  .ToList();
-            return GetCurvePoint(inputTempPoints, process);
-        }
-        else
-        {
-            return inputPoints.First();
-        }
+        controlPoint1.transform.position = Vector3.Lerp(startPoint.transform.position, endPoint.transform.position, 0.25f);
+        controlPoint2.transform.position = Vector3.Lerp(startPoint.transform.position, endPoint.transform.position, 0.5f);
+        controlPoint3.transform.position = Vector3.Lerp(startPoint.transform.position, endPoint.transform.position, 0.75f);
     }
     // Update is called once per frame
-    void Update()
+    private void OnValidate()
     {
         SetPoint();
+    }
+    void Update()
+    {
+
     }
 }
