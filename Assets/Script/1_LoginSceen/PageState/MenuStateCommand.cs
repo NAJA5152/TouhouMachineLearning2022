@@ -16,7 +16,7 @@ namespace TouhouMachineLearningSummary.Command
         public static void ChangeToMainPage(MenuState state)
         {
             //初始化组件状态
-            Info.CardCompnentInfo.isEditDeckMode = false;
+            Info.PageCompnentInfo.isEditDeckMode = false;
 
             if (state == MenuState.Login)
             {

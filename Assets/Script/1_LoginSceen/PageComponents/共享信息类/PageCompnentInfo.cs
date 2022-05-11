@@ -7,9 +7,9 @@ using UnityEngine;
 namespace TouhouMachineLearningSummary.Info
 {
     /// <summary>
-    /// 与卡牌ui组件相关的列表
+    /// 与书页ui组件相关的列表
     /// </summary>
-    public class CardCompnentInfo : MonoBehaviour
+    public class PageCompnentInfo : MonoBehaviour
     {
         //全卡牌解锁的管理员账户
         public static bool IsAdmin = true;
@@ -46,9 +46,10 @@ namespace TouhouMachineLearningSummary.Info
             .ThenByDescending(id => Manager.CardAssemblyManager.GetLastCardInfo(id).point)
             .ThenByDescending(id=>id)
             .ToList();
-
-
-        /// ////////////////////////////////////////////////////////牌库信息/////////////////////////////
+        ///////////////////////////////////////////////////////////关卡信息/////////////////////////////////////
+        public static string CurrentSelectStageTag { get; set; }
+        public static List<(string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId)> currentSelectStageData { get; set; }
+        ///////////////////////////////////////////////////////////牌库信息/////////////////////////////////////
         [Header("牌库组件")]
         public GameObject _cardLibraryContent;
         public GameObject _cardLibraryCardModel;
@@ -59,7 +60,7 @@ namespace TouhouMachineLearningSummary.Info
         public static List<GameObject> libraryCardModels = new List<GameObject>();
         public static bool isEditDeckMode = true;
         public static List<Model.CardModel> LibraryFilterCardList { get; set; }
-        /// ////////////////////////////////////////////////////////卡牌能力详情组件/////////////////////////////
+        ///////////////////////////////////////////////////////////卡牌能力详情组件/////////////////////////////
         [Header("卡牌能力详情组件")]
         public GameObject _targetCardTexture;
         public GameObject _targetCardName;
@@ -72,7 +73,7 @@ namespace TouhouMachineLearningSummary.Info
         public static GameObject targetCardAbility;
         public static bool isCampIntroduction = false;
         public static Camp focusCamp = Camp.Neutral;
-        /// ////////////////////////////////////////////////////////阵营选择信息信息/////////////////////////////
+        ///////////////////////////////////////////////////////////阵营选择信息信息/////////////////////////////
 
         [Header("阵营组件")]
         public static List<GameObject> campCardModels = new List<GameObject>();
@@ -99,7 +100,7 @@ namespace TouhouMachineLearningSummary.Info
         public static List<float> values = new List<float>();
         public Transform content;
         //单例
-        public static CardCompnentInfo instance;
+        public static PageCompnentInfo instance;
         private void Awake()
         {
             instance = this;

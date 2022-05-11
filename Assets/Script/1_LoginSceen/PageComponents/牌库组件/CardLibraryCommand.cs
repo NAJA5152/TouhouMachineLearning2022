@@ -15,42 +15,42 @@ namespace TouhouMachineLearningSummary.Command
         {
             //牌库卡牌列表
             //var showCardList = CardAssemblyManager.GetLastMultiCardInfos;
-            Info.CardCompnentInfo.LibraryFilterCardList = CardAssemblyManager.GetLastMultiCardInfos;
+            Info.PageCompnentInfo.LibraryFilterCardList = CardAssemblyManager.GetLastMultiCardInfos;
             //如果当前是编辑卡组模式，则只显示指定阵营
-            if (Info.CardCompnentInfo.isEditDeckMode)
+            if (Info.PageCompnentInfo.isEditDeckMode)
             {
                 //showCardList = showCardList.Where(card => card.cardCamp == Info.CardCompnentInfo.targetCamp).ToList();
                 //showCardList = showCardList.Where(card => card.cardRank == GameEnum.CardRank.Silver).ToList();
-                Info.CardCompnentInfo.LibraryFilterCardList = Info.CardCompnentInfo.LibraryFilterCardList.Where(card => card.cardCamp == Info.CardCompnentInfo.targetCamp|| card.cardCamp ==  GameEnum.Camp.Neutral).ToList();
+                Info.PageCompnentInfo.LibraryFilterCardList = Info.PageCompnentInfo.LibraryFilterCardList.Where(card => card.cardCamp == Info.PageCompnentInfo.targetCamp|| card.cardCamp ==  GameEnum.Camp.Neutral).ToList();
                 //Info.CardCompnentInfo.LibraryFilterCardList = Info.CardCompnentInfo.LibraryFilterCardList.Where(card => card.cardRank == GameEnum.CardRank.Silver).ToList();
             }
-            int libraryCardNumber = Info.CardCompnentInfo.LibraryFilterCardList.Count();
+            int libraryCardNumber = Info.PageCompnentInfo.LibraryFilterCardList.Count();
             //如果处于卡组编辑状态，则对卡牌列表做个筛选
             //已生成卡牌列表
-            int libraryModelNumber = Info.CardCompnentInfo.libraryCardModels.Count;
-            Info.CardCompnentInfo.libraryCardModels.ForEach(model => model.SetActive(false));
+            int libraryModelNumber = Info.PageCompnentInfo.libraryCardModels.Count;
+            Info.PageCompnentInfo.libraryCardModels.ForEach(model => model.SetActive(false));
             if (libraryCardNumber > libraryModelNumber)
             {
                 for (int i = 0; i < libraryCardNumber - libraryModelNumber; i++)
                 {
-                    var newCardModel = UnityEngine.Object.Instantiate(Info.CardCompnentInfo.cardLibraryCardModel, Info.CardCompnentInfo.cardLibraryContent.transform);
-                    Info.CardCompnentInfo.libraryCardModels.Add(newCardModel);
+                    var newCardModel = UnityEngine.Object.Instantiate(Info.PageCompnentInfo.cardLibraryCardModel, Info.PageCompnentInfo.cardLibraryContent.transform);
+                    Info.PageCompnentInfo.libraryCardModels.Add(newCardModel);
                 }
             }
             for (int i = 0; i < libraryCardNumber; i++)
             {
                 //卡牌信息集合
                 //var info = CardAssemblyManager.lastMultiCardInfos[i];
-                var info = Info.CardCompnentInfo.LibraryFilterCardList[i];
+                var info = Info.PageCompnentInfo.LibraryFilterCardList[i];
                 //卡牌对应场景模型
-                var newCardModel = Info.CardCompnentInfo.libraryCardModels[i];
+                var newCardModel = Info.PageCompnentInfo.libraryCardModels[i];
                 //卡牌id
                 string cardId = info.cardID.ToString();
                 //该id的卡牌持有数量
                 int cardNum = GetHasCardNum(cardId);
 
                 newCardModel.name = cardId;
-                newCardModel.transform.localScale = Info.CardCompnentInfo.cardLibraryCardModel.transform.localScale;
+                newCardModel.transform.localScale = Info.PageCompnentInfo.cardLibraryCardModel.transform.localScale;
                 Sprite cardTex = info.icon.ToSprite();
                 newCardModel.GetComponent<Image>().sprite = cardTex;
                 newCardModel.transform.GetChild(1).GetComponent<Text>().text = info.TranslateName;
@@ -60,6 +60,6 @@ namespace TouhouMachineLearningSummary.Command
                 newCardModel.SetActive(true);
             }
         }
-        public static int GetHasCardNum(string cardId) => Info.CardCompnentInfo.IsAdmin ? 3 : Info.AgainstInfo.onlineUserInfo.CardLibrary.ContainsKey(cardId) ? Info.AgainstInfo.onlineUserInfo.CardLibrary[cardId] : 0;
+        public static int GetHasCardNum(string cardId) => Info.PageCompnentInfo.IsAdmin ? 3 : Info.AgainstInfo.onlineUserInfo.CardLibrary.ContainsKey(cardId) ? Info.AgainstInfo.onlineUserInfo.CardLibrary[cardId] : 0;
     }
 }

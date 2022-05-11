@@ -15,55 +15,55 @@ namespace TouhouMachineLearningSummary.Command
         {
             Log.Show("配置面板");
             //canChangeCard = Command.MenuStateCommand.GetCurrentState() == MenuState.CardListChange;
-            Info.CardCompnentInfo.isEditDeckMode = canChangeCard;
-            Info.CardCompnentInfo.okButton.SetActive(canChangeCard);
-            Info.CardCompnentInfo.cancelButton.SetActive(canChangeCard);
-            Info.CardCompnentInfo.changeButton.SetActive(!canChangeCard);
+            Info.PageCompnentInfo.isEditDeckMode = canChangeCard;
+            Info.PageCompnentInfo.okButton.SetActive(canChangeCard);
+            Info.PageCompnentInfo.cancelButton.SetActive(canChangeCard);
+            Info.PageCompnentInfo.changeButton.SetActive(!canChangeCard);
             //根据当前玩家牌组生成临时牌组
             //Info.CardCompnentInfo.tempDeck = newTempDeck ?? Info.AgainstInfo.UserInfo.UseDeck.Clone();
             //Debug.Log(Info.CardCompnentInfo.tempDeck.ToJson());
             if (Command.MenuStateCommand.GetCurrentState() == MenuState.CardListChange)
             {
-                Info.CardCompnentInfo.cardDeckNameModel.GetComponent<Text>().text = Info.CardCompnentInfo.tempDeck.DeckName;
+                Info.PageCompnentInfo.cardDeckNameModel.GetComponent<Text>().text = Info.PageCompnentInfo.tempDeck.DeckName;
             }
             else
             {
-                Info.CardCompnentInfo.cardDeckNameModel.GetComponent<Text>().text = Info.AgainstInfo.onlineUserInfo.UseDeck.DeckName;
+                Info.PageCompnentInfo.cardDeckNameModel.GetComponent<Text>().text = Info.AgainstInfo.onlineUserInfo.UseDeck.DeckName;
             }
             Log.Show("配置卡组名");
             if (isInitOptions)
             {
                 //初始化领袖栏?可以舍去？
-                Info.CardCompnentInfo.deckCardModels.ForEach(model =>
+                Info.PageCompnentInfo.deckCardModels.ForEach(model =>
                 {
                     if (model != null)
                     {
                         Object.Destroy(model);
                     }
                 });
-                Info.CardCompnentInfo.deckCardModels.Clear();
+                Info.PageCompnentInfo.deckCardModels.Clear();
             }
-            var cardTexture = Manager.CardAssemblyManager.GetLastCardInfo(Info.CardCompnentInfo.tempDeck.LeaderId).icon;
-            Info.CardCompnentInfo.cardLeaderImageModel.GetComponent<Image>().material.mainTexture = cardTexture;
+            var cardTexture = Manager.CardAssemblyManager.GetLastCardInfo(Info.PageCompnentInfo.tempDeck.LeaderId).icon;
+            Info.PageCompnentInfo.cardLeaderImageModel.GetComponent<Image>().material.mainTexture = cardTexture;
             Log.Show("配置领袖");
-            int deskCardNumber = Info.CardCompnentInfo.distinctCardIds.Count();
-            int deskModelNumber = Info.CardCompnentInfo.deckCardModels.Count;
-            Info.CardCompnentInfo.deckCardModels.ForEach(model => model.SetActive(false));
+            int deskCardNumber = Info.PageCompnentInfo.distinctCardIds.Count();
+            int deskModelNumber = Info.PageCompnentInfo.deckCardModels.Count;
+            Info.PageCompnentInfo.deckCardModels.ForEach(model => model.SetActive(false));
             if (deskCardNumber > deskModelNumber)
             {
                 for (int i = 0; i < deskCardNumber - deskModelNumber; i++)
                 {
-                    var newCardModel = Object.Instantiate(Info.CardCompnentInfo.cardDeckCardModel, Info.CardCompnentInfo.cardDeckContent.transform);
-                    Info.CardCompnentInfo.deckCardModels.Add(newCardModel);
+                    var newCardModel = Object.Instantiate(Info.PageCompnentInfo.cardDeckCardModel, Info.PageCompnentInfo.cardDeckContent.transform);
+                    Info.PageCompnentInfo.deckCardModels.Add(newCardModel);
                 }
             }
             Log.Show("新增牌组栏");
 
             //初始化卡牌栏
-            for (int i = 0; i < Info.CardCompnentInfo.distinctCardIds.Count(); i++)
+            for (int i = 0; i < Info.PageCompnentInfo.distinctCardIds.Count(); i++)
             {
-                int cardID = Info.CardCompnentInfo.distinctCardIds[i];
-                GameObject currentCardModel = Info.CardCompnentInfo.deckCardModels[i];
+                int cardID = Info.PageCompnentInfo.distinctCardIds[i];
+                GameObject currentCardModel = Info.PageCompnentInfo.deckCardModels[i];
 
                 var info = CardAssemblyManager.lastMultiCardInfos.FirstOrDefault(cardInfo => cardInfo.cardID == cardID);
                 if (info != null)
@@ -86,7 +86,7 @@ namespace TouhouMachineLearningSummary.Command
                     int point = Manager.CardAssemblyManager.GetLastCardInfo(cardID).point;
                     currentCardModel.transform.GetChild(2).GetChild(0).GetComponent<Text>().text = point == 0 ? " " : point + "";
                     //数量
-                    currentCardModel.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = "x" + Info.CardCompnentInfo.tempDeck.CardIds.Count(id => id == cardID);
+                    currentCardModel.transform.GetChild(3).GetChild(0).GetComponent<Text>().text = "x" + Info.PageCompnentInfo.tempDeck.CardIds.Count(id => id == cardID);
 
                     currentCardModel.SetActive(true);
                 }
@@ -101,7 +101,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async void SaveDeck()
         {
             Debug.Log("保存卡组");
-            Info.AgainstInfo.onlineUserInfo.UseDeck = Info.CardCompnentInfo.tempDeck;
+            Info.AgainstInfo.onlineUserInfo.UseDeck = Info.PageCompnentInfo.tempDeck;
             await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
             Command.CardListCommand.Init();
             Command.MenuStateCommand.RebackStare();
@@ -109,7 +109,7 @@ namespace TouhouMachineLearningSummary.Command
         public static void CancelDeck()
         {
             Debug.Log("取消卡组修改");
-            Info.CardCompnentInfo.tempDeck = Info.AgainstInfo.onlineUserInfo.UseDeck;
+            Info.PageCompnentInfo.tempDeck = Info.AgainstInfo.onlineUserInfo.UseDeck;
             Command.CardListCommand.Init();
             Command.MenuStateCommand.RebackStare();
         }
@@ -120,7 +120,7 @@ namespace TouhouMachineLearningSummary.Command
                 _ = NoticeCommand.ShowAsync("重命名卡牌", NotifyBoardMode.Input, inputAction: async (text) =>
                 {
                     Debug.Log("重命名卡组为" + text);
-                    Info.CardCompnentInfo.tempDeck.DeckName = text;
+                    Info.PageCompnentInfo.tempDeck.DeckName = text;
                     Command.CardListCommand.Init();
                     await Task.Delay(100);
                 }, inputField: Info.AgainstInfo.onlineUserInfo.UseDeck.DeckName);
@@ -129,8 +129,8 @@ namespace TouhouMachineLearningSummary.Command
 
         public static void FocusDeckCardOnMenu(GameObject cardModel)
         {
-            int focusCardRank = Info.CardCompnentInfo.deckCardModels.IndexOf(cardModel);
-            int cardID = Info.CardCompnentInfo.distinctCardIds[focusCardRank];
+            int focusCardRank = Info.PageCompnentInfo.deckCardModels.IndexOf(cardModel);
+            int cardID = Info.PageCompnentInfo.distinctCardIds[focusCardRank];
             CardAbilityPopupManager.focusCardID = cardID;
         }
         public static void LostFocusCardOnMenu()
@@ -139,15 +139,15 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static void AddCardFromLibrary(GameObject clickCard)
         {
-            if (Info.CardCompnentInfo.isEditDeckMode)
+            if (Info.PageCompnentInfo.isEditDeckMode)
             {
                 Debug.Log("添加卡牌" + clickCard.name);
                 int clickCardId = int.Parse(clickCard.name);
-                int usedCardIdsNum = Info.CardCompnentInfo.tempDeck.CardIds.Count(id => id == clickCardId);
+                int usedCardIdsNum = Info.PageCompnentInfo.tempDeck.CardIds.Count(id => id == clickCardId);
                 var cardInfo = Manager.CardAssemblyManager.GetLastCardInfo(clickCardId);
                 if (cardInfo.cardRank == CardRank.Leader)
                 {
-                    Info.CardCompnentInfo.tempDeck.LeaderId = cardInfo.cardID;
+                    Info.PageCompnentInfo.tempDeck.LeaderId = cardInfo.cardID;
                     _ = Command.SoundEffectCommand.PlayAsync(UISoundEffectType.ChangeSuccess);
                 }
                 else
@@ -155,8 +155,8 @@ namespace TouhouMachineLearningSummary.Command
                     int allowAddNum = cardInfo.cardRank == GameEnum.CardRank.Copper ? 3 : 1;
                     if (usedCardIdsNum < Mathf.Min(allowAddNum, Command.CardLibraryCommand.GetHasCardNum(clickCard.name)))
                     {
-                        Info.CardCompnentInfo.tempDeck.CardIds.Add(clickCardId);
-                        Command.CardListCommand.Init(newTempDeck: Info.CardCompnentInfo.tempDeck, canChangeCard: true);
+                        Info.PageCompnentInfo.tempDeck.CardIds.Add(clickCardId);
+                        Command.CardListCommand.Init(newTempDeck: Info.PageCompnentInfo.tempDeck, canChangeCard: true);
                         _ = Command.SoundEffectCommand.PlayAsync(UISoundEffectType.ChangeSuccess);
                     }
                     else
@@ -175,13 +175,13 @@ namespace TouhouMachineLearningSummary.Command
         {
             Debug.Log("准备移除卡牌");
 
-            if (Info.CardCompnentInfo.isEditDeckMode)
+            if (Info.PageCompnentInfo.isEditDeckMode)
             {
                 Debug.Log("移除卡牌");
                 _ = Command.SoundEffectCommand.PlayAsync(UISoundEffectType.ChangeSuccess);
-                int removeCardId = Info.CardCompnentInfo.distinctCardIds[Info.CardCompnentInfo.deckCardModels.IndexOf(clickCard)];
-                Info.CardCompnentInfo.tempDeck.CardIds.Remove(removeCardId);
-                Command.CardListCommand.Init(newTempDeck: Info.CardCompnentInfo.tempDeck, canChangeCard: true);
+                int removeCardId = Info.PageCompnentInfo.distinctCardIds[Info.PageCompnentInfo.deckCardModels.IndexOf(clickCard)];
+                Info.PageCompnentInfo.tempDeck.CardIds.Remove(removeCardId);
+                Command.CardListCommand.Init(newTempDeck: Info.PageCompnentInfo.tempDeck, canChangeCard: true);
             }
             else
             {

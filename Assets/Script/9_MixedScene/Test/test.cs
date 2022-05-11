@@ -100,7 +100,7 @@ namespace TouhouMachineLearningSummary.Test
         [Button("翻译标签")]
         public void ShowText(GameEnum.CardTag tag)
         {
-            text = tag.ToString().Translation();
+            text = tag.ToString().TranslationGameText();
         }
         [Button("查找集合")]
 

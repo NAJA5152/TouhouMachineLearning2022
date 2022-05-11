@@ -99,7 +99,7 @@ namespace TouhouMachineLearningSummary.Command
             //Debug.LogError("初始双方信息");
 
             //await Task.Delay(500);
-            await UiCommand.NoticeBoardShow("BattleStart".Translation());
+            await UiCommand.NoticeBoardShow("BattleStart".TranslationGameText());
             //初始化我方领袖卡
             Card MyLeaderCard = CardCommand.GenerateCard(Info.AgainstInfo.userDeck.LeaderId);
             AgainstInfo.cardSet[Orientation.Down][GameRegion.Leader].Add(MyLeaderCard);
@@ -148,7 +148,7 @@ namespace TouhouMachineLearningSummary.Command
                 case (1):
                     {
                         Info.AgainstInfo.ExChangeableCardNum = 3;
-                        UiCommand.SetCardBoardTitle("Remaining".Translation() + Info.AgainstInfo.ExChangeableCardNum);
+                        UiCommand.SetCardBoardTitle("Remaining".TranslationGameText() + Info.AgainstInfo.ExChangeableCardNum);
                         // Info.GameUI.UiInfo.CardBoardTitle = "剩余抽卡次数为".Translation() + Info.AgainstInfo.ExChangeableCardNum;
                         for (int i = 0; i < 10; i++)
                         {
@@ -208,7 +208,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task TurnStart()
         {
             Manager.AgainstSummaryManager.UploadTurn();
-            await UiCommand.NoticeBoardShow((AgainstInfo.IsMyTurn ? "MyTurnStart" : "OpTurnStart").Translation());
+            await UiCommand.NoticeBoardShow((AgainstInfo.IsMyTurn ? "MyTurnStart" : "OpTurnStart").TranslationGameText());
             await GameSystem.ProcessSystem.WhenTurnStart();
             RowCommand.SetPlayCardMoveFree(AgainstInfo.IsMyTurn);
             await CustomThread.Delay(1000);
@@ -217,7 +217,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task TurnEnd()
         {
             RowCommand.SetPlayCardMoveFree(false);
-            await UiCommand.NoticeBoardShow((AgainstInfo.IsMyTurn ? "MyTurnEnd" : "OpTurnEnd").Translation());
+            await UiCommand.NoticeBoardShow((AgainstInfo.IsMyTurn ? "MyTurnEnd" : "OpTurnEnd").TranslationGameText());
             await GameSystem.ProcessSystem.WhenTurnEnd();
             await CustomThread.Delay(1000);
             AgainstInfo.IsMyTurn = !AgainstInfo.IsMyTurn;

@@ -32,7 +32,7 @@ namespace TouhouMachineLearningSummary.Manager
             //对战场景下，获取卡牌实例信息，并进行显示
             if (isOnMenu)
             {
-                if (focusCardID > 0 || Info.CardCompnentInfo.focusCamp != Camp.Neutral)
+                if (focusCardID > 0 || Info.PageCompnentInfo.focusCamp != Camp.Neutral)
                 {
                     Cd = Mathf.Min(0.25f, Cd + Time.deltaTime);
                 }
@@ -102,7 +102,7 @@ namespace TouhouMachineLearningSummary.Manager
                 int lineCount = 0;
                 card.cardStates.ForEach(state =>
                 {
-                    string newIntroduction = (state.ToString() + "_Introduction").Translation();
+                    string newIntroduction = (state.ToString() + "_Introduction").TranslationGameText();
                     //算出单个状态介绍的长度+换行的长度
                     newIntroduction.Split('\n').ToList().ForEach(singleRowText =>
                     {
@@ -113,7 +113,7 @@ namespace TouhouMachineLearningSummary.Manager
                 //Debug.Log("状态栏行数"+lineCount);
                 card.cardFields.ToList().ForEach(field =>
                 {
-                    string newIntroduction = (field.Key.ToString()).Translation( IsGetIntroduction:true).Replace("$Point$", field.Value.ToString());
+                    string newIntroduction = (field.Key.ToString()).TranslationGameText( IsGetIntroduction:true).Replace("$Point$", field.Value.ToString());
                     //算出单个字段介绍的长度+换行的长度
                     newIntroduction.Split('\n').ToList().ForEach(singleRowText =>
                     {

@@ -9,26 +9,26 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (cardID==1)
             {
-                Info.CardCompnentInfo.targetCardName.GetComponent<Text>().text = "";
-                Info.CardCompnentInfo.targetCardTag.GetComponent<Text>().text = "";
-                Info.CardCompnentInfo.targetCardAbility.GetComponent<Text>().text = "";
+                Info.PageCompnentInfo.targetCardName.GetComponent<Text>().text = "";
+                Info.PageCompnentInfo.targetCardTag.GetComponent<Text>().text = "";
+                Info.PageCompnentInfo.targetCardAbility.GetComponent<Text>().text = "";
             }
             else
             {
                 var cardInfo = Manager.CardAssemblyManager.GetLastCardInfo(cardID);
-                Info.CardCompnentInfo.targetCardTexture.GetComponent<Image>().sprite =cardInfo.GetCardSprite();
-                Info.CardCompnentInfo.targetCardName.GetComponent<Text>().text = cardInfo.TranslateName;
-                Info.CardCompnentInfo.targetCardTag.GetComponent<Text>().text = cardInfo.TranslateTags;
-                Info.CardCompnentInfo.targetCardAbility.GetComponent<Text>().text = cardInfo.TranslateAbility;
+                Info.PageCompnentInfo.targetCardTexture.GetComponent<Image>().sprite =cardInfo.GetCardSprite();
+                Info.PageCompnentInfo.targetCardName.GetComponent<Text>().text = cardInfo.TranslateName;
+                Info.PageCompnentInfo.targetCardTag.GetComponent<Text>().text = cardInfo.TranslateTags;
+                Info.PageCompnentInfo.targetCardAbility.GetComponent<Text>().text = cardInfo.TranslateAbility;
             }
         }
         internal static void ChangeFocusCamp()
         {
-            var campInfo = Info.CampInfo.GetCampInfo(Info.CardCompnentInfo.focusCamp);
-            Info.CardCompnentInfo.targetCardTexture.GetComponent<Image>().sprite = Sprite.Create(campInfo.campTex, new Rect(0, 0, campInfo.campTex.width, campInfo.campTex.height), Vector2.zero);
-            Info.CardCompnentInfo.targetCardName.GetComponent<Text>().text = campInfo.campName;
-            Info.CardCompnentInfo.targetCardTag.GetComponent<Text>().text ="强化 反制";
-            Info.CardCompnentInfo.targetCardAbility.GetComponent<Text>().text = campInfo.campIntroduction;
+            var campInfo = Info.CampInfo.GetCampInfo(Info.PageCompnentInfo.focusCamp);
+            Info.PageCompnentInfo.targetCardTexture.GetComponent<Image>().sprite = Sprite.Create(campInfo.campTex, new Rect(0, 0, campInfo.campTex.width, campInfo.campTex.height), Vector2.zero);
+            Info.PageCompnentInfo.targetCardName.GetComponent<Text>().text = campInfo.campName;
+            Info.PageCompnentInfo.targetCardTag.GetComponent<Text>().text ="强化 反制";
+            Info.PageCompnentInfo.targetCardAbility.GetComponent<Text>().text = campInfo.campIntroduction;
         }
     }
 }

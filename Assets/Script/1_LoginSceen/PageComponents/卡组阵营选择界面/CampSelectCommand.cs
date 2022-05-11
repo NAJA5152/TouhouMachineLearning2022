@@ -15,8 +15,8 @@ namespace TouhouMachineLearningSummary.Command
             //根据实际阵营数量来生成模型
             for (int i = 0; i < Info.CampInfo.campInfos.Count; i++)
             {
-                var newCampModel = UnityEngine.Object.Instantiate(Info.CardCompnentInfo.instance.CampModel, Info.CardCompnentInfo.instance.campContent.transform);
-                Info.CardCompnentInfo.campCardModels.Add(newCampModel);
+                var newCampModel = UnityEngine.Object.Instantiate(Info.PageCompnentInfo.instance.CampModel, Info.PageCompnentInfo.instance.campContent.transform);
+                Info.PageCompnentInfo.campCardModels.Add(newCampModel);
             }
             //设置每个卡牌的属性
 
@@ -25,9 +25,9 @@ namespace TouhouMachineLearningSummary.Command
                 //卡牌信息集合
                 var info = Info.CampInfo.campInfos[i];
                 //卡牌对应场景模型
-                var newCardModel = Info.CardCompnentInfo.campCardModels[i];
+                var newCardModel = Info.PageCompnentInfo.campCardModels[i];
                 newCardModel.name = info.campName;
-                newCardModel.transform.localScale = Info.CardCompnentInfo.instance.CampModel.transform.localScale;
+                newCardModel.transform.localScale = Info.PageCompnentInfo.instance.CampModel.transform.localScale;
                 //Sprite cardTex = Sprite.Create(info.icon, new Rect(0, 0, info.icon.width, info.icon.height), Vector2.zero);
                 Sprite cardTex = Sprite.Create(info.campTex, new Rect(0, 0, info.campTex.width, info.campTex.height), Vector2.zero);
                 newCardModel.transform.GetChild(0).GetComponent<Image>().sprite = cardTex;
@@ -39,21 +39,21 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static void SelectCamp(GameObject campModel)
         {
-            int selectRank = Info.CardCompnentInfo.campCardModels.IndexOf(campModel);
-            Info.CardCompnentInfo.targetCamp = Info.CampInfo.campInfos[selectRank].camp;
+            int selectRank = Info.PageCompnentInfo.campCardModels.IndexOf(campModel);
+            Info.PageCompnentInfo.targetCamp = Info.CampInfo.campInfos[selectRank].camp;
         }
         public static void FocusCamp(GameObject campModel)
         {
-            Info.CardCompnentInfo.isCampIntroduction = true;
-            int selectRank = Info.CardCompnentInfo.campCardModels.IndexOf(campModel);
-            Info.CardCompnentInfo.focusCamp = Info.CampInfo.campInfos[selectRank].camp;
-            Debug.Log("注释焦点阵营" + Info.CardCompnentInfo.focusCamp);
+            Info.PageCompnentInfo.isCampIntroduction = true;
+            int selectRank = Info.PageCompnentInfo.campCardModels.IndexOf(campModel);
+            Info.PageCompnentInfo.focusCamp = Info.CampInfo.campInfos[selectRank].camp;
+            Debug.Log("注释焦点阵营" + Info.PageCompnentInfo.focusCamp);
             //int cardID = Info.CardCompnentInfo.multiModeCards[Info.CardCompnentInfo.deckCardModels.IndexOf(cardModel)].cardId;
             //Control.GameUI.IntroductionControl.focusCardID = cardID;
         }
         public static void LostFocusCamp()
         {
-            Info.CardCompnentInfo.focusCamp = Camp.Neutral;
+            Info.PageCompnentInfo.focusCamp = Camp.Neutral;
             //Control.GameUI.IntroductionControl.focusCardID = 0;
         }
     }

@@ -32,15 +32,15 @@ namespace TouhouMachineLearningSummary.Manager
         public void LoadCardsIdsFromCardList(GameObject cardModel)
         {
             CurrentLoadType = LoadType.FromCardList;
-            currentRank = Info.CardCompnentInfo.deckCardModels.IndexOf(cardModel);
-            ChangeIntroduction(Info.CardCompnentInfo.distinctCardIds[currentRank]);
+            currentRank = Info.PageCompnentInfo.deckCardModels.IndexOf(cardModel);
+            ChangeIntroduction(Info.PageCompnentInfo.distinctCardIds[currentRank]);
             Show();
         }
         public void LoadCardsIdsFromCardLibrary(GameObject cardModel)
         {
             CurrentLoadType = LoadType.FromLibrary;
-            currentRank = Info.CardCompnentInfo.libraryCardModels.IndexOf(cardModel);
-            ChangeIntroduction(Info.CardCompnentInfo.LibraryFilterCardList[currentRank].cardID);
+            currentRank = Info.PageCompnentInfo.libraryCardModels.IndexOf(cardModel);
+            ChangeIntroduction(Info.PageCompnentInfo.LibraryFilterCardList[currentRank].cardID);
             Show();
         }
         public void LoadCardFromGameCard(GameObject cardModel)
@@ -57,11 +57,11 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 case LoadType.FromLibrary:
                     currentRank = Mathf.Max(0, currentRank - 1);
-                    ChangeIntroduction(Info.CardCompnentInfo.LibraryFilterCardList[currentRank].cardID);
+                    ChangeIntroduction(Info.PageCompnentInfo.LibraryFilterCardList[currentRank].cardID);
                     break;
                 case LoadType.FromCardList:
                     currentRank = Mathf.Max(0, currentRank - 1);
-                    ChangeIntroduction(Info.CardCompnentInfo.distinctCardIds[currentRank]);
+                    ChangeIntroduction(Info.PageCompnentInfo.distinctCardIds[currentRank]);
                     break;
                 case LoadType.FromCard:
                     currentRank = Mathf.Max(0, currentRank - 1);
@@ -76,12 +76,12 @@ namespace TouhouMachineLearningSummary.Manager
             switch (CurrentLoadType)
             {
                 case LoadType.FromLibrary:
-                    currentRank = Mathf.Min(Info.CardCompnentInfo.LibraryFilterCardList.Count - 1, currentRank + 1);
-                    ChangeIntroduction(Info.CardCompnentInfo.LibraryFilterCardList[currentRank].cardID);
+                    currentRank = Mathf.Min(Info.PageCompnentInfo.LibraryFilterCardList.Count - 1, currentRank + 1);
+                    ChangeIntroduction(Info.PageCompnentInfo.LibraryFilterCardList[currentRank].cardID);
                     break;
                 case LoadType.FromCardList:
-                    currentRank = Mathf.Min(Info.CardCompnentInfo.distinctCardIds.Count - 1, currentRank + 1);
-                    ChangeIntroduction(Info.CardCompnentInfo.distinctCardIds[currentRank]);
+                    currentRank = Mathf.Min(Info.PageCompnentInfo.distinctCardIds.Count - 1, currentRank + 1);
+                    ChangeIntroduction(Info.PageCompnentInfo.distinctCardIds[currentRank]);
                     break;
                 case LoadType.FromCard:
                     currentRank = Mathf.Min(CurrentGameCard.BelongCardList.Count - 1, currentRank + 1);

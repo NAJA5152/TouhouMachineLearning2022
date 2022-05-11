@@ -16,13 +16,13 @@ namespace TouhouMachineLearningSummary.Command
         public static void Init()
         {
             var s = Info.AgainstInfo.onlineUserInfo;
-            Info.CardCompnentInfo.seleceDeckRank = Info.AgainstInfo.onlineUserInfo.UseDeckNum;
-            Info.CardCompnentInfo.tempDeck = Info.AgainstInfo.onlineUserInfo.UseDeck.Clone();
-            Info.CardCompnentInfo.instance.deckModel.SetActive(false);
+            Info.PageCompnentInfo.seleceDeckRank = Info.AgainstInfo.onlineUserInfo.UseDeckNum;
+            Info.PageCompnentInfo.tempDeck = Info.AgainstInfo.onlineUserInfo.UseDeck.Clone();
+            Info.PageCompnentInfo.instance.deckModel.SetActive(false);
 
             var decks = Info.AgainstInfo.onlineUserInfo.Decks;
-            var deckModel = Info.CardCompnentInfo.instance.deckModel;
-            var deckModels = Info.CardCompnentInfo.instance.deckModels;
+            var deckModel = Info.PageCompnentInfo.instance.deckModel;
+            var deckModels = Info.PageCompnentInfo.instance.deckModels;
             deckModels.ForEach(model => model.SetActive(false));
 
             Debug.LogWarning(deckModels.Count + "-" + decks.Count);
@@ -43,58 +43,58 @@ namespace TouhouMachineLearningSummary.Command
                 Sprite cardTex = cardInfo.icon.ToSprite();
                 deckModels[i].transform.GetComponent<Image>().sprite = cardTex;
             }
-            Info.CardCompnentInfo.values.Clear();
+            Info.PageCompnentInfo.values.Clear();
             for (int i = 0; i < decks.Count; i++)
             {
-                Info.CardCompnentInfo.values.Add(Info.CardCompnentInfo.bias + i * Info.CardCompnentInfo.fre);
+                Info.PageCompnentInfo.values.Add(Info.PageCompnentInfo.bias + i * Info.PageCompnentInfo.fre);
             }
         }
         public static async void OnDeckClick(GameObject deck)
         {
-            int selectRank = Info.CardCompnentInfo.instance.deckModels.IndexOf(deck);
-            if (Info.CardCompnentInfo.seleceDeckRank != selectRank)
+            int selectRank = Info.PageCompnentInfo.instance.deckModels.IndexOf(deck);
+            if (Info.PageCompnentInfo.seleceDeckRank != selectRank)
             {
-                Info.CardCompnentInfo.seleceDeckRank = selectRank;
-                Info.CardCompnentInfo.isCardClick = true;
-                Info.AgainstInfo.onlineUserInfo.UseDeckNum = Info.CardCompnentInfo.seleceDeckRank;
+                Info.PageCompnentInfo.seleceDeckRank = selectRank;
+                Info.PageCompnentInfo.isCardClick = true;
+                Info.AgainstInfo.onlineUserInfo.UseDeckNum = Info.PageCompnentInfo.seleceDeckRank;
                 await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
                 Command.DeckBoardCommand.Init();
                 Command.CardListCommand.Init();
-                Debug.LogWarning("点击修改为" + Info.CardCompnentInfo.seleceDeckRank);
+                Debug.LogWarning("点击修改为" + Info.PageCompnentInfo.seleceDeckRank);
             }
         }
         public static void UpdateDeckPosition()
         {
-            if (Info.CardCompnentInfo.instance.content.gameObject.activeInHierarchy)
+            if (Info.PageCompnentInfo.instance.content.gameObject.activeInHierarchy)
             {
-                Info.CardCompnentInfo.show = Info.CardCompnentInfo.instance.content.GetComponent<RectTransform>().localPosition.x;
-                for (int i = 0; i < Info.CardCompnentInfo.values.Count; i++)
+                Info.PageCompnentInfo.show = Info.PageCompnentInfo.instance.content.GetComponent<RectTransform>().localPosition.x;
+                for (int i = 0; i < Info.PageCompnentInfo.values.Count; i++)
                 {
-                    Info.CardCompnentInfo.values[i] = Info.CardCompnentInfo.bias + i * Info.CardCompnentInfo.fre;
+                    Info.PageCompnentInfo.values[i] = Info.PageCompnentInfo.bias + i * Info.PageCompnentInfo.fre;
                 }
                 if (Input.GetMouseButtonDown(0))
                 {
-                    Info.CardCompnentInfo.isDragMode = true;
+                    Info.PageCompnentInfo.isDragMode = true;
                 }
                 if (Input.GetMouseButtonUp(0))
                 {
-                    if (!Info.CardCompnentInfo.isCardClick)
+                    if (!Info.PageCompnentInfo.isCardClick)
                     {
-                        float selectValue = Info.CardCompnentInfo.values.OrderBy(value => Mathf.Abs(value - Info.CardCompnentInfo.instance.content.GetComponent<RectTransform>().localPosition.x)).First();
+                        float selectValue = Info.PageCompnentInfo.values.OrderBy(value => Mathf.Abs(value - Info.PageCompnentInfo.instance.content.GetComponent<RectTransform>().localPosition.x)).First();
 
-                        GameObject deck = Info.CardCompnentInfo.instance.deckModels[Info.CardCompnentInfo.values.IndexOf(selectValue)];
+                        GameObject deck = Info.PageCompnentInfo.instance.deckModels[Info.PageCompnentInfo.values.IndexOf(selectValue)];
                         OnDeckClick(deck);
                     }
                     else
                     {
-                        Info.CardCompnentInfo.isCardClick = false;
+                        Info.PageCompnentInfo.isCardClick = false;
                     }
-                    Info.CardCompnentInfo.isDragMode = false;
+                    Info.PageCompnentInfo.isDragMode = false;
                 }
-                if (!Info.CardCompnentInfo.isDragMode)
+                if (!Info.PageCompnentInfo.isDragMode)
                 {
-                    Vector3 end = new Vector3(Info.CardCompnentInfo.values[Info.CardCompnentInfo.seleceDeckRank], 120, 0);
-                    Info.CardCompnentInfo.instance.content.GetComponent<RectTransform>().localPosition = Vector3.Lerp(Info.CardCompnentInfo.instance.content.GetComponent<RectTransform>().localPosition, end, Time.deltaTime * 3);
+                    Vector3 end = new Vector3(Info.PageCompnentInfo.values[Info.PageCompnentInfo.seleceDeckRank], 120, 0);
+                    Info.PageCompnentInfo.instance.content.GetComponent<RectTransform>().localPosition = Vector3.Lerp(Info.PageCompnentInfo.instance.content.GetComponent<RectTransform>().localPosition, end, Time.deltaTime * 3);
                 }
             }
         }
@@ -103,7 +103,7 @@ namespace TouhouMachineLearningSummary.Command
             Info.AgainstInfo.onlineUserInfo.Decks.Add(new Model.CardDeck("新卡组", 2000001, new List<int> { 2001001, 2001002, 2001003, 2001004 }));
             Info.AgainstInfo.onlineUserInfo.UseDeckNum = Info.AgainstInfo.onlineUserInfo.Decks.Count - 1;
             //将牌库设为可编辑模式
-            Info.CardCompnentInfo.isEditDeckMode = true;
+            Info.PageCompnentInfo.isEditDeckMode = true;
             Debug.Log("切换到deck" + Info.AgainstInfo.onlineUserInfo.UseDeckNum);
             await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
             Command.DeckBoardCommand.Init();
