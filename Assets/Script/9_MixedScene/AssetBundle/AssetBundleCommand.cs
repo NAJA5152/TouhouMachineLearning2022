@@ -45,10 +45,6 @@ namespace TouhouMachineLearningSummary.Command
                 return ABLoadRequir.assetBundle;
             }
         }
-        //public static T Load<T>(string path) where T : UnityEngine.Object
-        //{
-        //    return default;
-        //}
         /// <summary>
         /// 从带有tag名的AB包中加载素材
         /// </summary>

@@ -36,7 +36,7 @@ namespace TouhouMachineLearningSummary.CardInspector
             tree.DefaultMenuStyle.Height = 60;
             tree.DefaultMenuStyle.IconSize = 48.00f;
             tree.Config.DrawSearchToolbar = true;
-            CardInspectorCommand.Init();
+            CardInspectorCommand.InitAsync();
 
             tree.Add("单人模式牌库", cardLibraryInfo);
             foreach (var levelLibrary in cardLibraryInfo.levelLibries.Where(library => library.isSingleMode))

@@ -44,21 +44,32 @@ namespace TouhouMachineLearningSummary.Model
         [ShowInInspector, VerticalGroup("Split/Meta"), LabelText("效果")]
         public string TranslateAbility => Ability["Ability-" + (Ability.ContainsKey("Ability-" + TranslateManager.currentLanguage) ? TranslateManager.currentLanguage : "Ch")];
 
+        [DisableInEditorMode]
         [VerticalGroup("Split/Meta")]
         [LabelText("点数")]
-        public int point;
+        public  int point;
+
+        [DisableInEditorMode]
         [VerticalGroup("Split/Meta")]
         [LabelText("卡片类型"), EnumToggleButtons]
         public CardType cardType;
+        
+        [DisableInEditorMode]
         [VerticalGroup("Split/Meta")]
         [LabelText("卡片等级"), EnumToggleButtons]
         public CardRank cardRank;
+
+        [DisableInEditorMode]
         [VerticalGroup("Split/Meta")]
         [LabelText("所属势力"), EnumToggleButtons]
         public Camp cardCamp;
+
+        [DisableInEditorMode]
         [VerticalGroup("Split/Meta")]
         [LabelText("部署区域"), EnumToggleButtons]
         public BattleRegion cardDeployRegion = BattleRegion.All;
+
+        [DisableInEditorMode]
         [VerticalGroup("Split/Meta")]
         [LabelText("部署所属"), EnumToggleButtons]
         public Territory cardDeployTerritory = Territory.My;
@@ -72,10 +83,11 @@ namespace TouhouMachineLearningSummary.Model
         /// <param name="isSingle"></param>
         public CardModel Init(bool isSingle)
         {
+
             if (isSingle)
             {
                 cardID = int.Parse($"1{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3, '0')}");
-                icon = AssetBundleCommand.Load<Texture2D>("CardTex",cardID.ToString()) ?? AssetBundleCommand.Load<Texture2D>("CardTex","default");
+                icon = AssetBundleCommand.Load<Texture2D>("CardTex", cardID.ToString()) ?? AssetBundleCommand.Load<Texture2D>("CardTex", "default");
             }
             else
             {

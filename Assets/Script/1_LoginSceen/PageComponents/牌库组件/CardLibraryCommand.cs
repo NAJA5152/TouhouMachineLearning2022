@@ -15,6 +15,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             //牌库卡牌列表
             //var showCardList = CardAssemblyManager.GetLastMultiCardInfos;
+            
             Info.PageCompnentInfo.LibraryFilterCardList = CardAssemblyManager.GetLastMultiCardInfos;
             //如果当前是编辑卡组模式，则只显示指定阵营
             if (Info.PageCompnentInfo.isEditDeckMode)

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.Info.CardInspector;
 using TouhouMachineLearningSummary.Manager;
@@ -18,10 +19,14 @@ namespace TouhouMachineLearningSummary.Command
 
     public static class CardInspectorCommand
     {
-        public static CardLibraryInfo GetLibraryInfo() => AssetBundleCommand.Load<CardLibraryInfo>("GameData", "SaveData");
+        public static CardLibraryInfo GetLibraryInfo() => Resources.Load<CardLibraryInfo>("SaveData");
         //初始化每个牌库的每个关卡所包含的卡牌
-        public static void Init()
+        public static async Task InitAsync()
         {
+            if (!Application.isPlaying)
+            {
+                await AssetBundleCommand.Init();
+            }
             CardLibraryInfo cardLibraryInfo = GetLibraryInfo();
             cardLibraryInfo.levelLibries = new List<LevelLibrary>();
             cardLibraryInfo.includeLevel.ForEach(level => cardLibraryInfo.levelLibries.Add(new LevelLibrary(cardLibraryInfo.singleModeCards, level)));
@@ -59,19 +64,19 @@ namespace TouhouMachineLearningSummary.Command
                 }
             }
         }
-        public static void LoadFromJson()
+        public static async void LoadFromJson()
         {
 
             /////////////////////////////////////////////新版/////////////////////////////////////
             //加载单人模式卡牌信息
-            string singleData = File.ReadAllText("Assets\\Resources\\GameData\\CardData-Single.json");
+            string singleData = File.ReadAllText(@"Assets\GameResources\Scene1Resource\GameData\CardData-Single.json");
             GetLibraryInfo().singleModeCards.Clear();
             GetLibraryInfo().singleModeCards.AddRange(singleData.ToObject<List<CardModel>>().Select(card => card.Init(true)));
             //加载多人模式卡牌信息
-            string multiData = File.ReadAllText("Assets\\Resources\\GameData\\CardData-Multi.json");
+            string multiData = File.ReadAllText(@"Assets\GameResources\Scene1Resource\GameData\CardData-Multi.json");
             GetLibraryInfo().multiModeCards.Clear();
             GetLibraryInfo().multiModeCards.AddRange(multiData.ToObject<List<CardModel>>().Select(card => card.Init(false)));
-            Init();
+            await InitAsync();
             Refresh();
             GetLibraryInfo().singleModeCards.ForEach(card => CreatScript(card.cardID));
             GetLibraryInfo().multiModeCards.ForEach(card => CreatScript(card.cardID));
