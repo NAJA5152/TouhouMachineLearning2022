@@ -25,13 +25,13 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task PlayAsync(UISoundEffectType type)
         {
-            var audioCLip = Info.SoundEffectInfo.UISoundEfects[type];
+            var audioClip = Info.SoundEffectInfo.UISoundEfects[type];
             AudioSource Source = Info.SoundEffectInfo.audioScoure.AddComponent<AudioSource>();
-            Source.clip = audioCLip;
+            Source.clip = audioClip;
             Source.spatialBlend = 1;
             Source.pitch = 1.3f;
             Source.Play();
-            await Task.Delay((int)(audioCLip.length * 1000));
+            await Task.Delay((int)(audioClip.length * 1000));
             GameObject.DestroyImmediate(Source);
         }
         public static async Task PlayAsync(AgainstSoundEffectType type)

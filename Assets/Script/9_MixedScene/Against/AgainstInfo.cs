@@ -13,7 +13,7 @@ namespace TouhouMachineLearningSummary.Info
     /// </summary>
     public static class AgainstInfo
     {
-        public static bool isHostNetMode = false;//本地测试模式
+        public static bool isHostNetMode = true;//本地测试模式
         public static bool isTrainMode = true;//训练加速模式，所有等待设为0
         public static bool isReplayMode = false;//回放模式，会加载指定对战记录读取操作
         public static bool isJumpMode = false;//跳转到指定回合模式

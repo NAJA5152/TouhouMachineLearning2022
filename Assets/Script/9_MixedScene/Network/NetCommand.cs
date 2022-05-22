@@ -228,7 +228,11 @@ namespace TouhouMachineLearningSummary.Command
         internal static async Task<string> GetCardConfigsVersionAsync()
         {
             //await CheckHubState();
-            return await TohHouHub.InvokeAsync<string>("GetCardConfigsVersion");
+            Debug.Log("查询卡牌版本");
+            await CheckHubState();
+            string version = await TohHouHub.InvokeAsync<string>("GetCardConfigsVersion");
+            Debug.Log("最新卡牌版本为"+ version);
+            return version;
         }
 
         public static async Task UploadCardConfigsAsync(CardConfig cardConfig)
