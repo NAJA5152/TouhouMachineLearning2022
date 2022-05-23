@@ -12,7 +12,8 @@ namespace TouhouMachineLearningSummary.Manager
     static class TranslateManager
     {
         public static string currentLanguage = "Ch";
-        static Dictionary<string, Dictionary<string, string>> translateDatas;
+        static Dictionary<string, Dictionary<string, string>> gameTextTranslateDatas;
+        static Dictionary<string, Dictionary<string, string>> stageTranslateDatas;
         /// <summary>
         /// 返回关键字的翻译或者效果说明翻译
         /// </summary>
@@ -21,13 +22,13 @@ namespace TouhouMachineLearningSummary.Manager
         /// <returns></returns>
         public static string TranslationGameText(this string text, bool IsGetIntroduction = false)
         {
-            if (translateDatas == null)
+            if (gameTextTranslateDatas == null)
             {
-                translateDatas = AssetBundleCommand.Load<TextAsset>("GameData", "Game-Text.json").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
+                gameTextTranslateDatas = AssetBundleCommand.Load<TextAsset>("GameData", "Game-Text.json").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
             }
-            if (translateDatas.ContainsKey(text))
+            if (gameTextTranslateDatas.ContainsKey(text))
             {
-                var translationDict = translateDatas[text];
+                var translationDict = gameTextTranslateDatas[text];
                 string tag = currentLanguage + (IsGetIntroduction ? "_Introduction" : "");
                 //假如当前词语没有对应语言的翻译或者翻译为空则默认使用中文
                 if (!translationDict.ContainsKey(tag) || (translationDict[tag] == ""))
@@ -38,18 +39,19 @@ namespace TouhouMachineLearningSummary.Manager
             }
             return "无法检索到Tag，请核对";
         }
+        //获取目标关卡的所有文字信息
         public static List<(string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId)> TranslationStageText(this string stageTag)
         {
-            if (translateDatas == null)
+            if (stageTranslateDatas == null)
             {
-                translateDatas = AssetBundleCommand.Load<TextAsset>("GameData", "StageText.json").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
+                stageTranslateDatas = AssetBundleCommand.Load<TextAsset>("GameData", "Stage").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
             }
             List<(string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId)> currentSelectStageData = new();
-            foreach (var translateData in translateDatas)
+            foreach (var translateData in stageTranslateDatas)
             {
                 if (translateData.Key.Split('-')[0] == stageTag)
                 {
-                    var translationDict = translateDatas[stageTag];
+                    var translationDict = translateData.Value;
                     //假如当前词语没有对应语言的翻译或者翻译为空则默认使用中文
 
                     string stageName = translationDict.ContainsKey($"Name-{currentLanguage}") ? translationDict[$"Name-{currentLanguage}"] : $"Name-Ch";
@@ -64,13 +66,13 @@ namespace TouhouMachineLearningSummary.Manager
         }
         public static List<KeyWordModel> CheckKeyWord(string text)
         {
-            if (translateDatas == null)
+            if (gameTextTranslateDatas == null)
             {
-                translateDatas = AssetBundleCommand.Load<TextAsset>("GameData", "Game-Text").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
+                gameTextTranslateDatas = AssetBundleCommand.Load<TextAsset>("GameData", "Game-Text").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
             }
 
             List<KeyWordModel> keyWordInfos = new List<KeyWordModel>();
-            translateDatas.Values.ForEach(pair =>
+            gameTextTranslateDatas.Values.ForEach(pair =>
             {
                 string keyWord = pair[currentLanguage] == "" ? pair["Ch"] : pair[currentLanguage];
                 int index = 0;
