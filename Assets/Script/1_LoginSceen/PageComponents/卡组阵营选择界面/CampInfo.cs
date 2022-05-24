@@ -12,10 +12,10 @@ namespace TouhouMachineLearningSummary.Info
         {
             //从配置文件载入相应阵营信息，先搞个假的
             campInfos.Clear();
-            campInfos.Add(new SingleCampInfo(Camp.Taoism, "道教", "没有东西的空架子哦",Info.PageCompnentInfo.instance.TaoismTex));
-            campInfos.Add(new SingleCampInfo(Camp.science, "科学", "没有东西的空架子哦", Info.PageCompnentInfo.instance.scienceTex));
-            campInfos.Add(new SingleCampInfo(Camp.Buddhism, "佛教", "没有东西的空架子哦", Info.PageCompnentInfo.instance.BuddhismTex));
-            campInfos.Add(new SingleCampInfo(Camp.Shintoism, "神道教", "没有东西的空架子哦", Info.PageCompnentInfo.instance.ShintoismTex));
+            campInfos.Add(new SingleCampInfo(Camp.Taoism, "道教", "没有东西的空架子哦",Info.PageCompnentInfo.Instance.TaoismTex));
+            campInfos.Add(new SingleCampInfo(Camp.science, "科学", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.scienceTex));
+            campInfos.Add(new SingleCampInfo(Camp.Buddhism, "佛教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.BuddhismTex));
+            campInfos.Add(new SingleCampInfo(Camp.Shintoism, "神道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.ShintoismTex));
         }
         public static SingleCampInfo GetCampInfo(Camp camp) => campInfos.FirstOrDefault(info => info.camp == camp);
         public class SingleCampInfo

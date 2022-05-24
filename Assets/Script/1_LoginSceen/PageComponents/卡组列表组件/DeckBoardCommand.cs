@@ -18,11 +18,11 @@ namespace TouhouMachineLearningSummary.Command
             var s = Info.AgainstInfo.onlineUserInfo;
             Info.PageCompnentInfo.seleceDeckRank = Info.AgainstInfo.onlineUserInfo.UseDeckNum;
             Info.PageCompnentInfo.tempDeck = Info.AgainstInfo.onlineUserInfo.UseDeck.Clone();
-            Info.PageCompnentInfo.instance.deckModel.SetActive(false);
+            Info.PageCompnentInfo.Instance.deckModel.SetActive(false);
 
             var decks = Info.AgainstInfo.onlineUserInfo.Decks;
-            var deckModel = Info.PageCompnentInfo.instance.deckModel;
-            var deckModels = Info.PageCompnentInfo.instance.deckModels;
+            var deckModel = Info.PageCompnentInfo.Instance.deckModel;
+            var deckModels = Info.PageCompnentInfo.Instance.deckModels;
             deckModels.ForEach(model => model.SetActive(false));
 
             Debug.LogWarning(deckModels.Count + "-" + decks.Count);
@@ -51,7 +51,7 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async void OnDeckClick(GameObject deck)
         {
-            int selectRank = Info.PageCompnentInfo.instance.deckModels.IndexOf(deck);
+            int selectRank = Info.PageCompnentInfo.Instance.deckModels.IndexOf(deck);
             if (Info.PageCompnentInfo.seleceDeckRank != selectRank)
             {
                 Info.PageCompnentInfo.seleceDeckRank = selectRank;
@@ -65,9 +65,9 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static void UpdateDeckPosition()
         {
-            if (Info.PageCompnentInfo.instance.content.gameObject.activeInHierarchy)
+            if (Info.PageCompnentInfo.Instance.content.gameObject.activeInHierarchy)
             {
-                Info.PageCompnentInfo.show = Info.PageCompnentInfo.instance.content.GetComponent<RectTransform>().localPosition.x;
+                Info.PageCompnentInfo.show = Info.PageCompnentInfo.Instance.content.GetComponent<RectTransform>().localPosition.x;
                 for (int i = 0; i < Info.PageCompnentInfo.values.Count; i++)
                 {
                     Info.PageCompnentInfo.values[i] = Info.PageCompnentInfo.bias + i * Info.PageCompnentInfo.fre;
@@ -80,9 +80,9 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     if (!Info.PageCompnentInfo.isCardClick)
                     {
-                        float selectValue = Info.PageCompnentInfo.values.OrderBy(value => Mathf.Abs(value - Info.PageCompnentInfo.instance.content.GetComponent<RectTransform>().localPosition.x)).First();
+                        float selectValue = Info.PageCompnentInfo.values.OrderBy(value => Mathf.Abs(value - Info.PageCompnentInfo.Instance.content.GetComponent<RectTransform>().localPosition.x)).First();
 
-                        GameObject deck = Info.PageCompnentInfo.instance.deckModels[Info.PageCompnentInfo.values.IndexOf(selectValue)];
+                        GameObject deck = Info.PageCompnentInfo.Instance.deckModels[Info.PageCompnentInfo.values.IndexOf(selectValue)];
                         OnDeckClick(deck);
                     }
                     else
@@ -94,7 +94,7 @@ namespace TouhouMachineLearningSummary.Command
                 if (!Info.PageCompnentInfo.isDragMode)
                 {
                     Vector3 end = new Vector3(Info.PageCompnentInfo.values[Info.PageCompnentInfo.seleceDeckRank], 120, 0);
-                    Info.PageCompnentInfo.instance.content.GetComponent<RectTransform>().localPosition = Vector3.Lerp(Info.PageCompnentInfo.instance.content.GetComponent<RectTransform>().localPosition, end, Time.deltaTime * 3);
+                    Info.PageCompnentInfo.Instance.content.GetComponent<RectTransform>().localPosition = Vector3.Lerp(Info.PageCompnentInfo.Instance.content.GetComponent<RectTransform>().localPosition, end, Time.deltaTime * 3);
                 }
             }
         }

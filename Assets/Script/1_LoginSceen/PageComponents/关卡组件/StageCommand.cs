@@ -9,18 +9,22 @@ namespace TouhouMachineLearningSummary.Command
 {
     internal class StageCommand
     {
-        //根据进度字典初始化map状态
-        public static void Init(string tag)
+        public static void SelectStage(string Stage)
         {
-            var stageInfos = Info.AgainstInfo.onlineUserInfo.Stage;
+            //获得标签对应的所有阶段的关卡信息
+            Info.PageCompnentInfo.currentSelectStages = Stage.TranslationStageText();
+            //获得玩家的线上进度
+            int rank = Info.AgainstInfo.onlineUserInfo.GetStage(Stage);
+            //控制右侧阶段信息的显示
 
+            //默认点开初始
+            SelectStep(0);
         }
-        public static void SelectStage(string tag)
+        public static void SelectStep(int step)
         {
-            Info.PageCompnentInfo.currentSelectStageData = tag.TranslationStageText();
-            int rank = Info.AgainstInfo.onlineUserInfo.GetStage(tag);
-            //控制页面显示
-
+            var targetStageInfo= Info.PageCompnentInfo.currentSelectStages[step];
+            //控制左侧领袖信息的显示
+            //控制下侧关卡信息的显示
         }
     }
 }

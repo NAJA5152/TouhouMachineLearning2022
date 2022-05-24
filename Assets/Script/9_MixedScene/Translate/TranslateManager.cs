@@ -24,7 +24,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             if (gameTextTranslateDatas == null)
             {
-                gameTextTranslateDatas = AssetBundleCommand.Load<TextAsset>("GameData", "Game-Text.json").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
+                gameTextTranslateDatas = AssetBundleCommand.Load<TextAsset>("GameData", "Game-Text").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
             }
             if (gameTextTranslateDatas.ContainsKey(text))
             {
@@ -40,25 +40,38 @@ namespace TouhouMachineLearningSummary.Manager
             return "无法检索到Tag，请核对";
         }
         //获取目标关卡的所有文字信息
-        public static List<(string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId)> TranslationStageText(this string stageTag)
+        public static List<(string stageProcess, string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId)> TranslationStageText(this string stageTag)
         {
             if (stageTranslateDatas == null)
             {
                 stageTranslateDatas = AssetBundleCommand.Load<TextAsset>("GameData", "Stage").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
             }
-            List<(string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId)> currentSelectStageData = new();
+            List<(string stageProcess, string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId)> currentSelectStageData = new();
             foreach (var translateData in stageTranslateDatas)
             {
                 if (translateData.Key.Split('-')[0] == stageTag)
                 {
                     var translationDict = translateData.Value;
                     //假如当前词语没有对应语言的翻译或者翻译为空则默认使用中文
+                    //获得关卡标签x-xx
+                    string stageProcess = translateData.Key;
 
-                    string stageName = translationDict.ContainsKey($"Name-{currentLanguage}") ? translationDict[$"Name-{currentLanguage}"] : $"Name-Ch";
-                    string stageOpLeaderName = translationDict.ContainsKey($"Name-{currentLanguage}") ? translationDict[$"Name-{currentLanguage}"] : $"Name-Ch";
-                    string stageOpIntroduction = translationDict.ContainsKey($"Name-{currentLanguage}") ? translationDict[$"Name-{currentLanguage}"] : $"Name-Ch";
-                    string stageOpLeadId = translationDict.ContainsKey($"Name-{currentLanguage}") ? translationDict[$"Name-{currentLanguage}"] : $"Name-Ch";
-                    currentSelectStageData.Add((stageName, stageOpLeaderName, stageOpIntroduction, stageOpLeadId));
+                    //获得对方卡画ID
+                    string leadId = GetText(translationDict, "LeadId");
+                    //获得对方名
+                    string leaderName = GetText(translationDict, "LeaderName");
+                    //获得对方介绍
+                    string leaderIntroduction = GetText(translationDict, "leaderIntroduction");
+                    //获得关卡名
+                    string stageName = GetText(translationDict, "StageName");
+                    //获得关卡介绍
+                    string stageIntroduction = GetText(translationDict, "StageIntroduction");
+                  
+                    currentSelectStageData.Add((stageProcess, stageName, leaderName, stageIntroduction, leadId));
+
+
+                    string GetText( Dictionary<string,string> dict,string tag)=> dict.ContainsKey($"{tag}-{currentLanguage}") ? dict[$"{tag}-{currentLanguage}"] : $"{tag}-Ch";
+                   
                 }
             }
 

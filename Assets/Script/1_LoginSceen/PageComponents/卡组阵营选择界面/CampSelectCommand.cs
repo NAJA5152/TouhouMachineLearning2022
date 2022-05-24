@@ -15,7 +15,7 @@ namespace TouhouMachineLearningSummary.Command
             //根据实际阵营数量来生成模型
             for (int i = 0; i < Info.CampInfo.campInfos.Count; i++)
             {
-                var newCampModel = UnityEngine.Object.Instantiate(Info.PageCompnentInfo.instance.CampModel, Info.PageCompnentInfo.instance.campContent.transform);
+                var newCampModel = UnityEngine.Object.Instantiate(Info.PageCompnentInfo.Instance.CampModel, Info.PageCompnentInfo.Instance.campContent.transform);
                 Info.PageCompnentInfo.campCardModels.Add(newCampModel);
             }
             //设置每个卡牌的属性
@@ -27,7 +27,7 @@ namespace TouhouMachineLearningSummary.Command
                 //卡牌对应场景模型
                 var newCardModel = Info.PageCompnentInfo.campCardModels[i];
                 newCardModel.name = info.campName;
-                newCardModel.transform.localScale = Info.PageCompnentInfo.instance.CampModel.transform.localScale;
+                newCardModel.transform.localScale = Info.PageCompnentInfo.Instance.CampModel.transform.localScale;
                 //Sprite cardTex = Sprite.Create(info.icon, new Rect(0, 0, info.icon.width, info.icon.height), Vector2.zero);
                 Sprite cardTex = Sprite.Create(info.campTex, new Rect(0, 0, info.campTex.width, info.campTex.height), Vector2.zero);
                 newCardModel.transform.GetChild(0).GetComponent<Image>().sprite = cardTex;

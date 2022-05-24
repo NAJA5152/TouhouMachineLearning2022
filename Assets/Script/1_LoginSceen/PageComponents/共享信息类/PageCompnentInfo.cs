@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
+using TMPro;
 using TouhouMachineLearningSummary.GameEnum;
 using UnityEngine;
 
@@ -47,8 +48,15 @@ namespace TouhouMachineLearningSummary.Info
             .ThenByDescending(id=>id)
             .ToList();
         ///////////////////////////////////////////////////////////关卡信息/////////////////////////////////////
-        public static string CurrentSelectStageTag { get; set; }
-        public static List<(string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId)> currentSelectStageData { get; set; }
+        public TextMeshProUGUI leaderName;
+        public TextMeshProUGUI leaderIntroduction; 
+        public TextMeshProUGUI stageName;
+        public TextMeshProUGUI stageIntroduction;
+
+        /// <summary>
+        /// 所选大关的所有小关信息
+        /// </summary>
+        public static List<(string stageProcess, string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId)> currentSelectStages { get; set; }
         ///////////////////////////////////////////////////////////牌库信息/////////////////////////////////////
         [Header("牌库组件")]
         public GameObject _cardLibraryContent;
@@ -100,10 +108,12 @@ namespace TouhouMachineLearningSummary.Info
         public static List<float> values = new List<float>();
         public Transform content;
         //单例
-        public static PageCompnentInfo instance;
+        public static PageCompnentInfo Instance { get; set; }
+
+        //有时间优化掉
         private void Awake()
         {
-            instance = this;
+            Instance = this;
             //牌组组件
             cardDeckNameModel = _cardDeckNameModel;
             cardDeckContent = _cardDeckContent;
