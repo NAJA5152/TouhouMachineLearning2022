@@ -40,13 +40,13 @@ namespace TouhouMachineLearningSummary.Manager
             return "无法检索到Tag，请核对";
         }
         //获取目标关卡的所有文字信息
-        public static List<(string stageProcess, string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId)> TranslationStageText(this string stageTag)
+        public static List<(string stageProcess, string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId, string leaderNick)> TranslationStageText(this string stageTag)
         {
             if (stageTranslateDatas == null)
             {
                 stageTranslateDatas = AssetBundleCommand.Load<TextAsset>("GameData", "Stage").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
             }
-            List<(string stageProcess, string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId)> currentSelectStageData = new();
+            List<(string stageProcess, string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId, string leaderNick)> currentSelectStageData = new();
             foreach (var translateData in stageTranslateDatas)
             {
                 if (translateData.Key.Split('-')[0] == stageTag)
@@ -60,6 +60,8 @@ namespace TouhouMachineLearningSummary.Manager
                     string leadId = GetText(translationDict, "LeadId");
                     //获得对方名
                     string leaderName = GetText(translationDict, "LeaderName");
+                    //获得对方称号
+                    string leaderNick = GetText(translationDict, "LeaderNick");
                     //获得对方介绍
                     string leaderIntroduction = GetText(translationDict, "leaderIntroduction");
                     //获得关卡名
@@ -67,7 +69,7 @@ namespace TouhouMachineLearningSummary.Manager
                     //获得关卡介绍
                     string stageIntroduction = GetText(translationDict, "StageIntroduction");
                   
-                    currentSelectStageData.Add((stageProcess, stageName, leaderName, stageIntroduction, leadId));
+                    currentSelectStageData.Add((stageProcess, stageName, leaderName, stageIntroduction, leadId,leaderNick));
 
 
                     string GetText( Dictionary<string,string> dict,string tag)=> dict.ContainsKey($"{tag}-{currentLanguage}") ? dict[$"{tag}-{currentLanguage}"] : $"{tag}-Ch";

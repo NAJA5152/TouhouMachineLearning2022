@@ -4,6 +4,7 @@ using System.Linq;
 using TMPro;
 using TouhouMachineLearningSummary.GameEnum;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace TouhouMachineLearningSummary.Info
 {
@@ -48,15 +49,22 @@ namespace TouhouMachineLearningSummary.Info
             .ThenByDescending(id=>id)
             .ToList();
         ///////////////////////////////////////////////////////////关卡信息/////////////////////////////////////
-        public TextMeshProUGUI leaderName;
-        public TextMeshProUGUI leaderIntroduction; 
-        public TextMeshProUGUI stageName;
-        public TextMeshProUGUI stageIntroduction;
+        //public TextMeshProUGUI leaderName;
+        //public TextMeshProUGUI leaderIntroduction; 
+        //public TextMeshProUGUI stageName;
+        //public TextMeshProUGUI stageIntroduction;
+
+        public GameObject stageModel;
+
+        public Text leaderName;
+        public Text leaderNick;
+        public Text leaderIntroduction;
+        public Text stageIntroduction;
 
         /// <summary>
         /// 所选大关的所有小关信息
         /// </summary>
-        public static List<(string stageProcess, string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId)> currentSelectStages { get; set; }
+        public static List<(string stageProcess, string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId, string leaderNick)> currentSelectStages { get; set; }
         ///////////////////////////////////////////////////////////牌库信息/////////////////////////////////////
         [Header("牌库组件")]
         public GameObject _cardLibraryContent;
