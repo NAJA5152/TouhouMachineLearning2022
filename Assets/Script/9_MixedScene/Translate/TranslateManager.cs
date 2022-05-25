@@ -9,7 +9,7 @@ namespace TouhouMachineLearningSummary.Manager
     /// <summary>
     /// 翻译管理器
     /// </summary>
-    static class TranslateManager
+    static partial class TranslateManager
     {
         public static string currentLanguage = "Ch";
         static Dictionary<string, Dictionary<string, string>> gameTextTranslateDatas;
@@ -40,43 +40,37 @@ namespace TouhouMachineLearningSummary.Manager
             return "无法检索到Tag，请核对";
         }
         //获取目标关卡的所有文字信息
-        public static List<(string stageProcess, string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId, string leaderNick)> TranslationStageText(this string stageTag)
+        public static List<StageInfoModel> TranslationStageText(this string stageTag)
         {
             if (stageTranslateDatas == null)
             {
                 stageTranslateDatas = AssetBundleCommand.Load<TextAsset>("GameData", "Stage").text.ToObject<Dictionary<string, Dictionary<string, string>>>();
             }
-            List<(string stageProcess, string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId, string leaderNick)> currentSelectStageData = new();
+            List<StageInfoModel> currentSelectStageData = new();
             foreach (var translateData in stageTranslateDatas)
             {
                 if (translateData.Key.Split('-')[0] == stageTag)
                 {
                     var translationDict = translateData.Value;
                     //假如当前词语没有对应语言的翻译或者翻译为空则默认使用中文
-                    //获得关卡标签x-xx
-                    string stageProcess = translateData.Key;
-
-                    //获得对方卡画ID
-                    string leadId = GetText(translationDict, "LeadId");
-                    //获得对方名
-                    string leaderName = GetText(translationDict, "LeaderName");
-                    //获得对方称号
-                    string leaderNick = GetText(translationDict, "LeaderNick");
-                    //获得对方介绍
-                    string leaderIntroduction = GetText(translationDict, "leaderIntroduction");
-                    //获得关卡名
-                    string stageName = GetText(translationDict, "StageName");
-                    //获得关卡介绍
-                    string stageIntroduction = GetText(translationDict, "StageIntroduction");
-                  
-                    currentSelectStageData.Add((stageProcess, stageName, leaderName, stageIntroduction, leadId,leaderNick));
-
-
-                    string GetText( Dictionary<string,string> dict,string tag)=> dict.ContainsKey($"{tag}-{currentLanguage}") ? dict[$"{tag}-{currentLanguage}"] : $"{tag}-Ch";
-                   
+                    currentSelectStageData.Add(new StageInfoModel()
+                    {
+                        //获得关卡名
+                        StageName = GetText(translationDict, "StageName"),
+                        //获得关卡介绍
+                        StageIntroduction = GetText(translationDict, "StageIntroduction"),
+                        //获得对方卡画id
+                        LeadId = GetText(translationDict, "LeadId"),
+                        //获得对方名
+                        LeaderName = GetText(translationDict, "LeaderName"),
+                        //获得对方称号
+                        LeaderNick = GetText(translationDict, "LeaderNick"),
+                        //获得对手介绍
+                        LeaderIntroduction = GetText(translationDict, "LeaderIntroduction"),
+                    });
+                    string GetText(Dictionary<string, string> dict, string tag) => dict.ContainsKey($"{tag}-{currentLanguage}") ? dict[$"{tag}-{currentLanguage}"] : $"{tag}-Ch";
                 }
             }
-
             return currentSelectStageData;
         }
         public static List<KeyWordModel> CheckKeyWord(string text)

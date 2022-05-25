@@ -23,7 +23,7 @@ namespace TouhouMachineLearningSummary.Control
         async void Start()
         {
             await CameraViewManager.MoveToViewAsync(0, true);
-            await AssetBundleCommand.Init();
+            await AssetBundleCommand.Init(false);
             _ = CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
             DialogueCommand.Load();
             TaskLoopManager.Init();
@@ -32,7 +32,7 @@ namespace TouhouMachineLearningSummary.Control
             if (!IsAleardyLogin)
             {
 
-                //UserLogin();//自动登录
+                UserLogin();//自动登录
                 await Task.Delay(1000);
                 //await TestReplayAsync();
                 //await TestBattleAsync();

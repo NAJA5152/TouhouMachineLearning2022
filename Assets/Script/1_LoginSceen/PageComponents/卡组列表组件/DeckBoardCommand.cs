@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TouhouMachineLearningSummary.Config;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Manager;
@@ -129,7 +130,6 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     await NoticeCommand.ShowAsync("请至少保留一个卡组", NotifyBoardMode.Ok);
                 }
-
             });
         }
         public static void RenameDeck()
@@ -150,40 +150,16 @@ namespace TouhouMachineLearningSummary.Command
             await Manager.CameraViewManager.MoveToViewAsync(2);
             Command.MenuStateCommand.AddState(MenuState.WaitForBattle);
             Command.BookCommand.SimulateFilpPage(true);//开始翻书
-            AgainstModeType targetAgainstMode= AgainstModeType.Practice;
+            AgainstModeType targetAgainstMode = AgainstModeType.Practice;
             PlayerInfo sampleUserInfo = null;
             PlayerInfo virtualOpponentInfo = null;
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (Command.MenuStateCommand.HasState(MenuState.LevelSelect))//单人关卡选择模式
             {
                 targetAgainstMode = AgainstModeType.Story;
-                sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
-                sampleUserInfo = new PlayerInfo(
-                     "NPC", "神秘的妖怪", "yaya", "",
-                     new List<CardDeck>
-                     {
-                                new CardDeck("gezi", 2000001, new List<int>
-                                {
-                                    2001001,2001002,2001003,2001004,
-                                    2002001,2002002,2002003,2002004,2002005,2002006,
-                                    2003001,2003002,2003003,2003004,2003005,
-                                    2003001,2003002,2003003,2003004,2003005,
-                                    2003001,2003002,2003003,2003004,2003005,
-                                })
-                     });
-                virtualOpponentInfo = new PlayerInfo(
-                     "NPC", "神秘的妖怪", "yaya", "",
-                     new List<CardDeck>
-                     {
-                                new CardDeck("gezi", 2000001, new List<int>
-                                {
-                                    2001001,2001002,2001003,2001004,
-                                    2002001,2002002,2002003,2002004,2002005,2002006,
-                                    2003001,2003002,2003003,2003004,2003005,
-                                    2003001,2003002,2003003,2003004,2003005,
-                                    2003001,2003002,2003003,2003004,2003005,
-                                })
-                     });
+                string targetStage = Info.PageCompnentInfo.currentStage + Info.PageCompnentInfo.currentStep;
+                sampleUserInfo = StageAgainstConfig.GetPlayerCardDeck(targetStage);
+                virtualOpponentInfo = StageAgainstConfig.GetPlayerCardDeck(targetStage);
             }
             if (Command.MenuStateCommand.HasState(MenuState.PracticeConfig))//单人练习模式
             {

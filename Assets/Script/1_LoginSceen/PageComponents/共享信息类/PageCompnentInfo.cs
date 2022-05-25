@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using TouhouMachineLearningSummary.GameEnum;
+using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -64,7 +65,9 @@ namespace TouhouMachineLearningSummary.Info
         /// <summary>
         /// 所选大关的所有小关信息
         /// </summary>
-        public static List<(string stageProcess, string stageName, string stageOpLeaderName, string stageOpIntroduction, string stageOpLeadId, string leaderNick)> currentSelectStages { get; set; }
+        public static List<StageInfoModel> currentSelectStageInfos { get; set; }
+        public static string currentStage { get; set; }
+        public static int currentStep { get; set; }
         ///////////////////////////////////////////////////////////牌库信息/////////////////////////////////////
         [Header("牌库组件")]
         public GameObject _cardLibraryContent;

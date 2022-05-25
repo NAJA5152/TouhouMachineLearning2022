@@ -13,20 +13,28 @@ namespace TouhouMachineLearningSummary.Command
     {
         public static bool AlreadyInit { get; set; } = false;
         static Dictionary<string, List<UnityEngine.Object>> assets = new();
-        public static async Task Init()
+        /// <summary>
+        /// 初始化ab资源包，可选择从热更新拉取或是直接加载本地的
+        /// </summary>
+        /// <param name="isHotFixedLoad"></param>
+        /// <returns></returns>
+        public static async Task Init(bool isHotFixedLoad=true)
         {
             if (AlreadyInit) { return; }
             AlreadyInit = true;
-            Directory.CreateDirectory(Application.streamingAssetsPath + "/AssetBundles/");
-            foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/").GetFiles()
-                .Where(file => file.Name.Contains("scene1") && !file.Name.Contains("meta")))
+            //选择从下载下来的热更新目录拉去还是本地拉去
+            string targetPath = isHotFixedLoad?Application.streamingAssetsPath + "/AssetBundles/": "AssetBundles/PC";
+          
+            Directory.CreateDirectory(targetPath);
+            foreach (var file in new DirectoryInfo(targetPath).GetFiles()
+                .Where(file => file.Name.Contains("scene1") && !file.Name.Contains("meta") && !file.Name.Contains("manifest")))
             {
                 await LoadAssetBundle(file.FullName);
             }
             Debug.LogWarning($"场景1资源加载完毕");
 
-            foreach (var file in new DirectoryInfo(Application.streamingAssetsPath + "/AssetBundles/").GetFiles()
-                .Where(file => file.Name.Contains("scene2") && !file.Name.Contains("meta")))
+            foreach (var file in new DirectoryInfo(targetPath).GetFiles()
+                .Where(file => file.Name.Contains("scene2") && !file.Name.Contains("meta") && !file.Name.Contains("manifest")))
             {
                 _ = LoadAssetBundle(file.FullName);
             }

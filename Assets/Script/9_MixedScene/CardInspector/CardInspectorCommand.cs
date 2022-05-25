@@ -25,7 +25,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (!Application.isPlaying)
             {
-                await AssetBundleCommand.Init();
+                await AssetBundleCommand.Init(false);
             }
             CardLibraryInfo cardLibraryInfo = GetLibraryInfo();
             cardLibraryInfo.levelLibries = new List<LevelLibrary>();

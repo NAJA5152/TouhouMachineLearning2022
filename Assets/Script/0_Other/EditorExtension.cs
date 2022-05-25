@@ -98,9 +98,9 @@ namespace TouhouMachineLearningSummary.Other
             {
                 OnlieMD5FiIeDatas = webClient.DownloadString(@"http://106.15.38.165:7777/PC/MD5.json");
             }
-            catch
+            catch ( Exception e)
             {
-                UnityEngine.Debug.LogError("网络断无MD5.json文件");
+                UnityEngine.Debug.LogError("无法下载网络上MD5.json文件"+e.Message);
             }
 
             webClient.Dispose();
