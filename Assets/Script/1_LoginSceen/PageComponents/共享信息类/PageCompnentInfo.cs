@@ -56,7 +56,7 @@ namespace TouhouMachineLearningSummary.Info
         //public TextMeshProUGUI stageIntroduction;
 
         public GameObject stageModel;
-
+        public Image leaderSprite;
         public Text leaderName;
         public Text leaderNick;
         public Text leaderIntroduction;

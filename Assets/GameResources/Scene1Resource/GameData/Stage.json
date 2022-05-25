@@ -1,7 +1,7 @@
 {
   "1-0": {
     "stage": "1-0",
-    "LeadId": "1",
+    "LeadId-Ch": "2200001",
     "StageName-Ch": "神社（主线1）",
     "StageIntroduction-Ch": "学习基本的打牌规则吧",
     "LeaderName-Ch": "东风谷早苗",
@@ -10,7 +10,7 @@
   },
   "1-1": {
     "stage": "1-1",
-    "LeadId": "1",
+    "LeadId-Ch": "2200001",
     "StageName-Ch": "神社（主线2）",
     "StageIntroduction-Ch": "分数到底是怎么计算的了",
     "LeaderName-Ch": "东风谷早苗",
@@ -19,7 +19,7 @@
   },
   "1-2": {
     "stage": "1-2",
-    "LeadId": "1",
+    "LeadId-Ch": "2200001",
     "StageName-Ch": "神社（支线1）",
     "StageIntroduction-Ch": "了解卡牌的附加值和附加状态",
     "LeaderName-Ch": "东风谷早苗",
@@ -28,7 +28,7 @@
   },
   "1-3": {
     "stage": "1-3",
-    "LeadId": "1",
+    "LeadId-Ch": "2200001",
     "StageName-Ch": "神社（支线2）",
     "StageIntroduction-Ch": "如何正确的进行paaa？",
     "LeaderName-Ch": "东风谷早苗",
@@ -37,7 +37,7 @@
   },
   "2-0": {
     "stage": "2-0",
-    "LeadId": "2",
+    "LeadId-Ch": "2300001",
     "StageName-Ch": "兽道（主线1）",
     "StageIntroduction-Ch": "做下热身训练吧",
     "LeaderName-Ch": "物部布都",
@@ -46,7 +46,7 @@
   },
   "2-3": {
     "stage": "2-3",
-    "LeadId": "2",
+    "LeadId-Ch": "2300001",
     "StageName-Ch": "兽道（主线2）",
     "StageIntroduction-Ch": "什么？已经到2.0时代了？",
     "LeaderName-Ch": "物部布都",
@@ -55,7 +55,7 @@
   },
   "2-6": {
     "stage": "2-6",
-    "LeadId": "2",
+    "LeadId-Ch": "2300001",
     "StageName-Ch": "兽道（支线1）",
     "StageIntroduction-Ch": "哇",
     "LeaderName-Ch": "物部布都",
@@ -64,7 +64,7 @@
   },
   "2-9": {
     "stage": "2-9",
-    "LeadId": "2",
+    "LeadId-Ch": "2300001",
     "StageName-Ch": "兽道（支线2）",
     "StageIntroduction-Ch": "哦",
     "LeaderName-Ch": "物部布都",

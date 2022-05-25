@@ -19,16 +19,18 @@ namespace TouhouMachineLearningSummary.Command
             int rank = Info.AgainstInfo.onlineUserInfo.GetStage(Stage);
             //控制右侧阶段信息的显示
             var content = Info.PageCompnentInfo.Instance.stageModel.transform.parent;
+            //当前已有的小关ui数量
             int stageStepCurrentCount = content.childCount;
+            //当前应该有的小关ui数量
             int stageStepMaxCount = Info.PageCompnentInfo.currentSelectStageInfos.Count;
             var stageModel = Info.PageCompnentInfo.Instance.stageModel;
+            //生成对应数量的小关
 
             for (int i = stageStepCurrentCount; i < stageStepMaxCount; i++)
             {
                 UnityEngine.Object.Instantiate(stageModel, content);
             }
-            //生成对应数量的小关
-
+            stageStepCurrentCount = content.childCount;
             //前n位修改名称和可见性
             for (int i = 0; i < stageStepCurrentCount; i++)
             {
@@ -48,14 +50,20 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static void SelectStep(int step)
         {
-            Info.PageCompnentInfo.currentStep = step;
-           var targetStageInfo = Info.PageCompnentInfo.currentSelectStageInfos[step];
-            //控制左侧领袖信息的显示
-            Info.PageCompnentInfo.Instance.leaderName.text = targetStageInfo.LeaderName;
-            Info.PageCompnentInfo.Instance.leaderNick.text = targetStageInfo.LeaderNick;
-            Info.PageCompnentInfo.Instance.leaderIntroduction.text = targetStageInfo.StageIntroduction;
-            //控制下侧关卡信息的显示
-            Info.PageCompnentInfo.Instance.stageIntroduction.text = targetStageInfo.StageIntroduction;
+
+            if (Info.PageCompnentInfo.currentSelectStageInfos.Count > step)
+            {
+                Info.PageCompnentInfo.currentStep = step;
+                var targetStageInfo = Info.PageCompnentInfo.currentSelectStageInfos[step];
+                //控制左侧领袖信息的显示
+                Info.PageCompnentInfo.Instance.leaderSprite.sprite = targetStageInfo.LeadSprite;
+                Info.PageCompnentInfo.Instance.leaderName.text = targetStageInfo.LeaderName;
+                Info.PageCompnentInfo.Instance.leaderNick.text = targetStageInfo.LeaderNick;
+                Info.PageCompnentInfo.Instance.leaderIntroduction.text = targetStageInfo.StageIntroduction;
+                //控制下侧关卡信息的显示
+                Info.PageCompnentInfo.Instance.stageIntroduction.text = targetStageInfo.StageIntroduction;
+            }
+
         }
     }
 }

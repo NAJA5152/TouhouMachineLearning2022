@@ -53,6 +53,8 @@ namespace TouhouMachineLearningSummary.Manager
                 {
                     var translationDict = translateData.Value;
                     //假如当前词语没有对应语言的翻译或者翻译为空则默认使用中文
+                    string leadId = GetText(translationDict, "LeadId");
+                    Sprite sprite = AssetBundleCommand.Load<Texture2D>("CardTex", leadId).ToSprite();
                     currentSelectStageData.Add(new StageInfoModel()
                     {
                         //获得关卡名
@@ -60,7 +62,7 @@ namespace TouhouMachineLearningSummary.Manager
                         //获得关卡介绍
                         StageIntroduction = GetText(translationDict, "StageIntroduction"),
                         //获得对方卡画id
-                        LeadId = GetText(translationDict, "LeadId"),
+                        LeadSprite = sprite,
                         //获得对方名
                         LeaderName = GetText(translationDict, "LeaderName"),
                         //获得对方称号
@@ -68,7 +70,7 @@ namespace TouhouMachineLearningSummary.Manager
                         //获得对手介绍
                         LeaderIntroduction = GetText(translationDict, "LeaderIntroduction"),
                     });
-                    string GetText(Dictionary<string, string> dict, string tag) => dict.ContainsKey($"{tag}-{currentLanguage}") ? dict[$"{tag}-{currentLanguage}"] : $"{tag}-Ch";
+                    string GetText(Dictionary<string, string> dict, string tag) => dict.ContainsKey($"{tag}-{currentLanguage}") ? dict[$"{tag}-{currentLanguage}"] : dict[$"{tag}-Ch"];
                 }
             }
             return currentSelectStageData;
