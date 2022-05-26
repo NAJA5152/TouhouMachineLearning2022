@@ -59,7 +59,7 @@ namespace TouhouMachineLearningSummary.Command
                 Info.PageCompnentInfo.Instance.leaderSprite.sprite = targetStageInfo.LeadSprite;
                 Info.PageCompnentInfo.Instance.leaderName.text = targetStageInfo.LeaderName;
                 Info.PageCompnentInfo.Instance.leaderNick.text = targetStageInfo.LeaderNick;
-                Info.PageCompnentInfo.Instance.leaderIntroduction.text = targetStageInfo.StageIntroduction;
+                Info.PageCompnentInfo.Instance.leaderIntroduction.text = targetStageInfo.LeaderIntroduction;
                 //控制下侧关卡信息的显示
                 Info.PageCompnentInfo.Instance.stageIntroduction.text = targetStageInfo.StageIntroduction;
             }
