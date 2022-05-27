@@ -12,7 +12,7 @@ namespace TouhouMachineLearningSummary.Info
     namespace CardInspector
     {
         [CreateAssetMenu(fileName = "SaveData", menuName = "CreatCardDataAsset")]
-        public partial class CardLibraryInfo : SerializedScriptableObject
+        public partial class CardLibraryInfo 
         {
             //[LabelText("单人牌库图标")]
             //public Texture2D singleIcon;
