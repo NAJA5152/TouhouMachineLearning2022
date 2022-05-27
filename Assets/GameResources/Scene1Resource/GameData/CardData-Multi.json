@@ -1254,6 +1254,58 @@
     "isFinish": true
   },
   {
+    "cardID": 3,
+    "level": "多人",
+    "series": "8",
+    "point": 6,
+    "Name": {
+      "Name-Ch": "四季映姬",
+      "Name-En": ""
+    },
+    "CardTags": {},
+    "Ability": {
+      "Ability-Ch": "部署：选择两个单位，依次赋予黑、白状态\n回合开始，赋予左侧单位黑状态，赋予右侧单位白状态",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 1,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "多人",
+    "series": "8",
+    "point": 5,
+    "Name": {
+      "Name-Ch": "小野冢小町",
+      "Name-En": ""
+    },
+    "CardTags": {},
+    "Ability": {
+      "Ability-Ch": "部署：选择两个单位，依次拉取至自身右侧",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 0,
+    "cardCamp": 0,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
     "cardID": 1,
     "level": "多人",
     "series": "9",
