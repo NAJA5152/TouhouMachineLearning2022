@@ -17,7 +17,7 @@
       "geyu": "ads"
     },
     "Ability": {
-      "Ability-Ch": "部署，力竭:我方场上每存在一个自身外的妖精单位便对对方场上随机目标造成一次1点伤害",
+      "Ability-Ch": "部署，力竭:我方场上每存在一个自身外的妖精单位便对对方场上点数最高目标造成一次1点伤害",
       "Ability-En": ""
     },
     "Describe": {
@@ -83,7 +83,7 @@
       "geyu": "ads"
     },
     "Ability": {
-      "Ability-Ch": "部署:摧毁场上所有点数最大的非金单位",
+      "Ability-Ch": "部署:摧毁场上非金且点数最大的所有单位",
       "Ability-En": ""
     },
     "Describe": {
@@ -116,7 +116,7 @@
       "geyu": "ads"
     },
     "Ability": {
-      "Ability-Ch": "部署:对场上所有最高的非金单位造成一点伤害，重复x+1次(x为两侧单位的活力值总和)",
+      "Ability-Ch": "部署:对场上所有最低的非金单位造成一点伤害，重复x+1次(x为两侧单位的活力值总和)",
       "Ability-En": ""
     },
     "Describe": {
@@ -1908,6 +1908,32 @@
     "cardType": 1,
     "cardCamp": 4,
     "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "多人",
+    "series": "20",
+    "point": 5,
+    "Name": {
+      "Name-Ch": "东风谷早苗",
+      "Name-En": ""
+    },
+    "CardTags": {},
+    "Ability": {
+      "Ability-Ch": "令场上所有牌至内向外产生位移",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 0,
+    "cardCamp": 2,
+    "cardRank": 0,
     "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,

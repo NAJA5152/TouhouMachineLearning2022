@@ -48,12 +48,38 @@ public enum SelectOperationType
 }
 public enum CardState
 {
-    Spy,
-    Seal
+    None,//默认空状态
+    Seal,//封印
+    Invisibility,//隐身
+    Pry,//窥探
+    Close,//封闭
+    Fate,//命运
+    Lurk,//潜伏（间谍）
+    Secret,//隐秘（盖牌）
+    Furor,//狂暴
+    Docile,//温顺
+    Poisoning,//中毒
+    Rely,//凭依
+    Water,//水
+    Fire,//火
+    Wind,//风
+    Soil,//土
+    Hold, //驻守
+    Congealbounds,//结界
+    Forbidden,//禁足
+    Black,//黑
+    White,//白
 }
+/// <summary>
+/// 卡牌附加值类型     ！！！！不要改变顺序，有新的再后面追加，服务端和翻译表格需要同步更新！！！！
+/// </summary>
 public enum CardField
 {
+    None,//默认空状态
     Timer,//计时
-    Vitality,//活力
-    Point
+    Inspire,//鼓舞
+    Apothanasia,//延命
+    Chain,//连锁
+    Energy,//能量
+    Shield,//护盾
 }

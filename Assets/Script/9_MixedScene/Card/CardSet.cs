@@ -162,6 +162,14 @@ namespace TouhouMachineLearningSummary.Info
         {
             get
             {
+                if (ranks[0] == CardRank.NoGold)
+                {
+                    ranks = new CardRank[] { CardRank.Silver, CardRank.Copper };
+                }
+                if (ranks[0] == CardRank.GoldAndLeader)
+                {
+                    ranks = new CardRank[] { CardRank.Gold, CardRank.Leader };
+                }
                 List<Card> filterCardList = CardList
                     .Where(card => ranks.Any(rank => card.CardRank == rank))
                     .ToList();

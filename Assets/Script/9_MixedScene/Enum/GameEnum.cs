@@ -164,6 +164,8 @@ namespace TouhouMachineLearningSummary.GameEnum
         Hold, //驻守
         Congealbounds,//结界
         Forbidden,//禁足
+        Black,//黑
+        White,//白
     }
     /// <summary>
     /// 卡牌附加值类型     ！！！！不要改变顺序，有新的再后面追加，服务端和翻译表格需要同步更新！！！！
@@ -231,6 +233,9 @@ namespace TouhouMachineLearningSummary.GameEnum
         Gold,
         Silver,
         Copper,
+
+        NoGold,//铜卡+银卡
+        GoldAndLeader//金卡+领袖卡
     }
 
     public enum CardBoardMode

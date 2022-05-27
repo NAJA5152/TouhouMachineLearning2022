@@ -359,6 +359,24 @@
     "En_Introduction": "",
     "geyu": ""
   },
+  "black": {
+    "Tag": "black",
+    "Ch": "黑",
+    "Ch_Introduction": "",
+    "Tc": "",
+    "En": "",
+    "En_Introduction": "",
+    "geyu": ""
+  },
+  "white": {
+    "Tag": "white",
+    "Ch": "白",
+    "Ch_Introduction": "",
+    "Tc": "",
+    "En": "",
+    "En_Introduction": "",
+    "geyu": ""
+  },
   "Timer": {
     "Tag": "Timer",
     "Ch": "计时",

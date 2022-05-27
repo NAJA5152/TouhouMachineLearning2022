@@ -91,7 +91,7 @@ namespace TouhouMachineLearningSummary.Model
                 }
             }
         }
-        
+
         public Vector3 targetPosition;
         public Quaternion targetQuaternion;
 
@@ -433,6 +433,24 @@ namespace TouhouMachineLearningSummary.Model
                             break;
                         case CardState.Congealbounds:
                             break;
+                        case CardState.Forbidden:
+                            break;
+                        case CardState.Black:
+                            if (cardStates.Contains(CardState.White))
+                            {
+                                await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][CardRank.NoGold].CardList, 1, true);
+                                await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetPoint(1));
+                                cardStates.Remove(CardState.White);
+                            }
+                            break;
+                        case CardState.White:
+                            if (cardStates.Contains(CardState.Black))
+                            {
+                                await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][CardRank.NoGold].CardList, 1, true);
+                                await GameSystem.PointSystem.Gain(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetPoint(1));
+                                cardStates.Remove(CardState.Black);
+                            }
+                            break;
                         default: break;
                     }
                     this[triggerInfo.targetState] = true;
@@ -440,88 +458,88 @@ namespace TouhouMachineLearningSummary.Model
                .AbilityAppend();
             //卡牌状态取消时效果
             AbalityRegister(TriggerTime.When, TriggerType.StateClear)
-                .AbilityAdd(async (triggerInfo) =>
-                {
-                    await GameSystem.UiSystem.ShowIconBreak(this, triggerInfo.targetState);
-                    this[triggerInfo.targetState] = false;
-                    //动画效果
-                    switch (triggerInfo.targetState)
-                    {
-                        case CardState.Lurk:; break;
-                        case CardState.Seal: await Command.CardCommand.UnSealCard(this); break;
-                        default: break;
-                    }
-                })
-               .AbilityAppend();
+                        .AbilityAdd(async (triggerInfo) =>
+                        {
+                            await GameSystem.UiSystem.ShowIconBreak(this, triggerInfo.targetState);
+                            this[triggerInfo.targetState] = false;
+                            //动画效果
+                            switch (triggerInfo.targetState)
+                            {
+                                case CardState.Lurk:; break;
+                                case CardState.Seal: await Command.CardCommand.UnSealCard(this); break;
+                                default: break;
+                            }
+                        })
+                       .AbilityAppend();
             //卡牌字段设置时效果
             AbalityRegister(TriggerTime.When, TriggerType.FieldSet)
-                .AbilityAdd(async (triggerInfo) =>
-                {
-                    if (triggerInfo.point > this[triggerInfo.targetFiled])
-                    {
-                        await GameSystem.UiSystem.ShowIcon(this, triggerInfo.targetFiled);
-                    }
-                    else if (triggerInfo.point < this[triggerInfo.targetFiled])
-                    {
-                        await GameSystem.UiSystem.ShowIconBreak(this, triggerInfo.targetFiled);
-                    }
-                    else
-                    {
-                        return;
-                    }
-                    Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段设置，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},设置值{triggerInfo.point}");
-                    this[triggerInfo.targetFiled] = triggerInfo.point;
-                    Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
-                    //移除掉为0的字段
-                    if (this[triggerInfo.targetFiled] > 0)
-                    {
-                        switch (triggerInfo.targetFiled)
+                        .AbilityAdd(async (triggerInfo) =>
                         {
-                            case CardField.Timer: break;
-                            case CardField.Inspire: break;
-                            case CardField.Apothanasia:
+                            if (triggerInfo.point > this[triggerInfo.targetFiled])
+                            {
+                                await GameSystem.UiSystem.ShowIcon(this, triggerInfo.targetFiled);
+                            }
+                            else if (triggerInfo.point < this[triggerInfo.targetFiled])
+                            {
+                                await GameSystem.UiSystem.ShowIconBreak(this, triggerInfo.targetFiled);
+                            }
+                            else
+                            {
+                                return;
+                            }
+                            Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段设置，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},设置值{triggerInfo.point}");
+                            this[triggerInfo.targetFiled] = triggerInfo.point;
+                            Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
+                            //移除掉为0的字段
+                            if (this[triggerInfo.targetFiled] > 0)
+                            {
+                                switch (triggerInfo.targetFiled)
                                 {
-                                    await GameSystem.UiSystem.ShowTips(this, "续命", new Color(1, 0, 0));
-                                    break;
+                                    case CardField.Timer: break;
+                                    case CardField.Inspire: break;
+                                    case CardField.Apothanasia:
+                                        {
+                                            await GameSystem.UiSystem.ShowTips(this, "续命", new Color(1, 0, 0));
+                                            break;
+                                        }
+                                    default: break;
                                 }
-                            default: break;
-                        }
-                    }
-                    else
-                    {
-                        this.cardFields.Remove(triggerInfo.targetFiled);
-                    }
-                })
-               .AbilityAppend();
+                            }
+                            else
+                            {
+                                this.cardFields.Remove(triggerInfo.targetFiled);
+                            }
+                        })
+                       .AbilityAppend();
             //卡牌字段改变时效果
             AbalityRegister(TriggerTime.When, TriggerType.FieldChange)
-                .AbilityAdd(async (triggerInfo) =>
-                {
-                    if (triggerInfo.point > 0)
-                    {
-                        await GameSystem.UiSystem.ShowIcon(this, triggerInfo.targetFiled);
-                    }
-                    else if (triggerInfo.point < 0)
-                    {
-                        await GameSystem.UiSystem.ShowIconBreak(this, triggerInfo.targetFiled);
-                    }
-                    else
-                    {
-                        return;
-                    }
+                        .AbilityAdd(async (triggerInfo) =>
+                        {
+                            if (triggerInfo.point > 0)
+                            {
+                                await GameSystem.UiSystem.ShowIcon(this, triggerInfo.targetFiled);
+                            }
+                            else if (triggerInfo.point < 0)
+                            {
+                                await GameSystem.UiSystem.ShowIconBreak(this, triggerInfo.targetFiled);
+                            }
+                            else
+                            {
+                                return;
+                            }
 
-                    Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段变化，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},变化值{triggerInfo.point}");
-                    this[triggerInfo.targetFiled] += triggerInfo.point;
-                    Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
-                    switch (triggerInfo.targetFiled)
-                    {
-                        case CardField.Timer: break;
-                        case CardField.Inspire: break;
-                        case CardField.Apothanasia: await ThisCardManager.ShowTips("续命", new Color(1, 0, 0)); break;
-                        default: break;
-                    }
-                })
-               .AbilityAppend();
+                            Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段变化，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},变化值{triggerInfo.point}");
+                            this[triggerInfo.targetFiled] += triggerInfo.point;
+                            Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
+                            switch (triggerInfo.targetFiled)
+                            {
+                                case CardField.Timer: break;
+                                case CardField.Inspire: break;
+                                case CardField.Apothanasia: await ThisCardManager.ShowTips("续命", new Color(1, 0, 0)); break;
+                                default: break;
+                            }
+                        })
+                       .AbilityAppend();
         }
         public void SetMoveTarget(Vector3 TargetPosition, Vector3 TargetEulers)
         {
