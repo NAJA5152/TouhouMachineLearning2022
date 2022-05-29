@@ -1,5 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.GameEnum;
@@ -11,29 +12,20 @@ namespace TouhouMachineLearningSummary.Info
 {
     namespace CardInspector
     {
-        [CreateAssetMenu(fileName = "SaveData", menuName = "CreatCardDataAsset")]
-        public partial class CardLibraryInfo 
+        public  class InspectorInfo
         {
-            //[LabelText("单人牌库图标")]
-            //public Texture2D singleIcon;
-            //[LabelText("多人牌库图标")]
-            //public Texture2D MultiIcon;
-
-            //[HorizontalGroup("Button", 120, LabelWidth = 70)]
-            //[Button("刷新卡牌数据")]
-            //public void Refresh() => CardLibraryCommand.Refresh();
+            public static List<FileInfo> CardTexture { get; set; }
+            public static Dictionary<Camp, Texture2D> SectarianIcons { get; set; }=new Dictionary<Camp, Texture2D>();
+            public static Dictionary<CardRank, Texture2D> RankIcons { get; set; } = new Dictionary<CardRank, Texture2D>();
+            public static InspectorInfo Instance { get; set; } 
 
             [HorizontalGroup("Button", 120, LabelWidth = 70)]
             [Button("载入卡牌数据从表格")]
-            public void Load() => CardInspectorCommand.LoadFromJson();
+            public void Load() => InspectorCommand.LoadFromJson();
 
             [HorizontalGroup("Button", 120, LabelWidth = 70)]
             [Button("清空卡牌数据")]
-            public void Clear() => CardInspectorCommand.ClearCardData();
-
-            //[HorizontalGroup("Button", 120, LabelWidth = 70)]
-            //[Button("保存卡牌数据到表格")]
-            //public void Save() => CardLibraryCommand.SaveToCsv();
+            public void Clear() => InspectorCommand.ClearCardData();
 
             [ShowInInspector]
             [LabelText("单人模式牌库卡牌数量")]
@@ -54,10 +46,8 @@ namespace TouhouMachineLearningSummary.Info
 
 
 
-            [ShowInInspector]
-            public Dictionary<Camp, Texture2D> sectarianIcons;
-            [ShowInInspector]
-            public Dictionary<CardRank, Texture2D> rankIcons;
+
+
 
             public partial class LevelLibrary
             {
@@ -108,7 +98,7 @@ namespace TouhouMachineLearningSummary.Info
                     public SectarianCardLibrary(List<CardModel> CardsModels, Camp sectarian)
                     {
                         this.sectarian = sectarian;
-                        icon = CardInspectorCommand.GetLibraryInfo().sectarianIcons[sectarian];
+                        icon = SectarianIcons[sectarian];
                         cardModelInfos = CardsModels.Where(card => card.cardCamp == sectarian).ToList();
                     }
                     public partial class RankLibrary
@@ -122,7 +112,7 @@ namespace TouhouMachineLearningSummary.Info
                         public RankLibrary(List<CardModel> cardsModels, CardRank rank)
                         {
                             this.rank = rank;
-                            icon = CardInspectorCommand.GetLibraryInfo().rankIcons[rank];
+                            icon = RankIcons[rank];
                             cardModelInfos = cardsModels.Where(cards => cards.cardRank == rank).ToList();
                         }
                     }

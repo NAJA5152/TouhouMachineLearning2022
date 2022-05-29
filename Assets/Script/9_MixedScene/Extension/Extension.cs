@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using UnityEngine;
@@ -20,7 +21,7 @@ namespace TouhouMachineLearningSummary.Extension
         /// <returns></returns>
         public static T ToType<T>(this object target)
         {
-            if (typeof(T)== typeof(bool))
+            if (typeof(T) == typeof(bool))
             {
                 return (T)(object)bool.Parse(target.ToString());
             }
@@ -33,7 +34,13 @@ namespace TouhouMachineLearningSummary.Extension
 
         public static T Clone<T>(this T Object) => Object.ToJson().ToObject<T>();
         public static Sprite ToSprite(this Texture2D texture) => Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
-
+        //将文件转化为texture2d类型
+        public static Texture2D ToTexture2D(this FileInfo file)
+        {
+            Texture2D texture = new Texture2D(0, 0);
+            texture.LoadImage(File.ReadAllBytes(file.FullName));
+            return texture;
+        }
 
         public static void ForEach<T>(this IEnumerable<T> enumerable, Action<T> action) => enumerable.ToList().ForEach(action);
         public static void ForEach<T>(this IEnumerable<T> enumerable, Func<T> action) => enumerable.ToList().ForEach(action);
@@ -46,7 +53,7 @@ namespace TouhouMachineLearningSummary.Extension
         public static List<int> EnumToOneHot<T>(this T targetEnum) => Enumerable.Range(0, Enum.GetNames(typeof(T)).Length).SelectList(index => index == (int)(object)targetEnum ? 1 : 0);
         public static TEnum OneHotToEnum<TEnum>(this List<int> targetEnum) => (TEnum)(object)targetEnum.IndexOf(1);
 
-        
+
         public static List<TResult> SelectList<TSource, TResult>(this IEnumerable<TSource> source, Func<TSource, TResult> selector)
         {
             List<TResult> result = new List<TResult>(source.Count());

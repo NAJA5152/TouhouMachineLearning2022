@@ -78,29 +78,7 @@ namespace xls检测更新
             Console.WriteLine(JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
             File.WriteAllText(direPath + @"\Game-Text.json", JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
             Console.WriteLine("///////////////");
-            //加载和储存关卡信息的各种翻译
-            var stageText = workbook.Worksheets["Stage"];
-            int stageColCount = stageText.Columns.Length;
-            int stageRowCount = stageText.Rows.Length;
-            textTranslate = new Dictionary<string, Dictionary<string, string>>();
-            supportLanguage.Clear();
-            for (int rank = 2; rank <= stageColCount; rank++)
-            {
-                supportLanguage.Add(stageText[1, rank].DisplayedText);
-            }
-            for (int i = 2; i <= stageRowCount; i++)
-            {
-                Dictionary<string, string> stageTextTranslate = new Dictionary<string, string>();
-                for (int j = 1; j <= stageColCount; j++)
-                {
-                    stageTextTranslate[stageText[1, j].DisplayedText] = stageText[i, j].DisplayedText;
-                }
-                textTranslate[stageText[i, 1].DisplayedText] = stageTextTranslate;
-            }
-            textTranslate.Remove("");
-            Console.WriteLine(JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
-            File.WriteAllText(direPath + @"\Stage.json", JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
-            Console.WriteLine("///////////////");
+           
             //加载和储存单人模式表格
             var singleCards = workbook.Worksheets["CardData-Single"];
             int singleColCount = singleCards.Columns.Length;
@@ -125,7 +103,29 @@ namespace xls检测更新
             Console.WriteLine(JsonConvert.SerializeObject(MultiCardList, Formatting.Indented));
 
             File.WriteAllText(direPath + @"\CardData-Multi.json", JsonConvert.SerializeObject(MultiCardList.Where(cardInfo => cardInfo.isFinish).ToList(), Formatting.Indented));
-
+            //加载和储存关卡信息的各种翻译
+            var stageText = workbook.Worksheets["Stage"];
+            int stageColCount = stageText.Columns.Length;
+            int stageRowCount = stageText.Rows.Length;
+            textTranslate = new Dictionary<string, Dictionary<string, string>>();
+            supportLanguage.Clear();
+            for (int rank = 2; rank <= stageColCount; rank++)
+            {
+                supportLanguage.Add(stageText[1, rank].DisplayedText);
+            }
+            for (int i = 2; i <= stageRowCount; i++)
+            {
+                Dictionary<string, string> stageTextTranslate = new Dictionary<string, string>();
+                for (int j = 1; j <= stageColCount; j++)
+                {
+                    stageTextTranslate[stageText[1, j].DisplayedText] = stageText[i, j].DisplayedText;
+                }
+                textTranslate[stageText[i, 1].DisplayedText] = stageTextTranslate;
+            }
+            textTranslate.Remove("");
+            Console.WriteLine(JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
+            File.WriteAllText(direPath + @"\Stage.json", JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
+            Console.WriteLine("///////////////");
             //加载和储存游戏对话文本系统和各种翻译
             DialogModel currentDialogModel = new DialogModel();
             List<DialogModel> dialogModels = new List<DialogModel>();

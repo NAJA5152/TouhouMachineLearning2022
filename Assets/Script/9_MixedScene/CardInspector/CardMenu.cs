@@ -7,8 +7,8 @@ using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.Info.CardInspector;
 using TouhouMachineLearningSummary.Model;
 using UnityEditor;
-using static TouhouMachineLearningSummary.Info.CardInspector.CardLibraryInfo.LevelLibrary;
-using static TouhouMachineLearningSummary.Info.CardInspector.CardLibraryInfo.LevelLibrary.SectarianCardLibrary;
+using static TouhouMachineLearningSummary.Info.CardInspector.InspectorInfo.LevelLibrary;
+using static TouhouMachineLearningSummary.Info.CardInspector.InspectorInfo.LevelLibrary.SectarianCardLibrary;
 
 namespace TouhouMachineLearningSummary.CardInspector
 {
@@ -22,21 +22,33 @@ namespace TouhouMachineLearningSummary.CardInspector
         {
             CardMenu window = GetWindow<CardMenu>();
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(700, 700);
-            if (!initialized)
-            {
-                CardInspectorCommand.LoadFromJson();
-                initialized=true;
-            }
+            //if (!initialized)
+            //{
+            //    InspectorCommand.LoadFromJson();
+            //    initialized=true;
+            //}
         }
-        public static void UpdateInspector() => instance?.ForceMenuTreeRebuild();
+        public static void UpdateInspector()
+        {
+#if UNITY_EDITOR
+            instance?.ForceMenuTreeRebuild();
+#endif
+        }
+
+        //构造界面树系统
         protected override OdinMenuTree BuildMenuTree()
         {
-            CardLibraryInfo cardLibraryInfo = CardInspectorCommand.GetLibraryInfo();
+            UnityEngine.Debug.Log("构造树形结构");
+            if (InspectorInfo.Instance == null)
+            {
+                InspectorInfo.Instance = new InspectorInfo();
+                InspectorCommand.LoadFromJson();
+            }
+            InspectorInfo cardLibraryInfo = InspectorInfo.Instance;
             var tree = new OdinMenuTree(true);
             tree.DefaultMenuStyle.Height = 60;
             tree.DefaultMenuStyle.IconSize = 48.00f;
             tree.Config.DrawSearchToolbar = true;
-            CardInspectorCommand.InitAsync();
 
             tree.Add("单人模式牌库", cardLibraryInfo);
             foreach (var levelLibrary in cardLibraryInfo.levelLibries.Where(library => library.isSingleMode))

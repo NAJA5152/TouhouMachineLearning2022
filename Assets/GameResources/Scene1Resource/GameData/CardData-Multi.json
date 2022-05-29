@@ -1262,13 +1262,20 @@
       "Name-Ch": "四季映姬",
       "Name-En": ""
     },
-    "CardTags": {},
+    "CardTags": {
+      "Ch": "阎魔",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "Enma",
+      "En_Introduction": "The type label of the card",
+      "geyu": ""
+    },
     "Ability": {
       "Ability-Ch": "部署：选择两个单位，依次赋予黑、白状态\n回合开始，赋予左侧单位黑状态，赋予右侧单位白状态",
       "Ability-En": ""
     },
     "Describe": {
-      "Describe-Ch": "",
+      "Describe-Ch": "如果你不想被贴上黑色和白色的贴纸的话最好还是不要靠近她",
       "Describe-En": ""
     },
     "cardType": 0,
@@ -1288,7 +1295,14 @@
       "Name-Ch": "小野冢小町",
       "Name-En": ""
     },
-    "CardTags": {},
+    "CardTags": {
+      "Ch": "死神",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "Death",
+      "En_Introduction": "The type label of the card",
+      "geyu": ""
+    },
     "Ability": {
       "Ability-Ch": "部署：选择两个单位，依次拉取至自身右侧",
       "Ability-En": ""
@@ -1974,7 +1988,14 @@
       "Name-Ch": "东风谷早苗",
       "Name-En": ""
     },
-    "CardTags": {},
+    "CardTags": {
+      "Ch": "现人神",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "GodHuman",
+      "En_Introduction": "The type label of the card",
+      "geyu": ""
+    },
     "Ability": {
       "Ability-Ch": "令场上所有牌至内向外产生位移",
       "Ability-En": ""

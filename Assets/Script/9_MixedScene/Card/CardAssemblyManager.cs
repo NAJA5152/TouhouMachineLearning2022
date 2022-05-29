@@ -83,6 +83,7 @@ namespace TouhouMachineLearningSummary.Manager
                     await LoadOrDownloadConfig(date);
                 }
                 lastAssembly = Assembly.Load(currentConfig.AssemblyFileData);
+                //加载卡牌信息与卡牌图片
                 lastSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(isSingle: true));
                 lastMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(isSingle: false));
             }
@@ -99,6 +100,7 @@ namespace TouhouMachineLearningSummary.Manager
                 }
             }
             currentAssembly = Assembly.Load(currentConfig.AssemblyFileData);
+            //加载卡牌信息与卡牌图片
             currenttSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(true));
             currentMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(false));
             Debug.Log("下载完成");

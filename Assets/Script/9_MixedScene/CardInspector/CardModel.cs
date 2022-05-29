@@ -21,9 +21,12 @@ namespace TouhouMachineLearningSummary.Model
         [VerticalGroup("Split/Meta")]
         [LabelText("ID")]
         public int cardID;
+
+        [DisableInEditorMode]
         [VerticalGroup("Split/Meta")]
         [LabelText("所属关卡")]
         public string level;
+        [DisableInEditorMode]
         [VerticalGroup("Split/Meta")]
         [LabelText("所属系列")]
         public string series;
@@ -47,13 +50,13 @@ namespace TouhouMachineLearningSummary.Model
         [DisableInEditorMode]
         [VerticalGroup("Split/Meta")]
         [LabelText("点数")]
-        public  int point;
+        public int point;
 
         [DisableInEditorMode]
         [VerticalGroup("Split/Meta")]
         [LabelText("卡片类型"), EnumToggleButtons]
         public CardType cardType;
-        
+
         [DisableInEditorMode]
         [VerticalGroup("Split/Meta")]
         [LabelText("卡片等级"), EnumToggleButtons]
@@ -79,29 +82,33 @@ namespace TouhouMachineLearningSummary.Model
         public CardModel() { }
         /// <summary>
         /// 根据卡牌参数补充对应的卡牌id，卡牌插画等
+        /// 正常游戏从AB包加载，卡组编辑器从本地加载
         /// </summary>
         /// <param name="isSingle"></param>
-        public CardModel Init(bool isSingle)
+        public CardModel Init(bool isSingle, bool isFromAssetBundle = true)
         {
 
-            if (isSingle)
+            cardID = int.Parse($"{(isSingle ? "1" : "2")}{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3, '0')}");
+            if (isFromAssetBundle)
             {
-                cardID = int.Parse($"1{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3, '0')}");
                 icon = AssetBundleCommand.Load<Texture2D>("CardTex", cardID.ToString()) ?? AssetBundleCommand.Load<Texture2D>("CardTex", "default");
             }
             else
             {
-                cardID = int.Parse($"2{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3, '0')}");
-                icon = AssetBundleCommand.Load<Texture2D>("CardTex", cardID.ToString()) ?? AssetBundleCommand.Load<Texture2D>("CardTex", "default");
+                var target = Info.CardInspector.InspectorInfo.CardTexture.FirstOrDefault(file => file.Name == cardID + ".png");
+                if (target == null)
+                {
+                    target = Info.CardInspector.InspectorInfo.CardTexture.FirstOrDefault(file => file.Name == "default.png");
+                }
+                icon = target.ToTexture2D();
             }
-            //Debug.Log(cardID);
             return this;
         }
         [Button("打开脚本")]
         public void OpenCardScript()
         {
             string targetPath = Application.dataPath + $@"\Script\9_MixedScene\CardSpace\Card{cardID}.cs";
-            CardInspectorCommand.CreatScript(cardID);
+            InspectorCommand.CreatScript(cardID);
             System.Diagnostics.Process.Start(targetPath);
         }
     }

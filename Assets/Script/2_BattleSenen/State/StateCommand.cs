@@ -51,6 +51,7 @@ namespace TouhouMachineLearningSummary.Command
             if (AgainstInfo.currentUserInfo == null)
             {
                 //初始化网络系统，用于获取指定版本卡牌信息
+                await Command.AssetBundleCommand.Init(false);
                 await NetCommand.Init();
                 await CardAssemblyManager.SetCurrentAssembly("");
                 //如果在编辑器停止播放游戏则中断接下来的步骤
@@ -60,7 +61,7 @@ namespace TouhouMachineLearningSummary.Command
                      "NPC", "gezi", "yaya", "",
                     new List<CardDeck>
                     {
-                        new CardDeck("萌新的第一套卡组", 2103005, new List<int>
+                        new CardDeck("萌新的第一套卡组", 2081003, new List<int>
                          {
                              //2011001,2011002,2011003,2011004,
                              //2012001,2012002,2012003,2012004,2012005,2012006,
@@ -304,14 +305,14 @@ namespace TouhouMachineLearningSummary.Command
                         if (AgainstInfo.IsMyTurn)
                         {
                             //如果无牌则自动pass
-                            if (!AgainstInfo.cardSet[Orientation.My][GameRegion.Leader,GameRegion.Hand].CardList.Any())
+                            if (!AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList.Any())
                             {
                                 SetCurrentPass();
                             }
                         }
                         else
                         {
-                            
+
                         }
                     }
                 }

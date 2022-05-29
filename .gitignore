@@ -38,3 +38,7 @@ ProjectSettings/PackageManagerSettings.asset
 *.pdb
 *.opendb
 *.asset
+*.sln
+*.csproj
+*.sln
+*.asset

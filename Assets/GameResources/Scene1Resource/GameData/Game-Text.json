@@ -188,6 +188,60 @@
     "En_Introduction": "The type label of the card",
     "geyu": ""
   },
+  "GodHuman": {
+    "Tag": "GodHuman",
+    "Ch": "现人神",
+    "Ch_Introduction": "卡牌的类型标签",
+    "Tc": "",
+    "En": "GodHuman",
+    "En_Introduction": "The type label of the card",
+    "geyu": ""
+  },
+  "God": {
+    "Tag": "God",
+    "Ch": "神明",
+    "Ch_Introduction": "卡牌的类型标签",
+    "Tc": "",
+    "En": "God",
+    "En_Introduction": "The type label of the card",
+    "geyu": ""
+  },
+  "Miracle": {
+    "Tag": "Miracle",
+    "Ch": "奇迹",
+    "Ch_Introduction": "卡牌的类型标签",
+    "Tc": "",
+    "En": "Miracle",
+    "En_Introduction": "The type label of the card",
+    "geyu": ""
+  },
+  "Pray": {
+    "Tag": "Pray",
+    "Ch": "祷告",
+    "Ch_Introduction": "卡牌的类型标签",
+    "Tc": "",
+    "En": "Pray",
+    "En_Introduction": "The type label of the card",
+    "geyu": ""
+  },
+  "Enma": {
+    "Tag": "Enma",
+    "Ch": "阎魔",
+    "Ch_Introduction": "卡牌的类型标签",
+    "Tc": "",
+    "En": "Enma",
+    "En_Introduction": "The type label of the card",
+    "geyu": ""
+  },
+  "Death": {
+    "Tag": "Death",
+    "Ch": "死神",
+    "Ch_Introduction": "卡牌的类型标签",
+    "Tc": "",
+    "En": "Death",
+    "En_Introduction": "The type label of the card",
+    "geyu": ""
+  },
   "Monster": {
     "Tag": "Monster",
     "Ch": "野兽",
