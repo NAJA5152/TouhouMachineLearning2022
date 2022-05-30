@@ -84,8 +84,8 @@ namespace TouhouMachineLearningSummary.Manager
                 }
                 lastAssembly = Assembly.Load(currentConfig.AssemblyFileData);
                 //加载卡牌信息与卡牌图片
-                lastSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(isSingle: true));
-                lastMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(isSingle: false));
+                lastSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(isSingle: true,isFromAssetBundle:!Application.isEditor));
+                lastMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(isSingle: false, isFromAssetBundle: !Application.isEditor));
             }
             //否则获取指定日期的卡牌数据
             else
@@ -101,8 +101,8 @@ namespace TouhouMachineLearningSummary.Manager
             }
             currentAssembly = Assembly.Load(currentConfig.AssemblyFileData);
             //加载卡牌信息与卡牌图片
-            currenttSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(true));
-            currentMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(false));
+            currenttSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(true, isFromAssetBundle: !Application.isEditor));
+            currentMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(false, isFromAssetBundle: !Application.isEditor));
             Debug.Log("下载完成");
             //下载指定版本数据
             static async Task LoadOrDownloadConfig(string date)

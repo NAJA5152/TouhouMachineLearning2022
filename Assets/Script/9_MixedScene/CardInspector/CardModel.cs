@@ -95,6 +95,10 @@ namespace TouhouMachineLearningSummary.Model
             }
             else
             {
+                if (Info.CardInspector.InspectorInfo.Instance==null)
+                {
+                    Command.InspectorCommand.LoadFromJson();
+                }
                 var target = Info.CardInspector.InspectorInfo.CardTexture.FirstOrDefault(file => file.Name == cardID + ".png");
                 if (target == null)
                 {
