@@ -36,7 +36,7 @@ namespace TouhouMachineLearningSummary.Command
             foreach (var file in new DirectoryInfo(targetPath).GetFiles()
                 .Where(file => file.Name.Contains("scene2") && !file.Name.Contains("meta") && !file.Name.Contains("manifest")))
             {
-                _=LoadAssetBundle2(file.FullName);
+                LoadAssetBundle1(file.FullName);
             }
             Debug.LogWarning($"场景2资源加载完毕");
 
