@@ -10,17 +10,18 @@ namespace TouhouMachineLearningSummary.Command
         {
             Info.SoundEffectInfo.AudioScoure = GameObject.FindGameObjectWithTag("Audio");
             //如果已经加载了则无需在加载
-            if (Info.SoundEffectInfo.SoundEfects.Count>0)
+            if (Info.SoundEffectInfo.SoundEfects.Count == 0)
             {
                 for (int i = 0; i < Enum.GetValues(typeof(SoundEffectType)).Length; i++)
                 {
-                    Info.SoundEffectInfo.SoundEfects[(SoundEffectType)i] = AssetBundleCommand.Load<AudioClip>("SoundEfect", ((SoundEffectType)i).ToString());
+                    Info.SoundEffectInfo.SoundEfects[(SoundEffectType)i] = AssetBundleCommand.Load<AudioClip>("SoundEffect", ((SoundEffectType)i).ToString());
                 }
             }
-            
+
         }
         public static async Task PlayAsync(SoundEffectType type)
         {
+            var result = Info.SoundEffectInfo.SoundEfects;
             var audioClip = Info.SoundEffectInfo.SoundEfects[type];
             AudioSource Source = Info.SoundEffectInfo.AudioScoure.AddComponent<AudioSource>();
             Source.clip = audioClip;
