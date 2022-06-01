@@ -4,46 +4,30 @@ using Sirenix.Utilities;
 using Sirenix.Utilities.Editor;
 using System.Linq;
 using TouhouMachineLearningSummary.Command;
-using TouhouMachineLearningSummary.Info.CardInspector;
+using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
 using UnityEditor;
-using static TouhouMachineLearningSummary.Info.CardInspector.InspectorInfo.LevelLibrary;
-using static TouhouMachineLearningSummary.Info.CardInspector.InspectorInfo.LevelLibrary.SectarianCardLibrary;
+using static TouhouMachineLearningSummary.Info.InspectorInfo.LevelLibrary;
+using static TouhouMachineLearningSummary.Info.InspectorInfo.LevelLibrary.SectarianCardLibrary;
 
-namespace TouhouMachineLearningSummary.CardInspector
+namespace TouhouMachineLearningSummary.Other
 {
     public class CardMenu : OdinMenuEditorWindow
     {
 
         static CardMenu instance;
-        static bool initialized = false;
         [MenuItem("Tools/卡组编辑器")]
         private static void OpenWindow()
         {
             CardMenu window = GetWindow<CardMenu>();
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(700, 700);
-            //if (!initialized)
-            //{
-            //    InspectorCommand.LoadFromJson();
-            //    initialized=true;
-            //}
         }
-        public static void UpdateInspector()
-        {
-#if UNITY_EDITOR
-            instance?.ForceMenuTreeRebuild();
-#endif
-        }
-
+        public static void UpdateInspector() => instance?.ForceMenuTreeRebuild();
         //构造界面树系统
         protected override OdinMenuTree BuildMenuTree()
         {
             UnityEngine.Debug.Log("构造树形结构");
-            if (InspectorInfo.Instance == null)
-            {
-                InspectorInfo.Instance = new InspectorInfo();
-                InspectorCommand.LoadFromJson();
-            }
+            InspectorCommand.Init();
             InspectorInfo cardLibraryInfo = InspectorInfo.Instance;
             var tree = new OdinMenuTree(true);
             tree.DefaultMenuStyle.Height = 60;

@@ -13,7 +13,7 @@ public class SoundEffectTest : MonoBehaviour
     public async void TestAudio(SoundEffectType type)
     {
         var audioCLip =SoundEffectInfo.SoundEfects[type];
-        AudioSource Source = SoundEffectInfo.audioScoure.GetComponent<AudioSource>();
+        AudioSource Source = SoundEffectInfo.AudioScoure.GetComponent<AudioSource>();
         Source.clip = audioCLip;
         Source.Play();
         await Task.Delay((int)(audioCLip.length * 1000));

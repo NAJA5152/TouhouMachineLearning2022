@@ -9,6 +9,7 @@ namespace TouhouMachineLearningSummary.Control
         async void Start() => await CreatAgainstProcess();
         public static async Task CreatAgainstProcess()
         {
+            await SceneCommand.InitAsync(false);
             Manager.TaskLoopManager.Init();
             //如果位于跳转模式则直接跳过对局初始化阶段并在之后从对战记录初始化战场状态
             if (!AgainstInfo.isJumpMode) { await StateCommand.AgainstStart(); }

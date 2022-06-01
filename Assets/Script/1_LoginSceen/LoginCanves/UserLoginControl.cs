@@ -23,8 +23,9 @@ namespace TouhouMachineLearningSummary.Control
         async void Start()
         {
             await CameraViewManager.MoveToViewAsync(0, true);
-            await AssetBundleCommand.Init(false);
-            _ = CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
+            //await AssetBundleCommand.Init(false);
+            //_ = CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
+            await SceneCommand.InitAsync(false);
             DialogueCommand.Load();
             TaskLoopManager.Init();
             //初始化场景物体状态，如果已登录，则进入到指定页，否则进入初始场景

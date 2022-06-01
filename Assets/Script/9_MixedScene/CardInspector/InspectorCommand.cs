@@ -1,4 +1,3 @@
-//using CardInspector;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,45 +5,57 @@ using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Info.CardInspector;
+using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
+using TouhouMachineLearningSummary.Other;
 using UnityEditor;
 using UnityEngine;
-using static TouhouMachineLearningSummary.Info.CardInspector.InspectorInfo;
-using static TouhouMachineLearningSummary.Info.CardInspector.InspectorInfo.LevelLibrary;
-using static TouhouMachineLearningSummary.Info.CardInspector.InspectorInfo.LevelLibrary.SectarianCardLibrary;
+using static TouhouMachineLearningSummary.Info.InspectorInfo;
+using static TouhouMachineLearningSummary.Info.InspectorInfo.LevelLibrary;
+using static TouhouMachineLearningSummary.Info.InspectorInfo.LevelLibrary.SectarianCardLibrary;
 
 namespace TouhouMachineLearningSummary.Command
 {
 
     public static class InspectorCommand
     {
-        public static async void LoadFromJson()
+        static bool IsAlreadyInitialized = false;
+
+        public static void Init()
         {
-            /////////////////////////////////////////////新版/////////////////////////////////////
+            if (!IsAlreadyInitialized)
+            {
+                //加载卡牌文件
+                InspectorInfo.CardTexture = new DirectoryInfo(@"Assets\GameResources\Scene1Resource").GetFiles("*.png", SearchOption.AllDirectories).ToList();
+                //加载阵营图标
+                for (int i = 0; i < 5; i++)
+                {
+                    InspectorInfo.SectarianIcons[(Camp)i] = new FileInfo(@$"Assets\GameResources\Scene1Resource\Icon\{(Camp)i}.png").ToTexture2D();
+                }
+                //加载品质图标
+                for (int i = 0; i < 4; i++)
+                {
+                    InspectorInfo.RankIcons[(CardRank)i] = new FileInfo(@$"Assets\GameResources\Scene1Resource\Icon\{(CardRank)i}.png").ToTexture2D();
+                }
+                IsAlreadyInitialized = true;
+                InspectorCommand.LoadFromJson();
+            }
+        }
+
+        public static void LoadFromJson()
+        {
             //获取编辑器信息信息
             InspectorInfo cardLibraryInfo = InspectorInfo.Instance;
-            //加载卡牌文件
-            InspectorInfo.CardTexture = new DirectoryInfo(@"Assets\GameResources\Scene1Resource").GetFiles("*.png", SearchOption.AllDirectories).ToList();
-            //加载阵营图标
-            for (int i = 0; i < 5; i++)
-            {
-                InspectorInfo.SectarianIcons[(Camp)i] = new FileInfo(@$"Assets\GameResources\Scene1Resource\Icon\{(Camp)i}.png").ToTexture2D();
-            }
-            //加载品质图标
-            for (int i = 0; i < 4; i++)
-            {
-                InspectorInfo.RankIcons[(CardRank)i] = new FileInfo(@$"Assets\GameResources\Scene1Resource\Icon\{(CardRank)i}.png").ToTexture2D();
-            }
+
             //加载单人模式卡牌信息
             string singleData = File.ReadAllText(@"Assets\GameResources\Scene1Resource\GameData\CardData-Single.json");
             cardLibraryInfo.singleModeCards.Clear();
-            cardLibraryInfo.singleModeCards.AddRange(singleData.ToObject<List<CardModel>>().Select(card => card.Init(isSingle: true, isFromAssetBundle: false)));
+            cardLibraryInfo.singleModeCards.AddRange(singleData.ToObject<List<CardModel>>().Select(card => card.Init(isSingle: true, isFromAssetBundle: !Application.isEditor)));
             //加载多人模式卡牌信息
             string multiData = File.ReadAllText(@"Assets\GameResources\Scene1Resource\GameData\CardData-Multi.json");
             cardLibraryInfo.multiModeCards.Clear();
-            cardLibraryInfo.multiModeCards.AddRange(multiData.ToObject<List<CardModel>>().Select(card => card.Init(isSingle: false, isFromAssetBundle: false)));
+            cardLibraryInfo.multiModeCards.AddRange(multiData.ToObject<List<CardModel>>().Select(card => card.Init(isSingle: false, isFromAssetBundle: !Application.isEditor)));
 
 
             cardLibraryInfo.levelLibries = new List<LevelLibrary>();
@@ -82,29 +93,20 @@ namespace TouhouMachineLearningSummary.Command
                     }
                 }
             }
-            CardInspector.CardMenu.UpdateInspector();
-            InspectorInfo.Instance.singleModeCards.ForEach(card => CreatScript(card.cardID));
-            InspectorInfo.Instance.multiModeCards.ForEach(card => CreatScript(card.cardID));
+#if UNITY_EDITOR
+            CardMenu.UpdateInspector();
+#endif
+            cardLibraryInfo.singleModeCards.ForEach(card => CreatScript(card.cardID));
+            cardLibraryInfo.multiModeCards.ForEach(card => CreatScript(card.cardID));
         }
         public static void ClearCardData()
         {
             InspectorInfo.Instance.multiModeCards.Clear();
             InspectorInfo.Instance.singleModeCards.Clear();
-            InspectorInfo.Instance.levelLibries = new ();
-            //foreach (var cardLibrarie in InspectorInfo.Instance.levelLibries)
-            //{
-            //    cardLibrarie.cardModelInfos.Clear();
-            //    //情况每个势力
-            //    foreach (var sIngleSectarianLibrary in cardLibrarie.sectarianCardLibraries)
-            //    {
-            //        sIngleSectarianLibrary.cardModelInfos.Clear();
-            //        foreach (var sIngleSectarianLibrary in sIngleSectarianLibrary)
-            //        {
-            //            sIngleSectarianLibrary.cardModelInfos.Clear();
-            //        }
-            //    }
-            //}
-            CardInspector.CardMenu.UpdateInspector();
+            InspectorInfo.Instance.levelLibries = new();
+#if UNITY_EDITOR
+            CardMenu.UpdateInspector();
+#endif
         }
 
         public static void CreatScript(int cardId)

@@ -26,10 +26,18 @@ namespace TouhouMachineLearningSummary.Manager
         /// </summary>
         static CardConfig currentConfig;
         //当前使用的卡牌代码
-        static Assembly currentAssembly;
+        static Assembly currentCardScripts;
         //当前使用的卡牌信息
         static List<CardModel> currenttSingleCardInfos;
         static List<CardModel> currentMultiCardInfos;
+        //最新版本的卡牌代码
+        [ShowInInspector]
+        static Assembly lastCardScripts;
+        //最新版本的卡牌信息
+        [ShowInInspector]
+        public static List<CardModel> lastSingleCardInfos;
+        [ShowInInspector]
+        public static List<CardModel> lastMultiCardInfos;
         //获取当前引用卡牌数据的日期
         public static string GetCurrentConfigDate => currentConfig.Version;
         [ShowInInspector]
@@ -40,22 +48,41 @@ namespace TouhouMachineLearningSummary.Manager
         public static List<CardModel> GetLastSingleCardInfos => lastSingleCardInfos;
         [ShowInInspector]
         public static List<CardModel> GetLastMultiCardInfos => lastMultiCardInfos;
-        /// <summary>
-        /// 最新版本的配置文件
-        /// </summary>
-        //[ShowInInspector]
-        //static CardConfig lastConfig;
-        //最新版本的卡牌代码
-        [ShowInInspector]
-        static Assembly lastAssembly;
-        //最新版本的卡牌信息
-        [ShowInInspector]
-        public static List<CardModel> lastSingleCardInfos;
-        [ShowInInspector]
-        public static List<CardModel> lastMultiCardInfos;
         //设置
-        public static async Task SetCurrentAssembly(string date)
+        public static async Task SetCurrentAssembly(string verison)
         {
+            //获取服务器中最新的版本号
+            //若未指定特定版本则代表查询最新的版本数据
+            //如果不存在该版本数据则联网进行下载“目标版本数据”
+            //装载“目标版本数据”到“当前版本数据”中，同时若未指定版本号，则将“当前版本数据”视为“最新版本数据”
+            //当普通对战时，卡牌数据从“最新版本数据”中获取，当对战回放时，卡牌数据从“当前版本数据”中获取
+
+            var lastVerison = await  Command.NetCommand.GetCardConfigsVersionAsync();
+            //判断加载的目标版本
+            var targetVerison = (verison == "") ? lastVerison : verison;
+            if (cardConfigs.Keys.Contains(targetVerison))
+            {
+                currentConfig = cardConfigs[targetVerison];
+                Debug.Log($"当前已是最新版本{lastVerison}，无需更新");
+            }
+            else
+            {
+                Debug.Log($"下载{lastVerison}版本数据");
+                currentConfig = await Command.NetCommand.DownloadCardConfigsAsync(targetVerison);
+                cardConfigs[currentConfig.Version] = currentConfig;
+            }
+            currenttSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(true, isFromAssetBundle: !Application.isEditor));
+            currentMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(false, isFromAssetBundle: !Application.isEditor));
+            currentCardScripts = Assembly.Load(currentConfig.AssemblyFileData);
+
+            if (verison == "")
+            {
+                lastSingleCardInfos = currenttSingleCardInfos;
+                lastMultiCardInfos = currentMultiCardInfos;
+            }
+            Debug.Log("卡牌版本加载完毕");
+
+
             //识别日期编号
             //假如是空的，则先查询是否存在该配置文件
             //假如存在则加载
@@ -68,56 +95,60 @@ namespace TouhouMachineLearningSummary.Manager
             //检查是否已存在
             //如果已存在啧直接使用
             //如果不存在则从服务器拉取最新版本
-            var data = await GetCardConfigsVersionAsync();
             //为""则获取最新版本的卡牌数据
-            if (date == "")
-            {
-                var targetConfig = cardConfigs.Values.ToList().FirstOrDefault(config => config.UpdataTime.ToString() == data);
-                if (targetConfig != null)
-                {
-                    currentConfig = targetConfig;
-                    Debug.Log($"当前已是最新版本{data}，无需更新");
-                }
-                else
-                {
-                    await LoadOrDownloadConfig(date);
-                }
-                lastAssembly = Assembly.Load(currentConfig.AssemblyFileData);
-                //加载卡牌信息与卡牌图片
-                lastSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(isSingle: true,isFromAssetBundle:!Application.isEditor));
-                lastMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(isSingle: false, isFromAssetBundle: !Application.isEditor));
-            }
-            //否则获取指定日期的卡牌数据
-            else
-            {
-                if (cardConfigs.Keys.Contains(date))
-                {
-                    currentConfig = cardConfigs[date];
-                }
-                else
-                {
-                    await LoadOrDownloadConfig(date);
-                }
-            }
-            currentAssembly = Assembly.Load(currentConfig.AssemblyFileData);
-            //加载卡牌信息与卡牌图片
-            currenttSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(true, isFromAssetBundle: !Application.isEditor));
-            currentMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(false, isFromAssetBundle: !Application.isEditor));
-            Debug.Log("下载完成");
-            //下载指定版本数据
-            static async Task LoadOrDownloadConfig(string date)
-            {
-                currentConfig = await Command.NetCommand.DownloadCardConfigsAsync(date);
-                cardConfigs[currentConfig.Version] = currentConfig;
-            }
+            //if (targetVerison == "")
+            //{
+            //    var targetConfig = cardConfigs.Values.ToList().FirstOrDefault(config => config.UpdataTime.ToString() == lastVerison);
+            //    if (targetConfig != null)
+            //    {
+            //        currentConfig = targetConfig;
+            //        Debug.Log($"当前已是最新版本{lastVerison}，无需更新");
+            //    }
+            //    else
+            //    {
+            //        await DownloadConfig(targetVerison);
+            //    }
+            //    lastCardScripts = Assembly.Load(currentConfig.AssemblyFileData);
+            //    //加载卡牌信息与卡牌图片
+            //    currenttSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(true, isFromAssetBundle: !Application.isEditor));
+            //    currentMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(false, isFromAssetBundle: !Application.isEditor));
+
+            //    lastSingleCardInfos = currenttSingleCardInfos;
+            //    lastMultiCardInfos = currentMultiCardInfos;
+            //}
+            ////否则获取指定日期的卡牌数据
+            //else
+            //{
+            //    if (cardConfigs.Keys.Contains(targetVerison))
+            //    {
+            //        currentConfig = cardConfigs[targetVerison];
+            //    }
+            //    else
+            //    {
+            //        await DownloadConfig(targetVerison);
+            //    }
+            //    //加载卡牌信息与卡牌图片
+            //    currenttSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(true, isFromAssetBundle: !Application.isEditor));
+            //    currentMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(false, isFromAssetBundle: !Application.isEditor));
+            //}
+            //currentCardScripts = Assembly.Load(currentConfig.AssemblyFileData);
+
+            //Debug.Log("下载完成");
+            ////下载指定版本数据
+
+            //static async Task DownloadConfig(string date)
+            //{
+            //    currentConfig = await Command.NetCommand.DownloadCardConfigsAsync(date);
+            //    cardConfigs[currentConfig.Version] = currentConfig;
+            //}
         }
-        public static async Task<string> GetCardConfigsVersionAsync() => await Command.NetCommand.GetCardConfigsVersionAsync();
+        //public static async Task<string> GetCardConfigsVersionAsync() => await Command.NetCommand.GetCardConfigsVersionAsync();
         /// <summary>
         /// 从加载的dll获得指定id的卡牌脚本
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        public static Type GetCardScript(int id) => currentAssembly.GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
+        public static Type GetCardScript(int id) => currentCardScripts.GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
         /// <summary>
         /// 获取当前加载版本的卡牌信息，用于在对局内回放指定版本的牌库，卡组信息
         /// </summary>

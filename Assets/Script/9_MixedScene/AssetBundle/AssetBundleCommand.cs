@@ -22,7 +22,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (AlreadyInit) { return; }
             AlreadyInit = true;
-            //选择从下载下来的热更新目录拉去还是本地拉去
+            //选择从下载下来的热更新目录拉去还是本地获取
             string targetPath = isHotFixedLoad ? Application.streamingAssetsPath + "/AssetBundles/" : "AssetBundles/PC";
 
             Directory.CreateDirectory(targetPath);

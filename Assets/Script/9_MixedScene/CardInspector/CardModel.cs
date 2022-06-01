@@ -6,6 +6,7 @@ using System.Linq;
 using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
+using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Manager;
 using UnityEngine;
 
@@ -95,14 +96,11 @@ namespace TouhouMachineLearningSummary.Model
             }
             else
             {
-                if (Info.CardInspector.InspectorInfo.Instance==null)
-                {
-                    Command.InspectorCommand.LoadFromJson();
-                }
-                var target = Info.CardInspector.InspectorInfo.CardTexture.FirstOrDefault(file => file.Name == cardID + ".png");
+                InspectorCommand.Init();
+                var target = InspectorInfo.CardTexture.FirstOrDefault(file => file.Name == cardID + ".png");
                 if (target == null)
                 {
-                    target = Info.CardInspector.InspectorInfo.CardTexture.FirstOrDefault(file => file.Name == "default.png");
+                    target = InspectorInfo.CardTexture.FirstOrDefault(file => file.Name == "default.png");
                 }
                 icon = target.ToTexture2D();
             }

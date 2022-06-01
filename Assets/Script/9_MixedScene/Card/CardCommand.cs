@@ -73,7 +73,6 @@ namespace TouhouMachineLearningSummary.Command
         public static Card GenerateCard(SampleCardModel sampleCard)
         {
 
-            //Card card = NewCard.GetComponent<Card>();
             GameObject newCard = GameObject.Instantiate(Info.CardInfo.cardModel, new Vector3(0, 100, 0), Info.CardInfo.cardModel.transform.rotation);
             newCard.SetActive(true);
             newCard.transform.SetParent(GameObject.FindGameObjectWithTag("Card").transform);
