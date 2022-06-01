@@ -148,7 +148,7 @@ namespace TouhouMachineLearningSummary.Command
                 if (cardInfo.cardRank == CardRank.Leader)
                 {
                     Info.PageCompnentInfo.tempDeck.LeaderId = cardInfo.cardID;
-                    _ = Command.SoundEffectCommand.PlayAsync(UISoundEffectType.ChangeSuccess);
+                    _ = Command.SoundEffectCommand.PlayAsync(SoundEffectType.ChangeSuccess);
                 }
                 else
                 {
@@ -157,18 +157,18 @@ namespace TouhouMachineLearningSummary.Command
                     {
                         Info.PageCompnentInfo.tempDeck.CardIds.Add(clickCardId);
                         Command.CardListCommand.Init(newTempDeck: Info.PageCompnentInfo.tempDeck, canChangeCard: true);
-                        _ = Command.SoundEffectCommand.PlayAsync(UISoundEffectType.ChangeSuccess);
+                        _ = Command.SoundEffectCommand.PlayAsync(SoundEffectType.ChangeSuccess);
                     }
                     else
                     {
-                        _ = Command.SoundEffectCommand.PlayAsync(UISoundEffectType.ChangeFailed);
+                        _ = Command.SoundEffectCommand.PlayAsync(SoundEffectType.ChangeFailed);
                     }
                 }
             }
             else
             {
                 Debug.Log("当前为不可编辑模式");
-                _ = Command.SoundEffectCommand.PlayAsync(UISoundEffectType.ChangeFailed);
+                _ = Command.SoundEffectCommand.PlayAsync(SoundEffectType.ChangeFailed);
             }
         }
         public static void RemoveCardFromDeck(GameObject clickCard)
@@ -178,14 +178,14 @@ namespace TouhouMachineLearningSummary.Command
             if (Info.PageCompnentInfo.isEditDeckMode)
             {
                 Debug.Log("移除卡牌");
-                _ = Command.SoundEffectCommand.PlayAsync(UISoundEffectType.ChangeSuccess);
+                _ = Command.SoundEffectCommand.PlayAsync(SoundEffectType.ChangeSuccess);
                 int removeCardId = Info.PageCompnentInfo.distinctCardIds[Info.PageCompnentInfo.deckCardModels.IndexOf(clickCard)];
                 Info.PageCompnentInfo.tempDeck.CardIds.Remove(removeCardId);
                 Command.CardListCommand.Init(newTempDeck: Info.PageCompnentInfo.tempDeck, canChangeCard: true);
             }
             else
             {
-                _ = Command.SoundEffectCommand.PlayAsync(UISoundEffectType.ChangeFailed);
+                _ = Command.SoundEffectCommand.PlayAsync(SoundEffectType.ChangeFailed);
             }
         }
     }

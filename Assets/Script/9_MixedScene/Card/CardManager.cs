@@ -25,7 +25,7 @@ namespace TouhouMachineLearningSummary.Manager
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 AgainstInfo.playerFocusCard = thisCard;
-                _=SoundEffectCommand.PlayAsync(AgainstSoundEffectType.CardSelect);
+                _=SoundEffectCommand.PlayAsync(SoundEffectType.CardSelect);
                 NetCommand.AsyncInfo(NetAcyncType.FocusCard);
             }
         }

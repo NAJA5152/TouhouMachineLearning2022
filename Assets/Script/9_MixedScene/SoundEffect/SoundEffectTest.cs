@@ -10,9 +10,9 @@ using System.Threading.Tasks;
 public class SoundEffectTest : MonoBehaviour
 {
     [Button]
-    public async void TestAudio(AgainstSoundEffectType type)
+    public async void TestAudio(SoundEffectType type)
     {
-        var audioCLip =SoundEffectInfo.AgainstSoundEfects[type];
+        var audioCLip =SoundEffectInfo.SoundEfects[type];
         AudioSource Source = SoundEffectInfo.audioScoure.GetComponent<AudioSource>();
         Source.clip = audioCLip;
         Source.Play();
