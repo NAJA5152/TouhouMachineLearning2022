@@ -21,9 +21,9 @@ namespace TouhouMachineLearningSummary.Command
             await NetCommand.Init();
             //加载音效数据
             Command.SoundEffectCommand.Init();
-            //加载卡牌和卡画数据
-            await CardAssemblyManager.SetCurrentAssembly("");
-            //加载本地卡画数据
+            //根据当前卡牌版本 加载卡牌和卡画数据
+            await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.CurrentCardScriptsVersion);
+            //加载本地卡画数据(仅编辑器模式下需要)
 #if UNITY_EDITOR
             InspectorCommand.Init();
 #endif

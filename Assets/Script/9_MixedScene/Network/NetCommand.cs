@@ -16,7 +16,7 @@ namespace TouhouMachineLearningSummary.Command
 {
     public static class NetCommand
     {
-        static string ip => Info.AgainstInfo.isHostNetMode ? "localhost:495" : "106.15.38.165:495";
+        static string ip => Info.AgainstInfo.IsHostNetMode ? "localhost:495" : "106.15.38.165:495";
         static HubConnection TouHouHub { get; set; } = null;
         public static async Task Init()
         {
@@ -142,7 +142,7 @@ namespace TouhouMachineLearningSummary.Command
                 else
                 {
                     //日后补充断线重连
-                    Debug.LogError("非重连状态");
+                    Debug.Log("服务器已有初始化实例");
                 }
              
             }

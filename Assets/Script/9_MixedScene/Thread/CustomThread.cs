@@ -47,7 +47,7 @@ namespace TouhouMachineLearningSummary.Thread
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
-        public static Task Delay(int time) => Info.AgainstInfo.isTrainMode ? Task.Delay(0) : Task.Delay(time);
+        public static Task Delay(int time) => Info.AgainstInfo.IsTrainMode ? Task.Delay(0) : Task.Delay(time);
 
     }
 }

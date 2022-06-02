@@ -135,7 +135,6 @@ public class HotFixedManager : MonoBehaviour
         await SceneCommand.InitAsync(true); 
         //await AssetBundleCommand.Init();
         Debug.LogWarning("初始化完毕，加载场景。。。");
-        Debug.LogError("要启动拉");
         SceneManager.LoadScene("1_LoginScene");
     }
 }
