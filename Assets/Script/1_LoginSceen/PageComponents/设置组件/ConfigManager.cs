@@ -30,7 +30,7 @@ namespace TouhouMachineLearningSummary.Manager
 
             if (!File.Exists(ConfigFileSavePath + "/GameConfig.ini"))
             {
-                Debug.LogError("生成默认配置文件");
+                Debug.Log("生成默认配置文件");
                 configInfo.Width = Screen.currentResolution.width;
                 configInfo.Heigh = Screen.currentResolution.height;
                 configInfo.IsFullScreen = Screen.fullScreen;
@@ -40,7 +40,7 @@ namespace TouhouMachineLearningSummary.Manager
             }
             else
             {
-                Debug.LogError("加载已有配置文件");
+                Debug.Log("加载已有配置文件");
                 configInfo = File.ReadAllText(ConfigFileSavePath + "/GameConfig.ini").ToObject<ConfigInfoModel>();
                 Screen.SetResolution(192*6,108*6,false);
                 TranslateManager.currentLanguage = configInfo.UseLanguage;

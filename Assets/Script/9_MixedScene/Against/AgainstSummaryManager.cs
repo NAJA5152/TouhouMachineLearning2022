@@ -206,7 +206,7 @@ namespace TouhouMachineLearningSummary.Manager
             else
             {
                 //回放模式下每回合指针加一
-                if (AgainstInfo.isReplayMode)
+                if (AgainstInfo.IsReplayMode)
                 {
                     currentTurnOperationsRank++;
                 }
@@ -291,7 +291,7 @@ namespace TouhouMachineLearningSummary.Manager
             //await Task.Delay(1000);
 
             //设置当前为跳转模式
-            AgainstInfo.isJumpMode = true;
+            AgainstInfo.IsJumpMode = true;
             await Control.StateControl.CreatAgainstProcess();
             //设置当前指定回合
             //重新读取

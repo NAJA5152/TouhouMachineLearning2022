@@ -38,7 +38,7 @@ namespace TouhouMachineLearningSummary.Manager
 
             Info.AgainstInfo.isUpPass = false;
             Info.AgainstInfo.isDownPass = false;
-            Info.AgainstInfo.isReplayMode = false;
+            Info.AgainstInfo.IsReplayMode = false;
             Info.AgainstInfo.PlayerScore = (0, 0);
             Info.AgainstInfo.summary = null;
         }
@@ -79,7 +79,8 @@ namespace TouhouMachineLearningSummary.Manager
             Info.AgainstInfo.currentUserInfo = (userInfo == null ? defaultPlayerInfo : userInfo);
             Info.AgainstInfo.currentOpponentInfo = (opponentInfo == null ? defaultPlayerInfo : opponentInfo);
             Info.AgainstInfo.IsMyTurn = Info.AgainstInfo.IsPlayer1;
-            await CardAssemblyManager.SetCurrentAssembly("");
+            Info.AgainstInfo.CurrentCardScriptsVersion = "";
+            await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.CurrentCardScriptsVersion);
             await Manager.CameraViewManager.MoveToViewAsync(3);
             SceneManager.LoadSceneAsync("2_BattleScene");
         }
@@ -89,14 +90,15 @@ namespace TouhouMachineLearningSummary.Manager
         /// <param name="rules"></param>
         public static async void ReplayStart(AgainstSummaryManager summary)
         {
-            Info.AgainstInfo.isReplayMode = true;
+            Info.AgainstInfo.IsReplayMode = true;
             Info.AgainstInfo.summary = summary;
             //LoadAssemblyVerision = Info.AgainstInfo.summary.AssemblyVerision;
             Info.AgainstInfo.IsPlayer1 = true;//待完善，默认1号玩家
             Info.AgainstInfo.currentUserInfo = summary.Player1Info;
             Info.AgainstInfo.currentOpponentInfo = summary.Player2Info;
             Info.AgainstInfo.IsMyTurn = Info.AgainstInfo.IsPlayer1;
-            await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.summary.AssemblyVerision);
+            Info.AgainstInfo.CurrentCardScriptsVersion = Info.AgainstInfo.summary.AssemblyVerision;
+            await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.CurrentCardScriptsVersion);
             SceneManager.LoadSceneAsync("2_BattleScene");
         }
     }

@@ -174,7 +174,7 @@ namespace TouhouMachineLearningSummary.Control
             //开始排队
             await NetCommand.JoinHoldOnList(targetAgainstMode, sampleUserInfo, virtualOpponentInfo);
         }
-        public void UserServerSelect() => AgainstInfo.isHostNetMode = !Info.AgainstInfo.isHostNetMode;
+        public void UserServerSelect() => AgainstInfo.IsHostNetMode = !Info.AgainstInfo.IsHostNetMode;
         private void OnApplicationQuit() => NetCommand.Dispose();
         private void OnGUI()
         {

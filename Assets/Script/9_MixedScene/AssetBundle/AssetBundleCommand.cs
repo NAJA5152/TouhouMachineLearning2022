@@ -24,35 +24,27 @@ namespace TouhouMachineLearningSummary.Command
             AlreadyInit = true;
             //选择从下载下来的热更新目录拉去还是本地获取
             string targetPath = isHotFixedLoad ? Application.streamingAssetsPath + "/AssetBundles/" : "AssetBundles/PC";
-
             Directory.CreateDirectory(targetPath);
-            foreach (var file in new DirectoryInfo(targetPath).GetFiles()
-                .Where(file => file.Name.Contains("scene1") && !file.Name.Contains("meta") && !file.Name.Contains("manifest")))
-            {
-                LoadAssetBundle1(file.FullName);
-            }
-            Debug.LogWarning($"场景1资源加载完毕");
 
-            foreach (var file in new DirectoryInfo(targetPath).GetFiles()
-                .Where(file => file.Name.Contains("scene2") && !file.Name.Contains("meta") && !file.Name.Contains("manifest")))
+            List<Task> ABLoadTask = new List<Task>();
+            foreach (var file in new DirectoryInfo(targetPath)
+                .GetFiles()
+                //.AsParallel()
+               .Where(file => file.Name.Contains("gezi") && !file.Name.Contains("meta") && !file.Name.Contains("manifest")))
             {
-                LoadAssetBundle1(file.FullName);
+
+                ABLoadTask.Add(LoadAssetBundle(file.FullName));
             }
-            Debug.LogWarning($"场景2资源加载完毕");
+            await Task.WhenAll(ABLoadTask);
+            Debug.LogWarning($"AB包加载完毕");
 
             foreach (var ab in AssetBundle.GetAllLoadedAssetBundles())
             {
                 assets[ab.name] = ab.LoadAllAssets().ToList();
             }
-            Debug.LogWarning("资源加载完毕");
+            Debug.LogWarning("生成AB包字典");
 
-            
-            AssetBundle LoadAssetBundle1(string path)
-            {
-                Debug.Log(path + "加载完毕");
-                return AssetBundle.LoadFromFile(path);
-            }
-            async Task<AssetBundle> LoadAssetBundle2(string path)
+            async Task<AssetBundle> LoadAssetBundle(string path)
             {
                 var ABLoadRequir = AssetBundle.LoadFromFileAsync(path);
                 while (!ABLoadRequir.isDone) { await Task.Delay(50); }
@@ -60,7 +52,7 @@ namespace TouhouMachineLearningSummary.Command
                 return ABLoadRequir.assetBundle;
             }
         }
-     
+
         /// <summary>
         /// 从带有tag名的AB包中加载素材
         /// </summary>

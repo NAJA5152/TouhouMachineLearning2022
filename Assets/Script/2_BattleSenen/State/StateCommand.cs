@@ -38,8 +38,8 @@ namespace TouhouMachineLearningSummary.Command
             //    .Select(sampleCardList => sampleCardList.Select(CardCommand.CreateCard).ToList()).ToList();
             CardSet.GlobalCardList = targetJumpTurn.AllCardList.SelectList(sampleCardList => sampleCardList.SelectList(CardCommand.GenerateCard));
             AgainstInfo.cardSet[GameRegion.Leader, GameRegion.Battle].CardList.ForEach(card => card.IsCanSee = true);
-            AgainstInfo.cardSet[GameRegion.Hand][AgainstInfo.isReplayMode ? Orientation.All : Orientation.My].CardList.ForEach(card => card.IsCanSee = true);
-            AgainstInfo.isJumpMode = false;
+            AgainstInfo.cardSet[GameRegion.Hand][AgainstInfo.IsReplayMode ? Orientation.All : Orientation.My].CardList.ForEach(card => card.IsCanSee = true);
+            AgainstInfo.IsJumpMode = false;
             return isExchangeTurn;
         }
         ////////////////////////////////////////////////////对局流程指令////////////////////////////////////////////////////////////////////////////////
@@ -51,9 +51,9 @@ namespace TouhouMachineLearningSummary.Command
             if (AgainstInfo.currentUserInfo == null)
             {
                 //初始化网络系统，用于获取指定版本卡牌信息
-                await Command.AssetBundleCommand.Init(false);
-                await NetCommand.Init();
-                await CardAssemblyManager.SetCurrentAssembly("");
+                //await Command.AssetBundleCommand.Init(false);
+                //await NetCommand.Init();
+                //await CardAssemblyManager.SetCurrentAssembly("");
                 //如果在编辑器停止播放游戏则中断接下来的步骤
                 TaskLoopManager.Throw();
                 AgainstInfo.IsMyTurn = true;
@@ -267,7 +267,7 @@ namespace TouhouMachineLearningSummary.Command
             while (true)
             {
                 //如果是录播模式，则通过指定的对局数据获取操作记录
-                if (AgainstInfo.isReplayMode)
+                if (AgainstInfo.IsReplayMode)
                 {
                     var operation = AgainstInfo.summary.GetCurrentPlayerOperation();
                     if (operation != null)//如果拥有指令则执行，否则为pass跳过
@@ -400,7 +400,7 @@ namespace TouhouMachineLearningSummary.Command
             while (AgainstInfo.SelectRowRank == -1)
             {
                 TaskLoopManager.Throw();
-                if (AgainstInfo.isReplayMode)
+                if (AgainstInfo.IsReplayMode)
                 {
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
                     if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectRegion)
@@ -434,7 +434,7 @@ namespace TouhouMachineLearningSummary.Command
             while (AgainstInfo.SelectRank < 0)
             {
                 TaskLoopManager.Throw();
-                if (AgainstInfo.isReplayMode)
+                if (AgainstInfo.IsReplayMode)
                 {
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
                     if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectLocation)
@@ -472,7 +472,7 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.SelectUnits.Clear();
             //await Task.Delay(500);
             //若为回放模式
-            if (AgainstInfo.isReplayMode)
+            if (AgainstInfo.IsReplayMode)
             {
                 var operation = AgainstInfo.summary.GetCurrentSelectOperation();
                 if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectUnite)
@@ -544,7 +544,7 @@ namespace TouhouMachineLearningSummary.Command
                     break;
                 case CardBoardMode.ExchangeCard:
                     {
-                        if (AgainstInfo.isReplayMode)
+                        if (AgainstInfo.IsReplayMode)
                         {
                             Debug.LogWarning("以记录方式读取操作");
                             List<AgainstSummaryManager.TurnOperation.SelectOperation> selectOperations = AgainstInfo.summary.GetCurrentSelectOperations();

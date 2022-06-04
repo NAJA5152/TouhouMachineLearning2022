@@ -13,12 +13,13 @@ namespace TouhouMachineLearningSummary.Info
     /// </summary>
     public static class AgainstInfo
     {
-        public static bool isHostNetMode = false;//本地测试模式
-        public static bool isTrainMode = true;//训练加速模式，所有等待设为0
-        public static bool isReplayMode = false;//回放模式，会加载指定对战记录读取操作
-        public static bool isJumpMode = false;//跳转到指定回合模式
-        public static VariationType VariationType =  VariationType.None;//默认为无异变模式
-        public static bool isShouldUploadSummaryOperation => !isReplayMode && ((IsPVP && IsMyTurn) || IsPVE);//是否处于应该上传对战记录操作状态,回放模式不上传，单人模式客户端双方均上传记录，多人模式由双方在客户端主体方上传记录
+        public static string CurrentCardScriptsVersion { get; set; } = "";
+        public static bool IsHostNetMode { get; set; } = false;//本地测试模式
+        public static bool IsTrainMode { get; set; } = true;//训练加速模式，所有等待设为0
+        public static bool IsReplayMode { get; set; } = false;//回放模式，会加载指定对战记录读取操作
+        public static bool IsJumpMode { get; set; } = false;//跳转到指定回合模式
+        public static VariationType VariationType = VariationType.None;//默认为无异变模式
+        public static bool isShouldUploadSummaryOperation => !IsReplayMode && ((IsPVP && IsMyTurn) || IsPVE);//是否处于应该上传对战记录操作状态,回放模式不上传，单人模式客户端双方均上传记录，多人模式由双方在客户端主体方上传记录
         /// <summary>
         /// 玩家线上人物信息
         /// </summary>
@@ -134,6 +135,7 @@ namespace TouhouMachineLearningSummary.Info
         //pass状态
         public static bool isUpPass = false;
         public static bool isDownPass = false;
+
         public static bool isCurrectPass => IsMyTurn ? isDownPass : isUpPass;
         public static bool isBoothPass => isUpPass && isDownPass;
     }
