@@ -17,6 +17,8 @@ namespace TouhouMachineLearningSummary.Info
         //全卡牌解锁的管理员账户
         public static bool IsAdmin = true;
         //public static bool cardListCanChange = false;
+        //当前所选对战模式
+        public static AgainstModeType currentAgainstMode= AgainstModeType.Story;
 
         [Header("卡组组件")]
         public GameObject _cardDeckNameModel;

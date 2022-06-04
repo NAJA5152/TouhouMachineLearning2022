@@ -134,6 +134,11 @@ namespace TouhouMachineLearningSummary.Command
             await Task.Delay(2000);
             //Debug.Log("释放线程资源");
             TaskLoopManager.cancel.Cancel();
+            //如果是故事模式，假如神里则更新玩家进度
+            if (Info.PageCompnentInfo.currentAgainstMode== AgainstModeType.Story)
+            {
+                await Info.AgainstInfo.onlineUserInfo.UpdateUserStateAsync(Info.PageCompnentInfo.currentStage, Info.PageCompnentInfo.currentStep);
+            }
             SceneManager.LoadScene("1_LoginScene");
             await Manager.CameraViewManager.MoveToViewAsync(2);
 

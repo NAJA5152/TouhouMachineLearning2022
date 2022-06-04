@@ -9,9 +9,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Live2D", "Live2D.csproj", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirenix.OdinInspector.CompatibilityLayer", "Sirenix.OdinInspector.CompatibilityLayer.csproj", "{07F6CE13-DF15-4F6E-6ACD-7545E955F739}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp", "Assembly-CSharp.csproj", "{FF739CD1-80E0-687F-FFB8-C0F14B0C90E9}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sirenix.OdinInspector.CompatibilityLayer.Editor", "Sirenix.OdinInspector.CompatibilityLayer.Editor.csproj", "{E2119A8F-5013-4D19-7879-5BC1E8B656F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor-firstpass", "Assembly-CSharp-Editor-firstpass.csproj", "{B02015FA-70D4-E2B7-035E-3213216BB0D0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Assembly-CSharp-Editor", "Assembly-CSharp-Editor.csproj", "{1F698780-9633-18EA-105E-4A502421ABC8}"
 EndProject
@@ -41,14 +41,14 @@ Global
 		{07F6CE13-DF15-4F6E-6ACD-7545E955F739}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{07F6CE13-DF15-4F6E-6ACD-7545E955F739}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{07F6CE13-DF15-4F6E-6ACD-7545E955F739}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FF739CD1-80E0-687F-FFB8-C0F14B0C90E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FF739CD1-80E0-687F-FFB8-C0F14B0C90E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FF739CD1-80E0-687F-FFB8-C0F14B0C90E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FF739CD1-80E0-687F-FFB8-C0F14B0C90E9}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E2119A8F-5013-4D19-7879-5BC1E8B656F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E2119A8F-5013-4D19-7879-5BC1E8B656F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E2119A8F-5013-4D19-7879-5BC1E8B656F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E2119A8F-5013-4D19-7879-5BC1E8B656F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B02015FA-70D4-E2B7-035E-3213216BB0D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B02015FA-70D4-E2B7-035E-3213216BB0D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B02015FA-70D4-E2B7-035E-3213216BB0D0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B02015FA-70D4-E2B7-035E-3213216BB0D0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1F698780-9633-18EA-105E-4A502421ABC8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1F698780-9633-18EA-105E-4A502421ABC8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F698780-9633-18EA-105E-4A502421ABC8}.Release|Any CPU.ActiveCfg = Release|Any CPU

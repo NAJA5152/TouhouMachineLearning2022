@@ -30,6 +30,13 @@ namespace TouhouMachineLearningSummary.CardSpace
                    await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit).SetTargetState(CardState.White));
                })
                .AbilityAppend();
+            AbalityRegister(TriggerTime.When, TriggerType.TurnStart)
+               .AbilityAdd(async (triggerInfo) =>
+               {
+                   await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, LeftCard).SetTargetState(CardState.Black));
+                   await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, RightCard).SetTargetState(CardState.White));
+               })
+               .AbilityAppend();
         }
     }
 }

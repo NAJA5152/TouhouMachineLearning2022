@@ -150,20 +150,24 @@ namespace TouhouMachineLearningSummary.Command
             await Manager.CameraViewManager.MoveToViewAsync(2);
             Command.MenuStateCommand.AddState(MenuState.WaitForBattle);
             Command.BookCommand.SimulateFilpPage(true);//开始翻书
-            AgainstModeType targetAgainstMode = AgainstModeType.Practice;
+            Info.PageCompnentInfo.currentAgainstMode = AgainstModeType.Practice;
             PlayerInfo sampleUserInfo = null;
             PlayerInfo virtualOpponentInfo = null;
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
             if (Command.MenuStateCommand.HasState(MenuState.LevelSelect))//单人关卡选择模式
             {
-                targetAgainstMode = AgainstModeType.Story;
+                Info.PageCompnentInfo.currentAgainstMode = AgainstModeType.Story;
                 string targetStage = Info.PageCompnentInfo.currentStage + Info.PageCompnentInfo.currentStep;
                 sampleUserInfo = StageAgainstConfig.GetPlayerCardDeck(targetStage);
                 virtualOpponentInfo = StageAgainstConfig.GetPlayerCardDeck(targetStage);
+
+                DialogueCommand.Play(Info.PageCompnentInfo.currentStage, Info.PageCompnentInfo.currentStep);
+                //播放剧情
+
             }
             if (Command.MenuStateCommand.HasState(MenuState.PracticeConfig))//单人练习模式
             {
-                targetAgainstMode = AgainstModeType.Practice;
+                Info.PageCompnentInfo.currentAgainstMode = AgainstModeType.Practice;
                 sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
                 virtualOpponentInfo = new PlayerInfo(
                      "NPC", "神秘的妖怪", "yaya", "",
@@ -181,17 +185,17 @@ namespace TouhouMachineLearningSummary.Command
             }
             if (Command.MenuStateCommand.HasState(MenuState.CasualModeDeckSelect))//多人休闲模式
             {
-                targetAgainstMode = AgainstModeType.Casual;
+                Info.PageCompnentInfo.currentAgainstMode = AgainstModeType.Casual;
                 sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
             }
             if (Command.MenuStateCommand.HasState(MenuState.RankModeDeckSelect))//多人天梯模式
             {
-                targetAgainstMode = AgainstModeType.Rank;
+                Info.PageCompnentInfo.currentAgainstMode = AgainstModeType.Rank;
                 sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
             }
             if (Command.MenuStateCommand.HasState(MenuState.ArenaModeDeckSelect))//多人竞技场模式
             {
-                targetAgainstMode = AgainstModeType.Arena;
+                Info.PageCompnentInfo.currentAgainstMode = AgainstModeType.Arena;
                 sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
             }
 
@@ -201,13 +205,13 @@ namespace TouhouMachineLearningSummary.Command
                 await Task.Delay(2000);
                 await Manager.CameraViewManager.MoveToViewAsync(1);
                 Command.MenuStateCommand.RebackStare();
-                await Command.NetCommand.LeaveHoldOnList(targetAgainstMode, sampleUserInfo.Account);
+                await Command.NetCommand.LeaveHoldOnList(Info.PageCompnentInfo.currentAgainstMode, sampleUserInfo.Account);
             });
             //配置对战模式
             Manager.AgainstManager.Init();
-            Manager.AgainstManager.SetAgainstMode(targetAgainstMode);
+            Manager.AgainstManager.SetAgainstMode(Info.PageCompnentInfo.currentAgainstMode);
             //开始排队
-            await Command.NetCommand.JoinHoldOnList(targetAgainstMode, sampleUserInfo, virtualOpponentInfo);
+            await Command.NetCommand.JoinHoldOnList(Info.PageCompnentInfo.currentAgainstMode, sampleUserInfo, virtualOpponentInfo);
         }
     }
 }

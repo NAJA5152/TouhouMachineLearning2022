@@ -21,7 +21,7 @@ namespace xls检测更新
         static void Main(string[] args)
         {
             Workbook workbook = new Workbook();
-            direPath = Directory.GetCurrentDirectory().Replace(@"\OtherSolution\xls检测更新\bin\Debug\net6.0", "") + @"\Assets\GameResources\Scene1Resource\GameData\";
+            direPath = Directory.GetCurrentDirectory().Replace(@"\OtherSolution\xls检测更新\bin\Debug\net6.0", "") + @"\Assets\GameResources\GameData\";
             Console.WriteLine(Directory.GetCurrentDirectory());
 
             Console.WriteLine(direPath);
@@ -78,7 +78,7 @@ namespace xls检测更新
             Console.WriteLine(JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
             File.WriteAllText(direPath + @"\Game-Text.json", JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
             Console.WriteLine("///////////////");
-           
+
             //加载和储存单人模式表格
             var singleCards = workbook.Worksheets["CardData-Single"];
             int singleColCount = singleCards.Columns.Length;
@@ -89,7 +89,9 @@ namespace xls检测更新
             {
                 singleCardList.Add(new CardModelInfo(singleCards, i));
             }
+
             File.WriteAllText(direPath + @"\CardData-Single.json", JsonConvert.SerializeObject(singleCardList.Where(cardInfo => cardInfo.isFinish).ToList(), Formatting.Indented));
+            
             //加载和储存多人模式表格
             var multiCards = workbook.Worksheets["CardData-Multi"];
             int multiColCount = multiCards.Columns.Length;
@@ -100,14 +102,16 @@ namespace xls检测更新
             {
                 MultiCardList.Add(new CardModelInfo(multiCards, i));
             }
-            Console.WriteLine(JsonConvert.SerializeObject(MultiCardList, Formatting.Indented));
+            var data = JsonConvert.SerializeObject(MultiCardList.Where(cardInfo => cardInfo.isFinish).ToList(), Formatting.Indented);
+            Console.WriteLine(data);
+            File.WriteAllText(direPath + @"\CardData-Multi.json", data);
 
-            File.WriteAllText(direPath + @"\CardData-Multi.json", JsonConvert.SerializeObject(MultiCardList.Where(cardInfo => cardInfo.isFinish).ToList(), Formatting.Indented));
+            ////////////////////////////////////////////////////////////////////////////////////////////////////
             //加载和储存关卡信息的各种翻译
             var stageText = workbook.Worksheets["Stage"];
             int stageColCount = stageText.Columns.Length;
             int stageRowCount = stageText.Rows.Length;
-            textTranslate = new Dictionary<string, Dictionary<string, string>>();
+            var stageTranslate = new Dictionary<string, Dictionary<string, string>>();
             supportLanguage.Clear();
             for (int rank = 2; rank <= stageColCount; rank++)
             {
@@ -120,11 +124,12 @@ namespace xls检测更新
                 {
                     stageTextTranslate[stageText[1, j].DisplayedText] = stageText[i, j].DisplayedText;
                 }
-                textTranslate[stageText[i, 1].DisplayedText] = stageTextTranslate;
+                stageTranslate[stageText[i, 1].DisplayedText] = stageTextTranslate;
             }
-            textTranslate.Remove("");
-            Console.WriteLine(JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
-            File.WriteAllText(direPath + @"\Stage.json", JsonConvert.SerializeObject(textTranslate, Formatting.Indented));
+            stageTranslate.Remove("");
+            data = JsonConvert.SerializeObject(stageTranslate, Formatting.Indented);
+            Console.WriteLine(data);
+            File.WriteAllText(direPath + @"\Stage.json", data);
             Console.WriteLine("///////////////");
             //加载和储存游戏对话文本系统和各种翻译
             DialogModel currentDialogModel = new DialogModel();
