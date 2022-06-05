@@ -25,6 +25,7 @@ namespace TouhouMachineLearningSummary.Command
             await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.CurrentCardScriptsVersion);
             //加载本地卡画数据(仅编辑器模式下需要)
 #if UNITY_EDITOR
+            UnityEngine.Debug.LogError("当前是编辑器模式");
             InspectorCommand.Init();
 #endif
             //加载状态与字段

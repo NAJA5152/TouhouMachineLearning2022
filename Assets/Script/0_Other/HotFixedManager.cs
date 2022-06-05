@@ -133,7 +133,6 @@ public class HotFixedManager : MonoBehaviour
         Debug.LogWarning("开始初始化AB包");
         loadText.text = "开始加载资源包";
         await SceneCommand.InitAsync(true); 
-        //await AssetBundleCommand.Init();
         Debug.LogWarning("初始化完毕，加载场景。。。");
         SceneManager.LoadScene("1_LoginScene");
     }
