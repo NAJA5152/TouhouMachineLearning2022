@@ -27,16 +27,16 @@ namespace TouhouMachineLearningSummary.Command
             if (!IsAlreadyInitialized)
             {
                 //加载卡牌文件
-                InspectorInfo.CardTexture = new DirectoryInfo(@"Assets\GameResources\Scene1Resource").GetFiles("*.png", SearchOption.AllDirectories).ToList();
+                InspectorInfo.CardTexture = new DirectoryInfo(@"Assets\GameResources\CardTex").GetFiles("*.png", SearchOption.AllDirectories).ToList();
                 //加载阵营图标
                 for (int i = 0; i < 5; i++)
                 {
-                    InspectorInfo.SectarianIcons[(Camp)i] = new FileInfo(@$"Assets\GameResources\Scene1Resource\Icon\{(Camp)i}.png").ToTexture2D();
+                    InspectorInfo.SectarianIcons[(Camp)i] = new FileInfo(@$"Assets\GameResources\Icon\{(Camp)i}.png").ToTexture2D();
                 }
                 //加载品质图标
                 for (int i = 0; i < 4; i++)
                 {
-                    InspectorInfo.RankIcons[(CardRank)i] = new FileInfo(@$"Assets\GameResources\Scene1Resource\Icon\{(CardRank)i}.png").ToTexture2D();
+                    InspectorInfo.RankIcons[(CardRank)i] = new FileInfo(@$"Assets\GameResources\Icon\{(CardRank)i}.png").ToTexture2D();
                 }
                 IsAlreadyInitialized = true;
                 InspectorCommand.LoadFromJson();
@@ -49,11 +49,11 @@ namespace TouhouMachineLearningSummary.Command
             InspectorInfo cardLibraryInfo = InspectorInfo.Instance;
 
             //加载单人模式卡牌信息
-            string singleData = File.ReadAllText(@"Assets\GameResources\Scene1Resource\GameData\CardData-Single.json");
+            string singleData = File.ReadAllText(@"Assets\GameResources\GameData\CardData-Single.json");
             cardLibraryInfo.singleModeCards.Clear();
             cardLibraryInfo.singleModeCards.AddRange(singleData.ToObject<List<CardModel>>().Select(card => card.Init(isSingle: true, isFromAssetBundle: !Application.isEditor)));
             //加载多人模式卡牌信息
-            string multiData = File.ReadAllText(@"Assets\GameResources\Scene1Resource\GameData\CardData-Multi.json");
+            string multiData = File.ReadAllText(@"Assets\GameResources\GameData\CardData-Multi.json");
             cardLibraryInfo.multiModeCards.Clear();
             cardLibraryInfo.multiModeCards.AddRange(multiData.ToObject<List<CardModel>>().Select(card => card.Init(isSingle: false, isFromAssetBundle: !Application.isEditor)));
 

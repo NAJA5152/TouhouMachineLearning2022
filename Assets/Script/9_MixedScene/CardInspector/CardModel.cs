@@ -96,7 +96,6 @@ namespace TouhouMachineLearningSummary.Model
             }
             else
             {
-                InspectorCommand.Init();
                 var target = InspectorInfo.CardTexture.FirstOrDefault(file => file.Name == cardID + ".png");
                 if (target == null)
                 {
