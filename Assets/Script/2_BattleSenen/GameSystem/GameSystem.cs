@@ -56,7 +56,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// </summary>
         public static async Task MoveCard(TriggerInfoModel triggerInfo)
         {
-            if (!triggerInfo.targetCard[CardState.Forbidden] && GameSystem.InfoSystem.AgainstCardSet[triggerInfo.location.X].Count < 6)
+            if (triggerInfo.targetCard!=null&&!triggerInfo.targetCard[CardState.Forbidden] && GameSystem.InfoSystem.AgainstCardSet[triggerInfo.location.X].Count < 6)
             {
                 await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Move]);
             }
