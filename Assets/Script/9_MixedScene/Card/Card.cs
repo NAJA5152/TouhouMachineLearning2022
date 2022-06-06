@@ -439,7 +439,7 @@ namespace TouhouMachineLearningSummary.Model
                         case CardState.Black:
                             if (cardStates.Contains(CardState.White))
                             {
-                                await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][CardRank.NoGold].CardList, 1, true);
+                                await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Battle][CardRank.NoGold].CardList, 1, true);
                                 await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetPoint(1));
                                 cardStates.Remove(CardState.White);
                             }
@@ -447,7 +447,7 @@ namespace TouhouMachineLearningSummary.Model
                         case CardState.White:
                             if (cardStates.Contains(CardState.Black))
                             {
-                                await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][CardRank.NoGold].CardList, 1, true);
+                                await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.NoGold].CardList, 1, true);
                                 await GameSystem.PointSystem.Gain(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetPoint(1));
                                 cardStates.Remove(CardState.Black);
                             }

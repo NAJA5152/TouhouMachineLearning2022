@@ -29,7 +29,7 @@ namespace TouhouMachineLearningSummary.Command
             List<Task> ABLoadTask = new List<Task>();
             foreach (var file in new DirectoryInfo(targetPath)
                 .GetFiles()
-                //.AsParallel()
+                .AsParallel()
                .Where(file => file.Name.Contains("gezi") && !file.Name.Contains("meta") && !file.Name.Contains("manifest")))
             {
 
@@ -66,6 +66,10 @@ namespace TouhouMachineLearningSummary.Command
             if (targetAssets != null)
             {
                 var targetAsset = targetAssets.FirstOrDefault(asset => asset.name == fileName);
+                if (targetAsset==null)
+                {
+                    Debug.LogError("无法找到" + fileName);
+                }
                 return targetAsset as T;
             }
             return null;

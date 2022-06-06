@@ -154,8 +154,8 @@ namespace TouhouMachineLearningSummary.Manager
                 cardIcon.GetComponent<CanvasGroup>().alpha = process;
                 cardIcon.transform.localPosition = new Vector3(0, 0, -1 - process * 30);
             });
-            await Task.Delay(800);
-            await CustomThread.TimerAsync(0.4f, runAction: (process) =>
+            await Task.Delay(400);
+            await CustomThread.TimerAsync(0.2f, runAction: (process) =>
             {
                 cardIcon.GetComponent<CanvasGroup>().alpha = 1 - process;
                 cardIcon.transform.localPosition = new Vector3(0, 0, -1 - (1 - process) * 30);
@@ -182,7 +182,7 @@ namespace TouhouMachineLearningSummary.Manager
                 cardIcon.GetComponent<Image>().material.SetFloat("_Bias", process / 5);
             });
             await Task.Delay(200);
-            await CustomThread.TimerAsync(0.4f, runAction: (process) =>
+            await CustomThread.TimerAsync(0.2f, runAction: (process) =>
             {
                 cardIcon.GetComponent<CanvasGroup>().alpha = 1 - process;
                 cardIcon.transform.localPosition = new Vector3(0, 0, -1 - (1 - process) * 30);
@@ -212,7 +212,7 @@ namespace TouhouMachineLearningSummary.Manager
         [Button]
         public async Task ShowFieldIconBreak(CardField cardField)
         {
-            cardIcon.GetComponent<Image>().material.SetTexture("_Icon", Command.UiCommand.GetCardFieldTexture(cardField));
+            cardIcon.GetComponent<Image>().material.SetTexture("_MainTex", Command.UiCommand.GetCardFieldTexture(cardField));
             cardIcon.GetComponent<Image>().material.SetFloat("_Bias", 0);
             cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1);
 

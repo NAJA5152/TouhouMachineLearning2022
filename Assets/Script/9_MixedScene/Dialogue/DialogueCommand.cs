@@ -19,7 +19,7 @@ namespace TouhouMachineLearningSummary.Command
     {
         //public static void Load() => Info.DialogueInfo.DialogueModels = File.ReadAllText(@"Assets\Resources\GameData\Story.json").ToObject<List<DialogueModel>>();
         public static void Load() => Info.DialogueInfo.DialogueModels = AssetBundleCommand.Load<TextAsset>("GameData", "Story").text.ToObject<List<DialogueModel>>();
-        public static async void Play(string stageTag, int stageRank)
+        public static async Task Play(string stageTag, int stageRank)
         {
             Info.DialogueInfo.CurrentPoint = 0;
             Info.DialogueInfo.instance.dialogueCanvas.SetActive(true);
@@ -28,7 +28,6 @@ namespace TouhouMachineLearningSummary.Command
             if (Info.DialogueInfo.currnetDialogueModel != null)
             {
                 RunNextOperations();
-                await UnlockAsync(stageTag, stageRank);
             }
             else
             {
@@ -113,7 +112,7 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     if (currentOperations.Position == "左侧")
                     {
-                        Info.DialogueInfo.instance.left.GetComponent<Image>().sprite = AssetBundleCommand.Load<Texture2D>("Charactar" , currentOperations.Chara).ToSprite();
+                        Info.DialogueInfo.instance.left.GetComponent<Image>().sprite = AssetBundleCommand.Load<Texture2D>("Charactar", currentOperations.Chara).ToSprite();
                         Info.DialogueInfo.instance.left.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                         Info.DialogueInfo.instance.right.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f, 1);
 

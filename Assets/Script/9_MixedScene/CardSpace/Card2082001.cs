@@ -25,7 +25,7 @@ namespace TouhouMachineLearningSummary.CardSpace
               {
                   for (int i = 0; i < 2; i++)
                   {
-                      await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[CardRank.NoGold].CardList, 1);
+                      await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][ GameRegion.Battle][CardRank.NoGold].CardList, 1);
                       await GameSystem.TransferSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit).SetLocation(CurrentOrientation, CurrentRegion, -1));
                   }
               })

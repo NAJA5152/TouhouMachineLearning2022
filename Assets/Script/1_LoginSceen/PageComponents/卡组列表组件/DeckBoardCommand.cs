@@ -161,7 +161,7 @@ namespace TouhouMachineLearningSummary.Command
                 sampleUserInfo = StageAgainstConfig.GetPlayerCardDeck(targetStage);
                 virtualOpponentInfo = StageAgainstConfig.GetPlayerCardDeck(targetStage);
 
-                DialogueCommand.Play(Info.PageCompnentInfo.currentStage, Info.PageCompnentInfo.currentStep);
+                await DialogueCommand.Play(Info.PageCompnentInfo.currentStage, Info.PageCompnentInfo.currentStep);
                 //播放剧情
 
             }
