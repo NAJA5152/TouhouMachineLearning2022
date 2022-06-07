@@ -59,7 +59,7 @@
     ]
   },
   {
-    "Tag": "1-1",
+    "Tag": "1-0",
     "Operations": [
       {
         "Branch": "",
@@ -67,7 +67,7 @@
         "Position": "左侧",
         "Face": "",
         "Text": {
-          "Ch": "你好呀"
+          "Ch": "这是1-0的剧本"
         }
       },
       {
@@ -235,7 +235,7 @@
     ]
   },
   {
-    "Tag": "1-2",
+    "Tag": "1-1",
     "Operations": [
       {
         "Branch": "",
@@ -243,25 +243,7 @@
         "Position": "左侧",
         "Face": "",
         "Text": {
-          "Ch": "只要不要停下来"
-        }
-      },
-      {
-        "Branch": "",
-        "Chara": "早苗",
-        "Position": "左侧",
-        "Face": "",
-        "Text": {
-          "Ch": "道路就会不断延伸"
-        }
-      },
-      {
-        "Branch": "",
-        "Chara": "早苗",
-        "Position": "左侧",
-        "Face": "",
-        "Text": {
-          "Ch": "你好呀"
+          "Ch": "这是1-1的剧本"
         }
       },
       {
@@ -270,34 +252,34 @@
         "Position": "右侧",
         "Face": "",
         "Text": {
-          "Ch": "你好呀，最近忙吗@忙@不忙@"
-        }
-      },
-      {
-        "Branch": "1",
-        "Chara": "早苗",
-        "Position": "左侧",
-        "Face": "",
-        "Text": {
-          "Ch": "还好啦，也不是很忙"
-        }
-      },
-      {
-        "Branch": "2",
-        "Chara": "早苗",
-        "Position": "左侧",
-        "Face": "",
-        "Text": {
-          "Ch": "唉，最近忙死了"
+          "Ch": "你好呀，最近忙吗"
         }
       },
       {
         "Branch": "",
-        "Chara": "灵梦",
-        "Position": "",
+        "Chara": "早苗",
+        "Position": "左侧",
         "Face": "",
         "Text": {
-          "Ch": "我们换个话题吧"
+          "Ch": "第一句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "第二句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "第三句话"
         }
       },
       {
@@ -307,6 +289,56 @@
         "Face": "",
         "Text": {
           "Ch": "好呀"
+        }
+      }
+    ]
+  },
+  {
+    "Tag": "1-2",
+    "Operations": [
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "这是1-2的剧本"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "灵梦",
+        "Position": "右侧",
+        "Face": "",
+        "Text": {
+          "Ch": "你好呀，最近忙吗"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "第一句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "第二句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "第三句话"
         }
       }
     ]

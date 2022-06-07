@@ -24,10 +24,11 @@ namespace TouhouMachineLearningSummary.Command
             Info.DialogueInfo.CurrentPoint = 0;
             Info.DialogueInfo.instance.dialogueCanvas.SetActive(true);
             Debug.LogError("对话组件开启");
+            //加载剧情文本
             Info.DialogueInfo.currnetDialogueModel = Info.DialogueInfo.DialogueModels.FirstOrDefault(model => model.Tag == $"{stageTag}-{stageRank}");
             if (Info.DialogueInfo.currnetDialogueModel != null)
             {
-                RunNextOperations();
+                await RunNextOperations();
             }
             else
             {
@@ -49,15 +50,13 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (AgainstInfo.onlineUserInfo.GetStage(stageTag) == stageRank)
             {
-                Debug.LogWarning("玩家进度更新至"+stageTag+"-"+ stageRank + 1);
+                Debug.LogWarning("玩家进度更新至" + stageTag + "-" + stageRank + 1);
                 await AgainstInfo.onlineUserInfo.UpdateUserStateAsync(stageTag, stageRank + 1);
             }
         }
-        public static async void RunNextOperations()
+        public static async Task RunNextOperations()
         {
-            //Load();
-            //Info.DialogueInfo.currnetDialogueModel = Info.DialogueInfo.DialogueModels.FirstOrDefault(model => model.Tag == "1-1");
-            Debug.LogError($"当前对话{Info.DialogueInfo.CurrentPoint}，总对话{ Info.DialogueInfo.currnetDialogueModel.Operations.Count}");
+            Debug.LogWarning($"当前对话{Info.DialogueInfo.CurrentPoint}，总对话{ Info.DialogueInfo.currnetDialogueModel.Operations.Count}");
             //如果没执行完则运行下一个指令，否则直接结束
             if (Info.DialogueInfo.CurrentPoint < Info.DialogueInfo.currnetDialogueModel.Operations.Count)
             {
@@ -68,6 +67,8 @@ namespace TouhouMachineLearningSummary.Command
                     string command = currentOperations.Text["Ch"];
                     if (command.StartsWith("select"))
                     {
+                        //到选择选项时停止自动跳转
+                        DialogueInfo.IsJump = false;
                         Info.DialogueInfo.instance.selectUi.SetActive(true);
                         var options = command.Replace("select:", "").Split('@').ToList();
                         for (int i = 0; i < 3; i++)
@@ -80,7 +81,6 @@ namespace TouhouMachineLearningSummary.Command
                             else
                             {
                                 Info.DialogueInfo.instance.selectUi.transform.GetChild(i).gameObject.SetActive(false);
-
                             }
                         }
                     }
@@ -88,10 +88,11 @@ namespace TouhouMachineLearningSummary.Command
                     {
                         if (command.StartsWith("rename"))
                         {
+                            //到命名选项时停止自动跳转
+                            DialogueInfo.IsJump = false;
                             await NoticeCommand.ShowAsync("请输入你的名字", NotifyBoardMode.Input, inputAction: async (name) =>
                             {
                                 await Info.AgainstInfo.onlineUserInfo.UpdateName(name);
-                                //await Info.AgainstInfo.onlineUserInfo.UpdateUserStateAsync(0, 1);
                             }, inputField: "村中人");
                         }
                         if (command.StartsWith("music"))
@@ -105,7 +106,7 @@ namespace TouhouMachineLearningSummary.Command
                             Debug.LogError("切换背景图片" + music);
                         }
                         Info.DialogueInfo.CurrentPoint++;
-                        RunNextOperations();
+                        await RunNextOperations();
                     }
 
                 }
@@ -136,6 +137,11 @@ namespace TouhouMachineLearningSummary.Command
                     //{
                     //    Info.DialogueInfo.instance.Right.gameObject.transform.localScale /= 1.1f;
                     //}
+                    while (!DialogueInfo.IsShowNextText)
+                    {
+                        await Task.Delay(100);
+                    }
+                    await RunNextOperations();
                 }
 
             }

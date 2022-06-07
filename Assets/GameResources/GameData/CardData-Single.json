@@ -14,7 +14,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "我方场上每存在一个妖精单位且自身点数大于1时便对对方场上造成一次1点伤害，衰退1"
@@ -45,7 +46,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "治愈一个非金妖精单位并重新触发其部署效果"
@@ -76,7 +78,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "摧毁场上所有点数最大的非金单位"
@@ -107,7 +110,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "对场上所有最高的单位造成一点伤害，重复x+1次，x为两侧单位的活力值总和"
@@ -138,7 +142,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "对一行最左侧个单位造成x+1点伤害，并向右侧依此递减，x为两侧单位的活力值总和"
@@ -169,7 +174,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "召唤日，星，活力（{x}）"
@@ -200,7 +206,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "召唤日，月，活力（{x}）"
@@ -231,7 +238,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "锁定1+x个单位并给与2点伤害，x为两侧单位的活力值总和"
@@ -262,7 +270,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "翻倍两个妖精单位的活力值"
@@ -293,7 +302,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "治愈一个妖精单位，活力2"
@@ -324,7 +334,8 @@
       "Tc": "",
       "En": "tactics",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "重新打出一张非金妖精单位"
@@ -355,7 +366,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "从卡组中随机打出一张点数最低的妖精单位，活力（1）"
@@ -386,7 +398,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "对对方随机一个点数最大的单位造成1点伤害，重复1+x次，x为两侧单位的活力值总和"
@@ -417,7 +430,8 @@
       "Tc": "",
       "En": "Object",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "复活一个铜色妖精单位"

@@ -8,25 +8,26 @@ namespace TouhouMachineLearningSummary.Control
     /// </summary>
     public class DialogueControl : MonoBehaviour
     {
-        public void ShowNextText()
+        public async void ShowNextText()
         {
             if (!DialogueInfo.SelectMode)
             {
-                DialogueCommand.RunNextOperations();
+                //await DialogueCommand.RunNextOperations();
+                DialogueInfo.IsShowNextText = true;
             }
         }
-        public void ShowLastText()
+        public async void ShowLastText()
         {
             DialogueInfo.instance.selectUi.SetActive(false);
             DialogueInfo.CurrentPoint = Mathf.Max(0, DialogueInfo.CurrentPoint - 2);
-            DialogueCommand.RunNextOperations();
+            await DialogueCommand.RunNextOperations();
         }
-        public void SetBranch(int index)
+        public async void SetBranch(int index)
         {
             DialogueInfo.SelectBranch = index;
             DialogueInfo.instance.selectUi.SetActive(false);
             DialogueInfo.CurrentPoint++;
-            DialogueCommand.RunNextOperations();
+            await DialogueCommand.RunNextOperations();
         }
 
         private void OnGUI()

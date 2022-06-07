@@ -14,7 +14,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署，力竭:我方场上每存在一个自身外的妖精单位便对对方场上点数最高目标造成一次1点伤害",
@@ -47,7 +48,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署:治愈一个非金妖精单位并重新触发其部署效果",
@@ -80,7 +82,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署:摧毁场上非金且点数最大的所有单位",
@@ -113,7 +116,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署:对场上所有最低的非金单位造成一点伤害，重复x+1次(x为两侧单位的活力值总和)",
@@ -146,7 +150,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署:对一行最左侧的非金单位造成x+1点伤害，并向右侧（跳过金卡）依此递减(x为两侧单位的活力值总和)",
@@ -179,7 +184,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署:设置自身活力为2,\n并召唤三月精*月，三月精*星\n被召唤时:设置自身活力为2",
@@ -212,7 +218,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署:设置自身活力为2,\n并召唤三月精*日，三月精*星\n被召唤时:设置自身活力为2",
@@ -245,7 +252,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署:设置自身活力为2,\n并召唤三月精*星，三月精*星\n被召唤时:设置自身活力为2",
@@ -278,7 +286,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署，活力（x）:封印1+x个非金单位并给与2点伤害，x为两侧单位的活力值总和",
@@ -311,7 +320,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署:增加场上所有非金妖精牌1点鼓舞",
@@ -344,7 +354,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署:选择两个非金妖精单位并翻倍其鼓舞值",
@@ -377,7 +388,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署:获得1点鼓舞，选择并治愈一个非金妖精单位",
@@ -410,7 +422,8 @@
       "Tc": "",
       "En": "tactics",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署:将场上一个铜色单位移入卡组，同时打出卡组中点数最低的铜色单位",
@@ -443,7 +456,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署:获得1点活力，并从卡组中随机打出一张点数最低的铜色妖精单位",
@@ -476,7 +490,8 @@
       "Tc": "",
       "En": "Fairy",
       "En_Introduction": "The type label of the card",
-      "geyu": "ads"
+      "geyu": "ads",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署，活力（x）:对对方随机一个点数最大的非金单位造成1点伤害，重复1+x次",
@@ -509,7 +524,8 @@
       "Tc": "",
       "En": "Object",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "复活一个铜色妖精单位",
@@ -542,7 +558,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "每当己方打出并部署一个单位时，在其部署效果生效前，选择我方场上一个非金单位与其点数互换",
@@ -575,7 +592,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：摧毁一个点数大于自身3倍的非金单位",
@@ -608,7 +626,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：使与自身点数相同的所有非金单位与自身点数减半（向下取整），重复三次",
@@ -641,7 +660,8 @@
       "Tc": "",
       "En": "Variation",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "回合开始：场上所有单位阶级循环一轮",
@@ -674,7 +694,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：检索牌组中一张道具卡并打出",
@@ -707,7 +728,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "暴躁：两侧单位受到伤害\n温顺：两侧单位受到增益",
@@ -740,7 +762,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "暴躁：在敌方同排最右侧生成一个头，每回合开始正序移动至最下一排最右侧并对左侧单位造成1点伤害\n温顺：在我方同排最右侧生成一个头，每回合开始对左侧单生成一点增益",
@@ -773,7 +796,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "暴躁：对对方同排所有目标获得一点伤害\n温顺：按正顺序移动至下一排",
@@ -806,7 +830,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "暴躁：令场上所有高于自身点数的单位点数受到一点伤害\n温顺：令所有低于自身点数的单位点数加一",
@@ -839,7 +864,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "暴躁：清除所有单位的温顺状态\n温顺：清除所有单位的暴躁状态",
@@ -872,7 +898,8 @@
       "Tc": "",
       "En": "SpellCard",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：逆转自身与场上点数最大的非金单位的点数",
@@ -905,7 +932,8 @@
       "Tc": "",
       "En": "Special ",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "召唤一个草根妖怪",
@@ -938,7 +966,8 @@
       "Tc": "",
       "En": "Tool",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "对同排所有单位产生2点增益",
@@ -971,7 +1000,8 @@
       "Tc": "",
       "En": "Tool",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "选择场上一个铜色单位，将其重新打出",
@@ -1004,7 +1034,8 @@
       "Tc": "",
       "En": "Tool",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "对一个单位造成（当前点数-1）点的伤害",
@@ -1037,7 +1068,8 @@
       "Tc": "",
       "En": "Tool",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "赋予一个单位延命1",
@@ -1070,7 +1102,8 @@
       "Tc": "",
       "En": "Tool",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "将一个单位移动至横向的另一排",
@@ -1103,7 +1136,8 @@
       "Tc": "",
       "En": "Tool",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "为一个非金单位添加隐身状态",
@@ -1136,7 +1170,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "每回合开始正序移动至最下一排最右侧并对左侧单位造成1点伤害",
@@ -1169,7 +1204,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "在我方同排最右侧生成一个头，每回合开始对左侧单生成一点增益",
@@ -1202,7 +1238,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：在我方手牌中生成一张旧地狱怨灵",
@@ -1235,7 +1272,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "我方回合结束时:若自身位于手牌，则移动至对方手牌\n当我方pass时 召唤至场上\n部署、召唤:丢弃我方手牌中最右侧的卡牌",
@@ -1268,7 +1306,8 @@
       "Tc": "",
       "En": "Enma",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：选择两个单位，依次赋予黑、白状态\n回合开始，赋予左侧单位黑状态，赋予右侧单位白状态",
@@ -1301,7 +1340,8 @@
       "Tc": "",
       "En": "Death",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：选择两个单位，依次拉取至自身右侧",
@@ -1334,7 +1374,8 @@
       "Tc": "",
       "En": "Monster",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "拥有王者之气的巨型毛玉，比少见的大毛玉还要大一点\n除此外并没有什么特殊的效果",
@@ -1367,7 +1408,8 @@
       "Tc": "",
       "En": "Monster",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "少见的大型毛玉，比普通的毛玉要大一点\n除此外并没有什么特殊的效果",
@@ -1400,7 +1442,8 @@
       "Tc": "",
       "En": "Monster",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "普通的毛玉球，十分常见\n除此外并没有什么特殊的效果",
@@ -1433,7 +1476,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：复活两个带机械标签的单位\n活力 延命 计时 封印",
@@ -1466,7 +1510,8 @@
       "Tc": "",
       "En": "Machine",
       "En_Introduction": "The type label of the card",
-      "geyu": "asdsaf"
+      "geyu": "asdsaf",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：移除我方场上所有单位的能量，对对方场上点数最高的非金单位造成移除值等次数的1点伤害",
@@ -1499,7 +1544,8 @@
       "Tc": "",
       "En": "tactics",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "选择一个机械单位，将其移动至对方同排，并根据其能量值对同排所有单位造成伤害",
@@ -1532,7 +1578,8 @@
       "Tc": "",
       "En": "Machine",
       "En_Introduction": "The type label of the card",
-      "geyu": "asdsaf"
+      "geyu": "asdsaf",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "我方回合结束：移除两侧单位能量值，对对方点数最大的单位造成等量伤害",
@@ -1565,7 +1612,8 @@
       "Tc": "",
       "En": "Machine",
       "En_Introduction": "The type label of the card",
-      "geyu": "asdsaf"
+      "geyu": "asdsaf",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：获得倒计时（2）\n我方回合开始时，倒计时-1，倒计时归0时\n将卡牌两侧的\"水利发电机\"或\"储能电容器\"单位的能量点数增加到容量上限，然后重置倒计时为2",
@@ -1598,7 +1646,8 @@
       "Tc": "",
       "En": "Machine",
       "En_Introduction": "The type label of the card",
-      "geyu": "asdsaf"
+      "geyu": "asdsaf",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "位于场上时，我方每部署一张单位，在其部署效果生效前，该牌能量点数+1",
@@ -1631,7 +1680,8 @@
       "Tc": "",
       "En": "Machine",
       "En_Introduction": "The type label of the card",
-      "geyu": "asdsaf"
+      "geyu": "asdsaf",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：选择两个单位，将其能量集中至自身",
@@ -1664,7 +1714,8 @@
       "Tc": "",
       "En": "tactics",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：移除左侧单位能量，从卡组中打出一张最上方点数相同的非金单位",
@@ -1697,7 +1748,8 @@
       "Tc": "",
       "En": "tactics",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "将墓地中三个机械单位回收到卡组中",
@@ -1730,7 +1782,8 @@
       "Tc": "",
       "En": "Machine",
       "En_Introduction": "The type label of the card",
-      "geyu": "asdsaf"
+      "geyu": "asdsaf",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "我方回合结束：移除两侧单位能量值，对自身产生等量增益",
@@ -1763,7 +1816,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：选择一个属性区域，对该牌所有单位赋予土元素状态",
@@ -1796,7 +1850,8 @@
       "Tc": "",
       "En": "Machine",
       "En_Introduction": "The type label of the card",
-      "geyu": "asdsaf"
+      "geyu": "asdsaf",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "容量：（3）\n我方回合结束：自身能量加一，并为两侧单位附加水状态，能量值超出容量后触发超载效果\n超载：对两侧单位造成2点伤害并摧毁自身",
@@ -1829,7 +1884,8 @@
       "Tc": "",
       "En": "Machine",
       "En_Introduction": "The type label of the card",
-      "geyu": "asdsaf"
+      "geyu": "asdsaf",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "容量：（8）\n我方回合结束：移除两侧单位能量值，加到自身身上，能量值超出容量后触发超载效果\n超载：对全场所有单位造成1点伤害并摧毁自身",
@@ -1862,7 +1918,8 @@
       "Tc": "",
       "En": "Machine",
       "En_Introduction": "The type label of the card",
-      "geyu": "asdsaf"
+      "geyu": "asdsaf",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：移除左侧单位能量，随后选择我方场上一个非金单位对其产生等能量值的护盾",
@@ -1895,7 +1952,8 @@
       "Tc": "",
       "En": "Machine",
       "En_Introduction": "The type label of the card",
-      "geyu": "asdsaf"
+      "geyu": "asdsaf",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：移除左侧单位能量，随后选择对方场上一个非金单位对其产生等能量值的伤害",
@@ -1928,7 +1986,8 @@
       "Tc": "",
       "En": "Yokai",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：选择并治愈并重新触发一个铜色机械单位的部署效果",
@@ -1961,7 +2020,8 @@
       "Tc": "",
       "En": "tactics",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "部署：选择并将我方场上一个机械单位直接移入墓地（不视为伤害和死亡），随后从牌组中打出其同名单位",
@@ -1994,7 +2054,8 @@
       "Tc": "",
       "En": "GodHuman",
       "En_Introduction": "The type label of the card",
-      "geyu": ""
+      "geyu": "",
+      "": ""
     },
     "Ability": {
       "Ability-Ch": "令场上所有牌至内向外产生位移",
