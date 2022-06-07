@@ -340,6 +340,114 @@
         "Text": {
           "Ch": "第三句话"
         }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "请进行第一个选项"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "指令",
+        "Position": "",
+        "Face": "",
+        "Text": {
+          "Ch": "select:忙@不忙"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "选择完毕"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "第一句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "第二句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "第三句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "请进行第一个选项"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "指令",
+        "Position": "",
+        "Face": "",
+        "Text": {
+          "Ch": "select:俺选B@俺选A"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "选择完毕"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "第一句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "第二句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "早苗",
+        "Position": "左侧",
+        "Face": "",
+        "Text": {
+          "Ch": "第三句话"
+        }
       }
     ]
   }

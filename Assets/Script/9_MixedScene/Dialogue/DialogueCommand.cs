@@ -83,6 +83,7 @@ namespace TouhouMachineLearningSummary.Command
                                 Info.DialogueInfo.instance.selectUi.transform.GetChild(i).gameObject.SetActive(false);
                             }
                         }
+                        //选择模式要卡住状态
                     }
                     else
                     {
@@ -137,7 +138,8 @@ namespace TouhouMachineLearningSummary.Command
                     //{
                     //    Info.DialogueInfo.instance.Right.gameObject.transform.localScale /= 1.1f;
                     //}
-                    while (!DialogueInfo.IsShowNextText)
+                    DialogueInfo.IsShowNextText = false;
+                    while (!DialogueInfo.IsShowNextText|| DialogueInfo.IsJump)
                     {
                         await Task.Delay(100);
                     }
