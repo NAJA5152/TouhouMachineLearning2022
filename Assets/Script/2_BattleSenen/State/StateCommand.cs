@@ -50,10 +50,6 @@ namespace TouhouMachineLearningSummary.Command
             //如果不是通过配置文件启动的场景
             if (AgainstInfo.currentUserInfo == null)
             {
-                //初始化网络系统，用于获取指定版本卡牌信息
-                //await Command.AssetBundleCommand.Init(false);
-                //await NetCommand.Init();
-                //await CardAssemblyManager.SetCurrentAssembly("");
                 //如果在编辑器停止播放游戏则中断接下来的步骤
                 TaskLoopManager.Throw();
                 AgainstInfo.IsMyTurn = true;

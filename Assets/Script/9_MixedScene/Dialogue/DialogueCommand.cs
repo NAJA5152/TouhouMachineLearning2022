@@ -49,6 +49,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (AgainstInfo.onlineUserInfo.GetStage(stageTag) == stageRank)
             {
+                Debug.LogWarning("玩家进度更新至"+stageTag+"-"+ stageRank + 1);
                 await AgainstInfo.onlineUserInfo.UpdateUserStateAsync(stageTag, stageRank + 1);
             }
         }
