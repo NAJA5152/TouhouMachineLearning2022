@@ -21,6 +21,7 @@ namespace TouhouMachineLearningSummary.Info
         public static bool SelectMode { get; set; } = false;
         //跳过对话
         public static bool IsJump { get; set; } = false;
+        public static bool IsSelectOver { get; set; } = false;
         public static bool IsShowNextText { get; set; } = false;
         public static int CurrentPoint { get; set; } = 0;
         public static int SelectBranch { get; set; } = 0;

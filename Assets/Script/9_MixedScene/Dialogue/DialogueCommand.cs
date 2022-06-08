@@ -33,12 +33,8 @@ namespace TouhouMachineLearningSummary.Command
             else
             {
                 Debug.LogError("剧情加载失败");
+                Info.DialogueInfo.instance.dialogueCanvas.SetActive(false);
             }
-        }
-        public static void End()
-        {
-            Info.DialogueInfo.instance.dialogueCanvas.SetActive(false);
-            Debug.LogError("对话组件关闭");
         }
         /// <summary>
         /// 传入播放剧情参数，若当前剧情与玩家节点相等则解锁下个阶段剧情
@@ -83,7 +79,14 @@ namespace TouhouMachineLearningSummary.Command
                                 Info.DialogueInfo.instance.selectUi.transform.GetChild(i).gameObject.SetActive(false);
                             }
                         }
-                        //选择模式要卡住状态
+
+                        //暂停界面，直到玩家选择完毕
+                        while (!DialogueInfo.IsSelectOver)
+                        {
+                            await Task.Delay(100);
+                        }
+                        DialogueInfo.IsSelectOver = false;
+                        await RunNextOperations();
                     }
                     else
                     {
@@ -139,7 +142,7 @@ namespace TouhouMachineLearningSummary.Command
                     //    Info.DialogueInfo.instance.Right.gameObject.transform.localScale /= 1.1f;
                     //}
                     DialogueInfo.IsShowNextText = false;
-                    while (!DialogueInfo.IsShowNextText|| DialogueInfo.IsJump)
+                    while (!DialogueInfo.IsShowNextText || DialogueInfo.IsJump)
                     {
                         await Task.Delay(100);
                     }
@@ -149,7 +152,8 @@ namespace TouhouMachineLearningSummary.Command
             }
             else//读取完毕
             {
-                End();
+                Info.DialogueInfo.instance.dialogueCanvas.SetActive(false);
+                Debug.LogError("对话组件关闭");
             };
         }
     }

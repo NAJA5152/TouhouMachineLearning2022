@@ -58,6 +58,7 @@ namespace TouhouMachineLearningSummary.Command
                 case MenuState.LevelSelect://进入关卡选择界面，之后修正卡组列表为故事介绍组件
                     //Command.CardListCommand.Init();
                     //Command.cardDetailCommand
+                    Command.StageCommand.Init();
                     Command.BookCommand.ActiveCompment(BookCompmentType.Map);
                     break;
                 case MenuState.PracticeConfig://进入练习配置界面

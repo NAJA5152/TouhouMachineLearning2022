@@ -10,6 +10,13 @@ namespace TouhouMachineLearningSummary.Command
 {
     internal class StageCommand
     {
+        public static void Init()
+        {
+            SelectStage("1");
+            //地图渐入
+
+
+        }
         public static void SelectStage(string Stage)
         {
             //获得标签对应的所有阶段的关卡信息
@@ -31,7 +38,7 @@ namespace TouhouMachineLearningSummary.Command
                 UnityEngine.Object.Instantiate(stageModel, content);
             }
             stageStepCurrentCount = content.childCount;
-            //前n位修改名称和可见性
+            //前n位修改名称和可见性和锁定未解锁关卡
             for (int i = 0; i < stageStepCurrentCount; i++)
             {
                 content.GetChild(i).name = i.ToString();

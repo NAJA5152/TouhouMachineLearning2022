@@ -12,7 +12,6 @@ namespace TouhouMachineLearningSummary.Control
         {
             if (!DialogueInfo.SelectMode)
             {
-                //await DialogueCommand.RunNextOperations();
                 DialogueInfo.IsShowNextText = true;
             }
         }
@@ -27,15 +26,15 @@ namespace TouhouMachineLearningSummary.Control
             DialogueInfo.SelectBranch = index;
             DialogueInfo.instance.selectUi.SetActive(false);
             DialogueInfo.CurrentPoint++;
-            await DialogueCommand.RunNextOperations();
+            DialogueInfo.IsSelectOver= true;
         }
 
         private void OnGUI()
         {
-            //if (GUI.Button(new Rect(100, 100, 100, 100), "播放剧情"))
-            //{
-            //    DialogueCommand.Play("1-1");
-            //}
+            if (GUI.Button(new Rect(100, 100, 100, 100), "播放剧情"))
+            {
+                DialogueCommand.Play("0", 0);
+            }
             //if (GUI.Button(new Rect(200, 100, 100, 100), "上一句话"))
             //{
             //    ShowLastText();

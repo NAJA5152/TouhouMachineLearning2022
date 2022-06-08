@@ -56,9 +56,9 @@ public class HotFixedManager : MonoBehaviour
         foreach (var MD5FiIeData in Md5Dict)
         {
             FileInfo localFile = null;
-            if (MD5FiIeData.Key.EndsWith(".dll")) //如果是dll，则根据不同平台对比游戏自身dll
+            if (MD5FiIeData.Key.EndsWith(".dll")) //如果是游戏程序集dll文件，则根据不同平台对比不同路径下的游戏程序集dll
             {
-                Debug.LogError("设置目标程序集路径为" + Directory.GetCurrentDirectory());
+                Debug.LogError("当前程序集路径为" + Directory.GetCurrentDirectory());
                 string currentGamePath = "";
                 if (isEditor)
                 {
@@ -70,12 +70,13 @@ public class HotFixedManager : MonoBehaviour
                     if (isMobile)
                     {
                         currentGamePath = Application.persistentDataPath;
-                        Debug.LogError("当前为安卓" + currentGamePath);
+                        Debug.LogError("当前为安卓,脚本路径在：" + currentGamePath);
                     }
                     else
                     {
-                        currentGamePath = (Directory.GetCurrentDirectory().Contains("PC") ? Directory.GetCurrentDirectory() : Directory.GetCurrentDirectory() + "\\PC") + @"\TouhouMachineLearning_Data\Managed\TouHouMachineLearning.dll";
-                        Debug.LogError("当前为windows" + currentGamePath);
+                        //currentGamePath = (Directory.GetCurrentDirectory().Contains("PC") ? Directory.GetCurrentDirectory() : Directory.GetCurrentDirectory() + "\\PC") + @"\TouhouMachineLearning_Data\Managed\TouHouMachineLearning.dll";
+                        currentGamePath = new DirectoryInfo(Directory.GetCurrentDirectory()).GetFiles("TouHouMachineLearning.dll", SearchOption.AllDirectories).FirstOrDefault()?.FullName;
+                        Debug.LogError("当前为windows,脚本路径在：" + currentGamePath);
                     }
                 }
                 localFile = new FileInfo(currentGamePath);
@@ -127,6 +128,7 @@ public class HotFixedManager : MonoBehaviour
         //如果改动了dll，需要重启
         if (isNeedRestartApplication) 
         {
+            //弹个窗，确认得话重启
             Application.Quit();
         }
         //加载AB包，并从中加载场景
