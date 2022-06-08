@@ -29,6 +29,7 @@ namespace TouhouMachineLearningSummary.Command
             //如果处于卡组编辑状态，则对卡牌列表做个筛选
             //已生成卡牌列表
             int libraryModelNumber = Info.PageCompnentInfo.libraryCardModels.Count;
+            var s = Info.PageCompnentInfo.libraryCardModels;
             Info.PageCompnentInfo.libraryCardModels.ForEach(model => model.SetActive(false));
             if (libraryCardNumber > libraryModelNumber)
             {
