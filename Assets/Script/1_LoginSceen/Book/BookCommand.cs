@@ -122,16 +122,19 @@ namespace TouhouMachineLearningSummary.Command
             }
             static async Task FileSinglePage(bool isRightToLeft, GameObject page)
             {
-                page.SetActive(true);
-                await CustomThread.TimerAsync(0.5f, runAction: (process) =>
+                if (page!=null)
                 {
-                    page.transform.eulerAngles = Vector3.zero;
-                    float length = (page.transform.position - Info.BookInfo.instance.axisModel.transform.position).magnitude;
-                    float angle = isRightToLeft ? Mathf.Lerp(0, 180, process) : Mathf.Lerp(180, 0, process);
-                    page.transform.localPosition = new Vector3(0, 0.08f, 0) + new Vector3(length * Mathf.Cos(Mathf.PI / 180 * angle), length * Mathf.Sin(Mathf.PI / 180 * angle));
-                    page.transform.eulerAngles = new Vector3(0, 0, angle);
-                });
-                DestroyImmediate(page);
+                    page.SetActive(true);
+                    await CustomThread.TimerAsync(0.5f, runAction: (process) =>
+                    {
+                        page.transform.eulerAngles = Vector3.zero;
+                        float length = (page.transform.position - Info.BookInfo.instance.axisModel.transform.position).magnitude;
+                        float angle = isRightToLeft ? Mathf.Lerp(0, 180, process) : Mathf.Lerp(180, 0, process);
+                        page.transform.localPosition = new Vector3(0, 0.08f, 0) + new Vector3(length * Mathf.Cos(Mathf.PI / 180 * angle), length * Mathf.Sin(Mathf.PI / 180 * angle));
+                        page.transform.eulerAngles = new Vector3(0, 0, angle);
+                    });
+                    DestroyImmediate(page);
+                }
             }
         }
     }

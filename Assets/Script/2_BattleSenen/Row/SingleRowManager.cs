@@ -33,7 +33,7 @@ namespace TouhouMachineLearningSummary.Manager
         void Update()
         {
             TempCardControl();
-            SetCardsPosition(CardList);
+            SetCardsPosition(CardList.Where(card=>card!=null).ToList());
             if (IsMyHandRegion)
             {
                 CardList.ForEach(card => card.isPrepareToPlay = (AgainstInfo.playerFocusCard != null && card == AgainstInfo.playerFocusCard && card.IsFree));
