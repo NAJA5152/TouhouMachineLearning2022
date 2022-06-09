@@ -51,9 +51,9 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task ResponseAsync()
         {
-            Control.UserLoginControl.IsEnterRoom = false;
+            Control.LoginSceneManager.IsEnterRoom = false;
             //等待服务器进行响应
-            while (!Control.UserLoginControl.IsEnterRoom)
+            while (!Control.LoginSceneManager.IsEnterRoom)
             {
                 await Task.Delay(100);
             }

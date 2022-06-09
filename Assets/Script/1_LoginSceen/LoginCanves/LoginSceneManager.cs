@@ -14,29 +14,54 @@ using UnityEngine.UI;
 
 namespace TouhouMachineLearningSummary.Control
 {
-    public class UserLoginControl : MonoBehaviour
+    public class LoginSceneManager : MonoBehaviour
     {
-        public Text Account;
-        public Text Password;
-        bool IsAleardyLogin { get; set; } = false;
+        public Text AccountText;
+        public Text PasswordText;
+        public string Account;
+        public string Password;
+        static int cameraView = 0;
+        static bool IsAleardyLogin { get; set; } = false;
         public static bool IsEnterRoom { get; set; } = false;
         async void Start()
         {
-            await CameraViewManager.MoveToViewAsync(0, true);
-            //await AssetBundleCommand.Init(false);
-            //_ = CardAssemblyManager.SetCurrentAssembly(""); //加载卡牌配置数据
+            Debug.LogError("场景已切换");
+            AccountText.text = Account;
+            PasswordText.text = Password;
             await SceneCommand.InitAsync(false);
+            //加载对话
             DialogueCommand.Load();
             TaskLoopManager.Init();
             //初始化场景物体状态，如果已登录，则进入到指定页，否则进入初始场景
-            await BookCommand.InitAsync(IsAleardyLogin);
+            await InitAsync(IsAleardyLogin);
+            //await BookCommand.InitAsync(IsAleardyLogin);
             if (!IsAleardyLogin)
             {
 
                 UserLogin();//自动登录
                 await Task.Delay(1000);
                 //await TestReplayAsync();
-                //await TestBattleAsync();
+                await TestBattleAsync();
+            }
+
+            /// <summary>
+            /// 初始化场景状态(第一次进入与从对战界面退出时再次进入)
+            /// </summary>
+            /// <returns></returns>
+            static async Task InitAsync(bool isAleardyLogin)
+            {
+                UiInfo.loginCanvas.SetActive(!isAleardyLogin);
+                await CameraViewManager.MoveToViewAsync(isAleardyLogin?3:0, true);
+                Info.BookInfo.instance.coverModel.transform.position = new Vector3(0.5f, 0.08f, 0);
+                Info.BookInfo.instance.coverModel.transform.eulerAngles = Vector3.zero;
+                MenuStateCommand.RefreshCurrentState();
+                if (isAleardyLogin)
+                {
+                    await BookCommand.SetCoverStateAsync(true,true);
+                }
+                //初始状态待补充
+                //Command.MenuStateCommand.ChangeToMainPage(MenuState.Single);
+                //await Manager.CameraViewManager.MoveToViewAsync(1);
             }
         }
         private void Update()
@@ -97,7 +122,7 @@ namespace TouhouMachineLearningSummary.Control
         {
             try
             {
-                int result = await NetCommand.RegisterAsync(Account.text, Password.text);
+                int result = await NetCommand.RegisterAsync(AccountText.text, PasswordText.text);
                 switch (result)
                 {
                     case (1): await NoticeCommand.ShowAsync("注册成功", NotifyBoardMode.Ok); break;
@@ -112,18 +137,23 @@ namespace TouhouMachineLearningSummary.Control
         {
             try
             {
-                bool isSuccessLogin = await NetCommand.LoginAsync(Account.text, Password.text);
+                bool isSuccessLogin = await NetCommand.LoginAsync(AccountText.text, PasswordText.text);
                 if (isSuccessLogin)
                 {
+                    //保存静态账号密码
+                    Account = AccountText.text;
+                    Password = PasswordText.text;
+                    IsAleardyLogin=true;
                     var stage = AgainstInfo.onlineUserInfo.Stage;
-                    if (AgainstInfo.onlineUserInfo.GetStage("0")==0)
+                    if (AgainstInfo.onlineUserInfo.GetStage("0") == 0)
                     {
-                        DialogueCommand.Play("0",0);
+                        await DialogueCommand.Play("0", 0);
                         await AgainstInfo.onlineUserInfo.UpdateUserStateAsync("0", 1);
                     }
                     Manager.UserInfoManager.Refresh();
                     await BookCommand.InitToOpenStateAsync();
-                    _ = NetCommand.CheckRoomAsync(Account.text, Password.text);
+                    //检测是否已经在对战中
+                    _ = NetCommand.CheckRoomAsync(AccountText.text, PasswordText.text);
                 }
                 else
                 {
@@ -188,7 +218,7 @@ namespace TouhouMachineLearningSummary.Control
             }
             if (GUI.Button(new Rect(0, 200, 100, 50), "资源重载"))
             {
-                
+
                 AssetBundleCommand.AlreadyInit = false;
                 SceneManager.LoadScene(0);
             }

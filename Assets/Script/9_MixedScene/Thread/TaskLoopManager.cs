@@ -8,15 +8,16 @@ namespace TouhouMachineLearningSummary.Manager
         public static void TriggerThrow() => cancel.Cancel();
         public static void Throw()
         {
-            try
-            {
-                cancel.Token.ThrowIfCancellationRequested();
-            }
-            catch (System.Exception)
-            {
-                UnityEngine.Debug.LogError("线程中断！");
-                throw;
-            }
+            cancel.Token.ThrowIfCancellationRequested();
+            //try
+            //{
+                
+            //}
+            //catch (System.Exception e)
+            //{
+                
+            //    throw;
+            //}
         }
     }
 }

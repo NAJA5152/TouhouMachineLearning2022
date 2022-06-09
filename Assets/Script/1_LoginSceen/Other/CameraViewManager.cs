@@ -34,6 +34,7 @@ namespace TouhouMachineLearningSummary.Manager
         public static async Task MoveToViewAsync(int viewIndex, bool isImmediately = false)
         {
             Debug.Log("切换视角" + viewIndex);
+            
             switch (viewIndex)
             {
                 case 0:

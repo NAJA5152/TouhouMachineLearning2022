@@ -138,7 +138,7 @@ namespace TouhouMachineLearningSummary.Command
                 //await Info.AgainstInfo.onlineUserInfo.UpdateUserStateAsync(Info.PageCompnentInfo.currentStage, Info.PageCompnentInfo.currentStep);
             }
             SceneManager.LoadScene("1_LoginScene");
-            await Manager.CameraViewManager.MoveToViewAsync(2);
+            //await Manager.CameraViewManager.MoveToViewAsync(2);
 
         }
         public static async Task RoundStart()
