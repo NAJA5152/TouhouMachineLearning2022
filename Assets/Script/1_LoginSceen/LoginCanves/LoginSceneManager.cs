@@ -54,11 +54,12 @@ namespace TouhouMachineLearningSummary.Control
                 await CameraViewManager.MoveToViewAsync(isAleardyLogin?3:0, true);
                 Info.BookInfo.instance.coverModel.transform.position = new Vector3(0.5f, 0.08f, 0);
                 Info.BookInfo.instance.coverModel.transform.eulerAngles = Vector3.zero;
-                MenuStateCommand.RefreshCurrentState();
                 if (isAleardyLogin)
                 {
-                    await BookCommand.SetCoverStateAsync(true,true);
+                    await BookCommand.SetCoverStateAsync(true, true);
                 }
+                MenuStateCommand.RefreshCurrentState();
+               
                 //初始状态待补充
                 //Command.MenuStateCommand.ChangeToMainPage(MenuState.Single);
                 //await Manager.CameraViewManager.MoveToViewAsync(1);
