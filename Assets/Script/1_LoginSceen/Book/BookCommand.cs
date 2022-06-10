@@ -46,6 +46,7 @@ namespace TouhouMachineLearningSummary.Command
                     Info.BookInfo.instance.coverModel.transform.localPosition = new Vector3(0, 0.08f, 0) + new Vector3(length * Mathf.Cos(Mathf.PI / 180 * angle), length * Mathf.Sin(Mathf.PI / 180 * angle));
                     Info.BookInfo.instance.coverModel.transform.eulerAngles = new Vector3(0, 0, angle);
                 });
+
         public static async void ActiveCompment(params BookCompmentType[] types)
         {
             await CustomThread.TimerAsync(0.2f, runAction: (process) => //在0.4秒内不断移动并降低透明度
@@ -127,6 +128,7 @@ namespace TouhouMachineLearningSummary.Command
                     page.SetActive(true);
                     await CustomThread.TimerAsync(0.5f, runAction: (process) =>
                     {
+                        if (page == null)return;
                         page.transform.eulerAngles = Vector3.zero;
                         float length = (page.transform.position - Info.BookInfo.instance.axisModel.transform.position).magnitude;
                         float angle = isRightToLeft ? Mathf.Lerp(0, 180, process) : Mathf.Lerp(180, 0, process);

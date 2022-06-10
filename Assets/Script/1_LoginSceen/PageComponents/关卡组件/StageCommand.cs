@@ -15,7 +15,6 @@ namespace TouhouMachineLearningSummary.Command
             SelectStage("1");
             //地图渐入
 
-
         }
         public static void SelectStage(string Stage)
         {

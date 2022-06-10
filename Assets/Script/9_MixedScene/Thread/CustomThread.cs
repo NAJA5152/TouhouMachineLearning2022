@@ -36,7 +36,8 @@ namespace TouhouMachineLearningSummary.Thread
             while (currentMs <= stopMs)
             {
                 //Debug.Log("当前" + (currentMs));
-                runAction(stopTime == 0 ? 0 : currentMs * 1f / stopMs);
+                //如果任务瞬间停止则进度直接返回100%，否则返回百分比
+                runAction(stopTime == 0 ? 1 : currentMs * 1f / stopMs);
                 currentMs += 50;
                 await Task.Delay(50);
             }

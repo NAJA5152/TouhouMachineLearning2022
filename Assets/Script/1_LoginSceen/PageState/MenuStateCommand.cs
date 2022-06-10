@@ -8,7 +8,7 @@ namespace TouhouMachineLearningSummary.Command
 {
     public partial class MenuStateCommand
     {
-        static List<MenuState> currentState = new List<MenuState>() { MenuState.Login };
+        static List<MenuState> currentState = new () { MenuState.Login };
         /// <summary>
         /// 设置书本路径为登录前或者某个一级目录
         /// </summary>

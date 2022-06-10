@@ -20,11 +20,11 @@ namespace TouhouMachineLearningSummary.Control
         public Text PasswordText;
         public string Account;
         public string Password;
-        static int cameraView = 0;
         static bool IsAleardyLogin { get; set; } = false;
         public static bool IsEnterRoom { get; set; } = false;
         async void Start()
         {
+            Application.targetFrameRate = 60;
             Debug.LogError("场景已切换");
             AccountText.text = Account;
             PasswordText.text = Password;
@@ -41,7 +41,7 @@ namespace TouhouMachineLearningSummary.Control
                 UserLogin();//自动登录
                 await Task.Delay(1000);
                 //await TestReplayAsync();
-                await TestBattleAsync();
+                //await TestBattleAsync();
             }
 
             /// <summary>
@@ -50,19 +50,24 @@ namespace TouhouMachineLearningSummary.Control
             /// <returns></returns>
             static async Task InitAsync(bool isAleardyLogin)
             {
+                //设置登陆窗口可见性
                 UiInfo.loginCanvas.SetActive(!isAleardyLogin);
-                await CameraViewManager.MoveToViewAsync(isAleardyLogin?3:0, true);
-                Info.BookInfo.instance.coverModel.transform.position = new Vector3(0.5f, 0.08f, 0);
-                Info.BookInfo.instance.coverModel.transform.eulerAngles = Vector3.zero;
+                //设置摄像机视角
+                await CameraViewManager.MoveToViewAsync(isAleardyLogin ? 3 : 0, true);
+                //Info.BookInfo.instance.coverModel.transform.position = new Vector3(0.5f, 0.08f, 0);
+                //Info.BookInfo.instance.coverModel.transform.eulerAngles = Vector3.zero;
+                //如果已经登陆了，则翻开书本，重置ui状态
                 if (isAleardyLogin)
                 {
+                    Debug.LogError("打开封面");
                     await BookCommand.SetCoverStateAsync(true, true);
+                    MenuStateCommand.RefreshCurrentState();
+                    //退回到书本视角
+                    await Task.Delay(1000);
+                    MenuStateCommand.RebackStare();
+                    MenuStateCommand.RebackStare();
+                    await CameraViewManager.MoveToViewAsync(1);
                 }
-                MenuStateCommand.RefreshCurrentState();
-               
-                //初始状态待补充
-                //Command.MenuStateCommand.ChangeToMainPage(MenuState.Single);
-                //await Manager.CameraViewManager.MoveToViewAsync(1);
             }
         }
         private void Update()
@@ -144,7 +149,7 @@ namespace TouhouMachineLearningSummary.Control
                     //保存静态账号密码
                     Account = AccountText.text;
                     Password = PasswordText.text;
-                    IsAleardyLogin=true;
+                    IsAleardyLogin = true;
                     var stage = AgainstInfo.onlineUserInfo.Stage;
                     if (AgainstInfo.onlineUserInfo.GetStage("0") == 0)
                     {
@@ -177,7 +182,7 @@ namespace TouhouMachineLearningSummary.Control
 
             AgainstModeType targetAgainstMode = AgainstModeType.Story;
             PlayerInfo sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
-            PlayerInfo virtualOpponentInfo = new PlayerInfo(
+            PlayerInfo virtualOpponentInfo = new(
                   "NPC", "神秘的妖怪", "yaya", "",
                   new List<CardDeck>
                   {

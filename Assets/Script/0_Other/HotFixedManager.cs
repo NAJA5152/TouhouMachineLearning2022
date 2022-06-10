@@ -37,12 +37,15 @@ public class HotFixedManager : MonoBehaviour
         bool isNeedRestartApplication = false;
         bool isEditor = Application.isEditor;//是否是编辑器状态
         bool isMobile = Application.isMobilePlatform;//是否是移动平台
-        if (!isEditor)
+        if (isEditor)
         {
+            Debug.LogWarning("开始下载文件"+ System.DateTime.Now);
             DownLoadPath = Application.streamingAssetsPath + "/Assetbundles/";
             Directory.CreateDirectory(DownLoadPath);
             //加载MD5文件
             WebClient webClient = new WebClient();
+            //加速下载速度
+            webClient.Proxy = null;
             webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler((sender, e) =>
             {
                 processText.text = $"{e.BytesReceived / 1024 / 1024}/{e.TotalBytesToReceive / 1024 / 1024} MB. {e.ProgressPercentage} %"; ;
@@ -123,6 +126,7 @@ public class HotFixedManager : MonoBehaviour
                     Debug.LogWarning(MD5FiIeData.Key + "下载完成");
                     loadText.text = MD5FiIeData.Key + "下载完成";
                 }
+                Debug.LogWarning("结束下载文件" + System.DateTime.Now);
             }
             md5.Dispose();
             webClient.Dispose();

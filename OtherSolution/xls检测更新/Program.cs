@@ -112,11 +112,11 @@ namespace xls检测更新
             int stageColCount = stageText.Columns.Length;
             int stageRowCount = stageText.Rows.Length;
             var stageTranslate = new Dictionary<string, Dictionary<string, string>>();
-            supportLanguage.Clear();
-            for (int rank = 2; rank <= stageColCount; rank++)
-            {
-                supportLanguage.Add(stageText[1, rank].DisplayedText);
-            }
+            //supportLanguage.Clear();
+            //for (int rank = 2; rank <= stageColCount; rank++)
+            //{
+            //    supportLanguage.Add(stageText[1, rank].DisplayedText);
+            //}
             for (int i = 2; i <= stageRowCount; i++)
             {
                 Dictionary<string, string> stageTextTranslate = new Dictionary<string, string>();
