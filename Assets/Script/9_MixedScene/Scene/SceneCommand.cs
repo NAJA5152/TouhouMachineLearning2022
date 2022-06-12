@@ -27,7 +27,7 @@ namespace TouhouMachineLearningSummary.Command
             InspectorCommand.Init();
 #endif
             //根据当前卡牌版本 加载卡牌和卡画数据
-            await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.CurrentCardScriptsVersion);
+            _= CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.CurrentCardScriptsVersion);
 
             //加载状态与字段
 

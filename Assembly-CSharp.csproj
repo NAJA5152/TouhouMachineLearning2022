@@ -26,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -56,7 +56,7 @@
     <Analyzer Include="D:\Visual Studio 2022\Common7\IDE\Extensions\Microsoft\Visual Studio Tools for Unity\Analyzers\Microsoft.Unity.Analyzers.dll" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GameResources\Scene2Resource\Bullet1\NewBehaviourScript.cs" />
+    <Compile Include="Assets\GameResources\ttf\NewBehaviourScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Assemblies\SignalR\Microsoft.Extensions.Primitives.dll" />
@@ -103,7 +103,6 @@
     <None Include="Assets\Assemblies\SignalR\System.Runtime.CompilerServices.Unsafe.dll" />
     <None Include="Assets\Assemblies\InTheHand.Net.Personal.dll" />
     <None Include="Assets\Assemblies\x86\steam_api.dll" />
-    <None Include="Assets\StreamingAssets\AssetBundles\TouHouMachineLearning.dll" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\Sirenix.Utilities.Editor.xml" />
     <None Include="Assets\Assemblies\Sirenix\Assemblies\Sirenix.Utilities.Editor.dll" />
     <None Include="Assets\Assemblies\SignalR\Microsoft.AspNetCore.SignalR.Client.Core.dll" />

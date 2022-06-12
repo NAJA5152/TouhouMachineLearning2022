@@ -37,7 +37,7 @@ public class HotFixedManager : MonoBehaviour
         bool isNeedRestartApplication = false;
         bool isEditor = Application.isEditor;//是否是编辑器状态
         bool isMobile = Application.isMobilePlatform;//是否是移动平台
-        if (isEditor)
+        if (!isEditor)
         {
             Debug.LogWarning("开始下载文件"+ System.DateTime.Now);
             DownLoadPath = Application.streamingAssetsPath + "/Assetbundles/";

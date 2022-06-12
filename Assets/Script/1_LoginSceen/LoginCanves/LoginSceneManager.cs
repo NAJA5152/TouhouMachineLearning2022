@@ -25,12 +25,14 @@ namespace TouhouMachineLearningSummary.Control
         async void Start()
         {
             Application.targetFrameRate = 60;
-            Debug.LogError("场景已切换");
+            Debug.LogError("场景已切换" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff:ffffff"));
             AccountText.text = Account;
             PasswordText.text = Password;
             await SceneCommand.InitAsync(false);
+            Debug.LogError("场景初始化" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff:ffffff"));
             //加载对话
             DialogueCommand.Load();
+            Debug.LogError("对话加载完毕" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff:ffffff"));
             TaskLoopManager.Init();
             //初始化场景物体状态，如果已登录，则进入到指定页，否则进入初始场景
             await InitAsync(IsAleardyLogin);
@@ -50,23 +52,28 @@ namespace TouhouMachineLearningSummary.Control
             /// <returns></returns>
             static async Task InitAsync(bool isAleardyLogin)
             {
+                Debug.LogError("初始化场景界面状态");
                 //设置登陆窗口可见性
                 UiInfo.loginCanvas.SetActive(!isAleardyLogin);
                 //设置摄像机视角
                 await CameraViewManager.MoveToViewAsync(isAleardyLogin ? 3 : 0, true);
-                //Info.BookInfo.instance.coverModel.transform.position = new Vector3(0.5f, 0.08f, 0);
-                //Info.BookInfo.instance.coverModel.transform.eulerAngles = Vector3.zero;
                 //如果已经登陆了，则翻开书本，重置ui状态
                 if (isAleardyLogin)
                 {
-                    Debug.LogError("打开封面");
+                    Debug.LogError("重置ui" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff:ffffff"));
+                    MenuStateCommand.RefreshCurrentState(true);
+                    Debug.LogError("打开封面" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff:ffffff"));
                     await BookCommand.SetCoverStateAsync(true, true);
-                    MenuStateCommand.RefreshCurrentState();
-                    //退回到书本视角
                     await Task.Delay(1000);
-                    MenuStateCommand.RebackStare();
-                    MenuStateCommand.RebackStare();
                     await CameraViewManager.MoveToViewAsync(1);
+                    Debug.LogError("等待返回" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff:ffffff"));
+                    //退回到书本视角
+                    BookCommand.SimulateFilpPage(true, false);
+                    await Task.Delay(3000);
+                    BookCommand.SimulateFilpPage(false);
+
+                    MenuStateCommand.RebackStare();
+                    MenuStateCommand.RebackStare();
                 }
             }
         }

@@ -47,9 +47,9 @@ namespace TouhouMachineLearningSummary.Command
                     Info.BookInfo.instance.coverModel.transform.eulerAngles = new Vector3(0, 0, angle);
                 });
 
-        public static async void ActiveCompment(params BookCompmentType[] types)
+        public static async void ActiveCompment(bool isImmediately = false, params BookCompmentType[] types)
         {
-            await CustomThread.TimerAsync(0.2f, runAction: (process) => //在0.4秒内不断移动并降低透明度
+            await CustomThread.TimerAsync(isImmediately ? 0 : 0.2f, runAction: (process) => //在0.2秒内不断移动并降低透明度
             {
                 Info.BookInfo.instance.UIComponent.GetComponent<CanvasGroup>().alpha = 1 - process;
                 Info.BookInfo.instance.UIComponent.transform.localPosition = new Vector3(50, 0, 0) * (process);
@@ -90,7 +90,7 @@ namespace TouhouMachineLearningSummary.Command
                 }
                 targetUiComoinent?.SetActive(true);
             });
-            await CustomThread.TimerAsync(0.2f, runAction: (process) => //在0.4秒内不断移动并降低透明度
+            await CustomThread.TimerAsync(isImmediately ? 0 : 0.2f, runAction: (process) => //在0.2秒内不断移动并降低透明度
             {
                 Info.BookInfo.instance.UIComponent.GetComponent<CanvasGroup>().alpha = process;
                 Info.BookInfo.instance.UIComponent.transform.localPosition = new Vector3(-50, 0, 0) * (1 - process);
@@ -104,8 +104,9 @@ namespace TouhouMachineLearningSummary.Command
                 while (Info.BookInfo.IsSimulateFilpPage)
                 {
                     await Task.Delay(2000);
-                    Manager.TaskLoopManager.Throw();
+                    if (!IsSimulateFilpPage) break;
 
+                    Manager.TaskLoopManager.Throw();
                     GameObject voidPageModel = Info.BookInfo.instance.voidPageModel;
                     GameObject fakePageModel = Info.BookInfo.instance.fakePageModel;
                     GameObject startPage = Instantiate(voidPageModel, voidPageModel.transform.position, voidPageModel.transform.rotation, voidPageModel.transform.parent);
@@ -114,21 +115,29 @@ namespace TouhouMachineLearningSummary.Command
                     GameObject fakePage2 = Instantiate(fakePageModel, fakePageModel.transform.position, fakePageModel.transform.rotation, fakePageModel.transform.parent);
                     _ = FileSinglePage(isRightToLeft, startPage);
                     await Task.Delay(200);
+                    if (!IsSimulateFilpPage) break;
+
                     _ = FileSinglePage(isRightToLeft, fakePage1);
                     await Task.Delay(200);
+                    if (!IsSimulateFilpPage) break;
+
                     _ = FileSinglePage(isRightToLeft, fakePage2);
                     await Task.Delay(200);
+                    if (!IsSimulateFilpPage) break;
+
                     await FileSinglePage(isRightToLeft, endPage);
+                    if (!IsSimulateFilpPage) break;
+
                 }
             }
             static async Task FileSinglePage(bool isRightToLeft, GameObject page)
             {
-                if (page!=null)
+                if (page != null)
                 {
                     page.SetActive(true);
                     await CustomThread.TimerAsync(0.5f, runAction: (process) =>
                     {
-                        if (page == null)return;
+                        if (page == null) return;
                         page.transform.eulerAngles = Vector3.zero;
                         float length = (page.transform.position - Info.BookInfo.instance.axisModel.transform.position).magnitude;
                         float angle = isRightToLeft ? Mathf.Lerp(0, 180, process) : Mathf.Lerp(180, 0, process);

@@ -71,7 +71,8 @@ namespace TouhouMachineLearningSummary.Manager
                 currentConfig = await Command.NetCommand.DownloadCardConfigsAsync(targetVerison);
                 cardConfigs[currentConfig.Version] = currentConfig;
             }
-            currenttSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(true, isFromAssetBundle: !Application.isEditor));
+            //currenttSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(true, isFromAssetBundle: !Application.isEditor));
+            currenttSingleCardInfos = new();
             currentMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(false, isFromAssetBundle: !Application.isEditor));
             currentCardScripts = Assembly.Load(currentConfig.AssemblyFileData);
 

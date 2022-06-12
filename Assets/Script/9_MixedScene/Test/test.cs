@@ -26,7 +26,7 @@ namespace TouhouMachineLearningSummary.Test
         public Texture2D tex;
         public string text;
         [Button("截图")]
-        public void CaptureScreen(string name) => ScreenCapture.CaptureScreenshot(@"Assets/Art/Scene/" + name + ".png");
+        public void CaptureScreen(string name) => ScreenCapture.CaptureScreenshot(@"Assets/GameResources/Scene/" + name + ".png");
 
         static string ip => !Info.AgainstInfo.IsHostNetMode ? "localhost:495" : "server.natappfree.cc:37048";
         class CardAbility

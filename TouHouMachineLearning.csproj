@@ -26,7 +26,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -35,7 +35,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <NoWarn>0169</NoWarn>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup>
     <NoConfig>true</NoConfig>
@@ -265,7 +265,7 @@
     <Compile Include="Assets\Script\1_LoginSceen\Book\BookInfo.cs" />
     <Compile Include="Assets\Script\1_LoginSceen\PageState\MenuStateControl.cs" />
     <Compile Include="Assets\Script\0_Other\Steamworks.NET\types\SteamTypes\SteamIPAddress_t.cs" />
-    <Compile Include="Assets\Script\1_LoginSceen\LoginCanves\UserLoginControl.cs" />
+    <Compile Include="Assets\Script\1_LoginSceen\LoginCanves\LoginSceneManager.cs" />
     <Compile Include="Assets\Script\0_Other\Steamworks.NET\ISteamMatchmakingResponses.cs" />
     <Compile Include="Assets\Script\9_MixedScene\Dialogue\DialogueCommand.cs" />
     <Compile Include="Assets\Script\0_Other\Steamworks.NET\types\SteamNetworkingtypes\SteamNetworkingErrMsg.cs" />

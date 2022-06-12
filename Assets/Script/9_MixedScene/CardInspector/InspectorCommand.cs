@@ -38,8 +38,8 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     InspectorInfo.RankIcons[(CardRank)i] = new FileInfo(@$"Assets\GameResources\Icon\{(CardRank)i}.png").ToTexture2D();
                 }
-                IsAlreadyInitialized = true;
                 InspectorCommand.LoadFromJson();
+                IsAlreadyInitialized = true;
             }
         }
 
