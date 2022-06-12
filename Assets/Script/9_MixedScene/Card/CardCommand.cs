@@ -114,7 +114,7 @@ namespace TouhouMachineLearningSummary.Command
             targetCard.IsCanSee = true;
             //targetCard.moveSpeed = 0.1f;
             targetCard.isMoveStepOver = false;
-            await Task.Delay(1000);
+            await Task.Delay(200);
             targetCard.isMoveStepOver = true;
             //targetCard.moveSpeed = 0.1f;
             await SoundEffectCommand.PlayAsync(SoundEffectType.DrawCard);
@@ -125,7 +125,7 @@ namespace TouhouMachineLearningSummary.Command
             SingleRowManager TargetRow = Info.AgainstInfo.cardSet.RowManagers[location.X];
             AgainstInfo.cardSet[TargetRow.orientation][TargetRow.region].Add(targetCard, location.Y);
             targetCard.isMoveStepOver = false;
-            await Task.Delay(500);
+            await Task.Delay(200);
             targetCard.isMoveStepOver = true;
             _ = SoundEffectCommand.PlayAsync(SoundEffectType.DrawCard);
         }
@@ -140,7 +140,7 @@ namespace TouhouMachineLearningSummary.Command
                 AgainstInfo.SelectRowCardList.Insert(AgainstInfo.SelectRank, targetCard);
             }
             targetCard.isMoveStepOver = false;
-            await Task.Delay(500);
+            await Task.Delay(200);
             targetCard.isMoveStepOver = true;
             _ = SoundEffectCommand.PlayAsync(SoundEffectType.Deploy);
         }

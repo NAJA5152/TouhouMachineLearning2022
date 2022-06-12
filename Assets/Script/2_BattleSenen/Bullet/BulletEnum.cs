@@ -27,7 +27,9 @@ namespace TouhouMachineLearningSummary.GameEnum
         Default,
         Red,
         Blue,
-        Green
+        Green,
+        White,
+        Black,
     }
     public enum BulletBrust
     {

@@ -24,8 +24,8 @@ namespace TouhouMachineLearningSummary.Command
 
         public static void Init()
         {
-            if (!IsAlreadyInitialized)
-            {
+            //if (!IsAlreadyInitialized)
+            //{
                 //加载卡牌文件
                 InspectorInfo.CardTexture = new DirectoryInfo(@"Assets\GameResources\CardTex").GetFiles("*.png", SearchOption.AllDirectories).ToList();
                 //加载阵营图标
@@ -40,7 +40,7 @@ namespace TouhouMachineLearningSummary.Command
                 }
                 InspectorCommand.LoadFromJson();
                 IsAlreadyInitialized = true;
-            }
+            //}
         }
 
         public static void LoadFromJson()

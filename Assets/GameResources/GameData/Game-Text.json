@@ -1,4 +1,24 @@
 {
+  "Black": {
+    "Tag": "Black",
+    "Ch": "黑",
+    "Ch_Introduction": "当附着单位发生移动效果后，若两侧存在\"黑\"状态的牌则将赋予两者间所有的牌\"黑\"状态\n当卡牌从\"白\"状态转换为\"黑\"时，给与对方场上随机非金单位1点伤害",
+    "Tc": "",
+    "En": "Black",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
+  "White": {
+    "Tag": "White",
+    "Ch": "白",
+    "Ch_Introduction": "当附着单位发生移动效果后，若两侧存在\"白\"状态的牌则将赋予两者间所有的牌\"白\"状态\n当卡牌从\"黑\"状态转换为\"白\"时，给与我方场上随机非金单位1点增益",
+    "Tc": "",
+    "En": "White",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
   "BattleStart": {
     "Tag": "BattleStart",
     "Ch": "对战开始",
@@ -7,6 +27,16 @@
     "En": "Battle Start",
     "En_Introduction": "",
     "geyu": "ads",
+    "": ""
+  },
+  "tactics": {
+    "Tag": "tactics",
+    "Ch": "策略",
+    "Ch_Introduction": "卡牌的类型标签",
+    "Tc": "",
+    "En": "tactics",
+    "En_Introduction": "The type label of the card",
+    "geyu": "",
     "": ""
   },
   "BattleEnd": {
@@ -19,12 +49,32 @@
     "geyu": "asdsaf",
     "": ""
   },
+  "Timer": {
+    "Tag": "Timer",
+    "Ch": "计时",
+    "Ch_Introduction": "计时($Point$)：计数为0时触发效果",
+    "Tc": "",
+    "En": "Timer",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
   "Remaining": {
     "Tag": "Remaining",
     "Ch": "剩余抽卡次数为：",
     "Ch_Introduction": "无",
     "Tc": "剩余抽卡次數為：",
     "En": "Remaining number of card draws:",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
+  "Inspire": {
+    "Tag": "Inspire",
+    "Ch": "鼓舞",
+    "Ch_Introduction": "鼓舞($Point$)：增强两侧单位\"活力\"类型效果",
+    "Tc": "",
+    "En": "Inspire",
     "En_Introduction": "",
     "geyu": "",
     "": ""
@@ -39,12 +89,32 @@
     "geyu": "",
     "": ""
   },
+  "Apothanasia": {
+    "Tag": "Apothanasia",
+    "Ch": "延命",
+    "Ch_Introduction": "延命($Point$)：当单位点数为0时，回合结束时抵消一次进入墓地效果",
+    "Tc": "",
+    "En": "Apothanasia",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
   "SecondRoundStart": {
     "Tag": "SecondRoundStart",
     "Ch": "第一小局开始",
     "Ch_Introduction": "无",
     "Tc": "第二小局開始",
     "En": "Second Round Start",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
+  "Chain": {
+    "Tag": "Chain",
+    "Ch": "连锁",
+    "Ch_Introduction": "连锁($Point$)：当前回合打出卡牌的数量",
+    "Tc": "",
+    "En": "Chain",
     "En_Introduction": "",
     "geyu": "",
     "": ""
@@ -59,12 +129,32 @@
     "geyu": "",
     "": ""
   },
+  "Energy": {
+    "Tag": "Energy",
+    "Ch": "能量",
+    "Ch_Introduction": "能量($Point$)：强化机械的触发效果，过多时触发\"超载\"效果",
+    "Tc": "",
+    "En": "Energy",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
   "MyTurnStart": {
     "Tag": "MyTurnStart",
     "Ch": "我方回合开始",
     "Ch_Introduction": "无",
     "Tc": "我方回合開始",
     "En": "My Turn Start",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
+  "Shield": {
+    "Tag": "Shield",
+    "Ch": "护盾",
+    "Ch_Introduction": "护盾($Point$)：受到\"伤害\"类型效果时时抵消相应点数的伤害",
+    "Tc": "",
+    "En": "Shield",
     "En_Introduction": "",
     "geyu": "",
     "": ""
@@ -79,14 +169,14 @@
     "geyu": "",
     "": ""
   },
-  "OpTurnStart": {
-    "Tag": "OpTurnStart",
-    "Ch": "对方回合开始",
+  "TurnStart": {
+    "Tag": "TurnStart",
+    "Ch": "回合开始",
     "Ch_Introduction": "无",
-    "Tc": "對方回合開始",
-    "En": "Op Turn Start",
+    "Tc": "",
+    "En": "TurnStart",
     "En_Introduction": "",
-    "geyu": "新翻译",
+    "geyu": "",
     "": ""
   },
   "OpTurnEnd": {
@@ -95,6 +185,36 @@
     "Ch_Introduction": "无",
     "Tc": "對方回合結束",
     "En": "Op Turn End",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
+  "TurnEnd": {
+    "Tag": "TurnEnd",
+    "Ch": "回合结束",
+    "Ch_Introduction": "无",
+    "Tc": "",
+    "En": "TurnEnd",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
+  "RoundStart": {
+    "Tag": "RoundStart",
+    "Ch": "小局开始",
+    "Ch_Introduction": "无",
+    "Tc": "",
+    "En": "RoundStart",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
+  "RoundEnd": {
+    "Tag": "RoundEnd",
+    "Ch": "小局结束",
+    "Ch_Introduction": "无",
+    "Tc": "",
+    "En": "RoundEnd",
     "En_Introduction": "",
     "geyu": "",
     "": ""
@@ -119,6 +239,16 @@
     "geyu": "asdsaf",
     "": ""
   },
+  "Deploy": {
+    "Tag": "Deploy",
+    "Ch": "部署",
+    "Ch_Introduction": "部署：单位从出牌区移动到战场时触发，但若在部署效果生效前被打死或封印则无法触发部署效果",
+    "Tc": "",
+    "En": "Deploy",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
   "SpellCard": {
     "Tag": "SpellCard",
     "Ch": "符卡",
@@ -129,13 +259,13 @@
     "geyu": "",
     "": ""
   },
-  "tactics": {
-    "Tag": "tactics",
-    "Ch": "策略",
-    "Ch_Introduction": "卡牌的类型标签",
+  "Weak": {
+    "Tag": "Weak",
+    "Ch": "力竭",
+    "Ch_Introduction": "力竭:触发效果时，自身基础点数减少1点，至多减少至1",
     "Tc": "",
-    "En": "tactics",
-    "En_Introduction": "The type label of the card",
+    "En": "Weak",
+    "En_Introduction": "",
     "geyu": "",
     "": ""
   },
@@ -455,146 +585,6 @@
     "Ch_Introduction": "固足：无法被移动",
     "Tc": "",
     "En": "Forbidden",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "Black": {
-    "Tag": "Black",
-    "Ch": "黑",
-    "Ch_Introduction": "当附着单位发生移动效果后，若两侧存在\"黑\"状态的牌则将赋予两者间所有的牌\"黑\"状态\n当卡牌从\"白\"状态转换为\"黑\"时，给与对方场上随机非金单位1点伤害",
-    "Tc": "",
-    "En": "Black",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "White": {
-    "Tag": "White",
-    "Ch": "白",
-    "Ch_Introduction": "当附着单位发生移动效果后，若两侧存在\"白\"状态的牌则将赋予两者间所有的牌\"白\"状态\n当卡牌从\"黑\"状态转换为\"白\"时，给与我方场上随机非金单位1点增益",
-    "Tc": "",
-    "En": "White",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "Timer": {
-    "Tag": "Timer",
-    "Ch": "计时",
-    "Ch_Introduction": "计时($Point$)：计数为0时触发效果",
-    "Tc": "",
-    "En": "Timer",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "Inspire": {
-    "Tag": "Inspire",
-    "Ch": "鼓舞",
-    "Ch_Introduction": "鼓舞($Point$)：增强两侧单位\"活力\"类型效果",
-    "Tc": "",
-    "En": "Inspire",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "Apothanasia": {
-    "Tag": "Apothanasia",
-    "Ch": "延命",
-    "Ch_Introduction": "延命($Point$)：当单位点数为0时，回合结束时抵消一次进入墓地效果",
-    "Tc": "",
-    "En": "Apothanasia",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "Chain": {
-    "Tag": "Chain",
-    "Ch": "连锁",
-    "Ch_Introduction": "连锁($Point$)：当前回合打出卡牌的数量",
-    "Tc": "",
-    "En": "Chain",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "Energy": {
-    "Tag": "Energy",
-    "Ch": "能量",
-    "Ch_Introduction": "能量($Point$)：强化机械的触发效果，过多时触发\"超载\"效果",
-    "Tc": "",
-    "En": "Energy",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "Shield": {
-    "Tag": "Shield",
-    "Ch": "护盾",
-    "Ch_Introduction": "护盾($Point$)：受到\"伤害\"类型效果时时抵消相应点数的伤害",
-    "Tc": "",
-    "En": "Shield",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "TurnStart": {
-    "Tag": "TurnStart",
-    "Ch": "回合开始",
-    "Ch_Introduction": "无",
-    "Tc": "",
-    "En": "TurnStart",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "TurnEnd": {
-    "Tag": "TurnEnd",
-    "Ch": "回合结束",
-    "Ch_Introduction": "无",
-    "Tc": "",
-    "En": "TurnEnd",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "RoundStart": {
-    "Tag": "RoundStart",
-    "Ch": "小局开始",
-    "Ch_Introduction": "无",
-    "Tc": "",
-    "En": "RoundStart",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "RoundEnd": {
-    "Tag": "RoundEnd",
-    "Ch": "小局结束",
-    "Ch_Introduction": "无",
-    "Tc": "",
-    "En": "RoundEnd",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "Deploy": {
-    "Tag": "Deploy",
-    "Ch": "部署",
-    "Ch_Introduction": "部署：单位从出牌区移动到战场时触发，但若在部署效果生效前被打死或封印则无法触发部署效果",
-    "Tc": "",
-    "En": "Deploy",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "Weak": {
-    "Tag": "Weak",
-    "Ch": "力竭",
-    "Ch_Introduction": "力竭:触发效果时，自身基础点数减少1点，至多减少至1",
-    "Tc": "",
-    "En": "Weak",
     "En_Introduction": "",
     "geyu": "",
     "": ""

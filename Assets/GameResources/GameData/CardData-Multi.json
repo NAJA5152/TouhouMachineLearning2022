@@ -2072,5 +2072,379 @@
     "cardDeployTerritory": 0,
     "ramification": 0,
     "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "多人",
+    "series": "20",
+    "point": 5,
+    "Name": {
+      "Name-Ch": "八班神奈子",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "神明",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "God",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "场上每触发一次位移效果后，给予其1点伤害",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 0,
+    "cardCamp": 2,
+    "cardRank": 1,
+    "cardDeployRegion": 2,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 2,
+    "level": "多人",
+    "series": "20",
+    "point": 5,
+    "Name": {
+      "Name-Ch": "诹坊子",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "神明",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "God",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "我方回合结束时，若自身右侧存在单位，则向右移动一格位置并给与对方一点伤害（多个同类型效果可能会有bug）",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 0,
+    "cardCamp": 2,
+    "cardRank": 1,
+    "cardDeployRegion": 3,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 4,
+    "level": "多人",
+    "series": "20",
+    "point": 0,
+    "Name": {
+      "Name-Ch": "命定之抽",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "奇迹",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "Miracle",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "从卡组中选择一张小于等于自身祈祷值的卡牌并打出（非单位牌视为0点）",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "她是在作弊吧。。。是在作弊呢",
+      "Describe-En": ""
+    },
+    "cardType": 1,
+    "cardCamp": 2,
+    "cardRank": 1,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "多人",
+    "series": "20",
+    "point": 5,
+    "Name": {
+      "Name-Ch": "诹访大舞",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "祷告",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "Pray",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "每有一个单位发生位移，我方奇迹卡牌获得一点祈祷值",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 0,
+    "cardCamp": 2,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 2,
+    "level": "多人",
+    "series": "20",
+    "point": 0,
+    "Name": {
+      "Name-Ch": "奇迹*圣人苏生",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "奇迹",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "Miracle",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "从墓地中选择一张小于等于自身祈祷值的单位复活至场上",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "死而复生，是为奇迹！",
+      "Describe-En": ""
+    },
+    "cardType": 1,
+    "cardCamp": 2,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 1,
+    "level": "多人",
+    "series": "20",
+    "point": 5,
+    "Name": {
+      "Name-Ch": "静坐祈福",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "祷告",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "Pray",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "回合结束：我方所有奇迹牌获得一点祈祷值",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 0,
+    "cardCamp": 2,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 2,
+    "level": "多人",
+    "series": "20",
+    "point": 5,
+    "Name": {
+      "Name-Ch": "苦难磨练",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "祷告",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "Pray",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "自身受到伤害后，我方所有奇迹牌获得一点祈祷值",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 0,
+    "cardCamp": 2,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 3,
+    "level": "多人",
+    "series": "20",
+    "point": 0,
+    "Name": {
+      "Name-Ch": "待定1",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "奇迹",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "Miracle",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "从牌组中打出点数小于自身祈祷值且最接近的铜色单位",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 1,
+    "cardCamp": 2,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 4,
+    "level": "多人",
+    "series": "20",
+    "point": 0,
+    "Name": {
+      "Name-Ch": "待定2",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "奇迹",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "Miracle",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "给与我方单位与自身祈祷值等量的增益",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 1,
+    "cardCamp": 2,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 5,
+    "level": "多人",
+    "series": "20",
+    "point": 0,
+    "Name": {
+      "Name-Ch": "待定3",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "奇迹",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "Miracle",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "给与我方单位与自身祈祷值等量的伤害",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 1,
+    "cardCamp": 2,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 6,
+    "level": "多人",
+    "series": "20",
+    "point": 5,
+    "Name": {
+      "Name-Ch": "宗教传销",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "现人神",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "GodHuman",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "部署：选择场上一个单位，将其移动至所在半场与该牌属性相同排的最右侧",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 0,
+    "cardCamp": 2,
+    "cardRank": 3,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
   }
 ]
