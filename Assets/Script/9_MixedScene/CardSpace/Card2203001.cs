@@ -20,6 +20,13 @@ namespace TouhouMachineLearningSummary.CardSpace
                    await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this,this));
                })
                .AbilityAppend();
+            AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
+              .AbilityAdd(async (triggerInfo) =>
+              {
+                  await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
+                  await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
+              })
+              .AbilityAppend();
         }
     }
 }

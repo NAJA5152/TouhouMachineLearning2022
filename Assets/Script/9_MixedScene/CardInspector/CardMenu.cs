@@ -19,6 +19,7 @@ namespace TouhouMachineLearningSummary.Other
         [MenuItem("Tools/卡组编辑器")]
         private static void OpenWindow()
         {
+            InspectorCommand.LoadFromJson();
             CardMenu window = GetWindow<CardMenu>();
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(700, 700);
         }
@@ -26,8 +27,11 @@ namespace TouhouMachineLearningSummary.Other
         //构造界面树系统
         protected override OdinMenuTree BuildMenuTree()
         {
+            if (!InspectorInfo.Instance.multiModeCards.Any())
+            {
+                InspectorCommand.LoadFromJson();
+            }
             UnityEngine.Debug.Log("构造树形结构");
-            InspectorCommand.Init();
             InspectorInfo cardLibraryInfo = InspectorInfo.Instance;
             var tree = new OdinMenuTree(true);
             tree.DefaultMenuStyle.Height = 60;
