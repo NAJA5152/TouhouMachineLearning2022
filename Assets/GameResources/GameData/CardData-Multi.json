@@ -2092,7 +2092,7 @@
       "": ""
     },
     "Ability": {
-      "Ability-Ch": "场上每触发一次位移效果后，给予其1点伤害",
+      "Ability-Ch": "场上单位触发一次位移效果后，给予其1点伤害",
       "Ability-En": ""
     },
     "Describe": {
@@ -2228,7 +2228,7 @@
       "": ""
     },
     "Ability": {
-      "Ability-Ch": "从墓地中选择一张小于等于自身祈祷值的单位复活至场上",
+      "Ability-Ch": "从墓地中选择一张小于等于自身祈祷值的非金单位复活至场上",
       "Ability-En": ""
     },
     "Describe": {
@@ -2262,7 +2262,7 @@
       "": ""
     },
     "Ability": {
-      "Ability-Ch": "回合结束：我方所有奇迹牌获得一点祈祷值",
+      "Ability-Ch": "我方回合结束：我方所有奇迹牌获得一点祈祷值",
       "Ability-En": ""
     },
     "Describe": {
@@ -2283,7 +2283,7 @@
     "series": "20",
     "point": 5,
     "Name": {
-      "Name-Ch": "苦难磨练",
+      "Name-Ch": "瀑布修行",
       "Name-En": ""
     },
     "CardTags": {
@@ -2317,7 +2317,7 @@
     "series": "20",
     "point": 0,
     "Name": {
-      "Name-Ch": "待定1",
+      "Name-Ch": "请神",
       "Name-En": ""
     },
     "CardTags": {
@@ -2351,7 +2351,7 @@
     "series": "20",
     "point": 0,
     "Name": {
-      "Name-Ch": "待定2",
+      "Name-Ch": "商业繁荣",
       "Name-En": ""
     },
     "CardTags": {
@@ -2385,7 +2385,7 @@
     "series": "20",
     "point": 0,
     "Name": {
-      "Name-Ch": "待定3",
+      "Name-Ch": "八坂之神风",
       "Name-En": ""
     },
     "CardTags": {
