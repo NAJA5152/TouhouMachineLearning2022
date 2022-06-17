@@ -255,6 +255,7 @@ namespace TouhouMachineLearningSummary.GameEnum
         Object,
         Tool,
         Yokai,
+        Miracle,
     }
     public enum Orientation
     {
