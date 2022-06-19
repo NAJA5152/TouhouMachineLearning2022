@@ -21,6 +21,7 @@ public class HotFixedManager : MonoBehaviour
     public Text processText;
     public Text versiousText;
     public Slider slider;
+    public GameObject RestartNotice;
     string DownLoadPath { get; set; } = "";
     async void Start()
     {
@@ -37,6 +38,7 @@ public class HotFixedManager : MonoBehaviour
         bool isNeedRestartApplication = false;
         bool isEditor = Application.isEditor;//是否是编辑器状态
         bool isMobile = Application.isMobilePlatform;//是否是移动平台
+        //编辑器模式下不进行下载
         if (!isEditor)
         {
             Debug.LogWarning("开始下载文件"+ System.DateTime.Now);
@@ -138,7 +140,7 @@ public class HotFixedManager : MonoBehaviour
             if (isNeedRestartApplication)
             {
                 //弹个窗，确认得话重启
-                Application.Quit();
+                RestartNotice.SetActive(true) ;
             }
         }
     
@@ -149,4 +151,5 @@ public class HotFixedManager : MonoBehaviour
         Debug.LogWarning("初始化完毕，加载场景。。。");
         SceneManager.LoadScene("1_LoginScene");
     }
+    public void QuitGame() => Application.Quit();
 }

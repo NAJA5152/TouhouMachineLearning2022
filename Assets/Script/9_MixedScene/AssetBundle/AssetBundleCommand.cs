@@ -23,7 +23,8 @@ namespace TouhouMachineLearningSummary.Command
             if (AlreadyInit) { return; }
             AlreadyInit = true;
             //选择从下载下来的热更新目录拉去还是本地获取
-            string targetPath = isHotFixedLoad ? Application.streamingAssetsPath + "/AssetBundles/" : "AssetBundles/PC";
+            //当为热更模式且不是编辑器时从游戏数据更新路径加载，否在直接加载本地的
+            string targetPath = isHotFixedLoad&&!Application.isEditor ? Application.streamingAssetsPath + "/AssetBundles/" : "AssetBundles/PC";
             Directory.CreateDirectory(targetPath);
 
             List<Task> ABLoadTask = new List<Task>();
