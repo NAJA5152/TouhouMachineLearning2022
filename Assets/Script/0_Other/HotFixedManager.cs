@@ -14,7 +14,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.Threading;
 using System.Reflection;
-
+using TouhouMachineLearningSummary.Thread;
 
 public class HotFixedManager : MonoBehaviour
 {
@@ -26,6 +26,7 @@ public class HotFixedManager : MonoBehaviour
     string DownLoadPath { get; set; } = "";
     async void Start()
     {
+        RestartNotice.transform.localScale = new Vector3(1, 0, 1);
         versiousText.text = "v6";
         ConfigManager.InitConfig();
         loadText.text = "初始化网络";
@@ -140,8 +141,13 @@ public class HotFixedManager : MonoBehaviour
             //如果改动了dll，需要重启
             if (isNeedRestartApplication)
             {
+                Debug.Log("需要重启");
                 //弹个窗，确认得话重启
-                RestartNotice.SetActive(true);
+                RestartNotice.GetComponent<AudioSource>().Play();
+                await CustomThread.TimerAsync(0.5f, (process) =>
+                {
+                    RestartNotice.transform.localScale = new Vector3(1, process, 1);
+                });
                 //等待用户重启，不再进行加载
                 return;
             }
@@ -149,6 +155,7 @@ public class HotFixedManager : MonoBehaviour
 
         //加载AB包，并从中加载场景
         Debug.LogWarning("开始初始化AB包");
+        AssetBundle.UnloadAllAssetBundles(true);
         loadText.text = "开始加载资源包";
         await SceneCommand.InitAsync(true);
         Debug.LogWarning("初始化完毕，加载场景。。。");
@@ -156,7 +163,7 @@ public class HotFixedManager : MonoBehaviour
     }
     public void QuitGame()
     {
-        var game = new DirectoryInfo("").GetFiles("TouhouMachineLearning.exe", SearchOption.AllDirectories).FirstOrDefault();
+        var game = new DirectoryInfo(Directory.GetCurrentDirectory()).GetFiles("TouhouMachineLearning.exe", SearchOption.AllDirectories).FirstOrDefault();
         if (game != null)
         {
             System.Diagnostics.Process.Start(game.FullName);
