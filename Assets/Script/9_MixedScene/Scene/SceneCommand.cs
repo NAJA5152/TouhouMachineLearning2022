@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Manager;
+using UnityEngine;
 
 namespace TouhouMachineLearningSummary.Command
 {
@@ -13,7 +14,7 @@ namespace TouhouMachineLearningSummary.Command
     internal class SceneCommand
     {
         static bool IsInit { get; set; }
-        public static async Task InitAsync(bool isHotFixedLoad )
+        public static async Task InitAsync(bool isHotFixedLoad)
         {
             //加载AB包(仅一次)
             await Command.AssetBundleCommand.Init(isHotFixedLoad);
@@ -22,10 +23,11 @@ namespace TouhouMachineLearningSummary.Command
             //加载音效数据
             Command.SoundEffectCommand.Init();
             //加载本地卡画数据(仅编辑器模式下需要)
-#if UNITY_EDITOR
-            UnityEngine.Debug.LogError("当前是编辑器模式");
-            InspectorCommand.Init();
-#endif
+            if (Application.isEditor)
+            {
+                Debug.LogError("当前是编辑器模式");
+                InspectorCommand.Init();
+            }
             //根据当前卡牌版本 加载卡牌和卡画数据
             await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.CurrentCardScriptsVersion);
 
