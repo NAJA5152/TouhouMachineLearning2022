@@ -15,6 +15,7 @@ using UnityEngine.UI;
 using System.Threading;
 using System.Reflection;
 
+
 public class HotFixedManager : MonoBehaviour
 {
     public Text loadText;
@@ -41,7 +42,7 @@ public class HotFixedManager : MonoBehaviour
         //编辑器模式下不进行下载
         if (!isEditor)
         {
-            Debug.LogWarning("开始下载文件"+ System.DateTime.Now);
+            Debug.LogWarning("开始下载文件" + System.DateTime.Now);
             DownLoadPath = Application.streamingAssetsPath + "/Assetbundles/";
             Directory.CreateDirectory(DownLoadPath);
             //加载MD5文件
@@ -140,16 +141,26 @@ public class HotFixedManager : MonoBehaviour
             if (isNeedRestartApplication)
             {
                 //弹个窗，确认得话重启
-                RestartNotice.SetActive(true) ;
+                RestartNotice.SetActive(true);
+                //等待用户重启，不再进行加载
+                return;
             }
         }
-    
+
         //加载AB包，并从中加载场景
         Debug.LogWarning("开始初始化AB包");
         loadText.text = "开始加载资源包";
-        await SceneCommand.InitAsync(true); 
+        await SceneCommand.InitAsync(true);
         Debug.LogWarning("初始化完毕，加载场景。。。");
         SceneManager.LoadScene("1_LoginScene");
     }
-    public void QuitGame() => Application.Quit();
+    public void QuitGame()
+    {
+        var game = new DirectoryInfo("").GetFiles("TouhouMachineLearning.exe", SearchOption.AllDirectories).FirstOrDefault();
+        if (game != null)
+        {
+            System.Diagnostics.Process.Start(game.FullName);
+        }
+        Application.Quit();
+    }
 }

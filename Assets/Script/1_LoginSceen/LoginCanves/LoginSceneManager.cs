@@ -221,20 +221,20 @@ namespace TouhouMachineLearningSummary.Control
         private void OnApplicationQuit() => NetCommand.Dispose();
         private void OnGUI()
         {
-            if (GUI.Button(new Rect(0, 0, 100, 50), "回放测试"))
-            {
-                TestReplayAsync();
-            }
-            if (GUI.Button(new Rect(0, 100, 100, 50), "对战测试"))
-            {
-                TestBattleAsync();
-            }
-            if (GUI.Button(new Rect(0, 200, 100, 50), "资源重载"))
-            {
+            //if (GUI.Button(new Rect(0, 0, 100, 50), "回放测试"))
+            //{
+            //    TestReplayAsync();
+            //}
+            //if (GUI.Button(new Rect(0, 100, 100, 50), "对战测试"))
+            //{
+            //    TestBattleAsync();
+            //}
+            //if (GUI.Button(new Rect(0, 200, 100, 50), "资源重载"))
+            //{
 
-                AssetBundleCommand.AlreadyInit = false;
-                SceneManager.LoadScene(0);
-            }
+            //    AssetBundleCommand.AlreadyInit = false;
+            //    SceneManager.LoadScene(0);
+            //}
         }
     }
 }
