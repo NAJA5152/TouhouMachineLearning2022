@@ -20,30 +20,34 @@ namespace TouhouMachineLearningSummary.Command
 
     public static class InspectorCommand
     {
+        static bool IsAlreadyInitialized = false;
 
         public static void Init()
         {
-
-            //加载卡牌文件
-            InspectorInfo.CardTexture = new DirectoryInfo(@"Assets\GameResources\CardTex").GetFiles("*.png", SearchOption.AllDirectories).ToList();
-            //加载阵营图标
-            for (int i = 0; i < 5; i++)
-            {
-                InspectorInfo.SectarianIcons[(Camp)i] = new FileInfo(@$"Assets\GameResources\Icon\{(Camp)i}.png").ToTexture2D();
-            }
-            //加载品质图标
-            for (int i = 0; i < 4; i++)
-            {
-                InspectorInfo.RankIcons[(CardRank)i] = new FileInfo(@$"Assets\GameResources\Icon\{(CardRank)i}.png").ToTexture2D();
-            }
-
+            //if (!IsAlreadyInitialized)
+            //{
+                //加载卡牌文件
+                InspectorInfo.CardTexture = new DirectoryInfo(@"Assets\GameResources\CardTex").GetFiles("*.png", SearchOption.AllDirectories).ToList();
+                //加载阵营图标
+                for (int i = 0; i < 5; i++)
+                {
+                    InspectorInfo.SectarianIcons[(Camp)i] = new FileInfo(@$"Assets\GameResources\Icon\{(Camp)i}.png").ToTexture2D();
+                }
+                //加载品质图标
+                for (int i = 0; i < 4; i++)
+                {
+                    InspectorInfo.RankIcons[(CardRank)i] = new FileInfo(@$"Assets\GameResources\Icon\{(CardRank)i}.png").ToTexture2D();
+                }
+                InspectorCommand.LoadFromJson();
+                IsAlreadyInitialized = true;
+            //}
         }
 
         public static void LoadFromJson()
         {
-            Init();
             //获取编辑器信息信息
             InspectorInfo cardLibraryInfo = InspectorInfo.Instance;
+
             //加载单人模式卡牌信息
             string singleData = File.ReadAllText(@"Assets\GameResources\GameData\CardData-Single.json");
             cardLibraryInfo.singleModeCards.Clear();

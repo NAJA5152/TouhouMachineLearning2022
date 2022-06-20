@@ -87,121 +87,56 @@
 {
 	int num = i;
 	var currentCard = ShowDiyCardsInfo[num];
-		<Card Title="@currentCard.CardName">
-			<Layout >
-				<Sider>
+	<Card Title="@currentCard.CardName">
+		<Body>
+			<Row>
+				<AntDesign.Col Span="4">
 					<Image Width="200px" Height="300px" Src=@currentCard.ImageUrl />
-				</Sider>
-
-				<Layout Class=Flex>
+				</AntDesign.Col>
+				<AntDesign.Col Span="20">
 					<Content>
-								<p>
-									<Tag>@currentCard.CardType</Tag>
-									<Tag>@currentCard.Rank</Tag>
-									<Tag>@currentCard.Camp</Tag>
-								</p>
-								<p>
-								@for (int j = 0; j < currentCard.Tag.Count; j++)
-								{
-									int tagRank = j;
-											<Tag PresetColor="@PresetColor.Orange">@currentCard.Tag[tagRank]</Tag>
-								}
-								</p>
-								<p>战力：<Tag>@currentCard.Point</Tag>，效果：@currentCard.Ability</p>
-
-								<Divider />
-
-								<span>
-									<Tooltip Title='@("Like")'>
-										<Icon Type="caret-up" OnClick="()=>currentCard.SetLike(MainLayout.userInfo?.UID)"
-									  Style="color:#18A558;font-size:30px;cursor:pointer;" />
-									</Tooltip>
-									<span style="color:#18A558;font-size:20px;">@currentCard.LikeUidList.Count()</span>
-								</span>
-								<span>
-									<Tooltip Title='@("Dislike")'>
-										<Icon Type="caret-down" OnClick="()=>currentCard.SetDislike(MainLayout.userInfo?.UID)"
-									  Style="color:red;font-size:30px;cursor:pointer;" />
-									</Tooltip>
-									<span style="color:red;font-size:20px;">@currentCard.DislikeUidList.Count()</span>
-								</span>
-								<Button OnClick="() => {detailPageVisible = true; ClickCard=currentCard;}">详细</Button>
-								<Button OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">评论</Button>
-								<Button Color=Color.Red1 OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">举报</Button>
-							@if (diyInfo.userInfo?.UID == currentCard.UpLoadUID)
-							{
-										<Button Color=Color.Yellow1 OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">修改</Button>
-							}
-							</Content>
-				</Layout>
-			</Layout>
-		</Card>
-
-}
-<style>
-	.Flex{
-		background-color:#d00cff;
-		color:#ffffff;
-		flex-grow:1;
-		text-align:center;
-		font-size:40pt;
-		height:100px;
-	}
-</style>
-@for (int i = 0; i < ShowDiyCardsInfo.Count; i++)
-{
-	int num = i;
-	var currentCard = ShowDiyCardsInfo[num];
-		<Card Title="@currentCard.CardName">
-			<Body>
-				<Row>
-					<AntDesign.Col Span="4">
-						<Image Width="200px" Height="300px" Src=@currentCard.ImageUrl />
-					</AntDesign.Col>
-					<AntDesign.Col Span="20">
-						<Content >
-							<p>
-								<Tag>@currentCard.CardType</Tag>
-								<Tag>@currentCard.Rank</Tag>
-								<Tag>@currentCard.Camp</Tag>
-							</p>
-							<p>
+						<p>
+							<Tag>@currentCard.CardType</Tag>
+							<Tag>@currentCard.Rank</Tag>
+							<Tag>@currentCard.Camp</Tag>
+						</p>
+						<p>
 							@for (int j = 0; j < currentCard.Tag.Count; j++)
 							{
 								int tagRank = j;
-										<Tag PresetColor="@PresetColor.Orange">@currentCard.Tag[tagRank]</Tag>
+								<Tag PresetColor="@PresetColor.Orange">@currentCard.Tag[tagRank]</Tag>
 							}
-							</p>
-							<p>战力：<Tag>@currentCard.Point</Tag>，效果：@currentCard.Ability</p>
+						</p>
+						<p>战力：<Tag>@currentCard.Point</Tag>，效果：@currentCard.Ability</p>
 
-							<Divider />
+						<Divider />
 
-							<span>
-								<Tooltip Title='@("Like")'>
-									<Icon Type="caret-up" OnClick="()=>currentCard.SetLike(MainLayout.userInfo?.UID)"
+						<span>
+							<Tooltip Title='@("Like")'>
+								<Icon Type="caret-up" OnClick="()=>currentCard.SetLike(MainLayout.userInfo?.UID)"
 								  Style="color:#18A558;font-size:30px;cursor:pointer;" />
-								</Tooltip>
-								<span style="color:#18A558;font-size:20px;">@currentCard.LikeUidList.Count()</span>
-							</span>
-							<span>
-								<Tooltip Title='@("Dislike")'>
-									<Icon Type="caret-down" OnClick="()=>currentCard.SetDislike(MainLayout.userInfo?.UID)"
+							</Tooltip>
+							<span style="color:#18A558;font-size:20px;">@currentCard.LikeUidList.Count()</span>
+						</span>
+						<span>
+							<Tooltip Title='@("Dislike")'>
+								<Icon Type="caret-down" OnClick="()=>currentCard.SetDislike(MainLayout.userInfo?.UID)"
 								  Style="color:red;font-size:30px;cursor:pointer;" />
-								</Tooltip>
-								<span style="color:red;font-size:20px;">@currentCard.DislikeUidList.Count()</span>
-							</span>
-							<Button OnClick="() => {detailPageVisible = true; ClickCard=currentCard;}">详细</Button>
-							<Button OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">评论</Button>
-							<Button Color=Color.Red1 OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">举报</Button>
+							</Tooltip>
+							<span style="color:red;font-size:20px;">@currentCard.DislikeUidList.Count()</span>
+						</span>
+						<Button OnClick="() => {detailPageVisible = true; ClickCard=currentCard;}">详细</Button>
+						<Button OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">评论</Button>
+						<Button Color=Color.Red1 OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">举报</Button>
 						@if (diyInfo.userInfo?.UID == currentCard.UpLoadUID)
 						{
-									<Button Color=Color.Yellow1 OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">修改</Button>
+							<Button Color=Color.Yellow1 OnClick="() => {commitDrawerVisible = true; ClickCard=currentCard;}">修改</Button>
 						}
-						</Content>
-					</AntDesign.Col>
-				</Row>
-			</Body>
-		</Card>
+					</Content>
+				</AntDesign.Col>
+			</Row>
+		</Body>
+	</Card>
 }
 <br>
 <br />
@@ -276,23 +211,23 @@
 	</SimpleSelect>
 	@if (UploadMode == "1" || UploadMode == "3")
 	{
-			<Image Style="width=150px ;height=210px" src=@("data:image/png;base64,"+Convert.ToBase64String(uploadImageData))></Image>
-			<InputFile OnChange="UpLoadImage" />
+		<Image Style="width=150px ;height=210px" src=@("data:image/png;base64,"+Convert.ToBase64String(uploadImageData))></Image>
+		<InputFile OnChange="UpLoadImage" />
 
-			<div>若是卡画作者或者获得了图片展示许可选则是，否则选否（图片将会模糊化处理）</div>
-			<SimpleSelect Placeholder="立绘展示许可" OnSelectedItemChanged="ShowPermissionChange">
-				<SelectOptions>
-					<SimpleSelectOption Value="1" Label="未许可"></SimpleSelectOption>
-					<SimpleSelectOption Value="2" Label="已许可"></SimpleSelectOption>
-				</SelectOptions>
-			</SimpleSelect>
-			<div>若为卡画作者，且允许制作组在游戏中使用该立绘，则选择授权，为避免版权纠纷，若是网图等请勿选择授权</div>
-			<SimpleSelect Placeholder="是否允许制作组使用该立绘" OnSelectedItemChanged="UsePermissionChange">
-				<SelectOptions>
-					<SimpleSelectOption Value="1" Label="不授权"></SimpleSelectOption>
-					<SimpleSelectOption Value="2" Label="授权"></SimpleSelectOption>
-				</SelectOptions>
-			</SimpleSelect>
+		<div>若是卡画作者或者获得了图片展示许可选则是，否则选否（图片将会模糊化处理）</div>
+		<SimpleSelect Placeholder="立绘展示许可" OnSelectedItemChanged="ShowPermissionChange">
+			<SelectOptions>
+				<SimpleSelectOption Value="1" Label="未许可"></SimpleSelectOption>
+				<SimpleSelectOption Value="2" Label="已许可"></SimpleSelectOption>
+			</SelectOptions>
+		</SimpleSelect>
+		<div>若为卡画作者，且允许制作组在游戏中使用该立绘，则选择授权，为避免版权纠纷，若是网图等请勿选择授权</div>
+		<SimpleSelect Placeholder="是否允许制作组使用该立绘" OnSelectedItemChanged="UsePermissionChange">
+			<SelectOptions>
+				<SimpleSelectOption Value="1" Label="不授权"></SimpleSelectOption>
+				<SimpleSelectOption Value="2" Label="授权"></SimpleSelectOption>
+			</SelectOptions>
+		</SimpleSelect>
 	}
 	<br />
 	<br />
@@ -300,34 +235,34 @@
 
 	@if (UploadMode == "2" || UploadMode == "3")
 	{
-			<SimpleSelect Placeholder="类型" OnSelectedItemChanged="CardTypeChange">
-				<SelectOptions>
-					<SimpleSelectOption Value="单位卡" Label="单位卡"></SimpleSelectOption>
-					<SimpleSelectOption Value="特殊卡" Label="特殊卡"></SimpleSelectOption>
-				</SelectOptions>
-			</SimpleSelect>
-			<div>战力</div>
-			<Input Placeholder="战力" @bind-Value="@NewDiyCardPoint"></Input>
-			<SimpleSelect Placeholder="阵营" OnSelectedItemChanged="CardCampChange">
-				<SelectOptions>
-					<SimpleSelectOption Value="中立" Label="中立"></SimpleSelectOption>
-					<SimpleSelectOption Value="佛教" Label="佛教"></SimpleSelectOption>
-					<SimpleSelectOption Value="科技" Label="科技"></SimpleSelectOption>
-					<SimpleSelectOption Value="道教" Label="道教"></SimpleSelectOption>
-					<SimpleSelectOption Value="神道" Label="神道"></SimpleSelectOption>
-				</SelectOptions>
-			</SimpleSelect>
-			<SimpleSelect Placeholder="品质" OnSelectedItemChanged="CardRankChange">
-				<SelectOptions>
-					<SimpleSelectOption Value="领袖" Label="领袖"></SimpleSelectOption>
-					<SimpleSelectOption Value="金色" Label="金色"></SimpleSelectOption>
-					<SimpleSelectOption Value="银色" Label="银色"></SimpleSelectOption>
-					<SimpleSelectOption Value="铜色" Label="铜色"></SimpleSelectOption>
-				</SelectOptions>
-			</SimpleSelect>
-			<TextArea MinRows="1" Placeholder="标签（用空格隔开）" @bind-Value="@NewDiyCardTags" />
-			<Input Placeholder="卡牌描述(可选)" @bind-Value="@NewDiyCardDescribe" />
-			<TextArea MinRows="4" Placeholder="卡牌能力" @bind-Value="@NewDiyCardAbility" />
+		<SimpleSelect Placeholder="类型" OnSelectedItemChanged="CardTypeChange">
+			<SelectOptions>
+				<SimpleSelectOption Value="单位卡" Label="单位卡"></SimpleSelectOption>
+				<SimpleSelectOption Value="特殊卡" Label="特殊卡"></SimpleSelectOption>
+			</SelectOptions>
+		</SimpleSelect>
+		<div>战力</div>
+		<Input Placeholder="战力" @bind-Value="@NewDiyCardPoint"></Input>
+		<SimpleSelect Placeholder="阵营" OnSelectedItemChanged="CardCampChange">
+			<SelectOptions>
+				<SimpleSelectOption Value="中立" Label="中立"></SimpleSelectOption>
+				<SimpleSelectOption Value="佛教" Label="佛教"></SimpleSelectOption>
+				<SimpleSelectOption Value="科技" Label="科技"></SimpleSelectOption>
+				<SimpleSelectOption Value="道教" Label="道教"></SimpleSelectOption>
+				<SimpleSelectOption Value="神道" Label="神道"></SimpleSelectOption>
+			</SelectOptions>
+		</SimpleSelect>
+		<SimpleSelect Placeholder="品质" OnSelectedItemChanged="CardRankChange">
+			<SelectOptions>
+				<SimpleSelectOption Value="领袖" Label="领袖"></SimpleSelectOption>
+				<SimpleSelectOption Value="金色" Label="金色"></SimpleSelectOption>
+				<SimpleSelectOption Value="银色" Label="银色"></SimpleSelectOption>
+				<SimpleSelectOption Value="铜色" Label="铜色"></SimpleSelectOption>
+			</SelectOptions>
+		</SimpleSelect>
+		<TextArea MinRows="1" Placeholder="标签（用空格隔开）" @bind-Value="@NewDiyCardTags" />
+		<Input Placeholder="卡牌描述(可选)" @bind-Value="@NewDiyCardDescribe" />
+		<TextArea MinRows="4" Placeholder="卡牌能力" @bind-Value="@NewDiyCardAbility" />
 	}
 	<Button @onclick="async () => {await SubmitCard();}">提交</Button>
 </Drawer>
@@ -342,25 +277,25 @@
 
 	RenderFragment likeAction =>
 	@<span>
-			<Tooltip Title="@("Like")">
-				<Icon Type="like" Theme="@(like ? "fill" : "outline")" OnClick="SetLike" />
-			</Tooltip>
-			<span>@(like ? 1 : 0)</span>
+		<Tooltip Title="@("Like")">
+			<Icon Type="like" Theme="@(like ? "fill" : "outline")" OnClick="SetLike" />
+		</Tooltip>
+		<span>@(like ? 1 : 0)</span>
 	</span>;
 
 	RenderFragment dislikeAction =>
 	@<span>
-			<Tooltip Title="@("Dislike")">
-				<Icon Type="dislike" Theme="@(dislike ? "fill" : "outline")" OnClick="SetDislike" />
-			</Tooltip>
-			<span>@(dislike ? 1 : 0)</span>
+		<Tooltip Title="@("Dislike")">
+			<Icon Type="dislike" Theme="@(dislike ? "fill" : "outline")" OnClick="SetDislike" />
+		</Tooltip>
+		<span>@(dislike ? 1 : 0)</span>
 	</span>;
 
 	RenderFragment dateTime =
 	@<Tooltip Title="@(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))">
-			<span>
+		<span>
 			@(MomentHelper.FromNow(DateTime.Now))
-			</span>
+		</span>
 	</Tooltip>;
 	async void onSubmit()
 	{

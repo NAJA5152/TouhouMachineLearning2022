@@ -17,9 +17,9 @@ using System.Reflection;
 
 public class HotFixedManager : MonoBehaviour
 {
-    public TextMeshProUGUI loadText;
-    public TextMeshProUGUI processText;
-    public TextMeshProUGUI versiousText;
+    public Text loadText;
+    public Text processText;
+    public Text versiousText;
     public Slider slider;
     string DownLoadPath { get; set; } = "";
     async void Start()
@@ -55,6 +55,8 @@ public class HotFixedManager : MonoBehaviour
             var Md5Dict = OnlieMD5FiIeDatas.ToObject<Dictionary<string, byte[]>>();
             Debug.LogError("MD5文件已加载完成");
 
+            loadText.text = "安卓压缩包下载中：";
+
             //校验本地文件
             MD5 md5 = new MD5CryptoServiceProvider();
             foreach (var MD5FiIeData in Md5Dict)
@@ -74,6 +76,8 @@ public class HotFixedManager : MonoBehaviour
                         if (isMobile)
                         {
                             currentGamePath = Application.persistentDataPath;
+                            loadText.text = "当前为安卓,脚本路径在：" + currentGamePath;
+
                             Debug.LogError("当前为安卓,脚本路径在：" + currentGamePath);
                         }
                         else

@@ -179,7 +179,6 @@ namespace TouhouMachineLearningSummary.GameEnum
         Chain,//连锁
         Energy,//能量
         Shield,//护盾
-        Pary,//祈祷
     }
     /// <summary>
     /// 异变类型

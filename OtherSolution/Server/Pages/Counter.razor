@@ -1,41 +1,24 @@
 ﻿@page "/gameresults"
 
-<style>
-#gezi{
-	background-color:#ddecff;
-	color:red;
-	font-size:20pt;
-	flex:1;
+@code {
+    private static int currentCount = 0;
 }
-.left{
-	background-color:#ddecff;
-	flex-shrink:0;
-	height:100px;
-}
-.right{
-	background-color:#d00cff;
-	color:#ffffff;
-	flex-grow:1;
-	text-align:center;
-	font-size:40pt;
-	height:100px;
-}
- </style>
-<p {color:red}>gezi</p>
+<p >点击数: @currentCount</p>
 
-<Layout>
-	<Sider >
-		<div class=left>侧边12</div>
-		</Sider>
-	<Layout>
-		<Content>
-			@*<div class="container">
-				<div class="wrapper">
-				<div class="content">内容1</div>
-				</div>
-				</div>*@
-		<div class=right>.Net</div>
+<button class="btn btn-primary" @onclick="()=>currentCount++">Click me</button>
 
-		</Content>
-	</Layout>
-</Layout>
+
+@code{
+	protected override void OnInitialized()
+	{
+		//Task.Run(async () =>
+		//{
+		//	while(true)
+		//	{
+		//		await InvokeAsync(StateHasChanged);
+		//		await Task.Delay(500);
+		//	}
+		//});
+	}
+
+}
