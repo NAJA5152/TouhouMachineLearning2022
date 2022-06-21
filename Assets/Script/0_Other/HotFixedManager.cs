@@ -161,7 +161,7 @@ public class HotFixedManager : MonoBehaviour
         Debug.LogWarning("初始化完毕，加载场景。。。");
         SceneManager.LoadScene("1_LoginScene");
     }
-    public void QuitGame()
+    public void RestartGame()
     {
         var game = new DirectoryInfo(Directory.GetCurrentDirectory()).GetFiles("TouhouMachineLearning.exe", SearchOption.AllDirectories).FirstOrDefault();
         if (game != null)

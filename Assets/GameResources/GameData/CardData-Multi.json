@@ -2142,6 +2142,32 @@
     "isFinish": true
   },
   {
+    "cardID": 3,
+    "level": "多人",
+    "series": "20",
+    "point": 0,
+    "Name": {
+      "Name-Ch": "双倍的快乐",
+      "Name-En": ""
+    },
+    "CardTags": {},
+    "Ability": {
+      "Ability-Ch": "卡组中一奇迹牌的祈祷值设置为自身两倍并打出",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 0,
+    "cardCamp": 2,
+    "cardRank": 1,
+    "cardDeployRegion": 0,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
     "cardID": 4,
     "level": "多人",
     "series": "20",
@@ -2244,6 +2270,142 @@
     "isFinish": true
   },
   {
+    "cardID": 3,
+    "level": "多人",
+    "series": "20",
+    "point": 6,
+    "Name": {
+      "Name-Ch": "五谷丰登",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "奇迹",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "Miracle",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "自身触发位移效果后，获得2点增益",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 1,
+    "cardCamp": 2,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 4,
+    "level": "多人",
+    "series": "20",
+    "point": 0,
+    "Name": {
+      "Name-Ch": "启明星",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "奇迹",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "Miracle",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "打出牌组中两张铜色奇迹牌",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 1,
+    "cardCamp": 2,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 5,
+    "level": "多人",
+    "series": "20",
+    "point": 0,
+    "Name": {
+      "Name-Ch": "为概率的奇迹",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "奇迹",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "Miracle",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "展现卡组中最上方的铜卡和银卡，铜卡为正面形式，银卡为背面形式，从中选择一张打出",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "",
+      "Describe-En": ""
+    },
+    "cardType": 1,
+    "cardCamp": 2,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
+    "cardID": 6,
+    "level": "多人",
+    "series": "20",
+    "point": 5,
+    "Name": {
+      "Name-Ch": "古老的崇神",
+      "Name-En": ""
+    },
+    "CardTags": {
+      "Ch": "神明",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "God",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
+    "Ability": {
+      "Ability-Ch": "回合结束时，若自身不处于单位数最多的一行，则移动过去（优先移动至对面）,若所属发生变化，则自身状态在恩赐和灾厄之间转换，并增加双方所有奇迹牌1祈祷值\n恩赐：移动结束后对同排所有非金单位1点增益\n灾厄：移动结束后对同排所有非金单位1点伤害\n",
+      "Ability-En": ""
+    },
+    "Describe": {
+      "Describe-Ch": "古老神明都是一体两面的，赞美祂会带来恩赐与丰收，冒犯祂则会带来灾厄和饥荒",
+      "Describe-En": ""
+    },
+    "cardType": 0,
+    "cardCamp": 2,
+    "cardRank": 2,
+    "cardDeployRegion": 99,
+    "cardDeployTerritory": 0,
+    "ramification": 0,
+    "isFinish": true
+  },
+  {
     "cardID": 1,
     "level": "多人",
     "series": "20",
@@ -2262,7 +2424,7 @@
       "": ""
     },
     "Ability": {
-      "Ability-Ch": "我方回合结束：我方所有奇迹牌获得一点祈祷值",
+      "Ability-Ch": "回合结束：我方所有奇迹牌获得一点祈祷值",
       "Ability-En": ""
     },
     "Describe": {

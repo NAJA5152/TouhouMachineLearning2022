@@ -539,6 +539,16 @@
     "geyu": "",
     "": ""
   },
+  "Pary": {
+    "Tag": "Pary",
+    "Ch": "祈祷",
+    "Ch_Introduction": "祈祷($Point$)：增强奇迹类型卡牌的发动效果",
+    "Tc": "",
+    "En": "Pary",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
   "TurnStart": {
     "Tag": "TurnStart",
     "Ch": "回合开始",
