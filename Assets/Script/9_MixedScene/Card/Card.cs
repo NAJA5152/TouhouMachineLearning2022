@@ -35,6 +35,9 @@ namespace TouhouMachineLearningSummary.Model
         public Orientation OppositeOrientation => CurrentOrientation == Orientation.Down ? Orientation.Up : Orientation.Down;
         //获取全局牌表区域
         public GameRegion CurrentRegion => AgainstInfo.cardSet.RowManagers.First(row => row.CardList.Contains(this)).region;
+        //卡牌的当前顺序
+        public int CurrentIndex => AgainstInfo.cardSet.RowManagers.First(row => row.CardList.Contains(this)).CardList.IndexOf(this);
+
         //按水->土->风->火->水的顺序获取下一个区域属性
         public GameRegion LastBattleRegion => CurrentRegion switch
         {

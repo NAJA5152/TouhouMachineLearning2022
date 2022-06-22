@@ -20,6 +20,7 @@ namespace TouhouMachineLearningSummary.Other
         private static void OpenWindow()
         {
             CardMenu window = GetWindow<CardMenu>();
+            InspectorCommand.LoadFromJson();
             window.position = GUIHelper.GetEditorWindowRect().AlignCenter(700, 700);
         }
         public static void UpdateInspector() => instance?.ForceMenuTreeRebuild();
@@ -27,7 +28,6 @@ namespace TouhouMachineLearningSummary.Other
         protected override OdinMenuTree BuildMenuTree()
         {
             UnityEngine.Debug.Log("构造树形结构");
-            InspectorCommand.Init();
             InspectorInfo cardLibraryInfo = InspectorInfo.Instance;
             var tree = new OdinMenuTree(true);
             tree.DefaultMenuStyle.Height = 60;

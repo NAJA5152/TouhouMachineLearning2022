@@ -52,7 +52,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// <returns></returns>
         public static async Task GenerateCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[CardCommand.GenerateCard(triggerInfo.targetCardId)][TriggerType.Generate]);
         /// <summary>
-        /// 在战场区各个区域间移动卡牌(触发移动效果)
+        /// 在战场区各个区域间移动卡牌(触发移动连锁效果)
         /// </summary>
         public static async Task MoveCard(TriggerInfoModel triggerInfo)
         {
@@ -61,19 +61,18 @@ namespace TouhouMachineLearningSummary.GameSystem
                 await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Move]);
             }
         }
-
         /// <summary>
-        /// 从卡组区移动至手牌区(不触发移动效果)
+        /// 从卡组区移动至手牌区(不触发移动连锁效果)
         /// </summary>
         public static async Task DrawCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Draw]);
         /// <summary>
-        /// 回手，从战场区移动至手牌区（不触发移动效果)
+        /// 回手，从战场区移动至手牌区（不触发移动连锁效果)
         /// </summary>
         public static async Task RecycleCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Reverse]);
 
         /// <summary>
         /// 只支持单个牌被打出
-        /// 打出，从手牌区\战场区打出至使用区(不触发移动效果)
+        /// 打出，从手牌区\战场区打出至使用区(不触发移动连锁效果)
         /// </summary>
         public static async Task PlayCard(TriggerInfoModel triggerInfo, bool isAnsy = true)
         {
@@ -84,11 +83,11 @@ namespace TouhouMachineLearningSummary.GameSystem
             }
         }
         /// <summary>
-        /// 复活，从墓地区移动至战场区(不触发移动效果)
+        /// 复活，从墓地区移动至战场区(不触发移动连锁效果)
         /// </summary>
         public static async Task ReviveCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Revive]);
         /// <summary>
-        /// 部署，从使用区移动至战场区(不触发移动效果)
+        /// 部署，从使用区移动至战场区(不触发移动连锁效果)
         /// 若为重新触发则不改变位置直接触发部署效果
         /// </summary>
         public static async Task DeployCard(TriggerInfoModel triggerInfo, bool ReTrigger = false)
@@ -101,37 +100,40 @@ namespace TouhouMachineLearningSummary.GameSystem
             await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Deploy]);
         }
         /// <summary>
-        /// 召唤，从牌组区移动至战场区(不触发移动效果)
+        /// 召唤，从牌组区移动至战场区(不触发移动连锁效果)
         /// </summary>
         public static async Task SummonCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Summon]);
 
         /// <summary>
-        /// 弃牌，从手牌区移动至墓地(不触发移动效果)
+        /// 弃牌，从手牌区移动至墓地(不触发移动连锁效果)
         /// </summary>
         public static async Task DisCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Discard]);
         /// <summary>
-        /// 死亡，从战场区移动至墓地(不触发移动效果)
+        /// 死亡，从战场区移动至墓地(不触发移动连锁效果)
         /// </summary>
         public static async Task DeadCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Dead]);
 
         /// <summary>
-        /// 间隙，从对局区移除至场外(不触发移动效果)
+        /// 间隙，从对局区移除至场外(不触发移动连锁效果)
         /// </summary>
         public static async Task BanishCard(TriggerInfoModel triggerInfo) => await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Banish]);
 
         /// <summary>
-        ///  直接移动至卡组(不触发连锁效果)
+        ///  直接移动至卡组(不触发任何连锁效果)
         /// </summary>
         public static async Task MoveToDeck(Card targetCard, int index = 0, bool isRandom = true) => await Command.CardCommand.MoveToDeck(targetCard, index, isRandom);
         /// <summary>
-        /// 直接移动至对方手牌(不触发连锁效果)
+        /// 直接移动至对方手牌(不触发任何连锁效果)
         /// </summary>
         public static async Task MoveToOpHand(Card targetCard) => await Command.CardCommand.MoveToOpHand(targetCard);
         /// <summary>
-        /// 直接移动至墓地(不触发连锁效果)
+        /// 直接移动至墓地(不触发任何连锁效果)
         /// </summary>
         public static async Task MoveToGrave(Card targetCard) => await Command.CardCommand.MoveToGrave(targetCard);
     }
+    /// <summary>
+    /// 为卡牌附加，去除，反转各类状态的相关机制
+    /// </summary>
     public class StateSystem
     {
         public static async Task SetState(TriggerInfoModel triggerInfo)
@@ -158,6 +160,9 @@ namespace TouhouMachineLearningSummary.GameSystem
             await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.StateClear]);
         }
     }
+    /// <summary>
+    /// 为卡牌附加，去除，反转各类值的相关机制
+    /// </summary>
     public class FieldSystem
     {
         /// <summary>

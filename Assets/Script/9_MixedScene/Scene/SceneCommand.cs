@@ -22,11 +22,11 @@ namespace TouhouMachineLearningSummary.Command
             await NetCommand.Init();
             //加载音效数据
             Command.SoundEffectCommand.Init();
-            //加载本地卡画数据(仅编辑器模式下需要)
+            //加载本地卡牌数据(仅编辑器模式下需要)
             if (Application.isEditor)
             {
                 Debug.LogError("当前是编辑器模式");
-                InspectorCommand.Init();
+                InspectorCommand.LoadFromJson();
             }
             //根据当前卡牌版本 加载卡牌和卡画数据
             await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.CurrentCardScriptsVersion);

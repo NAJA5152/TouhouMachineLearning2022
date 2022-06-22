@@ -17,8 +17,20 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this,this));
+                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
                })
+               .AbilityAppend();
+            AbalityRegister(TriggerTime.After, TriggerType.Move)
+               .AbilityAdd(async (triggerInfo) =>
+               {
+                   triggerInfo.targetCards.ForEach(async card =>
+                   {
+                       if (GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][CardRank.NoGold].CardList.Contains(card))
+                       {
+                           await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, card).SetPoint(1));
+                       }
+                   });
+               }, Condition.Default)
                .AbilityAppend();
         }
     }
