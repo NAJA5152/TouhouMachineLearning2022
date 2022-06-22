@@ -2092,7 +2092,7 @@
       "": ""
     },
     "Ability": {
-      "Ability-Ch": "场上单位触发一次位移效果后，给予其1点伤害",
+      "Ability-Ch": "场上每有一个非金单位触发一次位移效果后，便给予其1点伤害",
       "Ability-En": ""
     },
     "Describe": {
@@ -2136,7 +2136,7 @@
     "cardType": 0,
     "cardCamp": 2,
     "cardRank": 1,
-    "cardDeployRegion": 3,
+    "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
     "isFinish": true
@@ -2150,7 +2150,15 @@
       "Name-Ch": "双倍的快乐",
       "Name-En": ""
     },
-    "CardTags": {},
+    "CardTags": {
+      "Ch": "奇迹",
+      "Ch_Introduction": "卡牌的类型标签",
+      "Tc": "",
+      "En": "Miracle",
+      "En_Introduction": "The type label of the card",
+      "geyu": "",
+      "": ""
+    },
     "Ability": {
       "Ability-Ch": "卡组中一奇迹牌的祈祷值设置为自身两倍并打出",
       "Ability-En": ""
@@ -2159,10 +2167,10 @@
       "Describe-Ch": "",
       "Describe-En": ""
     },
-    "cardType": 0,
+    "cardType": 1,
     "cardCamp": 2,
     "cardRank": 1,
-    "cardDeployRegion": 0,
+    "cardDeployRegion": 99,
     "cardDeployTerritory": 0,
     "ramification": 0,
     "isFinish": true

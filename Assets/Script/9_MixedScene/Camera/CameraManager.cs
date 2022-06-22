@@ -39,7 +39,7 @@ namespace TouhouMachineLearningSummary.Manager
         /// </summary>
         public float time = 0.5f;
         public float fre = 0.5f;
-        public float A = 0.5f;
+        public float A = 0.1f;
         [Button]
         public async Task VibrationCameraAsync()
         {

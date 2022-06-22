@@ -27,10 +27,10 @@ namespace TouhouMachineLearningSummary.CardSpace
                    {
                        if (GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][CardRank.NoGold].CardList.Contains(card))
                        {
-                           await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, card).SetPoint(1));
+                           await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, card).SetPoint(1).SetBullet(new BulletModel()));
                        }
                    });
-               }, Condition.Default)
+               }, Condition.Default, Condition.OnMyTurn)
                .AbilityAppend();
         }
     }

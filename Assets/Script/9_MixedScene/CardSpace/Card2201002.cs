@@ -26,10 +26,10 @@ namespace TouhouMachineLearningSummary.CardSpace
                    if (RightCard != null)
                    {
                        await GameSystem.TransferSystem.MoveCard(new TriggerInfoModel(this, this).SetLocation(RightCard.CurrentOrientation, RightCard.CurrentRegion, RightCard.CurrentIndex));
-                       await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, card).SetPoint(1));
-                       await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, card).SetPoint(1));
+                       await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Battle][CardRank.NoGold].CardList, 1, true);
+                       await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetPoint(1).SetBullet(new BulletModel()));
                    }
-               })
+               }, Condition.Default,Condition.OnMyTurn)
                .AbilityAppend();
         }
     }
