@@ -40,7 +40,7 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     foreach (var card in triggerInfo.targetCards)
                     {
-                        Debug.LogWarning($"当前执行 {triggerInfo.triggerType}:{triggerInfo.targetCards.IndexOf(card)+1} {triggerInfo.targetCards.Count}");
+                        Debug.LogWarning($"当前执行 {triggerInfo.triggerType}:{triggerInfo.targetCards.IndexOf(card) + 1} {triggerInfo.targetCards.Count}");
                         await Trigger(triggerInfo[card][TriggerTime.When]);
                     }
                 }
@@ -49,7 +49,7 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     foreach (var card in AgainstInfo.cardSet.CardList.Where(card => card != targetCard))
                     {
-                        await Trigger(triggerInfo[card][TriggerTime.After]);
+                        await TriggerBoard(card,triggerInfo[targetCard][TriggerTime.After]);
                     }
                 }
             }
@@ -61,6 +61,14 @@ namespace TouhouMachineLearningSummary.Command
             static async Task Trigger(TriggerInfoModel triggerInfo)
             {
                 foreach (var ability in triggerInfo.targetCard.cardAbility[triggerInfo.triggerTime][triggerInfo.triggerType])
+                {
+                    await ability(triggerInfo);
+                }
+            }
+
+            static async Task TriggerBoard(Card NoticeCard, TriggerInfoModel triggerInfo)
+            {
+                foreach (var ability in NoticeCard.cardAbility[triggerInfo.triggerTime][triggerInfo.triggerType])
                 {
                     await ability(triggerInfo);
                 }

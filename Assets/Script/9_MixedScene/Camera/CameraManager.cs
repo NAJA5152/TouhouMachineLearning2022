@@ -37,9 +37,9 @@ namespace TouhouMachineLearningSummary.Manager
         /// <summary>
         /// 震动相机
         /// </summary>
-        public float time = 0.5f;
+        public float time = 0.3f;
         public float fre = 0.5f;
-        public float A = 0.1f;
+        public float A = 0.05f;
         [Button]
         public async Task VibrationCameraAsync()
         {

@@ -279,6 +279,7 @@ namespace TouhouMachineLearningSummary.Model
                         else
                         {
                             //摧毁自身同时触发咒术
+                            Debug.LogError(this.CardID + this.BasePoint + "=" + this.ChangePoint);
                             await GameSystem.TransferSystem.DeadCard(triggerInfo);
                         }
                     }

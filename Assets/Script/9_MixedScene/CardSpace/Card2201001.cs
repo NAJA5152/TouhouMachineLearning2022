@@ -25,6 +25,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                {
                    triggerInfo.targetCards.ForEach(async card =>
                    {
+                       UnityEngine.Debug.LogError(card.name);
                        if (GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][CardRank.NoGold].CardList.Contains(card))
                        {
                            await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, card).SetPoint(1).SetBullet(new BulletModel()));
