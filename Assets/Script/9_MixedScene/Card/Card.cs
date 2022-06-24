@@ -263,25 +263,27 @@ namespace TouhouMachineLearningSummary.Model
             AbalityRegister(TriggerTime.When, TriggerType.Reverse)
                 .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Reversal(triggerInfo); })
                .AbilityAppend();
-            //登记卡牌回合状态变化时效果
-            AbalityRegister(TriggerTime.After, TriggerType.TurnEnd)
+            //结算卡牌的回合开始时触发的自动类型效果
+            AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
                 .AbilityAdd(async (triggerInfo) =>
                 {
                     //我死啦
                     if (IsCardReadyToGrave)
                     {
                         //延命
-                        if (this[CardField.Apothanasia] > 0)
+                        if (this[CardState.Apothanasia])
                         {
-                            this[CardField.Apothanasia]--;
-                            await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetTargetField(CardField.Apothanasia, -1));
+                            await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetTargetState(CardState.Apothanasia));
+                            await GameSystem.PointSystem.Gain(new TriggerInfoModel(this, this).SetPoint(1));
                         }
-                        else
-                        {
-                            //摧毁自身同时触发咒术
-                            Debug.LogError(this.CardID + this.BasePoint + "=" + this.ChangePoint);
-                            await GameSystem.TransferSystem.DeadCard(triggerInfo);
-                        }
+                    }
+                    //将判定为死掉卡牌移入墓地，触发遗愿联锁效果
+                    //我死啦
+                    if (IsCardReadyToGrave)
+                    {
+                        //摧毁自身同时触发咒术
+                        Debug.LogError(this.CardID + this.BasePoint + "=" + this.ChangePoint);
+                        await GameSystem.TransferSystem.DeadCard(triggerInfo);
                     }
                 })
                .AbilityAppend();
@@ -456,6 +458,10 @@ namespace TouhouMachineLearningSummary.Model
                                 cardStates.Remove(CardState.Black);
                             }
                             break;
+                        case CardState.Apothanasia:
+                            await GameSystem.UiSystem.ShowTips(this, "续命", new Color(1, 0, 0));
+                            break;
+                            break;
                         default: break;
                     }
                     this[triggerInfo.targetState] = true;
@@ -502,11 +508,7 @@ namespace TouhouMachineLearningSummary.Model
                                 {
                                     case CardField.Timer: break;
                                     case CardField.Inspire: break;
-                                    case CardField.Apothanasia:
-                                        {
-                                            await GameSystem.UiSystem.ShowTips(this, "续命", new Color(1, 0, 0));
-                                            break;
-                                        }
+
                                     default: break;
                                 }
                             }
@@ -540,7 +542,6 @@ namespace TouhouMachineLearningSummary.Model
                             {
                                 case CardField.Timer: break;
                                 case CardField.Inspire: break;
-                                case CardField.Apothanasia: await ThisCardManager.ShowTips("续命", new Color(1, 0, 0)); break;
                                 default: break;
                             }
                         })

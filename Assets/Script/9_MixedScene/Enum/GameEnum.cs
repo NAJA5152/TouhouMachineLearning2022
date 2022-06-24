@@ -164,6 +164,7 @@ namespace TouhouMachineLearningSummary.GameEnum
         Hold, //驻守
         Congealbounds,//结界
         Forbidden,//禁足
+        Apothanasia,//延命
         Black,//黑
         White,//白
     }
@@ -175,7 +176,6 @@ namespace TouhouMachineLearningSummary.GameEnum
         None,//默认空状态
         Timer,//计时
         Inspire,//鼓舞
-        Apothanasia,//延命
         Chain,//连锁
         Energy,//能量
         Shield,//护盾

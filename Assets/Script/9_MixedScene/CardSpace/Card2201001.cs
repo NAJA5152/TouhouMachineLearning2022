@@ -23,6 +23,7 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.After, TriggerType.Move)
                .AbilityAdd(async (triggerInfo) =>
                {
+                   UnityEngine.Debug.LogError("¿¨ÅÆÐ§¹û");
                    triggerInfo.targetCards.ForEach(async card =>
                    {
                        UnityEngine.Debug.LogError(card.name);
