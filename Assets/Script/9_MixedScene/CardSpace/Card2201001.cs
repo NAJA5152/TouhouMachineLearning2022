@@ -24,14 +24,11 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (triggerInfo) =>
                {
                    UnityEngine.Debug.LogError("卡牌效果");
-                   triggerInfo.targetCards.ForEach(async card =>
+                   //如果移动的对象在场上非金集合中，则追加1点伤害
+                   if (GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][CardRank.NoGold].CardList.Contains(triggerInfo.targetCard))
                    {
-                       UnityEngine.Debug.LogError(card.name);
-                       if (GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][CardRank.NoGold].CardList.Contains(card))
-                       {
-                           await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, card).SetPoint(1).SetBullet(new BulletModel()));
-                       }
-                   });
+                       await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, triggerInfo.targetCard).SetPoint(1).SetBullet(new BulletModel()));
+                   }
                }, Condition.Default, Condition.OnMyTurn)
                .AbilityAppend();
         }

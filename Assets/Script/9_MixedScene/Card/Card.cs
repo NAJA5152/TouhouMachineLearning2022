@@ -264,7 +264,7 @@ namespace TouhouMachineLearningSummary.Model
                 .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Reversal(triggerInfo); })
                .AbilityAppend();
             //结算卡牌的回合开始时触发的自动类型效果
-            AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
+            AbalityRegister(TriggerTime.After, TriggerType.TurnEnd)
                 .AbilityAdd(async (triggerInfo) =>
                 {
                     //我死啦

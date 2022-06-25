@@ -56,7 +56,7 @@ namespace TouhouMachineLearningSummary.GameSystem
         /// </summary>
         public static async Task MoveCard(TriggerInfoModel triggerInfo)
         {
-            if (triggerInfo.targetCard!=null&&!triggerInfo.targetCard[CardState.Forbidden] && GameSystem.InfoSystem.AgainstCardSet[triggerInfo.location.X].Count < 6)
+            if (triggerInfo.targetCard != null && !triggerInfo.targetCard[CardState.Forbidden] && GameSystem.InfoSystem.AgainstCardSet[triggerInfo.location.X].Count < 6)
             {
                 await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Move]);
             }
@@ -216,10 +216,10 @@ namespace TouhouMachineLearningSummary.GameSystem
     /// </summary>
     public class ProcessSystem
     {
-        public static async Task WhenTurnStart() => await GameSystemCommand.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.TurnStart]);
-        public static async Task WhenTurnEnd() => await GameSystemCommand.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList)[TriggerTime.When][TriggerType.TurnEnd]);
-        public static async Task WhenRoundStart() => await GameSystemCommand.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.RoundStart]);
-        public static async Task WhenRoundEnd() => await GameSystemCommand.TriggerBroadcast(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList).SetMeanWhile()[TriggerTime.When][TriggerType.RoundEnd]);
+        public static async Task WhenTurnStart() => await GameSystemCommand.TriggerNotice(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList)[TriggerType.TurnStart]);
+        public static async Task WhenTurnEnd() => await GameSystemCommand.TriggerNotice(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList)[TriggerType.TurnEnd]);
+        public static async Task WhenRoundStart() => await GameSystemCommand.TriggerNotice(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList)[TriggerType.RoundStart]);
+        public static async Task WhenRoundEnd() => await GameSystemCommand.TriggerNotice(new TriggerInfoModel(null, AgainstInfo.cardSet.CardList)[TriggerType.RoundEnd]);
     }
     /// <summary>
     /// 获取游戏内对战信息的高层api接口

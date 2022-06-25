@@ -40,17 +40,17 @@ namespace TouhouMachineLearningSummary.Manager
                     break;
                 case BulletTrack.Line:
                     {
-                        await CustomThread.TimerAsync(0.5f, (timer) =>
-                         {
-                             //float x = timer * Mathf.PI * speed;
-                             transform.position = startPosition + Vector3.up * timer;
-                             transform.localScale = timer * Vector3.one;
-                         });
+                        await CustomThread.TimerAsync(0.5f, (process) =>
+                        {
+                            //float x = timer * Mathf.PI * speed;
+                            transform.position = startPosition + Vector3.up * process;
+                            transform.localScale = process * Vector3.one;
+                        });
                         tempPos = transform.position;
                         _ = Command.SoundEffectCommand.PlayAsync(SoundEffectType.Laser);
-                        await CustomThread.TimerAsync(1f, (timer) =>
+                        await CustomThread.TimerAsync(0.5f, (process) =>
                         {
-                            transform.position = Vector3.Lerp(tempPos, endPosition, timer);
+                            transform.position = Vector3.Lerp(tempPos, endPosition, process);
                         });
                         Destroy(gameObject);
                         _ = CameraManager.manager.VibrationCameraAsync();

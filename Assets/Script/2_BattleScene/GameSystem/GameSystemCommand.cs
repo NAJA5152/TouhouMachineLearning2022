@@ -11,7 +11,37 @@ namespace TouhouMachineLearningSummary.Command
 {
     public class GameSystemCommand
     {
-        //触发xx效果时，先对目标卡牌以外的卡牌触发在xx效果前对应效果，然后对所有目标同时触发xx效果，最后对目标卡牌以外的卡牌触发在xx效果后对应效果
+        /// <summary>
+        /// 通知类型效果触发
+        /// 会向对战中所有卡牌依次通知触发 xx前、xx时、xx后效果
+        /// 一般由系统控制流程时触发，如回合开始时、小局开始时等
+        /// </summary>
+        /// <param name="triggerInfo"></param>
+        /// <returns></returns>
+        public static async Task TriggerNotice(TriggerInfoModel triggerInfo)
+        {
+            foreach (var card in AgainstInfo.cardSet.CardList)
+            {
+                await Trigger(card, triggerInfo[card][TriggerTime.Before]);
+            }
+            foreach (var card in AgainstInfo.cardSet.CardList)
+            {
+                await Trigger(card, triggerInfo[card][TriggerTime.When]);
+            }
+            foreach (var card in AgainstInfo.cardSet.CardList)
+            {
+                await Trigger(card, triggerInfo[card][TriggerTime.After]);
+            }
+        }
+
+        /// <summary>
+        /// 广播类型效果触发
+        /// 在触发xx效果时
+        /// 会向其他对战中其他卡牌广播通知"xx牌触发xx效果"卡牌，方便进行连锁判定
+        /// 一般由卡牌效果触发，如打出部署时、部署时、死亡时等
+        /// </summary>
+        /// <param name="triggerInfo"></param>
+        /// <returns></returns>
         public static async Task TriggerBroadcast(TriggerInfoModel triggerInfo)
         {
 
@@ -22,7 +52,7 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     foreach (var card in AgainstInfo.cardSet.CardList.Where(card => card != targetCard))
                     {
-                        await Trigger(triggerInfo[card][TriggerTime.Before]);
+                        await Trigger(card, triggerInfo[card][TriggerTime.Before]);
                     }
                 }
                 //如果以同时方式触发效果，则进行同时触发，并等待所有连锁效果触发完成后再继续触发xx效果后的效果
@@ -31,7 +61,7 @@ namespace TouhouMachineLearningSummary.Command
                     List<Task> tasks = new List<Task>();
                     foreach (var card in triggerInfo.targetCards)
                     {
-                        tasks.Add(Trigger(triggerInfo[card][TriggerTime.When]));
+                        tasks.Add(Trigger(card, triggerInfo[card][TriggerTime.When]));
                     }
                     await Task.WhenAll(tasks.ToArray());
                 }
@@ -41,7 +71,7 @@ namespace TouhouMachineLearningSummary.Command
                     foreach (var card in triggerInfo.targetCards)
                     {
                         Debug.LogWarning($"当前执行 {triggerInfo.triggerType}:{triggerInfo.targetCards.IndexOf(card) + 1} {triggerInfo.targetCards.Count}");
-                        await Trigger(triggerInfo[card][TriggerTime.When]);
+                        await Trigger(card, triggerInfo[card][TriggerTime.When]);
                     }
                 }
                 //遍历所有触发对象，对每个对象目标外的全体对象广播XX之后效果
@@ -49,7 +79,7 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     foreach (var card in AgainstInfo.cardSet.CardList.Where(card => card != targetCard))
                     {
-                        await TriggerBoard(card,triggerInfo[targetCard][TriggerTime.After]);
+                        await Trigger(card, triggerInfo[targetCard][TriggerTime.After]);
                     }
                 }
             }
@@ -57,21 +87,13 @@ namespace TouhouMachineLearningSummary.Command
             {
                 Debug.LogWarning("无生效目标");
             }
-            // 触发卡牌的指定效果
-            static async Task Trigger(TriggerInfoModel triggerInfo)
+           
+        }
+        static async Task Trigger(Card NoticeCard, TriggerInfoModel triggerInfo)
+        {
+            foreach (var ability in NoticeCard.cardAbility[triggerInfo.triggerTime][triggerInfo.triggerType])
             {
-                foreach (var ability in triggerInfo.targetCard.cardAbility[triggerInfo.triggerTime][triggerInfo.triggerType])
-                {
-                    await ability(triggerInfo);
-                }
-            }
-
-            static async Task TriggerBoard(Card NoticeCard, TriggerInfoModel triggerInfo)
-            {
-                foreach (var ability in NoticeCard.cardAbility[triggerInfo.triggerTime][triggerInfo.triggerType])
-                {
-                    await ability(triggerInfo);
-                }
+                await ability(triggerInfo);
             }
         }
     }
