@@ -479,6 +479,16 @@
     "geyu": "",
     "": ""
   },
+  "Apothanasia": {
+    "Tag": "Apothanasia",
+    "Ch": "延命",
+    "Ch_Introduction": "延命：回合结束时，若自身为0时，则消耗此状态并获得一点增益",
+    "Tc": "",
+    "En": "Apothanasia",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
   "Timer": {
     "Tag": "Timer",
     "Ch": "计时",
@@ -495,16 +505,6 @@
     "Ch_Introduction": "鼓舞($Point$)：增强两侧单位\"活力\"类型效果",
     "Tc": "",
     "En": "Inspire",
-    "En_Introduction": "",
-    "geyu": "",
-    "": ""
-  },
-  "Apothanasia": {
-    "Tag": "Apothanasia",
-    "Ch": "延命",
-    "Ch_Introduction": "延命($Point$)：当单位点数为0时，回合结束时抵消一次进入墓地效果",
-    "Tc": "",
-    "En": "Apothanasia",
     "En_Introduction": "",
     "geyu": "",
     "": ""

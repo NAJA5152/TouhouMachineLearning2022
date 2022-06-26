@@ -23,7 +23,6 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.After, TriggerType.Move)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   UnityEngine.Debug.LogError("卡牌效果");
                    //如果移动的对象在场上非金集合中，则追加1点伤害
                    if (GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][CardRank.NoGold].CardList.Contains(triggerInfo.targetCard))
                    {

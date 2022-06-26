@@ -102,7 +102,7 @@ namespace TouhouMachineLearningSummary.Manager
                 int lineCount = 0;
                 card.cardStates.ForEach(state =>
                 {
-                    string newIntroduction = (state.ToString() + "_Introduction").TranslationGameText();
+                    string newIntroduction = (state.ToString() ).TranslationGameText(IsGetIntroduction: true);
                     //算出单个状态介绍的长度+换行的长度
                     newIntroduction.Split('\n').ToList().ForEach(singleRowText =>
                     {

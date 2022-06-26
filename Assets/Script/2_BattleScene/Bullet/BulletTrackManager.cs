@@ -50,7 +50,7 @@ namespace TouhouMachineLearningSummary.Manager
                         _ = Command.SoundEffectCommand.PlayAsync(SoundEffectType.Laser);
                         await CustomThread.TimerAsync(0.5f, (process) =>
                         {
-                            transform.position = Vector3.Lerp(tempPos, endPosition, process);
+                            transform.position = Vector3.Lerp(tempPos, triggerInfo.targetCard.transform.position, process);
                         });
                         Destroy(gameObject);
                         _ = CameraManager.manager.VibrationCameraAsync();
