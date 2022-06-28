@@ -107,6 +107,8 @@ namespace TouhouMachineLearningSummary.Info
         public static List<int> SelectVirualCardIds => SelectBoardCardRanks.Select(rank => cardBoardIDList[rank]).ToList();
 
         public static int ExChangeableCardNum = 0;
+        //判断是否强制先后手
+        public static int FirstMode { get; set; } = 0;
         //判断是否1号玩家
         public static bool IsPlayer1 { get; set; } = false;
         public static bool IsMyTurn { get; set; }

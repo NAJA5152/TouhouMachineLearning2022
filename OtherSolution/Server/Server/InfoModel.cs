@@ -11,8 +11,9 @@ namespace Server
     }
     public class HoldInfo
     {
-        public HoldInfo(PlayerInfo playerInfo, PlayerInfo virtualOpponentInfo = null, IClientProxy client = null)
+        public HoldInfo(int firstMode, PlayerInfo playerInfo, PlayerInfo virtualOpponentInfo = null, IClientProxy client = null)
         {
+            FirstMode = firstMode;
             UserInfo = playerInfo;
             VirtualOpponentInfo = virtualOpponentInfo;
             Client = client;
@@ -21,6 +22,8 @@ namespace Server
             CollectionRate = 0;
             JoinTime = DateTime.Now;
         }
+
+        public int FirstMode { get; set; }
         public PlayerInfo UserInfo { get; set; }
         public PlayerInfo VirtualOpponentInfo { get; set; }
         public IClientProxy Client { get; set; }

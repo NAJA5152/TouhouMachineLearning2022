@@ -15,10 +15,10 @@ namespace Server
                 HoldLists[againstMode] = new List<HoldInfo>();
             }
         }
-        public static void Add(AgainstModeType againstMode, PlayerInfo playerInfo, PlayerInfo virtualOpponentInfo,IClientProxy caller)
+        public static void Add(AgainstModeType againstMode,int FirstMode, PlayerInfo playerInfo, PlayerInfo virtualOpponentInfo,IClientProxy caller)
         {
             Console.WriteLine(playerInfo.Account + "加入" + againstMode.ToString());
-            HoldLists[againstMode].Add(new HoldInfo(playerInfo, virtualOpponentInfo,caller));
+            HoldLists[againstMode].Add(new HoldInfo(FirstMode,playerInfo, virtualOpponentInfo,caller));
         }
         public static bool Remove(AgainstModeType againstMode, string account)
         {
@@ -67,7 +67,7 @@ namespace Server
                 if (mode == AgainstModeType.Story || mode == AgainstModeType.Practice)
                 {
                     //单人类型，构造一个虚拟对手，并一起加入房间，随后从等待列表移除
-                    targetHoldList.ForEach(info => RoomManager.CreatRoom(mode,info, new HoldInfo(info.VirtualOpponentInfo)));
+                    targetHoldList.ForEach(info => RoomManager.CreatRoom(mode,info, new HoldInfo(0,info.VirtualOpponentInfo)));
                     count += targetHoldList.Count();
                     targetHoldList.Clear();
                 }

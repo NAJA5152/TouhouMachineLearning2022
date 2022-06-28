@@ -151,6 +151,7 @@ namespace TouhouMachineLearningSummary.Command
             Command.MenuStateCommand.AddState(MenuState.WaitForBattle);
             Command.BookCommand.SimulateFilpPage(true);//开始翻书
             Info.PageCompnentInfo.currentAgainstMode = AgainstModeType.Practice;
+            Info.AgainstInfo.FirstMode = 0;
             PlayerInfo sampleUserInfo = null;
             PlayerInfo virtualOpponentInfo = null;
             ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -199,7 +200,7 @@ namespace TouhouMachineLearningSummary.Command
             Manager.AgainstManager.Init();
             Manager.AgainstManager.SetAgainstMode(Info.PageCompnentInfo.currentAgainstMode);
             //开始排队
-            await Command.NetCommand.JoinHoldOnList(Info.PageCompnentInfo.currentAgainstMode, sampleUserInfo, virtualOpponentInfo);
+            await Command.NetCommand.JoinHoldOnList(Info.PageCompnentInfo.currentAgainstMode, Info.AgainstInfo.FirstMode, sampleUserInfo, virtualOpponentInfo);
         }
     }
 }

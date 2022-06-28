@@ -65,6 +65,11 @@ namespace TouhouMachineLearningSummary.Manager
                 Info.AgainstInfo.IsPVP = true;
             }
         }
+        /// <summary>
+        /// 设置先后手,0随机 1先手，2后手，只在单人模式有效
+        /// </summary>
+        /// <param name="xx"></param>
+        public static void SetFirstMode(int mode) => Info.AgainstInfo.FirstMode = mode;
         /////////////////////////////////////////////////////////////////////默认配置///////////////////////////////////////////////////////////
         /// <summary>
         /// 以线上模式开始对局，会上传对战记录，可被观战，包括PVP和PVE
@@ -73,12 +78,12 @@ namespace TouhouMachineLearningSummary.Manager
         /// 设置对方卡组
         /// </summary>
         /// <returns></returns>
-        public static async Task OnlineStart(bool isPlayer1, PlayerInfo userInfo = null, PlayerInfo opponentInfo = null)
+        public static async Task OnlineStart(bool isPlayer1, PlayerInfo userInfo = null, PlayerInfo opponentInfo = null, bool isMyTurn = false)
         {
             Info.AgainstInfo.IsPlayer1 = isPlayer1;
             Info.AgainstInfo.currentUserInfo = (userInfo == null ? defaultPlayerInfo : userInfo);
             Info.AgainstInfo.currentOpponentInfo = (opponentInfo == null ? defaultPlayerInfo : opponentInfo);
-            Info.AgainstInfo.IsMyTurn = Info.AgainstInfo.IsPlayer1;
+            Info.AgainstInfo.IsMyTurn = isMyTurn;
             Info.AgainstInfo.CurrentCardScriptsVersion = "";
             await CardAssemblyManager.SetCurrentAssembly(Info.AgainstInfo.CurrentCardScriptsVersion);
             await Manager.CameraViewManager.MoveToViewAsync(3);

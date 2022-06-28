@@ -66,8 +66,8 @@ namespace TouhouMachineLearningSummary.Info
         public static List<StageInfoModel> CurrentSelectStageInfos { get; set; }
         public static string CurrentStage { get; set; }
         public static int CurrentStep { get; set; }
-        ///////////////////////////////////////////////////////////联系选项信息/////////////////////////////////////
-        public PracticeLeader selectLeader { get; set; }
+        ///////////////////////////////////////////////////////////练习选项信息/////////////////////////////////////
+        public PracticeLeader SelectLeader { get; set; }
 
         ///////////////////////////////////////////////////////////牌库信息/////////////////////////////////////
         [Header("牌库组件")]

@@ -20,7 +20,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             try
             {
-                if (TouHouHub==null)
+                if (TouHouHub == null)
                 {
                     TouHouHub = new HubConnectionBuilder().WithUrl($"http://{ip}/TouHouHub").Build();
                     await TouHouHub.StartAsync();
@@ -40,13 +40,14 @@ namespace TouhouMachineLearningSummary.Command
                         PlayerInfo playerInfo = ReceiveInfo[1].ToType<PlayerInfo>();
                         PlayerInfo opponentInfo = ReceiveInfo[2].ToType<PlayerInfo>();
                         bool isPlayer1 = ReceiveInfo[3].ToType<bool>();
+                        bool isMyTurn = ReceiveInfo[4].ToType<bool>();
 
                         _ = NoticeCommand.CloseAsync();//关闭ui
                         Command.BookCommand.SimulateFilpPage(false);//停止翻书
                         Command.MenuStateCommand.AddState(MenuState.ScenePage);//增加路由
                         Debug.Log("进入对战配置模式");
                         //Manager.LoadingManager.manager?.OpenAsync();
-                        _ = AgainstManager.OnlineStart(isPlayer1, playerInfo, opponentInfo);
+                        _ = AgainstManager.OnlineStart(isPlayer1, playerInfo, opponentInfo, isMyTurn);
                     });
                     TouHouHub.On<NetAcyncType, object[]>("Async", (type, receiveInfo) =>
                     {
@@ -142,7 +143,7 @@ namespace TouhouMachineLearningSummary.Command
                     //日后补充断线重连
                     Debug.Log("服务器已有初始化实例");
                 }
-             
+
             }
             catch (Exception e)
             {
@@ -238,7 +239,7 @@ namespace TouhouMachineLearningSummary.Command
             Debug.Log("查询卡牌版本");
             await CheckHubState();
             string version = await TouHouHub.InvokeAsync<string>("GetCardConfigsVersion");
-            Debug.Log("最新卡牌版本为"+ version);
+            Debug.Log("最新卡牌版本为" + version);
             return version;
         }
 
@@ -286,13 +287,13 @@ namespace TouhouMachineLearningSummary.Command
             await TouHouHub.SendAsync("Chat", name, text, target);
         }
         ///////////////////////////////////////////////////房间操作////////////////////////////////////////////////////////////////
-        public static async Task JoinHoldOnList(AgainstModeType modeType, PlayerInfo userInfo, PlayerInfo virtualOpponentInfo)
+        public static async Task JoinHoldOnList(AgainstModeType modeType, int firstMode, PlayerInfo userInfo, PlayerInfo virtualOpponentInfo)
         {
             await CheckHubState();
             try
             {
                 Debug.Log($"发送数据 我方牌组数：{userInfo.UseDeck.CardIds.Count} 敌方牌组数{virtualOpponentInfo?.UseDeck.CardIds.Count}");
-                await TouHouHub.SendAsync("Join", modeType, userInfo, virtualOpponentInfo);
+                await TouHouHub.SendAsync("Join", modeType, firstMode, userInfo, virtualOpponentInfo);
             }
             catch (Exception ex) { Debug.LogException(ex); }
         }

@@ -21,7 +21,7 @@ public class TouHouHub : Hub
     public int Register(string account, string password) => MongoDbCommand.Register(account, password);
     public PlayerInfo? Login(string account, string password) => MongoDbCommand.Login(account, password);
     //////////////////////////////////////////////等候列表////////////////////////////////////////////////////////////////////
-    public void Join(AgainstModeType againstMode, PlayerInfo userInfo, PlayerInfo virtualOpponentInfo) => HoldListManager.Add(againstMode, userInfo, virtualOpponentInfo, Clients.Caller);
+    public void Join(AgainstModeType againstMode, int FirstMode, PlayerInfo userInfo, PlayerInfo virtualOpponentInfo) => HoldListManager.Add(againstMode, FirstMode, userInfo, virtualOpponentInfo, Clients.Caller);
     public void Leave(AgainstModeType againstMode, string account) => HoldListManager.Remove(againstMode, account);
     //////////////////////////////////////////////房间////////////////////////////////////////////////////////////////////
     public void Async(NetAcyncType netAcyncType, string roomId, bool isPlayer1, object[] data) => RoomManager.GetRoom(roomId)?.AsyncInfo(netAcyncType, isPlayer1, data);
@@ -34,7 +34,7 @@ public class TouHouHub : Hub
             case UpdateType.Name: return MongoDbCommand.UpdateInfo(account, password, (x => x.Name), updateValue.To<string>());
             case UpdateType.Decks: return MongoDbCommand.UpdateInfo(account, password, (x => x.Decks), updateValue.To<List<CardDeck>>());
             case UpdateType.UseDeckNum: return MongoDbCommand.UpdateInfo(account, password, (x => x.UseDeckNum), updateValue.To<int>());
-            case UpdateType.Stage: return MongoDbCommand.UpdateInfo(account, password, (x => x.Stage), updateValue.To<Dictionary<string,int>>());
+            case UpdateType.Stage: return MongoDbCommand.UpdateInfo(account, password, (x => x.Stage), updateValue.To<Dictionary<string, int>>());
             case UpdateType.LastLoginTime: return MongoDbCommand.UpdateInfo(account, password, (x => x.LastLoginTime), updateValue.To<DateTime>());
             default: return false;
         }
@@ -61,7 +61,7 @@ public class TouHouHub : Hub
     public bool UploadAssetBundles(string path, byte[] fileData)
     {
         Directory.CreateDirectory(new FileInfo(path).DirectoryName);
-        Console.WriteLine("接收到"+path+"——开始写入，长度为"+fileData.Length);
+        Console.WriteLine("接收到" + path + "——开始写入，长度为" + fileData.Length);
         File.WriteAllBytes(path, fileData);
         return true;
     }

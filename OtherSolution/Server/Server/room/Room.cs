@@ -31,14 +31,29 @@ namespace Server
 
             Player1Info = Player1Info.ShufflePlayerDeck();
             Player2Info = Player2Info.ShufflePlayerDeck();
-            //发送房间号，玩家1是先手，将玩家牌组信息打乱并发送给对方
+            //发送房间号，决定先后手，将玩家牌组信息打乱并发送给对方
             Summary._id = Guid.NewGuid().ToString("N");
             Summary.Player1Info = Player1Info;
             Summary.Player2Info = Player2Info;
+
+            bool isP1FirstTurn = false;
+            bool isP2FirstTurn = false;
+            if (player1.FirstMode == 0)
+            {
+                (new Random().NextDouble() > 0.5f ? ref isP1FirstTurn : ref isP2FirstTurn) = true;
+
+            }
+            else
+            {
+                (player1.FirstMode == 1 ? ref isP1FirstTurn : ref isP2FirstTurn) = true;
+            }
+            //如果是多人模式，，或者时先后手为0，随机赋予先后手
+            //如果是单人模式，可以操作先后手
+
             Summary.AssemblyVerision = MongoDbCommand.GetLastCardUpdateVersion();
 
-            P1?.SendAsync("StartAgainst", new object[] { RoomId, Player1Info, Player2Info, true });
-            P2?.SendAsync("StartAgainst", new object[] { RoomId, Player2Info, Player1Info, false });
+            P1?.SendAsync("StartAgainst", new object[] { RoomId, Player1Info, Player2Info, true, isP1FirstTurn });
+            P2?.SendAsync("StartAgainst", new object[] { RoomId, Player2Info, Player1Info, false, isP2FirstTurn });
 
 
         }
@@ -57,8 +72,8 @@ namespace Server
         }
         public void AsyncInfo(NetAcyncType netAcyncType, bool isPlayer1, object[] command)
         {
-            Console.WriteLine("同步消息"+ netAcyncType.ToString());
-            (isPlayer1 ? P2 : P1).SendAsync("Async", netAcyncType,command);
+            Console.WriteLine("同步消息" + netAcyncType.ToString());
+            (isPlayer1 ? P2 : P1).SendAsync("Async", netAcyncType, command);
         }
     }
 }
