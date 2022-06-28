@@ -136,8 +136,8 @@ namespace TouhouMachineLearningSummary.Command
             //如果是故事模式，假如胜利则更新玩家进度
             if (Info.PageCompnentInfo.currentAgainstMode == AgainstModeType.Story&& IsWin)
             {
-                Debug.LogWarning("解锁" + Info.PageCompnentInfo.currentStage + "--" + Info.PageCompnentInfo.currentStep);
-                await Command.DialogueCommand.UnlockAsync(Info.PageCompnentInfo.currentStage, Info.PageCompnentInfo.currentStep);
+                Debug.LogWarning("解锁" + Info.PageCompnentInfo.CurrentStage + "--" + Info.PageCompnentInfo.CurrentStep);
+                await Command.DialogueCommand.UnlockAsync(Info.PageCompnentInfo.CurrentStage, Info.PageCompnentInfo.CurrentStep);
                 //await Info.AgainstInfo.onlineUserInfo.UpdateUserStateAsync(Info.PageCompnentInfo.currentStage, Info.PageCompnentInfo.currentStep);
             }
             SceneManager.LoadScene("1_LoginScene");

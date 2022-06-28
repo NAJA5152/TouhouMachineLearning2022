@@ -157,11 +157,11 @@ namespace TouhouMachineLearningSummary.Command
             if (Command.MenuStateCommand.HasState(MenuState.LevelSelect))//单人关卡选择模式
             {
                 Info.PageCompnentInfo.currentAgainstMode = AgainstModeType.Story;
-                string targetStage = Info.PageCompnentInfo.currentStage + Info.PageCompnentInfo.currentStep;
-                sampleUserInfo = StageAgainstConfig.GetPlayerCardDeck(targetStage);
-                virtualOpponentInfo = StageAgainstConfig.GetPlayerCardDeck(targetStage);
+                string targetStage = Info.PageCompnentInfo.CurrentStage + Info.PageCompnentInfo.CurrentStep;
+                sampleUserInfo = AgainstDeckConfig.GetPlayerCardDeck(targetStage);
+                virtualOpponentInfo = AgainstDeckConfig.GetPlayerCardDeck(targetStage);
 
-                await DialogueCommand.Play(Info.PageCompnentInfo.currentStage, Info.PageCompnentInfo.currentStep);
+                await DialogueCommand.Play(Info.PageCompnentInfo.CurrentStage, Info.PageCompnentInfo.CurrentStep);
                 //播放剧情
 
             }
@@ -169,19 +169,7 @@ namespace TouhouMachineLearningSummary.Command
             {
                 Info.PageCompnentInfo.currentAgainstMode = AgainstModeType.Practice;
                 sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
-                virtualOpponentInfo = new PlayerInfo(
-                     "NPC", "神秘的妖怪", "yaya", "",
-                     new List<CardDeck>
-                     {
-                                new CardDeck("gezi", 2000001, new List<int>
-                                {
-                                    2001001,2001002,2001003,2001004,
-                                    2002001,2002002,2002003,2002004,2002005,2002006,
-                                    2003001,2003002,2003003,2003004,2003005,
-                                    2003001,2003002,2003003,2003004,2003005,
-                                    2003001,2003002,2003003,2003004,2003005,
-                                })
-                     });
+                virtualOpponentInfo = AgainstDeckConfig.GetPracticeCardDeck( PracticeLeader.Cirno);
             }
             if (Command.MenuStateCommand.HasState(MenuState.CasualModeDeckSelect))//多人休闲模式
             {
@@ -199,7 +187,7 @@ namespace TouhouMachineLearningSummary.Command
                 sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
             }
 
-            _ = NoticeCommand.ShowAsync("少女排队中~", NotifyBoardMode.Cancel, cancelAction: async () =>
+            _ = NoticeCommand.ShowAsync("少女祈祷中~", NotifyBoardMode.Cancel, cancelAction: async () =>
             {
                 Command.BookCommand.SimulateFilpPage(false);//开始翻书
                 await Task.Delay(2000);

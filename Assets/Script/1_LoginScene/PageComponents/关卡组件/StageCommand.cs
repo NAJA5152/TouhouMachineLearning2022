@@ -19,8 +19,8 @@ namespace TouhouMachineLearningSummary.Command
         public static void SelectStage(string Stage)
         {
             //获得标签对应的所有阶段的关卡信息
-            Info.PageCompnentInfo.currentSelectStageInfos = Stage.TranslationStageText();
-            Info.PageCompnentInfo.currentStage = Stage;
+            Info.PageCompnentInfo.CurrentSelectStageInfos = Stage.TranslationStageText();
+            Info.PageCompnentInfo.CurrentStage = Stage;
             //获得玩家的线上进度
             int rank = Info.AgainstInfo.onlineUserInfo.GetStage(Stage);
             //控制右侧阶段信息的显示
@@ -28,7 +28,7 @@ namespace TouhouMachineLearningSummary.Command
             //当前已有的小关ui数量
             int stageStepCurrentCount = content.childCount;
             //当前应该有的小关ui数量
-            int stageStepMaxCount = Info.PageCompnentInfo.currentSelectStageInfos.Count;
+            int stageStepMaxCount = Info.PageCompnentInfo.CurrentSelectStageInfos.Count;
             var stageModel = Info.PageCompnentInfo.Instance.stageModel;
             //生成对应数量的小关
 
@@ -44,7 +44,7 @@ namespace TouhouMachineLearningSummary.Command
                 if (i < stageStepMaxCount)
                 {
                     content.GetChild(i).gameObject.SetActive(true);
-                    content.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = Info.PageCompnentInfo.currentSelectStageInfos[i].StageName;
+                    content.GetChild(i).GetChild(0).GetComponent<TextMeshProUGUI>().text = Info.PageCompnentInfo.CurrentSelectStageInfos[i].StageName;
                 }
                 else
                 {
@@ -57,10 +57,10 @@ namespace TouhouMachineLearningSummary.Command
         public static void SelectStep(int step)
         {
 
-            if (Info.PageCompnentInfo.currentSelectStageInfos.Count > step)
+            if (Info.PageCompnentInfo.CurrentSelectStageInfos.Count > step)
             {
-                Info.PageCompnentInfo.currentStep = step;
-                var targetStageInfo = Info.PageCompnentInfo.currentSelectStageInfos[step];
+                Info.PageCompnentInfo.CurrentStep = step;
+                var targetStageInfo = Info.PageCompnentInfo.CurrentSelectStageInfos[step];
                 //控制左侧领袖信息的显示
                 Info.PageCompnentInfo.Instance.leaderSprite.sprite = targetStageInfo.LeadSprite;
                 Info.PageCompnentInfo.Instance.leaderName.text = targetStageInfo.LeaderName;

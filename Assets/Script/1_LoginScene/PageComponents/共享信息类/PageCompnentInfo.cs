@@ -52,11 +52,7 @@ namespace TouhouMachineLearningSummary.Info
             .ThenByDescending(id=>id)
             .ToList();
         ///////////////////////////////////////////////////////////关卡信息/////////////////////////////////////
-        //public TextMeshProUGUI leaderName;
-        //public TextMeshProUGUI leaderIntroduction; 
-        //public TextMeshProUGUI stageName;
-        //public TextMeshProUGUI stageIntroduction;
-
+       
         public GameObject stageModel;
         public Image leaderSprite;
         public Text leaderName;
@@ -67,9 +63,12 @@ namespace TouhouMachineLearningSummary.Info
         /// <summary>
         /// 所选大关的所有小关信息
         /// </summary>
-        public static List<StageInfoModel> currentSelectStageInfos { get; set; }
-        public static string currentStage { get; set; }
-        public static int currentStep { get; set; }
+        public static List<StageInfoModel> CurrentSelectStageInfos { get; set; }
+        public static string CurrentStage { get; set; }
+        public static int CurrentStep { get; set; }
+        ///////////////////////////////////////////////////////////联系选项信息/////////////////////////////////////
+        public PracticeLeader selectLeader { get; set; }
+
         ///////////////////////////////////////////////////////////牌库信息/////////////////////////////////////
         [Header("牌库组件")]
         public GameObject _cardLibraryContent;

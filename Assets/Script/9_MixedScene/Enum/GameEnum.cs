@@ -171,7 +171,7 @@ namespace TouhouMachineLearningSummary.GameEnum
     /// <summary>
     /// 卡牌附加值类型     ！！！！不要改变顺序，有新的再后面追加，服务端和翻译表格需要同步更新！！！！
     /// </summary>
-    public enum CardField 
+    public enum CardField
     {
         None,//默认空状态
         Timer,//计时
@@ -308,5 +308,23 @@ namespace TouhouMachineLearningSummary.GameEnum
         RoundStartExchangeOver,
         Pass,
         Surrender
+    }
+    public enum PracticeLeader
+    {
+        Reimu_Hakurei,
+        Sanae_Kotiya,
+
+        Mononobe_no_Futo,
+        Kaku_Seiga,
+
+        Hijiri_Byakuren,
+        Koishi_Komeiji,
+
+        Nitori_Kawasiro,
+        Kaguya_Houraisan,
+
+        Cirno,
+        Remilia_Scarlet,
+        Kijin_Seija,
     }
 }
