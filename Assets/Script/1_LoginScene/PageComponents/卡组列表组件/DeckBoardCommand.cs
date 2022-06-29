@@ -161,7 +161,7 @@ namespace TouhouMachineLearningSummary.Command
                 string targetStage = Info.PageCompnentInfo.CurrentStage + Info.PageCompnentInfo.CurrentStep;
                 sampleUserInfo = AgainstDeckConfig.GetPlayerCardDeck(targetStage);
                 virtualOpponentInfo = AgainstDeckConfig.GetPlayerCardDeck(targetStage);
-
+                Manager.AgainstManager.SetFirstMode(2);
                 await DialogueCommand.Play(Info.PageCompnentInfo.CurrentStage, Info.PageCompnentInfo.CurrentStep);
                 //播放剧情
 
@@ -170,7 +170,9 @@ namespace TouhouMachineLearningSummary.Command
             {
                 Info.PageCompnentInfo.currentAgainstMode = AgainstModeType.Practice;
                 sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
-                virtualOpponentInfo = AgainstDeckConfig.GetPracticeCardDeck( PracticeLeader.Cirno);
+                virtualOpponentInfo = AgainstDeckConfig.GetPracticeCardDeck( Info.PageCompnentInfo.SelectLeader);
+                Manager.AgainstManager.SetFirstMode(Info.PageCompnentInfo.SelectFirstHandMode);
+
             }
             if (Command.MenuStateCommand.HasState(MenuState.CasualModeDeckSelect))//多人休闲模式
             {

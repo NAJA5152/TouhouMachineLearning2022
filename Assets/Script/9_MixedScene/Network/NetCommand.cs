@@ -37,10 +37,11 @@ namespace TouhouMachineLearningSummary.Command
                     TouHouHub.On<object[]>("StartAgainst", ReceiveInfo =>
                     {
                         Info.AgainstInfo.RoomID = ReceiveInfo[0].ToType<string>();
-                        PlayerInfo playerInfo = ReceiveInfo[1].ToType<PlayerInfo>();
-                        PlayerInfo opponentInfo = ReceiveInfo[2].ToType<PlayerInfo>();
-                        bool isPlayer1 = ReceiveInfo[3].ToType<bool>();
-                        bool isMyTurn = ReceiveInfo[4].ToType<bool>();
+                        bool isPlayer1 = ReceiveInfo[1].ToType<bool>();
+                        bool isMyTurn = ReceiveInfo[2].ToType<bool>();
+                        PlayerInfo playerInfo = ReceiveInfo[3].ToType<PlayerInfo>();
+                        PlayerInfo opponentInfo = ReceiveInfo[4].ToType<PlayerInfo>();
+                       
 
                         _ = NoticeCommand.CloseAsync();//关闭ui
                         Command.BookCommand.SimulateFilpPage(false);//停止翻书

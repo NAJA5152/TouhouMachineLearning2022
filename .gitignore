@@ -39,3 +39,5 @@ ProjectSettings/PackageManagerSettings.asset
 *.sln
 *.csproj
 *.sln
+Packages/manifest.json
+Packages/manifest.json

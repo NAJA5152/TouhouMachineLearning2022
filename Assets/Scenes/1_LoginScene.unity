@@ -6740,7 +6740,20 @@ MonoBehaviour:
   m_Group: {fileID: 2000717297}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491796}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.PracticeManager,
+          TouHouMachineLearning
+        m_MethodName: SelectFirstHandMode
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &238844388
 GameObject:
@@ -8108,7 +8121,20 @@ MonoBehaviour:
   m_Group: {fileID: 2000717297}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491796}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.PracticeManager,
+          TouHouMachineLearning
+        m_MethodName: SelectFirstHandMode
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &270455164
 GameObject:
@@ -10339,7 +10365,20 @@ MonoBehaviour:
   m_Group: {fileID: 1391824051}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491796}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.PracticeManager,
+          TouHouMachineLearning
+        m_MethodName: SelectLeader
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 9
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &357126694
 GameObject:
@@ -11450,7 +11489,20 @@ MonoBehaviour:
   m_Group: {fileID: 1391824051}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491796}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.PracticeManager,
+          TouHouMachineLearning
+        m_MethodName: SelectLeader
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 7
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &399882927
 GameObject:
@@ -16685,7 +16737,20 @@ MonoBehaviour:
   m_Group: {fileID: 1391824051}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491796}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.PracticeManager,
+          TouHouMachineLearning
+        m_MethodName: SelectLeader
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 5
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &557111273
 GameObject:
@@ -20420,7 +20485,20 @@ MonoBehaviour:
   m_Group: {fileID: 1391824051}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491796}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.PracticeManager,
+          TouHouMachineLearning
+        m_MethodName: SelectLeader
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 1
 --- !u!1 &696891832
 GameObject:
@@ -24430,7 +24508,20 @@ MonoBehaviour:
   m_Group: {fileID: 1391824051}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491796}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.PracticeManager,
+          TouHouMachineLearning
+        m_MethodName: SelectLeader
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &841637629
 GameObject:
@@ -26906,7 +26997,20 @@ MonoBehaviour:
   m_Group: {fileID: 2000717297}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491796}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.PracticeManager,
+          TouHouMachineLearning
+        m_MethodName: SelectFirstHandMode
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 2
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &908084008
 GameObject:
@@ -31156,7 +31260,20 @@ MonoBehaviour:
   m_Group: {fileID: 1391824051}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491796}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.PracticeManager,
+          TouHouMachineLearning
+        m_MethodName: SelectLeader
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 4
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1034559495
 GameObject:
@@ -31916,7 +32033,20 @@ MonoBehaviour:
   m_Group: {fileID: 1391824051}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491796}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.PracticeManager,
+          TouHouMachineLearning
+        m_MethodName: SelectLeader
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 3
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1049814158
 GameObject:
@@ -37082,6 +37212,7 @@ GameObject:
   - component: {fileID: 1237491793}
   - component: {fileID: 1237491794}
   - component: {fileID: 1237491795}
+  - component: {fileID: 1237491796}
   m_Layer: 0
   m_Name: Manager
   m_TagString: Untagged
@@ -37214,6 +37345,18 @@ MonoBehaviour:
   PasswordText: {fileID: 1572906549}
   Account: 
   Password: 
+--- !u!114 &1237491796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1237491787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57baa97ab502a6d4880d596b3288320c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1239709827
 GameObject:
   m_ObjectHideFlags: 0
@@ -38895,7 +39038,20 @@ MonoBehaviour:
   m_Group: {fileID: 1391824051}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491796}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.PracticeManager,
+          TouHouMachineLearning
+        m_MethodName: SelectLeader
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 8
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1284979951
 GameObject:
@@ -40149,7 +40305,20 @@ MonoBehaviour:
   m_Group: {fileID: 1391824051}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491796}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.PracticeManager,
+          TouHouMachineLearning
+        m_MethodName: SelectLeader
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 10
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1334116153
 GameObject:
@@ -43588,7 +43757,20 @@ MonoBehaviour:
   m_Group: {fileID: 1391824051}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491796}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.PracticeManager,
+          TouHouMachineLearning
+        m_MethodName: SelectLeader
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 1
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1432898573
 GameObject:
@@ -52122,7 +52304,20 @@ MonoBehaviour:
   m_Group: {fileID: 1391824051}
   onValueChanged:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1237491796}
+        m_TargetAssemblyTypeName: TouhouMachineLearningSummary.Manager.PracticeManager,
+          TouHouMachineLearning
+        m_MethodName: SelectLeader
+        m_Mode: 3
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 66
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_IsOn: 0
 --- !u!1 &1665833765
 GameObject:

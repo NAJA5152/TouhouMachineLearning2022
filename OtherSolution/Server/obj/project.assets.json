@@ -7249,19 +7249,24 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\wuyunge\\.nuget\\packages\\": {}
+    "C:\\Users\\50606\\.nuget\\packages\\": {},
+    "G:\\VisualStudio-Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj",
+      "projectUniqueName": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj",
       "projectName": "Server",
-      "projectPath": "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj",
-      "packagesPath": "C:\\Users\\wuyunge\\.nuget\\packages\\",
-      "outputPath": "D:\\vs2022-Project\\TouhouMachineLearning2022\\OtherSolution\\Server\\obj\\",
+      "projectPath": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\Server.csproj",
+      "packagesPath": "C:\\Users\\50606\\.nuget\\packages\\",
+      "outputPath": "G:\\UnityProject\\TouhouMachineLearning2022\\OtherSolution\\Server\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "G:\\VisualStudio-Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "C:\\Users\\wuyunge\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\50606\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -7330,7 +7335,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.100\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }
