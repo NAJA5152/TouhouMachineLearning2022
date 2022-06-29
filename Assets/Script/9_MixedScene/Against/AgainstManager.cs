@@ -78,7 +78,7 @@ namespace TouhouMachineLearningSummary.Manager
         /// 设置对方卡组
         /// </summary>
         /// <returns></returns>
-        public static async Task OnlineStart(bool isPlayer1, PlayerInfo userInfo = null, PlayerInfo opponentInfo = null, bool isMyTurn = false)
+        public static async Task OnlineStart(bool isPlayer1, bool isMyTurn = false, PlayerInfo userInfo = null, PlayerInfo opponentInfo = null)
         {
             Info.AgainstInfo.IsPlayer1 = isPlayer1;
             Info.AgainstInfo.currentUserInfo = (userInfo == null ? defaultPlayerInfo : userInfo);

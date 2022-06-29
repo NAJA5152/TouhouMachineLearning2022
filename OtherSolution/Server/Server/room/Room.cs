@@ -38,22 +38,23 @@ namespace Server
 
             bool isP1FirstTurn = false;
             bool isP2FirstTurn = false;
-            if (player1.FirstMode == 0)
-            {
-                (new Random().NextDouble() > 0.5f ? ref isP1FirstTurn : ref isP2FirstTurn) = true;
 
+            //当在故事模式或练习模式时，可以自定义先后手，否则随机先后手
+            if ((Mode== AgainstModeType.Story|| Mode== AgainstModeType.Practice)&& player1.FirstMode!=0)
+            {
+                (player1.FirstMode == 1 ? ref isP1FirstTurn : ref isP2FirstTurn) = true;
             }
             else
             {
-                (player1.FirstMode == 1 ? ref isP1FirstTurn : ref isP2FirstTurn) = true;
+                (new Random(DateTime.Now.Millisecond).NextDouble() > 0.5f ? ref isP1FirstTurn : ref isP2FirstTurn) = true;
             }
             //如果是多人模式，，或者时先后手为0，随机赋予先后手
             //如果是单人模式，可以操作先后手
 
             Summary.AssemblyVerision = MongoDbCommand.GetLastCardUpdateVersion();
 
-            P1?.SendAsync("StartAgainst", new object[] { RoomId, Player1Info, Player2Info, true, isP1FirstTurn });
-            P2?.SendAsync("StartAgainst", new object[] { RoomId, Player2Info, Player1Info, false, isP2FirstTurn });
+            P1?.SendAsync("StartAgainst", new object[] { RoomId, true, isP1FirstTurn, Player1Info, Player2Info });
+            P2?.SendAsync("StartAgainst", new object[] { RoomId, false, isP2FirstTurn, Player2Info, Player1Info });
 
 
         }

@@ -17,7 +17,6 @@ Temp/*
 /*.csproj
 *.csproj
 *.cache
-Packages/*
 OtherSolution/Server/.vs/*
 OtherSolution/xls检测更新/bin/*
 OtherSolution/xls检测更新/.vs/*

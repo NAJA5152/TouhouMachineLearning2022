@@ -17,7 +17,7 @@ namespace TouhouMachineLearningSummary.Command
         public static void Init()
         {
             var s = Info.AgainstInfo.onlineUserInfo;
-            Info.PageCompnentInfo.seleceDeckRank = Info.AgainstInfo.onlineUserInfo.UseDeckNum;
+            Info.PageCompnentInfo.selectDeckRank = Info.AgainstInfo.onlineUserInfo.UseDeckNum;
             Info.PageCompnentInfo.tempDeck = Info.AgainstInfo.onlineUserInfo.UseDeck.Clone();
             Info.PageCompnentInfo.Instance.deckModel.SetActive(false);
 
@@ -53,15 +53,15 @@ namespace TouhouMachineLearningSummary.Command
         public static async void OnDeckClick(GameObject deck)
         {
             int selectRank = Info.PageCompnentInfo.Instance.deckModels.IndexOf(deck);
-            if (Info.PageCompnentInfo.seleceDeckRank != selectRank)
+            if (Info.PageCompnentInfo.selectDeckRank != selectRank)
             {
-                Info.PageCompnentInfo.seleceDeckRank = selectRank;
+                Info.PageCompnentInfo.selectDeckRank = selectRank;
                 Info.PageCompnentInfo.isCardClick = true;
-                Info.AgainstInfo.onlineUserInfo.UseDeckNum = Info.PageCompnentInfo.seleceDeckRank;
+                Info.AgainstInfo.onlineUserInfo.UseDeckNum = Info.PageCompnentInfo.selectDeckRank;
                 await Info.AgainstInfo.onlineUserInfo.UpdateDecksAsync();
                 Command.DeckBoardCommand.Init();
                 Command.CardListCommand.Init();
-                Debug.LogWarning("点击修改为" + Info.PageCompnentInfo.seleceDeckRank);
+                Debug.LogWarning("点击修改为" + Info.PageCompnentInfo.selectDeckRank);
             }
         }
         public static void UpdateDeckPosition()
@@ -94,7 +94,7 @@ namespace TouhouMachineLearningSummary.Command
                 }
                 if (!Info.PageCompnentInfo.isDragMode)
                 {
-                    Vector3 end = new Vector3(Info.PageCompnentInfo.values[Info.PageCompnentInfo.seleceDeckRank], 120, 0);
+                    Vector3 end = new Vector3(Info.PageCompnentInfo.values[Info.PageCompnentInfo.selectDeckRank], 120, 0);
                     Info.PageCompnentInfo.Instance.content.GetComponent<RectTransform>().localPosition = Vector3.Lerp(Info.PageCompnentInfo.Instance.content.GetComponent<RectTransform>().localPosition, end, Time.deltaTime * 3);
                 }
             }

@@ -47,7 +47,7 @@ namespace TouhouMachineLearningSummary.Command
                         Command.MenuStateCommand.AddState(MenuState.ScenePage);//增加路由
                         Debug.Log("进入对战配置模式");
                         //Manager.LoadingManager.manager?.OpenAsync();
-                        _ = AgainstManager.OnlineStart(isPlayer1, playerInfo, opponentInfo, isMyTurn);
+                        _ = AgainstManager.OnlineStart(isPlayer1, isMyTurn, playerInfo, opponentInfo);
                     });
                     TouHouHub.On<NetAcyncType, object[]>("Async", (type, receiveInfo) =>
                     {

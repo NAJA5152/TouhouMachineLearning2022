@@ -18,7 +18,7 @@ namespace TouhouMachineLearningSummary.Info
         public static bool IsAdmin = true;
         //public static bool cardListCanChange = false;
         //当前所选对战模式
-        public static AgainstModeType currentAgainstMode= AgainstModeType.Story;
+        public static AgainstModeType currentAgainstMode = AgainstModeType.Story;
 
         [Header("卡组组件")]
         public GameObject _cardDeckNameModel;
@@ -49,10 +49,10 @@ namespace TouhouMachineLearningSummary.Info
             .Distinct()
             .OrderBy(id => Manager.CardAssemblyManager.GetLastCardInfo(id).cardRank)
             .ThenByDescending(id => Manager.CardAssemblyManager.GetLastCardInfo(id).point)
-            .ThenByDescending(id=>id)
+            .ThenByDescending(id => id)
             .ToList();
         ///////////////////////////////////////////////////////////关卡信息/////////////////////////////////////
-       
+
         public GameObject stageModel;
         public Image leaderSprite;
         public Text leaderName;
@@ -67,7 +67,8 @@ namespace TouhouMachineLearningSummary.Info
         public static string CurrentStage { get; set; }
         public static int CurrentStep { get; set; }
         ///////////////////////////////////////////////////////////练习选项信息/////////////////////////////////////
-        public PracticeLeader SelectLeader { get; set; }
+        public static PracticeLeader SelectLeader { get; set; }
+        public static int SelectFirstHandMode { get; set; } = 0;
 
         ///////////////////////////////////////////////////////////牌库信息/////////////////////////////////////
         [Header("牌库组件")]
@@ -108,7 +109,7 @@ namespace TouhouMachineLearningSummary.Info
         /// ////////////////////////////////////////////////////////牌组信息/////////////////////////////
         [Header("牌组信息组件")]
         [ShowInInspector]
-        public static int seleceDeckRank = 0;
+        public static int selectDeckRank = 0;
         public GameObject deckModel;
         public List<GameObject> deckModels;
         public static float fre = -310f;
