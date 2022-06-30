@@ -24,7 +24,6 @@ namespace TouhouMachineLearningSummary.Control
         public static bool IsEnterRoom { get; set; } = false;
         async void Start()
         {
-            Application.targetFrameRate = 60;
             Debug.LogError("场景已切换" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff:ffffff"));
             AccountText.text = Account;
             PasswordText.text = Password;
@@ -64,12 +63,12 @@ namespace TouhouMachineLearningSummary.Control
                     MenuStateCommand.RefreshCurrentState(true);
                     Debug.LogError("打开封面" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff:ffffff"));
                     await BookCommand.SetCoverStateAsync(true, true);
-                    await Task.Delay(1000);
+                    //await Task.Delay(1000);
                     await CameraViewManager.MoveToViewAsync(1);
                     Debug.LogError("等待返回" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff:ffffff"));
                     //退回到书本视角
                     BookCommand.SimulateFilpPage(true, false);
-                    await Task.Delay(3000);
+                    await Task.Delay(1000);
                     BookCommand.SimulateFilpPage(false);
 
                     MenuStateCommand.RebackStare();
