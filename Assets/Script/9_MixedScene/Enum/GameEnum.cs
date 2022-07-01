@@ -179,6 +179,7 @@ namespace TouhouMachineLearningSummary.GameEnum
         Chain,//连锁
         Energy,//能量
         Shield,//护盾
+        Pary,//祈祷
     }
     /// <summary>
     /// 异变类型
@@ -247,13 +248,37 @@ namespace TouhouMachineLearningSummary.GameEnum
     }
     public enum CardTag
     {
+        /// <summary>
+        /// 符卡
+        /// </summary>
         SpellCard,
+        /// <summary>
+        /// 
+        /// </summary>
         Variation,
+        /// <summary>
+        /// 机械
+        /// </summary>
         Machine,
+        /// <summary>
+        /// 妖精
+        /// </summary>
         Fairy,
+        /// <summary>
+        /// 物体
+        /// </summary>
         Object,
+        /// <summary>
+        /// 道具
+        /// </summary>
         Tool,
+        /// <summary>
+        /// 妖怪迹
+        /// </summary>
         Yokai,
+        /// <summary>
+        /// 奇迹
+        /// </summary>
         Miracle,
     }
     public enum Orientation

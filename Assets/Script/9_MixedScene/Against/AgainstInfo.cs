@@ -14,7 +14,7 @@ namespace TouhouMachineLearningSummary.Info
     public static class AgainstInfo
     {
         public static string CurrentCardScriptsVersion { get; set; } = "";
-        public static bool IsHostNetMode { get; set; } = true;//本地测试模式
+        public static bool IsHostNetMode { get; set; } = false;//连接到本地服务器
         public static bool IsTrainMode { get; set; } = true;//训练加速模式，所有等待设为0
         public static bool IsReplayMode { get; set; } = false;//回放模式，会加载指定对战记录读取操作
         public static bool IsJumpMode { get; set; } = false;//跳转到指定回合模式

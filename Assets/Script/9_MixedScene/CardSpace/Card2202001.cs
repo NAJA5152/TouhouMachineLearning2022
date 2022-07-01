@@ -20,6 +20,12 @@ namespace TouhouMachineLearningSummary.CardSpace
                    await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this,this));
                })
                .AbilityAppend();
+            AbalityRegister(TriggerTime.After, TriggerType.Move)
+             .AbilityAdd(async (triggerInfo) =>
+             {
+                 await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, Info.AgainstInfo.cardSet[Orientation.My][CardTag.Miracle].CardList).SetTargetField(CardField.Pary, 1));
+             }, Condition.Default)
+             .AbilityAppend();
         }
     }
 }

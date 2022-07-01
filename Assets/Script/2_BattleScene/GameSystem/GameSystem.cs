@@ -78,8 +78,12 @@ namespace TouhouMachineLearningSummary.GameSystem
         {
             if (triggerInfo.targetCard != null)
             {
-                await Command.CardCommand.PlayCard(triggerInfo.targetCard, isAnsy);
-                await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Play][triggerInfo.targetCard]);
+                //遍历打出所有目标卡牌
+                foreach (var targetCard in triggerInfo.targetCards)
+                {
+                    await Command.CardCommand.PlayCard(targetCard, isAnsy);
+                    await GameSystemCommand.TriggerBroadcast(triggerInfo[TriggerType.Play][targetCard]);
+                }
             }
         }
         /// <summary>

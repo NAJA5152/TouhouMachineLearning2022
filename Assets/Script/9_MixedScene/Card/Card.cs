@@ -160,6 +160,8 @@ namespace TouhouMachineLearningSummary.Model
                 }
             }
             //////////////////////////////////////////////////编写默认被动效果///////////////////////////////////////////////////////////////////
+            
+            ///////////////////////////////////////////////////////所属移动///////////////////////////////////////////////////////////////////////
             //当创造时从牌库中构建
             AbalityRegister(TriggerTime.When, TriggerType.Generate)
              .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.GenerateCard(triggerInfo.targetCard, triggerInfo.location); })
@@ -188,6 +190,9 @@ namespace TouhouMachineLearningSummary.Model
             AbalityRegister(TriggerTime.When, TriggerType.Summon)
             .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.SummonCard(this); })
             .AbilityAppend();
+
+            ///////////////////////////////////////////////////////点数变动移动///////////////////////////////////////////////////////////////////////
+
             //当设置点数时，修改变更点数值
             AbalityRegister(TriggerTime.When, TriggerType.Set)
             .AbilityAdd(async (triggerInfo) =>
@@ -263,39 +268,9 @@ namespace TouhouMachineLearningSummary.Model
             AbalityRegister(TriggerTime.When, TriggerType.Reverse)
                 .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Reversal(triggerInfo); })
                .AbilityAppend();
-            //结算卡牌的回合开始时触发的自动类型效果
-            AbalityRegister(TriggerTime.After, TriggerType.TurnEnd)
-                .AbilityAdd(async (triggerInfo) =>
-                {
-                    //我死啦
-                    if (IsCardReadyToGrave)
-                    {
-                        //延命
-                        if (this[CardState.Apothanasia])
-                        {
-                            await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetTargetState(CardState.Apothanasia));
-                            await GameSystem.PointSystem.Gain(new TriggerInfoModel(this, this).SetPoint(1));
-                        }
-                    }
-                    //将判定为死掉卡牌移入墓地，触发遗愿联锁效果
-                    //我死啦
-                    if (IsCardReadyToGrave)
-                    {
-                        //摧毁自身同时触发咒术
-                        Debug.LogError(this.CardID + this.BasePoint + "=" + this.ChangePoint);
-                        await GameSystem.TransferSystem.DeadCard(triggerInfo);
-                    }
-                })
-               .AbilityAppend();
-            AbalityRegister(TriggerTime.When, TriggerType.RoundEnd)
-                .AbilityAdd(async (triggerInfo) =>
-                {
-                    if (AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this))
-                    {
-                        await Command.CardCommand.MoveToGrave(this);
-                    }
-                })
-               .AbilityAppend();
+           
+            
+            ///////////////////////////////////////////////////////附加状态///////////////////////////////////////////////////////////////////////
             //卡牌状态附加时效果
             AbalityRegister(TriggerTime.When, TriggerType.StateAdd)
                 .AbilityAdd(async (triggerInfo) =>
@@ -482,6 +457,8 @@ namespace TouhouMachineLearningSummary.Model
                             }
                         })
                        .AbilityAppend();
+
+            ///////////////////////////////////////////////////////附加字段///////////////////////////////////////////////////////////////////////
             //卡牌字段设置时效果
             AbalityRegister(TriggerTime.When, TriggerType.FieldSet)
                         .AbilityAdd(async (triggerInfo) =>
@@ -546,6 +523,42 @@ namespace TouhouMachineLearningSummary.Model
                             }
                         })
                        .AbilityAppend();
+            ///////////////////////////////////////////////////////对战流程///////////////////////////////////////////////////////////////////////
+
+            //结算卡牌的回合开始时触发的自动类型效果
+            AbalityRegister(TriggerTime.After, TriggerType.TurnEnd)
+                .AbilityAdd(async (triggerInfo) =>
+                {
+                    //我死啦
+                    if (IsCardReadyToGrave)
+                    {
+                        //延命
+                        if (this[CardState.Apothanasia])
+                        {
+                            await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetTargetState(CardState.Apothanasia));
+                            await GameSystem.PointSystem.Gain(new TriggerInfoModel(this, this).SetPoint(1));
+                        }
+                    }
+                    //将判定为死掉卡牌移入墓地，触发遗愿联锁效果
+                    //我死啦
+                    if (IsCardReadyToGrave)
+                    {
+                        //摧毁自身同时触发咒术
+                        Debug.LogError(this.CardID + this.BasePoint + "=" + this.ChangePoint);
+                        await GameSystem.TransferSystem.DeadCard(triggerInfo);
+                    }
+                })
+               .AbilityAppend();
+            //小局结束时，移入所有卡牌至墓地
+            AbalityRegister(TriggerTime.After, TriggerType.RoundEnd)
+                .AbilityAdd(async (triggerInfo) =>
+                {
+                    if (AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this))
+                    {
+                        await Command.CardCommand.MoveToGrave(this);
+                    }
+                })
+               .AbilityAppend();
         }
         public void SetMoveTarget(Vector3 TargetPosition, Vector3 TargetEulers)
         {
