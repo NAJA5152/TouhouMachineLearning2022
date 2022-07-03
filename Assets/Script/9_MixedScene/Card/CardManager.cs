@@ -2,6 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Command;
+using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
@@ -145,10 +146,12 @@ namespace TouhouMachineLearningSummary.Manager
         [Button]
         public async Task ShowStateIcon(CardState cardState)
         {
-            cardIcon.GetComponent<Image>().material.SetTexture("_Icon", Command.UiCommand.GetCardStateTexture(cardState));
+            //cardIcon.GetComponent<Image>().material.mainTexture=Command.UiCommand.GetCardStateTexture(cardState);
+            cardIcon.GetComponent<Image>().sprite = Command.UiCommand.GetCardStateTexture(cardState).ToSprite();
+            //cardIcon.GetComponent<Image>().material.SetTexture("_MainTex", Command.UiCommand.GetCardStateTexture(cardState));
             cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1);
             cardIcon.GetComponent<Image>().material.SetFloat("_Bias", 0);
-
+            cardIcon.SetActive(true);
             await CustomThread.TimerAsync(0.2f, runAction: (process) =>
             {
                 cardIcon.GetComponent<CanvasGroup>().alpha = process;
@@ -165,7 +168,7 @@ namespace TouhouMachineLearningSummary.Manager
         [Button]
         public async Task ShowStateIconBreak(CardState cardState)
         {
-            cardIcon.GetComponent<Image>().material.SetTexture("_Icon", Command.UiCommand.GetCardStateTexture(cardState));
+            cardIcon.GetComponent<Image>().material.SetTexture("_MainTex", Command.UiCommand.GetCardStateTexture(cardState));
             cardIcon.GetComponent<Image>().material.SetFloat("_Bias", 0);
             cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1);
 
@@ -192,7 +195,8 @@ namespace TouhouMachineLearningSummary.Manager
         [Button]
         public async Task ShowFieldIcon(CardField cardField)
         {
-            cardIcon.GetComponent<Image>().material.SetTexture("_Icon", Command.UiCommand.GetCardFieldTexture(cardField));
+            var s = Command.UiCommand.GetCardFieldTexture(cardField);
+            cardIcon.GetComponent<Image>().material.SetTexture("_MainTex", Command.UiCommand.GetCardFieldTexture(cardField));
             cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1);
             cardIcon.GetComponent<Image>().material.SetFloat("_Bias", 0);
 
