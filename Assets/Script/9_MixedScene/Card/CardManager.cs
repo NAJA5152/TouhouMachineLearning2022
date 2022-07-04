@@ -45,7 +45,6 @@ namespace TouhouMachineLearningSummary.Manager
                 AgainstInfo.playerPrePlayCard = thisCard;
             }
         }
-
         private void OnMouseUp()
         {
             if (AgainstInfo.playerPrePlayCard != null && !EventSystem.current.IsPointerOverGameObject())
@@ -146,12 +145,10 @@ namespace TouhouMachineLearningSummary.Manager
         [Button]
         public async Task ShowStateIcon(CardState cardState)
         {
-            //cardIcon.GetComponent<Image>().material.mainTexture=Command.UiCommand.GetCardStateTexture(cardState);
-            cardIcon.GetComponent<Image>().sprite = Command.UiCommand.GetCardStateTexture(cardState).ToSprite();
-            //cardIcon.GetComponent<Image>().material.SetTexture("_MainTex", Command.UiCommand.GetCardStateTexture(cardState));
+            cardIcon.GetComponent<Image>().sprite = Command.UiCommand.GetFieldAndStateSprite(cardState);
             cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1);
             cardIcon.GetComponent<Image>().material.SetFloat("_Bias", 0);
-            cardIcon.SetActive(true);
+
             await CustomThread.TimerAsync(0.2f, runAction: (process) =>
             {
                 cardIcon.GetComponent<CanvasGroup>().alpha = process;
@@ -168,7 +165,7 @@ namespace TouhouMachineLearningSummary.Manager
         [Button]
         public async Task ShowStateIconBreak(CardState cardState)
         {
-            cardIcon.GetComponent<Image>().material.SetTexture("_MainTex", Command.UiCommand.GetCardStateTexture(cardState));
+            cardIcon.GetComponent<Image>().sprite = Command.UiCommand.GetFieldAndStateSprite(cardState);
             cardIcon.GetComponent<Image>().material.SetFloat("_Bias", 0);
             cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1);
 
@@ -195,8 +192,7 @@ namespace TouhouMachineLearningSummary.Manager
         [Button]
         public async Task ShowFieldIcon(CardField cardField)
         {
-            var s = Command.UiCommand.GetCardFieldTexture(cardField);
-            cardIcon.GetComponent<Image>().material.SetTexture("_MainTex", Command.UiCommand.GetCardFieldTexture(cardField));
+            cardIcon.GetComponent<Image>().sprite = Command.UiCommand.GetFieldAndStateSprite(cardField);
             cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1);
             cardIcon.GetComponent<Image>().material.SetFloat("_Bias", 0);
 
@@ -216,7 +212,7 @@ namespace TouhouMachineLearningSummary.Manager
         [Button]
         public async Task ShowFieldIconBreak(CardField cardField)
         {
-            cardIcon.GetComponent<Image>().material.SetTexture("_MainTex", Command.UiCommand.GetCardFieldTexture(cardField));
+            cardIcon.GetComponent<Image>().sprite = Command.UiCommand.GetFieldAndStateSprite(cardField);
             cardIcon.GetComponent<Image>().material.SetFloat("_Bias", 0);
             cardIcon.GetComponent<Image>().material.SetFloat("_BreakStrength", 1);
 

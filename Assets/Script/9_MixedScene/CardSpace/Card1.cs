@@ -8,7 +8,7 @@ namespace TouhouMachineLearningSummary.CardSpace
     /// 卡牌名称:卡牌生成模板
     /// 卡牌能力:无
     /// </summary>
-    public class Card1 : Card
+    public class Card0 : Card
     {
         public override void Init()
         {
@@ -17,8 +17,8 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Play)
                .AbilityAdd(async (triggerInfo) =>
                {
-                   await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this,this));
+                   
+                   await GameSystem.TransferSystem.MoveToGrave(this);
                })
                .AbilityAppend();
         }

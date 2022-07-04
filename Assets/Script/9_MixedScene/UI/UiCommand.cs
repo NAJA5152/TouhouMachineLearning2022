@@ -13,9 +13,12 @@ namespace TouhouMachineLearningSummary.Command
     public class UiCommand
     {
         //////////////////////////////////////////////////////////状态与字段UI//////////////////////////////////////////////////////////////
-       
-        public static Texture2D GetCardStateTexture(CardState cardState) => AssetBundleCommand.Load<Texture2D>("FieldAndState", cardState.ToString());
-        public static Texture2D GetCardFieldTexture(CardField cardField) => AssetBundleCommand.Load<Texture2D>("FieldAndState", cardField.ToString());
+        public static Sprite GetFieldAndStateSprite<T>(T cardField)
+        {
+            Sprite targetSprite =  AssetBundleCommand.Load<Sprite>("FieldAndState", cardField.ToString());
+            targetSprite ??= AssetBundleCommand.Load<Sprite>("FieldAndState", "None");
+            return targetSprite;
+        }
 
         //////////////////////////////////////////////////////////对战中游戏卡牌面板//////////////////////////////////////////////////////////////
 

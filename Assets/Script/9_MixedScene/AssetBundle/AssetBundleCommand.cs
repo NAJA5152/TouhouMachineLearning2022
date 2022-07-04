@@ -66,7 +66,7 @@ namespace TouhouMachineLearningSummary.Command
             var targetAssets = assets.FirstOrDefault(asset => asset.Key.Contains(tag.ToLower())).Value;
             if (targetAssets != null)
             {
-                var targetAsset = targetAssets.FirstOrDefault(asset => asset.name == fileName);
+                var targetAsset = targetAssets.FirstOrDefault(asset => asset.name == fileName&&asset.GetType()==typeof(T));
                 if (targetAsset==null)
                 {
                     Debug.LogError("无法找到" + fileName);

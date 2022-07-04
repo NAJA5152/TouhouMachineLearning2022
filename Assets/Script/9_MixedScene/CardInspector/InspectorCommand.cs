@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
@@ -100,28 +101,39 @@ namespace TouhouMachineLearningSummary.Command
         public static void CreatScript(int cardId)
         {
             string targetPath = Application.dataPath + $@"\Script\9_MixedScene\CardSpace\Card{cardId}.cs";
+            string cardName = "";
+            string cardAbility = "";
+            CardModel card = null;
+            card = InspectorInfo.Instance.singleModeCards.Union(InspectorInfo.Instance.multiModeCards).FirstOrDefault(card => card.cardID == cardId);
+            if (card != null)
+            {
+                cardName = card.Name["Name-Ch"];
+                cardAbility = card.Ability["Name-Ch"];
+            }
 
             if (!File.Exists(targetPath))
             {
-                string OriginPath = Application.dataPath + @"\Script\9_MixedScene\CardSpace\Card0.cs";
-                string cardName = "";
-                var single = InspectorInfo.Instance.singleModeCards.FirstOrDefault(card => card.cardID == cardId);
-                var multi = InspectorInfo.Instance.multiModeCards.FirstOrDefault(card => card.cardID == cardId);
-                if (single != null)
-                {
-                    cardName = single.Name["Name-Ch"];
-                }
-                if (multi != null)
-                {
-                    cardName = multi.Name["Name-Ch"];
-                }
 
-                string ScriptText = File.ReadAllText(OriginPath, System.Text.Encoding.GetEncoding("GB2312")).Replace("Card0", "Card" + cardId).Replace("卡牌生成模板", cardName);
+                string OriginPath = Application.dataPath + @$"\Script\9_MixedScene\CardSpace\Card{(card.cardType == CardType.Unite ? "0" : "1")}.cs";
+                string ScriptText = File.ReadAllText(OriginPath, System.Text.Encoding.GetEncoding("GB2312"))
+                    .Replace("Card1", "Card" + cardId)
+                    .Replace("Card0", "Card" + cardId)
+                    .Replace("卡牌生成模板", cardName)
+                    .Replace("无", cardAbility);
                 File.Create(targetPath).Close();
                 File.WriteAllText(targetPath, ScriptText, System.Text.Encoding.GetEncoding("GB2312"));
 #if UNITY_EDITOR
                 AssetDatabase.Refresh();
 #endif
+            }
+            else
+            {
+
+                string text = File.ReadAllText(targetPath);
+                text = text.Replace(Regex.Match(text, "卡牌名称:.*").Value, "卡牌名称:" + cardName);
+                text = text.Replace(Regex.Match(text, "卡牌能力:.*").Value, "卡牌能力:" + cardName);
+
+                File.WriteAllText(targetPath, text, System.Text.Encoding.GetEncoding("GB2312"));
             }
         }
     }

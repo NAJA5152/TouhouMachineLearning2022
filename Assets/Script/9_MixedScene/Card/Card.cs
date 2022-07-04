@@ -630,7 +630,7 @@ namespace TouhouMachineLearningSummary.Model
                     }
                     else if (i < cardFields.Count)
                     {
-                        FieldIconContent.GetChild(i).GetComponent<Image>().sprite = Command.UiCommand.GetCardFieldTexture(cardFields.ToList()[i].Key).ToSprite();
+                        FieldIconContent.GetChild(i).GetComponent<Image>().sprite = Command.UiCommand.GetFieldAndStateSprite(cardFields.ToList()[i].Key);
                         FieldIconContent.GetChild(i).GetChild(0).GetComponent<Text>().text = cardFields.ToList()[i].Value.ToString();
                         FieldIconContent.GetChild(i).gameObject.SetActive(true);
                     }
@@ -648,7 +648,7 @@ namespace TouhouMachineLearningSummary.Model
                     }
                     else if (i < cardStates.Count)
                     {
-                        StateIconContent.GetChild(i).GetComponent<Image>().sprite = Command.UiCommand.GetCardStateTexture(cardStates[i]).ToSprite();
+                        StateIconContent.GetChild(i).GetComponent<Image>().sprite = Command.UiCommand.GetFieldAndStateSprite(cardStates[i]);
                         StateIconContent.GetChild(i).gameObject.SetActive(true);
                     }
                     else
