@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:万宝槌（仿制品）
+    /// 卡牌能力:对一个单位造成（当前点数-1）点的伤害
     /// </summary>
     public class Card2013002 : Card
     {

@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:三月精*星
+    /// 卡牌能力:召唤日，月，活力（{x}）
     /// </summary>
     public class Card1002003 : Card
     {

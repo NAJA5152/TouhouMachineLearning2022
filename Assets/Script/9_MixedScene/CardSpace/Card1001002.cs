@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:桑尼*缪克
+    /// 卡牌能力:摧毁场上所有点数最大的非金单位
     /// </summary>
     public class Card1001002 : Card
     {

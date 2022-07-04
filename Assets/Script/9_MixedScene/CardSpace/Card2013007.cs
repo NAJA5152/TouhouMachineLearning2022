@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:温顺之头
+    /// 卡牌能力:在我方同排最右侧生成一个头，每回合开始对左侧单生成一点增益
     /// </summary>
     public class Card2013007 : Card
     {

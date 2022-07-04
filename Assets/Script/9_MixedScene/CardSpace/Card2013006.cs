@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:狂暴之头
+    /// 卡牌能力:每回合开始正序移动至最下一排最右侧并对左侧单位造成1点伤害
     /// </summary>
     public class Card2013006 : Card
     {

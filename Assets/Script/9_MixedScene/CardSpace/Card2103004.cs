@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:充能水炮
+    /// 卡牌能力:部署：移除左侧单位能量，随后选择对方场上一个非金单位对其产生等能量值的伤害
     /// </summary>
     public class Card2103004 : Card
     {

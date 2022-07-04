@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:宗教传销
+    /// 卡牌能力:部署：选择场上一个单位，将其移动至所在半场与该牌属性相同排的最右侧
     /// </summary>
     public class Card2203006 : Card
     {

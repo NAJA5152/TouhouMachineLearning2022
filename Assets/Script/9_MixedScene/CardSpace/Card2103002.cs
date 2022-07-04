@@ -8,6 +8,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:储能电容器
+    /// 卡牌能力:容量：（8）
     /// </summary>
     public class Card2103002 : Card
     {

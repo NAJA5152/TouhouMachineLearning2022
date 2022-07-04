@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:八班神奈子
+    /// 卡牌能力:场上每有一个非金单位触发一次位移效果后，便给予其1点伤害
     /// </summary>
     public class Card2201001 : Card
     {

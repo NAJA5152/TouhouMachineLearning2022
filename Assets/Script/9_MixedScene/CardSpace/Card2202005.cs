@@ -5,7 +5,8 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// 卡牌名称:为概率的奇迹
+    /// 卡牌名称:1/2的赌徒
+    /// 卡牌能力:展现卡组中最上方的铜卡和银卡，铜卡为正面形式，银卡为背面形式，从中选择一张打出
     /// </summary>
     public class Card2202005 : Card
     {

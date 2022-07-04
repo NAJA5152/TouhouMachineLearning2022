@@ -11,6 +11,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:战略转移
+    /// 卡牌能力:部署:将场上一个铜色单位移入卡组，同时打出卡组中点数最低的铜色单位
     /// </summary>
     public class Card2003002 : Card
     {

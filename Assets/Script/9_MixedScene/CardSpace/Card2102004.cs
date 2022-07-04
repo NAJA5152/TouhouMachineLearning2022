@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:废物利用
+    /// 卡牌能力:将墓地中三个机械单位回收到卡组中
     /// </summary>
     public class Card2102004 : Card
     {

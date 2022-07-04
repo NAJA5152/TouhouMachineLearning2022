@@ -5,7 +5,8 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// 卡牌名称:
+    /// 卡牌名称:请神
+    /// 卡牌能力:从牌组中打出点数小于自身祈祷值且最接近的铜色单位
     /// </summary>
     public class Card2203003 : Card
     {

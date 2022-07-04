@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:鼓舞小妖精
+    /// 卡牌能力:治愈一个妖精单位，活力2
     /// </summary>
     public class Card1003001 : Card
     {

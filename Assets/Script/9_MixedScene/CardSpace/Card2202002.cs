@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:奇迹*圣人苏生
+    /// 卡牌能力:从墓地中选择一张小于等于自身祈祷值的非金单位复活至场上
     /// </summary>
     public class Card2202002 : Card
     {

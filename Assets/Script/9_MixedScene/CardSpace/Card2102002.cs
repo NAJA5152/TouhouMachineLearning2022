@@ -5,7 +5,8 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// 卡牌名称:应急充能箱
+    /// 卡牌名称:临时储存器
+    /// 卡牌能力:部署：选择两个单位，将其能量集中至自身
     /// </summary>
     public class Card2102002 : Card
     {

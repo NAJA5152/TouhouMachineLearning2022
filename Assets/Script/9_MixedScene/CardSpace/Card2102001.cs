@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:手摇发电机
+    /// 卡牌能力:位于场上时，我方每部署一张单位，在其部署效果生效前，该牌能量点数+1
     /// </summary>
     public class Card2102001 : Card
     {

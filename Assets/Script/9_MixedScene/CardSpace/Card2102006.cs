@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:山童
+    /// 卡牌能力:部署：选择一个属性区域，对该牌所有单位赋予土元素状态
     /// </summary>
     public class Card2102006 : Card
     {

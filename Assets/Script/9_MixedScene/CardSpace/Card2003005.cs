@@ -9,6 +9,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:樱石
+    /// 卡牌能力:复活一个铜色妖精单位
     /// </summary>
     public class Card2003005 : Card
     {

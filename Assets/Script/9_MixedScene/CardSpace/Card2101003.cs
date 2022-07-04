@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:尼斯湖水怪
+    /// 卡牌能力:我方回合结束：移除两侧单位能量值，对对方点数最大的单位造成等量伤害
     /// </summary>
     public class Card2101003 : Card
     {

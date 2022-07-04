@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:反狱王
+    /// 卡牌能力:部署：在我方手牌中生成一张旧地狱怨灵
     /// </summary>
     public class Card2081001 : Card
     {

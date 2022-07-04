@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:静坐祈福
+    /// 卡牌能力:回合结束：我方所有奇迹牌获得一点祈祷值
     /// </summary>
     public class Card2203001 : Card
     {

@@ -7,6 +7,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:三月精*日
+    /// 卡牌能力:部署:设置自身活力为2,
     /// </summary>
     public class Card2002001 : Card
     {

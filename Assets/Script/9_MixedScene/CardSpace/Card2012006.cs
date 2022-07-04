@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:逆符「天下翻覆」
+    /// 卡牌能力:部署：逆转自身与场上点数最大的非金单位的点数
     /// </summary>
     public class Card2012006 : Card
     {

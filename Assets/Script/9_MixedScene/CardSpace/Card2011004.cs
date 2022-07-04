@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:作弊的天邪鬼
+    /// 卡牌能力:部署：检索牌组中一张道具卡并打出
     /// </summary>
     public class Card2011004 : Card
     {

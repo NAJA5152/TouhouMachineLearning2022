@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:河童修理工
+    /// 卡牌能力:部署：选择并治愈并重新触发一个铜色机械单位的部署效果
     /// </summary>
     public class Card2103005 : Card
     {

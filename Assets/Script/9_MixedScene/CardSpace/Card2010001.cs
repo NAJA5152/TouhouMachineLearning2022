@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:鬼人正邪
+    /// 卡牌能力:每当己方打出并部署一个单位时，在其部署效果生效前，选择我方场上一个非金单位与其点数互换
     /// </summary>
     public class Card2010001 : Card
     {

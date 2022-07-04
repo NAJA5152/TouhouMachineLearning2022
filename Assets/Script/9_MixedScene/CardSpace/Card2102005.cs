@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:非想天则
+    /// 卡牌能力:我方回合结束：移除两侧单位能量值，对自身产生等量增益
     /// </summary>
     public class Card2102005 : Card
     {

@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:河童的天才维修法
+    /// 卡牌能力:部署：选择并将我方场上一个机械单位直接移入墓地（不视为伤害和死亡），随后从牌组中打出其同名单位
     /// </summary>
     public class Card2103006 : Card
     {

@@ -5,7 +5,8 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// 卡牌名称:苦难磨练
+    /// 卡牌名称:瀑布修行
+    /// 卡牌能力:自身受到伤害后，我方所有奇迹牌获得一点祈祷值
     /// </summary>
     public class Card2203002 : Card
     {

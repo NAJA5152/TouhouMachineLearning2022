@@ -5,7 +5,8 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// 卡牌名称:九十九弁弁
+    /// 卡牌名称:九十九弁弁「高山流水」
+    /// 卡牌能力:暴躁：令场上所有高于自身点数的单位点数受到一点伤害
     /// </summary>
     public class Card2012004 : Card
     {

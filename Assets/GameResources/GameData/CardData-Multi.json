@@ -2303,7 +2303,7 @@
       "Describe-Ch": "",
       "Describe-En": ""
     },
-    "cardType": 1,
+    "cardType": 0,
     "cardCamp": 2,
     "cardRank": 2,
     "cardDeployRegion": 99,
@@ -2317,7 +2317,7 @@
     "series": "20",
     "point": 0,
     "Name": {
-      "Name-Ch": "启明星",
+      "Name-Ch": "未概率的奇迹",
       "Name-En": ""
     },
     "CardTags": {
@@ -2334,7 +2334,7 @@
       "Ability-En": ""
     },
     "Describe": {
-      "Describe-Ch": "",
+      "Describe-Ch": "奇迹是不会连续发生的，除非发生奇迹！",
       "Describe-En": ""
     },
     "cardType": 1,
@@ -2351,7 +2351,7 @@
     "series": "20",
     "point": 0,
     "Name": {
-      "Name-Ch": "为概率的奇迹",
+      "Name-Ch": "1/2的赌徒",
       "Name-En": ""
     },
     "CardTags": {

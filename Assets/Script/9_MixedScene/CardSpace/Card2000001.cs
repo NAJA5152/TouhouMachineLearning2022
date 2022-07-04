@@ -11,6 +11,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:板烧琪露诺
+    /// 卡牌能力:部署，力竭:我方场上每存在一个自身外的妖精单位便对对方场上点数最高目标造成一次1点伤害
     /// </summary>
     public class Card2000001 : Card
     {

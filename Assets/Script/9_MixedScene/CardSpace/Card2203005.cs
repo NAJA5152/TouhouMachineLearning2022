@@ -5,7 +5,8 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// 卡牌名称:
+    /// 卡牌名称:八坂之神风
+    /// 卡牌能力:给与我方单位与自身祈祷值等量的伤害
     /// </summary>
     public class Card2203005 : Card
     {

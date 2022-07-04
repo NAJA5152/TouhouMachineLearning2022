@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:隙间的折叠伞
+    /// 卡牌能力:将一个单位移动至横向的另一排
     /// </summary>
     public class Card2013004 : Card
     {

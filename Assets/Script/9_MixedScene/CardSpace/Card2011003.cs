@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:天空的逆城
+    /// 卡牌能力:回合开始：场上所有单位阶级循环一轮
     /// </summary>
     public class Card2011003 : Card
     {

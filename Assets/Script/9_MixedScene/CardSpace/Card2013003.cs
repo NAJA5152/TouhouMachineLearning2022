@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:亡灵的送行提灯
+    /// 卡牌能力:赋予一个单位延命1
     /// </summary>
     public class Card2013003 : Card
     {

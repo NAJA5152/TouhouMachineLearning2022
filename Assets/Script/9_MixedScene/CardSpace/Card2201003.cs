@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:双倍的快乐
+    /// 卡牌能力:卡组中一奇迹牌的祈祷值设置为自身两倍并打出
     /// </summary>
     public class Card2201003 : Card
     {

@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:闪避布
+    /// 卡牌能力:为一个非金单位添加隐身状态
     /// </summary>
     public class Card2013005 : Card
     {

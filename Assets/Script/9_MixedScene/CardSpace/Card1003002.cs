@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:战略转移
+    /// 卡牌能力:重新打出一张非金妖精单位
     /// </summary>
     public class Card1003002 : Card
     {

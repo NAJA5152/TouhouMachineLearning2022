@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:琪露诺
+    /// 卡牌能力:锁定1+x个单位并给与2点伤害，x为两侧单位的活力值总和
     /// </summary>
     public class Card1002004 : Card
     {

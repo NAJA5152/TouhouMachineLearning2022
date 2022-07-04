@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:黄瓜加特林
+    /// 卡牌能力:部署：移除我方场上所有单位的能量，对对方场上点数最高的非金单位造成移除值等次数的1点伤害
     /// </summary>
     public class Card2101001 : Card
     {

@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:替身地藏
+    /// 卡牌能力:选择场上一个铜色单位，将其重新打出
     /// </summary>
     public class Card2013001 : Card
     {

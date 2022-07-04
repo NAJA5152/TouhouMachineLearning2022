@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:万宝槌
+    /// 卡牌能力:对同排所有单位产生2点增益
     /// </summary>
     public class Card2012008 : Card
     {

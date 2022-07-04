@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:小野冢小町
+    /// 卡牌能力:部署：选择两个单位，依次拉取至自身右侧
     /// </summary>
     public class Card2082001 : Card
     {

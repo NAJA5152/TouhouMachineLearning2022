@@ -5,7 +5,8 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// 卡牌名称:压力测试法
+    /// 卡牌名称:压力测试
+    /// 卡牌能力:选择一个机械单位，将其移动至对方同排，并根据其能量值对同排所有单位造成伤害
     /// </summary>
     public class Card2101002  : Card
     {

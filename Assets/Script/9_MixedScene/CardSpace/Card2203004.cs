@@ -5,7 +5,8 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// 卡牌名称:
+    /// 卡牌名称:商业繁荣
+    /// 卡牌能力:给与我方单位与自身祈祷值等量的增益
     /// </summary>
     public class Card2203004 : Card
     {

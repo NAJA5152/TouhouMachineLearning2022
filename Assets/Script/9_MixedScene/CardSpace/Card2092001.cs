@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:大毛玉
+    /// 卡牌能力:少见的大型毛玉，比普通的毛玉要大一点
     /// </summary>
     public class Card2092001 : Card
     {

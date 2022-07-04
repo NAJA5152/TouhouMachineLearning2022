@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:草根妖怪网络
+    /// 卡牌能力:召唤一个草根妖怪
     /// </summary>
     public class Card2012007 : Card
     {

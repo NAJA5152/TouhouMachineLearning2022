@@ -7,6 +7,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:急速充能器
+    /// 卡牌能力:部署：获得倒计时（2）
     /// </summary>
     public class Card2101004 : Card
     {

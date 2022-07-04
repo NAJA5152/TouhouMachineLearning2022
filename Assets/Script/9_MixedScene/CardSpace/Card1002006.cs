@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:美国小妖精
+    /// 卡牌能力:翻倍两个妖精单位的活力值
     /// </summary>
     public class Card1002006 : Card
     {

@@ -10,6 +10,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:大妖精
+    /// 卡牌能力:部署:治愈一个非金妖精单位并重新触发其部署效果
     /// </summary>
     public class Card2001001 : Card
     {

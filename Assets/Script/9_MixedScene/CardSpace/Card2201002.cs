@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:诹坊子
+    /// 卡牌能力:我方回合结束时，若自身右侧存在单位，则向右移动一格位置并给与对方一点伤害（多个同类型效果可能会有bug）
     /// </summary>
     public class Card2201002 : Card
     {

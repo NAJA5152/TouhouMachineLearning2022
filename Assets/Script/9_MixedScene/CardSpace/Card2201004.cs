@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:命定之抽
+    /// 卡牌能力:从卡组中选择一张小于等于自身祈祷值的卡牌并打出（非单位牌视为0点）
     /// </summary>
     public class Card2201004 : Card
     {

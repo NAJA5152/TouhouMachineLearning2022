@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:少名针妙丸
+    /// 卡牌能力:部署：摧毁一个点数大于自身3倍的非金单位
     /// </summary>
     public class Card2011001 : Card
     {

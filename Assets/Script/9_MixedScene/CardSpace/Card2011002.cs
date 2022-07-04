@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:堀川雷鼓
+    /// 卡牌能力:部署：使与自身点数相同的所有非金单位与自身点数减半（向下取整），重复三次
     /// </summary>
     public class Card2011002 : Card
     {

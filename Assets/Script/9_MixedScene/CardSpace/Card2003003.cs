@@ -5,6 +5,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:弱小妖精
+    /// 卡牌能力:部署:获得1点活力，并从卡组中随机打出一张点数最低的铜色妖精单位
     /// </summary>
     public class Card2003003 : Card
     {

@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:若鹭姬
+    /// 卡牌能力:暴躁：两侧单位受到伤害
     /// </summary>
     public class Card2012001 : Card
     {

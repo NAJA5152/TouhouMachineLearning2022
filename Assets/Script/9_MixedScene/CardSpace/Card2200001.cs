@@ -6,6 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:东风谷早苗
+    /// 卡牌能力:令场上所有牌至内向外产生位移
     /// </summary>
     public class Card2200001 : Card
     {

@@ -6,6 +6,9 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:古老的崇神
+    /// 卡牌能力:回合结束时，若自身不处于单位数最多的一行，则移动过去（优先移动至对面）,若所属发生变化，则自身状态在恩赐和灾厄之间转换，并增加双方所有奇迹牌1祈祷值
+
+
     /// </summary>
     public class Card2202006 : Card
     {
