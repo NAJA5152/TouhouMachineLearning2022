@@ -6,7 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:毛玉
-    /// 卡牌能力:普通的毛玉球，十分常见
+    /// 卡牌能力:普通的毛玉球，十分常见 除此外并没有什么特殊的效果
     /// </summary>
     public class Card2093001 : Card
     {

@@ -5,7 +5,7 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// 卡牌名称:未概率的奇迹
+    /// 卡牌名称:微概率的奇迹
     /// 卡牌能力:打出牌组中两张铜色奇迹牌
     /// </summary>
     public class Card2202004 : Card

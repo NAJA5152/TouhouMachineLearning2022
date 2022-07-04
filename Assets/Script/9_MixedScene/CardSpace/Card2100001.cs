@@ -6,7 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:荷城河取
-    /// 卡牌能力:部署：复活两个带机械标签的单位
+    /// 卡牌能力:部署：复活两个带机械标签的单位 活力 延命 计时 封印
     /// </summary>
     public class Card2100001 : Card
     {

@@ -6,7 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:今泉影狼
-    /// 卡牌能力:暴躁：对对方同排所有目标获得一点伤害
+    /// 卡牌能力:暴躁：对对方同排所有目标获得一点伤害 温顺：按正顺序移动至下一排
     /// </summary>
     public class Card2012003 : Card
     {

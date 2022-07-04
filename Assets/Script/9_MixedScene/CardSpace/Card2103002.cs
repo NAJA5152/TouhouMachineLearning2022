@@ -8,7 +8,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:储能电容器
-    /// 卡牌能力:容量：（8）
+    /// 卡牌能力:容量：（8） 我方回合结束：移除两侧单位能量值，加到自身身上，能量值超出容量后触发超载效果 超载：对全场所有单位造成1点伤害并摧毁自身
     /// </summary>
     public class Card2103002 : Card
     {

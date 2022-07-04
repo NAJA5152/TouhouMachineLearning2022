@@ -7,7 +7,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:急速充能器
-    /// 卡牌能力:部署：获得倒计时（2）
+    /// 卡牌能力:部署：获得倒计时（2） 我方回合开始时，倒计时-1，倒计时归0时 将卡牌两侧的"水利发电机"或"储能电容器"单位的能量点数增加到容量上限，然后重置倒计时为2
     /// </summary>
     public class Card2101004 : Card
     {

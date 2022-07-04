@@ -108,7 +108,7 @@ namespace TouhouMachineLearningSummary.Command
             if (card != null)
             {
                 cardName = card.Name["Name-Ch"];
-                cardAbility = card.Ability["Ability-Ch"].Replace(@"\n"," ");
+                cardAbility = card.Ability["Ability-Ch"].Replace("\n"," ");
             }
 
             if (!File.Exists(targetPath))
@@ -132,8 +132,7 @@ namespace TouhouMachineLearningSummary.Command
                 string text = File.ReadAllText(targetPath, System.Text.Encoding.GetEncoding("GB2312"));
                 text = text.Replace(Regex.Match(text, "卡牌名称:.*").Value, "卡牌名称:" + cardName);
                 text = text.Replace(Regex.Match(text, "卡牌能力:.*").Value, "卡牌能力:" + cardAbility);
-
-                //File.WriteAllText(targetPath, text, System.Text.Encoding.GetEncoding("GB2312"));
+                File.WriteAllText(targetPath, text, System.Text.Encoding.GetEncoding("GB2312"));
             }
         }
     }

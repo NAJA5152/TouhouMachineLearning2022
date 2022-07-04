@@ -6,7 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:九十九八桥
-    /// 卡牌能力:暴躁：清除所有单位的温顺状态
+    /// 卡牌能力:暴躁：清除所有单位的温顺状态 温顺：清除所有单位的暴躁状态
     /// </summary>
     public class Card2012005 : Card
     {

@@ -6,7 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:毛玉王
-    /// 卡牌能力:拥有王者之气的巨型毛玉，比少见的大毛玉还要大一点
+    /// 卡牌能力:拥有王者之气的巨型毛玉，比少见的大毛玉还要大一点 除此外并没有什么特殊的效果
     /// </summary>
     public class Card2091001 : Card
     {

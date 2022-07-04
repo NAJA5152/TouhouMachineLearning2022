@@ -6,7 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:旧地狱怨灵
-    /// 卡牌能力:我方回合结束时:若自身位于手牌，则移动至对方手牌
+    /// 卡牌能力:我方回合结束时:若自身位于手牌，则移动至对方手牌 当我方pass时 召唤至场上 部署、召唤:丢弃我方手牌中最右侧的卡牌
     /// </summary>
     public class Card2081002 : Card
     {

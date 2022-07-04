@@ -6,7 +6,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:四季映姬
-    /// 卡牌能力:部署：选择两个单位，依次赋予黑、白状态
+    /// 卡牌能力:部署：选择两个单位，依次赋予黑、白状态 回合开始，赋予左侧单位黑状态，赋予右侧单位白状态
     /// </summary>
     public class Card2081003 : Card
     {

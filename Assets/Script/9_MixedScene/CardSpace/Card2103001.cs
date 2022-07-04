@@ -8,7 +8,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:水利发电机
-    /// 卡牌能力:容量：（3）
+    /// 卡牌能力:容量：（3） 我方回合结束：自身能量加一，并为两侧单位附加水状态，能量值超出容量后触发超载效果 超载：对两侧单位造成2点伤害并摧毁自身
     /// </summary>
     public class Card2103001 : Card
     {

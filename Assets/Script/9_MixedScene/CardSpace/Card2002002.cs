@@ -11,7 +11,7 @@ namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
     /// 卡牌名称:三月精*月
-    /// 卡牌能力:部署:设置自身活力为2,
+    /// 卡牌能力:部署:设置自身活力为2, 并召唤三月精*日，三月精*星 被召唤时:设置自身活力为2
     /// </summary>
     public class Card2002002 : Card
     {
