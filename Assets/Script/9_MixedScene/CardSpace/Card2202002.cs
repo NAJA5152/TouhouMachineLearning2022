@@ -24,6 +24,8 @@ namespace TouhouMachineLearningSummary.CardSpace
                         .ToList();
                    await GameSystem.SelectSystem.SelectBoardCard(this, cardList);
                    await GameSystem.TransferSystem.PlayCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit));
+                   await GameSystem.TransferSystem.MoveToGrave(this);
+
                })
                .AbilityAppend();
         }
