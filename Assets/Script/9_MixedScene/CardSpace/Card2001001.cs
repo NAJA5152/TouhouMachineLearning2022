@@ -19,19 +19,19 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.DeployCard(new Event(this, this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    await GameSystem.SelectSystem.SelectUnite(this, AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardRank.Copper, CardRank.Silver][GameEnum.CardTag.Fairy].CardList, 1);
                    await GameSystem.PointSystem.Cure
                    (
-                       new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits)
+                       new Event(this, GameSystem.InfoSystem.SelectUnits)
                        .SetBullet(new BulletModel(BulletType.BigBall, BulletColor.Green, BulletTrack.Line))
                    );
                    if (AgainstInfo.SelectUnits.Any())
@@ -39,7 +39,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                        AgainstInfo.SelectRowRank = AgainstInfo.SelectUnits[0].Location.X;
                        AgainstInfo.SelectRank = AgainstInfo.SelectUnits[0].Location.Y;
                    }
-                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits));
+                   await GameSystem.TransferSystem.DeployCard(new Event(this, GameSystem.InfoSystem.SelectUnits));
                }, Condition.Default)
                .AbilityAppend();
         }

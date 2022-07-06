@@ -14,10 +14,10 @@ namespace TouhouMachineLearningSummary.Command
         //附加控制器
         //生成空物体
         //配置danmu
-        public static async Task InitBulletAsync(TriggerInfoModel triggerInfo)
+        public static async Task InitBulletAsync(Model.Event e)
         {
             //bool isEnd = false;
-            Model.BulletModel danmuInfo = triggerInfo.bulletModel;
+            Model.BulletModel danmuInfo = e.bulletModel;
             if (danmuInfo != null)
             {
                 BulletTrackManager trackManager = null;
@@ -28,7 +28,7 @@ namespace TouhouMachineLearningSummary.Command
                     newBullet.transform.GetChild(0).GetComponent<Renderer>().material.SetColor("_Color", danmuInfo.bulletColor);
                 }
                 trackManager = newBullet.AddComponent<BulletTrackManager>();
-                await trackManager.Play(triggerInfo, danmuInfo.track);
+                await trackManager.Play(e, danmuInfo.track);
             }
         }
     }

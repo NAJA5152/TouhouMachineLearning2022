@@ -17,23 +17,23 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.DeployCard(new Model.Event(this, this));
                })
                .AbilityAppend();
 
             AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
-                   await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, this).SetTargetField(CardField.Energy, 1));
-                   await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this.TwoSideCard).SetTargetState(CardState.Water).SetMeanWhile());
+                   await GameSystem.FieldSystem.ChangeField(new Model.Event(this, this).SetTargetField(CardField.Energy, 1));
+                   await GameSystem.StateSystem.SetState(new Model.Event(this, this.TwoSideCard).SetTargetState(CardState.Water).SetMeanWhile());
                    if (this[CardField.Energy] > 3)
                    {
                        await GameSystem.UiSystem.ShowTips(this, "超载", new Color(1, 0, 0));
-                       await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, this.TwoSideCard).SetPoint(2).SetMeanWhile());
-                       await GameSystem.PointSystem.Destory(new TriggerInfoModel(this, this));
+                       await GameSystem.PointSystem.Hurt(new Model.Event(this, this.TwoSideCard).SetPoint(2).SetMeanWhile());
+                       await GameSystem.PointSystem.Destory(new Model.Event(this, this));
                    }
                }, Condition.Default, Condition.OnMyTurn)
                .AbilityAppend();

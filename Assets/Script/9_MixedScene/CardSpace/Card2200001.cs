@@ -15,20 +15,20 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.DeployCard(new Event(this, this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-              .AbilityAdd(async (triggerInfo) =>
+              .AbilityAdd(async (e) =>
               {
 
                   //await GameSystem.TransferSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Fire].CardList).SetLocation(Orientation.My, GameRegion.Fire, -1));
-                  await GameSystem.TransferSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Soil].CardList).SetLocation(Orientation.My, GameRegion.Soil, -1));
-                  await GameSystem.TransferSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Fire].CardList).SetLocation(Orientation.Op, GameRegion.Fire, -1));
-                  await GameSystem.TransferSystem.MoveCard(new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Soil].CardList).SetLocation(Orientation.Op, GameRegion.Soil, -1));
+                  await GameSystem.TransferSystem.MoveCard(new Event(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Soil].CardList).SetLocation(Orientation.My, GameRegion.Soil, -1));
+                  await GameSystem.TransferSystem.MoveCard(new Event(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Fire].CardList).SetLocation(Orientation.Op, GameRegion.Fire, -1));
+                  await GameSystem.TransferSystem.MoveCard(new Event(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Soil].CardList).SetLocation(Orientation.Op, GameRegion.Soil, -1));
                   //foreach (var card in GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Soil].CardList)
                   //{
                   //    await GameSystem.TransferSystem.MoveCard(new TriggerInfoModel(this, card).SetLocation(Orientation.My, GameRegion.Soil, -1));

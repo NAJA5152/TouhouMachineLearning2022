@@ -254,15 +254,15 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.playerDisCard = null;
         }
 
-        public static async Task ReviveCard(TriggerInfoModel triggerInfo)
+        public static async Task ReviveCard(Model.Event e)
         {
-            Card card = triggerInfo.targetCard;
+            Card card = e.targetCard;
             await SoundEffectCommand.PlayAsync(SoundEffectType.DrawCard);
 
             card.SetCardSeeAble(true);
             RemoveCard(card);
             AgainstInfo.cardSet[Orientation.My][GameRegion.Used].Add(card);
-            await card.cardAbility[TriggerTime.When][TriggerType.Play][0](triggerInfo);
+            await card.cardAbility[TriggerTime.When][TriggerType.Play][0](e);
         }
 
         public static async Task SealCard(Card card)
@@ -273,42 +273,42 @@ namespace TouhouMachineLearningSummary.Command
         {
             card.transform.GetChild(2).gameObject.SetActive(false);
         }
-        public static async Task Set(TriggerInfoModel triggerInfo)
+        public static async Task Set(Model.Event e)
         {
-            await BulletCommand.InitBulletAsync(triggerInfo);
+            await BulletCommand.InitBulletAsync(e);
             //await Task.Delay(1000);
-            int actualChangePoint = triggerInfo.point - triggerInfo.targetCard.ShowPoint;
+            int actualChangePoint = e.point - e.targetCard.ShowPoint;
 
-            await triggerInfo.targetCard.ThisCardManager.ShowTips((actualChangePoint > 0 ? "+" : "") + actualChangePoint, Color.gray, false);
-            triggerInfo.targetCard.ChangePoint = triggerInfo.point - triggerInfo.targetCard.BasePoint;
+            await e.targetCard.ThisCardManager.ShowTips((actualChangePoint > 0 ? "+" : "") + actualChangePoint, Color.gray, false);
+            e.targetCard.ChangePoint = e.point - e.targetCard.BasePoint;
             //await Task.Delay(1000);
         }
-        public static async Task Gain(TriggerInfoModel triggerInfo)
+        public static async Task Gain(Model.Event e)
         {
-            await BulletCommand.InitBulletAsync(triggerInfo);
+            await BulletCommand.InitBulletAsync(e);
             //await Task.Delay(1000);
-            int actualChangePoint = triggerInfo.point;
-            await triggerInfo.targetCard.ThisCardManager.ShowTips("+" + actualChangePoint, Color.green, false);
-            triggerInfo.targetCard.ChangePoint += triggerInfo.point;
+            int actualChangePoint = e.point;
+            await e.targetCard.ThisCardManager.ShowTips("+" + actualChangePoint, Color.green, false);
+            e.targetCard.ChangePoint += e.point;
             await Task.Delay(1000);
         }
-        public static async Task Hurt(TriggerInfoModel triggerInfo)
+        public static async Task Hurt(Model.Event e)
         {
-            await BulletCommand.InitBulletAsync(triggerInfo);
+            await BulletCommand.InitBulletAsync(e);
             //抵消护盾
             //悬浮伤害数字
-            int actualChangePoint = Math.Min(triggerInfo.point, triggerInfo.targetCard.ShowPoint);
-            await triggerInfo.targetCard.ThisCardManager.ShowTips("-" + actualChangePoint, Color.red, false);
-            triggerInfo.targetCard.ChangePoint -= actualChangePoint;
+            int actualChangePoint = Math.Min(e.point, e.targetCard.ShowPoint);
+            await e.targetCard.ThisCardManager.ShowTips("-" + actualChangePoint, Color.red, false);
+            e.targetCard.ChangePoint -= actualChangePoint;
             await Task.Delay(1000);
         }
         //逆转
-        public static async Task Reversal(TriggerInfoModel triggerInfo)
+        public static async Task Reversal(Model.Event e)
         {
-            int triggerCardPoint = triggerInfo.triggerCard.ShowPoint;
-            int targetCardPoint = triggerInfo.targetCard.ShowPoint;
-            _ = GameSystem.PointSystem.Set(new TriggerInfoModel(triggerInfo.triggerCard, triggerInfo.targetCard).SetPoint(triggerCardPoint));
-            _ = GameSystem.PointSystem.Set(new TriggerInfoModel(triggerInfo.targetCard, triggerInfo.triggerCard).SetPoint(targetCardPoint));
+            int triggerCardPoint = e.triggerCard.ShowPoint;
+            int targetCardPoint = e.targetCard.ShowPoint;
+            _ = GameSystem.PointSystem.Set(new Model.Event(e.triggerCard, e.targetCard).SetPoint(triggerCardPoint));
+            _ = GameSystem.PointSystem.Set(new Model.Event(e.targetCard, e.triggerCard).SetPoint(targetCardPoint));
             await Task.Delay(1000);
         }
         public static async Task MoveToDeck(Card card, int Index = 0, bool isRandom = false)

@@ -20,14 +20,14 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.DeployCard(new Model.Event(this, this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    int targetCount = AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardTag.Fairy].CardList.Count-1;
                    Debug.Log("场上妖精数量为" + targetCount);
@@ -38,10 +38,10 @@ namespace TouhouMachineLearningSummary.CardSpace
                        if (cardlist.Any())
                        {
                            await GameSystem.SelectSystem.SelectUnite(this, cardlist, 1, isAuto: true);
-                           await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, AgainstInfo.SelectUnits).SetPoint(1));
+                           await GameSystem.PointSystem.Hurt(new Model.Event(this, AgainstInfo.SelectUnits).SetPoint(1));
                            if (BasePoint > 1)
                            {
-                               await GameSystem.PointSystem.Weak(new TriggerInfoModel(this, this).SetPoint(1));
+                               await GameSystem.PointSystem.Weak(new Model.Event(this, this).SetPoint(1));
                            }
                        }
                    }

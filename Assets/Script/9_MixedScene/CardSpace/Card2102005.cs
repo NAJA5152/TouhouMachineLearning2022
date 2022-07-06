@@ -15,19 +15,19 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this,this));
+                   await GameSystem.TransferSystem.DeployCard(new Event(this,this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
-              .AbilityAdd(async (triggerInfo) =>
+              .AbilityAdd(async (e) =>
               {
                   int energyPoint = TwoSideCard.Sum(card => card[CardField.Energy]);
-                  await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, this).SetTargetField(CardField.Energy, energyPoint));
-                  await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, TwoSideCard).SetTargetField(CardField.Energy, 0));
-                  await GameSystem.PointSystem.Gain(new TriggerInfoModel(this,this).SetPoint(energyPoint));
+                  await GameSystem.FieldSystem.ChangeField(new Event(this, this).SetTargetField(CardField.Energy, energyPoint));
+                  await GameSystem.FieldSystem.SetField(new Event(this, TwoSideCard).SetTargetField(CardField.Energy, 0));
+                  await GameSystem.PointSystem.Gain(new Event(this,this).SetPoint(energyPoint));
               }, Condition.Default, Condition.OnMyTurn)
               .AbilityAppend();
         }

@@ -18,11 +18,11 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    await GameSystem.SelectSystem.SelectBoardCard(this, AgainstInfo.cardSet[Orientation.My][GameRegion.Grave][CardRank.Copper][GameEnum.CardTag.Fairy][CardType.Unite].CardList);
                    await GameSystem.TransferSystem.MoveToGrave(this);
-                   await GameSystem.TransferSystem.ReviveCard(new TriggerInfoModel(this, AgainstInfo.SelectActualCards));
+                   await GameSystem.TransferSystem.ReviveCard(new Event(this, AgainstInfo.SelectActualCards));
                })
                .AbilityAppend();
         }

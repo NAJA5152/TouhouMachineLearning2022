@@ -139,7 +139,7 @@ namespace TouhouMachineLearningSummary.Model
 
 
 
-        public Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<TriggerInfoModel, Task>>>> cardAbility = new Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<TriggerInfoModel, Task>>>>();
+        public Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<Event, Task>>>> cardAbility = new Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<Event, Task>>>>();
 
 
         /// <summary>
@@ -153,10 +153,10 @@ namespace TouhouMachineLearningSummary.Model
             //初始化卡牌效果并填充空效果
             foreach (TriggerTime tirggerTime in Enum.GetValues(typeof(TriggerTime)))
             {
-                cardAbility[tirggerTime] = new Dictionary<TriggerType, List<Func<TriggerInfoModel, Task>>>();
+                cardAbility[tirggerTime] = new Dictionary<TriggerType, List<Func<Event, Task>>>();
                 foreach (TriggerType triggerType in Enum.GetValues(typeof(TriggerType)))
                 {
-                    cardAbility[tirggerTime][triggerType] = new List<Func<TriggerInfoModel, Task>>();
+                    cardAbility[tirggerTime][triggerType] = new List<Func<Event, Task>>();
                 }
             }
             //////////////////////////////////////////////////编写默认被动效果///////////////////////////////////////////////////////////////////
@@ -164,120 +164,120 @@ namespace TouhouMachineLearningSummary.Model
             ///////////////////////////////////////////////////////所属移动///////////////////////////////////////////////////////////////////////
             //当创造时从牌库中构建
             AbalityRegister(TriggerTime.When, TriggerType.Generate)
-             .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.GenerateCard(triggerInfo.targetCard, triggerInfo.location); })
+             .AbilityAdd(async (e) => { await Command.CardCommand.GenerateCard(e.targetCard, e.location); })
              .AbilityAppend();
             //当弃牌时移动至墓地
             AbalityRegister(TriggerTime.When, TriggerType.Discard)
-              .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.DisCard(triggerInfo.targetCard); })
+              .AbilityAdd(async (e) => { await Command.CardCommand.DisCard(e.targetCard); })
               .AbilityAppend();
             //当死亡时移至墓地
             AbalityRegister(TriggerTime.When, TriggerType.Dead)
-            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.MoveToGrave(this); })
+            .AbilityAdd(async (e) => { await Command.CardCommand.MoveToGrave(this); })
             .AbilityAppend();
             //当复活时移至出牌区
             AbalityRegister(TriggerTime.When, TriggerType.Revive)
-            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.ReviveCard(triggerInfo); })
+            .AbilityAdd(async (e) => { await Command.CardCommand.ReviveCard(e); })
             .AbilityAppend();
             //当移动时移到指定位置
             AbalityRegister(TriggerTime.When, TriggerType.Move)
-            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.MoveCard(triggerInfo.targetCard, triggerInfo.location); })
+            .AbilityAdd(async (e) => { await Command.CardCommand.MoveCard(e.targetCard, e.location); })
             .AbilityAppend();
             //当间隙时从游戏中除外
             AbalityRegister(TriggerTime.When, TriggerType.Banish)
-            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.BanishCard(this); })
+            .AbilityAdd(async (e) => { await Command.CardCommand.BanishCard(this); })
             .AbilityAppend();
             //当召唤时从卡组中拉出
             AbalityRegister(TriggerTime.When, TriggerType.Summon)
-            .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.SummonCard(this); })
+            .AbilityAdd(async (e) => { await Command.CardCommand.SummonCard(this); })
             .AbilityAppend();
 
             ///////////////////////////////////////////////////////点数变动移动///////////////////////////////////////////////////////////////////////
 
             //当设置点数时，修改变更点数值
             AbalityRegister(TriggerTime.When, TriggerType.Set)
-            .AbilityAdd(async (triggerInfo) =>
+            .AbilityAdd(async (e) =>
             {
-                var targetShowPoint = triggerInfo.targetCard.ShowPoint;
-                await Command.CardCommand.Set(triggerInfo);
+                var targetShowPoint = e.targetCard.ShowPoint;
+                await Command.CardCommand.Set(e);
                 //如果原本点数大于设置点数
-                if (targetShowPoint < triggerInfo.point)
+                if (targetShowPoint < e.point)
                 {
-                    await GameSystem.PointSystem.Increase(triggerInfo);
+                    await GameSystem.PointSystem.Increase(e);
                 }
-                if (targetShowPoint > triggerInfo.point)
+                if (targetShowPoint > e.point)
                 {
-                    await GameSystem.PointSystem.Decrease(triggerInfo);
+                    await GameSystem.PointSystem.Decrease(e);
                 }
             })
             .AbilityAppend();
             //当获得增益时获得点数增加
             AbalityRegister(TriggerTime.When, TriggerType.Gain)
-            .AbilityAdd(async (triggerInfo) =>
+            .AbilityAdd(async (e) =>
             {
-                await Command.CardCommand.Gain(triggerInfo);
-                if (triggerInfo.point > 0)//如果不处于死亡状态
+                await Command.CardCommand.Gain(e);
+                if (e.point > 0)//如果不处于死亡状态
                 {
-                    await GameSystem.PointSystem.Increase(triggerInfo);
+                    await GameSystem.PointSystem.Increase(e);
                 }
             })
             .AbilityAppend();
             //默认受伤效果：当卡牌受到伤害时则会受到伤害，当卡牌死亡时，触发卡牌死亡机制
             AbalityRegister(TriggerTime.When, TriggerType.Hurt)
-            .AbilityAdd(async (triggerInfo) =>
+            .AbilityAdd(async (e) =>
             {
                 if (this[CardState.Congealbounds])
                 {
-                    await GameSystem.StateSystem.ClearState(new TriggerInfoModel(triggerInfo.triggerCard, this));
+                    await GameSystem.StateSystem.ClearState(new Event(e.triggerCard, this));
                 }
                 else
                 {
                     if (this[CardField.Shield] > 0)
                     {
                         //计算剩余盾量
-                        var shieldPoint = this[CardField.Shield] - triggerInfo.point;
+                        var shieldPoint = this[CardField.Shield] - e.point;
                         //计算剩余伤害
-                        triggerInfo.point = triggerInfo.point - this[CardField.Shield];
+                        e.point = e.point - this[CardField.Shield];
                         //调整护盾值
-                        await GameSystem.FieldSystem.SetField(new TriggerInfoModel(triggerInfo.triggerCard, this).SetPoint(shieldPoint));
+                        await GameSystem.FieldSystem.SetField(new Event(e.triggerCard, this).SetPoint(shieldPoint));
                     }
-                    await Command.CardCommand.Hurt(triggerInfo);
-                    if (triggerInfo.point > 0)
+                    await Command.CardCommand.Hurt(e);
+                    if (e.point > 0)
                     {
-                        await GameSystem.PointSystem.Decrease(triggerInfo);
+                        await GameSystem.PointSystem.Decrease(e);
                     }
                 }
             })
             .AbilityAppend();
             //当治愈时
             AbalityRegister(TriggerTime.When, TriggerType.Cure)
-            .AbilityAdd(async (triggerInfo) =>
+            .AbilityAdd(async (e) =>
             {
-                triggerInfo.point = -Math.Min(0, triggerInfo.targetCard.ChangePoint);
-                await Command.CardCommand.Gain(triggerInfo);
+                e.point = -Math.Min(0, e.targetCard.ChangePoint);
+                await Command.CardCommand.Gain(e);
             })
            .AbilityAppend();
             //当被摧毁时以自身点数对自己造成伤害
             AbalityRegister(TriggerTime.When, TriggerType.Destory)
-                .AbilityAdd(async (triggerInfo) =>
+                .AbilityAdd(async (e) =>
                 {
-                    triggerInfo.point = ShowPoint;
-                    await GameSystem.PointSystem.Hurt(triggerInfo);
+                    e.point = ShowPoint;
+                    await GameSystem.PointSystem.Hurt(e);
                 })
                .AbilityAppend();
             //当点数逆转时触发
             AbalityRegister(TriggerTime.When, TriggerType.Reverse)
-                .AbilityAdd(async (triggerInfo) => { await Command.CardCommand.Reversal(triggerInfo); })
+                .AbilityAdd(async (e) => { await Command.CardCommand.Reversal(e); })
                .AbilityAppend();
            
             
             ///////////////////////////////////////////////////////附加状态///////////////////////////////////////////////////////////////////////
             //卡牌状态附加时效果
             AbalityRegister(TriggerTime.When, TriggerType.StateAdd)
-                .AbilityAdd(async (triggerInfo) =>
+                .AbilityAdd(async (e) =>
                 {
-                    await GameSystem.UiSystem.ShowIcon(this, triggerInfo.targetState);
+                    await GameSystem.UiSystem.ShowIcon(this, e.targetState);
                     await Command.SoundEffectCommand.PlayAsync(SoundEffectType.CardSelect);
-                    switch (triggerInfo.targetState)
+                    switch (e.targetState)
                     {
                         case CardState.Lurk:; break;
                         case CardState.Seal: await Command.CardCommand.SealCard(this); break;
@@ -421,7 +421,7 @@ namespace TouhouMachineLearningSummary.Model
                             if (cardStates.Contains(CardState.White))
                             {
                                 await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Battle][CardRank.NoGold].CardList, 1, true);
-                                await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetPoint(1));
+                                await GameSystem.PointSystem.Hurt(new Event(this, GameSystem.InfoSystem.SelectUnits).SetPoint(1));
                                 cardStates.Remove(CardState.White);
                             }
                             break;
@@ -429,7 +429,7 @@ namespace TouhouMachineLearningSummary.Model
                             if (cardStates.Contains(CardState.Black))
                             {
                                 await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.NoGold].CardList, 1, true);
-                                await GameSystem.PointSystem.Gain(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetPoint(1));
+                                await GameSystem.PointSystem.Gain(new Event(this, GameSystem.InfoSystem.SelectUnits).SetPoint(1));
                                 cardStates.Remove(CardState.Black);
                             }
                             break;
@@ -439,17 +439,17 @@ namespace TouhouMachineLearningSummary.Model
                             break;
                         default: break;
                     }
-                    this[triggerInfo.targetState] = true;
+                    this[e.targetState] = true;
                 })
                .AbilityAppend();
             //卡牌状态取消时效果
             AbalityRegister(TriggerTime.When, TriggerType.StateClear)
-                        .AbilityAdd(async (triggerInfo) =>
+                        .AbilityAdd(async (e) =>
                         {
-                            await GameSystem.UiSystem.ShowIconBreak(this, triggerInfo.targetState);
-                            this[triggerInfo.targetState] = false;
+                            await GameSystem.UiSystem.ShowIconBreak(this, e.targetState);
+                            this[e.targetState] = false;
                             //动画效果
-                            switch (triggerInfo.targetState)
+                            switch (e.targetState)
                             {
                                 case CardState.Lurk:; break;
                                 case CardState.Seal: await Command.CardCommand.UnSealCard(this); break;
@@ -461,27 +461,27 @@ namespace TouhouMachineLearningSummary.Model
             ///////////////////////////////////////////////////////附加字段///////////////////////////////////////////////////////////////////////
             //卡牌字段设置时效果
             AbalityRegister(TriggerTime.When, TriggerType.FieldSet)
-                        .AbilityAdd(async (triggerInfo) =>
+                        .AbilityAdd(async (e) =>
                         {
-                            if (triggerInfo.point > this[triggerInfo.targetFiled])
+                            if (e.point > this[e.targetFiled])
                             {
-                                await GameSystem.UiSystem.ShowIcon(this, triggerInfo.targetFiled);
+                                await GameSystem.UiSystem.ShowIcon(this, e.targetFiled);
                             }
-                            else if (triggerInfo.point < this[triggerInfo.targetFiled])
+                            else if (e.point < this[e.targetFiled])
                             {
-                                await GameSystem.UiSystem.ShowIconBreak(this, triggerInfo.targetFiled);
+                                await GameSystem.UiSystem.ShowIconBreak(this, e.targetFiled);
                             }
                             else
                             {
                                 return;
                             }
-                            Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段设置，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},设置值{triggerInfo.point}");
-                            this[triggerInfo.targetFiled] = triggerInfo.point;
-                            Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
+                            Debug.Log($"触发类型：{e.targetFiled}当字段设置，对象卡牌{this.CardID}原始值{this[e.targetFiled]},设置值{e.point}");
+                            this[e.targetFiled] = e.point;
+                            Debug.Log($"触发结果：{this[e.targetFiled]}");
                             //移除掉为0的字段
-                            if (this[triggerInfo.targetFiled] > 0)
+                            if (this[e.targetFiled] > 0)
                             {
-                                switch (triggerInfo.targetFiled)
+                                switch (e.targetFiled)
                                 {
                                     case CardField.Timer: break;
                                     case CardField.Inspire: break;
@@ -491,31 +491,31 @@ namespace TouhouMachineLearningSummary.Model
                             }
                             else
                             {
-                                this.cardFields.Remove(triggerInfo.targetFiled);
+                                this.cardFields.Remove(e.targetFiled);
                             }
                         })
                        .AbilityAppend();
             //卡牌字段改变时效果
             AbalityRegister(TriggerTime.When, TriggerType.FieldChange)
-                        .AbilityAdd(async (triggerInfo) =>
+                        .AbilityAdd(async (e) =>
                         {
-                            if (triggerInfo.point > 0)
+                            if (e.point > 0)
                             {
-                                await GameSystem.UiSystem.ShowIcon(this, triggerInfo.targetFiled);
+                                await GameSystem.UiSystem.ShowIcon(this, e.targetFiled);
                             }
-                            else if (triggerInfo.point < 0)
+                            else if (e.point < 0)
                             {
-                                await GameSystem.UiSystem.ShowIconBreak(this, triggerInfo.targetFiled);
+                                await GameSystem.UiSystem.ShowIconBreak(this, e.targetFiled);
                             }
                             else
                             {
                                 return;
                             }
 
-                            Debug.Log($"触发类型：{triggerInfo.targetFiled}当字段变化，对象卡牌{this.CardID}原始值{this[triggerInfo.targetFiled]},变化值{triggerInfo.point}");
-                            this[triggerInfo.targetFiled] += triggerInfo.point;
-                            Debug.Log($"触发结果：{this[triggerInfo.targetFiled]}");
-                            switch (triggerInfo.targetFiled)
+                            Debug.Log($"触发类型：{e.targetFiled}当字段变化，对象卡牌{this.CardID}原始值{this[e.targetFiled]},变化值{e.point}");
+                            this[e.targetFiled] += e.point;
+                            Debug.Log($"触发结果：{this[e.targetFiled]}");
+                            switch (e.targetFiled)
                             {
                                 case CardField.Timer: break;
                                 case CardField.Inspire: break;
@@ -527,7 +527,7 @@ namespace TouhouMachineLearningSummary.Model
 
             //结算卡牌的回合开始时触发的自动类型效果
             AbalityRegister(TriggerTime.After, TriggerType.TurnEnd)
-                .AbilityAdd(async (triggerInfo) =>
+                .AbilityAdd(async (e) =>
                 {
                     //我死啦
                     if (IsCardReadyToGrave)
@@ -535,8 +535,8 @@ namespace TouhouMachineLearningSummary.Model
                         //延命
                         if (this[CardState.Apothanasia])
                         {
-                            await GameSystem.StateSystem.ClearState(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnits).SetTargetState(CardState.Apothanasia));
-                            await GameSystem.PointSystem.Gain(new TriggerInfoModel(this, this).SetPoint(1));
+                            await GameSystem.StateSystem.ClearState(new Event(this, GameSystem.InfoSystem.SelectUnits).SetTargetState(CardState.Apothanasia));
+                            await GameSystem.PointSystem.Gain(new Event(this, this).SetPoint(1));
                         }
                     }
                     //将判定为死掉卡牌移入墓地，触发遗愿联锁效果
@@ -545,13 +545,13 @@ namespace TouhouMachineLearningSummary.Model
                     {
                         //摧毁自身同时触发咒术
                         Debug.LogError(this.CardID + this.BasePoint + "=" + this.ChangePoint);
-                        await GameSystem.TransferSystem.DeadCard(triggerInfo);
+                        await GameSystem.TransferSystem.DeadCard(e);
                     }
                 })
                .AbilityAppend();
             //小局结束时，移入所有卡牌至墓地
             AbalityRegister(TriggerTime.After, TriggerType.RoundEnd)
-                .AbilityAdd(async (triggerInfo) =>
+                .AbilityAdd(async (e) =>
                 {
                     if (AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this))
                     {
@@ -673,9 +673,9 @@ namespace TouhouMachineLearningSummary.Model
             }
         }
 
-        [Button] public void 水() => _ = GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Water));
-        [Button] public void 火() => _ = GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Fire));
-        [Button] public void 风() => _ = GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Wind));
-        [Button] public void 土() => _ = GameSystem.StateSystem.SetState(new TriggerInfoModel(this, this).SetTargetState(CardState.Soil));
+        [Button] public void 水() => _ = GameSystem.StateSystem.SetState(new Event(this, this).SetTargetState(CardState.Water));
+        [Button] public void 火() => _ = GameSystem.StateSystem.SetState(new Event(this, this).SetTargetState(CardState.Fire));
+        [Button] public void 风() => _ = GameSystem.StateSystem.SetState(new Event(this, this).SetTargetState(CardState.Wind));
+        [Button] public void 土() => _ = GameSystem.StateSystem.SetState(new Event(this, this).SetTargetState(CardState.Soil));
     }
 }

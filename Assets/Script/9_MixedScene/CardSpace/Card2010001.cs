@@ -15,31 +15,31 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
                    await GameSystem.UiSystem.ShowFigure(this);
-                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.DeployCard(new Event(this, this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.Before, TriggerType.Deploy)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    if (Info.AgainstInfo.IsMyTurn)
                    {
                        List<Card> targetCards = GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Silver, CardRank.Copper].CardList;
-                       targetCards.Remove(triggerInfo.triggerCard);
+                       targetCards.Remove(e.triggerCard);
                        await GameSystem.SelectSystem.SelectUnite(this, targetCards, 1);
-                       await GameSystem.PointSystem.Reversal(new TriggerInfoModel(triggerInfo.triggerCard, GameSystem.InfoSystem.SelectUnits));
+                       await GameSystem.PointSystem.Reversal(new Event(e.triggerCard, GameSystem.InfoSystem.SelectUnits));
                    };
                }, Condition.Default)
                .AbilityAppend();
 
             AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
-             .AbilityAdd(async (triggerInfo) =>
+             .AbilityAdd(async (e) =>
              {
-                 await GameSystem.TransferSystem.GenerateCard(new TriggerInfoModel(this, targetCard: null).SetTargetCardId(2013006).SetLocation(CurrentOrientation, CurrentRegion, -1));
-                 await GameSystem.TransferSystem.GenerateCard(new TriggerInfoModel(this, targetCard: null).SetTargetCardId(2013007).SetLocation(OppositeOrientation, CurrentRegion, -1));
+                 await GameSystem.TransferSystem.GenerateCard(new Event(this, targetCard: null).SetTargetCardId(2013006).SetLocation(CurrentOrientation, CurrentRegion, -1));
+                 await GameSystem.TransferSystem.GenerateCard(new Event(this, targetCard: null).SetTargetCardId(2013007).SetLocation(OppositeOrientation, CurrentRegion, -1));
              }, Condition.Default)
              .AbilityAppend();
         }

@@ -19,18 +19,18 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.DeployCard(new Event(this, this));
                })
                .AbilityAppend();
 
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-              .AbilityAdd(async (triggerInfo) =>
+              .AbilityAdd(async (e) =>
               {
                   await GameSystem.PointSystem.Destory(
-                      new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][CardRank.Copper, CardRank.Silver][CardFeature.LargestUnites].CardList)
+                      new Event(this, GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][CardRank.Copper, CardRank.Silver][CardFeature.LargestUnites].CardList)
                       );
               }, Condition.Default)
               .AbilityAppend();

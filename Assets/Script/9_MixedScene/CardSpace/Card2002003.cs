@@ -21,19 +21,19 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-                .AbilityAdd(async (triggerInfo) =>
+                .AbilityAdd(async (e) =>
                 {
                     await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                    await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
+                    await GameSystem.TransferSystem.DeployCard(new Event(this, this));
                 })
                 .AbilityAppend();
             //部署效果
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-                .AbilityAdd(async (triggerInfo) =>
+                .AbilityAdd(async (e) =>
                 {
-                    await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this,this).SetTargetField(CardField.Inspire, 2));
+                    await GameSystem.FieldSystem.SetField(new Event(this,this).SetTargetField(CardField.Inspire, 2));
                     await GameSystem.TransferSystem.SummonCard(
-                        new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck].CardList
+                        new Event(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck].CardList
                         .Where(card => card.CardID == 2002001 || card.CardID == 2002002)
                         .ToList())
                         );
@@ -41,9 +41,9 @@ namespace TouhouMachineLearningSummary.CardSpace
                 .AbilityAppend();
             //被召唤时效果
             AbalityRegister(TriggerTime.When, TriggerType.Summon)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
-                   await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, this).SetTargetField(CardField.Inspire, 2));
+                   await GameSystem.FieldSystem.SetField(new Event(this, this).SetTargetField(CardField.Inspire, 2));
                }, Condition.Default)
                .AbilityAppend();
         }

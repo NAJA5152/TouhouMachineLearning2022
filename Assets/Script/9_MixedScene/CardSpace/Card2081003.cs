@@ -15,27 +15,27 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this,this));
+                   await GameSystem.TransferSystem.DeployCard(new Event(this,this));
                })
                .AbilityAppend();
 
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    await GameSystem.SelectSystem.SelectUnite(this,GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.NoGold].CardList,1);
-                   await GameSystem.StateSystem.SetState(new TriggerInfoModel(this,GameSystem.InfoSystem.SelectUnit).SetTargetState( CardState.Black));
+                   await GameSystem.StateSystem.SetState(new Event(this,GameSystem.InfoSystem.SelectUnit).SetTargetState( CardState.Black));
                    await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.NoGold].CardList, 1);
-                   await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit).SetTargetState(CardState.White));
+                   await GameSystem.StateSystem.SetState(new Event(this, GameSystem.InfoSystem.SelectUnit).SetTargetState(CardState.White));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.TurnStart)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
-                   await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, LeftCard).SetTargetState(CardState.Black));
-                   await GameSystem.StateSystem.SetState(new TriggerInfoModel(this, RightCard).SetTargetState(CardState.White));
+                   await GameSystem.StateSystem.SetState(new Event(this, LeftCard).SetTargetState(CardState.Black));
+                   await GameSystem.StateSystem.SetState(new Event(this, RightCard).SetTargetState(CardState.White));
                })
                .AbilityAppend();
         }

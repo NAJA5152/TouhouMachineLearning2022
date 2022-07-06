@@ -17,7 +17,7 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task InitAsync(bool isHotFixedLoad)
         {
             //设置帧数
-            Application.targetFrameRate = 30;
+            Application.targetFrameRate = 60;
             //加载AB包(仅一次)
             await Command.AssetBundleCommand.Init(isHotFixedLoad);
             //初始化网络系统，用于获取指定版本卡牌信息

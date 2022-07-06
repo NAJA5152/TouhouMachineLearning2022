@@ -17,25 +17,25 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this,this));
+                   await GameSystem.TransferSystem.DeployCard(new Model.Event(this,this));
                })
                .AbilityAppend();
 
             AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
-              .AbilityAdd(async (triggerInfo) =>
+              .AbilityAdd(async (e) =>
               {
 
                   int energyPoint = TwoSideCard.Sum(card => card[CardField.Energy]);
-                  await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, this).SetTargetField(CardField.Energy, energyPoint));
-                  await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, TwoSideCard).SetTargetField(CardField.Energy, 0));
+                  await GameSystem.FieldSystem.ChangeField(new Model.Event(this, this).SetTargetField(CardField.Energy, energyPoint));
+                  await GameSystem.FieldSystem.SetField(new Model.Event(this, TwoSideCard).SetTargetField(CardField.Energy, 0));
                   if (this[CardField.Energy] > 8)
                   {
                       await GameSystem.UiSystem.ShowTips(this, "超载", new Color(1, 0, 0));
-                      await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle].CardList).SetPoint(1).SetMeanWhile());
-                      await GameSystem.PointSystem.Destory(new TriggerInfoModel(this, this));
+                      await GameSystem.PointSystem.Hurt(new Model.Event(this, GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle].CardList).SetPoint(1).SetMeanWhile());
+                      await GameSystem.PointSystem.Destory(new Model.Event(this, this));
                   }
               }, Condition.Default, Condition.OnMyTurn)
               .AbilityAppend();

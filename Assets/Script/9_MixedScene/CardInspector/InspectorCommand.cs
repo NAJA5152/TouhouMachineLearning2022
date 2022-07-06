@@ -130,9 +130,14 @@ namespace TouhouMachineLearningSummary.Command
             {
 
                 string text = File.ReadAllText(targetPath, System.Text.Encoding.GetEncoding("GB2312"));
-                text = text.Replace(Regex.Match(text, "卡牌名称:.*").Value, "卡牌名称:" + cardName);
-                text = text.Replace(Regex.Match(text, "卡牌能力:.*").Value, "卡牌能力:" + cardAbility);
-                File.WriteAllText(targetPath, text, System.Text.Encoding.GetEncoding("GB2312"));
+                string currentName = Regex.Match(text, "卡牌名称:.*").Value;
+                string currentAbility = Regex.Match(text, "卡牌能力:.*").Value;
+                if (currentName!= "卡牌名称:" + cardName|| currentAbility!= "卡牌能力:" + cardAbility)
+                {
+                    text = text.Replace(currentName, "卡牌名称:" + cardName);
+                    text = text.Replace(currentAbility, "卡牌能力:" + cardAbility);
+                    File.WriteAllText(targetPath, text, System.Text.Encoding.GetEncoding("GB2312"));
+                }
             }
         }
     }

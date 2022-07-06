@@ -16,40 +16,40 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
+                   await GameSystem.TransferSystem.DeployCard(new Event(this, this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
-                   await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, this).SetTargetField(CardField.Timer, 2));
+                   await GameSystem.FieldSystem.SetField(new Event(this, this).SetTargetField(CardField.Timer, 2));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)
-              .AbilityAdd(async (triggerInfo) =>
+              .AbilityAdd(async (e) =>
               {
                   if (this[CardField.Timer] == 1)
                   {
-                      await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, this).SetTargetField(CardField.Timer, -1));
+                      await GameSystem.FieldSystem.ChangeField(new Event(this, this).SetTargetField(CardField.Timer, -1));
                       this.TwoSideCard.ForEach(async card =>
                       {
                           if (card.CardID == 2103001)
                           {
-                              await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, card).SetTargetField(CardField.Energy, 3));
+                              await GameSystem.FieldSystem.SetField(new Event(this, card).SetTargetField(CardField.Energy, 3));
                           }
                           if (card.CardID == 2103002)
                           {
-                              await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, card).SetTargetField(CardField.Energy, 8));
+                              await GameSystem.FieldSystem.SetField(new Event(this, card).SetTargetField(CardField.Energy, 8));
                           }
                       });
-                      await GameSystem.FieldSystem.SetField(new TriggerInfoModel(this, this).SetTargetField(CardField.Timer, 2));
+                      await GameSystem.FieldSystem.SetField(new Event(this, this).SetTargetField(CardField.Timer, 2));
                   }
                   else
                   {
-                      await GameSystem.FieldSystem.ChangeField(new TriggerInfoModel(this, this).SetTargetField(CardField.Timer, -1));
+                      await GameSystem.FieldSystem.ChangeField(new Event(this, this).SetTargetField(CardField.Timer, -1));
                   }
               })
               .AbilityAppend();

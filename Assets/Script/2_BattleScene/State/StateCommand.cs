@@ -154,9 +154,8 @@ namespace TouhouMachineLearningSummary.Command
             {
                 case (1):
                     {
-                        Info.AgainstInfo.ExChangeableCardNum = 3;
+                        Info.AgainstInfo.ExChangeableCardNum = 0;
                         UiCommand.SetCardBoardTitle("Remaining".TranslationGameText() + Info.AgainstInfo.ExChangeableCardNum);
-                        // Info.GameUI.UiInfo.CardBoardTitle = "剩余抽卡次数为".Translation() + Info.AgainstInfo.ExChangeableCardNum;
                         for (int i = 0; i < 10; i++)
                         {
                             await CardCommand.DrawCard(isPlayerDraw: true, isOrder: false);
@@ -171,8 +170,7 @@ namespace TouhouMachineLearningSummary.Command
                 case (2):
                     {
                         Info.AgainstInfo.ExChangeableCardNum += 1;
-                        UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
-                        //Info.GameUI.UiInfo.CardBoardTitle ="剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum ;
+                        UiCommand.SetCardBoardTitle("Remaining".TranslationGameText() + Info.AgainstInfo.ExChangeableCardNum);
                         await CardCommand.DrawCard();
                         await CardCommand.DrawCard(false);
                         break;
@@ -180,7 +178,7 @@ namespace TouhouMachineLearningSummary.Command
                 case (3):
                     {
                         Info.AgainstInfo.ExChangeableCardNum += 1;
-                        UiCommand.SetCardBoardTitle("剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum);
+                        UiCommand.SetCardBoardTitle("Remaining".TranslationGameText() + Info.AgainstInfo.ExChangeableCardNum);
                         //Info.GameUI.UiInfo.CardBoardTitle ="剩余抽卡次数为" + Info.AgainstInfo.ExChangeableCardNum ;
                         await CardCommand.DrawCard();
                         await CardCommand.DrawCard(false);
@@ -328,7 +326,7 @@ namespace TouhouMachineLearningSummary.Command
                     //Debug.Log("当前打出了牌");
                     await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.PlayCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList, AgainstInfo.playerPlayCard);
                     //假如是我的回合，则广播操作给对方，否则只接收操作不广播
-                    await GameSystem.TransferSystem.PlayCard(new TriggerInfoModel(null, AgainstInfo.playerPlayCard), AgainstInfo.IsMyTurn);
+                    await GameSystem.TransferSystem.PlayCard(new Model.Event(null, AgainstInfo.playerPlayCard), AgainstInfo.IsMyTurn);
                     //Debug.Log("打出效果执行完毕");
 
                     break;
@@ -337,7 +335,7 @@ namespace TouhouMachineLearningSummary.Command
                 if (Info.AgainstInfo.playerDisCard != null)
                 {
                     await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.DisCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList, AgainstInfo.playerDisCard);
-                    await GameSystem.TransferSystem.DisCard(new TriggerInfoModel(null, AgainstInfo.playerDisCard));
+                    await GameSystem.TransferSystem.DisCard(new Model.Event(null, AgainstInfo.playerDisCard));
                     break;
                 }
                 if (AgainstInfo.isCurrectPass)//如果当前pass则结束回合

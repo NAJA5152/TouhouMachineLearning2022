@@ -5,7 +5,8 @@ using TouhouMachineLearningSummary.GameEnum;
 
 namespace TouhouMachineLearningSummary.Model
 {
-    public class TriggerInfoModel
+    //class Event { }
+    public class Event
     {
         public TriggerTime triggerTime;
         public TriggerType triggerType;
@@ -25,34 +26,34 @@ namespace TouhouMachineLearningSummary.Model
 
         public BulletModel bulletModel { get; set; }
         [JsonIgnore]
-        public TriggerInfoModel this[TriggerTime triggerTime] => Clone(triggerTime: triggerTime);
+        public Event this[TriggerTime triggerTime] => Clone(triggerTime: triggerTime);
         [JsonIgnore]
-        public TriggerInfoModel this[TriggerType triggerType] => Clone(triggerType: triggerType);
+        public Event this[TriggerType triggerType] => Clone(triggerType: triggerType);
         [JsonIgnore]
-        public TriggerInfoModel this[Card targetCard] => Clone(targetCards: new List<Card> { targetCard });
+        public Event this[Card targetCard] => Clone(targetCards: new List<Card> { targetCard });
 
-        private TriggerInfoModel Clone(TriggerTime? triggerTime = null, TriggerType? triggerType = null, List<Card> targetCards = null)
+        private Event Clone(TriggerTime? triggerTime = null, TriggerType? triggerType = null, List<Card> targetCards = null)
         {
-            TriggerInfoModel triggerInfo = new TriggerInfoModel(triggerCard, targetCards);
-            triggerInfo.triggerTime = triggerTime ?? this.triggerTime;
-            triggerInfo.triggerType = triggerType ?? this.triggerType;
-            triggerInfo.targetCards = targetCards ?? this.targetCards;
-            triggerInfo.triggerMeanWhile = triggerMeanWhile;
-            triggerInfo.triggerCard = triggerCard;
-            triggerInfo.bulletModel = bulletModel;
-            triggerInfo.location = location;
-            triggerInfo.point = point;
-            triggerInfo.targetState = targetState;
-            triggerInfo.targetFiled = targetFiled;
-            triggerInfo.targetCardId = targetCardId;
-            return triggerInfo;
+            Event e = new Event(triggerCard, targetCards);
+            e.triggerTime = triggerTime ?? this.triggerTime;
+            e.triggerType = triggerType ?? this.triggerType;
+            e.targetCards = targetCards ?? this.targetCards;
+            e.triggerMeanWhile = triggerMeanWhile;
+            e.triggerCard = triggerCard;
+            e.bulletModel = bulletModel;
+            e.location = location;
+            e.point = point;
+            e.targetState = targetState;
+            e.targetFiled = targetFiled;
+            e.targetCardId = targetCardId;
+            return e;
         }
         //反序列化时使用
-        public TriggerInfoModel() { }
+        public Event() { }
         /// <summary>
         /// 创建一个卡牌触发信息模板，并设置触发者（某卡牌,若是由系统触发则填null）、触发对象(单个)
         /// </summary>
-        public TriggerInfoModel(Card triggerCard, Card targetCard)
+        public Event(Card triggerCard, Card targetCard)
         {
             this.triggerCard = triggerCard;
             this.targetCards = new List<Card>();
@@ -64,7 +65,7 @@ namespace TouhouMachineLearningSummary.Model
         /// <summary>
         /// 创建一个卡牌触发信息模板，并设置触发者（某卡牌,若是由系统触发则填null）、触发对象(多个)
         /// </summary>
-        public TriggerInfoModel(Card triggerCard, List<Card> targetCards)
+        public Event(Card triggerCard, List<Card> targetCards)
         {
             this.triggerCard = triggerCard;
             this.targetCards = targetCards;
@@ -72,7 +73,7 @@ namespace TouhouMachineLearningSummary.Model
         /// <summary>
         /// 设置部署区域（靠所属，区域和次序定位，次序为正代表从左往右，最左侧位置为0，为负代表从右往左，最右侧为-1）
         /// </summary>
-        public TriggerInfoModel SetLocation(Orientation orientation, GameRegion regionType, int rank)
+        public Event SetLocation(Orientation orientation, GameRegion regionType, int rank)
         {
             int x = GameSystem.InfoSystem.AgainstCardSet[regionType][orientation].RowManagers.First().RowRank;
             int y = rank;
@@ -82,12 +83,12 @@ namespace TouhouMachineLearningSummary.Model
         /// <summary>
         /// 设置触发点数信息
         /// </summary>
-        public TriggerInfoModel SetPoint(int point)
+        public Event SetPoint(int point)
         {
             this.point = point;
             return this;
         }
-        public TriggerInfoModel SetBullet(BulletModel bulletModel)
+        public Event SetBullet(BulletModel bulletModel)
         {
             this.bulletModel = bulletModel;
             return this;
@@ -96,7 +97,7 @@ namespace TouhouMachineLearningSummary.Model
         /// 以同时的方式触发弹幕和卡牌效果,触发后再进行结算
         /// </summary>
         /// <returns></returns>
-        public TriggerInfoModel SetMeanWhile()
+        public Event SetMeanWhile()
         {
             this.triggerMeanWhile = true;
             return this;
@@ -106,7 +107,7 @@ namespace TouhouMachineLearningSummary.Model
         /// </summary>
         /// <param name="targetState"></param>
         /// <returns></returns>
-        public TriggerInfoModel SetTargetState(CardState targetState)
+        public Event SetTargetState(CardState targetState)
         {
             this.targetState = targetState;
             return this;
@@ -114,7 +115,7 @@ namespace TouhouMachineLearningSummary.Model
         /// <summary>
         ///设置目标字段和目标值
         /// </summary>
-        public TriggerInfoModel SetTargetField(CardField targetField, int ponit)
+        public Event SetTargetField(CardField targetField, int ponit)
         {
             this.targetFiled = targetField;
             this.point = ponit;
@@ -125,7 +126,7 @@ namespace TouhouMachineLearningSummary.Model
         /// </summary>
         /// <param name="targetState"></param>
         /// <returns></returns>
-        public TriggerInfoModel SetTargetCardId(int cardId)
+        public Event SetTargetCardId(int cardId)
         {
             this.targetCardId = cardId;
             return this;

@@ -15,7 +15,7 @@ namespace TouhouMachineLearningSummary.CardSpace
             //初始化通用卡牌效果
             base.Init();
             AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
 
                    var cardList = GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck][CardRank.Copper]
@@ -23,7 +23,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                         .Where(card => card.ShowPoint <= this[CardField.Pary])
                         .ToList();
                    await GameSystem.SelectSystem.SelectBoardCard(this, cardList);
-                   await GameSystem.TransferSystem.PlayCard(new TriggerInfoModel(this, GameSystem.InfoSystem.SelectUnit));
+                   await GameSystem.TransferSystem.PlayCard(new Event(this, GameSystem.InfoSystem.SelectUnit));
                    await GameSystem.TransferSystem.MoveToGrave(this);
 
                })

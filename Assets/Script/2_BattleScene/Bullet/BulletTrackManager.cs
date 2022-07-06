@@ -11,10 +11,10 @@ namespace TouhouMachineLearningSummary.Manager
         public float maxDinsance = 2;
         public float speed = 1.5f;
         Vector3 startPosition, endPosition;
-        public async Task Play(TriggerInfoModel triggerInfo, BulletTrack track)
+        public async Task Play(Model.Event e, BulletTrack track)
         {
-            this.startPosition = triggerInfo.triggerCard.transform.position;
-            this.endPosition = triggerInfo.targetCard.transform.position;
+            this.startPosition = e.triggerCard.transform.position;
+            this.endPosition = e.targetCard.transform.position;
             Vector3 tempPos = Vector3.zero;
             switch (track)
             {
@@ -50,14 +50,14 @@ namespace TouhouMachineLearningSummary.Manager
                         _ = Command.SoundEffectCommand.PlayAsync(SoundEffectType.Laser);
                         await CustomThread.TimerAsync(0.5f, (process) =>
                         {
-                            transform.position = Vector3.Lerp(tempPos, triggerInfo.targetCard.transform.position, process);
+                            transform.position = Vector3.Lerp(tempPos, e.targetCard.transform.position, process);
                         });
                         Destroy(gameObject);
                         _ = CameraManager.manager.VibrationCameraAsync();
                     }
                     break;
                 case BulletTrack.Fixed:
-                    transform.position = triggerInfo.targetCard.transform.position;
+                    transform.position = e.targetCard.transform.position;
                     Destroy(gameObject, 3);
                     break;
                 case BulletTrack.Down:

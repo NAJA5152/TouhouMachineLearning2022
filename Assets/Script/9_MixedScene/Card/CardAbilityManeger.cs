@@ -12,7 +12,7 @@ namespace TouhouMachineLearningSummary.Manager
         private Card card;
         private TriggerTime time;
         private TriggerType type;
-        List<Func<TriggerInfoModel, Task>> abilitys = new List<Func<TriggerInfoModel, Task>>();
+        List<Func<Event, Task>> abilitys = new List<Func<Event, Task>>();
         List<AbilityCondition> conditions = new List<AbilityCondition>();
         public CardAbilityManeger(Card card, TriggerTime time, TriggerType type)
         {
@@ -20,7 +20,7 @@ namespace TouhouMachineLearningSummary.Manager
             this.time = time;
             this.type = type;
         }
-        public CardAbilityManeger AbilityAdd(Func<TriggerInfoModel, Task> ability, params Condition[] condition)
+        public CardAbilityManeger AbilityAdd(Func<Event, Task> ability, params Condition[] condition)
         {
             abilitys.Add(ability);
             conditions.Add(new AbilityCondition(condition));
@@ -63,12 +63,12 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 int num = i;
                 card.cardAbility[time][type].Add(
-                async (triggerInfo) =>
+                async (e) =>
                 {
                     AbilityCondition abilityCondition = currentConditions[num];
                     if (conditions[num].IsAbilityActive(card))
                     {
-                        await abilitys[num](triggerInfo);
+                        await abilitys[num](e);
                     }
                 });
             }

@@ -14,20 +14,23 @@ namespace TouhouMachineLearningSummary.CardSpace
         {
             //初始化通用卡牌效果
             base.Init();
-            AbalityRegister(TriggerTime.When, TriggerType.Play)
-               .AbilityAdd(async (triggerInfo) =>
+            AbalityRegister(TriggerTime.When, TriggerType.Play)//注册一个 当 卡牌 打出时 生效的效果
+               .AbilityAdd(async (e) =>//添加一个子效果
                {
+                   //等待该行执行完再运行下一行代码 游戏机制.选择机制.选择坐标（触发者：当前卡牌 部署所属（当前卡牌的部署所属 我方/敌方）， 部署区域（当前卡牌的部署区域 哪一排））
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransferSystem.DeployCard(new TriggerInfoModel(this, this));
+                   //等待该行执行完再运行下一行代码 游戏机制.转移机制.部署（触发者：当前卡牌 生效者 ：当前卡牌））
+                   await GameSystem.TransferSystem.DeployCard(new Event(this, this));
                })
-               .AbilityAppend();
+               .AbilityAppend();//以追加的方式添加该效果
+
             AbalityRegister(TriggerTime.After, TriggerType.Move)
-               .AbilityAdd(async (triggerInfo) =>
+               .AbilityAdd(async (e) =>
                {
                    //如果移动的对象在场上非金集合中，则追加1点伤害
-                   if (GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][CardRank.NoGold].CardList.Contains(triggerInfo.targetCard))
+                   if (GameSystem.InfoSystem.AgainstCardSet[GameRegion.Battle][CardRank.NoGold].CardList.Contains(e.targetCard))
                    {
-                       await GameSystem.PointSystem.Hurt(new TriggerInfoModel(this, triggerInfo.targetCard).SetPoint(1).SetBullet(new BulletModel()));
+                       await GameSystem.PointSystem.Hurt(new Event(this, e.targetCard).SetPoint(1).SetBullet(new BulletModel()));
                    }
                }, Condition.Default, Condition.OnMyTurn)
                .AbilityAppend();
