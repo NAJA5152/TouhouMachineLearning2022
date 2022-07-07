@@ -60,7 +60,7 @@ Material:
     m_Floats:
     - Vector1_aed57689b99b45c3be02ebb13ccaed5e: 0
     - Vector1_af74ca7961744e85b20caabad92192ed: -0.25
-    - _Bias: 0.2
-    - _BreakStrength: -0.5
+    - _Bias: 0
+    - _BreakStrength: 1
     m_Colors: []
   m_BuildTextureStacks: []
