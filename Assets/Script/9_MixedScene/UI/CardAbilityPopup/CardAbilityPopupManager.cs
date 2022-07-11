@@ -27,7 +27,12 @@ namespace TouhouMachineLearningSummary.Manager
         void Update()
         {
             Bias = new Vector3(IsRight ? 0.1f : -0.1f, IsDown ? 0.1f : -0.1f);
-            transform.position = Camera.main.ViewportToScreenPoint(ViewportPoint + Bias);
+            transform.localPosition = Camera.main.ViewportToScreenPoint(ViewportPoint + Bias);
+            transform.localPosition -= new Vector3(Screen.width/2,Screen.height/2);
+            if (Input.GetMouseButtonDown(1))
+            {
+
+            }
             //菜单场景下，获取卡牌id信息，并进行显示
             //对战场景下，获取卡牌实例信息，并进行显示
             if (isOnMenu)
@@ -78,7 +83,7 @@ namespace TouhouMachineLearningSummary.Manager
                 }
                 else
                 {
-                    transform.GetChild(0).gameObject.SetActive(false);
+                   transform.GetChild(0).gameObject.SetActive(false);
                 }
             }
         }
