@@ -29,6 +29,10 @@ namespace TouhouMachineLearningSummary.Info
         private void Awake() => Instance = this;
         [ShowInInspector]
         public static bool isNoticeBoardShow = false;
+        //判断面板是否是隐藏模式
+        public static bool isCardBoardHide = false;
+        public static GameEnum.CardBoardMode lastCardBoardMode =  GameEnum.CardBoardMode.Select;
+
 
         public static List<GameObject> ShowCardLIstOnBoard = new List<GameObject>();
 

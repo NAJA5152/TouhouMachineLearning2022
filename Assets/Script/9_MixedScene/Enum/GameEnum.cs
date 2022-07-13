@@ -241,10 +241,10 @@ namespace TouhouMachineLearningSummary.GameEnum
 
     public enum CardBoardMode
     {
-        Default,//默认状态
+        Default,//默认状态，无法操作，但可以关闭
         Select,//多次选择模式
         ExchangeCard,//单次抽卡模式
-        ShowOnly//无法操作模式
+        ShowOnly//无按钮，无法操作模式
     }
     public enum CardTag
     {

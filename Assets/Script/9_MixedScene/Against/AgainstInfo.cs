@@ -99,8 +99,9 @@ namespace TouhouMachineLearningSummary.Info
         public static bool isPlayer2RoundStartExchangeOver = false;
 
         public static CardBoardMode cardBoardMode;
-        public static List<int> cardBoardIDList;
-        public static List<Card> cardBoardList;
+        public static List<int> cardBoardIDList;//游戏对战中的展示面板显示的虚拟卡牌列表
+        public static List<Card> cardBoardList;//游戏对战中的展示面板显示的真实卡牌列表
+        public static List<Card> tempCardBoardList;//玩家临时点开查看的墓地或卡组中的卡牌列表，与游戏对战中的展示面板卡牌面板互相独立
 
         public static List<int> SelectBoardCardRanks { get; set; }
         public static List<Card> SelectActualCards => SelectBoardCardRanks.Select(rank => cardBoardList[rank]).ToList();

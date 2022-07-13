@@ -17,17 +17,19 @@ namespace TouhouMachineLearningSummary.Command
         public static void LoadBoardCardList(List<Card> cards)
         {
             Info.AgainstInfo.cardBoardList = cards;
-            CreatBoardCardActual();
+            CreatBoardCardActual(false);
         }
-        public void Replace(int num, Card card)
+        public static void LoadTempBoardCardList(List<Card> cards)
         {
-
+            Info.AgainstInfo.tempCardBoardList = cards;
+            CreatBoardCardActual(true);
         }
         //生成对局存在的卡牌
-        public static void CreatBoardCardActual()
+        //若为临时展开玩家的牌组墓地面板，则不记录相关展开数据
+        public static void CreatBoardCardActual(bool isTemp=false)
         {
             UiInfo.ShowCardLIstOnBoard.ForEach(Object.Destroy);
-            List<Card> Cards = Info.AgainstInfo.cardBoardList;
+            List<Card> Cards = isTemp ? Info.AgainstInfo.tempCardBoardList : Info.AgainstInfo.cardBoardList;
             for (int i = 0; i < Cards.Count; i++)
             {
                 var CardStandardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(Cards[i].CardID);
@@ -35,13 +37,16 @@ namespace TouhouMachineLearningSummary.Command
                 GameObject NewCard = Object.Instantiate(UiInfo.CardModel);
                 NewCard.transform.SetParent(UiInfo.Content);
                 NewCard.SetActive(true);
-                //设置对应立绘
+                //设置面板卡牌对应立绘或卡背
+                //如果是临时对墓地和牌库浏览模式，则全部正面显示
+                //如果是对方回合展示模式，则根据卡牌可见性进行正背面区分
+                //如果是我方回合选择/换牌模式,则默认正面，可以特殊配置正背面
                 Texture2D texture = CardStandardInfo.icon;
                 NewCard.transform.GetChild(0).GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
                 //设置效果文本
                 NewCard.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = Cards[i].TranslateAbility;
                 //设置点数
-                NewCard.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = Cards[i].ShowPoint==0?"" : Cards[i].ShowPoint.ToString();
+                NewCard.transform.GetChild(2).GetComponent<TextMeshProUGUI>().text = Cards[i].ShowPoint == 0 ? "" : Cards[i].ShowPoint.ToString();
                 //设置名字
                 NewCard.name = CardStandardInfo.TranslateName;
                 //设置对应次序
@@ -50,7 +55,7 @@ namespace TouhouMachineLearningSummary.Command
                 NewCard.GetComponent<Image>().color = CardStandardInfo.cardRank switch
                 {
                     GameEnum.CardRank.Leader => Color.cyan,
-                    GameEnum.CardRank.Gold => new Color(1,1,0,1),
+                    GameEnum.CardRank.Gold => new Color(1, 1, 0, 1),
                     GameEnum.CardRank.Silver => new Color(1, 1, 1, 1),
                     GameEnum.CardRank.Copper => new Color(1, 0.5f, 0, 1),
                     _ => Color.cyan,

@@ -78,7 +78,7 @@ namespace TouhouMachineLearningSummary.Manager
                 {
                     UiCommand.SetCardBoardOpen(CardBoardMode.Default);
                     UiCommand.SetCardBoardTitle(thisCard.CurrentOrientation == Orientation.Up ? "敌方墓地" : "我方墓地");
-                    CardBoardCommand.LoadBoardCardList(
+                    CardBoardCommand.LoadTempBoardCardList(
                         GameSystem.InfoSystem.AgainstCardSet[thisCard.CurrentOrientation][thisCard.CurrentRegion]
                         .CardList
                         );
@@ -87,7 +87,7 @@ namespace TouhouMachineLearningSummary.Manager
                 {
                     UiCommand.SetCardBoardOpen(CardBoardMode.Default);
                     UiCommand.SetCardBoardTitle("我方卡组");
-                    CardBoardCommand.LoadBoardCardList(
+                    CardBoardCommand.LoadTempBoardCardList(
                         GameSystem.InfoSystem.AgainstCardSet[thisCard.CurrentOrientation][thisCard.CurrentRegion]
                         .CardList
                         //为了debug暂时以真实顺序排序

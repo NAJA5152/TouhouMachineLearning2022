@@ -19,20 +19,26 @@ namespace TouhouMachineLearningSummary.Command
             targetSprite ??= AssetBundleCommand.Load<Sprite>("FieldAndState", "None");
             return targetSprite;
         }
-
         //////////////////////////////////////////////////////////对战中游戏卡牌面板//////////////////////////////////////////////////////////////
-
         static Text UiText => UiInfo.CardBoard.transform.GetChild(0).GetChild(1).GetComponent<Text>();
         static GameObject HideButton => UiInfo.CardBoard.transform.GetChild(1).GetChild(0).gameObject;
         static GameObject JumpButton => UiInfo.CardBoard.transform.GetChild(1).GetChild(1).gameObject;
         static GameObject ShowButton => UiInfo.CardBoard.transform.GetChild(1).GetChild(2).gameObject;
         static GameObject CloseButton => UiInfo.CardBoard.transform.GetChild(1).GetChild(3).gameObject;
         static GameObject BackImage => UiInfo.CardBoard.transform.GetChild(0).gameObject;
+        /// <summary>
+        /// 修改展示板标题
+        /// </summary>
+        /// <param name="Title"></param>
         public static void SetCardBoardTitle(string Title) => UiText.text = Title;
-
+        /// <summary>
+        /// 打开展示板，并根据模式显示相应按钮
+        /// </summary>
+        /// <param name="mode"></param>
         public static void SetCardBoardOpen(CardBoardMode mode)
         {
             UiInfo.CardBoard.SetActive(true);
+            BackImage.SetActive(false);
             HideButton.SetActive(false);
             JumpButton.SetActive(false);
             ShowButton.SetActive(false);
@@ -42,20 +48,25 @@ namespace TouhouMachineLearningSummary.Command
                 case CardBoardMode.Default:
                     CloseButton.SetActive(true);
                     break;
+                    //选择或换牌模式下
                 case CardBoardMode.Select:
-                    HideButton.SetActive(true);
-                    JumpButton.SetActive(true);
-                    break;
                 case CardBoardMode.ExchangeCard:
                     HideButton.SetActive(true);
                     JumpButton.SetActive(true);
+                    UiInfo.lastCardBoardMode = mode;
                     break;
                 case CardBoardMode.ShowOnly:
                     break;
             }
         }
-
-        public static void SetCardBoardClose() => UiInfo.CardBoard.SetActive(false);
+        public static void SetCardBoardClose()
+        {
+            UiInfo.CardBoard.SetActive(false);
+            if (UiInfo.isCardBoardHide)
+            {
+                SetCardBoardHide();
+            }
+        }
         public static void SetCardBoardHide()
         {
             BackImage.SetActive(false);
@@ -63,15 +74,20 @@ namespace TouhouMachineLearningSummary.Command
             JumpButton.SetActive(false);
             ShowButton.SetActive(true);
             CloseButton.SetActive(false);
+            //设置卡牌面板为隐藏模式
+            UiInfo.isCardBoardHide = true;
         }
-        public static void SetCardBoardShow(CardBoardMode mode)
+        public static void SetCardBoardShow()
         {
-            BackImage.SetActive(true);
-            HideButton.SetActive(true);
-            JumpButton.SetActive(true);
-            ShowButton.SetActive(false);
+            string title = UiInfo.lastCardBoardMode == CardBoardMode.Select ? "Remaining".TranslationGameText() + Info.AgainstInfo.ExChangeableCardNum : "";
+            UiCommand.SetCardBoardTitle(title);
+            SetCardBoardOpen(UiInfo.lastCardBoardMode);
+            CardBoardCommand.CreatBoardCardActual();
+            //BackImage.SetActive(true);
+            //HideButton.SetActive(true);
+            //JumpButton.SetActive(true);
+            //ShowButton.SetActive(false);
         }
-        public static void CardBoardReload() => CardBoardCommand.CreatBoardCardActual();
         public static void CardBoardSelectOver() => AgainstInfo.IsSelectCardOver = true;
         //////////////////////////////////////////////////////////回合阶段提示UI//////////////////////////////////////////////////////////////
         public static async Task NoticeBoardShow(string Title)

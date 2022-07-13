@@ -21,6 +21,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                    await GameSystem.TransferSystem.DeployCard(new Event(this,this));
                })
                .AbilityAppend();
+
             AbalityRegister(TriggerTime.After, TriggerType.Move)
              .AbilityAdd(async (e) =>
              {
