@@ -154,7 +154,7 @@ namespace TouhouMachineLearningSummary.Command
             {
                 case (1):
                     {
-                        Info.AgainstInfo.ExChangeableCardNum = 0;
+                        Info.AgainstInfo.ExChangeableCardNum = 3;
                         UiCommand.SetCardBoardTitle("Remaining".TranslationGameText() + Info.AgainstInfo.ExChangeableCardNum);
                         for (int i = 0; i < 10; i++)
                         {

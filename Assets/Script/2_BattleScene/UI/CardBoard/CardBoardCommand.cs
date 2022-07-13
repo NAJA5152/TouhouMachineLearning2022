@@ -34,8 +34,7 @@ namespace TouhouMachineLearningSummary.Command
             {
                 var CardStandardInfo = Manager.CardAssemblyManager.GetCurrentCardInfos(Cards[i].CardID);
 
-                GameObject NewCard = Object.Instantiate(UiInfo.CardModel);
-                NewCard.transform.SetParent(UiInfo.Content);
+                GameObject NewCard = Object.Instantiate(UiInfo.CardModel, UiInfo.Content);
                 NewCard.SetActive(true);
                 //设置面板卡牌对应立绘或卡背
                 //如果是临时对墓地和牌库浏览模式，则全部正面显示

@@ -38,7 +38,7 @@ namespace TouhouMachineLearningSummary.Command
         public static void SetCardBoardOpen(CardBoardMode mode)
         {
             UiInfo.CardBoard.SetActive(true);
-            BackImage.SetActive(false);
+            BackImage.SetActive(true);
             HideButton.SetActive(false);
             JumpButton.SetActive(false);
             ShowButton.SetActive(false);
@@ -69,6 +69,7 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static void SetCardBoardHide()
         {
+            UiInfo.CardBoard.SetActive(true);
             BackImage.SetActive(false);
             HideButton.SetActive(false);
             JumpButton.SetActive(false);
