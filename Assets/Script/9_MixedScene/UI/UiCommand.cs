@@ -45,7 +45,7 @@ namespace TouhouMachineLearningSummary.Command
             CloseButton.SetActive(false);
             switch (mode)
             {
-                case CardBoardMode.Default:
+                case CardBoardMode.Temp:
                     CloseButton.SetActive(true);
                     break;
                     //选择或换牌模式下
@@ -53,6 +53,8 @@ namespace TouhouMachineLearningSummary.Command
                 case CardBoardMode.ExchangeCard:
                     HideButton.SetActive(true);
                     JumpButton.SetActive(true);
+                    //设置卡牌面板为等待选择模式
+                    UiInfo.isCardBoardNeedSelect = true;
                     UiInfo.lastCardBoardMode = mode;
                     break;
                 case CardBoardMode.ShowOnly:
@@ -62,7 +64,7 @@ namespace TouhouMachineLearningSummary.Command
         public static void SetCardBoardClose()
         {
             UiInfo.CardBoard.SetActive(false);
-            if (UiInfo.isCardBoardHide)
+            if (UiInfo.isCardBoardNeedSelect)
             {
                 SetCardBoardHide();
             }
@@ -75,15 +77,14 @@ namespace TouhouMachineLearningSummary.Command
             JumpButton.SetActive(false);
             ShowButton.SetActive(true);
             CloseButton.SetActive(false);
-            //设置卡牌面板为隐藏模式
-            UiInfo.isCardBoardHide = true;
+            
         }
         public static void SetCardBoardShow()
         {
             string title = UiInfo.lastCardBoardMode == CardBoardMode.Select ? "Remaining".TranslationGameText() + Info.AgainstInfo.ExChangeableCardNum : "";
             UiCommand.SetCardBoardTitle(title);
             SetCardBoardOpen(UiInfo.lastCardBoardMode);
-            CardBoardCommand.CreatBoardCardActual();
+            CardBoardCommand.CreatBoardCardActual(UiInfo.lastCardBoardMode);
             //BackImage.SetActive(true);
             //HideButton.SetActive(true);
             //JumpButton.SetActive(true);

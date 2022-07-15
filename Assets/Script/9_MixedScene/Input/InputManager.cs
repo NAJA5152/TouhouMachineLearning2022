@@ -89,7 +89,7 @@ namespace TouhouMachineLearningSummary.Manager
                     if (AgainstInfo.PlayerFocusRegion != null && AgainstInfo.PlayerFocusRegion.CanBeSelected)
                     {
                         AgainstInfo.SelectRowRank = AgainstInfo.PlayerFocusRegion.RowRank;
-                        AgainstInfo.SelectRank = AgainstInfo.PlayerFocusRegion.Location;
+                        AgainstInfo.SelectRank = AgainstInfo.PlayerFocusRegion.Rank;
                     }
                 }
             }

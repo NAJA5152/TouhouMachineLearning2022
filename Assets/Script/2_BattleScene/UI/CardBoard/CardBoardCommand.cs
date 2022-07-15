@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using TMPro;
 using TouhouMachineLearningSummary.Control;
+using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
@@ -9,24 +10,28 @@ namespace TouhouMachineLearningSummary.Command
 {
     public class CardBoardCommand
     {
-        public static void LoadBoardCardList(List<int> cardIds)
+        public static void LoadBoardCardList(List<int> cardIds, CardBoardMode mode)
         {
             Info.AgainstInfo.cardBoardIDList = cardIds;
-            CreatBoardCardVitual();
+            CreatBoardCardVitual(mode);
         }
-        public static void LoadBoardCardList(List<Card> cards)
+        public static void LoadBoardCardList(List<Card> cards, CardBoardMode mode)
         {
             Info.AgainstInfo.cardBoardList = cards;
-            CreatBoardCardActual(false);
+            CreatBoardCardActual(mode, false);
         }
+        /// <summary>
+        /// 临时加载是单独区分存储的列表，不与之前的加载互相干涉
+        /// </summary>
+        /// <param name="cards"></param>
         public static void LoadTempBoardCardList(List<Card> cards)
         {
             Info.AgainstInfo.tempCardBoardList = cards;
-            CreatBoardCardActual(true);
+            CreatBoardCardActual(CardBoardMode.Temp, true);
         }
         //生成对局存在的卡牌
         //若为临时展开玩家的牌组墓地面板，则不记录相关展开数据
-        public static void CreatBoardCardActual(bool isTemp=false)
+        public static void CreatBoardCardActual(GameEnum.CardBoardMode mode, bool isTemp = false)
         {
             UiInfo.ShowCardLIstOnBoard.ForEach(Object.Destroy);
             List<Card> Cards = isTemp ? Info.AgainstInfo.tempCardBoardList : Info.AgainstInfo.cardBoardList;
@@ -40,7 +45,12 @@ namespace TouhouMachineLearningSummary.Command
                 //如果是临时对墓地和牌库浏览模式，则全部正面显示
                 //如果是对方回合展示模式，则根据卡牌可见性进行正背面区分
                 //如果是我方回合选择/换牌模式,则默认正面，可以特殊配置正背面
-                Texture2D texture = CardStandardInfo.icon;
+                Texture2D texture = mode switch
+                {
+                    CardBoardMode.Temp => CardStandardInfo.icon,
+                    _ => Cards[i].IsCanSee ? CardStandardInfo.icon : CardStandardInfo.icon,
+
+                };
                 NewCard.transform.GetChild(0).GetComponent<Image>().sprite = Sprite.Create(texture, new Rect(0, 0, texture.width, texture.height), Vector2.zero);
                 //设置效果文本
                 NewCard.transform.GetChild(1).GetChild(0).GetComponent<Text>().text = Cards[i].TranslateAbility;
@@ -64,7 +74,7 @@ namespace TouhouMachineLearningSummary.Command
             UiInfo.Content.GetComponent<RectTransform>().sizeDelta = new Vector2(Cards.Count * 275 + 000, UiInfo.Content.GetComponent<RectTransform>().sizeDelta.y);
         }
         //生成对局不存在的卡牌
-        private static void CreatBoardCardVitual()
+        private static void CreatBoardCardVitual(CardBoardMode mode)
         {
             UiInfo.ShowCardLIstOnBoard.ForEach(Object.Destroy);
             List<int> CardIds = Info.AgainstInfo.cardBoardIDList;

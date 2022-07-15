@@ -105,9 +105,9 @@ namespace TouhouMachineLearningSummary.Model
         public bool IsCover { get; set; } = false;
         public bool IsLocked { get; set; } = false;
         public bool IsFree { get; set; } = false;
-        public bool IsCanSee { get; set; } = false;
+        //后期补充，揭示状态始终显示，覆盖状态始终不显示
+        public bool IsCanSee { get => isCanSee&&!this[CardState.Close]|| this[CardState.Pry]; set => isCanSee = value; }
         public bool IsCardReadyToGrave => ShowPoint == 0 && AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this);
-        public void SetCardSeeAble(bool isCanSee) => this.IsCanSee = isCanSee;
         public bool isMoveStepOver = true;
         public bool isPrepareToPlay = false;
         public bool IsAutoMove => this != AgainstInfo.playerPrePlayCard;
@@ -140,6 +140,7 @@ namespace TouhouMachineLearningSummary.Model
 
 
         public Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<Event, Task>>>> cardAbility = new Dictionary<TriggerTime, Dictionary<TriggerType, List<Func<Event, Task>>>>();
+        private bool isCanSee = false;
 
 
         /// <summary>
@@ -160,7 +161,7 @@ namespace TouhouMachineLearningSummary.Model
                 }
             }
             //////////////////////////////////////////////////编写默认被动效果///////////////////////////////////////////////////////////////////
-            
+
             ///////////////////////////////////////////////////////所属移动///////////////////////////////////////////////////////////////////////
             //当创造时从牌库中构建
             AbalityRegister(TriggerTime.When, TriggerType.Generate)
@@ -268,8 +269,8 @@ namespace TouhouMachineLearningSummary.Model
             AbalityRegister(TriggerTime.When, TriggerType.Reverse)
                 .AbilityAdd(async (e) => { await Command.CardCommand.Reversal(e); })
                .AbilityAppend();
-           
-            
+
+
             ///////////////////////////////////////////////////////附加状态///////////////////////////////////////////////////////////////////////
             //卡牌状态附加时效果
             AbalityRegister(TriggerTime.When, TriggerType.StateAdd)
@@ -560,7 +561,7 @@ namespace TouhouMachineLearningSummary.Model
                 })
                .AbilityAppend();
         }
-        public void SetMoveTarget(Vector3 TargetPosition, Vector3 TargetEulers)
+        public void SetCardTransform(Vector3 TargetPosition, Vector3 TargetEulers)
         {
             targetPosition = TargetPosition;
             targetQuaternion = Quaternion.Euler(TargetEulers + new Vector3(0, 0, IsCanSee ? 0 : 180));
@@ -606,7 +607,6 @@ namespace TouhouMachineLearningSummary.Model
 
             void RefreshCardUi()
             {
-
                 //数字
                 if (ChangePoint > 0)
                 {

@@ -150,6 +150,7 @@ namespace TouhouMachineLearningSummary.GameEnum
         Invisibility,//隐身
         Pry,//窥探
         Close,//封闭
+        Durance,//禁锢
         Fate,//命运
         Lurk,//潜伏（间谍）
         Secret,//隐秘（盖牌）
@@ -241,7 +242,7 @@ namespace TouhouMachineLearningSummary.GameEnum
 
     public enum CardBoardMode
     {
-        Default,//默认状态，无法操作，但可以关闭
+        Temp,//默认状态，无法操作，但可以关闭
         Select,//多次选择模式
         ExchangeCard,//单次抽卡模式
         ShowOnly//无按钮，无法操作模式

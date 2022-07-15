@@ -30,7 +30,7 @@ namespace TouhouMachineLearningSummary.Info
         [ShowInInspector]
         public static bool isNoticeBoardShow = false;
         //判断面板是否是隐藏模式
-        public static bool isCardBoardHide = false;
+        public static bool isCardBoardNeedSelect = false;
         public static GameEnum.CardBoardMode lastCardBoardMode =  GameEnum.CardBoardMode.Select;
 
 

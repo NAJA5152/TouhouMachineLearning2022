@@ -76,7 +76,7 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 if (thisCard.CurrentRegion == GameRegion.Grave)
                 {
-                    UiCommand.SetCardBoardOpen(CardBoardMode.Default);
+                    UiCommand.SetCardBoardOpen(CardBoardMode.Temp);
                     UiCommand.SetCardBoardTitle(thisCard.CurrentOrientation == Orientation.Up ? "敌方墓地" : "我方墓地");
                     CardBoardCommand.LoadTempBoardCardList(
                         GameSystem.InfoSystem.AgainstCardSet[thisCard.CurrentOrientation][thisCard.CurrentRegion]
@@ -85,7 +85,7 @@ namespace TouhouMachineLearningSummary.Manager
                 }
                 if (thisCard.CurrentRegion == GameRegion.Deck && thisCard.CurrentOrientation == Orientation.Down)
                 {
-                    UiCommand.SetCardBoardOpen(CardBoardMode.Default);
+                    UiCommand.SetCardBoardOpen(CardBoardMode.Temp);
                     UiCommand.SetCardBoardTitle("我方卡组");
                     CardBoardCommand.LoadTempBoardCardList(
                         GameSystem.InfoSystem.AgainstCardSet[thisCard.CurrentOrientation][thisCard.CurrentRegion]

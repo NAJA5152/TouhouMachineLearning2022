@@ -37,8 +37,8 @@ namespace TouhouMachineLearningSummary.Command
             //CardSet.globalCardList = AgainstInfo.summary.targetJumpTurn.allCardList
             //    .Select(sampleCardList => sampleCardList.Select(CardCommand.CreateCard).ToList()).ToList();
             CardSet.GlobalCardList = targetJumpTurn.AllCardList.SelectList(sampleCardList => sampleCardList.SelectList(CardCommand.GenerateCard));
-            AgainstInfo.cardSet[GameRegion.Leader, GameRegion.Battle].CardList.ForEach(card => card.IsCanSee = true);
-            AgainstInfo.cardSet[GameRegion.Hand][AgainstInfo.IsReplayMode ? Orientation.All : Orientation.My].CardList.ForEach(card => card.IsCanSee = true);
+            AgainstInfo.cardSet[GameRegion.Leader, GameRegion.Battle].CardList.ForEach(card => card.IsCanSee=true);
+            AgainstInfo.cardSet[GameRegion.Hand][AgainstInfo.IsReplayMode ? Orientation.All : Orientation.My].CardList.ForEach(card => card.IsCanSee=true);
             AgainstInfo.IsJumpMode = false;
             return isExchangeTurn;
         }
@@ -103,11 +103,11 @@ namespace TouhouMachineLearningSummary.Command
             //初始化我方领袖卡
             Card MyLeaderCard = CardCommand.GenerateCard(Info.AgainstInfo.userDeck.LeaderId);
             AgainstInfo.cardSet[Orientation.Down][GameRegion.Leader].Add(MyLeaderCard);
-            MyLeaderCard.SetCardSeeAble(true);
+            MyLeaderCard.IsCanSee=true;
             //初始化敌方领袖卡
             Card OpLeaderCard = CardCommand.GenerateCard(Info.AgainstInfo.opponentDeck.LeaderId);
             AgainstInfo.cardSet[Orientation.Up][GameRegion.Leader].Add(OpLeaderCard);
-            OpLeaderCard.SetCardSeeAble(true);
+            OpLeaderCard.IsCanSee=true;
             //Debug.LogError("初始双方化牌组");
             //初始双方化牌组
             for (int i = 0; i < Info.AgainstInfo.userDeck.CardIds.Count; i++)
@@ -524,11 +524,11 @@ namespace TouhouMachineLearningSummary.Command
             //加载真实或虚拟的卡牌列表
             if (typeof(T) == typeof(Card))
             {
-                CardBoardCommand.LoadBoardCardList(cardIds.Cast<Card>().ToList());
+                CardBoardCommand.LoadBoardCardList(cardIds.Cast<Card>().ToList(), mode);
             }
             else
             {
-                CardBoardCommand.LoadBoardCardList(cardIds.Cast<int>().ToList());
+                CardBoardCommand.LoadBoardCardList(cardIds.Cast<int>().ToList(), mode);
             }
             //Debug.Log("进入选择模式");
             switch (mode)
@@ -625,7 +625,7 @@ namespace TouhouMachineLearningSummary.Command
                     break;
             }
             //设置卡牌面板为非隐藏模式
-            UiInfo.isCardBoardHide = false;
+            UiInfo.isCardBoardNeedSelect = false;
             UiCommand.SetCardBoardClose();
             if (mode == CardBoardMode.ExchangeCard)
             {
@@ -644,7 +644,7 @@ namespace TouhouMachineLearningSummary.Command
                 AgainstInfo.IsSelectCardOver = false;
             }
             //复位
-            AgainstInfo.cardBoardMode = CardBoardMode.Default;
+            AgainstInfo.cardBoardMode = CardBoardMode.Temp;
         }
     }
 }
