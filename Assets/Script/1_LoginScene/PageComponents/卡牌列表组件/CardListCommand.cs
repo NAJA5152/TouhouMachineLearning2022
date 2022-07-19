@@ -14,14 +14,11 @@ namespace TouhouMachineLearningSummary.Command
         public static void Init(bool isInitOptions = true, Model.CardDeck newTempDeck = null, bool canChangeCard = false)
         {
             Log.Show("配置面板");
-            //canChangeCard = Command.MenuStateCommand.GetCurrentState() == MenuState.CardListChange;
             Info.PageCompnentInfo.isEditDeckMode = canChangeCard;
             Info.PageCompnentInfo.okButton.SetActive(canChangeCard);
             Info.PageCompnentInfo.cancelButton.SetActive(canChangeCard);
             Info.PageCompnentInfo.changeButton.SetActive(!canChangeCard);
-            //根据当前玩家牌组生成临时牌组
-            //Info.CardCompnentInfo.tempDeck = newTempDeck ?? Info.AgainstInfo.UserInfo.UseDeck.Clone();
-            //Debug.Log(Info.CardCompnentInfo.tempDeck.ToJson());
+            //如果当前状态是卡组列表改变模式
             if (Command.MenuStateCommand.GetCurrentState() == MenuState.CardListChange)
             {
                 Info.PageCompnentInfo.cardDeckNameModel.GetComponent<Text>().text = Info.PageCompnentInfo.tempDeck.DeckName;
@@ -43,8 +40,17 @@ namespace TouhouMachineLearningSummary.Command
                 });
                 Info.PageCompnentInfo.deckCardModels.Clear();
             }
-            var cardTexture = Manager.CardAssemblyManager.GetLastCardInfo(Info.PageCompnentInfo.tempDeck.LeaderId).icon;
-            Info.PageCompnentInfo.cardLeaderImageModel.GetComponent<Image>().material.mainTexture = cardTexture;
+            //如果领袖存在，载入对应卡图，否则加载空卡图
+            if (Info.PageCompnentInfo.tempDeck.LeaderId!=0)
+            {
+                var cardTexture = Manager.CardAssemblyManager.GetLastCardInfo(Info.PageCompnentInfo.tempDeck.LeaderId).icon;
+                Info.PageCompnentInfo.cardLeaderImageModel.GetComponent<Image>().material.mainTexture = cardTexture;
+            }
+            else
+            {
+
+            }
+           
             Log.Show("配置领袖");
             int deskCardNumber = Info.PageCompnentInfo.distinctCardIds.Count();
             int deskModelNumber = Info.PageCompnentInfo.deckCardModels.Count;
@@ -96,7 +102,6 @@ namespace TouhouMachineLearningSummary.Command
                 }
             }
             Log.Show("配置牌组");
-
         }
         public static async void SaveDeck()
         {
