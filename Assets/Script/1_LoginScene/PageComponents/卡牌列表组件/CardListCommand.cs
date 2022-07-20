@@ -28,7 +28,7 @@ namespace TouhouMachineLearningSummary.Command
                 Info.PageCompnentInfo.cardDeckNameModel.GetComponent<Text>().text = Info.AgainstInfo.onlineUserInfo.UseDeck.DeckName;
             }
             Log.Show("配置卡组名");
-            Info.PageCompnentInfo.deckCardModels.RemoveAll(null);
+            Info.PageCompnentInfo.deckCardModels.RemoveAll(x=>x==null);
             //if (true)
             //{
             //    //初始化领袖栏?可以舍去？
