@@ -1,6 +1,7 @@
 ﻿using TouhouMachineLearningSummary.GameEnum;
 using UnityEngine;
 using UnityEngine.UI;
+using static TouhouMachineLearningSummary.Info.CampInfo;
 
 namespace TouhouMachineLearningSummary.Command
 {
@@ -11,7 +12,11 @@ namespace TouhouMachineLearningSummary.Command
             //生成对应领袖
             //Info.CardCompnentInfo.leaderCardInfos
             //初始化信息来源
-            Info.CampInfo.Init();
+            Info.CampInfo.campInfos.Clear();
+            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Taoism, "道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.TaoismTex));
+            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.science, "科学", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.scienceTex));
+            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Buddhism, "佛教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.BuddhismTex));
+            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Shintoism, "神道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.ShintoismTex));
             //根据实际阵营数量来生成模型
             for (int i = 0; i < Info.CampInfo.campInfos.Count; i++)
             {
@@ -28,16 +33,19 @@ namespace TouhouMachineLearningSummary.Command
                 var newCardModel = Info.PageCompnentInfo.campCardModels[i];
                 newCardModel.name = info.campName;
                 newCardModel.transform.localScale = Info.PageCompnentInfo.Instance.CampModel.transform.localScale;
-                //Sprite cardTex = Sprite.Create(info.icon, new Rect(0, 0, info.icon.width, info.icon.height), Vector2.zero);
-                Sprite cardTex = Sprite.Create(info.campTex, new Rect(0, 0, info.campTex.width, info.campTex.height), Vector2.zero);
-                newCardModel.transform.GetChild(0).GetComponent<Image>().sprite = cardTex;
+                //Sprite cardTex = Sprite.Create(info.campTex, new Rect(0, 0, info.campTex.width, info.campTex.height), Vector2.zero);
+                newCardModel.transform.GetChild(0).GetComponent<Image>().sprite = info.campTex;
                 newCardModel.transform.GetChild(2).GetComponent<Text>().text = info.campName;
-                //newCardModel.transform.GetChild(3).GetChild(0).GetChild(0).GetComponent<Text>().text = "X" + (cardNum > 9 ? "9+" : cardNum + "");
-                //newCardModel.GetComponent<Image>().color = new Color(1, 1, 1, cardNum == 0 ? 0.2f : 1);
                 newCardModel.SetActive(true);
             }
         }
         public static void SelectCamp(GameObject campModel)
+        {
+            int selectRank = Info.PageCompnentInfo.campCardModels.IndexOf(campModel);
+            Info.PageCompnentInfo.targetCamp = Info.CampInfo.campInfos[selectRank].camp;
+        }
+        //选择对应阵营的领袖
+        public static void SelectLeader(GameObject campModel)
         {
             int selectRank = Info.PageCompnentInfo.campCardModels.IndexOf(campModel);
             Info.PageCompnentInfo.targetCamp = Info.CampInfo.campInfos[selectRank].camp;

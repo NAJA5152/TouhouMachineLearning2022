@@ -146,26 +146,25 @@ namespace TouhouMachineLearningSummary.GameEnum
     public enum CardState
     {
         None,//默认空状态
-        Seal,//封印
-        Invisibility,//隐身
-        Pry,//窥探
-        Close,//封闭
-        Durance,//禁锢
-        Fate,//命运
-        Lurk,//潜伏（间谍）
-        Secret,//隐秘（盖牌）
-        Furor,//狂暴
+        Seal,//封印 清楚所有附加值和附加状态
+        Invisibility,//隐身 无法作为主动选择目标
+        Pry,//窥探 强制卡牌正面，持续一回合
+        Close,//封闭 强制显示卡牌背面，满足条件后翻转
+        Durance,//禁锢 无法打出
+        Fate,//命运 位于自动选择目标列表中时会被优先选择
+        Lurk,//潜伏（间谍）部署至对方场上
+        Furor,//狂暴 
         Docile,//温顺
-        Poisoning,//中毒
-        Rely,//凭依
+        Poisoning,//中毒 回合结束时给与自身1点伤害
+        Rely,//凭依 替换目标卡牌某种类型效果
         Water,//水
         Fire,//火
         Wind,//风
         Soil,//土
-        Hold, //驻守
-        Congealbounds,//结界
-        Forbidden,//禁足
-        Apothanasia,//延命
+        Hold, //驻守 小局结束时不进入墓地并取消此状态
+        Congealbounds,//结界 抵消一次伤害
+        Forbidden,//禁足 无法被移动
+        Apothanasia,//延命 点数为0时增益自身一点
         Black,//黑
         White,//白
     }
@@ -179,8 +178,8 @@ namespace TouhouMachineLearningSummary.GameEnum
         Inspire,//鼓舞
         Chain,//连锁
         Energy,//能量
-        Shield,//护盾
-        Pary,//祈祷
+        Shield,//护盾 抵消等量伤害
+        Pary,//祈祷 
     }
     /// <summary>
     /// 异变类型

@@ -101,10 +101,10 @@ namespace TouhouMachineLearningSummary.Info
         public static Camp targetCamp = Camp.Neutral;
         public GameObject campContent;
         public GameObject CampModel;
-        public Texture2D TaoismTex;
-        public Texture2D ShintoismTex;
-        public Texture2D BuddhismTex;
-        public Texture2D scienceTex;
+        public Sprite TaoismTex;
+        public Sprite ShintoismTex;
+        public Sprite BuddhismTex;
+        public Sprite scienceTex;
 
         /// ////////////////////////////////////////////////////////牌组信息/////////////////////////////
         [Header("牌组信息组件")]

@@ -40,21 +40,6 @@ namespace TouhouMachineLearningSummary.Test
                             (BulletColor)BulletColorInt,
                             (BulletTrack)BulletTrackInt
                         )));
-
-                //switch (bulletType)
-                //{
-                //    case BulletType.DreamOfSeal:
-                //        break;
-                //    case BulletType.Heal:
-                //        _ = GameSystem.PointSystem.Cure(new TriggerInfo(tirggerCard, targetCards, 1, BulletType.Heal, Color.green));
-                //        break;
-                //    case BulletType.Hurt:
-                //        _ = GameSystem.PointSystem.Hurt(new TriggerInfo(tirggerCard, targetCards, 1, BulletType.Hurt, Color.red));
-                //        break;
-                //    default:
-                //        break;
-                //}
-
             }
             if (GUI.Button(new Rect(25, 180, 250, 30), "’ŸªΩø®∆¨"))
             {

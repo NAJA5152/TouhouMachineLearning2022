@@ -11,7 +11,7 @@ namespace TouhouMachineLearningSummary.Command
     {
 
         //初始化牌组列表组件
-        public static void Init(bool isInitOptions = true, Model.CardDeck newTempDeck = null, bool canChangeCard = false)
+        public static void Init( Model.CardDeck newTempDeck = null, bool canChangeCard = false)
         {
             Log.Show("配置面板");
             Info.PageCompnentInfo.isEditDeckMode = canChangeCard;
@@ -28,18 +28,19 @@ namespace TouhouMachineLearningSummary.Command
                 Info.PageCompnentInfo.cardDeckNameModel.GetComponent<Text>().text = Info.AgainstInfo.onlineUserInfo.UseDeck.DeckName;
             }
             Log.Show("配置卡组名");
-            if (isInitOptions)
-            {
-                //初始化领袖栏?可以舍去？
-                Info.PageCompnentInfo.deckCardModels.ForEach(model =>
-                {
-                    if (model != null)
-                    {
-                        Object.Destroy(model);
-                    }
-                });
-                Info.PageCompnentInfo.deckCardModels.Clear();
-            }
+            Info.PageCompnentInfo.deckCardModels.RemoveAll(null);
+            //if (true)
+            //{
+            //    //初始化领袖栏?可以舍去？
+            //    Info.PageCompnentInfo.deckCardModels.ForEach(model =>
+            //    {
+            //        if (model != null)
+            //        {
+            //            Object.Destroy(model);
+            //        }
+            //    });
+            //    Info.PageCompnentInfo.deckCardModels.Clear();
+            //}
             //如果领袖存在，载入对应卡图，否则加载空卡图
             if (Info.PageCompnentInfo.tempDeck.LeaderId!=0)
             {

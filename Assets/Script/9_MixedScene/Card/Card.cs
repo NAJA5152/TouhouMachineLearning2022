@@ -270,7 +270,6 @@ namespace TouhouMachineLearningSummary.Model
                 .AbilityAdd(async (e) => { await Command.CardCommand.Reversal(e); })
                .AbilityAppend();
 
-
             ///////////////////////////////////////////////////////附加状态///////////////////////////////////////////////////////////////////////
             //卡牌状态附加时效果
             AbalityRegister(TriggerTime.When, TriggerType.StateAdd)
@@ -291,8 +290,6 @@ namespace TouhouMachineLearningSummary.Model
                         case CardState.Close:
                             break;
                         case CardState.Fate:
-                            break;
-                        case CardState.Secret:
                             break;
                         case CardState.Furor:
                             await GameSystem.UiSystem.ShowTips(this, "狂躁", new Color(0.6f, 0.2f, 0));
