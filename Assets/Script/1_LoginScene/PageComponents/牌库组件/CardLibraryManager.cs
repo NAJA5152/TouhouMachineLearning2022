@@ -73,7 +73,7 @@ namespace TouhouMachineLearningSummary.Manager
             if (Command.MenuStateCommand.HasState(MenuState.CardLibrary))
             {
                 Command.CardDetailCommand.ChangeFocusCard(CardAbilityPopupManager.focusCardID);
-                CardAbilityPopupManager.ChangeIntroduction(CardAbilityPopupManager.focusCardID);
+                //CardAbilityPopupManager.ChangeIntroduction(CardAbilityPopupManager.focusCardID);
             }
         }
 
