@@ -101,6 +101,7 @@ namespace TouhouMachineLearningSummary.Info
         public static Camp targetCamp = Camp.Neutral;
         public GameObject campContent;
         public GameObject CampModel;
+        public Sprite NeutralTex;
         public Sprite TaoismTex;
         public Sprite ShintoismTex;
         public Sprite BuddhismTex;

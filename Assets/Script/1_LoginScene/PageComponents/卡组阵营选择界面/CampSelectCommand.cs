@@ -11,18 +11,33 @@ namespace TouhouMachineLearningSummary.Command
         {
             //生成对应领袖
             //Info.CardCompnentInfo.leaderCardInfos
-            //初始化信息来源
-            Info.CampInfo.campInfos.Clear();
-            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Taoism, "道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.TaoismTex));
-            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.science, "科学", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.scienceTex));
-            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Buddhism, "佛教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.BuddhismTex));
-            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Shintoism, "神道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.ShintoismTex));
-            //根据实际阵营数量来生成模型
-            for (int i = 0; i < Info.CampInfo.campInfos.Count; i++)
+            
+            if (true)
             {
-                var newCampModel = UnityEngine.Object.Instantiate(Info.PageCompnentInfo.Instance.CampModel, Info.PageCompnentInfo.Instance.campContent.transform);
-                Info.PageCompnentInfo.campCardModels.Add(newCampModel);
+                //初始化信息来源
+                Info.CampInfo.campInfos.Clear();
+                Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Neutral, "中立", "请选择一个阵营", Info.PageCompnentInfo.Instance.NeutralTex));
+                Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Taoism, "道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.TaoismTex));
+                Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.science, "科学", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.scienceTex));
+                Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Buddhism, "佛教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.BuddhismTex));
+                Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Shintoism, "神道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.ShintoismTex));
+                //根据实际阵营数量来生成模型
+                for (int i = 0; i < Info.CampInfo.campInfos.Count; i++)
+                {
+                    var newCampModel = Object.Instantiate(Info.PageCompnentInfo.Instance.CampModel, Info.PageCompnentInfo.Instance.campContent.transform);
+                    Info.PageCompnentInfo.campCardModels.Add(newCampModel);
+                }
             }
+            else
+            {
+                //根据实际领袖数量来生成模型
+                for (int i = 0; i < Info.CampInfo.campInfos.Count; i++)
+                {
+                    var newCampModel = Object.Instantiate(Info.PageCompnentInfo.Instance.CampModel, Info.PageCompnentInfo.Instance.campContent.transform);
+                    Info.PageCompnentInfo.campCardModels.Add(newCampModel);
+                }
+            }
+           
             //设置每个卡牌的属性
 
             for (int i = 0; i < Info.CampInfo.campInfos.Count; i++)

@@ -25,7 +25,6 @@ namespace TouhouMachineLearningSummary.Command
         internal static void ChangeFocusCamp()
         {
             var campInfo = Info.CampInfo.GetCampInfo(Info.PageCompnentInfo.focusCamp);
-           // Info.PageCompnentInfo.targetCardTexture.GetComponent<Image>().sprite = Sprite.Create(campInfo.campTex, new Rect(0, 0, campInfo.campTex.width, campInfo.campTex.height), Vector2.zero);
             Info.PageCompnentInfo.targetCardTexture.GetComponent<Image>().sprite = campInfo.campTex;
             Info.PageCompnentInfo.targetCardName.GetComponent<Text>().text = campInfo.campName;
             Info.PageCompnentInfo.targetCardTag.GetComponent<Text>().text ="强化 反制";

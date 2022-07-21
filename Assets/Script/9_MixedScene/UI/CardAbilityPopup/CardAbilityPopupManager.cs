@@ -86,61 +86,63 @@ namespace TouhouMachineLearningSummary.Manager
                    transform.GetChild(0).gameObject.SetActive(false);
                 }
             }
-        }
-        public void ChangeIntroduction<T>(T target)
-        {
-            string cardName = "";
-            string ability = "";
-            string Introduction = "";
-            if (typeof(T) == typeof(int))
+
+            void ChangeIntroduction<T>(T target)
             {
-                var cardInfo = CardAssemblyManager.GetLastCardInfo((int)(object)target);
-                cardName = cardInfo.TranslateName;
-                ability = cardInfo.TranslateAbility;
-                IntroductionBackground.gameObject.SetActive(false);
-            }
-            else
-            {
-                Card card = (Card)(object)target;
-                cardName = card.TranslateName;
-                ability = card.TranslateAbility;
-                int lineCount = 0;
-                card.cardStates.ForEach(state =>
+                string cardName = "";
+                string ability = "";
+                string Introduction = "";
+                if (typeof(T) == typeof(int))
                 {
-                    string newIntroduction = (state.ToString() ).TranslationGameText(IsGetIntroduction: true);
-                    //算出单个状态介绍的长度+换行的长度
-                    newIntroduction.Split('\n').ToList().ForEach(singleRowText =>
-                    {
-                        lineCount += singleRowText.Length / 13 + 1;
-                    });
-                    Introduction += newIntroduction + "\n";
-                });
-                //Debug.Log("状态栏行数"+lineCount);
-                card.cardFields.ToList().ForEach(field =>
-                {
-                    string newIntroduction = (field.Key.ToString()).TranslationGameText( IsGetIntroduction:true).Replace("$Point$", field.Value.ToString());
-                    //算出单个字段介绍的长度+换行的长度
-                    newIntroduction.Split('\n').ToList().ForEach(singleRowText =>
-                    {
-                        lineCount += singleRowText.Length / 13 + 1;
-                    });
-                    Introduction += newIntroduction + "\n";
-                });
-                if (lineCount>0)
-                {
-                    IntroductionBackground.gameObject.SetActive(true);
-                    IntroductionBackground.sizeDelta = new Vector2(300, lineCount * 15 + 100);
-                    IntroductionText.text = Introduction;
+                    var cardInfo = CardAssemblyManager.GetLastCardInfo((int)(object)target);
+                    cardName = cardInfo.TranslateName;
+                    ability = cardInfo.TranslateAbility;
+                    IntroductionBackground.gameObject.SetActive(false);
                 }
                 else
                 {
-                    IntroductionBackground.gameObject.SetActive(false);
+                    Card card = (Card)(object)target;
+                    cardName = card.TranslateName;
+                    ability = card.TranslateAbility;
+                    int lineCount = 0;
+                    card.cardStates.ForEach(state =>
+                    {
+                        string newIntroduction = (state.ToString()).TranslationGameText(IsGetIntroduction: true);
+                        //算出单个状态介绍的长度+换行的长度
+                        newIntroduction.Split('\n').ToList().ForEach(singleRowText =>
+                        {
+                            lineCount += singleRowText.Length / 13 + 1;
+                        });
+                        Introduction += newIntroduction + "\n";
+                    });
+                    //Debug.Log("状态栏行数"+lineCount);
+                    card.cardFields.ToList().ForEach(field =>
+                    {
+                        string newIntroduction = (field.Key.ToString()).TranslationGameText(IsGetIntroduction: true).Replace("$Point$", field.Value.ToString());
+                        //算出单个字段介绍的长度+换行的长度
+                        newIntroduction.Split('\n').ToList().ForEach(singleRowText =>
+                        {
+                            lineCount += singleRowText.Length / 13 + 1;
+                        });
+                        Introduction += newIntroduction + "\n";
+                    });
+                    if (lineCount > 0)
+                    {
+                        IntroductionBackground.gameObject.SetActive(true);
+                        IntroductionBackground.sizeDelta = new Vector2(300, lineCount * 15 + 100);
+                        IntroductionText.text = Introduction;
+                    }
+                    else
+                    {
+                        IntroductionBackground.gameObject.SetActive(false);
+                    }
                 }
+                Title.text = cardName;
+                AbilityBackground.sizeDelta = new Vector2(300, (ability.Length / 13 + 1) * 15 + 100);
+                //修改文本为富文本
+                AbilityText.text = ability;
             }
-            Title.text = cardName;
-            AbilityBackground.sizeDelta = new Vector2(300, (ability.Length / 13+1) * 15 + 100);
-            //修改文本为富文本
-            AbilityText.text = ability;
         }
+        public 
     }
 }
