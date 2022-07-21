@@ -159,7 +159,7 @@ namespace TouhouMachineLearningSummary.Command
                 else
                 {
                     int allowAddNum = cardInfo.cardRank == GameEnum.CardRank.Copper ? 3 : 1;
-                    if (usedCardIdsNum < Mathf.Min(allowAddNum, Command.CardLibraryCommand.GetHasCardNum(clickCard.name)))
+                    if (usedCardIdsNum < Mathf.Min(allowAddNum, Command.CardLibraryManager.GetHasCardNum(clickCard.name)))
                     {
                         Info.PageCompnentInfo.tempDeck.CardIds.Add(clickCardId);
                         Command.CardListCommand.Init(newTempDeck: Info.PageCompnentInfo.tempDeck, canChangeCard: true);

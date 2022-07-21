@@ -93,7 +93,7 @@ namespace TouhouMachineLearningSummary.Command
                     Command.BookCommand.ActiveCompment(isImmediately, BookCompmentType.DeckList, BookCompmentType.CardList);
                     break;
                 case MenuState.CardLibrary:
-                    Command.CardLibraryCommand.Init();
+                    Command.CardLibraryManager.Init();
                     Command.BookCommand.ActiveCompment(isImmediately, BookCompmentType.CardDetial, BookCompmentType.CardLibrary);
                     break;
                 case MenuState.Shrine:
@@ -108,7 +108,7 @@ namespace TouhouMachineLearningSummary.Command
                     break;
                 case MenuState.CardListChange:
                     Command.CardListCommand.Init(canChangeCard: true);
-                    Command.CardLibraryCommand.Init();
+                    Command.CardLibraryManager.Init();
                     Command.BookCommand.ActiveCompment(isImmediately, BookCompmentType.CardList, BookCompmentType.CardLibrary);
                     break;
                 case MenuState.CardDetail:

@@ -1,12 +1,14 @@
-﻿using System.Linq;
+﻿using UnityEngine;
+using System.Linq;
 using TMPro;
 using TouhouMachineLearningSummary.Extension;
-using TouhouMachineLearningSummary.Manager;
 using UnityEngine;
 using UnityEngine.UI;
-namespace TouhouMachineLearningSummary.Command
+using TouhouMachineLearningSummary.GameEnum;
+
+namespace TouhouMachineLearningSummary.Manager
 {
-    class CardLibraryCommand
+    public class CardLibraryManager : MonoBehaviour
     {
         /// <summary>
         /// 初始化牌库列表
@@ -37,7 +39,7 @@ namespace TouhouMachineLearningSummary.Command
             {
                 for (int i = 0; i < libraryCardNumber - libraryModelNumber; i++)
                 {
-                    var newCardModel = UnityEngine.Object.Instantiate(Info.PageCompnentInfo.cardLibraryCardModel, Info.PageCompnentInfo.cardLibraryContent.transform);
+                    var newCardModel = Instantiate(Info.PageCompnentInfo.cardLibraryCardModel, Info.PageCompnentInfo.cardLibraryContent.transform);
                     Info.PageCompnentInfo.libraryCardModels.Add(newCardModel);
                 }
             }
@@ -65,5 +67,17 @@ namespace TouhouMachineLearningSummary.Command
             }
         }
         public static int GetHasCardNum(string cardId) => Info.PageCompnentInfo.IsAdmin ? 3 : Info.AgainstInfo.onlineUserInfo.CardLibrary.ContainsKey(cardId) ? Info.AgainstInfo.onlineUserInfo.CardLibrary[cardId] : 0;
+        public void FocusLibraryCardOnMenu(GameObject cardModel)
+        {
+            CardAbilityPopupManager.focusCardID = CardAssemblyManager.lastMultiCardInfos[Info.PageCompnentInfo.libraryCardModels.IndexOf(cardModel)].cardID;
+            if (Command.MenuStateCommand.HasState(MenuState.CardLibrary))
+            {
+                Command.CardDetailCommand.ChangeFocusCard(CardAbilityPopupManager.focusCardID);
+                CardAbilityPopupManager.ChangeIntroduction(CardAbilityPopupManager.focusCardID);
+            }
+        }
+
+        public void FocusDeckCardOnMenu(GameObject cardModel) => CardAbilityPopupManager.focusCardID = CardAssemblyManager.lastMultiCardInfos[Info.PageCompnentInfo.deckCardModels.IndexOf(cardModel)].cardID;
+        public void LostFocusCardOnMenu() => CardAbilityPopupManager.focusCardID = 0;
     }
 }
