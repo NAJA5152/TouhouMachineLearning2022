@@ -9,8 +9,7 @@ namespace TouhouMachineLearningSummary.Command
     {
         public static void Init()
         {
-            //生成对应领袖
-            //Info.CardCompnentInfo.leaderCardInfos
+            
             
             if (true)
             {
