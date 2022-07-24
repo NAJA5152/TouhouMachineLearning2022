@@ -32,7 +32,7 @@ namespace TouhouMachineLearningSummary.Command
                 var info = Info.CampInfo.campInfos[i];
                 //卡牌对应场景模型
                 var s = Info.PageCompnentInfo.selectCardModels;
-                var newCardModel = Info.PageCompnentInfo.selectCardModels[i];
+                var newCardModel = Info.PageCompnentInfo.selectCardModels[i-1];
                 newCardModel.name = info.campName;
                 newCardModel.transform.localScale = Info.PageCompnentInfo.Instance.CampModel.transform.localScale;
                 newCardModel.transform.GetChild(0).GetComponent<Image>().sprite = info.campTex;
@@ -57,7 +57,7 @@ namespace TouhouMachineLearningSummary.Command
                 Info.PageCompnentInfo.selectCardModels.Add(newCampModel);
             }
             //设置每个卡牌的属性
-            for (int i = 1; i < leaders.Count(); i++)
+            for (int i = 0; i < leaders.Count(); i++)
             {
                 //卡牌信息集合
                 var info = leaders[i];
