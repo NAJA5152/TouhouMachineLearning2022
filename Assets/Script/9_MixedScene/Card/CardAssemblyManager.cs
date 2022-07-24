@@ -30,24 +30,25 @@ namespace TouhouMachineLearningSummary.Manager
         //当前使用的卡牌信息
         static List<CardModel> currenttSingleCardInfos;
         static List<CardModel> currentMultiCardInfos;
+        //最新版本的卡牌信息
+        [ShowInInspector]
+        static List<CardModel> lastSingleCardInfos;
+        [ShowInInspector]
+        static List<CardModel> lastMultiCardInfos;
         //最新版本的卡牌代码
         [ShowInInspector]
         static Assembly lastCardScripts;
-        //最新版本的卡牌信息
-        [ShowInInspector]
-        public static List<CardModel> lastSingleCardInfos;
-        [ShowInInspector]
-        public static List<CardModel> lastMultiCardInfos;
+
         //获取当前引用卡牌数据的日期
         public static string GetCurrentConfigDate => currentConfig.Version;
         [ShowInInspector]
-        public static List<CardModel> GetcurrentSingleCardInfos => currenttSingleCardInfos;
+        public static List<CardModel> CurrentSingleCardInfos => currenttSingleCardInfos;
         [ShowInInspector]
-        public static List<CardModel> GetcurrentMultiCardInfos => currentMultiCardInfos;
+        public static List<CardModel> CurrentMultiCardInfos => currentMultiCardInfos;
         [ShowInInspector]
-        public static List<CardModel> GetLastSingleCardInfos => lastSingleCardInfos;
+        public static List<CardModel> LastSingleCardInfos => lastSingleCardInfos;
         [ShowInInspector]
-        public static List<CardModel> GetLastMultiCardInfos => lastMultiCardInfos;
+        public static List<CardModel> LastMultiCardInfos => lastMultiCardInfos;
         //设置
         public static async Task SetCurrentAssembly(string verison)
         {
@@ -57,7 +58,7 @@ namespace TouhouMachineLearningSummary.Manager
             //装载“目标版本数据”到“当前版本数据”中，同时若未指定版本号，则将“当前版本数据”视为“最新版本数据”
             //当普通对战时，卡牌数据从“最新版本数据”中获取，当对战回放时，卡牌数据从“当前版本数据”中获取
 
-            var lastVerison = await  Command.NetCommand.GetCardConfigsVersionAsync();
+            var lastVerison = await Command.NetCommand.GetCardConfigsVersionAsync();
             //判断加载的目标版本
             var targetVerison = (verison == "") ? lastVerison : verison;
             if (cardConfigs.Keys.Contains(targetVerison))
@@ -158,8 +159,8 @@ namespace TouhouMachineLearningSummary.Manager
         public static CardModel GetCurrentCardInfos(int cardID)
         {
             CardModel cardModelInfo = new List<CardModel>()
-                .Union(GetcurrentSingleCardInfos)
-                .Union(GetcurrentMultiCardInfos)
+                .Union(CurrentSingleCardInfos)
+                .Union(CurrentMultiCardInfos)
                 .FirstOrDefault(info => info.cardID == cardID);
             if (cardModelInfo == null)
             {
@@ -175,8 +176,8 @@ namespace TouhouMachineLearningSummary.Manager
         public static CardModel GetLastCardInfo(int cardID)
         {
             CardModel cardModelInfo = new List<CardModel>()
-                .Union(GetLastSingleCardInfos)
-                .Union(GetLastMultiCardInfos)
+                .Union(LastSingleCardInfos)
+                .Union(LastMultiCardInfos)
                 .FirstOrDefault(info => info.cardID == cardID);
             if (cardModelInfo == null)
             {

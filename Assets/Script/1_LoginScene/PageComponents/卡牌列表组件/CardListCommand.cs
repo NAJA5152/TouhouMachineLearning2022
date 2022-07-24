@@ -72,7 +72,7 @@ namespace TouhouMachineLearningSummary.Command
                 int cardID = Info.PageCompnentInfo.distinctCardIds[i];
                 GameObject currentCardModel = Info.PageCompnentInfo.deckCardModels[i];
 
-                var info = CardAssemblyManager.lastMultiCardInfos.FirstOrDefault(cardInfo => cardInfo.cardID == cardID);
+                var info = CardAssemblyManager.LastMultiCardInfos.FirstOrDefault(cardInfo => cardInfo.cardID == cardID);
                 if (info != null)
                 {
                     currentCardModel.transform.GetChild(0).GetComponent<Text>().text = info.TranslateName;

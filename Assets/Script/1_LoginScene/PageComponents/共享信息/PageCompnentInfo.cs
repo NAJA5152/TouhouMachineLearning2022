@@ -92,15 +92,23 @@ namespace TouhouMachineLearningSummary.Info
         public static GameObject targetCardName;
         public static GameObject targetCardTag;
         public static GameObject targetCardAbility;
-        public static bool isCampIntroduction = false;
-        public static Camp focusCamp = Camp.Neutral;
+        
         ///////////////////////////////////////////////////////////阵营选择信息信息/////////////////////////////
 
         [Header("阵营组件")]
-        public static List<GameObject> campCardModels = new List<GameObject>();
-        public static Camp targetCamp = Camp.Neutral;
-        public GameObject campContent;
+        public static List<GameObject> selectCardModels = new List<GameObject>();
+        public static bool isCampIntroduction = false;
+        public static Camp focusCamp = Camp.Neutral;
+        public static Camp selectCamp = Camp.Neutral;
+
+        public static int focusLeaderID = 0;
+        public static int selectLeaderID = 0;
+
+        public GameObject modelContent;
+
         public GameObject CampModel;
+        public GameObject LeaderModel;
+
         public Sprite NeutralTex;
         public Sprite TaoismTex;
         public Sprite ShintoismTex;

@@ -99,9 +99,9 @@ namespace TouhouMachineLearningSummary.Command
                 }
             }
         }
-        public static async void CreatDeck()
+        public static async void CreatDeck(int LeaderId)
         {
-            Info.AgainstInfo.onlineUserInfo.Decks.Add(new Model.CardDeck("新卡组", 0, new List<int> { }));
+            Info.AgainstInfo.onlineUserInfo.Decks.Add(new Model.CardDeck("新卡组", LeaderId, new List<int> { }));
             Info.AgainstInfo.onlineUserInfo.UseDeckNum = Info.AgainstInfo.onlineUserInfo.Decks.Count - 1;
             //将牌库设为可编辑模式
             Info.PageCompnentInfo.isEditDeckMode = true;

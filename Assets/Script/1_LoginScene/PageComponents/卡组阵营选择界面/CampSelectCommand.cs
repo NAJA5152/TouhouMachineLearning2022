@@ -1,4 +1,5 @@
-﻿using TouhouMachineLearningSummary.GameEnum;
+﻿using System.Linq;
+using TouhouMachineLearningSummary.GameEnum;
 using UnityEngine;
 using UnityEngine.UI;
 using static TouhouMachineLearningSummary.Info.CampInfo;
@@ -7,76 +8,108 @@ namespace TouhouMachineLearningSummary.Command
 {
     class CampSelectCommand
     {
-        public static void Init()
+        public static void InitCamp()
         {
-            
-            
-            if (true)
+            Info.PageCompnentInfo.selectCardModels.ForEach(Object.Destroy);
+            Info.PageCompnentInfo.selectCardModels.Clear();
+            //初始化信息来源
+            Info.CampInfo.campInfos.Clear();
+            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Neutral, "中立", "请选择一个阵营", Info.PageCompnentInfo.Instance.NeutralTex));
+            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Taoism, "道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.TaoismTex));
+            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.science, "科学", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.scienceTex));
+            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Buddhism, "佛教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.BuddhismTex));
+            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Shintoism, "神道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.ShintoismTex));
+            //根据实际阵营数量来生成模型
+            for (int i = 1; i < Info.CampInfo.campInfos.Count; i++)
             {
-                //初始化信息来源
-                Info.CampInfo.campInfos.Clear();
-                Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Neutral, "中立", "请选择一个阵营", Info.PageCompnentInfo.Instance.NeutralTex));
-                Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Taoism, "道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.TaoismTex));
-                Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.science, "科学", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.scienceTex));
-                Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Buddhism, "佛教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.BuddhismTex));
-                Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Shintoism, "神道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.ShintoismTex));
-                //根据实际阵营数量来生成模型
-                for (int i = 0; i < Info.CampInfo.campInfos.Count; i++)
-                {
-                    var newCampModel = Object.Instantiate(Info.PageCompnentInfo.Instance.CampModel, Info.PageCompnentInfo.Instance.campContent.transform);
-                    Info.PageCompnentInfo.campCardModels.Add(newCampModel);
-                }
+                var newCampModel = Object.Instantiate(Info.PageCompnentInfo.Instance.CampModel, Info.PageCompnentInfo.Instance.modelContent.transform);
+                Info.PageCompnentInfo.selectCardModels.Add(newCampModel);
             }
-            else
-            {
-                //根据实际领袖数量来生成模型
-                for (int i = 0; i < Info.CampInfo.campInfos.Count; i++)
-                {
-                    var newCampModel = Object.Instantiate(Info.PageCompnentInfo.Instance.CampModel, Info.PageCompnentInfo.Instance.campContent.transform);
-                    Info.PageCompnentInfo.campCardModels.Add(newCampModel);
-                }
-            }
-           
             //设置每个卡牌的属性
-
-            for (int i = 0; i < Info.CampInfo.campInfos.Count; i++)
+            for (int i = 1; i < Info.CampInfo.campInfos.Count; i++)
             {
                 //卡牌信息集合
                 var info = Info.CampInfo.campInfos[i];
                 //卡牌对应场景模型
-                var newCardModel = Info.PageCompnentInfo.campCardModels[i];
+                var s = Info.PageCompnentInfo.selectCardModels;
+                var newCardModel = Info.PageCompnentInfo.selectCardModels[i];
                 newCardModel.name = info.campName;
                 newCardModel.transform.localScale = Info.PageCompnentInfo.Instance.CampModel.transform.localScale;
-                //Sprite cardTex = Sprite.Create(info.campTex, new Rect(0, 0, info.campTex.width, info.campTex.height), Vector2.zero);
                 newCardModel.transform.GetChild(0).GetComponent<Image>().sprite = info.campTex;
                 newCardModel.transform.GetChild(2).GetComponent<Text>().text = info.campName;
                 newCardModel.SetActive(true);
             }
         }
+        public static void InitLeader()
+        {
+            Info.PageCompnentInfo.selectCardModels.ForEach(Object.Destroy);
+            Info.PageCompnentInfo.selectCardModels.Clear();
+            var leaders = Manager.CardAssemblyManager
+                    .LastMultiCardInfos
+                    .Where(card => card.cardRank == CardRank.Leader)
+                    .Where(card => card.cardCamp == Info.PageCompnentInfo.selectCamp || card.cardCamp == Camp.Neutral)
+                    .ToList();
+
+            //根据实际领袖数量来生成模型
+            for (int i = 0; i < leaders.Count(); i++)
+            {
+                var newCampModel = Object.Instantiate(Info.PageCompnentInfo.Instance.LeaderModel, Info.PageCompnentInfo.Instance.modelContent.transform);
+                Info.PageCompnentInfo.selectCardModels.Add(newCampModel);
+            }
+            //设置每个卡牌的属性
+            for (int i = 1; i < leaders.Count(); i++)
+            {
+                //卡牌信息集合
+                var info = leaders[i];
+                //卡牌对应场景模型
+                var newCardModel = Info.PageCompnentInfo.selectCardModels[i];
+                newCardModel.name = info.TranslateName;
+                newCardModel.transform.localScale = Info.PageCompnentInfo.Instance.CampModel.transform.localScale;
+                newCardModel.transform.GetChild(0).GetComponent<Image>().sprite = info.GetCardSprite();
+                newCardModel.transform.GetChild(2).GetComponent<Text>().text = info.TranslateDescribe;
+                newCardModel.SetActive(true);
+            }
+        }
+        //左侧显焦点阵营
+        public static void FocusCamp(GameObject campModel)
+        {
+            Info.PageCompnentInfo.isCampIntroduction = true;
+            int selectRank = Info.PageCompnentInfo.selectCardModels.IndexOf(campModel);
+            Info.PageCompnentInfo.focusCamp = Info.CampInfo.campInfos[selectRank].camp;
+            Command.CardDetailCommand.ChangeFocusCamp();
+        }
+        //确定所选阵营
         public static void SelectCamp(GameObject campModel)
         {
-            int selectRank = Info.PageCompnentInfo.campCardModels.IndexOf(campModel);
-            Info.PageCompnentInfo.targetCamp = Info.CampInfo.campInfos[selectRank].camp;
+            int selectRank = Info.PageCompnentInfo.selectCardModels.IndexOf(campModel);
+            Info.PageCompnentInfo.selectCamp = Info.CampInfo.campInfos[selectRank].camp;
+        }
+        //左侧变更会所选阵营
+        public static void LostFocusCamp()
+        {
+            Info.PageCompnentInfo.focusCamp = Info.PageCompnentInfo.selectCamp;
+            Command.CardDetailCommand.ChangeFocusCamp();
+        }
+
+        //左侧显焦点领袖
+        public static void FocusLeader(GameObject campModel)
+        {
+            Info.PageCompnentInfo.isCampIntroduction = true;
+            int selectRank = Info.PageCompnentInfo.selectCardModels.IndexOf(campModel);
+            Info.PageCompnentInfo.focusCamp = Info.CampInfo.campInfos[selectRank].camp;
+            Command.CardDetailCommand.ChangeFocusCamp();
         }
         //选择对应阵营的领袖
         public static void SelectLeader(GameObject campModel)
         {
-            int selectRank = Info.PageCompnentInfo.campCardModels.IndexOf(campModel);
-            Info.PageCompnentInfo.targetCamp = Info.CampInfo.campInfos[selectRank].camp;
+            int selectRank = Info.PageCompnentInfo.selectCardModels.IndexOf(campModel);
+            Info.PageCompnentInfo.selectCamp = Info.CampInfo.campInfos[selectRank].camp;
         }
-        public static void FocusCamp(GameObject campModel)
+        //左侧变更会所选领袖
+        public static void LostFocusLeader()
         {
-            Info.PageCompnentInfo.isCampIntroduction = true;
-            int selectRank = Info.PageCompnentInfo.campCardModels.IndexOf(campModel);
-            Info.PageCompnentInfo.focusCamp = Info.CampInfo.campInfos[selectRank].camp;
-            Debug.Log("注释焦点阵营" + Info.PageCompnentInfo.focusCamp);
-            //int cardID = Info.CardCompnentInfo.multiModeCards[Info.CardCompnentInfo.deckCardModels.IndexOf(cardModel)].cardId;
-            //Control.GameUI.IntroductionControl.focusCardID = cardID;
-        }
-        public static void LostFocusCamp()
-        {
-            Info.PageCompnentInfo.focusCamp = Camp.Neutral;
-            //Control.GameUI.IntroductionControl.focusCardID = 0;
+            Info.PageCompnentInfo.focusCamp = Info.PageCompnentInfo.selectCamp;
+            Command.CardDetailCommand.ChangeFocusCamp();
         }
     }
 }

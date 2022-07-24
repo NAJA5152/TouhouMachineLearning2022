@@ -114,7 +114,7 @@ namespace TouhouMachineLearningSummary.Command
                 case MenuState.CardDetail:
                     break;
                 case MenuState.CampSelect:
-                    Command.CampSelectCommand.Init();
+                    Command.CampSelectCommand.InitCamp();
                     Command.BookCommand.ActiveCompment(isImmediately, BookCompmentType.CardDetial, BookCompmentType.CampSelect);
                     break;
                 case MenuState.WaitForBattle:

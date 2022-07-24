@@ -18,13 +18,13 @@ namespace TouhouMachineLearningSummary.Manager
             //牌库卡牌列表
             //var showCardList = CardAssemblyManager.GetLastMultiCardInfos;
 
-            Info.PageCompnentInfo.LibraryFilterCardList = CardAssemblyManager.GetLastMultiCardInfos;
+            Info.PageCompnentInfo.LibraryFilterCardList = CardAssemblyManager.LastMultiCardInfos;
             //如果当前是编辑卡组模式，则只显示指定阵营
             if (Info.PageCompnentInfo.isEditDeckMode)
             {
                 //showCardList = showCardList.Where(card => card.cardCamp == Info.CardCompnentInfo.targetCamp).ToList();
                 //showCardList = showCardList.Where(card => card.cardRank == GameEnum.CardRank.Silver).ToList();
-                Info.PageCompnentInfo.LibraryFilterCardList = Info.PageCompnentInfo.LibraryFilterCardList.Where(card => card.cardCamp == Info.PageCompnentInfo.targetCamp || card.cardCamp == GameEnum.Camp.Neutral).ToList();
+                Info.PageCompnentInfo.LibraryFilterCardList = Info.PageCompnentInfo.LibraryFilterCardList.Where(card => card.cardCamp == Info.PageCompnentInfo.selectCamp || card.cardCamp == GameEnum.Camp.Neutral).ToList();
                 //Info.CardCompnentInfo.LibraryFilterCardList = Info.CardCompnentInfo.LibraryFilterCardList.Where(card => card.cardRank == GameEnum.CardRank.Silver).ToList();
             }
             int libraryCardNumber = Info.PageCompnentInfo.LibraryFilterCardList.Count();
@@ -69,7 +69,7 @@ namespace TouhouMachineLearningSummary.Manager
         public static int GetHasCardNum(string cardId) => Info.PageCompnentInfo.IsAdmin ? 3 : Info.AgainstInfo.onlineUserInfo.CardLibrary.ContainsKey(cardId) ? Info.AgainstInfo.onlineUserInfo.CardLibrary[cardId] : 0;
         public void FocusLibraryCardOnMenu(GameObject cardModel)
         {
-            CardAbilityPopupManager.focusCardID = CardAssemblyManager.lastMultiCardInfos[Info.PageCompnentInfo.libraryCardModels.IndexOf(cardModel)].cardID;
+            CardAbilityPopupManager.focusCardID = CardAssemblyManager.LastMultiCardInfos[Info.PageCompnentInfo.libraryCardModels.IndexOf(cardModel)].cardID;
             if (Command.MenuStateCommand.HasState(MenuState.CardLibrary))
             {
                 Command.CardDetailCommand.ChangeFocusCard(CardAbilityPopupManager.focusCardID);
@@ -77,7 +77,7 @@ namespace TouhouMachineLearningSummary.Manager
             }
         }
 
-        public void FocusDeckCardOnMenu(GameObject cardModel) => CardAbilityPopupManager.focusCardID = CardAssemblyManager.lastMultiCardInfos[Info.PageCompnentInfo.deckCardModels.IndexOf(cardModel)].cardID;
+        public void FocusDeckCardOnMenu(GameObject cardModel) => CardAbilityPopupManager.focusCardID = CardAssemblyManager.LastMultiCardInfos[Info.PageCompnentInfo.deckCardModels.IndexOf(cardModel)].cardID;
         public void LostFocusCardOnMenu() => CardAbilityPopupManager.focusCardID = 0;
     }
 }

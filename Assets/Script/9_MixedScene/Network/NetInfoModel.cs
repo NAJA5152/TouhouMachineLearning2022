@@ -96,7 +96,7 @@ namespace TouhouMachineLearningSummary.Model
         [JsonIgnore]
         public CardDeck UseDeck
         {
-            get => Decks[UseDeckNum];
+            get => Decks.Count> UseDeckNum? Decks[UseDeckNum]:Decks[0];
             set => Decks[UseDeckNum] = value;
         }
         public PlayerInfo() { }

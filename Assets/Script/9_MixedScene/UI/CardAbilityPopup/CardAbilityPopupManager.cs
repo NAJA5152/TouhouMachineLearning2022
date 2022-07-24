@@ -53,7 +53,7 @@ namespace TouhouMachineLearningSummary.Manager
                     //}
                     if (Command.MenuStateCommand.HasState(MenuState.CampSelect))
                     {
-                        Command.CardDetailCommand.ChangeFocusCamp();
+                        //Command.CardDetailCommand.ChangeFocusCamp();
                     }
                     else
                     {
