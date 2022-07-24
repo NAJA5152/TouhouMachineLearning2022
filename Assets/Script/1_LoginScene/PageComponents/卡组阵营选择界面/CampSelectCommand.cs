@@ -14,25 +14,26 @@ namespace TouhouMachineLearningSummary.Command
             Info.PageCompnentInfo.selectCardModels.Clear();
             //初始化信息来源
             Info.CampInfo.campInfos.Clear();
-            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Neutral, "中立", "请选择一个阵营", Info.PageCompnentInfo.Instance.NeutralTex));
             Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Taoism, "道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.TaoismTex));
             Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.science, "科学", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.scienceTex));
             Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Buddhism, "佛教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.BuddhismTex));
             Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Shintoism, "神道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.ShintoismTex));
+            Info.CampInfo.campInfos.Add(new SingleCampInfo(Camp.Neutral, "中立", "请选择一个阵营", Info.PageCompnentInfo.Instance.NeutralTex));
+
             //根据实际阵营数量来生成模型
-            for (int i = 1; i < Info.CampInfo.campInfos.Count; i++)
+            for (int i = 0; i < Info.CampInfo.campInfos.Count - 1; i++)
             {
                 var newCampModel = Object.Instantiate(Info.PageCompnentInfo.Instance.CampModel, Info.PageCompnentInfo.Instance.modelContent.transform);
                 Info.PageCompnentInfo.selectCardModels.Add(newCampModel);
             }
             //设置每个卡牌的属性
-            for (int i = 1; i < Info.CampInfo.campInfos.Count; i++)
+            for (int i = 0; i < Info.CampInfo.campInfos.Count - 1; i++)
             {
                 //卡牌信息集合
                 var info = Info.CampInfo.campInfos[i];
                 //卡牌对应场景模型
                 var s = Info.PageCompnentInfo.selectCardModels;
-                var newCardModel = Info.PageCompnentInfo.selectCardModels[i-1];
+                var newCardModel = Info.PageCompnentInfo.selectCardModels[i];
                 newCardModel.name = info.campName;
                 newCardModel.transform.localScale = Info.PageCompnentInfo.Instance.CampModel.transform.localScale;
                 newCardModel.transform.GetChild(0).GetComponent<Image>().sprite = info.campTex;
