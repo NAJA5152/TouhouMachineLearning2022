@@ -1,0 +1,33 @@
+ManifestFileVersion: 0
+CRC: 2332230374
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: ae597a32c51066ecb2fe65b009ae9b1a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f267fd2d8bcb1179236b6179ac5313bc
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/GameResources/FieldAndState/model.psd
+- Assets/GameResources/FieldAndState/Soil.Png
+- Assets/GameResources/FieldAndState/None.png
+- Assets/GameResources/FieldAndState/Inspire.png
+- Assets/GameResources/FieldAndState/Water.png
+- Assets/GameResources/FieldAndState/Pary.png
+- Assets/GameResources/FieldAndState/Black.png
+- Assets/GameResources/FieldAndState/Furor.png
+- Assets/GameResources/FieldAndState/White.png
+- Assets/GameResources/FieldAndState/Docile.png
+- Assets/GameResources/FieldAndState/Fire.png
+- Assets/GameResources/FieldAndState/Seal.png
+- Assets/GameResources/FieldAndState/Shield.png
+- Assets/GameResources/FieldAndState/Energy.png
+- Assets/GameResources/FieldAndState/Wind.png
+Dependencies: []

@@ -1,0 +1,28 @@
+ManifestFileVersion: 0
+CRC: 3283910709
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 2750815ac11d7f7653f342320d110e46
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 1565cf67db937607d472027849a1cef2
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- "Assets/GameResources/Particle/\u51B2\u51FB\u6CE2.png"
+- Assets/GameResources/Particle/xing.png
+- Assets/GameResources/Particle/]904$I8W4B~(5DD}4U`JQAL.png
+- Assets/GameResources/Particle/Materials/Ring_3_tex.mat
+- "Assets/GameResources/Particle/Materials/\u51B2\u51FB\u6CE2.mat"
+- Assets/GameResources/Particle/Ring_3_tex.png
+Dependencies: []

@@ -1,0 +1,92 @@
+ManifestFileVersion: 0
+CRC: 187146832
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: f99078b0be7407ae0c4f351b9dac5c22
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f267fd2d8bcb1179236b6179ac5313bc
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/GameResources/CardTex/Multiplayer/2102005.png
+- Assets/GameResources/CardTex/Multiplayer/2012001.png
+- Assets/GameResources/CardTex/Multiplayer/2011004.png
+- Assets/GameResources/CardTex/Multiplayer/2102002.png
+- Assets/GameResources/CardTex/Multiplayer/2012007.png
+- Assets/GameResources/CardTex/Multiplayer/2003003.png
+- Assets/GameResources/CardTex/Multiplayer/2102001.png
+- Assets/GameResources/CardTex/Multiplayer/2011001.png
+- Assets/GameResources/CardTex/Multiplayer/2002002.png
+- Assets/GameResources/CardTex/Multiplayer/2103001.png
+- Assets/GameResources/CardTex/Multiplayer/2202002.png
+- Assets/GameResources/CardTex/Multiplayer/2103004.png
+- Assets/GameResources/CardTex/Multiplayer/2101003.png
+- Assets/GameResources/CardTex/Multiplayer/2201002.png
+- Assets/GameResources/CardTex/Multiplayer/2003002.png
+- Assets/GameResources/CardTex/Multiplayer/2013005.png
+- Assets/GameResources/CardTex/Multiplayer/2002001.png
+- Assets/GameResources/CardTex/Multiplayer/2012003.png
+- Assets/GameResources/CardTex/5_1C`}99{F`8PGZ[}TV6VXO.jpg
+- Assets/GameResources/CardTex/Multiplayer/2012004.png
+- Assets/GameResources/CardTex/Multiplayer/2101002.png
+- Assets/GameResources/CardTex/Multiplayer/2081001.png
+- Assets/GameResources/CardTex/Multiplayer/2201001.png
+- Assets/GameResources/CardTex/JNCJ5M~4(TWSMSZ2U]5T2DP.jpg
+- Assets/GameResources/CardTex/Multiplayer/2103005.png
+- Assets/GameResources/CardTex/Multiplayer/2000001.png
+- Assets/GameResources/CardTex/Multiplayer/2012005.png
+- Assets/GameResources/CardTex/Multiplayer/2011002.png
+- Assets/GameResources/CardTex/Multiplayer/2003005.png
+- Assets/GameResources/CardTex/Multiplayer/2091001.png
+- Assets/GameResources/CardTex/Multiplayer/2001003.png
+- Assets/GameResources/CardTex/Multiplayer/2092001.png
+- Assets/GameResources/CardTex/Multiplayer/2102004.png
+- Assets/GameResources/CardTex/Multiplayer/2012002.png
+- Assets/GameResources/CardTex/Multiplayer/2013002.png
+- Assets/GameResources/CardTex/Multiplayer/2201004.png
+- Assets/GameResources/CardTex/Multiplayer/2011003.png
+- Assets/GameResources/CardTex/Multiplayer/2003001.png
+- Assets/GameResources/CardTex/Multiplayer/2013007.png
+- Assets/GameResources/CardTex/Multiplayer/2203006.png
+- Assets/GameResources/CardTex/Multiplayer/2100001.png
+- Assets/GameResources/CardTex/Multiplayer/2001002.png
+- Assets/GameResources/CardTex/Multiplayer/2002004.png
+- Assets/GameResources/CardTex/Multiplayer/2101001.png
+- Assets/GameResources/CardTex/5IBHJ20XMVNYD08$168E56M.jpg
+- Assets/GameResources/CardTex/Multiplayer/2010001.png
+- Assets/GameResources/CardTex/Multiplayer/2300001.png
+- Assets/GameResources/CardTex/Multiplayer/2102006.png
+- Assets/GameResources/CardTex/Multiplayer/2202001.png
+- Assets/GameResources/CardTex/Multiplayer/2012006.png
+- Assets/GameResources/CardTex/Multiplayer/2002005.png
+- Assets/GameResources/CardTex/Multiplayer/2103002.png
+- Assets/GameResources/CardTex/default.png
+- Assets/GameResources/CardTex/Multiplayer/2081003.png
+- Assets/GameResources/CardTex/Multiplayer/2081002.png
+- Assets/GameResources/CardTex/Multiplayer/2001001.png
+- Assets/GameResources/CardTex/Multiplayer/2003004.png
+- Assets/GameResources/CardTex/Multiplayer/2203002.png
+- Assets/GameResources/CardTex/Multiplayer/2013004.png
+- Assets/GameResources/CardTex/Multiplayer/2002003.png
+- Assets/GameResources/CardTex/Multiplayer/2001004.png
+- Assets/GameResources/CardTex/Multiplayer/2013001.png
+- Assets/GameResources/CardTex/Multiplayer/2101004.png
+- Assets/GameResources/CardTex/Multiplayer/2082001.png
+- Assets/GameResources/CardTex/Multiplayer/2013003.png
+- Assets/GameResources/CardTex/Multiplayer/2012008.png
+- Assets/GameResources/CardTex/Multiplayer/2093001.png
+- Assets/GameResources/CardTex/Multiplayer/2102003.png
+- Assets/GameResources/CardTex/Multiplayer/2013006.png
+- Assets/GameResources/CardTex/Multiplayer/2002006.png
+- Assets/GameResources/CardTex/Multiplayer/2103003.png
+- Assets/GameResources/CardTex/Multiplayer/2200001.png
+- Assets/GameResources/CardTex/Multiplayer/2103006.png
+- Assets/GameResources/CardTex/5OQM022Z6J(Q}HB%NB3LC0B.jpg
+Dependencies: []

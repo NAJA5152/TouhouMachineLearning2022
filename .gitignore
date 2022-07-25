@@ -2,7 +2,6 @@ Library/*
 Log/*
 PC/*
 Assets/StreamingAssets/*
-AssetBundles/*
 .vs/*
 Library/ArtifactDB
 Library/ArtifactDB-lock
