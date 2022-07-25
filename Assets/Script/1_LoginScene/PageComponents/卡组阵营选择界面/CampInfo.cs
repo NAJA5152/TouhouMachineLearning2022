@@ -1,14 +1,18 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using TouhouMachineLearningSummary.GameEnum;
+using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 
 namespace TouhouMachineLearningSummary.Info
 {
     public class CampInfo
     {
-        public static List<SingleCampInfo> campInfos = new List<SingleCampInfo>();
-        public static SingleCampInfo GetCampInfo(Camp camp) => campInfos.FirstOrDefault(info => info.camp == camp);
+        //public static List<SingleCampInfo> campInfos = new List<SingleCampInfo>();
+        public static List<(Camp camp, string campName, string campIntroduction, Sprite campTex)> campInfos = new ();
+        public static List<CardModel> leaderInfos = new List<CardModel>();
+        public static (Camp camp, string campName, string campIntroduction, Sprite campTex) GetCampInfo(Camp camp) => campInfos.FirstOrDefault(info => info.camp == camp);
+        public static CardModel GetLeaderInfo(int leaderId) => leaderInfos.FirstOrDefault(leader => leader.cardID == leaderId);
         public class SingleCampInfo
         {
             public Camp camp;
