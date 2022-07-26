@@ -1,6 +1,7 @@
 Library/*
 Log/*
 PC/*
+ProjectSettings/*
 Assets/StreamingAssets/*
 .vs/*
 Library/ArtifactDB
@@ -13,7 +14,6 @@ Temp/*
 *.cache
 .vs/TouhouMachineLearning2021/v16/.suo
 *.log
-/*.csproj
 *.csproj
 *.cache
 OtherSolution/Server/.vs/*
@@ -38,5 +38,4 @@ ProjectSettings/PackageManagerSettings.asset
 *.sln
 *.csproj
 *.sln
-Packages/manifest.json
-Packages/manifest.json
+Packages/*

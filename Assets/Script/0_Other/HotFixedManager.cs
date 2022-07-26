@@ -24,6 +24,8 @@ public class HotFixedManager : MonoBehaviour
     public Slider slider;
     public GameObject RestartNotice;
     string DownLoadPath { get; set; } = "";
+    bool IsTestServer;
+    string ServerTag => IsTestServer?"Test":"PC";
     async void Start()
     {
         RestartNotice.transform.localScale = new Vector3(1, 0, 1);
@@ -55,7 +57,7 @@ public class HotFixedManager : MonoBehaviour
                 processText.text = $"{e.BytesReceived / 1024 / 1024}/{e.TotalBytesToReceive / 1024 / 1024} MB. {e.ProgressPercentage} %"; ;
                 slider.value = e.ProgressPercentage * 1.0f / 100;
             });
-            string OnlieMD5FiIeDatas = webClient.DownloadString(@"http://106.15.38.165:7777/PC/MD5.json");
+            string OnlieMD5FiIeDatas = webClient.DownloadString(@$"http://106.15.38.165:7777/AssetBundles/{ServerTag}/MD5.json");
             var Md5Dict = OnlieMD5FiIeDatas.ToObject<Dictionary<string, byte[]>>();
             Debug.LogError("MD5文件已加载完成");
 
@@ -70,26 +72,17 @@ public class HotFixedManager : MonoBehaviour
                 {
                     Debug.LogError("当前程序集路径为" + Directory.GetCurrentDirectory());
                     string currentGamePath = "";
-                    if (isEditor)
+                    if (isMobile)
                     {
-                        currentGamePath = @"Library\ScriptAssemblies\TouHouMachineLearning.dll";
-                        Debug.LogError("当前为编辑器" + currentGamePath);
+                        currentGamePath = Application.persistentDataPath;
+                        loadText.text = "当前为安卓,脚本路径在：" + currentGamePath;
+
+                        Debug.LogError("当前为安卓,脚本路径在：" + currentGamePath);
                     }
                     else
                     {
-                        if (isMobile)
-                        {
-                            currentGamePath = Application.persistentDataPath;
-                            loadText.text = "当前为安卓,脚本路径在：" + currentGamePath;
-
-                            Debug.LogError("当前为安卓,脚本路径在：" + currentGamePath);
-                        }
-                        else
-                        {
-                            //currentGamePath = (Directory.GetCurrentDirectory().Contains("PC") ? Directory.GetCurrentDirectory() : Directory.GetCurrentDirectory() + "\\PC") + @"\TouhouMachineLearning_Data\Managed\TouHouMachineLearning.dll";
-                            currentGamePath = new DirectoryInfo(Directory.GetCurrentDirectory()).GetFiles("TouHouMachineLearning.dll", SearchOption.AllDirectories).FirstOrDefault()?.FullName;
-                            Debug.LogError("当前为windows,脚本路径在：" + currentGamePath);
-                        }
+                        currentGamePath = new DirectoryInfo(Directory.GetCurrentDirectory()).GetFiles("TouHouMachineLearning.dll", SearchOption.AllDirectories).FirstOrDefault()?.FullName;
+                        Debug.LogError("当前为windows,脚本路径在：" + currentGamePath);
                     }
                     localFile = new FileInfo(currentGamePath);
                 }
@@ -121,7 +114,7 @@ public class HotFixedManager : MonoBehaviour
                             Debug.LogError("本地代码MD5值" + md5.ComputeHash(File.ReadAllBytes(localFile.FullName)).ToJson());
                             Debug.LogError("网络代码MD5值" + MD5FiIeData.Value.ToJson());
 
-                            await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}"), savePath);
+                            await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/AssetBundles/{ServerTag}/{MD5FiIeData.Key}"), savePath);
                             Debug.LogError("本地代码MD5值" + md5.ComputeHash(File.ReadAllBytes(localFile.FullName)).ToJson());
 
                             Debug.LogError("代码覆盖完毕，等待重启");
@@ -129,7 +122,7 @@ public class HotFixedManager : MonoBehaviour
                     }
                     else
                     {
-                        await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/PC/{MD5FiIeData.Key}"), savePath);
+                        await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/AssetBundles/{ServerTag}/{MD5FiIeData.Key}"), savePath);
                     }
                     Debug.LogWarning(MD5FiIeData.Key + "下载完成");
                     loadText.text = MD5FiIeData.Key + "下载完成";

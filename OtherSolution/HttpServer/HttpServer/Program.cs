@@ -8,29 +8,14 @@ class MyWebServer
 
     public static  void Main()
     {
-        Task.Run(async () => {
-            int num = 0;
-            Console.WriteLine(DateTime.Now);
-            string text = await add1(ref num);
-            Console.WriteLine(DateTime.Now);
-            Console.WriteLine(text);
-            Console.WriteLine(num);
-        });
-        
-        Task<string> add1(ref int num)
-        {
-            num++;
-            return delay(num);
-            async Task<string> delay(int num)
-            {
-                await Task.Delay(1000);
-                return "succerss";
-            }
-        }
+        Creat();
+    }
 
+    private static void Creat()
+    {
         TcpListener server = new TcpListener(IPAddress.Parse("0.0.0.0"), 7777);
         server.Start();
-        Console.WriteLine("启动服务器");
+        Console.WriteLine("启动Http服务器");
         while (true)
         {
             //接受新连接
@@ -95,18 +80,18 @@ class MyWebServer
                 }
             });
         }
+        static void SendHeader(string sHttpVersion, string contentType, int iTotBytes, string sStatusCode, Socket mySocket)
+        {
+            string sBuffer = "";
+            sBuffer = sBuffer + sHttpVersion + sStatusCode + "\r\n";
+            sBuffer = sBuffer + "Server: cx1193719-b\r\n";
+            sBuffer = sBuffer + $"Content-Type: {contentType}\r\n";
+            sBuffer = sBuffer + "Accept-Ranges: bytes\r\n";
+            sBuffer = sBuffer + "Content-Length: " + iTotBytes + "\r\n\r\n";
+            Byte[] bSendData = Encoding.ASCII.GetBytes(sBuffer);
+            SendToBrowser(bSendData, mySocket);
+            Console.WriteLine("Total Bytes : " + iTotBytes.ToString());
+        }
+        static void SendToBrowser(Byte[] bSendData, Socket mySocket) => mySocket.Send(bSendData, bSendData.Length, 0);
     }
-    static void SendHeader(string sHttpVersion, string contentType, int iTotBytes, string sStatusCode, Socket mySocket)
-    {
-        string sBuffer = "";
-        sBuffer = sBuffer + sHttpVersion + sStatusCode + "\r\n";
-        sBuffer = sBuffer + "Server: cx1193719-b\r\n";
-        sBuffer = sBuffer + $"Content-Type: {contentType}\r\n";
-        sBuffer = sBuffer + "Accept-Ranges: bytes\r\n";
-        sBuffer = sBuffer + "Content-Length: " + iTotBytes + "\r\n\r\n";
-        Byte[] bSendData = Encoding.ASCII.GetBytes(sBuffer);
-        SendToBrowser(bSendData, mySocket);
-        Console.WriteLine("Total Bytes : " + iTotBytes.ToString());
-    }
-    static void SendToBrowser(Byte[] bSendData, Socket mySocket) => mySocket.Send(bSendData, bSendData.Length, 0);
 }

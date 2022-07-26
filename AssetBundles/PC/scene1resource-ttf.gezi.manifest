@@ -1,0 +1,23 @@
+ManifestFileVersion: 0
+CRC: 895247181
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 0529332d00f0dc951384ef14a357154d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: f1f3281e9c74f90bf058e8461320afcb
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 128
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/Plugins/TextMesh Pro/Resources/Fonts & Materials/HYZhuanShuF.ttf
+Dependencies: []

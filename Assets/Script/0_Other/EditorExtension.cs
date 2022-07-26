@@ -85,7 +85,7 @@ namespace TouhouMachineLearningSummary.Other
             string OnlieMD5FiIeDatas = "{}";
             try
             {
-                OnlieMD5FiIeDatas = webClient.DownloadString(@"http://106.15.38.165:7777/Test/MD5.json");
+                OnlieMD5FiIeDatas = webClient.DownloadString(@"http://106.15.38.165:7777/AssetBundles/Test/MD5.json");
             }
             catch ( Exception e)
             {
@@ -114,7 +114,7 @@ namespace TouhouMachineLearningSummary.Other
                     //UnityEngine.Debug.LogWarning(item.Key + "无更改，无需上传");
                 }
             }
-            await touhouHub.InvokeAsync<bool>("UploadAssetBundles", @$"AssetBundles/PC/MD5.json", File.ReadAllBytes(@$"AssetBundles/PC/MD5.json"));
+            await touhouHub.InvokeAsync<bool>("UploadAssetBundles", @$"AssetBundles/Test/MD5.json", File.ReadAllBytes(@$"AssetBundles/PC/MD5.json"));
             UnityEngine.Debug.LogWarning("MD5.json上传完成");
             await touhouHub.StopAsync();
 
@@ -175,26 +175,26 @@ namespace TouhouMachineLearningSummary.Other
             UnityEngine.Debug.LogWarning("MD5值校验生成完毕,开始上传文件");
 
 
-            //获取网络md5文件，判断需要上传的文件
+
+            //准备上传数据
+            var touhouHub = new HubConnectionBuilder().WithUrl($"http://106.15.38.165:495/TouHouHub").Build();
+            touhouHub.ServerTimeout = new TimeSpan(0, 5, 0);
+            await touhouHub.StartAsync();
+            //上传pc端AB包
+            //获取PC端网络md5文件，判断需要上传的文件
             WebClient webClient = new WebClient();
             string OnlieMD5FiIeDatas = "{}";
             try
             {
-                OnlieMD5FiIeDatas = webClient.DownloadString(@"http://106.15.38.165:7777/PC/MD5.json");
+                OnlieMD5FiIeDatas = webClient.DownloadString(@"http://106.15.38.165:7777/AssetBundles/PC/MD5.json");
             }
             catch (Exception e)
             {
                 UnityEngine.Debug.LogError("无法下载网络上MD5.json文件" + e.Message);
             }
-
             webClient.Dispose();
 
             var onlineMD5Dict = OnlieMD5FiIeDatas.ToObject<Dictionary<string, byte[]>>();
-
-            //上传pc端AB包
-            var touhouHub = new HubConnectionBuilder().WithUrl($"http://106.15.38.165:495/TouHouHub").Build();
-            touhouHub.ServerTimeout = new TimeSpan(0, 5, 0);
-            await touhouHub.StartAsync();
             foreach (var item in localMD5Dict)
             {
                 //如果文件不存在或者md5值不相等才上传
@@ -210,7 +210,41 @@ namespace TouhouMachineLearningSummary.Other
                 }
             }
             await touhouHub.InvokeAsync<bool>("UploadAssetBundles", @$"AssetBundles/PC/MD5.json", File.ReadAllBytes(@$"AssetBundles/PC/MD5.json"));
-            UnityEngine.Debug.LogWarning("MD5.json上传完成");
+            UnityEngine.Debug.LogWarning("PC端MD5.json上传完成");
+            //上传安卓端AB包
+
+            //上传pc端AB包
+            //获取PC端网络md5文件，判断需要上传的文件
+            webClient = new WebClient();
+            OnlieMD5FiIeDatas = "{}";
+            try
+            {
+                OnlieMD5FiIeDatas = webClient.DownloadString(@"http://106.15.38.165:7777/AssetBundles/PC/MD5.json");
+            }
+            catch (Exception e)
+            {
+                UnityEngine.Debug.LogError("无法下载网络上MD5.json文件" + e.Message);
+            }
+            webClient.Dispose();
+
+            onlineMD5Dict = OnlieMD5FiIeDatas.ToObject<Dictionary<string, byte[]>>();
+            foreach (var item in localMD5Dict)
+            {
+                //如果文件不存在或者md5值不相等才上传
+                if (!onlineMD5Dict.ContainsKey(item.Key) || !onlineMD5Dict[item.Key].SequenceEqual(item.Value))
+                {
+                    UnityEngine.Debug.LogWarning(item.Key + "开始传输");
+                    var result = await touhouHub.InvokeAsync<bool>("UploadAssetBundles", @$"AssetBundles/Android/{item.Key }", File.ReadAllBytes(@$"AssetBundles/Android/{item.Key }"));
+                    UnityEngine.Debug.LogWarning(item.Key + "传输" + result);
+                }
+                else
+                {
+                    //UnityEngine.Debug.LogWarning(item.Key + "无更改，无需上传");
+                }
+            }
+            await touhouHub.InvokeAsync<bool>("UploadAssetBundles", @$"AssetBundles/Android/MD5.json", File.ReadAllBytes(@$"AssetBundles/Android/MD5.json"));
+            UnityEngine.Debug.LogWarning("安卓端MD5.json上传完成");
+
             await touhouHub.StopAsync();
 
             Dictionary<string, byte[]> CreatMD5FIle(string direPath)

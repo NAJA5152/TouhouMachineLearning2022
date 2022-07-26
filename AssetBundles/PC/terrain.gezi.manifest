@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3087243231
+CRC: 990854139
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: af08dce5c7ea24fbe851a124ddf843a3
+    Hash: 2a6b0bda567a02277f686782ed11f835
   TypeTreeHash:
     serializedVersion: 2
     Hash: 789e2790b0ef41f0a83539b7c77b0723
@@ -23,5 +23,5 @@ Assets:
 - Assets/GameResources/Terrain/65S48OEOHVRS[DJO`AP~YPT.png
 - Assets/GameResources/Terrain/NewLayer 3.terrainlayer
 Dependencies:
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/shader.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/texture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/shader.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/texture.gezi

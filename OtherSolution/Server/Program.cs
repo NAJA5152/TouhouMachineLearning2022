@@ -6,6 +6,10 @@ using System;
 MongoDbCommand.Init();
 Console.WriteLine("数据库已初始化");
 HoldListManager.Init();
+Console.WriteLine("匹配管理器已初始化");
+HttpServer.Init();
+Console.WriteLine("资源服务器已初始化");
+
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddRazorPages();
 builder.Services.AddAntDesign();
@@ -41,9 +45,9 @@ Task.Run(() =>
     while (true)
     {
         Console.ReadLine();
-        //RoomManager.Rooms.ForEach(room => Console.WriteLine(room.Summary.ToJson()));
-        RoomManager.Rooms.FirstOrDefault()?.Summary.UploadAgentSummary(0, 0);
-        Console.WriteLine("上传完毕");
+        RoomManager.Rooms.ForEach(room => Console.WriteLine(room.Summary.ToJson()));
+        //RoomManager.Rooms.FirstOrDefault()?.Summary.UploadAgentSummary(0, 0);
+        //Console.WriteLine("上传完毕");
     }
 });
 Timer timer = new Timer(new TimerCallback((o) => HoldListManager.Match()));

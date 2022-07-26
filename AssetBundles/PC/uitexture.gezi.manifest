@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2299339222
+CRC: 1706520137
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: f606efb8121108bf222a714744fd01c4
+    Hash: 6034ba5e0d39d1aa1051e056785d103f
   TypeTreeHash:
     serializedVersion: 2
     Hash: 381496af92353fa3d070cc3e9f7ebcf5
@@ -56,4 +56,4 @@ Assets:
 - "Assets/GameResources/UITexture/\u6807\u9898.png"
 - "Assets/GameResources/UITexture/\u7BAD\u5934.png"
 Dependencies:
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/bullet1.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/bullet1.gezi

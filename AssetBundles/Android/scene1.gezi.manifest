@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2803400889
+CRC: 3658910713
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 840333c87b05dbcdb36f0993c520dee8
+    Hash: 14ad9c0a192f8a1c1596181652424286
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3d58f633bab55002f7318d0d97a0ecfb
@@ -197,12 +197,12 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Scenes/1_LoginScene.unity
 Dependencies:
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/coin.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/icon.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/loginscene.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/material.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/scene.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/shader.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/texture.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/ttf.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/uitexture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/coin.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/icon.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/loginscene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/material.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/scene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/shader.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/texture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/ttf.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/uitexture.gezi

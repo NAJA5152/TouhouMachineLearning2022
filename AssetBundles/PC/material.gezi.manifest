@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 947411984
+CRC: 1559116247
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 9f31e45fbf81a7812354ea4d3107ce02
+    Hash: b1c7b22709b2723156574a6883685f70
   TypeTreeHash:
     serializedVersion: 2
     Hash: a1b8ae978d101eec5d12a49988ba7adf
@@ -34,9 +34,9 @@ Assets:
 - Assets/GameResources/Material/cardBack.mat
 - Assets/GameResources/Material/Card.mat
 Dependencies:
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/battlescene.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/bullet1.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/loginscene.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/shader.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/texture.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/uitexture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/battlescene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/bullet1.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/loginscene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/shader.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/texture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/uitexture.gezi
