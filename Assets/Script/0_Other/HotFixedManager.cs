@@ -29,7 +29,7 @@ public class HotFixedManager : MonoBehaviour
     async void Start()
     {
         RestartNotice.transform.localScale = new Vector3(1, 0, 1);
-        versiousText.text = "我要改成v7";
+        versiousText.text = "我要改成v1";
         ConfigManager.InitConfig();
         loadText.text = "初始化网络";
         _ = NetCommand.Init();
@@ -42,13 +42,22 @@ public class HotFixedManager : MonoBehaviour
         bool isNeedRestartApplication = false;
         bool isEditor = Application.isEditor;//是否是编辑器状态
         bool isMobile = Application.isMobilePlatform;//是否是移动平台
+        loadText.text = "检查AB包中";
+
         //编辑器模式下不进行下载
         if (!isEditor)
         {
+            loadText.text = "开始下载文件" ;
             Debug.LogWarning("开始下载文件" + System.DateTime.Now);
             if (isMobile)
             {
                 var direPath = new DirectoryInfo(Application.persistentDataPath);
+                File.WriteAllText(Application.persistentDataPath + "/2.ini", "1");
+                loadText.text = Application.persistentDataPath + "/2.ini"+File.Exists(Application.persistentDataPath + "/2.txt");
+                File.WriteAllText(direPath.FullName + "/1.ini","1");
+                File.WriteAllText(direPath.Parent.FullName + "/3.ini","1");
+                File.WriteAllText(direPath.Parent.FullName + @"/pram-shadow-files/assets/bin/Data/4.ini","1");
+                //loadText.text = "安卓端数据存储路径为" + direPath.FullName;
                 Debug.LogError("安卓端数据存储路径为" + direPath.FullName);
                 direPath.GetFiles("*.*").ForEach(file =>
                 {
