@@ -87,9 +87,9 @@ namespace TouhouMachineLearningSummary.Other
             {
                 OnlieMD5FiIeDatas = webClient.DownloadString(@"http://106.15.38.165:7777/AssetBundles/Test/MD5.json");
             }
-            catch ( Exception e)
+            catch (Exception e)
             {
-                UnityEngine.Debug.LogError("无法下载网络上MD5.json文件"+e.Message);
+                UnityEngine.Debug.LogError("无法下载网络上MD5.json文件" + e.Message);
             }
 
             webClient.Dispose();
@@ -117,24 +117,6 @@ namespace TouhouMachineLearningSummary.Other
             await touhouHub.InvokeAsync<bool>("UploadAssetBundles", @$"AssetBundles/Test/MD5.json", File.ReadAllBytes(@$"AssetBundles/PC/MD5.json"));
             UnityEngine.Debug.LogWarning("MD5.json上传完成");
             await touhouHub.StopAsync();
-
-            Dictionary<string, byte[]> CreatMD5FIle(string direPath)
-            {
-                MD5 md5 = new MD5CryptoServiceProvider();
-                Dictionary<string, byte[]> MD5s = new();
-                new DirectoryInfo(direPath).GetFiles("*.*").ToList().ForEach(file =>
-                {
-                    //只上传代码和gezi文件
-                    if (file.Extension == ".gezi" || file.Extension == ".dll")
-                    {
-                        byte[] result = md5.ComputeHash(File.ReadAllBytes(file.FullName));
-                        MD5s[file.Name] = result;
-                    }
-                });
-                md5.Dispose();
-                File.WriteAllText(direPath + @"\MD5.json", MD5s.ToJson());
-                return MD5s;
-            }
         }
         [MenuItem("Public/发布正式版游戏热更资源文件", priority = 104)]
         static async void BuildReleaseAssetBundles()
@@ -180,6 +162,7 @@ namespace TouhouMachineLearningSummary.Other
             var touhouHub = new HubConnectionBuilder().WithUrl($"http://106.15.38.165:495/TouHouHub").Build();
             touhouHub.ServerTimeout = new TimeSpan(0, 5, 0);
             await touhouHub.StartAsync();
+            /////////////////////////////////////////////////////////////////PC///////////////////////////////////////////////////////////////////////////////////////////
             //上传pc端AB包
             //获取PC端网络md5文件，判断需要上传的文件
             WebClient webClient = new WebClient();
@@ -211,15 +194,14 @@ namespace TouhouMachineLearningSummary.Other
             }
             await touhouHub.InvokeAsync<bool>("UploadAssetBundles", @$"AssetBundles/PC/MD5.json", File.ReadAllBytes(@$"AssetBundles/PC/MD5.json"));
             UnityEngine.Debug.LogWarning("PC端MD5.json上传完成");
+            /////////////////////////////////////////////////////////////////Android///////////////////////////////////////////////////////////////////////////////////////
             //上传安卓端AB包
-
-            //上传pc端AB包
             //获取PC端网络md5文件，判断需要上传的文件
             webClient = new WebClient();
             OnlieMD5FiIeDatas = "{}";
             try
             {
-                OnlieMD5FiIeDatas = webClient.DownloadString(@"http://106.15.38.165:7777/AssetBundles/PC/MD5.json");
+                OnlieMD5FiIeDatas = webClient.DownloadString(@"http://106.15.38.165:7777/AssetBundles/Android/MD5.json");
             }
             catch (Exception e)
             {
@@ -244,26 +226,24 @@ namespace TouhouMachineLearningSummary.Other
             }
             await touhouHub.InvokeAsync<bool>("UploadAssetBundles", @$"AssetBundles/Android/MD5.json", File.ReadAllBytes(@$"AssetBundles/Android/MD5.json"));
             UnityEngine.Debug.LogWarning("安卓端MD5.json上传完成");
-
             await touhouHub.StopAsync();
-
-            Dictionary<string, byte[]> CreatMD5FIle(string direPath)
+        }
+        static Dictionary<string, byte[]> CreatMD5FIle(string direPath)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            Dictionary<string, byte[]> MD5s = new();
+            new DirectoryInfo(direPath).GetFiles("*.*").ToList().ForEach(file =>
             {
-                MD5 md5 = new MD5CryptoServiceProvider();
-                Dictionary<string, byte[]> MD5s = new();
-                new DirectoryInfo(direPath).GetFiles("*.*").ToList().ForEach(file =>
+                //只上传代码和gezi文件
+                if (file.Extension == ".gezi" || file.Extension == ".dll")
                 {
-                    //只上传代码和gezi文件
-                    if (file.Extension == ".gezi" || file.Extension == ".dll")
-                    {
-                        byte[] result = md5.ComputeHash(File.ReadAllBytes(file.FullName));
-                        MD5s[file.Name] = result;
-                    }
-                });
-                md5.Dispose();
-                File.WriteAllText(direPath + @"\MD5.json", MD5s.ToJson());
-                return MD5s;
-            }
+                    byte[] result = md5.ComputeHash(File.ReadAllBytes(file.FullName));
+                    MD5s[file.Name] = result;
+                }
+            });
+            md5.Dispose();
+            File.WriteAllText(direPath + @"\MD5.json", MD5s.ToJson());
+            return MD5s;
         }
 
         [MenuItem("Scene/载入热更场景", priority = 151)]
