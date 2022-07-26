@@ -25,7 +25,7 @@ public class HotFixedManager : MonoBehaviour
     public GameObject RestartNotice;
     string DownLoadPath { get; set; } = "";
     bool IsTestServer;
-    string ServerTag => IsTestServer?"Test":"PC";
+    string ServerTag => IsTestServer ? "Test" : "PC";
     async void Start()
     {
         RestartNotice.transform.localScale = new Vector3(1, 0, 1);
@@ -46,6 +46,15 @@ public class HotFixedManager : MonoBehaviour
         if (!isEditor)
         {
             Debug.LogWarning("开始下载文件" + System.DateTime.Now);
+            if (isMobile)
+            {
+                var direPath = new DirectoryInfo(Application.persistentDataPath);
+                Debug.LogError("安卓端数据存储路径为" + direPath.FullName);
+                direPath.GetFiles("*.*").ForEach(file =>
+                {
+                    Debug.LogError("安卓端数文件为" + file.FullName);
+                });
+            }
             DownLoadPath = Application.streamingAssetsPath + "/Assetbundles/";
             Directory.CreateDirectory(DownLoadPath);
             //加载MD5文件
