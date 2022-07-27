@@ -23,7 +23,7 @@ public class HotFixedManager : MonoBehaviour
     public Text versiousText;
     public Slider slider;
     public GameObject RestartNotice;
-    string DownLoadPath { get; set; } = "";
+    
     bool IsTestServer;
     string ServerTag => IsTestServer ? "Test" : "PC";
     async void Start()
@@ -47,6 +47,18 @@ public class HotFixedManager : MonoBehaviour
         //编辑器模式下不进行下载
         if (!isEditor)
         {
+            //AB包存储路径
+            string DownLoadPath = isMobile switch
+            {
+                true => Application.persistentDataPath + $"/Assetbundles/{ServerTag}/",
+                false => Application.streamingAssetsPath + $"/Assetbundles/{ServerTag}/"
+            };
+            //程序集存储路径
+            string dllFIleRootPath = isMobile switch
+            {
+                true => Application.persistentDataPath,
+                false => Directory.GetCurrentDirectory()
+            };
             loadText.text = "开始下载文件" ;
             Debug.LogWarning("开始下载文件" + System.DateTime.Now);
             if (isMobile)
@@ -64,8 +76,6 @@ public class HotFixedManager : MonoBehaviour
                     Debug.LogError("安卓端数文件为" + file.FullName);
                 });
             }
-            DownLoadPath = Application.streamingAssetsPath + "/Assetbundles/";
-            Directory.CreateDirectory(DownLoadPath);
             //加载MD5文件
             WebClient webClient = new WebClient();
             //加速下载速度
@@ -79,30 +89,21 @@ public class HotFixedManager : MonoBehaviour
             var Md5Dict = OnlieMD5FiIeDatas.ToObject<Dictionary<string, byte[]>>();
             Debug.LogError("MD5文件已加载完成");
 
-            loadText.text = "安卓压缩包下载中：";
+            loadText.text = "MD5文件已加载完成：";
+            Directory.CreateDirectory(DownLoadPath);
 
             //校验本地文件
             MD5 md5 = new MD5CryptoServiceProvider();
             foreach (var MD5FiIeData in Md5Dict)
             {
+                //当前校验的本地文件
                 FileInfo localFile = null;
                 if (MD5FiIeData.Key.EndsWith(".dll")) //如果是游戏程序集dll文件，则根据不同平台对比不同路径下的游戏程序集dll
                 {
                     Debug.LogError("当前程序集路径为" + Directory.GetCurrentDirectory());
-                    string currentGamePath = "";
-                    if (isMobile)
-                    {
-                        currentGamePath = Application.persistentDataPath;
-                        loadText.text = "当前为安卓,脚本路径在：" + currentGamePath;
-
-                        Debug.LogError("当前为安卓,脚本路径在：" + currentGamePath);
-                    }
-                    else
-                    {
-                        currentGamePath = new DirectoryInfo(Directory.GetCurrentDirectory()).GetFiles("TouHouMachineLearning.dll", SearchOption.AllDirectories).FirstOrDefault()?.FullName;
-                        Debug.LogError("当前为windows,脚本路径在：" + currentGamePath);
-                    }
-                    localFile = new FileInfo(currentGamePath);
+                    string currentDllPath = new DirectoryInfo(dllFIleRootPath).GetFiles("TouHouMachineLearning.dll", SearchOption.AllDirectories).FirstOrDefault()?.FullName;
+                    Debug.LogError("当前为脚本路径在：" + currentDllPath);
+                    localFile = new FileInfo(currentDllPath);
                 }
                 else
                 {
@@ -111,7 +112,6 @@ public class HotFixedManager : MonoBehaviour
 
                 if (localFile.Exists && MD5FiIeData.Value.SequenceEqual(md5.ComputeHash(File.ReadAllBytes(localFile.FullName))))
                 {
-                    //Debug.LogWarning(MD5FiIeData.Key + "校验成功");
                     loadText.text = MD5FiIeData.Key + "校验成功";
                 }
                 else
