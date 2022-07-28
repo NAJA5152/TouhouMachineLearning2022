@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 2734227550
+CRC: 1333121135
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 0dcc8a153d7adb7a8bf8d034418fcdb2
+    Hash: 6f9ba24be67e2d486d8e9d54b9c2fed8
   TypeTreeHash:
     serializedVersion: 2
     Hash: d8ea4c085910022a1486a82b0b71a37e
@@ -50,6 +50,7 @@ Assets:
 - "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u80CC\u9762/New_Graph_basecolor.png"
 - "Assets/GameResources/Texture/\u5CA9\u77F3/stone - roughness.png"
 - "Assets/GameResources/Texture/\u7075\u68A6\u5361\u80CC/normal.png"
+- Assets/GameResources/Texture/6K(M[OI[S]I_%6HH2U2C_HN.png
 - "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u80CC\u9762/New_Graph_ambientOcclusion.png"
 - "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_metallic.png"
 - "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u80CC\u9762/\u65B0\u5EFA\u6750\u8D28.mat"
@@ -83,6 +84,7 @@ Assets:
 - "Assets/GameResources/Texture/\u5CA9\u77F3/Materials/stone - baseColor.mat"
 - "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_opacity.png"
 - "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_height.png"
+- Assets/GameResources/Texture/65S48OEOHVRS[DJO`AP~YPT.png
 - "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_roughness.png"
 - "Assets/GameResources/Texture/\u5CA9\u77F3/Materials/stone - ambientOcclusion.mat"
 - "Assets/GameResources/Texture/\u4E66/\u4E66\u9875 2.png"

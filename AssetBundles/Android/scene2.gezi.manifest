@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 154489642
+CRC: 738584482
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 208ea010cdbfdaf736b542a6d368d19a
+    Hash: 7a70b56250a6586a27f0ea4769859626
   TypeTreeHash:
     serializedVersion: 2
     Hash: 7f9ab16fb8d9fb8ac5c4a1fb28e79fd0
@@ -196,9 +196,8 @@ Dependencies:
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/battlescene.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/charactar.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/coin.gezi
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/material.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/prefabs.gezi
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/shader.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/shader_material.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/texture.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/ttf.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/uitexture.gezi

@@ -64,6 +64,7 @@ namespace TouhouMachineLearningSummary.Other
                             .ForEach(file =>
                             {
                                 string path = file.FullName.Replace(Directory.GetCurrentDirectory() + @"\", "");
+                                UnityEngine.Debug.LogWarning(dire.Name);
                                 AssetImporter.GetAtPath(path).assetBundleName = $"{dire.Name}.gezi";
                             });
 

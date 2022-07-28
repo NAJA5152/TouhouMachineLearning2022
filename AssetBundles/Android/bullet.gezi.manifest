@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3906174993
+CRC: 3714634729
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: bb9ae83726dd34e99e5d9f996b2019ab
+    Hash: f9bce18e34a87cd505d74078a35fa0d2
   TypeTreeHash:
     serializedVersion: 2
     Hash: 7331934ff07f4127093fd907508841fe
@@ -83,6 +83,5 @@ Assets:
 - Assets/GameResources/Bullet/HurtParticle.prefab
 Dependencies:
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/bullet1.gezi
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/material.gezi
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/shader.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/shader_material.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/texture.gezi

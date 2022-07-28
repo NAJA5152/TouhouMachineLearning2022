@@ -1,0 +1,113 @@
+ManifestFileVersion: 0
+CRC: 2222424803
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 8633e2dcb6dbb2dbb785323cab33b7c4
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 9fac91197ec966724cf8e3669d1b0734
+HashAppended: 0
+ClassTypes:
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 84
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/GameResources/Shader_Material/Use/cardBack.shadergraph
+- "Assets/GameResources/Shader_Material/Use/\u8774\u8776.mat"
+- Assets/GameResources/Shader_Material/CardLibraryTexture.mat
+- Assets/GameResources/Shader_Material/TheWorld.mat
+- Assets/GameResources/Shader_Material/Use/IconBreak.shadergraph
+- Assets/GameResources/Shader_Material/UIBackageGround.shadergraph
+- Assets/GameResources/Shader_Material/(YN]}2J_}G(U0EGMM{7}X(L.png
+- Assets/GameResources/Shader_Material/65M%PEM(NCB(34LM~VRYR6U.png
+- "Assets/GameResources/Shader_Material/\u4E3B\u754C\u9762/\u5361\u724C\u9762\u677F.mat"
+- Assets/GameResources/Shader_Material/Use/Book.shadergraph
+- Assets/GameResources/Shader_Material/Use/Blur.shadergraph
+- Assets/GameResources/Shader_Material/Materials/LightFront.mat
+- Assets/GameResources/Shader_Material/cardPoint.mat
+- Assets/GameResources/Shader_Material/Region.mat
+- "Assets/GameResources/Shader_Material/\u65E0\u5149sader.shadergraph"
+- Assets/GameResources/Shader_Material/Scroll.mat
+- Assets/GameResources/Shader_Material/Shield.shadergraph
+- Assets/GameResources/Shader_Material/Arrow.mat
+- Assets/GameResources/Shader_Material/Use/New Shader Sub Graph.shadersubgraph
+- "Assets/GameResources/Shader_Material/\u4E3B\u754C\u9762/LibraryCard.mat"
+- Assets/GameResources/Shader_Material/LeaderPhoto.mat
+- Assets/GameResources/Shader_Material/BackImage.shadergraph
+- Assets/GameResources/Shader_Material/LeaderPhoto.shadergraph
+- "Assets/GameResources/Shader_Material/\u4E3B\u754C\u9762/Book.mat"
+- Assets/GameResources/Shader_Material/blur.shadergraph
+- Assets/GameResources/Shader_Material/Use/UiScaler.shadergraph
+- "Assets/GameResources/Shader_Material/\u5BF9\u8BDD\u7CFB\u7EDF/\u6587\u672C\u6846.mat"
+- "Assets/GameResources/Shader_Material/Materials/\u8FB9\u6846.mat"
+- Assets/GameResources/Shader_Material/Qcode.shadergraph
+- Assets/GameResources/Shader_Material/Use/Page_shader.shadergraph
+- Assets/GameResources/Shader_Material/the.shadergraph
+- "Assets/GameResources/Shader_Material/Use/\u5168\u606F\u6295\u5F71.shadergraph"
+- Assets/GameResources/Shader_Material/ce9e83400bab181da98ae97481dc24bf.png
+- Assets/GameResources/Shader_Material/UIBackageGround.mat
+- "Assets/GameResources/Shader_Material/Use/\u8774\u8776.shadergraph"
+- "Assets/GameResources/Shader_Material/\u95EA\u5361.mat"
+- Assets/GameResources/Shader_Material/cardBack.mat
+- Assets/GameResources/Shader_Material/Use/MapLine.mat
+- Assets/GameResources/Shader_Material/Use/IconBreak.mat
+- Assets/GameResources/Shader_Material/Loading.mat
+- "Assets/GameResources/Shader_Material/Materials/\u7075\u68A6.mat"
+- Assets/GameResources/Shader_Material/Use/Card.shadergraph
+- "Assets/GameResources/Shader_Material/\u5B57\u4F53\u6D88\u878D.shadergraph"
+- "Assets/GameResources/Shader_Material/Use/\u5168\u606F\u6295\u5F71.mat"
+- "Assets/GameResources/Shader_Material/\u95EA\u73B0.shadergraph"
+- Assets/GameResources/Shader_Material/Shield.mat
+- Assets/GameResources/Shader_Material/Use/MapLine.shadergraph
+- "Assets/GameResources/Shader_Material/Use/\u70DB\u706B.shadergraph"
+- Assets/GameResources/Shader_Material/Use/Page.mat
+- Assets/GameResources/Shader_Material/Shader Graphs_test.mat
+- Assets/GameResources/Shader_Material/Use/PageTurning.shadergraph
+- "Assets/GameResources/Shader_Material/\u7F1D\u9699.png"
+- Assets/GameResources/Shader_Material/test.shadergraph
+- Assets/GameResources/Shader_Material/furry.mat
+- Assets/GameResources/Shader_Material/blur.mat
+- Assets/GameResources/Shader_Material/92717d4bcd40e592abd4a3ad1146a39d.png
+- "Assets/GameResources/Shader_Material/Use/\u70DB\u706B.mat"
+- Assets/GameResources/Shader_Material/Use/Blur.mat
+- "Assets/GameResources/Shader_Material/\u504F\u79FB.png"
+- Assets/GameResources/Shader_Material/_NIQHS)_]LF77JSA8B1165G.png
+- Assets/GameResources/Shader_Material/Use/LibraryCard.shadergraph
+- "Assets/GameResources/Shader_Material/\u5B66\u4E60\u6CD5\u7EBF.shadergraph"
+- "Assets/GameResources/Shader_Material/\u95EA\u73B0.mat"
+- Assets/GameResources/Shader_Material/Use/UiScaler.mat
+- Assets/GameResources/Shader_Material/furry.shadergraph
+- Assets/GameResources/Shader_Material/BackImage.mat
+- Assets/GameResources/Shader_Material/gap.mat
+- Assets/GameResources/Shader_Material/Scroll.shadergraph
+- Assets/GameResources/Shader_Material/Use/gap.shadergraph
+- Assets/GameResources/Shader_Material/Page.shadergraph
+- Assets/GameResources/Shader_Material/Page.mat
+- Assets/GameResources/Shader_Material/0C7ACAA97C9B50622272BDD699917923.jpg
+- Assets/GameResources/Shader_Material/default.mat
+- Assets/GameResources/Shader_Material/Use/PageTurning.mat
+- Assets/GameResources/Shader_Material/Materials/_NIQHS)_]LF77JSA8B1165G.mat
+- Assets/GameResources/Shader_Material/qiege.shadergraph
+- Assets/GameResources/Shader_Material/New Shader Graph.shadergraph
+- Assets/GameResources/Shader_Material/Loading.shadergraph
+- Assets/GameResources/Shader_Material/Blur (2).mat
+- "Assets/GameResources/Shader_Material/\u65E0\u5149.mat"
+- Assets/GameResources/Shader_Material/sub/uvSpilt.shadersubgraph
+- "Assets/GameResources/Shader_Material/Use/\u62A4\u76FE.shadergraph"
+- Assets/GameResources/Shader_Material/Use/Region.shadergraph
+- Assets/GameResources/Shader_Material/Card.mat
+- "Assets/GameResources/Shader_Material/\u6D4B\u8BD5.shadergraph"
+Dependencies:
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/battlescene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/bullet1.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/icon.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/loginscene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/texture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/uitexture.gezi

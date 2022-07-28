@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 13582488
+CRC: 2787891897
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 44811d68130cdc801d28e5f76bc07512
+    Hash: 0870ede4c5478a0953a31ccf867bc5b3
   TypeTreeHash:
     serializedVersion: 2
     Hash: 89852c27d1991945d2669466399abbd1
@@ -108,6 +108,6 @@ Assets:
 - Assets/GameResources/Prefabs/arrow 1.fbx
 - Assets/GameResources/Prefabs/Arrow.prefab
 Dependencies:
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/material.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/shader_material.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/texture.gezi
 - D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/ttf.gezi
