@@ -12,16 +12,9 @@ namespace TouhouMachineLearningSummary.Manager
     public partial class ConfigManager : MonoBehaviour
     {
         static ConfigInfoModel configInfo = new ConfigInfoModel();
-        static string ConfigFileSavePath =>
-#if UNITY_ANDROID //安卓
-                Application.persistentDataPath;
-#else
-                Directory.GetCurrentDirectory();
-#endif
+        static string ConfigFileSavePath => Application.isMobilePlatform ? Application.persistentDataPath : Directory.GetCurrentDirectory();
 
         private static void SaveConfig() => File.WriteAllText(ConfigFileSavePath + "/GameConfig.ini", configInfo.ToJson());
-
-
         public static void InitConfig()
         {
             //判断有无本地配置文件
@@ -42,10 +35,28 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 Debug.Log("加载已有配置文件");
                 configInfo = File.ReadAllText(ConfigFileSavePath + "/GameConfig.ini").ToObject<ConfigInfoModel>();
-                Screen.SetResolution(192*6,108*6,false);
+                Screen.SetResolution(192 * 6, 108 * 6, false);
                 TranslateManager.currentLanguage = configInfo.UseLanguage;
             }
+
+
         }
+        /// <summary>
+        /// 根据当前平台和配置文件获得相应热更版本的标签
+        /// </summary>
+        /// <returns></returns>
+        public static string GetServerTag()
+        {
+            if (Application.isMobilePlatform)
+            {
+                return "Android";
+            }
+            else
+            {
+                return (configInfo.IsTestServer == 1) ? "Test" : "PC";
+            }
+        }
+        /////////////////////////////////////////////////////////////////////////////游戏设置界面指令////////////////////////////////////////////////////////////////////////////////
         public TextMeshProUGUI ResolutionText;
         public TextMeshProUGUI LanguageText;
         public TextMeshProUGUI CodeText;

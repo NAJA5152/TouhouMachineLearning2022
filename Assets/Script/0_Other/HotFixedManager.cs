@@ -23,9 +23,6 @@ public class HotFixedManager : MonoBehaviour
     public Text versiousText;
     public Slider slider;
     public GameObject RestartNotice;
-    
-    bool IsTestServer;
-    string ServerTag => IsTestServer ? "Test" : "PC";
     async void Start()
     {
         RestartNotice.transform.localScale = new Vector3(1, 0, 1);
@@ -50,8 +47,8 @@ public class HotFixedManager : MonoBehaviour
             //AB包存储路径
             string DownLoadPath = isMobile switch
             {
-                true => Application.persistentDataPath + $"/Assetbundles/{ServerTag}/",
-                false => Application.streamingAssetsPath + $"/Assetbundles/{ServerTag}/"
+                true => Application.persistentDataPath + $"/Assetbundles/{ConfigManager.GetServerTag()}/",
+                false => Application.streamingAssetsPath + $"/Assetbundles/{ConfigManager.GetServerTag()}/"
             };
             //程序集存储路径
             string dllFIleRootPath = isMobile switch
@@ -74,8 +71,11 @@ public class HotFixedManager : MonoBehaviour
                 direPath.GetFiles("*.*").ForEach(file =>
                 {
                     Debug.LogError("安卓端数文件为" + file.FullName);
+                    loadText.text += "安卓端数文件为" + file.FullName;
                 });
             }
+            Directory.CreateDirectory(DownLoadPath);
+
             //加载MD5文件
             WebClient webClient = new WebClient();
             //加速下载速度
@@ -85,12 +85,12 @@ public class HotFixedManager : MonoBehaviour
                 processText.text = $"{e.BytesReceived / 1024 / 1024}/{e.TotalBytesToReceive / 1024 / 1024} MB. {e.ProgressPercentage} %"; ;
                 slider.value = e.ProgressPercentage * 1.0f / 100;
             });
-            string OnlieMD5FiIeDatas = webClient.DownloadString(@$"http://106.15.38.165:7777/AssetBundles/{ServerTag}/MD5.json");
+            string OnlieMD5FiIeDatas = webClient.DownloadString(@$"http://106.15.38.165:7777/AssetBundles/{ConfigManager.GetServerTag()}/MD5.json");
             var Md5Dict = OnlieMD5FiIeDatas.ToObject<Dictionary<string, byte[]>>();
             Debug.LogError("MD5文件已加载完成");
 
             loadText.text = "MD5文件已加载完成：";
-            Directory.CreateDirectory(DownLoadPath);
+            //Directory.CreateDirectory(DownLoadPath);
 
             //校验本地文件
             MD5 md5 = new MD5CryptoServiceProvider();
@@ -132,7 +132,7 @@ public class HotFixedManager : MonoBehaviour
                             Debug.LogError("本地代码MD5值" + md5.ComputeHash(File.ReadAllBytes(localFile.FullName)).ToJson());
                             Debug.LogError("网络代码MD5值" + MD5FiIeData.Value.ToJson());
 
-                            await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/AssetBundles/{ServerTag}/{MD5FiIeData.Key}"), savePath);
+                            await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/AssetBundles/{ConfigManager.GetServerTag()}/{MD5FiIeData.Key}"), savePath);
                             Debug.LogError("本地代码MD5值" + md5.ComputeHash(File.ReadAllBytes(localFile.FullName)).ToJson());
 
                             Debug.LogError("代码覆盖完毕，等待重启");
@@ -140,7 +140,7 @@ public class HotFixedManager : MonoBehaviour
                     }
                     else
                     {
-                        await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/AssetBundles/{ServerTag}/{MD5FiIeData.Key}"), savePath);
+                        await webClient.DownloadFileTaskAsync(new System.Uri(@$"http://106.15.38.165:7777/AssetBundles/{ConfigManager.GetServerTag()}/{MD5FiIeData.Key}"), savePath);
                     }
                     Debug.LogWarning(MD5FiIeData.Key + "下载完成");
                     loadText.text = MD5FiIeData.Key + "下载完成";
