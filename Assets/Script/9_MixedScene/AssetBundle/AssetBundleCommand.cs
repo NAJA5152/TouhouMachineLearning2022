@@ -22,9 +22,33 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (AlreadyInit) { return; }
             AlreadyInit = true;
+           
+            string targetPath = "";
             //选择从下载下来的热更新目录拉去还是本地获取
             //当为热更模式且不是编辑器时从游戏数据更新路径加载，否在直接加载本地的
-            string targetPath = isHotFixedLoad&&!Application.isEditor ? Application.streamingAssetsPath + $"/AssetBundles/{"PC"}/" : "AssetBundles/PC";
+            if (isHotFixedLoad)
+            {
+                if (Application.isEditor)
+                {
+                    targetPath = "AssetBundles/PC";
+                }
+                else
+                {
+                    if (Application.isMobilePlatform)
+                    {
+                        targetPath = Application.persistentDataPath + $"/AssetBundles/Android/";
+                    }
+                    else
+                    {
+                        targetPath = Application.streamingAssetsPath + $"/AssetBundles/PC/";
+                    }
+                }
+            }
+            else
+            {
+                targetPath = "AssetBundles/PC";
+            }
+
             Directory.CreateDirectory(targetPath);
 
             List<Task> ABLoadTask = new List<Task>();
@@ -66,8 +90,8 @@ namespace TouhouMachineLearningSummary.Command
             var targetAssets = assets.FirstOrDefault(asset => asset.Key.Contains(tag.ToLower())).Value;
             if (targetAssets != null)
             {
-                var targetAsset = targetAssets.FirstOrDefault(asset => asset.name == fileName&&asset.GetType()==typeof(T));
-                if (targetAsset==null)
+                var targetAsset = targetAssets.FirstOrDefault(asset => asset.name == fileName && asset.GetType() == typeof(T));
+                if (targetAsset == null)
                 {
                     Debug.LogError("无法找到" + fileName);
                 }

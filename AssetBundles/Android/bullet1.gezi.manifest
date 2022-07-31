@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3026650634
+CRC: 1832405458
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: d1e2c8fede4ce424b84694339a227a3e
+    Hash: 5160e8161a91d1bb1a60bd64f33bc94d
   TypeTreeHash:
     serializedVersion: 2
     Hash: a1b8ae978d101eec5d12a49988ba7adf
@@ -21,4 +21,4 @@ Assets:
 - Assets/GameResources/bullet1/laser.shadergraph
 - Assets/GameResources/bullet1/white.png
 Dependencies:
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/texture.gezi
+- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/texture.gezi

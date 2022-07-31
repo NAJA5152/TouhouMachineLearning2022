@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 956063005
+CRC: 2137802497
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: e2e20b018db67b4eea9bf2262e9d3f59
+    Hash: 46f6940975cc041a1bdade93645279c8
   TypeTreeHash:
     serializedVersion: 2
     Hash: f267fd2d8bcb1179236b6179ac5313bc
@@ -27,11 +27,13 @@ Assets:
 - Assets/GameResources/CardTex/Multiplayer/2103001.png
 - Assets/GameResources/CardTex/Multiplayer/2202002.png
 - Assets/GameResources/CardTex/Multiplayer/2103004.png
+- Assets/GameResources/CardTex/6~[FD2OUF0%U_5S8EF8`MWH.jpg
 - Assets/GameResources/CardTex/Multiplayer/2101003.png
 - Assets/GameResources/CardTex/Multiplayer/2201002.png
-- Assets/GameResources/CardTex/Multiplayer/2003002.png
+- Assets/GameResources/CardTex/CF57US7AM3LO1GWAXA`${@6.jpg
 - Assets/GameResources/CardTex/Multiplayer/2013005.png
 - Assets/GameResources/CardTex/Multiplayer/2002001.png
+- Assets/GameResources/CardTex/Multiplayer/2003002.png
 - Assets/GameResources/CardTex/Multiplayer/2012003.png
 - Assets/GameResources/CardTex/5_1C`}99{F`8PGZ[}TV6VXO.jpg
 - Assets/GameResources/CardTex/Multiplayer/2012004.png
@@ -50,6 +52,7 @@ Assets:
 - Assets/GameResources/CardTex/Multiplayer/2102004.png
 - Assets/GameResources/CardTex/Multiplayer/2012002.png
 - Assets/GameResources/CardTex/Multiplayer/2013002.png
+- Assets/GameResources/CardTex/M(QP`QL9%$8DV)W_LCETT~D.jpg
 - Assets/GameResources/CardTex/Multiplayer/2201004.png
 - Assets/GameResources/CardTex/Multiplayer/2011003.png
 - Assets/GameResources/CardTex/Multiplayer/2003001.png
@@ -82,9 +85,11 @@ Assets:
 - Assets/GameResources/CardTex/Multiplayer/2013003.png
 - Assets/GameResources/CardTex/Multiplayer/2012008.png
 - Assets/GameResources/CardTex/Multiplayer/2093001.png
+- Assets/GameResources/CardTex/ZWM8~RGKAR]M3%}U[Z3S6M7.jpg
 - Assets/GameResources/CardTex/Multiplayer/2102003.png
 - Assets/GameResources/CardTex/Multiplayer/2013006.png
 - Assets/GameResources/CardTex/Multiplayer/2002006.png
+- Assets/GameResources/CardTex/BJ3HTQ13(W5IQJZ(2(RU[5A.jpg
 - Assets/GameResources/CardTex/Multiplayer/2103003.png
 - Assets/GameResources/CardTex/Multiplayer/2200001.png
 - Assets/GameResources/CardTex/Multiplayer/2103006.png
