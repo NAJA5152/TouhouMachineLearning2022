@@ -312,9 +312,19 @@
   "Close": {
     "Tag": "Close",
     "Ch": "封闭",
-    "Ch_Introduction": "封闭：无法打出",
+    "Ch_Introduction": "封闭：背面展示，不计算点数，达成指定条件后触发反射效果并翻开",
     "Tc": "",
     "En": "Close",
+    "En_Introduction": "",
+    "geyu": "",
+    "": ""
+  },
+  "Durance": {
+    "Tag": "Durance",
+    "Ch": "禁锢",
+    "Ch_Introduction": "禁锢：无法打出",
+    "Tc": "",
+    "En": "",
     "En_Introduction": "",
     "geyu": "",
     "": ""
@@ -341,7 +351,7 @@
   },
   "Secret": {
     "Tag": "Secret",
-    "Ch": "盖牌",
+    "Ch": "隐秘",
     "Ch_Introduction": "隐秘：无法被选中，无法查看效果，同时不计入点数计算，状态消失时翻开",
     "Tc": "",
     "En": "Secret",

@@ -5,7 +5,7 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// 卡牌名称:五谷丰登
+    /// 卡牌名称:五谷丰登之术
     /// 卡牌能力:自身触发位移效果后，获得2点增益
     /// </summary>
     public class Card2202003 : Card

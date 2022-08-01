@@ -5,8 +5,8 @@ using TouhouMachineLearningSummary.GameEnum;
 namespace TouhouMachineLearningSummary.CardSpace
 {
     /// <summary>
-    /// 卡牌名称:1/2的赌徒
-    /// 卡牌能力:展现卡组中最上方的铜卡和银卡，铜卡为正面形式，银卡为背面形式，从中选择一张打出
+    /// 卡牌名称:祈求命运的赌徒
+    /// 卡牌能力:展现牌库中最上方的铜卡，选择是否打出，若选择了跳过或牌组中不存在铜卡，则直接打出牌库最上方的银卡
     /// </summary>
     public class Card2202005 : Card
     {

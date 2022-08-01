@@ -255,10 +255,10 @@ namespace TouhouMachineLearningSummary.Other
             BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
             buildPlayerOptions.scenes = new[] { "Assets/Scenes/0_HotfixedScene.unity" };
             buildPlayerOptions.target = BuildTarget.Android;
-
+            buildPlayerOptions.locationPathName = "Android";
             // 正常构建并运行游戏，这会在 Android 设备上安装应用程序
-            buildPlayerOptions.options = BuildOptions.AutoRunPlayer;
-            BuildPipeline.BuildPlayer(buildPlayerOptions);
+            //buildPlayerOptions.options = BuildOptions.AutoRunPlayer;
+            //BuildPipeline.BuildPlayer(buildPlayerOptions);
 
             // 修改 Unity 项目中的某些脚本
             // 为应用程序打补丁并运行此应用程序

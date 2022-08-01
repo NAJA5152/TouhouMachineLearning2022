@@ -49,9 +49,21 @@ public class HotFixedManager : MonoBehaviour
         //loadText.text = "初始化网络";
         //_ = NetCommand.Init();
         loadText.text = "校验资源包";
-        await CheckAssetBundles();
+        await  CheckAssetBundles();
     }
+    //已下好任务数
+    int downloadTaskCount;
+    //总下载任务
+    List<Task> downloadTaskList= new();
+    //当前下载文件
+    string currentDownloadFileName;
 
+    private void Update()
+    {
+        processText.text = $"{currentDownloadFileName}  {downloadTaskList.Count()}/{downloadTaskList.Count()} %"; ;
+        slider.value = downloadTaskList.Count()==0?1:downloadTaskCount*1f/downloadTaskList.Count();
+    }
+    //校验本地文件
     private async Task CheckAssetBundles()
     {
         bool isNeedRestartApplication = false;
@@ -66,13 +78,14 @@ public class HotFixedManager : MonoBehaviour
             Directory.CreateDirectory(downLoadPath);
 
             //加载MD5文件
-            var progressMessageHandler = new ProgressMessageHandler(new HttpClientHandler());
-            progressMessageHandler.HttpReceiveProgress += (_, e) =>
-            {
-                processText.text = $"{e.BytesTransferred / 1024 / 1024}/{e.TotalBytes / 1024 / 1024} MB. {e.ProgressPercentage} %"; ;
-                slider.value = e.ProgressPercentage * 1.0f / 100;
-            };
-            var httpClient = new HttpClient(progressMessageHandler);
+            //var progressMessageHandler = new ProgressMessageHandler(new HttpClientHandler());
+            //progressMessageHandler.HttpReceiveProgress += (_, e) =>
+            //{
+            //    processText.text = $"{e.BytesTransferred / 1024 / 1024}/{e.TotalBytes / 1024 / 1024} MB. {e.ProgressPercentage} %"; ;
+            //    slider.value = e.ProgressPercentage * 1.0f / 100;
+            //};
+            //var httpClient = new HttpClient(progressMessageHandler);
+            var httpClient = new HttpClient();
             var responseMessage = httpClient.GetAsync($"http://106.15.38.165:7777/AssetBundles/{ConfigManager.GetServerTag()}/MD5.json").Result;
             if (!responseMessage.IsSuccessStatusCode)
             {
@@ -86,7 +99,9 @@ public class HotFixedManager : MonoBehaviour
             loadText.text = "MD5文件已加载完成：";
 
             //校验本地文件
-            List<Task> downloadTaskList = new();
+            downloadTaskCount = 0;
+            downloadTaskList.Clear();
+
             foreach (var MD5FiIeData in Md5Dict)
             {
                 //当前校验的本地文件
@@ -128,11 +143,13 @@ public class HotFixedManager : MonoBehaviour
                     }
                     downloadTaskList.Add(Task.Run(async () =>
                     {
+                        currentDownloadFileName = "正在下载："+MD5FiIeData.Key;
                         var fileData = await httpClient.GetAsync($"http://106.15.38.165:7777/AssetBundles/{ConfigManager.GetServerTag()}/{MD5FiIeData.Key}").Result.Content.ReadAsByteArrayAsync();
                         File.WriteAllBytes(savePath, fileData);
+                        currentDownloadFileName = "下载完成：" + MD5FiIeData.Key;
                         Debug.LogWarning(MD5FiIeData.Key + "下载完成");
-                        loadText.text = MD5FiIeData.Key + "下载完成";
                         Debug.LogWarning("结束下载文件" + localFile.Name + " " + System.DateTime.Now);
+                        downloadTaskCount++;
                     }));
                 }
             }

@@ -36,8 +36,8 @@ namespace TouhouMachineLearningSummary.Command
             //若编辑器下则直接加载本地GameCard的dll卡牌脚本
             //否则从数据库下载卡牌脚本
 #if UNITY_EDITOR
-            //Type componentType = Assembly.Load(File.ReadAllBytes(@"Library\ScriptAssemblies\GameCard.dll")).GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
-            Type componentType = Type.GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
+            Type componentType = Assembly.Load(File.ReadAllBytes(@"Library\ScriptAssemblies\GameCard.dll")).GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
+            //Type componentType = Type.GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
             newCard.AddComponent(componentType);
 
 #else
