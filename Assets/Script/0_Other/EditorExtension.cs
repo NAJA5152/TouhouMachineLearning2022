@@ -147,6 +147,8 @@ namespace TouhouMachineLearningSummary.Other
             UnityEngine.Debug.LogWarning("PC打包完毕");
 
             BuildPipeline.BuildAssetBundles(AndroidOutputPath, BuildAssetBundleOptions.None, BuildTarget.Android);
+
+          
             UnityEngine.Debug.LogWarning("安卓打包完毕");
 
             UnityEngine.Debug.LogWarning("开始生成MD5值校验文件");
@@ -246,6 +248,24 @@ namespace TouhouMachineLearningSummary.Other
             md5.Dispose();
             File.WriteAllText(direPath + @"\MD5.json", MD5s.ToJson());
             return MD5s;
+        }
+        [MenuItem("Public/打包安卓", priority = 151)]
+        static void BuileAndroid()
+        {
+            BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions();
+            buildPlayerOptions.scenes = new[] { "Assets/Scenes/0_HotfixedScene.unity" };
+            buildPlayerOptions.target = BuildTarget.Android;
+
+            // 正常构建并运行游戏，这会在 Android 设备上安装应用程序
+            buildPlayerOptions.options = BuildOptions.AutoRunPlayer;
+            BuildPipeline.BuildPlayer(buildPlayerOptions);
+
+            // 修改 Unity 项目中的某些脚本
+            // 为应用程序打补丁并运行此应用程序
+            //（Unity 仅会重新编译脚本文件，并仅将必要文件推送到 Android 设备）
+            buildPlayerOptions.options = BuildOptions.BuildScriptsOnly | BuildOptions.PatchPackage | BuildOptions.AutoRunPlayer;
+
+            BuildPipeline.BuildPlayer(buildPlayerOptions);
         }
 
         [MenuItem("Scene/载入热更场景", priority = 151)]

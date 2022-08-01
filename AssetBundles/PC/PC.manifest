@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 4128249001
+CRC: 2507560577
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -7,88 +7,88 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: texture.gezi
     Info_1:
-      Name: shader_material.gezi
-      Dependencies:
-        Dependency_0: battlescene.gezi
-        Dependency_1: icon.gezi
-        Dependency_2: texture.gezi
-        Dependency_3: loginscene.gezi
-        Dependency_4: uitexture.gezi
-        Dependency_5: bullet1.gezi
-    Info_2:
       Name: cardtex.gezi
       Dependencies: {}
-    Info_3:
+    Info_2:
       Name: icon.gezi
       Dependencies: {}
-    Info_4:
-      Name: texture.gezi
-      Dependencies: {}
-    Info_5:
+    Info_3:
       Name: loginscene.gezi
       Dependencies: {}
-    Info_6:
+    Info_4:
       Name: uitexture.gezi
       Dependencies: {}
-    Info_7:
+    Info_5:
+      Name: scene2.gezi
+      Dependencies:
+        Dependency_0: battlescene.gezi
+        Dependency_1: uitexture.gezi
+        Dependency_2: charactar.gezi
+        Dependency_3: texture.gezi
+        Dependency_4: coin.gezi
+        Dependency_5: prefabs.gezi
+        Dependency_6: ttf.gezi
+        Dependency_7: shader_material.gezi
+    Info_6:
       Name: charactar.gezi
       Dependencies: {}
-    Info_8:
+    Info_7:
       Name: soundeffect.gezi
+      Dependencies: {}
+    Info_8:
+      Name: texture.gezi
       Dependencies: {}
     Info_9:
       Name: gamedata.gezi
       Dependencies: {}
     Info_10:
-      Name: scene2.gezi
-      Dependencies:
-        Dependency_0: battlescene.gezi
-        Dependency_1: shader_material.gezi
-        Dependency_2: texture.gezi
-        Dependency_3: uitexture.gezi
-        Dependency_4: charactar.gezi
-        Dependency_5: ttf.gezi
-        Dependency_6: prefabs.gezi
-        Dependency_7: coin.gezi
+      Name: particle.gezi
+      Dependencies: {}
     Info_11:
       Name: fieldandstate.gezi
       Dependencies: {}
     Info_12:
-      Name: ttf.gezi
-      Dependencies: {}
-    Info_13:
-      Name: prefabs.gezi
-      Dependencies:
-        Dependency_0: shader_material.gezi
-        Dependency_1: texture.gezi
-        Dependency_2: ttf.gezi
-    Info_14:
       Name: bullet.gezi
       Dependencies:
-        Dependency_0: shader_material.gezi
-        Dependency_1: texture.gezi
-        Dependency_2: bullet1.gezi
-    Info_15:
-      Name: particle.gezi
+        Dependency_0: texture.gezi
+        Dependency_1: bullet1.gezi
+        Dependency_2: shader_material.gezi
+    Info_13:
+      Name: scene.gezi
       Dependencies: {}
-    Info_16:
+    Info_14:
       Name: coin.gezi
+      Dependencies: {}
+    Info_15:
+      Name: prefabs.gezi
+      Dependencies:
+        Dependency_0: texture.gezi
+        Dependency_1: ttf.gezi
+        Dependency_2: shader_material.gezi
+    Info_16:
+      Name: ttf.gezi
       Dependencies: {}
     Info_17:
       Name: bullet1.gezi
       Dependencies:
         Dependency_0: texture.gezi
     Info_18:
-      Name: scene.gezi
-      Dependencies: {}
-    Info_19:
       Name: scene1.gezi
       Dependencies:
-        Dependency_0: shader_material.gezi
+        Dependency_0: icon.gezi
+        Dependency_1: loginscene.gezi
+        Dependency_2: uitexture.gezi
+        Dependency_3: texture.gezi
+        Dependency_4: scene.gezi
+        Dependency_5: coin.gezi
+        Dependency_6: ttf.gezi
+        Dependency_7: shader_material.gezi
+    Info_19:
+      Name: shader_material.gezi
+      Dependencies:
+        Dependency_0: battlescene.gezi
         Dependency_1: icon.gezi
-        Dependency_2: texture.gezi
-        Dependency_3: loginscene.gezi
-        Dependency_4: uitexture.gezi
-        Dependency_5: ttf.gezi
-        Dependency_6: coin.gezi
-        Dependency_7: scene.gezi
+        Dependency_2: loginscene.gezi
+        Dependency_3: uitexture.gezi
+        Dependency_4: texture.gezi
+        Dependency_5: bullet1.gezi

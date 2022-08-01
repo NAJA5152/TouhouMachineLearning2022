@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1538749398
+CRC: 4188732908
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 0de611f13b1f7d6c88eb856e67b39931
+    Hash: bed1349f2f2a5175345d2fab36841525
   TypeTreeHash:
     serializedVersion: 2
     Hash: 7f9ab16fb8d9fb8ac5c4a1fb28e79fd0
@@ -193,11 +193,11 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Scenes/2_BattleScene.unity
 Dependencies:
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/battlescene.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/charactar.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/coin.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/prefabs.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/shader_material.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/texture.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/ttf.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/uitexture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/battlescene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/charactar.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/coin.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/prefabs.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/shader_material.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/texture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/ttf.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/uitexture.gezi

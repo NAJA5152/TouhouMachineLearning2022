@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3227160513
+CRC: 3800861615
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 42e46d30140042e8571f2c0783feb02e
+    Hash: e0892a16f85d7f58f0d09e50125548bd
   TypeTreeHash:
     serializedVersion: 2
     Hash: 3d58f633bab55002f7318d0d97a0ecfb
@@ -197,11 +197,11 @@ SerializeReferenceClassIdentifiers: []
 Assets:
 - Assets/Scenes/1_LoginScene.unity
 Dependencies:
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/coin.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/icon.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/loginscene.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/scene.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/shader_material.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/texture.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/ttf.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/uitexture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/coin.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/icon.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/loginscene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/scene.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/shader_material.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/texture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/ttf.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/uitexture.gezi

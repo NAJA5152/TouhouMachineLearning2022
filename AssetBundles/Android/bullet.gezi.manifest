@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 1663885765
+CRC: 948339234
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: b4b779a1f8b1f85639142eba1b878368
+    Hash: f9bce18e34a87cd505d74078a35fa0d2
   TypeTreeHash:
     serializedVersion: 2
     Hash: 236bab4fc4985eca84544dc9a298febb
@@ -82,6 +82,6 @@ Assets:
 - Assets/GameResources/Bullet/BigBall.prefab
 - Assets/GameResources/Bullet/HurtParticle.prefab
 Dependencies:
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/bullet1.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/shader_material.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/texture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/bullet1.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/shader_material.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/texture.gezi

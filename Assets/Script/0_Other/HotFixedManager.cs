@@ -1,7 +1,5 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.IO;
-using System.Net;
 using System.Linq;
 using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.Extension;
@@ -10,14 +8,10 @@ using UnityEngine;
 using System.Security.Cryptography;
 using UnityEngine.SceneManagement;
 using System.Threading.Tasks;
-using TMPro;
 using UnityEngine.UI;
-using System.Threading;
-using System.Reflection;
 using TouhouMachineLearningSummary.Thread;
-using System.Text;
-using System.Net.Sockets;
 using System.Net.Http;
+using System.Net.Http.Handlers;
 
 public class HotFixedManager : MonoBehaviour
 {
@@ -72,7 +66,13 @@ public class HotFixedManager : MonoBehaviour
             Directory.CreateDirectory(downLoadPath);
 
             //加载MD5文件
-            var httpClient = new HttpClient();
+            var progressMessageHandler = new ProgressMessageHandler(new HttpClientHandler());
+            progressMessageHandler.HttpReceiveProgress += (_, e) =>
+            {
+                processText.text = $"{e.BytesTransferred / 1024 / 1024}/{e.TotalBytes / 1024 / 1024} MB. {e.ProgressPercentage} %"; ;
+                slider.value = e.ProgressPercentage * 1.0f / 100;
+            };
+            var httpClient = new HttpClient(progressMessageHandler);
             var responseMessage = httpClient.GetAsync($"http://106.15.38.165:7777/AssetBundles/{ConfigManager.GetServerTag()}/MD5.json").Result;
             if (!responseMessage.IsSuccessStatusCode)
             {
@@ -98,6 +98,7 @@ public class HotFixedManager : MonoBehaviour
                     Debug.LogError("当前为脚本路径在：" + currentDllPath);
                     localFile = new FileInfo(currentDllPath);
                     Debug.Log("本地dll文件md5值为：" + md5.ComputeHash(File.ReadAllBytes(localFile.FullName)).ToJson());
+                    Debug.Log("本地dll文件修改时间为：" + localFile.LastWriteTime);
                 }
                 else
                 {
@@ -163,12 +164,15 @@ public class HotFixedManager : MonoBehaviour
         Debug.LogWarning("初始化完毕，加载场景。。。");
         SceneManager.LoadScene("1_LoginScene");
     }
+
+
+
     public void RestartGame()
     {
         if (isMobile)
         {
-            SceneManager.LoadScene(0);
-            //Application.Quit();
+            //SceneManager.LoadScene(0);
+            Application.Quit();
         }
         else
         {
