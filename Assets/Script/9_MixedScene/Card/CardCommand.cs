@@ -35,14 +35,18 @@ namespace TouhouMachineLearningSummary.Command
 
             //若编辑器下则直接加载本地GameCard的dll卡牌脚本
             //否则从数据库下载卡牌脚本
-#if UNITY_EDITOR
-            Type componentType = Assembly.Load(File.ReadAllBytes(@"Library\ScriptAssemblies\GameCard.dll")).GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
-            //Type componentType = Type.GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
-            newCard.AddComponent(componentType);
-
-#else
-               newCard.AddComponent(Manager.CardAssemblyManager.GetCardScript(id));
-#endif
+            if (Application.isEditor)
+            {
+                //通过反射加载
+                Type componentType = Assembly.Load(File.ReadAllBytes(@"Library\ScriptAssemblies\GameCard.dll")).GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
+                //Type componentType = Type.GetType("TouhouMachineLearningSummary.CardSpace.Card" + id);
+                //直接加载
+                newCard.AddComponent(componentType);
+            }
+            else
+            {
+                newCard.AddComponent(Manager.CardAssemblyManager.GetCardScript(id));
+            }
 
             var CardStandardInfo = CardAssemblyManager.GetCurrentCardInfos(id);
             Card card = newCard.GetComponent<Card>();
@@ -112,7 +116,7 @@ namespace TouhouMachineLearningSummary.Command
             Debug.LogWarning("召唤卡牌于" + targetCard.CurrentOrientation);
             RemoveCard(targetCard);
             TargetRow.Add(targetCard);
-            targetCard.IsCanSee=true;
+            targetCard.IsCanSee = true;
             //targetCard.moveSpeed = 0.1f;
             targetCard.isMoveStepOver = false;
             await Task.Delay(200);
@@ -178,7 +182,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             else
             {
-                TargetCard.IsCanSee=isPlayerDraw;
+                TargetCard.IsCanSee = isPlayerDraw;
                 CardSet TargetCardtemp = AgainstInfo.cardSet[isPlayerDraw ? Orientation.Down : Orientation.Up][GameRegion.Deck];
 
                 AgainstInfo.cardSet[isPlayerDraw ? Orientation.Down : Orientation.Up][GameRegion.Deck].Remove(TargetCard);
@@ -201,7 +205,7 @@ namespace TouhouMachineLearningSummary.Command
                 NetCommand.AsyncInfo(NetAcyncType.ExchangeCard);
                 AgainstInfo.cardSet[Orientation.Down][GameRegion.Hand].Remove(TargetCard);
                 AgainstInfo.cardSet[Orientation.Down][GameRegion.Deck].Add(TargetCard, AgainstInfo.washInsertRank);
-                TargetCard.IsCanSee=false;
+                TargetCard.IsCanSee = false;
             }
             else
             {
@@ -215,7 +219,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             _ = SoundEffectCommand.PlayAsync(SoundEffectType.DrawCard);
             RowCommand.SetPlayCardMoveFree(false);
-            targetCard.IsCanSee=true;
+            targetCard.IsCanSee = true;
 
             SingleRowManager TargetRow = Info.AgainstInfo.cardSet.RowManagers[location.X];
             AgainstInfo.cardSet[TargetRow.orientation][TargetRow.region].Add(targetCard, location.Y);
@@ -239,7 +243,7 @@ namespace TouhouMachineLearningSummary.Command
             {
                 NetCommand.AsyncInfo(NetAcyncType.PlayCard);
             }
-            targetCard.IsCanSee=true;
+            targetCard.IsCanSee = true;
             RemoveCard(targetCard);
             AgainstInfo.cardSet[Orientation.My][GameRegion.Used].Add(targetCard);
             AgainstInfo.playerPlayCard = null;
@@ -248,7 +252,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             await Task.Delay(0);//之后实装卡牌特效需要时间延迟配合
             card.isPrepareToPlay = false;
-            card.IsCanSee=false;
+            card.IsCanSee = false;
             RemoveCard(card);
             AgainstInfo.cardSet[Orientation.My][GameRegion.Grave].Add(card);
             AgainstInfo.playerDisCard = null;
@@ -259,7 +263,7 @@ namespace TouhouMachineLearningSummary.Command
             Card card = e.targetCard;
             await SoundEffectCommand.PlayAsync(SoundEffectType.DrawCard);
 
-            card.IsCanSee=true;
+            card.IsCanSee = true;
             RemoveCard(card);
             AgainstInfo.cardSet[Orientation.My][GameRegion.Used].Add(card);
             await card.cardAbility[TriggerTime.When][TriggerType.Play][0](e);
@@ -322,7 +326,7 @@ namespace TouhouMachineLearningSummary.Command
             //重置卡牌状态
             card.cardFields.Clear();
             card.cardStates.Clear();
-            card.IsCanSee=false;
+            card.IsCanSee = false;
             card.ChangePoint = 0;
             card.isMoveStepOver = false;
             await Task.Delay(100);
@@ -339,7 +343,7 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.cardSet[targetOrientation][GameRegion.Hand].RowManagers[0].CardList.Insert(0, card);
             OrderHandCard();
             //重置卡牌状态
-            card.IsCanSee=(targetOrientation == Orientation.Down);
+            card.IsCanSee = (targetOrientation == Orientation.Down);
             card.ChangePoint = 0;
             card.isMoveStepOver = false;
             await Task.Delay(100);
@@ -357,7 +361,7 @@ namespace TouhouMachineLearningSummary.Command
             //重置卡牌状态
             card.cardFields.Clear();
             card.cardStates.Clear();
-            card.IsCanSee=false;
+            card.IsCanSee = false;
             card.ChangePoint = 0;
             card.isMoveStepOver = false;
             await Task.Delay(100);
