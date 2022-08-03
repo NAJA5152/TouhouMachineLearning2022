@@ -35,7 +35,8 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 Debug.Log("加载已有配置文件");
                 configInfo = File.ReadAllText(ConfigFileSavePath + "/GameConfig.ini").ToObject<ConfigInfoModel>();
-                Screen.SetResolution(192 * 6, 108 * 6, false);
+                //Screen.SetResolution(192 * 6, 108 * 6, false);
+                Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.IsFullScreen);
                 TranslateManager.currentLanguage = configInfo.UseLanguage;
             }
 

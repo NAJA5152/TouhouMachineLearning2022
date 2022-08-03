@@ -44,7 +44,7 @@ public class HotFixedManager : MonoBehaviour
     async void Start()
     {
         RestartNotice.transform.localScale = new Vector3(1, 0, 1);
-        versiousText.text = "我要改成v1";
+        versiousText.text = "我要改成v2";
         ConfigManager.InitConfig();
         //loadText.text = "初始化网络";
         //_ = NetCommand.Init();
