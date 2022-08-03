@@ -52,16 +52,17 @@ public class HotFixedManager : MonoBehaviour
         await  CheckAssetBundles();
     }
     //已下好任务数
-    int downloadTaskCount;
+    int downloadTaskCount=0;
     //总下载任务
-    List<Task> downloadTaskList= new();
+    List<Task> downloadTaskList= new List<Task>();
     //当前下载文件
     string currentDownloadFileName;
 
     private void Update()
     {
-        processText.text = $"{currentDownloadFileName}  {downloadTaskList.Count()}/{downloadTaskList.Count()} %"; ;
-        slider.value = downloadTaskList.Count()==0?1:downloadTaskCount*1f/downloadTaskList.Count();
+        loadText.text = currentDownloadFileName;
+        processText.text = $"{downloadTaskCount}/{downloadTaskList.Count} %"; ;
+        slider.value = downloadTaskList.Count==0?1:downloadTaskCount*1f/downloadTaskList.Count;
     }
     //校验本地文件
     private async Task CheckAssetBundles()
