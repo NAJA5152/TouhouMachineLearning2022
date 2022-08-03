@@ -86,15 +86,13 @@ namespace TouhouMachineLearningSummary.Model
         /// 正常游戏从AB包加载，卡组编辑器从本地加载
         /// </summary>
         /// <param name="isSingle"></param>
-        public CardModel Init(bool isSingle, bool isFromAssetBundle = true)
+        public CardModel Init(bool isSingle)
         {
 
             cardID = int.Parse($"{(isSingle ? "1" : "2")}{series.PadLeft(2, '0')}{(int)cardRank}{cardID.ToString().PadLeft(3, '0')}");
-            if (isFromAssetBundle)
-            {
-                icon = AssetBundleCommand.Load<Texture2D>("CardTex", cardID.ToString()) ?? AssetBundleCommand.Load<Texture2D>("CardTex", "default");
-            }
-            else
+            //编辑器下由从编辑器中加载图片
+            //发布后从AB包加载图片
+            if (Application.isEditor)
             {
                 var target = InspectorInfo.CardTexture.FirstOrDefault(file => file.Name == cardID + ".png");
                 if (target == null)
@@ -102,6 +100,10 @@ namespace TouhouMachineLearningSummary.Model
                     target = InspectorInfo.CardTexture.FirstOrDefault(file => file.Name == "default.png");
                 }
                 icon = target.ToTexture2D();
+            }
+            else
+            {
+                icon = AssetBundleCommand.Load<Texture2D>("CardTex", cardID.ToString()) ?? AssetBundleCommand.Load<Texture2D>("CardTex", "default");
             }
             return this;
         }

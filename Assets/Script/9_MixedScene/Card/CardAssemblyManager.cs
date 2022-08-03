@@ -74,7 +74,7 @@ namespace TouhouMachineLearningSummary.Manager
             }
             //currenttSingleCardInfos = Encoding.UTF8.GetString(currentConfig.SingleCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(true, isFromAssetBundle: !Application.isEditor));
             currenttSingleCardInfos = new();
-            currentMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(false, isFromAssetBundle: !Application.isEditor));
+            currentMultiCardInfos = Encoding.UTF8.GetString(currentConfig.MultiCardFileData).ToObject<List<CardModel>>().SelectList(card => card.Init(false));
             currentCardScripts = Assembly.Load(currentConfig.AssemblyFileData);
 
             if (verison == "")
@@ -95,7 +95,7 @@ namespace TouhouMachineLearningSummary.Manager
             //步骤
             //查询最新的版本编号
             //检查是否已存在
-            //如果已存在啧直接使用
+            //如果已存在直接使用
             //如果不存在则从服务器拉取最新版本
             //为""则获取最新版本的卡牌数据
             //if (targetVerison == "")

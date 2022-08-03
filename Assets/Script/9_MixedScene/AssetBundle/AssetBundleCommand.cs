@@ -93,7 +93,7 @@ namespace TouhouMachineLearningSummary.Command
                 var targetAsset = targetAssets.FirstOrDefault(asset => asset.name == fileName && asset.GetType() == typeof(T));
                 if (targetAsset == null)
                 {
-                    Debug.LogError("无法找到" + fileName);
+                    Debug.LogError("无法找到资源"+typeof(T)+"-" + tag +"-"+ fileName);
                 }
                 return targetAsset as T;
             }

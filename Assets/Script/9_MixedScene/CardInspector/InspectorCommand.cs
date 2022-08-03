@@ -41,11 +41,11 @@ namespace TouhouMachineLearningSummary.Command
             //加载单人模式卡牌信息
             string singleData = File.ReadAllText(@"Assets\GameResources\GameData\CardData-Single.json");
             cardLibraryInfo.singleModeCards.Clear();
-            cardLibraryInfo.singleModeCards.AddRange(singleData.ToObject<List<CardModel>>().Select(card => card.Init(isSingle: true, isFromAssetBundle: !Application.isEditor)));
+            cardLibraryInfo.singleModeCards.AddRange(singleData.ToObject<List<CardModel>>().Select(card => card.Init(isSingle: true)));
             //加载多人模式卡牌信息
             string multiData = File.ReadAllText(@"Assets\GameResources\GameData\CardData-Multi.json");
             cardLibraryInfo.multiModeCards.Clear();
-            cardLibraryInfo.multiModeCards.AddRange(multiData.ToObject<List<CardModel>>().Select(card => card.Init(isSingle: false, isFromAssetBundle: !Application.isEditor)));
+            cardLibraryInfo.multiModeCards.AddRange(multiData.ToObject<List<CardModel>>().Select(card => card.Init(isSingle: false)));
 
             cardLibraryInfo.levelLibries = new List<LevelLibrary>();
             cardLibraryInfo.includeLevel.ForEach(level => cardLibraryInfo.levelLibries.Add(new LevelLibrary(cardLibraryInfo.singleModeCards, level)));
