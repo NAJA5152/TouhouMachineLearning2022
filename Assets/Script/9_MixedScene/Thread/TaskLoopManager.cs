@@ -6,18 +6,6 @@ namespace TouhouMachineLearningSummary.Manager
         public static CancellationTokenSource cancel;
         public static void Init() => cancel = new CancellationTokenSource();
         public static void TriggerThrow() => cancel.Cancel();
-        public static void Throw()
-        {
-            cancel.Token.ThrowIfCancellationRequested();
-            //try
-            //{
-                
-            //}
-            //catch (System.Exception e)
-            //{
-                
-            //    throw;
-            //}
-        }
+        public static void Throw() => cancel.Token.ThrowIfCancellationRequested();
     }
 }

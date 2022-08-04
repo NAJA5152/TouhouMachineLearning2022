@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using UnityEngine;
@@ -106,7 +105,7 @@ namespace TouhouMachineLearningSummary.Model
         public bool IsLocked { get; set; } = false;
         public bool IsFree { get; set; } = false;
         //后期补充，揭示状态始终显示，覆盖状态始终不显示
-        public bool IsCanSee { get => isCanSee&&!this[CardState.Close]|| this[CardState.Pry]; set => isCanSee = value; }
+        public bool IsCanSee { get => isCanSee && !this[CardState.Close] || this[CardState.Pry]; set => isCanSee = value; }
         public bool IsCardReadyToGrave => ShowPoint == 0 && AgainstInfo.cardSet[GameRegion.Battle].CardList.Contains(this);
         public bool isMoveStepOver = true;
         public bool isPrepareToPlay = false;

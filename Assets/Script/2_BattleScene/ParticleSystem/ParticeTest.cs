@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class ParticeTest : MonoBehaviour
@@ -20,7 +18,7 @@ public class ParticeTest : MonoBehaviour
         for (int i = 0; i < activeNum; i++)
         {
             float v = Time.time;
-            Vector3 target = new Vector3(Mathf.Cos(Time.time * 10) * (100-v), v, Mathf.Sin(i * 10) * (100 - v));
+            Vector3 target = new Vector3(Mathf.Cos(Time.time * 10) * (100 - v), v, Mathf.Sin(i * 10) * (100 - v));
             particles[i].position = Vector3.Lerp(particles[i].position, target, 0.01f);
 
             //particles[i].velocity -= vector*0.01f;

@@ -14,11 +14,11 @@ namespace TouhouMachineLearningSummary.Command
             Info.PageCompnentInfo.selectCardModels.Clear();
             //初始化信息来源
             Info.CampInfo.campInfos.Clear();
-            Info.CampInfo.campInfos.Add(new (Camp.Taoism, "道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.TaoismTex));
-            Info.CampInfo.campInfos.Add(new (Camp.science, "科学", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.scienceTex));
-            Info.CampInfo.campInfos.Add(new (Camp.Buddhism, "佛教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.BuddhismTex));
-            Info.CampInfo.campInfos.Add(new (Camp.Shintoism, "神道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.ShintoismTex));
-            Info.CampInfo.campInfos.Add(new (Camp.Neutral, "中立", "请选择一个阵营", Info.PageCompnentInfo.Instance.NeutralTex));
+            Info.CampInfo.campInfos.Add(new(Camp.Taoism, "道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.TaoismTex));
+            Info.CampInfo.campInfos.Add(new(Camp.science, "科学", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.scienceTex));
+            Info.CampInfo.campInfos.Add(new(Camp.Buddhism, "佛教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.BuddhismTex));
+            Info.CampInfo.campInfos.Add(new(Camp.Shintoism, "神道教", "没有东西的空架子哦", Info.PageCompnentInfo.Instance.ShintoismTex));
+            Info.CampInfo.campInfos.Add(new(Camp.Neutral, "中立", "请选择一个阵营", Info.PageCompnentInfo.Instance.NeutralTex));
 
             //根据实际阵营数量来生成模型
             for (int i = 0; i < Info.CampInfo.campInfos.Count - 1; i++)
@@ -45,7 +45,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             Info.PageCompnentInfo.selectCardModels.ForEach(Object.Destroy);
             Info.PageCompnentInfo.selectCardModels.Clear();
-            Info.CampInfo.leaderInfos  = Manager.CardAssemblyManager
+            Info.CampInfo.leaderInfos = Manager.CardAssemblyManager
                     .LastMultiCardInfos
                     .Where(card => card.cardRank == CardRank.Leader)
                     .Where(card => card.cardCamp == Info.PageCompnentInfo.selectCamp || card.cardCamp == Camp.Neutral)

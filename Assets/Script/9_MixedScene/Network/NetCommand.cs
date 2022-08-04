@@ -41,7 +41,7 @@ namespace TouhouMachineLearningSummary.Command
                         bool isMyTurn = ReceiveInfo[2].ToType<bool>();
                         PlayerInfo playerInfo = ReceiveInfo[3].ToType<PlayerInfo>();
                         PlayerInfo opponentInfo = ReceiveInfo[4].ToType<PlayerInfo>();
-                       
+
 
                         _ = NoticeCommand.CloseAsync();//关闭ui
                         Command.BookCommand.SimulateFilpPage(false);//停止翻书

@@ -1,7 +1,5 @@
-﻿using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Model;
 using TouhouMachineLearningSummary.Manager;
 using UnityEngine;
 

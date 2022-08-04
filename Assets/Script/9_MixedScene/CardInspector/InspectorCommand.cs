@@ -1,13 +1,10 @@
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
-using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
 using TouhouMachineLearningSummary.Other;
 using UnityEditor;
@@ -108,7 +105,7 @@ namespace TouhouMachineLearningSummary.Command
             if (card != null)
             {
                 cardName = card.Name["Name-Ch"];
-                cardAbility = card.Ability["Ability-Ch"].Replace("\n"," ");
+                cardAbility = card.Ability["Ability-Ch"].Replace("\n", " ");
             }
 
             if (!File.Exists(targetPath))
@@ -132,7 +129,7 @@ namespace TouhouMachineLearningSummary.Command
                 string text = File.ReadAllText(targetPath, System.Text.Encoding.GetEncoding("GB2312"));
                 string currentName = Regex.Match(text, "卡牌名称:.*").Value;
                 string currentAbility = Regex.Match(text, "卡牌能力:.*").Value;
-                if (currentName!= "卡牌名称:" + cardName|| currentAbility!= "卡牌能力:" + cardAbility)
+                if (currentName != "卡牌名称:" + cardName || currentAbility != "卡牌能力:" + cardAbility)
                 {
                     text = text.Replace(currentName, "卡牌名称:" + cardName);
                     text = text.Replace(currentAbility, "卡牌能力:" + cardAbility);

@@ -2,14 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TouhouMachineLearningSummary.Thread;
+using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
+using TouhouMachineLearningSummary.Thread;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using TouhouMachineLearningSummary.Extension;
 
 namespace TouhouMachineLearningSummary.Command
 {
@@ -37,8 +37,8 @@ namespace TouhouMachineLearningSummary.Command
             //CardSet.globalCardList = AgainstInfo.summary.targetJumpTurn.allCardList
             //    .Select(sampleCardList => sampleCardList.Select(CardCommand.CreateCard).ToList()).ToList();
             CardSet.GlobalCardList = targetJumpTurn.AllCardList.SelectList(sampleCardList => sampleCardList.SelectList(CardCommand.GenerateCard));
-            AgainstInfo.cardSet[GameRegion.Leader, GameRegion.Battle].CardList.ForEach(card => card.IsCanSee=true);
-            AgainstInfo.cardSet[GameRegion.Hand][AgainstInfo.IsReplayMode ? Orientation.All : Orientation.My].CardList.ForEach(card => card.IsCanSee=true);
+            AgainstInfo.cardSet[GameRegion.Leader, GameRegion.Battle].CardList.ForEach(card => card.IsCanSee = true);
+            AgainstInfo.cardSet[GameRegion.Hand][AgainstInfo.IsReplayMode ? Orientation.All : Orientation.My].CardList.ForEach(card => card.IsCanSee = true);
             AgainstInfo.IsJumpMode = false;
             return isExchangeTurn;
         }
@@ -103,11 +103,11 @@ namespace TouhouMachineLearningSummary.Command
             //初始化我方领袖卡
             Card MyLeaderCard = CardCommand.GenerateCard(Info.AgainstInfo.userDeck.LeaderId);
             AgainstInfo.cardSet[Orientation.Down][GameRegion.Leader].Add(MyLeaderCard);
-            MyLeaderCard.IsCanSee=true;
+            MyLeaderCard.IsCanSee = true;
             //初始化敌方领袖卡
             Card OpLeaderCard = CardCommand.GenerateCard(Info.AgainstInfo.opponentDeck.LeaderId);
             AgainstInfo.cardSet[Orientation.Up][GameRegion.Leader].Add(OpLeaderCard);
-            OpLeaderCard.IsCanSee=true;
+            OpLeaderCard.IsCanSee = true;
             //Debug.LogError("初始双方化牌组");
             //初始双方化牌组
             for (int i = 0; i < Info.AgainstInfo.userDeck.CardIds.Count; i++)

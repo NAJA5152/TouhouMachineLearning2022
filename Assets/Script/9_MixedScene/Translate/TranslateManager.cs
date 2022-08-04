@@ -91,7 +91,6 @@ namespace TouhouMachineLearningSummary.Manager
                 {
                     //获取该关键词的说明
                     string introduction = pair[currentLanguage + "_Introduction"] == "" ? pair["Ch_Introduction"] : pair[currentLanguage + "_Introduction"];
-
                     //加入到关键词列表
                     keyWordInfos.Add(new KeyWordModel()
                     {

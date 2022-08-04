@@ -1,17 +1,16 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Net.Http;
+using System.Security.Cryptography;
+using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.Manager;
-using UnityEngine;
-using System.Security.Cryptography;
-using UnityEngine.SceneManagement;
-using System.Threading.Tasks;
-using UnityEngine.UI;
 using TouhouMachineLearningSummary.Thread;
-using System.Net.Http;
-using System.Net.Http.Handlers;
+using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class HotFixedManager : MonoBehaviour
 {
@@ -36,25 +35,20 @@ public class HotFixedManager : MonoBehaviour
         true => new DirectoryInfo(Application.persistentDataPath).Parent.FullName,
         false => Directory.GetCurrentDirectory()
     };
-    //webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler((sender, e) =>
-    //{
-    //    processText.text = $"{e.BytesReceived / 1024 / 1024}/{e.TotalBytesToReceive / 1024 / 1024} MB. {e.ProgressPercentage} %"; ;
-    //    slider.value = e.ProgressPercentage * 1.0f / 100;
-    //});
     async void Start()
     {
         RestartNotice.transform.localScale = new Vector3(1, 0, 1);
-        versiousText.text = "我要改成v3";
+        versiousText.text = "我要改成v4";
         ConfigManager.InitConfig();
         //loadText.text = "初始化网络";
         //_ = NetCommand.Init();
         loadText.text = "校验资源包";
-        await  CheckAssetBundles();
+        await CheckAssetBundles();
     }
     //已下好任务数
-    int downloadTaskCount=0;
+    int downloadTaskCount = 0;
     //总下载任务
-    List<Task> downloadTaskList= new List<Task>();
+    List<Task> downloadTaskList = new List<Task>();
     //当前下载文件
     string currentDownloadFileName;
 
@@ -62,7 +56,7 @@ public class HotFixedManager : MonoBehaviour
     {
         loadText.text = currentDownloadFileName;
         processText.text = $"{downloadTaskCount}/{downloadTaskList.Count} %"; ;
-        slider.value = downloadTaskList.Count==0?1:downloadTaskCount*1f/downloadTaskList.Count;
+        slider.value = downloadTaskList.Count == 0 ? 1 : downloadTaskCount * 1f / downloadTaskList.Count;
     }
     //校验本地文件
     private async Task CheckAssetBundles()
@@ -77,15 +71,6 @@ public class HotFixedManager : MonoBehaviour
             loadText.text = "开始下载文件";
             Debug.LogWarning("开始下载文件" + System.DateTime.Now);
             Directory.CreateDirectory(downLoadPath);
-
-            //加载MD5文件
-            //var progressMessageHandler = new ProgressMessageHandler(new HttpClientHandler());
-            //progressMessageHandler.HttpReceiveProgress += (_, e) =>
-            //{
-            //    processText.text = $"{e.BytesTransferred / 1024 / 1024}/{e.TotalBytes / 1024 / 1024} MB. {e.ProgressPercentage} %"; ;
-            //    slider.value = e.ProgressPercentage * 1.0f / 100;
-            //};
-            //var httpClient = new HttpClient(progressMessageHandler);
             var httpClient = new HttpClient();
             var responseMessage = httpClient.GetAsync($"http://106.15.38.165:7777/AssetBundles/{ConfigManager.GetServerTag()}/MD5.json").Result;
             if (!responseMessage.IsSuccessStatusCode)
@@ -144,7 +129,7 @@ public class HotFixedManager : MonoBehaviour
                     }
                     downloadTaskList.Add(Task.Run(async () =>
                     {
-                        currentDownloadFileName = "正在下载："+MD5FiIeData.Key;
+                        currentDownloadFileName = "正在下载：" + MD5FiIeData.Key;
                         var fileData = await httpClient.GetAsync($"http://106.15.38.165:7777/AssetBundles/{ConfigManager.GetServerTag()}/{MD5FiIeData.Key}").Result.Content.ReadAsByteArrayAsync();
                         File.WriteAllBytes(savePath, fileData);
                         currentDownloadFileName = "下载完成：" + MD5FiIeData.Key;

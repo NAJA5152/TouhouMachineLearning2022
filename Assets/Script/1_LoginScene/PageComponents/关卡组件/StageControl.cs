@@ -2,7 +2,7 @@
 
 namespace TouhouMachineLearningSummary.Control
 {
-    public class StageControl:MonoBehaviour
+    public class StageControl : MonoBehaviour
     {
         //选择欲加载关卡
         public void SelectStage(string tag) => Command.StageCommand.SelectStage(tag);

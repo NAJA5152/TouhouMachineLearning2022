@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Threading.Tasks;
-using TouhouMachineLearningSummary.Thread;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
+using TouhouMachineLearningSummary.Info;
+using TouhouMachineLearningSummary.Thread;
 using UnityEngine;
 using UnityEngine.UI;
-using TouhouMachineLearningSummary.Info;
 
 namespace TouhouMachineLearningSummary.Command
 {
@@ -84,8 +84,8 @@ namespace TouhouMachineLearningSummary.Command
             isShowOver = true;
         }
         //根据修改按钮在不同分辨率下的值判断按钮基准位置
-        static  float buttonWidth => inputlButton.localPosition.x;
-        static float buttonHeigh=> inputlButton.localPosition.y;
+        static float buttonWidth => inputlButton.localPosition.x;
+        static float buttonHeigh => inputlButton.localPosition.y;
         public static async Task ShowAsync
             (
             string text,
@@ -117,7 +117,7 @@ namespace TouhouMachineLearningSummary.Command
                 case NotifyBoardMode.Ok_Cancel:
                     okButton.gameObject.SetActive(true);
                     cancelButton.gameObject.SetActive(true);
-                   // okButton.localPosition = new Vector3(-130, -100, 0);
+                    // okButton.localPosition = new Vector3(-130, -100, 0);
                     okButton.localPosition = inputlButton.localPosition;
                     cancelButton.localPosition = new Vector3(-buttonWidth, buttonHeigh, 0);
                     break;

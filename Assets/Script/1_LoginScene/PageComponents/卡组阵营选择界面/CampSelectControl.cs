@@ -19,6 +19,6 @@ namespace TouhouMachineLearningSummary.Control
         public void SelectCampOver() => Command.CampSelectCommand.InitLeader();
         //选择完毕
         public void SelectLeaderOver() => Command.DeckBoardCommand.CreatDeck(1000001);
-      
+
     }
 }

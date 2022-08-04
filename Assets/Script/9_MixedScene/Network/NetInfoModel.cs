@@ -85,8 +85,8 @@ namespace TouhouMachineLearningSummary.Model
         //    public int Rank { get; set; }
         //}
         //public UserState OnlineUserState { get; set; } = new UserState();
-        public Dictionary<string, int> Stage { get; set; }=new();
-        public int GetStage(string StageName) => !Stage.ContainsKey(StageName)?-1: Stage[StageName];
+        public Dictionary<string, int> Stage { get; set; } = new();
+        public int GetStage(string StageName) => !Stage.ContainsKey(StageName) ? -1 : Stage[StageName];
         public Dictionary<string, int> Resource { get; set; } = new Dictionary<string, int>();
         //决定游戏进程
         [ShowInInspector]
@@ -96,7 +96,7 @@ namespace TouhouMachineLearningSummary.Model
         [JsonIgnore]
         public CardDeck UseDeck
         {
-            get => Decks.Count> UseDeckNum? Decks[UseDeckNum]:Decks[0];
+            get => Decks.Count > UseDeckNum ? Decks[UseDeckNum] : Decks[0];
             set => Decks[UseDeckNum] = value;
         }
         public PlayerInfo() { }
@@ -121,7 +121,7 @@ namespace TouhouMachineLearningSummary.Model
             sampleInfo.Level = Level;
             sampleInfo.Rank = Rank;
             sampleInfo.UseDeckNum = UseDeckNum;
-            return sampleInfo; 
+            return sampleInfo;
         }
         public async Task<bool> UpdateName(string name)
         {

@@ -1,10 +1,10 @@
 ﻿using Sirenix.OdinInspector;
 using System.Linq;
 using System.Threading.Tasks;
-using TouhouMachineLearningSummary.Thread;
 using TouhouMachineLearningSummary.GameEnum;
-using UnityEngine;
 using TouhouMachineLearningSummary.Info;
+using TouhouMachineLearningSummary.Thread;
+using UnityEngine;
 
 namespace TouhouMachineLearningSummary.Command
 {

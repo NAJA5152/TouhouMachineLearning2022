@@ -1,9 +1,8 @@
-﻿using System;
+﻿using Sirenix.OdinInspector;
 using System.Collections.Generic;
+using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.UI;
-using TouhouMachineLearningSummary.Model;
-using Sirenix.OdinInspector;
 
 namespace TouhouMachineLearningSummary.Info
 {
@@ -16,7 +15,7 @@ namespace TouhouMachineLearningSummary.Info
         public GameObject selectUi;
         public GameObject left;
         public GameObject right;
-        public Text name ;
+        public Text name;
         public Text text;
         public static bool SelectMode { get; set; } = false;
         //跳过对话

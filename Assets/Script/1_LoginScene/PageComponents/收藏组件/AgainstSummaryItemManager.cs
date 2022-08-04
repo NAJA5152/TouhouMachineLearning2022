@@ -1,7 +1,5 @@
-using System;
-using System.Collections;
-using UnityEngine.UI;
 using UnityEngine;
+using UnityEngine.UI;
 namespace TouhouMachineLearningSummary.Manager
 {
     public class AgainstSummaryItemManager : MonoBehaviour

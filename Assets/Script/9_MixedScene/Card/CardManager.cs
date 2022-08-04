@@ -2,7 +2,6 @@
 using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Command;
-using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
@@ -26,7 +25,7 @@ namespace TouhouMachineLearningSummary.Manager
             if (!EventSystem.current.IsPointerOverGameObject())
             {
                 AgainstInfo.playerFocusCard = thisCard;
-                _=SoundEffectCommand.PlayAsync(SoundEffectType.CardSelect);
+                _ = SoundEffectCommand.PlayAsync(SoundEffectType.CardSelect);
                 NetCommand.AsyncInfo(NetAcyncType.FocusCard);
             }
         }

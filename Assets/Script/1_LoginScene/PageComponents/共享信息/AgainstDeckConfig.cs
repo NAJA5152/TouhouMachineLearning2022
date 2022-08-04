@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Model;
 
@@ -98,12 +95,12 @@ namespace TouhouMachineLearningSummary.Config
                             2003001,2003002,2003003,2003004,2003005,
                         })
                      }),
-                
 
-           PracticeLeader.Sanae_Kotiya => new PlayerInfo(
-                     "NPC", "东风谷早苗", "奇迹的代言人", "",
-                     new List<CardDeck>
-                     {
+
+                PracticeLeader.Sanae_Kotiya => new PlayerInfo(
+                          "NPC", "东风谷早苗", "奇迹的代言人", "",
+                          new List<CardDeck>
+                          {
                         new CardDeck("gezi", 2200001, new List<int>
                         {
                             2201001,2201002,2201003,2201004,
@@ -112,7 +109,7 @@ namespace TouhouMachineLearningSummary.Config
                             2203001,2203002,2203003,2203004,2203005,
                             2203001,2203002,2203003,2203004,2203005,
                         })
-                     }),
+                          }),
                 PracticeLeader.Mononobe_no_Futo => throw new NotImplementedException(),
                 PracticeLeader.Kaku_Seiga => throw new NotImplementedException(),
                 PracticeLeader.Hijiri_Byakuren => throw new NotImplementedException(),

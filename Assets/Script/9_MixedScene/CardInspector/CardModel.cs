@@ -1,7 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.Extension;

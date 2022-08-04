@@ -28,7 +28,7 @@ namespace TouhouMachineLearningSummary.Manager
         {
             Bias = new Vector3(IsRight ? 0.1f : -0.1f, IsDown ? 0.1f : -0.1f);
             transform.localPosition = Camera.main.ViewportToScreenPoint(ViewportPoint + Bias);
-            transform.localPosition -= new Vector3(Screen.width/2,Screen.height/2);
+            transform.localPosition -= new Vector3(Screen.width / 2, Screen.height / 2);
             if (Input.GetMouseButtonDown(1))
             {
 
@@ -82,13 +82,13 @@ namespace TouhouMachineLearningSummary.Manager
                 }
                 else
                 {
-                   transform.GetChild(0).gameObject.SetActive(false);
+                    transform.GetChild(0).gameObject.SetActive(false);
                 }
             }
 
-            
+
         }
-       public void ChangeIntroduction<T>(T target)
+        public void ChangeIntroduction<T>(T target)
         {
             string cardName = "";
             string ability = "";

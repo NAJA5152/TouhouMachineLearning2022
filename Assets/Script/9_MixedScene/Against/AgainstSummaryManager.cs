@@ -105,7 +105,7 @@ namespace TouhouMachineLearningSummary.Manager
                 //区域
                 public int SelectRegionRank { get; set; }
                 public int SelectLocation { get; set; }
-            
+
 
                 public SelectOperation() { }
             }
@@ -141,7 +141,7 @@ namespace TouhouMachineLearningSummary.Manager
                         break;
                     case SelectOperationType.SelectBoardCard:
                         operation.TriggerCardID = triggerCard != null ? triggerCard.CardID : 0;
-                        operation.IsPlayer1Select= isPlayer1Select;
+                        operation.IsPlayer1Select = isPlayer1Select;
                         operation.SelectBoardCardRanks = AgainstInfo.SelectBoardCardRanks;
                         operation.WashInsertRank = AgainstInfo.washInsertRank;
                         break;
@@ -258,7 +258,7 @@ namespace TouhouMachineLearningSummary.Manager
         public TurnOperation.SelectOperation GetCurrentSelectOperation()
         {
             int maxRank = TurnOperations[currentTurnOperationsRank].TurnSelectOperations.Count;
-            if (currentSelectOperationsRank>= maxRank)
+            if (currentSelectOperationsRank >= maxRank)
             {
                 //执行到最后检查一下状态，看看是否投降  检查是否投降
                 //return null;

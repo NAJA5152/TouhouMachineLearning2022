@@ -21,13 +21,13 @@ public class UIScaler : MonoBehaviour
             {
                 //r «0~1
                 float r = i * 1f / size;
-                if (r<side)
+                if (r < side)
                 {
                     r = r * width_k;
                 }
-                else if (r >1-side)
+                else if (r > 1 - side)
                 {
-                    r = r * width_k+(1-width_k);
+                    r = r * width_k + (1 - width_k);
                 }
                 float g = j * 1f / size;
                 if (g < side)
@@ -43,7 +43,7 @@ public class UIScaler : MonoBehaviour
             }
         }
         texture.Apply();
-        if (GetComponent<Renderer>()==null)
+        if (GetComponent<Renderer>() == null)
         {
             GetComponent<Image>().material.SetTexture("_UV", texture);
 

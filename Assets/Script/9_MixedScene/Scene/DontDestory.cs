@@ -3,7 +3,7 @@ namespace TouhouMachineLearningSummary.Other
 {
     public class DontDestory : MonoBehaviour
     {
-        static bool IsInit { get; set; }=false;
+        static bool IsInit { get; set; } = false;
         void Awake()
         {
             if (IsInit)

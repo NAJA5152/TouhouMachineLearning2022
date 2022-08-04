@@ -1,12 +1,10 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
-using TouhouMachineLearningSummary.Test;
 using UnityEngine;
 using UnityEngine.UI;
 

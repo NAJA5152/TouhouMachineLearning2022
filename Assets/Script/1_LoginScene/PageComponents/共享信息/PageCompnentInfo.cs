@@ -1,7 +1,6 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Linq;
-using TMPro;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
@@ -92,7 +91,7 @@ namespace TouhouMachineLearningSummary.Info
         public static GameObject targetCardName;
         public static GameObject targetCardTag;
         public static GameObject targetCardAbility;
-        
+
         ///////////////////////////////////////////////////////////阵营选择信息信息/////////////////////////////
 
         [Header("阵营组件")]

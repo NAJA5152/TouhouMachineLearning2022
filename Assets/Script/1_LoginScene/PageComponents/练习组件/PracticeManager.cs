@@ -1,5 +1,5 @@
-using UnityEngine;
 using TouhouMachineLearningSummary.GameEnum;
+using UnityEngine;
 namespace TouhouMachineLearningSummary.Manager
 {
     public class PracticeManager : MonoBehaviour

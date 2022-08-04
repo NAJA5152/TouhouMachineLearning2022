@@ -38,7 +38,7 @@ namespace TouhouMachineLearningSummary.Control
         }
         public void OnRightMouseClick()
         {
-            
+
         }
     }
 }

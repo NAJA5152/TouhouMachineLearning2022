@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using TouhouMachineLearningSummary.Thread;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine.SceneManagement;
-using System.Linq;
 
 namespace TouhouMachineLearningSummary.Manager
 {

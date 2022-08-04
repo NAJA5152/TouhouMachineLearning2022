@@ -1,9 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
-using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 
@@ -32,7 +30,7 @@ namespace TouhouMachineLearningSummary.Command
 
         ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
         public static void SetPlayCardMoveFree(bool isFree) => AgainstInfo.cardSet[Orientation.Down][GameRegion.Leader, GameRegion.Hand].CardList.ForEach(card => card.IsFree = isFree);
-        public static void SetRegionSelectable(Territory territory = Territory.All, GameRegion region= GameRegion.None)
+        public static void SetRegionSelectable(Territory territory = Territory.All, GameRegion region = GameRegion.None)
         {
             if (region == GameRegion.None)
             {

@@ -26,7 +26,7 @@ namespace TouhouMachineLearningSummary.Control
             DialogueInfo.SelectBranch = index;
             DialogueInfo.instance.selectUi.SetActive(false);
             DialogueInfo.CurrentPoint++;
-            DialogueInfo.IsSelectOver= true;
+            DialogueInfo.IsSelectOver = true;
         }
 
         private void OnGUI()

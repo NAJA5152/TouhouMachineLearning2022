@@ -11,7 +11,7 @@ namespace TouhouMachineLearningSummary.Command
     {
 
         //初始化牌组列表组件
-        public static void Init( Model.CardDeck newTempDeck = null, bool canChangeCard = false)
+        public static void Init(Model.CardDeck newTempDeck = null, bool canChangeCard = false)
         {
             Log.Show("配置面板");
             Info.PageCompnentInfo.isEditDeckMode = canChangeCard;
@@ -28,7 +28,7 @@ namespace TouhouMachineLearningSummary.Command
                 Info.PageCompnentInfo.cardDeckNameModel.GetComponent<Text>().text = Info.AgainstInfo.onlineUserInfo.UseDeck.DeckName;
             }
             Log.Show("配置卡组名");
-            Info.PageCompnentInfo.deckCardModels.RemoveAll(x=>x==null);
+            Info.PageCompnentInfo.deckCardModels.RemoveAll(x => x == null);
             //if (true)
             //{
             //    //初始化领袖栏?可以舍去？
@@ -42,7 +42,7 @@ namespace TouhouMachineLearningSummary.Command
             //    Info.PageCompnentInfo.deckCardModels.Clear();
             //}
             //如果领袖存在，载入对应卡图，否则加载空卡图
-            if (Info.PageCompnentInfo.tempDeck.LeaderId!=0)
+            if (Info.PageCompnentInfo.tempDeck.LeaderId != 0)
             {
                 var cardTexture = Manager.CardAssemblyManager.GetLastCardInfo(Info.PageCompnentInfo.tempDeck.LeaderId).icon;
                 Info.PageCompnentInfo.cardLeaderImageModel.GetComponent<Image>().material.mainTexture = cardTexture;
@@ -51,7 +51,7 @@ namespace TouhouMachineLearningSummary.Command
             {
 
             }
-           
+
             Log.Show("配置领袖");
             int deskCardNumber = Info.PageCompnentInfo.distinctCardIds.Count();
             int deskModelNumber = Info.PageCompnentInfo.deckCardModels.Count;

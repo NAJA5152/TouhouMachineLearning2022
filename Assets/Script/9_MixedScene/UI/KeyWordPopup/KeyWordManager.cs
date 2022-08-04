@@ -1,5 +1,3 @@
-using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -9,7 +7,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 namespace TouhouMachineLearningSummary.Manager
 {
-    public partial class KeyWordManager : MonoBehaviour,  IPointerExitHandler, IPointerEnterHandler
+    public partial class KeyWordManager : MonoBehaviour, IPointerExitHandler, IPointerEnterHandler
     {
         public int width;
         static bool IsCheckHover = false;
@@ -56,7 +54,7 @@ namespace TouhouMachineLearningSummary.Manager
                             manager.TagPopup.SetActive(true);
                             manager.TagPopupText.text = targetKeyWord.introduction;
                             manager.TagPopup.transform.position = Camera.main.ViewportToScreenPoint(Camera.main.ScreenToViewportPoint(Input.mousePosition) + new Vector3(0.1f, 0.05f));
-                            manager.TagPopup.GetComponent<RectTransform>().sizeDelta = new Vector2(manager.TagPopupText.text.Count()* width, manager.TagPopup.GetComponent<RectTransform>().sizeDelta.y);
+                            manager.TagPopup.GetComponent<RectTransform>().sizeDelta = new Vector2(manager.TagPopupText.text.Count() * width, manager.TagPopup.GetComponent<RectTransform>().sizeDelta.y);
                         }
                         else
                         {

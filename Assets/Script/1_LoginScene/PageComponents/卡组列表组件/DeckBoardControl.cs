@@ -7,9 +7,9 @@ namespace TouhouMachineLearningSummary.Control
     {
         void Update() => Command.DeckBoardCommand.UpdateDeckPosition();
         public void OnDeckClick(GameObject deck) => Command.DeckBoardCommand.OnDeckClick(deck);
-       // public void CreatDeck() => Command.DeckBoardCommand.CreatDeck();
+        // public void CreatDeck() => Command.DeckBoardCommand.CreatDeck();
         public void DeleteDeck() => Command.DeckBoardCommand.DeleteDeck();
         public void RenameDeck() => Command.DeckBoardCommand.RenameDeck();
-        public void StartAgainst() => _=Command.DeckBoardCommand.StartAgainstAsync();
+        public void StartAgainst() => _ = Command.DeckBoardCommand.StartAgainstAsync();
     }
 }

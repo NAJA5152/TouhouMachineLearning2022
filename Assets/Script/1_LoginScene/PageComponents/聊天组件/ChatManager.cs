@@ -51,7 +51,7 @@ namespace TouhouMachineLearningSummary.Manager
         public void ReceiveMessage(string user, string text, string targetUser)
         {
             PublicMessageQueue.Enqueue((user, text));
-            while (PublicMessageQueue.Count > 50){ PublicMessageQueue.Dequeue();}
+            while (PublicMessageQueue.Count > 50) { PublicMessageQueue.Dequeue(); }
             textArea.GetComponent<Text>().text = "";
             foreach ((string user, string text) message in PublicMessageQueue)
             {

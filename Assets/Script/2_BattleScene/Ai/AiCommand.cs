@@ -53,7 +53,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             else
             {
-                Card targetCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Leader,GameRegion.Hand].CardList.First();
+                Card targetCard = Info.AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList.First();
                 Info.AgainstInfo.playerPlayCard = targetCard;
             }
         }

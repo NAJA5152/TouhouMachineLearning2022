@@ -1,18 +1,10 @@
-﻿using Microsoft.AspNetCore.SignalR.Client;
-using Sirenix.OdinInspector;
-using System.Collections;
+﻿using Sirenix.OdinInspector;
 using System.Collections.Generic;
-using System.IO;
-using System.Net.Http;
-using System.Security.Cryptography.X509Certificates;
-using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Manager;
-using TouhouMachineLearningSummary.Model;
 using UnityEngine;
-using static UnityEngine.Mathf;
 
 namespace TouhouMachineLearningSummary.Test
 {
@@ -32,13 +24,13 @@ namespace TouhouMachineLearningSummary.Test
         class CardAbility
         {
             public int cardID;
-            public object[] voice=new object[] {1};
-            public List<(int, object[])> ability=new List<(int, object[])>();
+            public object[] voice = new object[] { 1 };
+            public List<(int, object[])> ability = new List<(int, object[])>();
         }
         [Button("测试网络启动")]
         public async void Click()
         {
-            List < CardAbility > abilities = new List < CardAbility >();
+            List<CardAbility> abilities = new List<CardAbility>();
 
             for (int i = 0; i < 10; i++)
             {
@@ -47,7 +39,7 @@ namespace TouhouMachineLearningSummary.Test
                 cardAbility.ability.Add(new(33, new object[] { GameEnum.Territory.My, GameEnum.BattleRegion.Fire }));
                 cardAbility.ability.Add(new(45, new object[] { new Model.Event(null, targetCard: null) }));
                 cardAbility.ability.Add(new(00, new object[] { }));
-                cardAbility.ability.Add(new(22, new object[] { new Model.Event(null, targetCard: null) , Orientation.My , CardRank.Copper, CardTag.Fairy , CardFeature.LowestUnites ,1,true}));
+                cardAbility.ability.Add(new(22, new object[] { new Model.Event(null, targetCard: null), Orientation.My, CardRank.Copper, CardTag.Fairy, CardFeature.LowestUnites, 1, true }));
                 cardAbility.ability.Add(new(18, new object[] { new Model.Event(null, targetCard: null) }));
                 abilities.Add(cardAbility);
             }

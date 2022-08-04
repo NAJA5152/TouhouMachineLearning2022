@@ -1,18 +1,15 @@
 using Sirenix.OdinInspector;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using TouhouMachineLearningSummary.Command;
-using TouhouMachineLearningSummary.Info;
-using TouhouMachineLearningSummary.GameEnum;
 using System.Threading.Tasks;
+using TouhouMachineLearningSummary.GameEnum;
+using TouhouMachineLearningSummary.Info;
+using UnityEngine;
 
 public class SoundEffectTest : MonoBehaviour
 {
     [Button]
     public async void TestAudio(SoundEffectType type)
     {
-        var audioCLip =SoundEffectInfo.SoundEfects[type];
+        var audioCLip = SoundEffectInfo.SoundEfects[type];
         AudioSource Source = SoundEffectInfo.AudioScoure.GetComponent<AudioSource>();
         Source.clip = audioCLip;
         Source.Play();

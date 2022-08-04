@@ -1,10 +1,9 @@
-﻿using UnityEngine;
-using System.Linq;
+﻿using System.Linq;
 using TMPro;
 using TouhouMachineLearningSummary.Extension;
+using TouhouMachineLearningSummary.GameEnum;
 using UnityEngine;
 using UnityEngine.UI;
-using TouhouMachineLearningSummary.GameEnum;
 
 namespace TouhouMachineLearningSummary.Manager
 {
@@ -16,16 +15,11 @@ namespace TouhouMachineLearningSummary.Manager
         public static void Init()
         {
             //牌库卡牌列表
-            //var showCardList = CardAssemblyManager.GetLastMultiCardInfos;
-
             Info.PageCompnentInfo.LibraryFilterCardList = CardAssemblyManager.LastMultiCardInfos;
             //如果当前是编辑卡组模式，则只显示指定阵营
             if (Info.PageCompnentInfo.isEditDeckMode)
             {
-                //showCardList = showCardList.Where(card => card.cardCamp == Info.CardCompnentInfo.targetCamp).ToList();
-                //showCardList = showCardList.Where(card => card.cardRank == GameEnum.CardRank.Silver).ToList();
                 Info.PageCompnentInfo.LibraryFilterCardList = Info.PageCompnentInfo.LibraryFilterCardList.Where(card => card.cardCamp == Info.PageCompnentInfo.selectCamp || card.cardCamp == GameEnum.Camp.Neutral).ToList();
-                //Info.CardCompnentInfo.LibraryFilterCardList = Info.CardCompnentInfo.LibraryFilterCardList.Where(card => card.cardRank == GameEnum.CardRank.Silver).ToList();
             }
             int libraryCardNumber = Info.PageCompnentInfo.LibraryFilterCardList.Count();
             //如果处于卡组编辑状态，则对卡牌列表做个筛选
@@ -46,7 +40,6 @@ namespace TouhouMachineLearningSummary.Manager
             for (int i = 0; i < libraryCardNumber; i++)
             {
                 //卡牌信息集合
-                //var info = CardAssemblyManager.lastMultiCardInfos[i];
                 var info = Info.PageCompnentInfo.LibraryFilterCardList[i];
                 //卡牌对应场景模型
                 var newCardModel = Info.PageCompnentInfo.libraryCardModels[i];
@@ -76,7 +69,6 @@ namespace TouhouMachineLearningSummary.Manager
                 //CardAbilityPopupManager.ChangeIntroduction(CardAbilityPopupManager.focusCardID);
             }
         }
-
         public void FocusDeckCardOnMenu(GameObject cardModel) => CardAbilityPopupManager.focusCardID = CardAssemblyManager.LastMultiCardInfos[Info.PageCompnentInfo.deckCardModels.IndexOf(cardModel)].cardID;
         public void LostFocusCardOnMenu() => CardAbilityPopupManager.focusCardID = 0;
     }

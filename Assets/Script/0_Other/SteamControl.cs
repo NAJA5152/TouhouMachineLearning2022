@@ -1,5 +1,4 @@
 ﻿//using Steamworks;
-using System.Collections;
 using UnityEngine;
 
 namespace Assets.Scripts.Steamworks.NET

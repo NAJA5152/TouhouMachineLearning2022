@@ -2,7 +2,7 @@
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 //对卡组列表卡牌模型中进行相关操作
-public class UIEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,IPointerUpHandler,IPointerClickHandler
+public class UIEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler, IPointerUpHandler, IPointerClickHandler
 {
     public UnityEvent onPointerEnter;
     public UnityEvent onPointerExit;
@@ -31,6 +31,6 @@ public class UIEvent : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler,
 
     public void OnPointerUp(PointerEventData eventData)
     {
-       
+
     }
 }

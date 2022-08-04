@@ -1,12 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 using TMPro;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
-using UnityEngine.UI;
 namespace TouhouMachineLearningSummary.Manager
 {
     public partial class ConfigManager : MonoBehaviour
@@ -35,7 +31,7 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 Debug.Log("加载已有配置文件");
                 configInfo = File.ReadAllText(ConfigFileSavePath + "/GameConfig.ini").ToObject<ConfigInfoModel>();
-                //Screen.SetResolution(192 * 6, 108 * 6, false);
+                Debug.LogError("设置分辨率" + configInfo.Width + " " + configInfo.Heigh + " " + configInfo.IsFullScreen);
                 Screen.SetResolution(configInfo.Width, configInfo.Heigh, configInfo.IsFullScreen);
                 TranslateManager.currentLanguage = configInfo.UseLanguage;
             }

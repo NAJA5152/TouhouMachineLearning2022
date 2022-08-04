@@ -11,7 +11,7 @@ namespace TouhouMachineLearningSummary.Manager
         public static void Refresh()
         {
             manager.userName.text = Info.AgainstInfo.onlineUserInfo.Name;
-            manager.uid.text ="UID:"+ Info.AgainstInfo.onlineUserInfo.UID;
+            manager.uid.text = "UID:" + Info.AgainstInfo.onlineUserInfo.UID;
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
-using TouhouMachineLearningSummary.Thread;
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Model;
+using TouhouMachineLearningSummary.Thread;
 using UnityEngine;
 namespace TouhouMachineLearningSummary.Manager
 {

@@ -5,13 +5,12 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
+using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.Model;
 using UnityEditor;
 using UnityEngine;
-using UnityEngine.SceneManagement;
-using System.Security.Cryptography;
-using TouhouMachineLearningSummary.Extension;
-using System.Net;
 
 namespace TouhouMachineLearningSummary.Other
 {
@@ -148,7 +147,7 @@ namespace TouhouMachineLearningSummary.Other
 
             BuildPipeline.BuildAssetBundles(AndroidOutputPath, BuildAssetBundleOptions.None, BuildTarget.Android);
 
-          
+
             UnityEngine.Debug.LogWarning("安卓打包完毕");
 
             UnityEngine.Debug.LogWarning("开始生成MD5值校验文件");

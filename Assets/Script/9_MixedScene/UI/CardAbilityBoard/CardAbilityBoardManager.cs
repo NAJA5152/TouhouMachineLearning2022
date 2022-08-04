@@ -1,8 +1,5 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using TMPro;
+﻿using TMPro;
 using TouhouMachineLearningSummary.Extension;
-using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.UI;
@@ -15,7 +12,7 @@ namespace TouhouMachineLearningSummary.Manager
         //需求功能
         //切换上下一张卡牌
         //显示当前卡牌的各种信息
-        enum LoadType{FromLibrary,FromCardList,FromCard,}
+        enum LoadType { FromLibrary, FromCardList, FromCard, }
         private void Awake() => Manager = this;
         int currentRank { get; set; } = 0;
         Card CurrentGameCard { get; set; }
@@ -115,9 +112,9 @@ namespace TouhouMachineLearningSummary.Manager
                 Name.text = card.TranslateName;
                 DescribeText.text = card.TranslateDescribe;
                 ability = card.TranslateAbility;
-                ability=KeyWordManager.ReplaceAbilityKeyWord(ability);
+                ability = KeyWordManager.ReplaceAbilityKeyWord(ability);
                 AbilityText.text = ability;
-                TagText.text = card.TranslateTags; 
+                TagText.text = card.TranslateTags;
                 //IntroductionBackground.gameObject.SetActive(true);
                 //IntroductionBackground.sizeDelta = new Vector2(300, ability.Length / 13 * 15 + 100);
             }

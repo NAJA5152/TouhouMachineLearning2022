@@ -1,12 +1,12 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
-using TouhouMachineLearningSummary.Thread;
-using TouhouMachineLearningSummary.Model;
-using UnityEngine;
-using UnityEngine.UI;
+using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Manager;
-using TouhouMachineLearningSummary.GameEnum;
+using TouhouMachineLearningSummary.Model;
+using TouhouMachineLearningSummary.Thread;
+using UnityEngine;
+using UnityEngine.UI;
 
 namespace TouhouMachineLearningSummary.Command
 {
@@ -15,7 +15,7 @@ namespace TouhouMachineLearningSummary.Command
         //////////////////////////////////////////////////////////状态与字段UI//////////////////////////////////////////////////////////////
         public static Sprite GetFieldAndStateSprite<T>(T cardField)
         {
-            Sprite targetSprite =  AssetBundleCommand.Load<Sprite>("FieldAndState", cardField.ToString());
+            Sprite targetSprite = AssetBundleCommand.Load<Sprite>("FieldAndState", cardField.ToString());
             targetSprite ??= AssetBundleCommand.Load<Sprite>("FieldAndState", "None");
             return targetSprite;
         }
@@ -48,7 +48,7 @@ namespace TouhouMachineLearningSummary.Command
                 case CardBoardMode.Temp:
                     CloseButton.SetActive(true);
                     break;
-                    //选择或换牌模式下
+                //选择或换牌模式下
                 case CardBoardMode.Select:
                 case CardBoardMode.ExchangeCard:
                     HideButton.SetActive(true);
@@ -77,7 +77,7 @@ namespace TouhouMachineLearningSummary.Command
             JumpButton.SetActive(false);
             ShowButton.SetActive(true);
             CloseButton.SetActive(false);
-            
+
         }
         public static void SetCardBoardShow()
         {

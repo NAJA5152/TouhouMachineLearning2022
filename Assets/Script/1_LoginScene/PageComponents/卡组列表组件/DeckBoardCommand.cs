@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Config;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Manager;
 using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.UI;

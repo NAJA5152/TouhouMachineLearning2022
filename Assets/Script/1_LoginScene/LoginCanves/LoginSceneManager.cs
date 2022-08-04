@@ -1,5 +1,4 @@
-﻿using Sirenix.OdinInspector;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -214,7 +213,7 @@ namespace TouhouMachineLearningSummary.Control
             Manager.AgainstManager.Init();
             Manager.AgainstManager.SetAgainstMode(targetAgainstMode);
             //开始排队
-            await NetCommand.JoinHoldOnList(targetAgainstMode,0, sampleUserInfo, virtualOpponentInfo);
+            await NetCommand.JoinHoldOnList(targetAgainstMode, 0, sampleUserInfo, virtualOpponentInfo);
         }
         public void UserServerSelect() => AgainstInfo.IsHostNetMode = !Info.AgainstInfo.IsHostNetMode;
         private void OnApplicationQuit() => NetCommand.Dispose();

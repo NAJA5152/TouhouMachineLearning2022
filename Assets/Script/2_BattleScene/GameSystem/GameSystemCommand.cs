@@ -1,8 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
@@ -87,7 +85,7 @@ namespace TouhouMachineLearningSummary.Command
             {
                 Debug.LogWarning("无生效目标");
             }
-           
+
         }
         static async Task Trigger(Card NoticeCard, Model.Event e)
         {

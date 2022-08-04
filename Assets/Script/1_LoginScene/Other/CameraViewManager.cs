@@ -34,7 +34,7 @@ namespace TouhouMachineLearningSummary.Manager
         public static async Task MoveToViewAsync(int viewIndex, bool isImmediately = false)
         {
             Debug.Log("切换视角" + viewIndex);
-            
+
             switch (viewIndex)
             {
                 case 0:
@@ -80,13 +80,13 @@ namespace TouhouMachineLearningSummary.Manager
                     Camera.main.transform.position = Vector3.Lerp(Camera.main.transform.position, targetPos, process);
                     Camera.main.transform.eulerAngles = Vector3.Lerp(Camera.main.transform.eulerAngles, targetEuler, process);
                 });
-              
+
             }
             IsOpenWaggle = true;
         }
         private void Update()
         {
-            if (IsCameraWaggle&& IsOpenWaggle)
+            if (IsCameraWaggle && IsOpenWaggle)
             {
                 Camera.main.transform.position = targetPos + new Vector3(
                     Mathf.PerlinNoise(Time.time * frequent + 0, Time.time * frequent + 0) - 0.5f,

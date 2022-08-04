@@ -1,11 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 namespace TouhouMachineLearningSummary.Command
 {
@@ -22,7 +19,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (AlreadyInit) { return; }
             AlreadyInit = true;
-           
+
             string targetPath = "";
             //选择从下载下来的热更新目录拉去还是本地获取
             //当为热更模式且不是编辑器时从游戏数据更新路径加载，否在直接加载本地的
@@ -93,7 +90,7 @@ namespace TouhouMachineLearningSummary.Command
                 var targetAsset = targetAssets.FirstOrDefault(asset => asset.name == fileName && asset.GetType() == typeof(T));
                 if (targetAsset == null)
                 {
-                    Debug.LogError("无法找到资源"+typeof(T)+"-" + tag +"-"+ fileName);
+                    Debug.LogError("无法找到资源" + typeof(T) + "-" + tag + "-" + fileName);
                 }
                 return targetAsset as T;
             }
