@@ -24,6 +24,7 @@ public class HotFixedManager : MonoBehaviour
 
     static bool isEditor = Application.isEditor;//是否是编辑器状态
     static bool isMobile = Application.isMobilePlatform;//是否是移动平台
+                                                        //AB包下载路径
     string downLoadPath = isMobile switch
     {
         true => Application.persistentDataPath + $"/Assetbundles/{ConfigManager.GetServerTag()}/",
@@ -48,7 +49,7 @@ public class HotFixedManager : MonoBehaviour
     //已下好任务数
     int downloadTaskCount = 0;
     //总下载任务
-    List<Task> downloadTaskList = new List<Task>();
+    static List<Task> downloadTaskList = new List<Task>();
     //当前下载文件
     string currentDownloadFileName;
 
