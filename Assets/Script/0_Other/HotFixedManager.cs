@@ -24,13 +24,13 @@ public class HotFixedManager : MonoBehaviour
 
     static bool isEditor = Application.isEditor;//是否是编辑器状态
     static bool isMobile = Application.isMobilePlatform;//是否是移动平台
-    string downLoadPath = isMobile switch
+    static string downLoadPath = isMobile switch
     {
         true => Application.persistentDataPath + $"/Assetbundles/{ConfigManager.GetServerTag()}/",
         false => Application.streamingAssetsPath + $"/Assetbundles/{ConfigManager.GetServerTag()}/"
     };
     //程序集存储路径
-    string dllFIleRootPath = isMobile switch
+    static string dllFIleRootPath = isMobile switch
     {
         true => new DirectoryInfo(Application.persistentDataPath).Parent.FullName,
         false => Directory.GetCurrentDirectory()
@@ -46,11 +46,11 @@ public class HotFixedManager : MonoBehaviour
         await CheckAssetBundles();
     }
     //已下好任务数
-    int downloadTaskCount = 0;
+    static int downloadTaskCount = 0;
     //总下载任务
-    List<Task> downloadTaskList = new List<Task>();
+    static List<Task> downloadTaskList = new List<Task>();
     //当前下载文件
-    string currentDownloadFileName;
+    static string currentDownloadFileName;
 
     private void Update()
     {
