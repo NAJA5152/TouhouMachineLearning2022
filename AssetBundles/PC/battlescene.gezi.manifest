@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 747236918
+CRC: 3587230815
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 687dc8325aaf311a50016cdc08a7ec57
+    Hash: 86ff5dd8c41a143c06e9a9a9adb9053c
   TypeTreeHash:
     serializedVersion: 2
     Hash: 5d2b8174f5979ff1b1b3bfdbf53489e0
@@ -67,4 +67,4 @@ Assets:
 - "Assets/GameResources/BattleScene/\u6CB3\u7AE5\u91CD\u5DE5\u684C\u9762/\u6742\u7269\u8D34\u56FE/\u6742\u7269_Base_Color.png"
 - "Assets/GameResources/BattleScene/Shrine/\u6CD5\u7EBF.png"
 Dependencies:
-- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/PC/texture.gezi
+- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/PC/texture.gezi

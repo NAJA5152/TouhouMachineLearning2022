@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3941828016
+CRC: 1729223427
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: ba3f1f80ad433b1c94d1ee24681d3715
+    Hash: 3ddc47a0cbd285aef3d581c164c1a090
   TypeTreeHash:
     serializedVersion: 2
     Hash: d8ea4c085910022a1486a82b0b71a37e
@@ -66,7 +66,6 @@ Assets:
 - "Assets/GameResources/Texture/\u5361\u9762/7I}MX1YBD9IX8V~I0%HEBT7.png"
 - "Assets/GameResources/Texture/\u6495\u5361.png"
 - "Assets/GameResources/Texture/\u7075\u68A6\u5361\u80CC/metallic.png"
-- Assets/GameResources/Texture/ezgif.com-gif-to-mp4.mp4
 - "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u6B63\u9762/New_Graph_normal.png"
 - "Assets/GameResources/Texture/\u5361\u724C\u8FB9\u6846.png"
 - "Assets/GameResources/Texture/\u4E09\u6708\u5361\u724C/\u80CC\u9762/New_Graph_roughness.png"

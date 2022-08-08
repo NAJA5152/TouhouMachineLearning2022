@@ -94,6 +94,10 @@ public class HotFixedManager : MonoBehaviour
                 FileInfo localFile = null;
                 if (MD5FiIeData.Key.EndsWith(".dll")) //如果是游戏程序集dll文件，则根据不同平台对比不同路径下的游戏程序集dll
                 {
+                    if (isMobile)
+                    {
+                        continue;
+                    }
                     Debug.LogError("当前程序集路径为" + dllFIleRootPath);
                     string currentDllPath = new DirectoryInfo(dllFIleRootPath).GetFiles("TouHouMachineLearning.dll", SearchOption.AllDirectories).FirstOrDefault()?.FullName;
                     Debug.LogError("当前为脚本路径在：" + currentDllPath);
