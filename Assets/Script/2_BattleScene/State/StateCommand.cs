@@ -473,7 +473,7 @@ namespace TouhouMachineLearningSummary.Command
             if (AgainstInfo.IsReplayMode)
             {
                 var operation = AgainstInfo.summary.GetCurrentSelectOperation();
-                if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectUnite)
+                if (operation.Operation.OneHotToEnum<SelectOperationType>() == SelectOperationType.SelectUnit)
                 {
                     AgainstInfo.SelectUnits = operation.SelectCardRank.SelectList(index => filterCards[index]);
                 }
@@ -506,8 +506,8 @@ namespace TouhouMachineLearningSummary.Command
                 //Debug.Log("选择单位完毕" + Math.Min(Cards.Count, num));
 
             }
-            NetCommand.AsyncInfo(NetAcyncType.SelectUnites);
-            AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectUnite, triggerCard, filterCards, num);
+            NetCommand.AsyncInfo(NetAcyncType.SelectUnits);
+            AgainstSummaryManager.UploadSelectOperation(SelectOperationType.SelectUnit, triggerCard, filterCards, num);
             UiCommand.DestoryAllArrow();
             await CustomThread.Delay(250);
             //Debug.Log("同步选择单位完毕");

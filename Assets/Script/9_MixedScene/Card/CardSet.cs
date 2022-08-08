@@ -139,11 +139,11 @@ namespace TouhouMachineLearningSummary.Info
                 {
                     switch (cardFeature)
                     {
-                        case CardFeature.LargestUnites:
+                        case CardFeature.LargestUnits:
                             int largestPoint = filterCardList.Max(card => card.ShowPoint);
                             filterCardList = filterCardList.Where(card => card.ShowPoint == largestPoint);
                             break;
-                        case CardFeature.LowestUnites:
+                        case CardFeature.LowestUnits:
                             int lowestPoint = filterCardList.Min(card => card.ShowPoint);
                             filterCardList = filterCardList.Where(card => card.ShowPoint == lowestPoint);
                             break;

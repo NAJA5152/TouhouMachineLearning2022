@@ -75,7 +75,7 @@ namespace TouhouMachineLearningSummary.Command
                                     AgainstInfo.SelectRowRank = receiveInfo[0].ToType<int>();
                                     break;
                                 }
-                            case NetAcyncType.SelectUnites:
+                            case NetAcyncType.SelectUnits:
                                 {
                                     Debug.Log("收到同步单位信息");
                                     List<Location> Locations = receiveInfo[0].ToType<List<Location>>();
@@ -346,9 +346,9 @@ namespace TouhouMachineLearningSummary.Command
                             await TouHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { RowRank });
                             break;
                         }
-                    case NetAcyncType.SelectUnites:
+                    case NetAcyncType.SelectUnits:
                         {
-                            List<Location> Locations = Info.AgainstInfo.SelectUnits.SelectList(unite => unite.Location);
+                            List<Location> Locations = Info.AgainstInfo.SelectUnits.SelectList(unit => unit.Location);
                             Debug.LogError("选择单位完成：" + Locations.ToJson());
                             await TouHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { Locations });
                             break;

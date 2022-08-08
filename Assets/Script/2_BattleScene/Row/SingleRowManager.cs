@@ -33,10 +33,10 @@ namespace TouhouMachineLearningSummary.Manager
             {
                 int Rank = 0;
                 float posx = -(AgainstInfo.FocusPoint.x - this.transform.position.x);
-                int UniteNum = this.CardList.Where(card => !card.IsGray).Count();
-                for (int i = 0; i < UniteNum; i++)
+                int UnitsNum = this.CardList.Where(card => !card.IsGray).Count();
+                for (int i = 0; i < UnitsNum; i++)
                 {
-                    if (posx > i * 1.6 - (UniteNum - 1) * 0.8)
+                    if (posx > i * 1.6 - (UnitsNum - 1) * 0.8)
                     {
                         Rank = i + 1;
                     }

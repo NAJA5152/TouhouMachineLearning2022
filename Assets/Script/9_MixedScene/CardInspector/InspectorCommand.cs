@@ -111,7 +111,7 @@ namespace TouhouMachineLearningSummary.Command
             if (!File.Exists(targetPath))
             {
 
-                string OriginPath = Application.dataPath + @$"\Script\9_MixedScene\CardSpace\Card{(card.cardType == CardType.Unite ? "0" : "1")}.cs";
+                string OriginPath = Application.dataPath + @$"\Script\9_MixedScene\CardSpace\Card{(card.cardType == CardType.Unit ? "0" : "1")}.cs";
                 string ScriptText = File.ReadAllText(OriginPath, System.Text.Encoding.GetEncoding("GB2312"))
                     .Replace("Card1", "Card" + cardId)
                     .Replace("Card0", "Card" + cardId)

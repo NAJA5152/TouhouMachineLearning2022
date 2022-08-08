@@ -34,10 +34,10 @@ namespace TouhouMachineLearningSummary.CardSpace
                    for (int i = 0; i < AgainstInfo.cardSet[Orientation.My][GameRegion.Battle][CardTag.Fairy].CardList.Count; i++)
                    {
 
-                       List<Card> cardlist = AgainstInfo.cardSet[Orientation.Op][GameRegion.Battle][CardFeature.LargestUnites].CardList.ToList();
+                       List<Card> cardlist = AgainstInfo.cardSet[Orientation.Op][GameRegion.Battle][CardFeature.LargestUnits].CardList.ToList();
                        if (cardlist.Any())
                        {
-                           await GameSystem.SelectSystem.SelectUnite(this, cardlist, 1, isAuto: true);
+                           await GameSystem.SelectSystem.SelectUnit(this, cardlist, 1, isAuto: true);
                            await GameSystem.PointSystem.Hurt(new Model.Event(this, AgainstInfo.SelectUnits).SetPoint(1));
                            if (BasePoint > 1)
                            {

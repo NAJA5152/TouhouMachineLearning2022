@@ -20,7 +20,7 @@ namespace TouhouMachineLearningSummary.Manager
     public enum SelectOperationType
     {
         SelectProperty,//选择属性
-        SelectUnite,//选择单位
+        SelectUnit,//选择单位
         SelectRegion,//选择对战区域
         SelectLocation,//选择位置坐标
         SelectBoardCard,//从面板中选择卡牌
@@ -133,9 +133,9 @@ namespace TouhouMachineLearningSummary.Manager
                 {
                     case SelectOperationType.SelectProperty:
                         break;
-                    case SelectOperationType.SelectUnite:
+                    case SelectOperationType.SelectUnit:
                         operation.TriggerCardID = triggerCard.CardID;
-                        operation.SelectCardRank = AgainstInfo.SelectUnits.SelectList(selectUnite => targetCardList.IndexOf(selectUnite));
+                        operation.SelectCardRank = AgainstInfo.SelectUnits.SelectList(selectUnit => targetCardList.IndexOf(selectUnit));
                         operation.TargetCardList = targetCardList.SelectList(card => new SampleCardModel(card));
                         operation.SelectMaxNum = selectMaxNum;
                         break;

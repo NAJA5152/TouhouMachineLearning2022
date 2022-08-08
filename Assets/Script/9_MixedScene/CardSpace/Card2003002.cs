@@ -22,10 +22,10 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.When, TriggerType.Play)
                .AbilityAdd(async (e) =>
                {
-                   await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Copper].CardList, 1);
+                   await GameSystem.SelectSystem.SelectUnit(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Copper].CardList, 1);
                    await GameSystem.TransferSystem.MoveToDeck(GameSystem.InfoSystem.SelectUnit);
 
-                   await GameSystem.TransferSystem.PlayCard(new Event(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck][CardRank.Copper][CardFeature.LowestUnites].CardList));
+                   await GameSystem.TransferSystem.PlayCard(new Event(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck][CardRank.Copper][CardFeature.LowestUnits].CardList));
                    await GameSystem.TransferSystem.MoveToGrave(this);
                })
                .AbilityAppend();

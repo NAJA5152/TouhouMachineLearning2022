@@ -29,7 +29,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                    {
                        List<Card> targetCards = GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Silver, CardRank.Copper].CardList;
                        targetCards.Remove(e.triggerCard);
-                       await GameSystem.SelectSystem.SelectUnite(this, targetCards, 1);
+                       await GameSystem.SelectSystem.SelectUnit(this, targetCards, 1);
                        await GameSystem.PointSystem.Reversal(new Event(e.triggerCard, GameSystem.InfoSystem.SelectUnits));
                    };
                }, Condition.Default)

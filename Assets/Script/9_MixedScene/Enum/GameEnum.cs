@@ -219,13 +219,13 @@ namespace TouhouMachineLearningSummary.GameEnum
 
     public enum CardType
     {
-        Unite,
+        Unit,
         Special,
     }
     public enum CardFeature
     {
-        LargestUnites,
-        LowestUnites,
+        LargestUnits,
+        LowestUnits,
         NotZero,
     }
     public enum CardRank
@@ -325,7 +325,7 @@ namespace TouhouMachineLearningSummary.GameEnum
         FocusCard,
         PlayCard,
         SelectRegion,
-        SelectUnites,
+        SelectUnits,
         SelectLocation,
         SelectProperty,
         SelectBoardCard,

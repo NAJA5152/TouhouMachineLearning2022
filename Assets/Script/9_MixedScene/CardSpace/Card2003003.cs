@@ -26,7 +26,7 @@ namespace TouhouMachineLearningSummary.CardSpace
              .AbilityAdd(async (e) =>
              {
                  await GameSystem.FieldSystem.SetField(new Event(this, this).SetTargetField(CardField.Inspire,1));
-                 await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck][CardRank.Copper][CardTag.Fairy][CardFeature.LowestUnites].CardList, 1, true);
+                 await GameSystem.SelectSystem.SelectUnit(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Deck][CardRank.Copper][CardTag.Fairy][CardFeature.LowestUnits].CardList, 1, true);
                  await GameSystem.TransferSystem.PlayCard(new Event(this, GameSystem.InfoSystem.SelectUnits));
              }, Condition.Default)
              .AbilityAppend();

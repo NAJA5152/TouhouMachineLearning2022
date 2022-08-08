@@ -30,7 +30,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                    await GameSystem.FieldSystem.SetField(new Event(this, cardList).SetTargetField(CardField.Energy, 0));
                    for (int i = 0; i < num; i++)
                    {
-                       await GameSystem.PointSystem.Hurt(new Event(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Battle][CardRank.Silver][CardRank.Copper][CardFeature.LargestUnites].CardList.FirstOrDefault()));
+                       await GameSystem.PointSystem.Hurt(new Event(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Battle][CardRank.Silver][CardRank.Copper][CardFeature.LargestUnits].CardList.FirstOrDefault()));
                    }
                }, Condition.Default)
                .AbilityAppend();

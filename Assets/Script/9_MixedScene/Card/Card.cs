@@ -417,7 +417,7 @@ namespace TouhouMachineLearningSummary.Model
                         case CardState.Black:
                             if (cardStates.Contains(CardState.White))
                             {
-                                await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Battle][CardRank.NoGold].CardList, 1, true);
+                                await GameSystem.SelectSystem.SelectUnit(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.Op][GameRegion.Battle][CardRank.NoGold].CardList, 1, true);
                                 await GameSystem.PointSystem.Hurt(new Event(this, GameSystem.InfoSystem.SelectUnits).SetPoint(1));
                                 cardStates.Remove(CardState.White);
                             }
@@ -425,7 +425,7 @@ namespace TouhouMachineLearningSummary.Model
                         case CardState.White:
                             if (cardStates.Contains(CardState.Black))
                             {
-                                await GameSystem.SelectSystem.SelectUnite(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.NoGold].CardList, 1, true);
+                                await GameSystem.SelectSystem.SelectUnit(this, GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.NoGold].CardList, 1, true);
                                 await GameSystem.PointSystem.Gain(new Event(this, GameSystem.InfoSystem.SelectUnits).SetPoint(1));
                                 cardStates.Remove(CardState.Black);
                             }
@@ -588,7 +588,7 @@ namespace TouhouMachineLearningSummary.Model
             material.SetFloat("_IsTemp", IsGray ? 0 : 1);
             transform.position = Vector3.Lerp(transform.position, targetPosition, MoveSpeed);
             transform.rotation = Quaternion.Lerp(transform.rotation, targetQuaternion, Time.deltaTime * 10);
-            PointText.text = CardType == CardType.Unite ? ShowPoint.ToString() : "";
+            PointText.text = CardType == CardType.Unit ? ShowPoint.ToString() : "";
         }
         /// <summary>
         /// 注册一个能力
@@ -616,7 +616,7 @@ namespace TouhouMachineLearningSummary.Model
                 {
                     PointText.color = Color.black;
                 }
-                PointText.text = CardType == CardType.Unite ? ShowPoint.ToString() : "";
+                PointText.text = CardType == CardType.Unit ? ShowPoint.ToString() : "";
                 //字段
                 for (int i = 0; i < 4; i++)
                 {
