@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 1945239528
+CRC: 4114924894
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -92,3 +92,6 @@ AssetBundleManifest:
         Dependency_3: uitexture.gezi
         Dependency_4: texture.gezi
         Dependency_5: bullet1.gezi
+    Info_20:
+      Name: scene0
+      Dependencies: {}

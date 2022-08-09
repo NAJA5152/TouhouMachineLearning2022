@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3731345093
+CRC: 118205038
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 583f9c009132564e786b71a529b2e176
+    Hash: 35e1abe618a919d39b45e8cf7fe4a920
   TypeTreeHash:
     serializedVersion: 2
     Hash: 9a2ca7bdbd1871f7131daf57de908e0c
@@ -34,7 +34,6 @@ Assets:
 - Assets/GameResources/SoundEffect/DrawCard.ogg
 - "Assets/GameResources/SoundEffect/\u539F\u97F3\u6548/\u5200\u58F0.mp3"
 - Assets/GameResources/SoundEffect/Water1.ogg
-- "Assets/Menu/\u5F39\u7A97.wav"
 - Assets/GameResources/SoundEffect/Shop2.ogg
 - Assets/GameResources/SoundEffect/Starlight.ogg
 - Assets/GameResources/SoundEffect/DrawCard1.wav

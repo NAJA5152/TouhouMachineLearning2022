@@ -1,12 +1,12 @@
 ManifestFileVersion: 0
-CRC: 2507930022
+CRC: 2295459698
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 687ad34ad027f28ed2b1ca6882b0cf10
+    Hash: d08b844a3b95b237851fe7ab039934aa
   TypeTreeHash:
     serializedVersion: 2
-    Hash: da6513df4b31e2f80a4e0dc8f9e741a3
+    Hash: 236bab4fc4985eca84544dc9a298febb
 HashAppended: 0
 ClassTypes:
 - Class: 1
@@ -61,6 +61,8 @@ ClassTypes:
   Script: {instanceID: 0}
 - Class: 328
   Script: {instanceID: 0}
+- Class: 329
+  Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers:
 - AssemblyName: UnityEngine.CoreModule
   ClassName: UnityEngine.Events.PersistentCallGroup
@@ -80,6 +82,6 @@ Assets:
 - Assets/GameResources/Bullet/BigBall.prefab
 - Assets/GameResources/Bullet/HurtParticle.prefab
 Dependencies:
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/bullet1.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/shader_material.gezi
-- G:/UnityProject/TouhouMachineLearning2022/AssetBundles/Android/texture.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/bullet1.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/shader_material.gezi
+- D:/vs2022-Project/TouhouMachineLearning2022/AssetBundles/Android/texture.gezi
