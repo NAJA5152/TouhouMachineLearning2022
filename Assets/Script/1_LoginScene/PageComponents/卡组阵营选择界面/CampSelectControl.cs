@@ -5,6 +5,7 @@ namespace TouhouMachineLearningSummary.Control
     public class CampSelectControl : MonoBehaviour
     {
         public void Reback() => Command.MenuStateCommand.RebackStare();
+        public void LastStep() => Command.MenuStateCommand.AddState( GameEnum.MenuState.CampSelect);
 
         public void FocusCamp(GameObject campModel) => Command.CampSelectCommand.FocusCamp(campModel);
         public void LostFocusCamp() => Command.CampSelectCommand.LostFocusCamp();
