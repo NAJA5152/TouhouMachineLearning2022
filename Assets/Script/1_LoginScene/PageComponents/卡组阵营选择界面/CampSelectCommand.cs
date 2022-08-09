@@ -10,6 +10,10 @@ namespace TouhouMachineLearningSummary.Command
     {
         public static void InitCamp()
         {
+            Info.PageCompnentInfo.Instance.selectCampOverBtn.SetActive(true);
+            Info.PageCompnentInfo.Instance.rebackBtn.SetActive(true);
+            Info.PageCompnentInfo.Instance.selectLeaderOverBtn.SetActive(false);
+            Info.PageCompnentInfo.Instance.lastStepBtn.SetActive(false);
             Info.PageCompnentInfo.selectCardModels.ForEach(Object.Destroy);
             Info.PageCompnentInfo.selectCardModels.Clear();
             //初始化信息来源
@@ -43,6 +47,10 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static void InitLeader()
         {
+            Info.PageCompnentInfo.Instance.selectCampOverBtn.SetActive(false);
+            Info.PageCompnentInfo.Instance.rebackBtn.SetActive(false);
+            Info.PageCompnentInfo.Instance.selectLeaderOverBtn.SetActive(true);
+            Info.PageCompnentInfo.Instance.lastStepBtn.SetActive(true);
             Info.PageCompnentInfo.selectCardModels.ForEach(Object.Destroy);
             Info.PageCompnentInfo.selectCardModels.Clear();
             Info.CampInfo.leaderInfos = Manager.CardAssemblyManager

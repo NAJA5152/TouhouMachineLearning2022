@@ -95,14 +95,6 @@ namespace TouhouMachineLearningSummary.Info
         ///////////////////////////////////////////////////////////阵营选择信息信息/////////////////////////////
 
         [Header("阵营组件")]
-        public static List<GameObject> selectCardModels = new List<GameObject>();
-        public static bool isCampIntroduction = false;
-        public static Camp focusCamp = Camp.Neutral;
-        public static Camp selectCamp = Camp.Neutral;
-
-        public static int focusLeaderID = 0;
-        public static int selectLeaderID = 0;
-
         public GameObject modelContent;
 
         public GameObject CampModel;
@@ -113,6 +105,22 @@ namespace TouhouMachineLearningSummary.Info
         public Sprite ShintoismTex;
         public Sprite BuddhismTex;
         public Sprite scienceTex;
+
+        public GameObject selectCampOverBtn;
+        public GameObject selectLeaderOverBtn;
+        public GameObject rebackBtn;
+        public GameObject lastStepBtn;
+
+
+        public static List<GameObject> selectCardModels = new List<GameObject>();
+        public static bool isCampIntroduction = false;
+        public static Camp focusCamp = Camp.Neutral;
+        public static Camp selectCamp = Camp.Neutral;
+
+        public static int focusLeaderID = 0;
+        public static int selectLeaderID = 0;
+
+        
 
         /// ////////////////////////////////////////////////////////牌组信息/////////////////////////////
         [Header("牌组信息组件")]
