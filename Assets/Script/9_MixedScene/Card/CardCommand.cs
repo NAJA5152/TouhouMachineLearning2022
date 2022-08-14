@@ -238,6 +238,7 @@ namespace TouhouMachineLearningSummary.Command
             await Task.Delay(0);//之后实装卡牌特效需要时间延迟配合
             _ = SoundEffectCommand.PlayAsync(SoundEffectType.DrawCard);
             RowCommand.SetPlayCardMoveFree(false);
+            Manager.ChainManager.ShowChainCount();
             targetCard.isPrepareToPlay = false;
             if (IsAnsy)
             {
