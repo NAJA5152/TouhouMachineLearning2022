@@ -22,8 +22,8 @@ namespace TouhouMachineLearningSummary.Command
                 AgainstInfo.cardSet[singleRowInfo.RowRank] = AgainstInfo.cardSet[singleRowInfo.RowRank].OrderByDescending(card => card.CardRank).ThenBy(card => card.BasePoint).ThenBy(card => card.CardID).ToList();
             });
         }
-
-        public static void RemoveCard(Card card) => card.BelongCardList.Remove(card);
+        //令卡牌自由
+        public static void FreeCard(Card card) => card.BelongCardList.Remove(card);
         public static Card GenerateCard(int id)
         {
             GameObject newCard = GameObject.Instantiate(Info.CardInfo.cardModel, new Vector3(0, 100, 0), Info.CardInfo.cardModel.transform.rotation);
@@ -114,7 +114,7 @@ namespace TouhouMachineLearningSummary.Command
                 .cardSet[(GameRegion)targetCard.CardDeployRegion][targetCard.CurrentOrientation]
                 .RowManagers.First().CardList;
             Debug.LogWarning("召唤卡牌于" + targetCard.CurrentOrientation);
-            RemoveCard(targetCard);
+            FreeCard(targetCard);
             TargetRow.Add(targetCard);
             targetCard.IsCanSee = true;
             //targetCard.moveSpeed = 0.1f;
@@ -126,7 +126,7 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task MoveCard(Card targetCard, Location location)
         {
-            RemoveCard(targetCard);
+            FreeCard(targetCard);
             SingleRowManager TargetRow = Info.AgainstInfo.cardSet.RowManagers[location.X];
             AgainstInfo.cardSet[TargetRow.orientation][TargetRow.region].Add(targetCard, location.Y);
             targetCard.isMoveStepOver = false;
@@ -141,7 +141,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             if (!reTrigger)
             {
-                RemoveCard(targetCard);
+                FreeCard(targetCard);
                 AgainstInfo.SelectRowCardList.Insert(AgainstInfo.SelectRank, targetCard);
             }
             targetCard.isMoveStepOver = false;
@@ -167,9 +167,10 @@ namespace TouhouMachineLearningSummary.Command
                 CardBoardCommand.LoadBoardCardList(AgainstInfo.cardSet[isRoundStartExchange ? Orientation.Down : Orientation.My][GameRegion.Hand].CardList, CardBoardMode.ExchangeCard);
             }
         }
-        internal static Task RebackCard()
+        internal static async Task RebackCard(Card targetCard)
         {
-            throw new NotImplementedException();
+            //还清空卡牌状态
+            await PlayCard(targetCard);
         }
         public static async Task DrawCard(bool isPlayerDraw = true, bool ActiveBlackList = false, bool isOrder = true)
         {
@@ -233,41 +234,47 @@ namespace TouhouMachineLearningSummary.Command
                 await GameSystem.TransferSystem.MoveToGrave(targetCard);
             }
         }
-        public static async Task PlayCard(Card targetCard, bool IsAnsy = true)
+        public static async Task PlayCard(Card targetCard)
         {
             await Task.Delay(0);//之后实装卡牌特效需要时间延迟配合
             _ = SoundEffectCommand.PlayAsync(SoundEffectType.DrawCard);
             RowCommand.SetPlayCardMoveFree(false);
-            Manager.ChainManager.ShowChainCount();
-            targetCard.isPrepareToPlay = false;
-            if (IsAnsy)
-            {
-                NetCommand.AsyncInfo(NetAcyncType.PlayCard);
-            }
+            NetCommand.AsyncInfo(NetAcyncType.PlayCard);
+            ChainManager.ShowChainCount();
+
             targetCard.IsCanSee = true;
-            RemoveCard(targetCard);
+            targetCard.isPrepareToPlay = false;
+
+            FreeCard(targetCard);
             AgainstInfo.cardSet[Orientation.My][GameRegion.Used].Add(targetCard);
             AgainstInfo.playerPlayCard = null;
         }
         public static async Task DisCard(Card card)
         {
             await Task.Delay(0);//之后实装卡牌特效需要时间延迟配合
-            card.isPrepareToPlay = false;
+            _ = SoundEffectCommand.PlayAsync(SoundEffectType.DrawCard);
+            RowCommand.SetPlayCardMoveFree(false);
+            NetCommand.AsyncInfo(NetAcyncType.DisCard);
+
             card.IsCanSee = false;
-            RemoveCard(card);
+            card.isPrepareToPlay = false;
+
+            FreeCard(card);
             AgainstInfo.cardSet[Orientation.My][GameRegion.Grave].Add(card);
             AgainstInfo.playerDisCard = null;
         }
 
-        public static async Task ReviveCard(Model.Event e)
+        public static async Task ReviveCard(Card card)
         {
-            Card card = e.targetCard;
-            await SoundEffectCommand.PlayAsync(SoundEffectType.DrawCard);
+            //墓地复活动画
 
-            card.IsCanSee = true;
-            RemoveCard(card);
-            AgainstInfo.cardSet[Orientation.My][GameRegion.Used].Add(card);
-            await card.cardAbility[TriggerTime.When][TriggerType.Play][0](e);
+            await PlayCard(card);
+            //Card card = e.targetCard;
+            //await SoundEffectCommand.PlayAsync(SoundEffectType.DrawCard);
+            //card.IsCanSee = true;
+            //FreeCard(card);
+            //AgainstInfo.cardSet[Orientation.My][GameRegion.Used].Add(card);
+            //await card.cardAbility[TriggerTime.When][TriggerType.Play][0](e);
         }
 
         public static async Task SealCard(Card card)
@@ -278,7 +285,7 @@ namespace TouhouMachineLearningSummary.Command
         {
             card.transform.GetChild(2).gameObject.SetActive(false);
         }
-        public static async Task Set(Model.Event e)
+        public static async Task Set(Event e)
         {
             await BulletCommand.InitBulletAsync(e);
             //await Task.Delay(1000);
@@ -288,7 +295,7 @@ namespace TouhouMachineLearningSummary.Command
             e.targetCard.ChangePoint = e.point - e.targetCard.BasePoint;
             //await Task.Delay(1000);
         }
-        public static async Task Gain(Model.Event e)
+        public static async Task Gain(Event e)
         {
             await BulletCommand.InitBulletAsync(e);
             //await Task.Delay(1000);
@@ -297,7 +304,7 @@ namespace TouhouMachineLearningSummary.Command
             e.targetCard.ChangePoint += e.point;
             await Task.Delay(1000);
         }
-        public static async Task Hurt(Model.Event e)
+        public static async Task Hurt(Event e)
         {
             await BulletCommand.InitBulletAsync(e);
             //抵消护盾
@@ -308,12 +315,12 @@ namespace TouhouMachineLearningSummary.Command
             await Task.Delay(1000);
         }
         //逆转
-        public static async Task Reversal(Model.Event e)
+        public static async Task Reversal(Event e)
         {
             int triggerCardPoint = e.triggerCard.ShowPoint;
             int targetCardPoint = e.targetCard.ShowPoint;
-            _ = GameSystem.PointSystem.Set(new Model.Event(e.triggerCard, e.targetCard).SetPoint(triggerCardPoint));
-            _ = GameSystem.PointSystem.Set(new Model.Event(e.targetCard, e.triggerCard).SetPoint(targetCardPoint));
+            _ = GameSystem.PointSystem.Set(new Event(e.triggerCard, e.targetCard).SetPoint(triggerCardPoint));
+            _ = GameSystem.PointSystem.Set(new Event(e.targetCard, e.triggerCard).SetPoint(targetCardPoint));
             await Task.Delay(1000);
         }
         public static async Task MoveToDeck(Card card, int Index = 0, bool isRandom = false)
@@ -321,7 +328,7 @@ namespace TouhouMachineLearningSummary.Command
             if (card == null) return;
             await Task.Delay(500);
             Orientation targetOrientation = card.CurrentOrientation;
-            RemoveCard(card);
+            FreeCard(card);
             AgainstInfo.cardSet[targetOrientation][GameRegion.Deck].RowManagers[0].CardList.Insert(Index, card);
 
             //重置卡牌状态
@@ -340,7 +347,7 @@ namespace TouhouMachineLearningSummary.Command
             if (card == null) return;
             await Task.Delay(500);
             Orientation targetOrientation = card.OppositeOrientation;
-            RemoveCard(card);
+            FreeCard(card);
             AgainstInfo.cardSet[targetOrientation][GameRegion.Hand].RowManagers[0].CardList.Insert(0, card);
             OrderHandCard();
             //重置卡牌状态
@@ -356,7 +363,7 @@ namespace TouhouMachineLearningSummary.Command
             if (card == null) return;
             await Task.Delay(500);
             Orientation targetOrientation = card.CurrentOrientation;
-            RemoveCard(card);
+            FreeCard(card);
             AgainstInfo.cardSet[targetOrientation][GameRegion.Grave].RowManagers[0].CardList.Insert(0, card);
 
             //重置卡牌状态

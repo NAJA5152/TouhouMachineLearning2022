@@ -176,7 +176,7 @@ namespace TouhouMachineLearningSummary.Model
             .AbilityAppend();
             //当复活时移至出牌区
             AbalityRegister(TriggerTime.When, TriggerType.Revive)
-            .AbilityAdd(async (e) => { await Command.CardCommand.ReviveCard(e); })
+            .AbilityAdd(async (e) => { await Command.CardCommand.ReviveCard(e.targetCard); })
             .AbilityAppend();
             //当移动时移到指定位置
             AbalityRegister(TriggerTime.When, TriggerType.Move)

@@ -125,6 +125,32 @@ namespace TouhouMachineLearningSummary.Info
         public static CardSet cardSet = new CardSet();
 
         public static List<Card> AllCardList => CardSet.GlobalCardList.SelectMany(x => x).ToList();
+        //连锁数
+        public static int lastP1ChainCount;
+        public static int lastP2ChainCount;
+        public static int currentP1ChainCount;
+        public static int currentP2ChainCount;
+
+        public static int lastMyChainCount
+        {
+            get => IsPlayer1! ^ IsMyTurn ? ref lastP1ChainCount : ref lastP2ChainCount;
+            set => (IsPlayer1! ^ IsMyTurn ? ref lastP1ChainCount : ref lastP2ChainCount) = value;
+        }
+        public static int lastOpChainCount
+        {
+            get => IsPlayer1 ^ IsMyTurn ? ref lastP1ChainCount : ref lastP2ChainCount;
+            set => (IsPlayer1 ^ IsMyTurn ? ref lastP1ChainCount : ref lastP2ChainCount) = value;
+        }
+        public static int currentMyChainCount
+        {
+            get => IsPlayer1! ^ IsMyTurn ? ref currentP1ChainCount : ref currentP2ChainCount;
+            set => (IsPlayer1! ^ IsMyTurn ? ref currentP1ChainCount : ref currentP2ChainCount) = value;
+        }
+        public static int currentOpChainCount
+        {
+            get => IsPlayer1 ^ IsMyTurn ? ref currentP1ChainCount : ref currentP2ChainCount;
+            set => (IsPlayer1 ^ IsMyTurn ? ref currentP1ChainCount : ref currentP2ChainCount) = value;
+        }
         //分数
         public static (int P1Score, int P2Score) PlayerScore;
         public static (int MyScore, int OpScore) ShowScore => IsPlayer1 ? (PlayerScore.P1Score, PlayerScore.P2Score) : (PlayerScore.P2Score, PlayerScore.P1Score);

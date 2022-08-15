@@ -16,7 +16,7 @@ namespace TouhouMachineLearningSummary.Command
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
-        public static async Task TriggerNotice(Model.Event e)
+        public static async Task TriggerNotice(Event e)
         {
             foreach (var card in AgainstInfo.cardSet.CardList)
             {
@@ -40,7 +40,7 @@ namespace TouhouMachineLearningSummary.Command
         /// </summary>
         /// <param name="e"></param>
         /// <returns></returns>
-        public static async Task TriggerBroadcast(Model.Event e)
+        public static async Task TriggerBroadcast(Event e)
         {
 
             if (e.targetCards.Any())
@@ -87,7 +87,7 @@ namespace TouhouMachineLearningSummary.Command
             }
 
         }
-        static async Task Trigger(Card NoticeCard, Model.Event e)
+        static async Task Trigger(Card NoticeCard, Event e)
         {
             foreach (var ability in NoticeCard.cardAbility[e.triggerTime][e.triggerType])
             {

@@ -211,6 +211,11 @@ namespace TouhouMachineLearningSummary.Command
         }
         public static async Task TurnStart()
         {
+            AgainstInfo.lastMyChainCount = AgainstInfo.currentMyChainCount;
+            AgainstInfo.lastOpChainCount = AgainstInfo.currentOpChainCount;
+            AgainstInfo.currentMyChainCount = 0;
+            AgainstInfo.currentOpChainCount = 0;
+
             Manager.AgainstSummaryManager.UploadTurn();
             await UiCommand.NoticeBoardShow((AgainstInfo.IsMyTurn ? "MyTurnStart" : "OpTurnStart").TranslationGameText());
             await GameSystem.ProcessSystem.WhenTurnStart();
@@ -324,8 +329,7 @@ namespace TouhouMachineLearningSummary.Command
                 {
                     //Debug.Log("当前打出了牌");
                     await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.PlayCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList, AgainstInfo.playerPlayCard);
-                    //假如是我的回合，则广播操作给对方，否则只接收操作不广播
-                    await GameSystem.TransferSystem.PlayCard(new Model.Event(null, AgainstInfo.playerPlayCard), AgainstInfo.IsMyTurn);
+                    await GameSystem.TransferSystem.PlayCard(new Event(null, AgainstInfo.playerPlayCard));
                     //Debug.Log("打出效果执行完毕");
 
                     break;
@@ -334,7 +338,7 @@ namespace TouhouMachineLearningSummary.Command
                 if (Info.AgainstInfo.playerDisCard != null)
                 {
                     await AgainstSummaryManager.UploadPlayerOperationAsync(PlayerOperationType.DisCard, AgainstInfo.cardSet[Orientation.My][GameRegion.Leader, GameRegion.Hand].CardList, AgainstInfo.playerDisCard);
-                    await GameSystem.TransferSystem.DisCard(new Model.Event(null, AgainstInfo.playerDisCard));
+                    await GameSystem.TransferSystem.DisCard(new Event(null, AgainstInfo.playerDisCard));
                     break;
                 }
                 if (AgainstInfo.isCurrectPass)//如果当前pass则结束回合

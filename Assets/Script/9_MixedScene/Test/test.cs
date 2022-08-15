@@ -37,10 +37,10 @@ namespace TouhouMachineLearningSummary.Test
                 CardAbility cardAbility = new CardAbility();
                 cardAbility.cardID = i;
                 cardAbility.ability.Add(new(33, new object[] { GameEnum.Territory.My, GameEnum.BattleRegion.Fire }));
-                cardAbility.ability.Add(new(45, new object[] { new Model.Event(null, targetCard: null) }));
+                cardAbility.ability.Add(new(45, new object[] { new Event(null, targetCard: null) }));
                 cardAbility.ability.Add(new(00, new object[] { }));
-                cardAbility.ability.Add(new(22, new object[] { new Model.Event(null, targetCard: null), Orientation.My, CardRank.Copper, CardTag.Fairy, CardFeature.LowestUnits, 1, true }));
-                cardAbility.ability.Add(new(18, new object[] { new Model.Event(null, targetCard: null) }));
+                cardAbility.ability.Add(new(22, new object[] { new Event(null, targetCard: null), Orientation.My, CardRank.Copper, CardTag.Fairy, CardFeature.LowestUnits, 1, true }));
+                cardAbility.ability.Add(new(18, new object[] { new Event(null, targetCard: null) }));
                 abilities.Add(cardAbility);
             }
             Debug.Log(abilities.ToJson());

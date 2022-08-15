@@ -324,6 +324,7 @@ namespace TouhouMachineLearningSummary.GameEnum
         Init,
         FocusCard,
         PlayCard,
+        DisCard,
         SelectRegion,
         SelectUnits,
         SelectLocation,

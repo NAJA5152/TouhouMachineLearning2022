@@ -25,14 +25,11 @@ namespace TouhouMachineLearningSummary.CardSpace
             AbalityRegister(TriggerTime.Before, TriggerType.Deploy)
                .AbilityAdd(async (e) =>
                {
-                   if (Info.AgainstInfo.IsMyTurn)
-                   {
-                       List<Card> targetCards = GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Silver, CardRank.Copper].CardList;
-                       targetCards.Remove(e.triggerCard);
-                       await GameSystem.SelectSystem.SelectUnit(this, targetCards, 1);
-                       await GameSystem.PointSystem.Reversal(new Event(e.triggerCard, GameSystem.InfoSystem.SelectUnits));
-                   };
-               }, Condition.Default)
+                   List<Card> targetCards = GameSystem.InfoSystem.AgainstCardSet[Orientation.My][GameRegion.Battle][CardRank.Silver, CardRank.Copper].CardList;
+                   targetCards.Remove(e.triggerCard);
+                   await GameSystem.SelectSystem.SelectUnit(this, targetCards, 1);
+                   await GameSystem.PointSystem.Reversal(new Event(e.triggerCard, GameSystem.InfoSystem.SelectUnits));
+               }, Condition.Default, Condition.OnMyTurn)
                .AbilityAppend();
 
             AbalityRegister(TriggerTime.When, TriggerType.TurnEnd)

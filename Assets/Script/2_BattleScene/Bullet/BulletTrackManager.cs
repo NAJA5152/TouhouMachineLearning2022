@@ -10,7 +10,7 @@ namespace TouhouMachineLearningSummary.Manager
         public float maxDinsance = 2;
         public float speed = 1.5f;
         Vector3 startPosition, endPosition;
-        public async Task Play(Model.Event e, BulletTrack track)
+        public async Task Play(Event e, BulletTrack track)
         {
             this.startPosition = e.triggerCard.transform.position;
             this.endPosition = e.targetCard.transform.position;

@@ -12,7 +12,7 @@ namespace TouhouMachineLearningSummary.Command
         //附加控制器
         //生成空物体
         //配置danmu
-        public static async Task InitBulletAsync(Model.Event e)
+        public static async Task InitBulletAsync(Event e)
         {
             //bool isEnd = false;
             Model.BulletModel danmuInfo = e.bulletModel;

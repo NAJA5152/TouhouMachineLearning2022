@@ -114,7 +114,7 @@ namespace TouhouMachineLearningSummary.Manager
 
             });
             gap.SetActive(false);
-            Command.CardCommand.RemoveCard(thisCard);
+            Command.CardCommand.FreeCard(thisCard);
             Destroy(gameObject);
         }
         //弹出点数或状态变动提示

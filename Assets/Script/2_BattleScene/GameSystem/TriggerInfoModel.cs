@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using TouhouMachineLearningSummary.GameEnum;
+using TouhouMachineLearningSummary.Model;
 
-namespace TouhouMachineLearningSummary.Model
+namespace TouhouMachineLearningSummary
 {
     //class Event { }
     public class Event
@@ -56,7 +57,7 @@ namespace TouhouMachineLearningSummary.Model
         public Event(Card triggerCard, Card targetCard)
         {
             this.triggerCard = triggerCard;
-            this.targetCards = new List<Card>();
+            targetCards = new List<Card>();
             if (targetCard != null)
             {
                 targetCards.Add(targetCard);
@@ -99,7 +100,7 @@ namespace TouhouMachineLearningSummary.Model
         /// <returns></returns>
         public Event SetMeanWhile()
         {
-            this.triggerMeanWhile = true;
+            triggerMeanWhile = true;
             return this;
         }
         /// <summary>
@@ -117,8 +118,8 @@ namespace TouhouMachineLearningSummary.Model
         /// </summary>
         public Event SetTargetField(CardField targetField, int ponit)
         {
-            this.targetFiled = targetField;
-            this.point = ponit;
+            targetFiled = targetField;
+            point = ponit;
             return this;
         }
         /// <summary>
@@ -128,7 +129,7 @@ namespace TouhouMachineLearningSummary.Model
         /// <returns></returns>
         public Event SetTargetCardId(int cardId)
         {
-            this.targetCardId = cardId;
+            targetCardId = cardId;
             return this;
         }
     }

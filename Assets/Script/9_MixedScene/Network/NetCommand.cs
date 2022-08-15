@@ -326,6 +326,8 @@ namespace TouhouMachineLearningSummary.Command
                 await CheckHubState();
                 switch (AcyncType)
                 {
+                    case NetAcyncType.Init:
+                        break;
                     case NetAcyncType.FocusCard:
                         {
                             Location TargetCardLocation = Info.AgainstInfo.playerFocusCard != null ? Info.AgainstInfo.playerFocusCard.Location : new Location(-1, -1);
@@ -339,6 +341,10 @@ namespace TouhouMachineLearningSummary.Command
                             await TouHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { TargetCardLocation.X, TargetCardLocation.Y });
                             break;
                         }
+                    case NetAcyncType.DisCard:
+                        Debug.Log("同步弃掉卡牌");
+
+                        break;
                     case NetAcyncType.SelectRegion:
                         {
                             int RowRank = Info.AgainstInfo.SelectRowRank;
@@ -395,6 +401,8 @@ namespace TouhouMachineLearningSummary.Command
                         Debug.Log("同步面板卡牌数据选择");
                         await TouHouHub.SendAsync("Async", AcyncType, AgainstInfo.RoomID, AgainstInfo.IsPlayer1, new object[] { Info.AgainstInfo.SelectBoardCardRanks, Info.AgainstInfo.IsSelectCardOver });
                         break;
+                    
+                    
                     default:
                         {
                             Debug.Log("异常同步指令");
