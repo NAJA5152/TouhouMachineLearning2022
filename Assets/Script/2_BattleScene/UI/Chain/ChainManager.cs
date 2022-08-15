@@ -16,7 +16,9 @@ namespace TouhouMachineLearningSummary.Manager
         [Button]
         public static void ShowChainCount()
         {
-            chain.GetComponent<TextMeshProUGUI>().text = $" x{num++}\nChain";
+            Info.AgainstInfo.currentMyChainCount++;
+            chain.GetComponent<TextMeshProUGUI>().text = $" x{Info.AgainstInfo.currentMyChainCount}\nChain";
+            chain.GetComponent<TextMeshProUGUI>().material.SetColor("Outline", Info.AgainstInfo.IsMyTurn ? Color.green : Color.red);
             chain.GetComponent<CanvasGroup>().alpha = 1;
             chain.GetComponent<RectTransform>().localPosition = Vector3.zero;
             _ = CustomThread.TimerAsync(1, runAction: (process) =>

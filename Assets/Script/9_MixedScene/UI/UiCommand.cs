@@ -3,7 +3,6 @@ using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Manager;
-using TouhouMachineLearningSummary.Model;
 using TouhouMachineLearningSummary.Thread;
 using UnityEngine;
 using UnityEngine.UI;

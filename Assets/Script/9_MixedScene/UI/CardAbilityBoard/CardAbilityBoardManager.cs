@@ -1,6 +1,5 @@
 ﻿using TMPro;
 using TouhouMachineLearningSummary.Extension;
-using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.UI;
 

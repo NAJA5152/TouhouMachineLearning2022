@@ -1,7 +1,6 @@
 using System;
 using System.Collections.Generic;
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Model;
 
 namespace TouhouMachineLearningSummary.CardSpace
 {

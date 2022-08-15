@@ -1,7 +1,6 @@
 ﻿using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
-using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 
 namespace TouhouMachineLearningSummary.Manager

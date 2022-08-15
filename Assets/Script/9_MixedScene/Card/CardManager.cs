@@ -4,7 +4,6 @@ using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
-using TouhouMachineLearningSummary.Model;
 using TouhouMachineLearningSummary.Thread;
 using UnityEngine;
 using UnityEngine.EventSystems;

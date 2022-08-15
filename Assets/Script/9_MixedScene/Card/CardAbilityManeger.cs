@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Model;
 namespace TouhouMachineLearningSummary.Manager
 {
     public class CardAbilityManeger

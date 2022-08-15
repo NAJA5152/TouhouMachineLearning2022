@@ -1,5 +1,4 @@
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Model;
 
 namespace TouhouMachineLearningSummary.CardSpace
 {

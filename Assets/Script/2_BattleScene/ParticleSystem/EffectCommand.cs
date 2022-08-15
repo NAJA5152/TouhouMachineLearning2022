@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Control;
 using TouhouMachineLearningSummary.Info;
-using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 namespace TouhouMachineLearningSummary.Command
 {

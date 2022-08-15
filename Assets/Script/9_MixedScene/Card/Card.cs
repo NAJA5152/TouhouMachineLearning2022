@@ -5,9 +5,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
+using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.UI;
-namespace TouhouMachineLearningSummary.Model
+namespace TouhouMachineLearningSummary
 {
 
 
@@ -472,7 +473,7 @@ namespace TouhouMachineLearningSummary.Model
                             {
                                 return;
                             }
-                            Debug.Log($"触发类型：{e.targetFiled}当字段设置，对象卡牌{this.CardID}原始值{this[e.targetFiled]},设置值{e.point}");
+                            Debug.Log($"触发类型：{e.targetFiled}当字段设置，对象卡牌{CardID}原始值{this[e.targetFiled]},设置值{e.point}");
                             this[e.targetFiled] = e.point;
                             Debug.Log($"触发结果：{this[e.targetFiled]}");
                             //移除掉为0的字段
@@ -488,7 +489,7 @@ namespace TouhouMachineLearningSummary.Model
                             }
                             else
                             {
-                                this.cardFields.Remove(e.targetFiled);
+                                cardFields.Remove(e.targetFiled);
                             }
                         })
                        .AbilityAppend();
@@ -509,7 +510,7 @@ namespace TouhouMachineLearningSummary.Model
                                 return;
                             }
 
-                            Debug.Log($"触发类型：{e.targetFiled}当字段变化，对象卡牌{this.CardID}原始值{this[e.targetFiled]},变化值{e.point}");
+                            Debug.Log($"触发类型：{e.targetFiled}当字段变化，对象卡牌{CardID}原始值{this[e.targetFiled]},变化值{e.point}");
                             this[e.targetFiled] += e.point;
                             Debug.Log($"触发结果：{this[e.targetFiled]}");
                             switch (e.targetFiled)
@@ -541,7 +542,7 @@ namespace TouhouMachineLearningSummary.Model
                     if (IsCardReadyToGrave)
                     {
                         //摧毁自身同时触发咒术
-                        Debug.LogError(this.CardID + this.BasePoint + "=" + this.ChangePoint);
+                        Debug.LogError(CardID + BasePoint + "=" + ChangePoint);
                         await GameSystem.TransferSystem.DeadCard(e);
                     }
                 })

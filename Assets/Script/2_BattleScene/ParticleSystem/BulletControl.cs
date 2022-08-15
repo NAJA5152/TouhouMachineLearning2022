@@ -1,5 +1,4 @@
 ﻿using Sirenix.OdinInspector;
-using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 namespace TouhouMachineLearningSummary.Control
 {

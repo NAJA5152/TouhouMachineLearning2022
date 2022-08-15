@@ -3,7 +3,6 @@ using TMPro;
 using TouhouMachineLearningSummary.Control;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
-using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.UI;
 namespace TouhouMachineLearningSummary.Command

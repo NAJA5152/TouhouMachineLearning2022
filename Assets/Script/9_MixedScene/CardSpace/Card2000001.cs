@@ -4,7 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
-using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 
 namespace TouhouMachineLearningSummary.CardSpace
@@ -23,7 +22,7 @@ namespace TouhouMachineLearningSummary.CardSpace
                .AbilityAdd(async (e) =>
                {
                    await GameSystem.SelectSystem.SelectLocation(this, CardDeployTerritory, CardDeployRegion);
-                   await GameSystem.TransferSystem.DeployCard(new Model.Event(this, this));
+                   await GameSystem.TransferSystem.DeployCard(new Event(this, this));
                })
                .AbilityAppend();
             AbalityRegister(TriggerTime.When, TriggerType.Deploy)
@@ -38,10 +37,10 @@ namespace TouhouMachineLearningSummary.CardSpace
                        if (cardlist.Any())
                        {
                            await GameSystem.SelectSystem.SelectUnit(this, cardlist, 1, isAuto: true);
-                           await GameSystem.PointSystem.Hurt(new Model.Event(this, AgainstInfo.SelectUnits).SetPoint(1));
+                           await GameSystem.PointSystem.Hurt(new Event(this, AgainstInfo.SelectUnits).SetPoint(1));
                            if (BasePoint > 1)
                            {
-                               await GameSystem.PointSystem.Weak(new Model.Event(this, this).SetPoint(1));
+                               await GameSystem.PointSystem.Weak(new Event(this, this).SetPoint(1));
                            }
                        }
                    }

@@ -1,6 +1,5 @@
 ﻿using System.Linq;
 using TouhouMachineLearningSummary.GameEnum;
-using TouhouMachineLearningSummary.Model;
 using UnityEngine;
 using UnityEngine.UI;
 
