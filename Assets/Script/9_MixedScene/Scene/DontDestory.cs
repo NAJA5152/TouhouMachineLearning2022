@@ -1,3 +1,4 @@
+using TouhouMachineLearningSummary.Command;
 using UnityEngine;
 namespace TouhouMachineLearningSummary.Other
 {
@@ -17,6 +18,6 @@ namespace TouhouMachineLearningSummary.Other
             }
         }
 
-        private void OnApplicationQuit() => Manager.TaskLoopManager.cancel.Cancel();
+        private void OnApplicationQuit() => TaskThrowCommand.cancel.Cancel();
     }
 }

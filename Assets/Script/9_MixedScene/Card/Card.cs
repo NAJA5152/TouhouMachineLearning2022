@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
@@ -91,6 +92,7 @@ namespace TouhouMachineLearningSummary
                 }
                 else
                 {
+                    DeckConfigCommand
                     cardStates.Remove(cardState);
                 }
             }

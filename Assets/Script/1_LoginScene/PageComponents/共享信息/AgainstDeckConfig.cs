@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Model;
 
-namespace TouhouMachineLearningSummary.Config
+namespace TouhouMachineLearningSummary.Command
 {
     /// <summary>
     /// 剧情模式的卡牌配置信息，管理每个关卡的卡组
     /// </summary>
-    public class AgainstDeckConfig
+    public class DeckConfigCommand
     {
         public static PlayerInfo GetPlayerCardDeck(string Stage)
         {

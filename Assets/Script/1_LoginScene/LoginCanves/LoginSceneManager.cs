@@ -31,7 +31,7 @@ namespace TouhouMachineLearningSummary.Control
             //加载对话
             DialogueCommand.Load();
             Debug.LogError("对话加载完毕" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff:ffffff"));
-            TaskLoopManager.Init();
+            TaskThrowCommand.Init();
             //初始化场景物体状态，如果已登录，则进入到指定页，否则进入初始场景
             await InitAsync(IsAleardyLogin);
             //await BookCommand.InitAsync(IsAleardyLogin);

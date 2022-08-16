@@ -106,7 +106,7 @@ namespace TouhouMachineLearningSummary.Command
                     await Task.Delay(2000);
                     if (!IsSimulateFilpPage) break;
 
-                    Manager.TaskLoopManager.Throw();
+                    TaskThrowCommand.Throw();
                     GameObject voidPageModel = Info.BookInfo.instance.voidPageModel;
                     GameObject fakePageModel = Info.BookInfo.instance.fakePageModel;
                     GameObject startPage = Instantiate(voidPageModel, voidPageModel.transform.position, voidPageModel.transform.rotation, voidPageModel.transform.parent);

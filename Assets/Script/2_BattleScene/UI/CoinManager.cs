@@ -1,6 +1,7 @@
 ﻿using Sirenix.OdinInspector;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.GameEnum;
 using UnityEngine;
 namespace TouhouMachineLearningSummary.Manager
@@ -51,7 +52,7 @@ namespace TouhouMachineLearningSummary.Manager
             ShowCurrentPlayerCoin(true);
             while (true)
             {
-                Manager.TaskLoopManager.cancel.Token.ThrowIfCancellationRequested();
+                TaskThrowCommand.cancel.Token.ThrowIfCancellationRequested();
                 transform.GetChild(1).transform.eulerAngles = new Vector3(0, 0, -Timer.Process);
                 await Task.Delay(1000);
             }

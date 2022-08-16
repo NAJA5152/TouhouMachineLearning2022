@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using TouhouMachineLearningSummary.Config;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Model;
@@ -158,8 +157,8 @@ namespace TouhouMachineLearningSummary.Command
             {
                 Info.PageCompnentInfo.currentAgainstMode = AgainstModeType.Story;
                 string targetStage = Info.PageCompnentInfo.CurrentStage + Info.PageCompnentInfo.CurrentStep;
-                sampleUserInfo = AgainstDeckConfig.GetPlayerCardDeck(targetStage);
-                virtualOpponentInfo = AgainstDeckConfig.GetPlayerCardDeck(targetStage);
+                sampleUserInfo = DeckConfigCommand.GetPlayerCardDeck(targetStage);
+                virtualOpponentInfo = DeckConfigCommand.GetPlayerCardDeck(targetStage);
                 Manager.AgainstManager.SetFirstMode(2);
                 await DialogueCommand.Play(Info.PageCompnentInfo.CurrentStage, Info.PageCompnentInfo.CurrentStep);
                 //播放剧情
@@ -169,7 +168,7 @@ namespace TouhouMachineLearningSummary.Command
             {
                 Info.PageCompnentInfo.currentAgainstMode = AgainstModeType.Practice;
                 sampleUserInfo = Info.AgainstInfo.onlineUserInfo.GetSampleInfo();
-                virtualOpponentInfo = AgainstDeckConfig.GetPracticeCardDeck(Info.PageCompnentInfo.SelectLeader);
+                virtualOpponentInfo = DeckConfigCommand.GetPracticeCardDeck(Info.PageCompnentInfo.SelectLeader);
                 Manager.AgainstManager.SetFirstMode(Info.PageCompnentInfo.SelectFirstHandMode);
 
             }

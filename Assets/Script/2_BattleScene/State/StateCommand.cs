@@ -46,12 +46,12 @@ namespace TouhouMachineLearningSummary.Command
         public static async Task AgainstStart()
         {
             Info.CardInfo.CreatCardRank = 0;
-            TaskLoopManager.Init();
+            TaskThrowCommand.Init();
             //如果不是通过配置文件启动的场景
             if (AgainstInfo.currentUserInfo == null)
             {
                 //如果在编辑器停止播放游戏则中断接下来的步骤
-                TaskLoopManager.Throw();
+                TaskThrowCommand.Throw();
                 AgainstInfo.IsMyTurn = true;
                 AgainstInfo.currentUserInfo = new PlayerInfo(
                      "Test", "测试者", "测试卡组", "",
@@ -132,7 +132,7 @@ namespace TouhouMachineLearningSummary.Command
             }
             await Task.Delay(2000);
             //Debug.Log("释放线程资源");
-            TaskLoopManager.cancel.Cancel();
+            TaskThrowCommand.cancel.Cancel();
             //如果是故事模式，假如胜利则更新玩家进度
             if (Info.PageCompnentInfo.currentAgainstMode == AgainstModeType.Story && IsWin)
             {
@@ -356,7 +356,7 @@ namespace TouhouMachineLearningSummary.Command
                     }
                 }
                 await Task.Delay(10);
-                TaskLoopManager.Throw();
+                TaskThrowCommand.Throw();
             }
             Timer.SetIsTimerClose();
         }
@@ -373,7 +373,7 @@ namespace TouhouMachineLearningSummary.Command
             // Debug.Log("等待选择属性");
             while (AgainstInfo.SelectProperty == BattleRegion.None)
             {
-                TaskLoopManager.Throw();
+                TaskThrowCommand.Throw();
                 if (AgainstInfo.IsAIControl)
                 {
                     //Debug.Log("自动选择属性");
@@ -401,7 +401,7 @@ namespace TouhouMachineLearningSummary.Command
             RowCommand.SetRegionSelectable(territory, regionTypes);
             while (AgainstInfo.SelectRowRank == -1)
             {
-                TaskLoopManager.Throw();
+                TaskThrowCommand.Throw();
                 if (AgainstInfo.IsReplayMode)
                 {
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
@@ -435,7 +435,7 @@ namespace TouhouMachineLearningSummary.Command
             AgainstInfo.SelectRank = -1;
             while (AgainstInfo.SelectRank < 0)
             {
-                TaskLoopManager.Throw();
+                TaskThrowCommand.Throw();
                 if (AgainstInfo.IsReplayMode)
                 {
                     var operation = AgainstInfo.summary.GetCurrentSelectOperation();
@@ -496,7 +496,7 @@ namespace TouhouMachineLearningSummary.Command
                 int selectableNum = Math.Min(filterCards.Count, num);
                 while (AgainstInfo.SelectUnits.Count < selectableNum)
                 {
-                    TaskLoopManager.Throw();
+                    TaskThrowCommand.Throw();
                     //AI操作或者我方回合自动选择模式时 ，用自身随机决定，否则等待网络同步
 
                     if (AgainstInfo.IsAIControl || (isAuto && AgainstInfo.IsMyTurn))
@@ -591,7 +591,7 @@ namespace TouhouMachineLearningSummary.Command
                         //如果满足换牌条件则持续换牌状态
                         while (Info.AgainstInfo.ExChangeableCardNum != 0 && !Info.AgainstInfo.IsSelectCardOver)
                         {
-                            TaskLoopManager.Throw();
+                            TaskThrowCommand.Throw();
                             //通过对战记录换牌
 
                             //有牌要被换

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using TouhouMachineLearningSummary.Command;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
@@ -272,12 +273,12 @@ namespace TouhouMachineLearningSummary.Manager
         public static AgainstSummaryManager Load(string summaryID) => File.ReadAllText("summary.json").ToObject<AgainstSummaryManager>();
         public void Replay(int TotalRank)
         {
-            TaskLoopManager.cancel.Cancel();
+            TaskThrowCommand.cancel.Cancel();
             //设置回合初始状态
         }
         public async Task JumpToTurnAsync(int totalTurnRank, bool isOnTheOffensive)
         {
-            TaskLoopManager.cancel.Cancel();
+            TaskThrowCommand.cancel.Cancel();
             //设置回合初始状态
             TargetJumpTurn = TurnOperations.FirstOrDefault(turn => turn.IsOnTheOffensive == isOnTheOffensive && turn.TotalTurnRank == totalTurnRank);
             if (TargetJumpTurn == null)

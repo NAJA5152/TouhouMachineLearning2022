@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
-using TouhouMachineLearningSummary.Manager;
+using TouhouMachineLearningSummary.Command;
 using UnityEngine;
 namespace TouhouMachineLearningSummary.Thread
 {
@@ -13,7 +13,7 @@ namespace TouhouMachineLearningSummary.Thread
         {
             while (true)
             {
-                TaskLoopManager.Throw();
+                TaskThrowCommand.Throw();
                 if (cond())
                 {
                     runAction();

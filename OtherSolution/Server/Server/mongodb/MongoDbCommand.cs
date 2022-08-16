@@ -17,23 +17,6 @@ namespace Server
         public static IMongoCollection<DiyCardInfo> DiyCardCollection { get; set; }
         public static void Init()
         {
-            Random rand = new Random();
-            List<(string GroupFlag, int Value)> info = new();
-            for (int i = 0; i < 20000000; i++)
-            {
-                info.Add(("gezi" + rand.Next(555), rand.Next(555)));
-            }
-
-            DateTime dateTime = DateTime.Now;
-            var result1 = info.GroupBy(x => x.GroupFlag).Select(g => g.ToList().OrderBy(v => v.Value)).OrderBy(g => g.FirstOrDefault().Value).SelectMany(x => x).ToList();
-            Console.WriteLine("格子" + (DateTime.Now - dateTime));
-            dateTime = DateTime.Now;
-            var result2 = info.OrderBy(x => x.Value).GroupBy(x => x.GroupFlag).SelectMany(x => x).ToList();
-            Console.WriteLine("支柱" + (DateTime.Now - dateTime));
-            //Console.WriteLine(result1.ToJson()== result2.ToJson());
-            //File.WriteAllText("1.txt",result1.ToJson());
-            //File.WriteAllText("2.txt",result2.ToJson());
-
 
             Directory.SetCurrentDirectory(AppDomain.CurrentDomain.BaseDirectory);
             Console.WriteLine("链接数据库");
