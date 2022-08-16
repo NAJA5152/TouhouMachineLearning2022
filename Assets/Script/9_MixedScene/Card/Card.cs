@@ -92,7 +92,6 @@ namespace TouhouMachineLearningSummary
                 }
                 else
                 {
-                    DeckConfigCommand
                     cardStates.Remove(cardState);
                 }
             }
