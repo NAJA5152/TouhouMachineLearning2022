@@ -18,7 +18,9 @@ namespace TouhouMachineLearningSummary.Manager
         {
             Info.AgainstInfo.currentMyChainCount++;
             chain.GetComponent<TextMeshProUGUI>().text = $" x{Info.AgainstInfo.currentMyChainCount}\nChain";
-            chain.GetComponent<TextMeshProUGUI>().material.SetColor("Outline", Info.AgainstInfo.IsMyTurn ? Color.green : Color.red);
+            //chain.GetComponent<TextMeshProUGUI>().outlineColor=Info.AgainstInfo.IsMyTurn ? Color.green : Color.red;
+            //chain.GetComponent<TextMeshProUGUI>().material.SetColor("Outline", Info.AgainstInfo.IsMyTurn ? Color.green : Color.red);
+            chain.GetComponent<TextMeshProUGUI>().material.SetColor("_OutlineColor", Info.AgainstInfo.IsMyTurn ? Color.green : Color.red);
             chain.GetComponent<CanvasGroup>().alpha = 1;
             chain.GetComponent<RectTransform>().localPosition = Vector3.zero;
             _ = CustomThread.TimerAsync(1, runAction: (process) =>

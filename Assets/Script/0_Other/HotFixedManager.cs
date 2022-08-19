@@ -72,14 +72,14 @@ public class HotFixedManager : MonoBehaviour
             Debug.LogWarning("开始下载文件" + System.DateTime.Now);
             Directory.CreateDirectory(downLoadPath);
             var httpClient = new HttpClient();
-            var responseMessage = httpClient.GetAsync($"http://106.15.38.165:7777/AssetBundles/{ConfigManager.GetServerTag()}/MD5.json").Result;
+            var responseMessage =await httpClient.GetAsync($"http://106.15.38.165:7777/AssetBundles/{ConfigManager.GetServerTag()}/MD5.json");
             if (!responseMessage.IsSuccessStatusCode)
             {
                 loadText.text = "MD5文件获取出错";
                 return;
             }
 
-            var OnlieMD5FiIeDatas = responseMessage.Content.ReadAsStringAsync().Result;
+            var OnlieMD5FiIeDatas =await responseMessage.Content.ReadAsStringAsync();
             var Md5Dict = OnlieMD5FiIeDatas.ToObject<Dictionary<string, byte[]>>();
             Debug.Log("MD5文件已加载完成" + OnlieMD5FiIeDatas);
             loadText.text = "MD5文件已加载完成：";
