@@ -28,7 +28,7 @@ namespace TouhouMachineLearningSummary.Dialogue
             //body = _model.Parameters.FindById("Param2");
             hand = _model.Parameters.FindById("Param");
             head = _model.Parameters.FindById("ParamAngleX");
-
+            //_model.Moc.
             //_paramAngleZ.Value = 5;
         }
         public Vector3 vector3;
