@@ -455,5 +455,91 @@
         }
       }
     ]
+  },
+  {
+    "Tag": "test-0",
+    "Operations": [
+      {
+        "Branch": "",
+        "Chara": "popko",
+        "Position": "右侧",
+        "Face": "开心",
+        "Text": {
+          "Ch": "第一句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "popko",
+        "Position": "左侧",
+        "Face": "震惊",
+        "Text": {
+          "Ch": "第二句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "popko",
+        "Position": "左侧",
+        "Face": "生气",
+        "Text": {
+          "Ch": "第三句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "popko",
+        "Position": "右侧",
+        "Face": "伤心",
+        "Text": {
+          "Ch": "第一句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "popko",
+        "Position": "右侧",
+        "Face": "开心",
+        "Text": {
+          "Ch": "第二句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "popko",
+        "Position": "左侧",
+        "Face": "震惊",
+        "Text": {
+          "Ch": "第二句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "popko",
+        "Position": "左侧",
+        "Face": "生气",
+        "Text": {
+          "Ch": "第三句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "popko",
+        "Position": "右侧",
+        "Face": "伤心",
+        "Text": {
+          "Ch": "第一句话"
+        }
+      },
+      {
+        "Branch": "",
+        "Chara": "popko",
+        "Position": "右侧",
+        "Face": "开心",
+        "Text": {
+          "Ch": "第二句话"
+        }
+      }
+    ]
   }
 ]

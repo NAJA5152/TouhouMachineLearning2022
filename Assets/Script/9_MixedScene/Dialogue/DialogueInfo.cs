@@ -17,6 +17,10 @@ namespace TouhouMachineLearningSummary.Info
         public GameObject right;
         public Text name;
         public Text text;
+
+        public static bool isLeftCharaActive = false;
+        public static bool isRightCharaActive = false;
+        public static Transform targetLive2dChara = null;
         public static bool SelectMode { get; set; } = false;
         //跳过对话
         public static bool IsJump { get; set; } = false;

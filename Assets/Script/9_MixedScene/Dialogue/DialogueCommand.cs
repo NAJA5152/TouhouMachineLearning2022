@@ -1,25 +1,44 @@
 ﻿using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using TouhouMachineLearningSummary.Extension;
 using TouhouMachineLearningSummary.GameEnum;
 using TouhouMachineLearningSummary.Info;
 using TouhouMachineLearningSummary.Model;
+using TouhouMachineLearningSummary.Thread;
 using UnityEngine;
 using UnityEngine.UI;
 
 namespace TouhouMachineLearningSummary.Command
 {
+
     /// <summary>
     /// 剧情演出指令
     /// </summary>
     public class DialogueCommand
     {
+
+
         //public static void Load() => Info.DialogueInfo.DialogueModels = File.ReadAllText(@"Assets\Resources\GameData\Story.json").ToObject<List<DialogueModel>>();
-        public static void Load() => Info.DialogueInfo.DialogueModels = AssetBundleCommand.Load<TextAsset>("GameData", "Story").text.ToObject<List<DialogueModel>>();
+        public static void Load()
+        {
+            if (Application.isEditor)
+            {
+                Info.DialogueInfo.DialogueModels = File.ReadAllText(@"Assets\GameResources\GameData\Story.json").ToObject<List<DialogueModel>>();
+            }
+            else
+            {
+                Info.DialogueInfo.DialogueModels = AssetBundleCommand.Load<TextAsset>("GameData", "Story").text.ToObject<List<DialogueModel>>();
+            }
+        }
+
         public static async Task Play(string stageTag, int stageRank)
         {
+
             Info.DialogueInfo.CurrentPoint = 0;
+            Info.DialogueInfo.isLeftCharaActive = false;
+            Info.DialogueInfo.isRightCharaActive = false;
             Info.DialogueInfo.instance.dialogueCanvas.SetActive(true);
             Debug.LogError("对话组件开启");
             //加载剧情文本
@@ -110,22 +129,78 @@ namespace TouhouMachineLearningSummary.Command
                         Info.DialogueInfo.CurrentPoint++;
                         await RunNextOperations();
                     }
-
                 }
                 else//是对话的情况
                 {
                     if (currentOperations.Position == "左侧")
                     {
-                        Info.DialogueInfo.instance.left.GetComponent<Image>().sprite = AssetBundleCommand.Load<Texture2D>("Charactar", currentOperations.Chara).ToSprite();
-                        Info.DialogueInfo.instance.left.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-                        Info.DialogueInfo.instance.right.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f, 1);
-
+                        //Info.DialogueInfo.instance.left.GetComponent<Image>().sprite = AssetBundleCommand.Load<Texture2D>("Charactar", currentOperations.Chara).ToSprite();
+                        //Info.DialogueInfo.instance.left.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                        //Info.DialogueInfo.instance.right.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f, 1);
+                        Transform left = Info.DialogueInfo.instance.left.transform;
+                        for (int i = 0; i < left.childCount; i++)
+                        {
+                            left.GetChild(i).gameObject.SetActive(false);
+                        }
+                        //先判断上个激活的立绘是否存在且是右侧，如果是则变灰移回原位
+                        if (Info.DialogueInfo.targetLive2dChara != null && Info.DialogueInfo.isRightCharaActive)
+                        {
+                            Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().Togray();
+                            await CustomThread.TimerAsync(0.5f, process =>
+                            {
+                                Info.DialogueInfo.targetLive2dChara.localPosition = new Vector3((1 - process) * -100, 0, 0);
+                            });
+                            Info.DialogueInfo.isRightCharaActive = false;
+                        }
+                        //获取左侧立绘，没激活则激活
+                        Info.DialogueInfo.targetLive2dChara = Info.DialogueInfo.instance.left.transform.Find(currentOperations.Chara);
+                        Info.DialogueInfo.targetLive2dChara.gameObject.SetActive(true);
+                        if (!Info.DialogueInfo.isLeftCharaActive)
+                        {
+                            Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().ToWhite();
+                            await CustomThread.TimerAsync(0.5f, process =>
+                            {
+                                Info.DialogueInfo.targetLive2dChara.localPosition = new Vector3(process * 100, 0, 0);
+                            });
+                            Info.DialogueInfo.isLeftCharaActive = true;
+                        }
                     }
                     else if (currentOperations.Position == "右侧")
                     {
-                        Info.DialogueInfo.instance.right.GetComponent<Image>().sprite = AssetBundleCommand.Load<Texture2D>("Charactar", currentOperations.Chara).ToSprite();
-                        Info.DialogueInfo.instance.left.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f, 1);
-                        Info.DialogueInfo.instance.right.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                        //Info.DialogueInfo.instance.right.GetComponent<Image>().sprite = AssetBundleCommand.Load<Texture2D>("Charactar", currentOperations.Chara).ToSprite();
+                        //Info.DialogueInfo.instance.left.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f, 1);
+                        //Info.DialogueInfo.instance.right.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                        Transform right = Info.DialogueInfo.instance.right.transform;
+                        for (int i = 0; i < right.childCount; i++)
+                        {
+                            right.GetChild(i).gameObject.SetActive(false);
+                        }
+                        //先判断上个激活的立绘是否存在且是左侧，如果是则变灰移回原位
+                        if (Info.DialogueInfo.targetLive2dChara != null && Info.DialogueInfo.isLeftCharaActive)
+                        {
+                            Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().Togray();
+                            await CustomThread.TimerAsync(0.5f, process =>
+                            {
+                                Info.DialogueInfo.targetLive2dChara.localPosition = new Vector3((1 - process) * 100, 0, 0);
+                            });
+                            Info.DialogueInfo.isLeftCharaActive = false;
+                        }
+                        //获取右侧立绘，没激活则激活
+                        Info.DialogueInfo.targetLive2dChara = Info.DialogueInfo.instance.right.transform.Find(currentOperations.Chara);
+                        Info.DialogueInfo.targetLive2dChara.gameObject.SetActive(true);
+                        if (!Info.DialogueInfo.isRightCharaActive)
+                        {
+                            Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().ToWhite();
+                            await CustomThread.TimerAsync(0.5f, process =>
+                            {
+                                Info.DialogueInfo.targetLive2dChara.localPosition = new Vector3(process * 100, 0, 0);
+                            });
+                            Info.DialogueInfo.isRightCharaActive = true;
+                        }
+                    }
+                    if (currentOperations.Face != "")
+                    {
+                        Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().Play(currentOperations.Face);
                     }
                     Info.DialogueInfo.instance.name.text = currentOperations.Chara;
                     Info.DialogueInfo.instance.text.text = currentOperations.Text["Ch"];

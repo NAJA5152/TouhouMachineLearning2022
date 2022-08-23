@@ -10,24 +10,16 @@ using UnityEditor;
 
 public class Live2dTest : MonoBehaviour
 {
-    public CubismModel _model;
+    CubismModel model;
     //public AnimatorController animator;
-    public Animator animator;
+    Animator animator;
     public List<AnimationClip> animationClips;
     // Start is called before the first frame update
-    void Start()
-    {
-        _model = this.FindCubismModel();
-    }
-
+    void Awake() => model = this.FindCubismModel();
     // Update is called once per frame
-    void LateUpdate() => _model.ForceUpdateNow();
-    [Button("变灰")]
-    void Togray() => _model.Drawables.ToList().ForEach(drawable => drawable.GetComponent<CubismRenderer>().Color = Color.gray);
-    [Button("变白")]
-    void ToWhite() => _model.Drawables.ToList().ForEach(drawable => drawable.GetComponent<CubismRenderer>().Color = Color.white);
+    void LateUpdate() => model.ForceUpdateNow();
     [Button("初始化动画片段")]
-    void Init()
+    public void Init()
     {
         animator = GetComponent<Animator>();
         AnimatorController animatorController = animator.runtimeAnimatorController as AnimatorController;
@@ -35,7 +27,7 @@ public class Live2dTest : MonoBehaviour
         animationClips.ForEach(clip => animatorController.AddParameter(clip.name, AnimatorControllerParameterType.Trigger));
         AnimatorStateMachine stateMachine = animatorController.layers[0].stateMachine;
         stateMachine.states = new ChildAnimatorState[0];
-        AnimatorState state = stateMachine.AddState("idle");
+        AnimatorState state = stateMachine.AddState("默认");
         state.motion = animationClips[0];
         stateMachine.AddEntryTransition(state);
         animationClips.ForEach(clip =>
@@ -48,8 +40,13 @@ public class Live2dTest : MonoBehaviour
         AssetDatabase.SaveAssets();
     }
     [Button("播放")]
-    void Play(string tag)
+    public void Play(string tag) => GetComponent<Animator>().SetTrigger(tag);
+    [Button("变灰")]
+    public void Togray() => model.Drawables.ToList().ForEach(drawable => drawable.GetComponent<CubismRenderer>().Color = Color.gray);
+    [Button("变白")]
+    public void ToWhite()
     {
-        GetComponent<Animator>().SetTrigger(tag);
+        model.Drawables.ToList().ForEach(drawable => drawable.GetComponent<CubismRenderer>().Color = Color.white);
     }
+
 }

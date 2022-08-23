@@ -29,11 +29,11 @@ namespace TouhouMachineLearningSummary.Control
             DialogueInfo.IsSelectOver = true;
         }
 
-        private void OnGUI()
+        private async void OnGUI()
         {
             if (GUI.Button(new Rect(100, 100, 100, 100), "播放剧情"))
             {
-                DialogueCommand.Play("0", 0);
+               await DialogueCommand.Play("test", 0);
             }
             //if (GUI.Button(new Rect(200, 100, 100, 100), "上一句话"))
             //{
