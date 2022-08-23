@@ -12,7 +12,7 @@ public class Live2dTest : MonoBehaviour
 {
     CubismModel model;
     //public AnimatorController animator;
-    Animator animator;
+    public Animator animator;
     public List<AnimationClip> animationClips;
     // Start is called before the first frame update
     void Awake() => model = this.FindCubismModel();
@@ -48,5 +48,8 @@ public class Live2dTest : MonoBehaviour
     {
         model.Drawables.ToList().ForEach(drawable => drawable.GetComponent<CubismRenderer>().Color = Color.white);
     }
-
+    public void ToActive(float process)
+    {
+        model.Drawables.ToList().ForEach(drawable => drawable.GetComponent<CubismRenderer>().Color = Color.white*( process*0.5f+0.5f));
+    }
 }
