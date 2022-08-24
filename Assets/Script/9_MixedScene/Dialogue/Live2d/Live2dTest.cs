@@ -7,6 +7,7 @@ using Live2D.Cubism.Rendering;
 using Sirenix.OdinInspector;
 using UnityEditor.Animations;
 using UnityEditor;
+using UnityEngine.SceneManagement;
 
 public class Live2dTest : MonoBehaviour
 {
@@ -50,6 +51,7 @@ public class Live2dTest : MonoBehaviour
     }
     public void ToActive(float process)
     {
-        model.Drawables.ToList().ForEach(drawable => drawable.GetComponent<CubismRenderer>().Color = Color.white*( process*0.5f+0.5f));
+        float value = (process * 0.5f) + 0.5f;
+        model.Drawables.ToList().ForEach(drawable => drawable.GetComponent<CubismRenderer>().Color =new  Color(value, value, value));
     }
 }

@@ -148,19 +148,22 @@ namespace TouhouMachineLearningSummary.Command
                         //Info.DialogueInfo.instance.left.GetComponent<Image>().sprite = AssetBundleCommand.Load<Texture2D>("Charactar", currentOperations.Chara).ToSprite();
                         //Info.DialogueInfo.instance.left.GetComponent<Image>().color = new Color(1, 1, 1, 1);
                         //Info.DialogueInfo.instance.right.GetComponent<Image>().color = new Color(0.6f, 0.6f, 0.6f, 1);
+
+                        //关闭所有左侧live2d
                         Transform left = Info.DialogueInfo.instance.left.transform;
                         for (int i = 0; i < left.childCount; i++)
                         {
                             left.GetChild(i).gameObject.SetActive(false);
                         }
-                        //先判断上个激活的立绘是否存在且是右侧，如果是则变灰移回原位
+                        //先判断上个激活的立绘是否存在且是右侧，如果是则变灰移回原位或者关闭
                         if (Info.DialogueInfo.targetLive2dChara != null && Info.DialogueInfo.isRightCharaActive)
                         {
-                            //Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().Togray();
-                            await CustomThread.TimerAsync(0.5f, process =>
+                            Debug.Log("关闭右侧立绘");
+                            Transform target = Info.DialogueInfo.targetLive2dChara;
+                            _ = CustomThread.TimerAsync(0.5f, process =>
                             {
-                                Info.DialogueInfo.targetLive2dChara.localPosition = new Vector3((1 - process) * -100, 0, 0);
-                                Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().ToActive(1 - process);
+                                target.localPosition = new Vector3((1 - process) * -100, 0, 0);
+                                target.GetComponent<Live2dTest>().ToActive(1 - process);
                             });
                             Info.DialogueInfo.isRightCharaActive = false;
                         }
@@ -169,11 +172,12 @@ namespace TouhouMachineLearningSummary.Command
                         Info.DialogueInfo.targetLive2dChara.gameObject.SetActive(true);
                         if (!Info.DialogueInfo.isLeftCharaActive)
                         {
-                            //Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().ToWhite();
-                            await CustomThread.TimerAsync(0.5f, process =>
+                            Debug.Log("打开左侧立绘");
+                            Transform target = Info.DialogueInfo.targetLive2dChara;
+                            _ = CustomThread.TimerAsync(0.5f, process =>
                             {
-                                Info.DialogueInfo.targetLive2dChara.localPosition = new Vector3(process * 100, 0, 0);
-                                Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().ToActive( process);
+                                target.localPosition = new Vector3(process * 100, 0, 0);
+                                target.GetComponent<Live2dTest>().ToActive(process);
                             });
                             Info.DialogueInfo.isLeftCharaActive = true;
                         }
@@ -191,7 +195,8 @@ namespace TouhouMachineLearningSummary.Command
                         //先判断上个激活的立绘是否存在且是左侧，如果是则变灰移回原位
                         if (Info.DialogueInfo.targetLive2dChara != null && Info.DialogueInfo.isLeftCharaActive)
                         {
-                            //Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().Togray();
+                            Debug.Log("关闭左侧立绘");
+                            Transform target = Info.DialogueInfo.targetLive2dChara;
                             _ = CustomThread.TimerAsync(0.5f, process =>
                             {
                                 Info.DialogueInfo.targetLive2dChara.localPosition = new Vector3((1 - process) * 100, 0, 0);
@@ -204,11 +209,13 @@ namespace TouhouMachineLearningSummary.Command
                         Info.DialogueInfo.targetLive2dChara.gameObject.SetActive(true);
                         if (!Info.DialogueInfo.isRightCharaActive)
                         {
-                            _= CustomThread.TimerAsync(0.5f, process =>
-                            {
-                                Info.DialogueInfo.targetLive2dChara.localPosition = new Vector3(process * -100, 0, 0);
-                                Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().ToActive(process);
-                            });
+                            Debug.Log("打开右侧立绘");
+                            Transform target = Info.DialogueInfo.targetLive2dChara;
+                            _ = CustomThread.TimerAsync(0.5f, process =>
+                             {
+                                 Info.DialogueInfo.targetLive2dChara.localPosition = new Vector3(process * -100, 0, 0);
+                                 Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().ToActive(process);
+                             });
                             Info.DialogueInfo.isRightCharaActive = true;
                         }
                     }
