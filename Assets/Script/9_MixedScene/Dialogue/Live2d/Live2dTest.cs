@@ -51,7 +51,7 @@ public class Live2dTest : MonoBehaviour
     }
     public void ToActive(float process)
     {
-        float value = (process * 0.5f) + 0.5f;
+        float value = (process * 0.8f) + 0.2f;
         model.Drawables.ToList().ForEach(drawable => drawable.GetComponent<CubismRenderer>().Color =new  Color(value, value, value));
     }
 }

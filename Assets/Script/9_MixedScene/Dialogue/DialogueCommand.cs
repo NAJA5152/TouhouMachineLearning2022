@@ -160,7 +160,7 @@ namespace TouhouMachineLearningSummary.Command
                         {
                             Debug.Log("关闭右侧立绘");
                             Transform target = Info.DialogueInfo.targetLive2dChara;
-                            _ = CustomThread.TimerAsync(0.5f, process =>
+                            _ = CustomThread.TimerAsync(0.2f, process =>
                             {
                                 target.localPosition = new Vector3((1 - process) * -100, 0, 0);
                                 target.GetComponent<Live2dTest>().ToActive(1 - process);
@@ -197,10 +197,10 @@ namespace TouhouMachineLearningSummary.Command
                         {
                             Debug.Log("关闭左侧立绘");
                             Transform target = Info.DialogueInfo.targetLive2dChara;
-                            _ = CustomThread.TimerAsync(0.5f, process =>
+                            _ = CustomThread.TimerAsync(0.2f, process =>
                             {
-                                Info.DialogueInfo.targetLive2dChara.localPosition = new Vector3((1 - process) * 100, 0, 0);
-                                Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().ToActive(1 - process);
+                                target.localPosition = new Vector3((1 - process) * 100, 0, 0);
+                                target.GetComponent<Live2dTest>().ToActive(1 - process);
                             });
                             Info.DialogueInfo.isLeftCharaActive = false;
                         }
@@ -212,10 +212,10 @@ namespace TouhouMachineLearningSummary.Command
                             Debug.Log("打开右侧立绘");
                             Transform target = Info.DialogueInfo.targetLive2dChara;
                             _ = CustomThread.TimerAsync(0.5f, process =>
-                             {
-                                 Info.DialogueInfo.targetLive2dChara.localPosition = new Vector3(process * -100, 0, 0);
-                                 Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().ToActive(process);
-                             });
+                            {
+                                target.localPosition = new Vector3(process * -100, 0, 0);
+                                target.GetComponent<Live2dTest>().ToActive(process);
+                            });
                             Info.DialogueInfo.isRightCharaActive = true;
                         }
                     }
