@@ -163,7 +163,7 @@ namespace TouhouMachineLearningSummary.Command
                             _ = CustomThread.TimerAsync(0.2f, process =>
                             {
                                 target.localPosition = new Vector3((1 - process) * -100, 0, 0);
-                                target.GetComponent<Live2dTest>().ToActive(1 - process);
+                                target.GetComponent<Live2dManager>().ToActive(1 - process);
                             });
                             Info.DialogueInfo.isRightCharaActive = false;
                         }
@@ -177,7 +177,7 @@ namespace TouhouMachineLearningSummary.Command
                             _ = CustomThread.TimerAsync(0.5f, process =>
                             {
                                 target.localPosition = new Vector3(process * 100, 0, 0);
-                                target.GetComponent<Live2dTest>().ToActive(process);
+                                target.GetComponent<Live2dManager>().ToActive(process);
                             });
                             Info.DialogueInfo.isLeftCharaActive = true;
                         }
@@ -200,7 +200,7 @@ namespace TouhouMachineLearningSummary.Command
                             _ = CustomThread.TimerAsync(0.2f, process =>
                             {
                                 target.localPosition = new Vector3((1 - process) * 100, 0, 0);
-                                target.GetComponent<Live2dTest>().ToActive(1 - process);
+                                target.GetComponent<Live2dManager>().ToActive(1 - process);
                             });
                             Info.DialogueInfo.isLeftCharaActive = false;
                         }
@@ -214,14 +214,14 @@ namespace TouhouMachineLearningSummary.Command
                             _ = CustomThread.TimerAsync(0.5f, process =>
                             {
                                 target.localPosition = new Vector3(process * -100, 0, 0);
-                                target.GetComponent<Live2dTest>().ToActive(process);
+                                target.GetComponent<Live2dManager>().ToActive(process);
                             });
                             Info.DialogueInfo.isRightCharaActive = true;
                         }
                     }
                     if (currentOperations.Face != "")
                     {
-                        Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dTest>().Play(currentOperations.Face);
+                        Info.DialogueInfo.targetLive2dChara.GetComponent<Live2dManager>().Play(currentOperations.Face);
                     }
                     Info.DialogueInfo.instance.name.text = currentOperations.Chara;
                     Info.DialogueInfo.instance.text.text = currentOperations.Text["Ch"];

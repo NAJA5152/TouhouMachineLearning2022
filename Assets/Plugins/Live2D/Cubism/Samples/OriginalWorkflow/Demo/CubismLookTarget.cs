@@ -35,9 +35,6 @@ namespace Live2D.Cubism.Samples.OriginalWorkflow.Demo
         /// Gets whether the target is active.
         /// </summary>
         /// <returns><see langword="true"/> if the target is active; <see langword="false"/> otherwise.</returns>
-        public bool IsActive()
-        {
-            return true;
-        }
+        public bool IsActive() => true;
     }
 }
