@@ -38,10 +38,10 @@ public class Live2dManager : MonoBehaviour
             Debug.LogError("Input.mousePosition"+Input.mousePosition);
             Debug.LogError("Input.mousePosition1"+ Camera.main.ScreenToViewportPoint(Input.mousePosition));
             Debug.LogError("transform.position" + transform.position);
-            Debug.LogError("transform.position1" + Camera.main.ScreenToViewportPoint(transform.position));
-            Vector3 vector3=transform.position;
+            Debug.LogError("transform.position1" +Camera.main.WorldToViewportPoint(transform.position));
+            Vector3 vector3= Camera.main.WorldToViewportPoint(transform.position);
             //var targetSightPoint = ((Camera.main.ScreenToViewportPoint(Input.mousePosition) * 2) - Vector3.one) * 30;
-            var targetSightPoint = ((Camera.main.ScreenToViewportPoint(Input.mousePosition - vector3)) ) * 60;
+            var targetSightPoint = (Camera.main.ScreenToViewportPoint(Input.mousePosition ) - vector3 ) * 60;
             biasSightPoint = Vector3.Lerp(biasSightPoint, targetSightPoint, Time.deltaTime * 5);
         }
         else
