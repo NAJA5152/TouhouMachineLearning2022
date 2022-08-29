@@ -27,7 +27,6 @@ public class Live2dManager : MonoBehaviour
         model = this.FindCubismModel();
         ParamAngleX = model.Parameters.FindById("ParamAngleX");
         ParamAngleY = model.Parameters.FindById("ParamAngleY");
-        ParamAngleX.Value = 30;
     }
 
     // Update is called once per frame
@@ -35,13 +34,9 @@ public class Live2dManager : MonoBehaviour
     {
         if (Input.GetMouseButton(0))
         {
-            Debug.LogError("Input.mousePosition"+Input.mousePosition);
-            Debug.LogError("Input.mousePosition1"+ Camera.main.ScreenToViewportPoint(Input.mousePosition));
-            Debug.LogError("transform.position" + transform.position);
-            Debug.LogError("transform.position1" +Camera.main.WorldToViewportPoint(transform.position));
-            Vector3 vector3= Camera.main.WorldToViewportPoint(transform.position);
-            //var targetSightPoint = ((Camera.main.ScreenToViewportPoint(Input.mousePosition) * 2) - Vector3.one) * 30;
-            var targetSightPoint = (Camera.main.ScreenToViewportPoint(Input.mousePosition ) - vector3 ) * 60;
+
+            Vector3 vector3 = Camera.main.WorldToViewportPoint(transform.position);
+            var targetSightPoint = (Camera.main.ScreenToViewportPoint(Input.mousePosition) - vector3) * 60;
             biasSightPoint = Vector3.Lerp(biasSightPoint, targetSightPoint, Time.deltaTime * 5);
         }
         else
@@ -58,40 +53,39 @@ public class Live2dManager : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         AnimatorController animatorController = animator.runtimeAnimatorController as AnimatorController;
-        animatorController.parameters = new AnimatorControllerParameter[0];
+        animatorController.parameters.ToList().ForEach(parameter => animatorController.RemoveParameter(parameter));
         faces.ForEach(clip => animatorController.AddParameter(clip.name, AnimatorControllerParameterType.Trigger));
+        action.ForEach(clip => animatorController.AddParameter(clip.name, AnimatorControllerParameterType.Trigger));
         AnimatorStateMachine stateMachine = animatorController.layers[0].stateMachine;
+        stateMachine.states.ToList().ForEach(state => stateMachine.RemoveState(state.state));
         stateMachine.states = new ChildAnimatorState[0];
         AnimatorState state = stateMachine.AddState("默认");
         state.motion = faces[0];
         stateMachine.AddEntryTransition(state);
+        int position = 0;
         //导入表情动画，并为循环播放
         faces.ForEach(clip =>
         {
-            AnimatorState state = stateMachine.AddState(clip.name);
+            position++;
+            AnimatorState state = stateMachine.AddState(clip.name,new Vector3(50,50* position));
             state.motion = clip;
             AnimatorStateTransition transition = stateMachine.AddAnyStateTransition(state);
             transition.AddCondition(AnimatorConditionMode.If, 1, clip.name);
         });
+        position = 0;
         //导入动作动画，只播放一次
         action.ForEach(clip =>
         {
-            AnimatorState state = stateMachine.AddState(clip.name);
+            AnimatorState state = stateMachine.AddState(clip.name, new Vector3(100, 50 * position));
             state.motion = clip;
             AnimatorStateTransition transition = stateMachine.AddAnyStateTransition(state);
             transition.AddCondition(AnimatorConditionMode.If, 1, clip.name);
+            stateMachine.AddEntryTransition(state);
         });
         AssetDatabase.SaveAssets();
     }
     [Button("播放")]
     public void Play(string tag) => GetComponent<Animator>().SetTrigger(tag);
-    [Button("变灰")]
-    public void Togray() => model.Drawables.ToList().ForEach(drawable => drawable.GetComponent<CubismRenderer>().Color = Color.gray);
-    [Button("变白")]
-    public void ToWhite()
-    {
-        model.Drawables.ToList().ForEach(drawable => drawable.GetComponent<CubismRenderer>().Color = Color.white);
-    }
     public void ToActive(float process)
     {
         float value = (process * 0.8f) + 0.2f;
