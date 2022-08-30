@@ -8,7 +8,6 @@ namespace TouhouMachineLearningSummary.Model
         public List<Operation> Operations { get; set; } = new List<Operation>();
         public class Operation
         {
-
             public Operation(string branch, string chara, string position, string face, Dictionary<string, string> text)
             {
                 Branch = branch;

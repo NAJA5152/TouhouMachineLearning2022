@@ -32,13 +32,31 @@ namespace TouhouMachineLearningSummary.Command
                 Info.DialogueInfo.DialogueModels = AssetBundleCommand.Load<TextAsset>("GameData", "Story").text.ToObject<List<DialogueModel>>();
             }
         }
+        //重新加载新的剧情文件，并调整对话指针
+        public static void ReLoad()
+        {
+            Load();
+            DialogueInfo.currnetDialogueModel = Info.DialogueInfo.DialogueModels.FirstOrDefault(model => model.Tag == $"{DialogueInfo.StageTag}-{DialogueInfo.StageRank}");
+            if (DialogueInfo.currnetDialogueModel != null)
+            {
+                int newDialogueCount = Info.DialogueInfo.currnetDialogueModel.Operations.Count;
+                DialogueInfo.CurrentPoint = Mathf.Min(DialogueInfo.CurrentPoint, newDialogueCount);
+                RunNextOperations();
+            }
+            else
+            {
+                Debug.LogError("剧情重载失败");
+            }
+        }
 
         public static async Task Play(string stageTag, int stageRank)
         {
 
-            Info.DialogueInfo.CurrentPoint = 0;
-            Info.DialogueInfo.isLeftCharaActive = false;
-            Info.DialogueInfo.isRightCharaActive = false;
+            DialogueInfo.CurrentPoint = 0;
+            DialogueInfo.StageTag = stageTag;
+            DialogueInfo.StageRank = stageRank;
+            DialogueInfo.isLeftCharaActive = false;
+            DialogueInfo.isRightCharaActive = false;
             Transform left = Info.DialogueInfo.instance.left.transform;
             for (int i = 0; i < left.childCount; i++)
             {
@@ -50,18 +68,18 @@ namespace TouhouMachineLearningSummary.Command
                 right.GetChild(i).gameObject.SetActive(false);
             }
 
-            Info.DialogueInfo.instance.dialogueCanvas.SetActive(true);
+            DialogueInfo.instance.dialogueCanvas.SetActive(true);
             Debug.LogError("对话组件开启");
             //加载剧情文本
-            Info.DialogueInfo.currnetDialogueModel = Info.DialogueInfo.DialogueModels.FirstOrDefault(model => model.Tag == $"{stageTag}-{stageRank}");
-            if (Info.DialogueInfo.currnetDialogueModel != null)
+            DialogueInfo.currnetDialogueModel = DialogueInfo.DialogueModels.FirstOrDefault(model => model.Tag == $"{stageTag}-{stageRank}");
+            if (DialogueInfo.currnetDialogueModel != null)
             {
                 await RunNextOperations();
             }
             else
             {
                 Debug.LogError("剧情加载失败");
-                Info.DialogueInfo.instance.dialogueCanvas.SetActive(false);
+                DialogueInfo.instance.dialogueCanvas.SetActive(false);
             }
         }
         /// <summary>
